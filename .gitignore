@@ -1,0 +1,26 @@
+﻿# Outputs / runs (never commit)
+outputs/
+outputs/**
+
+# Secrets
+.env
+.env.*
+secrets.*
+*.key
+*.pem
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Python / Node (if used)
+__pycache__/
+*.pyc
+.venv/
+venv/
+node_modules/
+
+# Generated artifacts
+*.pdf
