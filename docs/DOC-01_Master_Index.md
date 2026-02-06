@@ -83,29 +83,30 @@ Each topic has exactly **one home document**. If content belongs elsewhere, refe
 ### DOC-09: Prototype & Implementation Plan
 **Owns:**
 - Thin vertical prototype plan (acceptance criteria)
-- Architecture overview (services, DB, storage)
-- Security model (no PHI posture, audit logs)
-- Deployment plan
+- Architecture overview (components, storage, config)
+- Security model (no PHI posture, auditability)
+- Deployment notes (later; v1 focuses on local CLI + artifacts)
 
 ---
 
 ## Current status
 - Repo scaffold complete ✅
-- Docs migration in progress (this branch) ⏳
-- Next build milestone: **Milestone A → B** (repo/run skeleton + ingestion) per DOC-09
+- DOC-01..DOC-09 migrated into repo ✅
+- Next build milestone: **Milestone B** (Ingest + AdvisoryRecord extraction) per DOC-09
+- Next housekeeping: optional polish (DOC-03 numbering) and later JSON Schema files under `schemas/`
 
 ---
 
 ## Migration checklist (from legacy/canvas into repo docs)
 - [x] Create repo + scaffold
-- [ ] Migrate DOC-08 Grant Proposal Draft into repo
-- [ ] Migrate DOC-02 Data Contracts & Schemas into repo
-- [ ] Migrate DOC-03 Mitigation Playbook into repo
-- [ ] Migrate DOC-04 Integrations & Connectors into repo
-- [ ] Migrate DOC-05 Ingestion Sources & Parsers into repo
-- [ ] Migrate DOC-06 Matching & Confidence Engine into repo
-- [ ] Migrate DOC-07 Evaluation Harness & Public Good into repo
-- [ ] Migrate DOC-09 Prototype & Implementation Plan into repo
+- [x] Migrate DOC-08 Grant Proposal Draft into repo
+- [x] Migrate DOC-02 Data Contracts & Schemas into repo
+- [x] Migrate DOC-03 Mitigation Playbook into repo
+- [x] Migrate DOC-04 Integrations & Connectors into repo
+- [x] Migrate DOC-05 Ingestion Sources & Parsers into repo
+- [x] Migrate DOC-06 Matching & Confidence Engine into repo
+- [x] Migrate DOC-07 Evaluation Harness & Public Good into repo
+- [x] Migrate DOC-09 Prototype & Implementation Plan into repo
 
 ---
 
@@ -113,4 +114,3 @@ Each topic has exactly **one home document**. If content belongs elsewhere, refe
 - ServiceNow: incident vs SIR vs VR as default beyond MVP
 - First enrichment connector to build (Forescout vs Armis vs Claroty) for best ROI
 - Minimal facility fields required to achieve high-confidence matching
-
