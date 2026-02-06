@@ -41,7 +41,6 @@ This doc is implementation-facing: developers should be able to build the pipeli
 Goal: Strict, source-agnostic representation of a single advisory notice (vendor/FDA/CISA/etc.) enabling clustering, matching, and packet generation.
 
 ### 3.1 Schema outline
-
 ~~~json
 {
   "advisory_id": "adv_<sha-or-uuid>",
@@ -175,8 +174,8 @@ Goal: Strict, source-agnostic representation of a single advisory notice (vendor
   }
 }
 ~~~
-### 3.2 Minimum required fields (MVP)
 
+### 3.2 Minimum required fields (MVP)
 **Required (best-effort):**
 - advisory_id
 - record_version
@@ -200,7 +199,6 @@ Goal: Strict, source-agnostic representation of a single advisory notice (vendor
 
 **Required actions:**
 - recommended_actions (at least 1 entry)
-
 ---
 
 ## 4) IssueCluster JSON Contract (v1.0)
@@ -286,117 +284,18 @@ Goal: Deduplicate and track multiple advisories/updates for the same underlying 
   }
 }
 ~~~
-### 3.2 Minimum required fields (MVP)
 
-**Required (best-effort):**
-- advisory_id
+### 4.1 Minimum required fields (MVP)
+**Required:**
+- cluster_id
 - record_version
-- publisher
 - title
-- published_date (best-effort)
-- retrieved_at
-- source_url
-
-**Required content:**
-- content.raw_text
-- content.content_hash
-
-**Required scope (best-effort):**
-- affected_product_definition (vendor/product/models)
-
-**At least one of:**
-- identifiers.cves
-- affected_product_definition.affected_versions
-- recommended_actions (explicit mitigations)
-
-**Required actions:**
-- recommended_actions (at least 1 entry)
-
+- created_at, updated_at
+- canonical_product_scope.vendor
+- advisories[] (at least 1 entry with advisory_id + source_url)
+- dedupe_logic.confidence
 ---
 
-## 4) IssueCluster JSON Contract (v1.0)
-Goal: Deduplicate and track multiple advisories/updates for the same underlying issue.
-
-~~~json
-{
-  "cluster_id": "clu_<sha-or-uuid>",
-  "record_version": "1.0",
-
-  "title": "Canonical issue title",
-  "summary": "Canonical summary",
-
-  "created_at": "ISO-8601",
-  "updated_at": "ISO-8601",
-  "status": "active | superseded | retired",
-
-  "canonical_identifiers": {
-    "cves": ["CVE-YYYY-NNNN"],
-    "cwes": ["CWE-###"],
-    "vendor_ids": ["ABC-2026-001"],
-    "other_ids": []
-  },
-
-  "canonical_product_scope": {
-    "vendor": "string",
-    "product_family": "string",
-    "device_type": "string",
-    "models": ["string"],
-    "affected_versions": [
-      {"raw": "<= 3.2.1", "normalized": {"lte": "3.2.1"}, "confidence": 0.85}
-    ],
-    "fixed_versions": [
-      {"raw": "3.2.2", "normalized": {"eq": "3.2.2"}, "confidence": 0.9}
-    ]
-  },
-
-  "advisories": [
-    {
-      "advisory_id": "adv_...",
-      "publisher": "FDA | Vendor | CISA | Other",
-      "published_date": "YYYY-MM-DD",
-      "source_url": "https://...",
-      "relationship": "primary | supporting | update | duplicate",
-      "notes": "optional"
-    }
-  ],
-
-  "timeline": [
-    {
-      "date": "YYYY-MM-DD",
-      "event": "published | updated | mitigation_changed | patch_released | exploit_observed",
-      "source_ref": "adv_...",
-      "notes": "optional"
-    }
-  ],
-
-  "severity_rollup": {
-    "max_vendor_severity": "critical | high | medium | low | unknown",
-    "max_cvss": 9.8,
-    "known_exploited": false,
-    "kev_listed": false,
-    "confidence": 0.8
-  },
-
-  "recommended_actions_rollup": {
-    "patch_guidance": "string",
-    "compensating_controls": ["ACL_ALLOWLIST"],
-    "vendor_case_recommended": true,
-    "citations": []
-  },
-
-  "healthcare_constraints_rollup": {
-    "vendor_managed_common": true,
-    "no_admin_access_common": true,
-    "downtime_sensitivity": "high | medium | low | unknown",
-    "citations": []
-  },
-
-  "dedupe_logic": {
-    "rules_triggered": ["CVE_MATCH", "PRODUCT_FAMILY_MATCH"],
-    "confidence": 0.87
-  }
-}
-~~~
 ## 5) RemediationPacket JSON Contract (v1.0)
 Goal: Ticket-system-agnostic unit of work that can be exported to PDF/CSV/JSON and mapped into ServiceNow (or others).
 
@@ -409,7 +308,6 @@ Goal: Ticket-system-agnostic unit of work that can be exported to PDF/CSV/JSON a
 - action_type: `patch | configuration_change | compensating_control | monitoring | vendor_case | communication | validation`
 
 ### 5.2 Schema outline
-
 ~~~json
 {
   "packet_id": "uuid",
@@ -495,7 +393,7 @@ Goal: Ticket-system-agnostic unit of work that can be exported to PDF/CSV/JSON a
       "drafts": []
     }
   },
-~~~json
+
   "risk_acceptance": {
     "needed": false,
     "residual_risk_summary": "",
