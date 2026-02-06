@@ -153,47 +153,22 @@ If a source URL changes over time:
 - content_hash changes → new AdvisoryRecord version with link to prior versions
 - clustering layer (IssueCluster) handles “update/supersedes” relationships
 
-## 8) Parsing & cleanup rules (MVP)
+## 11) Ingestion output artifacts (MVP)
+Each ingestion produces:
+- `raw_text` (normalized)
+- `content_hash` (sha256)
+- `advisory_id` (deterministic)
+- `source metadata` (URL, retrieved_at, content_type)
 
-### 8.1 HTML extraction
-Goal: remove navigation and boilerplate while preserving meaningful advisory content.
+Then extraction produces:
+- AdvisoryRecord.json
+- key_points for citations (packet sources[])
 
-Rules:
-- prefer main/article elements where available
-- remove menus, footers, repeated nav items
-- preserve headings and bullet lists where possible
-- keep tables as text (best-effort)
-- preserve links separately if needed (optional)
-
-### 8.2 PDF extraction
-Goal: best-effort text extraction suitable for model input.
-
-Rules:
-- extract text in reading order (best-effort)
-- preserve page breaks as delimiters (e.g., `\n\n--- page N ---\n\n`)
-- if text extraction is garbage (scanned PDF):
-  - fallback: user-provided text
-  - OCR is optional later (higher cost, error-prone)
-
-### 8.3 Normalization
-- normalize whitespace
-- keep section boundaries (headings)
-- preserve version strings (e.g., “v3.2.1”)
-- do not “rewrite” content during ingestion (extraction model will interpret)
+Optional enrichment (later):
+- CVE detail enrichment (NVD/other)
+- exploit intel enrichment (paid feeds, e.g., Flashpoint) — PRO scope
 
 ---
 
-## 9) Quality checks before extraction
-Before calling extraction, run quick checks:
-- minimum length threshold (avoid empty pages)
-- detect duplicate content (hash-based)
-- detect obvious non-advisory pages (login pages, generic marketing pages)
-- if uncertain: flag warning and request human confirmation
-
----
-
-## 10) Multi-version advisories (updates)
-If a source URL changes over time:
-- content_hash changes → new AdvisoryRecord version with link to prior versions
-- clustering layer (IssueCluster) handles “update/supersedes” relationships
-
+## 12) Changelog
+- 2026-02-06: Initial v1 ingestion pipeline spec, hashing/snapshot strategy, and parsing constraints.
