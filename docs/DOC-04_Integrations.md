@@ -302,3 +302,21 @@ Every connector call should log:
 
 ## 11) Changelog
 - 2026-02-06: Initial v1 integration architecture, ServiceNow incident-first MVP spec, and connector standards.
+
+
+## RSS Discovery Connectors — Added 2026-02-06
+### Purpose
+Provide a stable, low-cost way to detect new advisories without scraping listing pages.
+
+### Connector Types
+- discover_cisa_icsma → polls CISA ICS Medical Advisories RSS
+- discover_cisa_icsa → polls CISA ICS Advisories RSS
+- discover_fda_medwatch → polls FDA MedWatch RSS and filters for cybersecurity-relevant items
+
+### Output Contract
+Each connector emits a normalized FeedItem object:
+- source, guid, title, link, published_date, summary, fetched_at
+
+### Scheduling (MVP → Production)
+- MVP: manual runs via CLI (dvisoryops discover)
+- Later: scheduled runs via cron/GitHub Actions/container scheduler

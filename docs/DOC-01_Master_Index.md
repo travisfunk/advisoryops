@@ -114,3 +114,9 @@ Each topic has exactly **one home document**. If content belongs elsewhere, refe
 - ServiceNow: incident vs SIR vs VR as default beyond MVP
 - First enrichment connector to build (Forescout vs Armis vs Claroty) for best ROI
 - Minimal facility fields required to achieve high-confidence matching
+
+
+### MVP Additions (Discovery Layer) — Added 2026-02-06
+- [ ] Implement RSS discovery (dvisoryops discover) for CISA ICSMA + FDA MedWatch
+- [ ] Document dedupe rules (GUID/link/hash) and provenance recording
+- [ ] Add corpus builder workflow using discovered links

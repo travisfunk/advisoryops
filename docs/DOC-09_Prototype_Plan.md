@@ -202,3 +202,18 @@ This plan aligns with the Trusted Access for Cyber goals by:
 
 ## 13) Changelog
 - 2026-02-06: Initial v1 milestone plan, architecture overview, and monetization path.
+
+
+## Milestone: Discovery Layer (RSS) — Added 2026-02-06
+### Goal
+Continuously identify newly published advisories using stable RSS feeds, then hand off to ingestion + extraction.
+
+### MVP Deliverables
+- CLI: dvisoryops discover --source cisa-icsma|cisa-icsa|fda-medwatch
+- Writes snapshot: outputs/discover/<source>/feed.json
+- Produces a queue/list of new link targets for ingestion
+- Demonstrate: build a repeatable sample corpus (3–10 advisories per source)
+
+### Success Criteria
+- Deterministic dedupe (no duplicate processing across runs)
+- Stable provenance metadata captured (guid/link/published/fetched)

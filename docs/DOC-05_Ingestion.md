@@ -172,3 +172,34 @@ Optional enrichment (later):
 
 ## 12) Changelog
 - 2026-02-06: Initial v1 ingestion pipeline spec, hashing/snapshot strategy, and parsing constraints.
+
+
+## Discovery Feeds (RSS/API) — Added 2026-02-06
+Discovery is a separate step from ingestion:
+- **Discovery** finds *new* advisories and provides stable metadata (title/link/pubDate/guid/summary).
+- **Ingestion** fetches canonical content (HTML/PDF/text) and normalizes it for extraction.
+
+### MVP Discovery Sources
+- **CISA ICS Medical Advisories RSS** (ICSMA): https://www.cisa.gov/cybersecurity-advisories/ics-medical-advisories.xml
+- **CISA ICS Advisories RSS** (ICSA): https://www.cisa.gov/cybersecurity-advisories/ics-advisories.xml
+- **FDA MedWatch RSS** (broad safety alerts, filtered for cyber keywords): https://www.fda.gov/about-fda/contact-fda/stay-informed/rss-feeds/medwatch/rss.xml
+
+### Stored Feed Item Fields (minimum)
+- source (cisa-icsma | cisa-icsa | fda-medwatch)
+- guid (if present)
+- title
+- link (canonical URL)
+- published_date (best-effort)
+- summary/description (raw)
+- fetched_at (UTC)
+
+### How Discovery Feeds Into Ingestion
+- For each *new* feed item:
+  - enqueue link into ingest_url(link)
+  - store eed_item.json alongside source.json for traceability
+- **CISA fast-path (optional):** treat RSS description as a first-pass extraction input while also ingesting the canonical page.
+
+### Dedupe Strategy
+- Primary: (source, guid) if guid exists
+- Secondary: normalized link
+- Tertiary: content hash of normalized text snapshot
