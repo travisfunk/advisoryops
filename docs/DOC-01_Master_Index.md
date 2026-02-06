@@ -120,3 +120,5 @@ Each topic has exactly **one home document**. If content belongs elsewhere, refe
 - [ ] Implement RSS discovery (dvisoryops discover) for CISA ICSMA + FDA MedWatch
 - [ ] Document dedupe rules (GUID/link/hash) and provenance recording
 - [ ] Add corpus builder workflow using discovered links
+## Stack & Deployment
+- DOC-10: Stack and Deployment (MVP)
