@@ -1,0 +1,15 @@
+﻿This is a sample advisory text for testing AdvisoryOps MVP.
+
+Vendor: Example Medical Devices Inc.
+Product family: ImaginaryPACS Controller
+Models: IPC-1000, IPC-2000
+Issue: Weak default credentials in remote management interface.
+Affected versions: <= 3.2.1
+Fixed version: 3.2.2
+
+Recommended actions:
+- Update to 3.2.2
+- If patching is not feasible, restrict inbound access to management interface to a jump host
+- Disable remote management if not required
+CVE: CVE-2026-12345
+Published: 2026-02-01

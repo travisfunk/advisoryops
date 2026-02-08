@@ -24,3 +24,16 @@ node_modules/
 
 # Generated artifacts
 *.pdf
+# ---- local artifacts (do not commit) ----
+*.zip
+*.7z
+*.rar
+*.tar
+*.tgz
+*.tar.gz
+*.log
+*.tmp
+# ---- python env / outputs ----
+# ---- python build artifacts ----
+*.egg-info/
+src/*.egg-info/

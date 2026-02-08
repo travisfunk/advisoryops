@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "advisoryops"
+version = "0.0.1"
+description = "AdvisoryOps MVP CLI (discover + ingest + extract)"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "openai",
+  "requests",
+  "python-dotenv",
+  "pydantic",
+  "pypdf",
+]
+
+[project.scripts]
+advisoryops = "advisoryops.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
