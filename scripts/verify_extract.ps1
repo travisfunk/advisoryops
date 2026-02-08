@@ -19,7 +19,7 @@ if ($LASTEXITCODE -ne 0) { throw "advisoryops extract failed with exitcode=$LAST
 
 # Deep schema + mojibake scan (PowerShell-safe python invocation via temp .py)
 $py = @"
-import json
+import json, sys
 from pathlib import Path
 
 markers = ["â€™", "Â", "â€"]
@@ -39,12 +39,12 @@ extra = [k for k in keys if k not in expected]
 print("missing=", missing)
 print("extra=", extra)
 
-# __FAIL_ON_CONTRACT__
+# FAIL if contract violated
 if missing or extra:
     print("ERROR: output contract violated")
-    raise SystemExit(2)
+    sys.exit(2)
 
-
+# Deep scan for mojibake markers
 hits = []
 def walk(v, path="$"):
     if isinstance(v, dict):
@@ -64,7 +64,7 @@ if hits:
     print("FOUND_HITS=", len(hits))
     for path, m, v in hits[:50]:
         print(f"{path} contains {m}: {v}")
-    raise SystemExit(1)
+    sys.exit(3)
 else:
     print("OK: no mojibake markers found anywhere in JSON")
 "@
