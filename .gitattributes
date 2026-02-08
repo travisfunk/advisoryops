@@ -1,6 +1,21 @@
-﻿*.py text eol=lf
-*.md text eol=lf
-*.txt text eol=lf
-*.json text eol=lf
-*.yml text eol=lf
-*.yaml text eol=lf
+# Default: keep LF in repo for all text files (platform-agnostic)
+* text=auto eol=lf
+
+# Windows scripts: keep CRLF for best PS/CMD behavior on Windows
+*.ps1 text eol=crlf
+*.psm1 text eol=crlf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Common binaries
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.pdf binary
+*.zip binary
+*.gz  binary
+*.7z  binary
+*.ico binary
+*.exe binary
+*.dll binary
