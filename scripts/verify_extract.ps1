@@ -39,6 +39,12 @@ extra = [k for k in keys if k not in expected]
 print("missing=", missing)
 print("extra=", extra)
 
+# __FAIL_ON_CONTRACT__
+if missing or extra:
+    print("ERROR: output contract violated")
+    raise SystemExit(2)
+
+
 hits = []
 def walk(v, path="$"):
     if isinstance(v, dict):
