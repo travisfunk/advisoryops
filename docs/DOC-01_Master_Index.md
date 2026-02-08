@@ -108,3 +108,5 @@ Next up
 ## Stack & Deployment
 ## Stack & Deployment
 - DOC-10: Stack and Deployment (MVP)
+
+- `scripts/verify_extract.ps1` integration check (extract + 13-key contract + mojibake scan). __VERIFY_EXTRACT_SCRIPT_INDEX__

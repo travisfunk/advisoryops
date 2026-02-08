@@ -28,20 +28,15 @@ python -m pip install -U pytest
 ## Run an end-to-end smoke test (real LLM extract)
 
 ~~~powershell
-# 1) ingest something (example URL) — adjust to your real ingest command
-# advisoryops ingest --url "<advisory_url_here>"
+# End-to-end integration check (calls the LLM)
+# - runs extract
+# - enforces strict 13-key output contract (DOC-02)
+# - deep scans JSON for mojibake markers
+.\scripts\verify_extract.ps1
 
-# 2) pick latest ingest folder and run extract
-$advisoryId = (Get-ChildItem .\outputs\ingest -Directory | Sort-Object LastWriteTime -Descending | Select-Object -First 1).Name
-advisoryops extract --advisory-id $advisoryId
-
-# 3) validate output is UTF-8 and doesn’t contain mojibake markers
-$rec = ".\outputs\extract\$advisoryId\advisory_record.json"
-
-# IMPORTANT: PowerShell 5.x needs -Encoding utf8 to avoid false mojibake
-$raw = Get-Content $rec -Raw -Encoding utf8
-"contains_â€™=" + ($raw -match "â€™")
-"contains_Â="  + ($raw -match "Â")
+# Optional: validate a specific advisory id
+# .\scripts\verify_extract.ps1 -AdvisoryId adv_...
+__VERIFY_EXTRACT_SCRIPT_DOC10__
 ~~~
 
 ## Offline unit tests

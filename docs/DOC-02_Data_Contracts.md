@@ -59,6 +59,16 @@ The extractor currently writes **`advisory_record.json` as a strict, stable subs
 
 This “13-key contract” is what downstream tooling should treat as **source-of-truth today**.
 
+__VERIFY_EXTRACT_SCRIPT_DOC02__
+
+### Contract enforcement
+
+The strict **13-key** `advisory_record.json` contract is enforced end-to-end by:
+
+- `scripts/verify_extract.ps1` (runs a real extract, validates keys, deep-scans for mojibake markers)
+- `pytest` unit tests for deterministic cleaning behavior
+
+
 The more expansive schema below remains the **target/roadmap** contract (it may be partially populated over time as ingestion/parsing improves). When new fields are added to the on-disk output, they must be gated behind an explicit version bump and migration notes.
 
 **Encoding note (Windows):** `advisory_record.json` is written as UTF-8. PowerShell 5.x may display mojibake if read without specifying encoding. Use `Get-Content -Raw -Encoding utf8` when validating output.
