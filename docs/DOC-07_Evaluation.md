@@ -9,6 +9,19 @@ This is central to both the grant application and long-term credibility.
 
 ---
 
+
+## 0.1 Current evaluation/testing status (as of 2026-02-08)
+
+What we have today (offline, deterministic):
+
+- **Unit tests** for mojibake cleanup (`tests/test_mojibake_cleaning.py`) — no network/LLM required
+- A **contract-level validation** that `advisory_record.json` is the strict 13-key schema (see DOC-02) and does not contain common mojibake markers (see DOC-10 scripts)
+
+What’s next for this document:
+
+- Add an integration “golden set” (N advisories) and score extraction accuracy field-by-field
+- Add a regression harness that runs nightly/CI to catch output drift and schema violations
+
 ## 1) Public good: what we will publish
 AdvisoryOps will publish defensive resources derived from **public sources only**:
 

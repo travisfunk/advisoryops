@@ -11,6 +11,19 @@ This keeps outputs:
 
 ---
 
+
+## 0.1 Current extraction fields (as of 2026-02-08)
+
+The mitigation playbook is driven by the extractor’s canonical output `advisory_record.json` (strict 13-key schema; DOC-02).  
+For now, the most relevant inputs are:
+
+- `impact`, `exploitation`, `severity`
+- `mitigations` (list)
+- `references` (links for source-of-truth)
+
+As the extended contract matures, this document may reference additional fields, but the above are guaranteed today.
+
+
 ## 1) Versioning & governance
 - **Current playbook version:** v1.0
 - Patterns are **append-first**: add new patterns before changing existing ones.

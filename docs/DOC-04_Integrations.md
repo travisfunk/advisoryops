@@ -9,6 +9,16 @@ Define how AdvisoryOps integrates with external systems (ITSM/ticketing, asset i
 
 ---
 
+## 0.1 Current pipeline output contract (as of 2026-02-08)
+
+All downstream integrations should treat `outputs/extract/<advisory_id>/advisory_record.json` as the canonical “ready-to-use” artifact:
+
+- Strict 13-key schema (DOC-02)
+- UTF-8 on disk
+- Deterministic mojibake cleanup applied before write
+
+If you validate on Windows PowerShell 5.x, read JSON with `-Encoding utf8` to avoid false mojibake.
+
 ## 1) Core vs Pro boundary (recommended)
 To preserve “open-core” flexibility:
 

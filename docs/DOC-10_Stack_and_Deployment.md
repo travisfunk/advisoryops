@@ -8,6 +8,53 @@
 - Job execution model: **Postgres-backed queue + worker**
 - Database (prod MVP): **Postgres**
 - Object storage: **Cloudflare R2** (S3-compatible API)
+## Current repo state (as of 2026-02-08)
+
+The repo is currently shipping the ingestion/extraction pipeline as a **local CLI** (writing to `outputs/ingest/…` and `outputs/extract/…`).  
+FastAPI + Railway deployment remains the intended MVP hosting shape, but is not required to run or test the extraction pipeline today.
+
+## Local dev setup (Windows / PowerShell)
+
+~~~powershell
+# from repo root
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -U pip
+python -m pip install -e .
+# dev-only tests
+python -m pip install -U pytest
+~~~
+
+## Run an end-to-end smoke test (real LLM extract)
+
+~~~powershell
+# 1) ingest something (example URL) — adjust to your real ingest command
+# advisoryops ingest --url "<advisory_url_here>"
+
+# 2) pick latest ingest folder and run extract
+$advisoryId = (Get-ChildItem .\outputs\ingest -Directory | Sort-Object LastWriteTime -Descending | Select-Object -First 1).Name
+advisoryops extract --advisory-id $advisoryId
+
+# 3) validate output is UTF-8 and doesn’t contain mojibake markers
+$rec = ".\outputs\extract\$advisoryId\advisory_record.json"
+
+# IMPORTANT: PowerShell 5.x needs -Encoding utf8 to avoid false mojibake
+$raw = Get-Content $rec -Raw -Encoding utf8
+"contains_â€™=" + ($raw -match "â€™")
+"contains_Â="  + ($raw -match "Â")
+~~~
+
+## Offline unit tests
+
+~~~powershell
+python -m pytest -q
+~~~
+
+Notes:
+
+- The extractor writes a **stable 13-key** `advisory_record.json` (see DOC-02).
+- If you see `â€™` etc only in PowerShell output but not in Python, it’s almost always a **read/display encoding issue**, not a file issue.
+
 ## Why this stack
 - Minimizes operational overhead during MVP
 - Strong ecosystem for parsing/PDF/text normalization + LLM extraction

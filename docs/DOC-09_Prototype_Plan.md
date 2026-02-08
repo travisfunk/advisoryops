@@ -24,13 +24,21 @@ This plan is intentionally biased toward building a working pipeline quickly.
 ### Milestone A — Repo + contracts + playbook ✅
 - Docs migrated and canonicalized in repo
 
-### Milestone B — Ingest + AdvisoryRecord extraction (working CLI)
-Acceptance criteria:
-- Given a URL/text/PDF, system produces:
-  - `outputs/.../normalized.txt`
-  - `AdvisoryRecord.json` (DOC-02 compliant)
-  - warnings for ambiguities
+### Milestone B — Ingest + AdvisoryRecord extraction (**DONE 2026-02-08**)
 
+What’s implemented:
+
+- Ingest sources and store canonical raw text into `outputs/ingest/<advisory_id>/`
+- Extract advisory fields into `outputs/extract/<advisory_id>/advisory_record.json`
+- Output contract is the **strict 13-key schema** (see DOC-02 “Current implementation note”)
+- Deterministic output text cleanup removes common mojibake artifacts (e.g., `â€™`, `Â`, `â€…`)
+- Offline unit tests exist for the mojibake cleaner (`python -m pytest`)
+
+Acceptance criteria (must stay green):
+
+- `advisory_record.json` exists and contains exactly the 13 expected keys
+- Deep scan of all strings/lists shows **no** mojibake markers
+- Extract completes with exit code 0 on at least one real advisory run
 ### Milestone C — Clustering (IssueCluster)
 Acceptance criteria:
 - Given N advisories, system can:
@@ -51,7 +59,7 @@ Acceptance criteria:
   - generate PDF (human readable)
   - generate CSV tasks (optional)
 
-### Milestone F — ServiceNow connector (optional for first prototype)
+### Milestone F — ServiceNow connector (optional for firstt prototype)
 Acceptance criteria:
 - Upsert an Incident ticket with:
   - consistent external_id tag
