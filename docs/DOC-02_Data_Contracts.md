@@ -38,6 +38,53 @@ This doc is implementation-facing: developers should be able to build the pipeli
 ---
 
 ## 3) AdvisoryRecord JSON Contract (v1.0)
+
+### 3.0 Current implementation note (as of 2026-02-08)
+
+The extractor currently writes **`advisory_record.json` as a strict, stable subset with exactly 13 keys**:
+
+- `advisory_id`
+- `title`
+- `published_date` (YYYY-MM-DD)
+- `vendor`
+- `product`
+- `cves` (list of strings)
+- `severity` (string or null)
+- `affected_versions` (list of strings)
+- `summary`
+- `impact`
+- `exploitation`
+- `mitigations` (list of strings)
+- `references` (list of `{"label": "...", "url": "..."}` objects)
+
+This “13-key contract” is what downstream tooling should treat as **source-of-truth today**.
+
+The more expansive schema below remains the **target/roadmap** contract (it may be partially populated over time as ingestion/parsing improves). When new fields are added to the on-disk output, they must be gated behind an explicit version bump and migration notes.
+
+**Encoding note (Windows):** `advisory_record.json` is written as UTF-8. PowerShell 5.x may display mojibake if read without specifying encoding. Use `Get-Content -Raw -Encoding utf8` when validating output.
+
+**Mojibake guarantee:** the extractor performs deterministic cleanup so the written JSON should not contain common mojibake markers like `â€™`, `Â`, or `â€…`. See DOC-10 for a canonical validation script.
+
+### 3.0.1 Stable extract output example (current)
+
+~~~json
+{
+  "advisory_id": "adv_…",
+  "title": "…",
+  "published_date": "YYYY-MM-DD",
+  "vendor": "…",
+  "product": "…",
+  "cves": ["CVE-…"],
+  "severity": "High",
+  "affected_versions": ["…"],
+  "summary": "…",
+  "impact": "…",
+  "exploitation": "…",
+  "mitigations": ["…"],
+  "references": [{"label": "…", "url": "https://…"}]
+}
+~~~
+
 Goal: Strict, source-agnostic representation of a single advisory notice (vendor/FDA/CISA/etc.) enabling clustering, matching, and packet generation.
 
 ### 3.1 Schema outline

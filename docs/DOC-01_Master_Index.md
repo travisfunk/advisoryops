@@ -22,80 +22,59 @@ Each topic has exactly **one home document**. If content belongs elsewhere, refe
 
 ## Canonical document set
 
-### DOC-01: Master Index (this document)
-**Owns:** navigation, doc governance, current project status, open questions.
+These are the authoritative docs for the repo. If a file conflicts with these, these win.
 
-### DOC-02: Data Contracts & Schemas
-**Owns:**
-- AdvisoryRecord JSON contract
-- IssueCluster JSON contract
-- RemediationPacket JSON contract
-- Citation model
-- Full examples + JSON Schema files (later)
+### DOC-01 Master Index
+This file. The map, status, and “where to start”.
 
-### DOC-03: Mitigation Playbook
-**Owns:**
-- Mitigation patterns YAML
-- Applicability rules + required inputs
-- Role splits, verification & rollback guidance
-- “Vendor-managed / can’t patch” playbooks
+### DOC-02 Data Contracts
+Canonical schemas and file formats. Includes the **current stable extract output contract** (13 keys) plus the extended contract roadmap.
 
-### DOC-04: Integrations & Connectors
-**Owns:**
-- ITSM adapter interface (capabilities model)
-- ServiceNow mapping spec (incident-first + config)
-- Remedy/Helix mapping spec (later)
-- Asset inventory enrichment connector specs (Forescout/Armis/Claroty/etc.)
-- Auth patterns, rate-limit/retry standards
+### DOC-03 Mitigation Playbook
+Guidance for turning extracted advisories into mitigation actions (templates, checklists, prioritization).
 
-### DOC-05: Ingestion Sources & Parsers
-**Owns:**
-- FDA / vendor / CISA ingestion approach
-- Source normalization rules
-- Dedupe heuristics at ingestion
-- Snapshot storage and hashing strategy
+### DOC-04 Integrations
+How we ingest from sources (CISA, vendor advisories, etc.) and how we publish/notify downstream systems.
 
-### DOC-06: Matching & Confidence Engine
-**Owns:**
-- Inventory CSV template (v1)
-- Matching rules + confidence scoring
-- Alias/normalization strategy
-- Human-in-the-loop triggers
+### DOC-05 Ingestion
+Ingestion sources, caching, canonical raw text capture, and ingest folder layout.
 
-### DOC-07: Evaluation Harness & Public Good Deliverables
-**Owns:**
-- Public advisory corpus plan (public sources only)
-- Labeling guidelines
-- Rubric + metrics
-- Reproducible evaluation harness design
-- Responsible-use boundaries
+### DOC-06 Matching
+Future matching logic for tailoring advisories/mitigations to a facility’s inventory, products, versions, and controls.
 
-### DOC-08: Grant Proposal Draft
-**Owns:**
-- One-paragraph abstract
-- Problem statement + proposed solution
-- Why advanced cyber models help
-- Methodology + evaluation plan
-- Public benefit/sharing plan
-- Risk management + safety
-- Credits usage plan + timeline
+### DOC-07 Evaluation
+Scoring and test harnesses for extraction quality (includes offline unit tests and integration checks).
 
-### DOC-09: Prototype & Implementation Plan
-**Owns:**
-- Thin vertical prototype plan (acceptance criteria)
-- Architecture overview (components, storage, config)
-- Security model (no PHI posture, auditability)
-- Deployment notes (later; v1 focuses on local CLI + artifacts)
+### DOC-08 Grant Draft
+Grant/proposal narrative; aligned to the technical plan but may be edited separately.
 
----
+### DOC-09 Prototype Plan
+Step-by-step implementation roadmap and milestones.
+
+### DOC-10 Stack & Deployment
+Local dev setup, packaging conventions, and execution/test commands.
 
 ## Current status
-- Repo scaffold complete ✅
-- DOC-01..DOC-09 migrated into repo ✅
-- Next build milestone: **Milestone B** (Ingest + AdvisoryRecord extraction) per DOC-09
-- Next housekeeping: optional polish (DOC-03 numbering) and later JSON Schema files under `schemas/`
 
----
+**As of 2026-02-08: Milestone B (Ingest + Extract) is functionally complete.**
+
+✅ Working now
+
+- `advisoryops ingest` creates a deterministic ingest folder under `outputs/ingest/<advisory_id>/`
+- `advisoryops extract` produces a **stable 13-key** `advisory_record.json` under `outputs/extract/<advisory_id>/`
+- Deterministic output text normalization removes common mojibake artifacts (e.g., `â€™`, `Â`, `â€…`) before writing JSON
+- Offline unit tests cover the mojibake cleaner (`tests/test_mojibake_cleaning.py`)
+
+⚠️ Windows note (important for validation)
+
+PowerShell 5.x can show mojibake if you read UTF-8 JSON without specifying encoding. Use:
+
+- `Get-Content -Raw -Encoding utf8 <file>` or validate using the Python JSON-walk scan in DOC-10.
+
+Next up
+
+- Milestone C: Minimal matching “inventory profile” + evaluation harness (DOC-06, DOC-07)
+- Add additional sources to ingestion (prioritize CISA ICS, CISA KEV mapping, vendor advisories) (DOC-05, DOC-04)
 
 ## Migration checklist (from legacy/canvas into repo docs)
 - [x] Create repo + scaffold
@@ -107,18 +86,25 @@ Each topic has exactly **one home document**. If content belongs elsewhere, refe
 - [x] Migrate DOC-06 Matching & Confidence Engine into repo
 - [x] Migrate DOC-07 Evaluation Harness & Public Good into repo
 - [x] Migrate DOC-09 Prototype & Implementation Plan into repo
+- [x] Migrate DOC-10 Stack & Deployment into repo
+- [x] Update docs to reflect current stable 13-key extract output + mojibake cleanup (2026-02-08)
 
 ---
 
 ## Open questions (short list)
 - ServiceNow: incident vs SIR vs VR as default beyond MVP
-- First enrichment connector to build (Forescout vs Armis vs Claroty) for best ROI
+- First enrichment connector to build (Forescout vs Armisis vs Claroty) for best ROI
 - Minimal facility fields required to achieve high-confidence matching
 
 
 ### MVP Additions (Discovery Layer) — Added 2026-02-06
-- [ ] Implement RSS discovery (dvisoryops discover) for CISA ICSMA + FDA MedWatch
+- [ ] Implement RSS discovery (advisoryops discover) for CISA ICSMA + FDA MedWatch
 - [ ] Document dedupe rules (GUID/link/hash) and provenance recording
 - [ ] Add corpus builder workflow using discovered links
+
+- Which sources do we ingest first after the MVP (CISA ICS, KEV, vendor advisories, NVD CVEs)?
+- What is the minimal “inventory profile” format for matching (vendors/products/versions + environment)?
+
+## Stack & Deployment
 ## Stack & Deployment
 - DOC-10: Stack and Deployment (MVP)

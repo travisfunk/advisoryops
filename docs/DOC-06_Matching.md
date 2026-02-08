@@ -5,6 +5,18 @@ Define how AdvisoryOps determines whether a healthcare facility is impacted by a
 
 ---
 
+
+## 0.1 Dependency note (as of 2026-02-08)
+
+Matching consumes the extractor’s canonical output `advisory_record.json` (strict 13-key schema; DOC-02).  
+Field names used below should map directly to:
+
+- `vendor`, `product`
+- `cves`, `severity`
+- `affected_versions`
+- `summary`, `impact`, `exploitation`, `mitigations`, `references`
+
+
 ## 1) Inventory input (MVP)
 MVP accepts a facility inventory CSV (or exported report) with a minimum set of fields.
 

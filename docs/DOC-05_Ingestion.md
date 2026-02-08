@@ -171,6 +171,7 @@ Optional enrichment (later):
 ---
 
 ## 12) Changelog
+- 2026-02-08: Extraction output stabilized (strict 13-key `advisory_record.json`) + deterministic mojibake cleanup + offline unit tests. Note: PowerShell validation should use UTF-8 (`Get-Content -Raw -Encoding utf8`).
 - 2026-02-06: Initial v1 ingestion pipeline spec, hashing/snapshot strategy, and parsing constraints.
 
 
