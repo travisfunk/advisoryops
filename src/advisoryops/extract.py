@@ -5,6 +5,7 @@ import re
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 from pydantic import BaseModel, ConfigDict, Field
+from .mojibake import clean_mojibake_value
 from .util import ensure_dir, sha256_text, utc_now_iso, write_json
 INGEST_ROOT = Path("outputs/ingest")
 EXTRACT_ROOT = Path("outputs/extract")
@@ -370,13 +371,21 @@ def extract_advisory_record(advisory_id: str, model: Optional[str] = None) -> Pa
     except Exception as e:
         snippet = json_text[:600].replace("\r", " ").replace("\n", " ")
         raise RuntimeError(f"Model output was not valid JSON. Snippet='{snippet}'") from e
+    # __MOJIBAKE_CLEAN_PASS__
+    obj = {k: clean_mojibake_value(v) for k, v in obj.items()}
     record = AdvisoryRecord(**obj)
     record.advisory_id = advisory_id  # enforce folder id
     out_dir = EXTRACT_ROOT / advisory_id
     ensure_dir(out_dir)
     record_path = out_dir / "advisory_record.json"
     meta_path = out_dir / "extract_meta.json"
-    write_json(record_path, record.model_dump(mode="json"))
+    # __FINAL_MOJIBAKE_CLEAN_PASS__
+    _out = record.model_dump(mode="json")
+    # Force stable 13-key output + clean strings/lists deterministically
+    _keys = list(AdvisoryRecord.model_fields.keys())
+    _out = {k: clean_mojibake_value(_out.get(k) if isinstance(_out, dict) else None) for k in _keys}
+    write_json(record_path, _out)
+
     usage_obj = getattr(resp, "usage", None)
     try:
         if hasattr(usage_obj, "model_dump"):
