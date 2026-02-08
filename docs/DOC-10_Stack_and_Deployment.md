@@ -1,4 +1,4 @@
-﻿# DOC-10 — Stack and Deployment (MVP)
+# DOC-10 — Stack and Deployment (MVP)
 ## Locked MVP Stack (Decision)
 - Backend runtime: **Python**
 - API framework: **FastAPI**
@@ -18,25 +18,22 @@ FastAPI + Railway deployment remains the intended MVP hosting shape, but is not 
 ~~~powershell
 # from repo root
 python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python -m pip install -U pip
-python -m pip install -e .
-# dev-only tests
-python -m pip install -U pytest
+.\.venv\Scripts\python.exe -m pip install -U pip
+.\.venv\Scripts\python.exe -m pip install -e .
+.\.venv\Scripts\python.exe -m pip install -U pytest
 ~~~
 
 ## Run an end-to-end smoke test (real LLM extract)
 
 ~~~powershell
-# End-to-end integration check (calls the LLM)
-# - runs extract
-# - enforces strict 13-key output contract (DOC-02)
-# - deep scans JSON for mojibake markers
-.\scripts\verify_extract.ps1
+# Option A: Validate an existing ingested advisory (calls the LLM)
+.\scripts\verify_extract.ps1 -AdvisoryId adv_...
 
-# Optional: validate a specific advisory id
+# Option B: Source Framework v1 (discover + ingest) with spend guardrails (no LLM unless you run verify_extract)
+.\.venv\Scripts\advisoryops.exe source-run --source cisa-icsma --limit 1 --ingest --ingest-mode all
+
+# then validate the ingested advisory_id (calls the LLM)
 # .\scripts\verify_extract.ps1 -AdvisoryId adv_...
-__VERIFY_EXTRACT_SCRIPT_DOC10__
 ~~~
 
 ## Offline unit tests

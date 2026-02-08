@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "defaults": {
+    "timeout_s": 30,
+    "retries": 3,
+    "rate_limit_rps": 1.0
+  },
+  "sources": [
+    {
+      "source_id": "cisa-icsma",
+      "name": "CISA ICS Medical Advisories",
+      "enabled": true,
+      "scope": "advisory",
+      "page_type": "rss_atom",
+      "entry_url": "https://www.cisa.gov/cybersecurity-advisories/ics-medical-advisories.xml",
+      "filters": {}
+    },
+    {
+      "source_id": "cisa-icsa",
+      "name": "CISA ICS Advisories",
+      "enabled": true,
+      "scope": "advisory",
+      "page_type": "rss_atom",
+      "entry_url": "https://www.cisa.gov/cybersecurity-advisories/ics-advisories.xml",
+      "filters": {}
+    },
+    {
+      "source_id": "fda-medwatch",
+      "name": "FDA MedWatch RSS",
+      "enabled": true,
+      "scope": "advisory",
+      "page_type": "rss_atom",
+      "entry_url": "https://www.fda.gov/about-fda/contact-fda/stay-informed/rss-feeds/medwatch/rss.xml",
+      "filters": {
+        "keywords_any": [
+          "cyber",
+          "cybersecurity",
+          "vulnerability",
+          "vulnerabilities",
+          "cve",
+          "ransomware",
+          "exploit",
+          "unauthorized",
+          "malware",
+          "remote"
+        ],
+        "apply_to": ["title", "summary", "description"]
+      }
+    },
+    {
+      "source_id": "abb-alerts-html",
+      "name": "ABB Cyber security alerts and notifications (HTML table)",
+      "enabled": false,
+      "scope": "advisory",
+      "page_type": "html_table",
+      "entry_url": "https://www.abb.com/global/en/company/about/cybersecurity/alerts-and-notifications",
+      "filters": {}
+    },
+    {
+      "source_id": "se-security-notifications",
+      "name": "Schneider Electric Security notifications (HTML table)",
+      "enabled": false,
+      "scope": "advisory",
+      "page_type": "html_table",
+      "entry_url": "https://www.se.com/ww/en/work/support/cybersecurity/security-notifications.jsp",
+      "filters": {}
+    }
+  ]
+}

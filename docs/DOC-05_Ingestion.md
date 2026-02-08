@@ -1,4 +1,4 @@
-﻿# DOC-05 Ingestion Sources & Parsers (v1)
+# DOC-05 Ingestion Sources & Parsers (v1)
 
 ## 0) Purpose
 Define how AdvisoryOps ingests advisory content (URLs, PDFs, text), normalizes raw content, and produces clean inputs for the extraction model and downstream clustering/matching.
@@ -175,32 +175,72 @@ Optional enrichment (later):
 - 2026-02-06: Initial v1 ingestion pipeline spec, hashing/snapshot strategy, and parsing constraints.
 
 
-## Discovery Feeds (RSS/API) — Added 2026-02-06
+## Discovery Feeds (RSS/API) — Updated 2026-02-08
+
 Discovery is a separate step from ingestion:
-- **Discovery** finds *new* advisories and provides stable metadata (title/link/pubDate/guid/summary).
+- **Discovery** finds candidate advisories and stores stable metadata (title/link/published_date/guid/summary).
 - **Ingestion** fetches canonical content (HTML/PDF/text) and normalizes it for extraction.
 
-### MVP Discovery Sources
-- **CISA ICS Medical Advisories RSS** (ICSMA): https://www.cisa.gov/cybersecurity-advisories/ics-medical-advisories.xml
-- **CISA ICS Advisories RSS** (ICSA): https://www.cisa.gov/cybersecurity-advisories/ics-advisories.xml
-- **FDA MedWatch RSS** (broad safety alerts, filtered for cyber keywords): https://www.fda.gov/about-fda/contact-fda/stay-informed/rss-feeds/medwatch/rss.xml
+### Source Registry (repo-tracked)
+Discovery/ingest sources are defined in:
+
+- `configs/sources.json` (schema_version=1)
+
+Each source entry includes (minimum):
+- `source_id` (stable id, used in CLI)
+- `enabled` (true/false)
+- `scope` (`advisory` | `dataset` | `news` | `threatintel`)
+- `page_type` (v1 implemented: `rss_atom`; placeholders exist for future types)
+- `entry_url` (feed/list URL)
+- `filters` (cheap keyword/url filtering to reduce ingest/extract volume)
+- polite defaults/overrides: `timeout_s`, `retries`, `rate_limit_rps`
+
+### Implemented page types (Source Framework v1)
+- `rss_atom` ✅ (implemented)
+- `html_generic`, `html_list`, `html_table`, `json_feed`, `pdf_bulletin` (declared but may be unimplemented; keep sources disabled until implemented)
+
+### Cheap Filtering (cost control)
+Discovery applies only deterministic, non-LLM filters (per source):
+- `filters.keywords_any`: accept if ANY keyword is present
+- `filters.keywords_all`: accept if ALL keywords are present
+- `filters.apply_to`: fields to search (`title`, `summary`, `description`)
+- `filters.url_allow_regex` / `filters.url_deny_regex`: URL allow/deny gates
+
+This is the primary guardrail for “mixed-topic” sources to avoid ingesting/extracting irrelevant items.
+
+### Discovery outputs (gitignored)
+For a source `<source_id>`, discovery writes:
+
+- `outputs/discover/<source_id>/raw_feed.xml`
+- `outputs/discover/<source_id>/feed.json`
+- `outputs/discover/<source_id>/new_items.json`
+- `outputs/discover/<source_id>/state.json` (dedupe state; preserves “seen” GUIDs)
 
 ### Stored Feed Item Fields (minimum)
-- source (cisa-icsma | cisa-icsa | fda-medwatch)
-- guid (if present)
-- title
-- link (canonical URL)
-- published_date (best-effort)
-- summary/description (raw)
-- fetched_at (UTC)
+- `source`
+- `guid` (or a deterministic fallback)
+- `title`
+- `link` (canonical URL)
+- `published_date` (best-effort)
+- `summary` (raw)
+- `fetched_at` (UTC)
 
-### How Discovery Feeds Into Ingestion
-- For each *new* feed item:
-  - enqueue link into ingest_url(link)
-  - store eed_item.json alongside source.json for traceability
-- **CISA fast-path (optional):** treat RSS description as a first-pass extraction input while also ingesting the canonical page.
+### Orchestration: Source Framework v1 (discover + optional ingest)
+Use:
+
+- `advisoryops discover --source <source_id> --limit <n>`
+- `advisoryops source-run --source <source_id> --limit <n> [--ingest] [--dry-run] [--ingest-mode new|all]`
+
+`source-run` does:
+1) Discover (writes outputs/discover/*)
+2) Optionally ingest selected links (writes outputs/ingest/*), honoring `rate_limit_rps` between items
+3) Writes a run report (gitignored): `outputs/source_runs/<timestamp>_<source_id>.json`
+
+Notes:
+- `--limit` is required on `source-run` to control spend/scope.
+- `--dry-run` prints planned ingest URLs without fetching.
 
 ### Dedupe Strategy
-- Primary: (source, guid) if guid exists
-- Secondary: normalized link
-- Tertiary: content hash of normalized text snapshot
+- Discovery dedupe uses `outputs/discover/<source_id>/state.json`:
+  - Primary key: `(source_id, guid)`
+  - Fallbacks: link, then deterministic hash if needed

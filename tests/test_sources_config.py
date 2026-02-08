@@ -1,0 +1,42 @@
+from pathlib import Path
+import json
+import pytest
+
+from advisoryops.sources_config import load_sources_config
+
+
+def test_load_sources_config_valid() -> None:
+    cfg = load_sources_config(Path("configs/sources.json"))
+    assert cfg.schema_version == 1
+    assert len(cfg.sources) >= 1
+    ids = [s.source_id for s in cfg.sources]
+    assert len(ids) == len(set(ids))
+    # sanity on required fields
+    for s in cfg.sources:
+        assert s.source_id
+        assert s.name
+        assert s.scope
+        assert s.page_type
+        assert s.entry_url
+
+
+def test_invalid_regex_rejected(tmp_path: Path) -> None:
+    bad = {
+        "schema_version": 1,
+        "defaults": {"timeout_s": 30, "retries": 3, "rate_limit_rps": 1.0},
+        "sources": [
+            {
+                "source_id": "bad-source",
+                "name": "Bad Source",
+                "enabled": True,
+                "scope": "advisory",
+                "page_type": "rss_atom",
+                "entry_url": "https://example.com/feed.xml",
+                "filters": {"url_allow_regex": "("}
+            }
+        ]
+    }
+    p = tmp_path / "sources.json"
+    p.write_text(json.dumps(bad, indent=2) + "\n", encoding="utf-8")
+    with pytest.raises(ValueError):
+        load_sources_config(p)

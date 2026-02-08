@@ -1,4 +1,4 @@
-﻿# DOC-01 Master Index (AdvisoryOps)
+# DOC-01 Master Index (AdvisoryOps)
 
 ## Purpose
 Keep project documentation **modular, navigable, and durable**. This index defines **which document owns what** and serves as the single place to find the latest “canonical” versions.
@@ -65,6 +65,9 @@ Local dev setup, packaging conventions, and execution/test commands.
 - Deterministic output text normalization removes common mojibake artifacts (e.g., `â€™`, `Â`, `â€…`) before writing JSON
 - Offline unit tests cover the mojibake cleaner (`tests/test_mojibake_cleaning.py`)
 
+- `configs/sources.json` defines discovery sources (scope/page_type/filters + polite defaults)
+- `advisoryops discover --source <id>` is config-driven (writes `outputs/discover/<id>/...`)
+- `advisoryops source-run --source <id> --limit N [--ingest] [--dry-run]` orchestrates discover → optional ingest (writes run reports under `outputs/source_runs/`)
 ⚠️ Windows note (important for validation)
 
 PowerShell 5.x can show mojibake if you read UTF-8 JSON without specifying encoding. Use:
