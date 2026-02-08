@@ -18,14 +18,19 @@ advisoryops extract --advisory-id $AdvisoryId
 if ($LASTEXITCODE -ne 0) { throw "advisoryops extract failed with exitcode=$LASTEXITCODE" }
 
 # Deep schema + mojibake scan (PowerShell-safe python invocation via temp .py)
+$recFile = Join-Path (Join-Path "outputs\extract" $AdvisoryId) "advisory_record.json"
+if (-not (Test-Path $recFile)) { throw "Missing extract output: $recFile" }
+$env:VERIFY_EXTRACT_RECORD = $recFile
+
 $py = @"
-import json
+import json, sys, os
 from pathlib import Path
 
 markers = ["â€™", "Â", "â€"]
 expected = ["advisory_id","title","published_date","vendor","product","cves","severity","affected_versions","summary","impact","exploitation","mitigations","references"]
 
-rec = sorted(Path("outputs/extract").glob("*/advisory_record.json"), key=lambda x: x.stat().st_mtime, reverse=True)[0]
+# __TARGET_ADVISORY_RECORD__
+rec = Path(os.environ["VERIFY_EXTRACT_RECORD"])
 raw = rec.read_text(encoding="utf-8", errors="replace")
 data = json.loads(raw)
 
@@ -39,6 +44,12 @@ extra = [k for k in keys if k not in expected]
 print("missing=", missing)
 print("extra=", extra)
 
+# FAIL if contract violated
+if missing or extra:
+    print("ERROR: output contract violated")
+    sys.exit(2)
+
+# Deep scan for mojibake markers
 hits = []
 def walk(v, path="$"):
     if isinstance(v, dict):
@@ -58,7 +69,7 @@ if hits:
     print("FOUND_HITS=", len(hits))
     for path, m, v in hits[:50]:
         print(f"{path} contains {m}: {v}")
-    raise SystemExit(1)
+    sys.exit(3)
 else:
     print("OK: no mojibake markers found anywhere in JSON")
 "@
@@ -68,6 +79,7 @@ Set-Content -Path $tmpPy -Value $py -Encoding UTF8 -NoNewline
 python $tmpPy
 $code = $LASTEXITCODE
 Remove-Item -Force $tmpPy -ErrorAction SilentlyContinue
+Remove-Item env:VERIFY_EXTRACT_RECORD -ErrorAction SilentlyContinue
 if ($code -ne 0) { throw "verify_extract python scan failed (exitcode=$code)" }
 
 "OK: verify_extract passed"
