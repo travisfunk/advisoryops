@@ -7,20 +7,24 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 
-VALID_SCOPES = {"advisory", "dataset", "news", "threatintel"}
+CONFIG_PATH = Path("configs/sources.json")
 
-# Known page types (some may be implemented later; disabled sources can still declare them)
-KNOWN_PAGE_TYPES = {
-    "rss_atom",
-    "html_generic",
-    "html_list",
-    "html_table",
-    "json_feed",
-    "pdf_bulletin",
-}
+ALLOWED_SCOPES = {"advisory", "dataset", "news", "threatintel"}
 
-_SOURCE_ID_RE = re.compile(r"^[a-z0-9][a-z0-9-]{0,63}$")
-_APPLY_TO_ALLOWED = {"title", "summary", "description"}
+# v1.1 implemented:
+ALLOWED_PAGE_TYPES = {"rss_atom", "json_feed", "csv_feed"}
+
+# declared but not necessarily implemented (keep disabled in config until implemented)
+DECLARED_FUTURE_PAGE_TYPES = {"html_generic", "html_list", "html_table", "json_api", "pdf_bulletin"}
+
+
+@dataclass(frozen=True)
+class SourceFilters:
+    apply_to: List[str]
+    keywords_any: List[str]
+    keywords_all: List[str]
+    url_allow_regex: Optional[str]
+    url_deny_regex: Optional[str]
 
 
 @dataclass(frozen=True)
@@ -31,16 +35,15 @@ class SourceDef:
     scope: str
     page_type: str
     entry_url: str
-    filters: Dict[str, Any]
-    timeout_s: int
-    retries: int
-    rate_limit_rps: float
+    filters: SourceFilters
+    timeout_s: int = 30
+    retries: int = 2
+    rate_limit_rps: float = 1.0
 
 
 @dataclass(frozen=True)
 class SourcesConfig:
     schema_version: int
-    defaults: Dict[str, Any]
     sources: List[SourceDef]
 
     def get(self, source_id: str) -> SourceDef:
@@ -49,132 +52,91 @@ class SourcesConfig:
                 return s
         raise KeyError(f"Unknown source_id: {source_id}")
 
-    def enabled_sources(self, scope: Optional[str] = None) -> List[SourceDef]:
-        out: List[SourceDef] = []
-        for s in self.sources:
-            if not s.enabled:
-                continue
-            if scope is not None and s.scope != scope:
-                continue
-            out.append(s)
-        return out
+
+def _as_list_str(v: Any) -> List[str]:
+    if v is None:
+        return []
+    if isinstance(v, list):
+        return [str(x).strip() for x in v if str(x).strip()]
+    if isinstance(v, str) and v.strip():
+        return [v.strip()]
+    return []
 
 
-def _require_type(obj: Any, t: type, ctx: str) -> Any:
-    if not isinstance(obj, t):
-        raise ValueError(f"{ctx}: expected {t.__name__}, got {type(obj).__name__}")
-    return obj
+def _validate_regex(source_id: str, field_name: str, pattern: Optional[str]) -> Optional[str]:
+    if not pattern:
+        return None
+    try:
+        re.compile(pattern, re.IGNORECASE)
+    except re.error as e:
+        raise ValueError(f"{source_id}: invalid regex for {field_name}: {pattern!r} ({e})") from e
+    return pattern
 
 
-def _validate_filters(filters: Dict[str, Any], ctx: str) -> None:
-    # filters is optional; when present it must be a dict
-    if not filters:
-        return
+def load_sources_config(path: Path = CONFIG_PATH) -> SourcesConfig:
+    if not path.exists():
+        raise FileNotFoundError(f"Missing sources config: {path}")
 
-    if "keywords_any" in filters:
-        kws = _require_type(filters["keywords_any"], list, f"{ctx}.filters.keywords_any")
-        if not all(isinstance(x, str) and x.strip() for x in kws):
-            raise ValueError(f"{ctx}.filters.keywords_any: must be list[str] (non-empty strings)")
+    raw = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(raw, dict):
+        raise ValueError(f"{path}: expected object at root")
 
-    if "keywords_all" in filters:
-        kws = _require_type(filters["keywords_all"], list, f"{ctx}.filters.keywords_all")
-        if not all(isinstance(x, str) and x.strip() for x in kws):
-            raise ValueError(f"{ctx}.filters.keywords_all: must be list[str] (non-empty strings)")
+    schema_version = int(raw.get("schema_version", 1))
+    sources_raw = raw.get("sources", [])
+    if not isinstance(sources_raw, list):
+        raise ValueError(f"{path}: expected list at .sources")
 
-    if "apply_to" in filters:
-        targets = _require_type(filters["apply_to"], list, f"{ctx}.filters.apply_to")
-        if not all(isinstance(x, str) for x in targets):
-            raise ValueError(f"{ctx}.filters.apply_to: must be list[str]")
-        bad = [t for t in targets if t not in _APPLY_TO_ALLOWED]
-        if bad:
-            raise ValueError(f"{ctx}.filters.apply_to: invalid values: {bad}. Allowed: {sorted(_APPLY_TO_ALLOWED)}")
-
-    for k in ("url_allow_regex", "url_deny_regex"):
-        if k in filters:
-            pat = _require_type(filters[k], str, f"{ctx}.filters.{k}")
-            try:
-                re.compile(pat)
-            except re.error as e:
-                raise ValueError(f"{ctx}.filters.{k}: invalid regex: {e}") from e
-
-
-def load_sources_config(path: Path = Path("configs/sources.json")) -> SourcesConfig:
-    """
-    Load and validate the sources registry.
-
-    Deterministic rules:
-      - Accept UTF-8 with or without BOM (utf-8-sig).
-      - Strict schema checks with helpful errors.
-      - Unknown page_type is allowed ONLY when enabled=false (future placeholders).
-    """
-    raw = path.read_text(encoding="utf-8-sig")
-    data = json.loads(raw)
-
-    _require_type(data, dict, "config")
-
-    schema_version = data.get("schema_version", None)
-    if not isinstance(schema_version, int):
-        raise ValueError("config.schema_version: required int")
-
-    defaults = data.get("defaults", {})
-    _require_type(defaults, dict, "config.defaults")
-
-    # Defaults (use explicit fallback if missing)
-    default_timeout_s = int(defaults.get("timeout_s", 30))
-    default_retries = int(defaults.get("retries", 3))
-    default_rate = float(defaults.get("rate_limit_rps", 1.0))
-
-    sources_raw = data.get("sources", None)
-    _require_type(sources_raw, list, "config.sources")
-
+    out: List[SourceDef] = []
     seen_ids: set[str] = set()
-    sources: List[SourceDef] = []
 
-    for idx, s in enumerate(sources_raw):
-        ctx = f"config.sources[{idx}]"
-        _require_type(s, dict, ctx)
+    for s in sources_raw:
+        if not isinstance(s, dict):
+            continue
 
-        source_id = s.get("source_id")
-        name = s.get("name")
-        enabled = s.get("enabled")
-        scope = s.get("scope")
-        page_type = s.get("page_type")
-        entry_url = s.get("entry_url")
-        filters = s.get("filters", {})
-
-        if not isinstance(source_id, str) or not source_id.strip():
-            raise ValueError(f"{ctx}.source_id: required non-empty string")
-        if not _SOURCE_ID_RE.match(source_id):
-            raise ValueError(f"{ctx}.source_id: invalid format '{source_id}' (expected lowercase letters/digits/hyphen)")
+        source_id = str(s.get("source_id", "")).strip()
+        if not source_id:
+            raise ValueError(f"{path}: source missing source_id")
         if source_id in seen_ids:
-            raise ValueError(f"{ctx}.source_id: duplicate source_id '{source_id}'")
+            raise ValueError(f"{path}: duplicate source_id '{source_id}'")
         seen_ids.add(source_id)
 
-        if not isinstance(name, str) or not name.strip():
-            raise ValueError(f"{ctx}.name: required non-empty string")
+        name = str(s.get("name", source_id)).strip()
+        enabled = bool(s.get("enabled", False))
+        scope = str(s.get("scope", "")).strip()
+        page_type = str(s.get("page_type", "")).strip()
+        entry_url = str(s.get("entry_url", "")).strip()
 
-        if not isinstance(enabled, bool):
-            raise ValueError(f"{ctx}.enabled: required boolean")
+        if scope not in ALLOWED_SCOPES:
+            raise ValueError(f"{path}: {source_id}: invalid scope '{scope}'")
+        if page_type not in (ALLOWED_PAGE_TYPES | DECLARED_FUTURE_PAGE_TYPES):
+            raise ValueError(f"{path}: {source_id}: invalid page_type '{page_type}'")
+        if page_type in DECLARED_FUTURE_PAGE_TYPES and enabled:
+            raise ValueError(
+                f"{path}: {source_id}: page_type '{page_type}' is declared-future; keep enabled=false until implemented"
+            )
+        if not entry_url:
+            raise ValueError(f"{path}: {source_id}: missing entry_url")
 
-        if not isinstance(scope, str) or scope not in VALID_SCOPES:
-            raise ValueError(f"{ctx}.scope: invalid '{scope}'. Allowed: {sorted(VALID_SCOPES)}")
+        f = s.get("filters", {}) or {}
+        if not isinstance(f, dict):
+            f = {}
 
-        if not isinstance(page_type, str) or not page_type.strip():
-            raise ValueError(f"{ctx}.page_type: required non-empty string")
-        if enabled and page_type not in KNOWN_PAGE_TYPES:
-            raise ValueError(f"{ctx}.page_type: unknown '{page_type}' for enabled source. Known: {sorted(KNOWN_PAGE_TYPES)}")
+        url_allow = _validate_regex(source_id, "filters.url_allow_regex", f.get("url_allow_regex"))
+        url_deny = _validate_regex(source_id, "filters.url_deny_regex", f.get("url_deny_regex"))
 
-        if not isinstance(entry_url, str) or not entry_url.strip():
-            raise ValueError(f"{ctx}.entry_url: required non-empty string")
+        filters = SourceFilters(
+            apply_to=_as_list_str(f.get("apply_to")) or ["title", "summary", "description"],
+            keywords_any=_as_list_str(f.get("keywords_any")),
+            keywords_all=_as_list_str(f.get("keywords_all")),
+            url_allow_regex=url_allow,
+            url_deny_regex=url_deny,
+        )
 
-        _require_type(filters, dict, f"{ctx}.filters")
-        _validate_filters(filters, ctx)
+        timeout_s = int(s.get("timeout_s", 30))
+        retries = int(s.get("retries", 2))
+        rate_limit_rps = float(s.get("rate_limit_rps", 1.0))
 
-        timeout_s = int(s.get("timeout_s", default_timeout_s))
-        retries = int(s.get("retries", default_retries))
-        rate_limit_rps = float(s.get("rate_limit_rps", default_rate))
-
-        sources.append(
+        out.append(
             SourceDef(
                 source_id=source_id,
                 name=name,
@@ -189,4 +151,4 @@ def load_sources_config(path: Path = Path("configs/sources.json")) -> SourcesCon
             )
         )
 
-    return SourcesConfig(schema_version=schema_version, defaults=defaults, sources=sources)
+    return SourcesConfig(schema_version=schema_version, sources=out)

@@ -1,356 +1,281 @@
 from __future__ import annotations
 
-import hashlib
 import json
 import re
 import time
+import urllib.request
+import urllib.error
 from datetime import datetime, timezone
-from email.utils import parsedate_to_datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 import xml.etree.ElementTree as ET
 
-import requests
-from requests.adapters import HTTPAdapter
-from urllib3.util.retry import Retry
-
-from .sources_config import load_sources_config
-
-
-DEFAULT_UA = "AdvisoryOpsRSS/0.1.0 (+https://github.com/travisfunk/advisoryops)"
+from .sources_config import load_sources_config, SourceDef
+from .feed_parsers import parse_json_feed, parse_csv_feed
 
 
 def utc_now_iso() -> str:
     return datetime.now(timezone.utc).isoformat()
 
 
-def sha256_text(text: str) -> str:
-    h = hashlib.sha256()
-    h.update(text.encode("utf-8", errors="ignore"))
-    return h.hexdigest()
+def _http_get_bytes(url: str, *, timeout_s: int, retries: int) -> bytes:
+    last_err: Optional[Exception] = None
+    headers = {
+        "User-Agent": "advisoryops/1.1 (+https://github.com/travisfunk/advisoryops)",
+        "Accept": "*/*",
+    }
+    for attempt in range(1, retries + 2):
+        try:
+            req = urllib.request.Request(url, headers=headers, method="GET")
+            with urllib.request.urlopen(req, timeout=timeout_s) as resp:
+                return resp.read()
+        except Exception as e:
+            last_err = e
+            if attempt >= retries + 1:
+                break
+            # simple backoff
+            time.sleep(min(2.0 * attempt, 10.0))
+    raise RuntimeError(f"GET failed: {url} ({last_err})")
 
 
-def _strip_ns(tag: str) -> str:
-    return tag.split("}", 1)[-1] if "}" in tag else tag
-
-
-def _child(parent: ET.Element, name: str) -> Optional[ET.Element]:
-    for c in list(parent):
-        if _strip_ns(c.tag) == name:
-            return c
-    return None
-
-
-def _children(parent: ET.Element, name: str) -> List[ET.Element]:
-    out: List[ET.Element] = []
-    for c in list(parent):
-        if _strip_ns(c.tag) == name:
-            out.append(c)
-    return out
-
-
-def _text(el: Optional[ET.Element]) -> str:
-    if el is None:
-        return ""
-    return (el.text or "").strip()
-
-
-def _parse_date(raw: str) -> Optional[datetime]:
-    if not raw:
+def _compile_regex(pat: Optional[str]) -> Optional[re.Pattern]:
+    if not pat:
         return None
-    raw = raw.strip()
-    # RSS pubDate often parses via email.utils
-    try:
-        dt = parsedate_to_datetime(raw)
-        if dt.tzinfo is None:
-            dt = dt.replace(tzinfo=timezone.utc)
-        return dt.astimezone(timezone.utc)
-    except Exception:
-        pass
-    # Atom is often ISO-ish
-    try:
-        dt = datetime.fromisoformat(raw.replace("Z", "+00:00"))
-        if dt.tzinfo is None:
-            dt = dt.replace(tzinfo=timezone.utc)
-        return dt.astimezone(timezone.utc)
-    except Exception:
-        return None
+    return re.compile(pat, re.IGNORECASE)
 
 
-def _pick_atom_link(entry: ET.Element) -> str:
-    # Atom: <link href="..." rel="alternate" />
-    links = _children(entry, "link")
-    if not links:
-        return ""
-    # Prefer rel=alternate or missing
-    for l in links:
-        rel = (l.attrib.get("rel") or "").strip().lower()
-        href = (l.attrib.get("href") or "").strip()
-        if not href:
-            continue
-        if rel in ("", "alternate"):
-            return href
-    # Fallback first href
-    for l in links:
-        href = (l.attrib.get("href") or "").strip()
-        if href:
-            return href
-    return ""
+def _text(v: Any) -> str:
+    return str(v or "").strip()
 
 
-def _parse_rss_items(root: ET.Element) -> List[Dict[str, str]]:
-    channel = _child(root, "channel")
-    if channel is None:
-        return []
-    items = _children(channel, "item")
-    out: List[Dict[str, str]] = []
-    for it in items:
-        title = _text(_child(it, "title"))
-        link = _text(_child(it, "link"))
-        desc = _text(_child(it, "description")) or _text(_child(it, "summary"))
-        guid = _text(_child(it, "guid"))
-        pub = _text(_child(it, "pubDate"))
-        out.append({"title": title, "link": link, "summary": desc, "guid": guid, "published_raw": pub})
-    return out
+def _apply_filters(item: Dict[str, Any], *, src: SourceDef) -> bool:
+    f = src.filters
+    fields = set([x.lower() for x in (f.apply_to or [])])
 
+    hay = ""
+    if "title" in fields:
+        hay += " " + _text(item.get("title"))
+    if "summary" in fields:
+        hay += " " + _text(item.get("summary"))
+    if "description" in fields:
+        hay += " " + _text(item.get("summary"))
 
-def _parse_atom_entries(root: ET.Element) -> List[Dict[str, str]]:
-    entries = _children(root, "entry")
-    out: List[Dict[str, str]] = []
-    for e in entries:
-        title = _text(_child(e, "title"))
-        link = _pick_atom_link(e)
-        desc = _text(_child(e, "summary")) or _text(_child(e, "content"))
-        guid = _text(_child(e, "id"))
-        pub = _text(_child(e, "published")) or _text(_child(e, "updated"))
-        out.append({"title": title, "link": link, "summary": desc, "guid": guid, "published_raw": pub})
-    return out
+    hay_l = hay.lower()
 
+    if f.keywords_all:
+        for kw in f.keywords_all:
+            if kw.lower() not in hay_l:
+                return False
 
-def _load_seen(state_path: Path) -> set[str]:
-    if not state_path.exists():
-        return set()
-    try:
-        obj = json.loads(state_path.read_text(encoding="utf8"))
-        seen = obj.get("seen", [])
-        return set(str(x) for x in seen)
-    except Exception:
-        return set()
-
-
-def _write_json(path: Path, obj: Any) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(obj, indent=2, ensure_ascii=False) + "\n", encoding="utf8")
-
-
-def _build_session(retries: int) -> requests.Session:
-    retry = Retry(
-        total=retries,
-        connect=retries,
-        read=retries,
-        status=retries,
-        backoff_factor=0.75,
-        status_forcelist=(429, 500, 502, 503, 504),
-        allowed_methods=frozenset(["GET", "HEAD"]),
-        raise_on_status=False,
-        respect_retry_after_header=True,
-    )
-    adapter = HTTPAdapter(max_retries=retry, pool_connections=10, pool_maxsize=10)
-    s = requests.Session()
-    s.mount("https://", adapter)
-    s.mount("http://", adapter)
-    s.headers.update({"User-Agent": DEFAULT_UA, "Accept": "application/rss+xml, application/atom+xml, application/xml;q=0.9, */*;q=0.8"})
-    return s
-
-
-def _passes_filters(title: str, summary: str, link: str, filters: Dict[str, Any]) -> bool:
-    if not filters:
-        return True
-
-    apply_to = filters.get("apply_to") or ["title", "summary", "description"]
-    parts: List[str] = []
-    if "title" in apply_to:
-        parts.append(title or "")
-    if "summary" in apply_to or "description" in apply_to:
-        parts.append(summary or "")
-    blob = "\n".join(parts).lower()
-
-    kws_any = filters.get("keywords_any") or []
-    if kws_any:
-        if not any(str(k).lower() in blob for k in kws_any):
+    if f.keywords_any:
+        ok = False
+        for kw in f.keywords_any:
+            if kw.lower() in hay_l:
+                ok = True
+                break
+        if not ok:
             return False
 
-    kws_all = filters.get("keywords_all") or []
-    if kws_all:
-        if not all(str(k).lower() in blob for k in kws_all):
-            return False
-
-    allow_pat = filters.get("url_allow_regex")
-    if allow_pat:
-        if not re.search(allow_pat, link or ""):
-            return False
-
-    deny_pat = filters.get("url_deny_regex")
-    if deny_pat:
-        if re.search(deny_pat, link or ""):
-            return False
+    link = _text(item.get("link"))
+    allow_re = _compile_regex(f.url_allow_regex)
+    deny_re = _compile_regex(f.url_deny_regex)
+    if allow_re and link and not allow_re.search(link):
+        return False
+    if deny_re and link and deny_re.search(link):
+        return False
 
     return True
 
 
+def _parse_rss_atom(xml_bytes: bytes, *, source_id: str, fetched_at: str) -> List[Dict[str, Any]]:
+    """
+    stdlib RSS/Atom parse (good enough for CISA, CERT/CC, most feeds)
+    returns normalized items with keys: source,guid,title,link,published_date,summary,fetched_at
+    """
+    items: List[Dict[str, Any]] = []
+    try:
+        root = ET.fromstring(xml_bytes)
+    except Exception as e:
+        raise RuntimeError(f"Invalid XML in feed: {e}")
+
+    # namespace helpers
+    def _find_text(elem: ET.Element, tags: List[str]) -> str:
+        for t in tags:
+            x = elem.find(t)
+            if x is not None and x.text:
+                return x.text.strip()
+        return ""
+
+    # RSS: channel/item
+    channel = root.find("./channel")
+    if channel is not None:
+        for it in channel.findall("./item"):
+            title = _find_text(it, ["title"])
+            link = _find_text(it, ["link"])
+            guid = _find_text(it, ["guid"]) or link or title
+            pub = _find_text(it, ["pubDate", "date"])
+            desc = _find_text(it, ["description"])
+            items.append(
+                {
+                    "source": source_id,
+                    "guid": guid,
+                    "title": title or "item",
+                    "link": link,
+                    "published_date": pub,
+                    "summary": desc,
+                    "fetched_at": fetched_at,
+                }
+            )
+        return items
+
+    # Atom: entry
+    # Atom feeds often use default namespace; handle generically by searching tag suffix
+    for entry in root.findall(".//{*}entry"):
+        title = ""
+        link = ""
+        guid = ""
+        pub = ""
+        summary = ""
+
+        for child in list(entry):
+            tag = child.tag.split("}")[-1]
+            if tag == "title" and child.text:
+                title = child.text.strip()
+            elif tag in ("id",) and child.text:
+                guid = child.text.strip()
+            elif tag in ("updated", "published") and child.text:
+                if not pub:
+                    pub = child.text.strip()
+            elif tag in ("summary", "content") and child.text:
+                if not summary:
+                    summary = child.text.strip()
+            elif tag == "link":
+                href = child.attrib.get("href")
+                rel = child.attrib.get("rel", "alternate")
+                if href and (not link) and rel in ("alternate", ""):
+                    link = href.strip()
+
+        if not guid:
+            guid = link or title
+        items.append(
+            {
+                "source": source_id,
+                "guid": guid,
+                "title": title or "entry",
+                "link": link,
+                "published_date": pub,
+                "summary": summary,
+                "fetched_at": fetched_at,
+            }
+        )
+
+    return items
+
+
 def discover(
-    source: str,
+    source_id: str,
     *,
     limit: int = 50,
     out_root: str = "outputs/discover",
     show_links: bool = False,
 ) -> Tuple[Path, Path, Path, Path]:
+    if limit <= 0:
+        raise ValueError("--limit must be > 0")
+
     cfg = load_sources_config()
-    try:
-        src = cfg.get(source)
-    except KeyError:
-        known = ", ".join([s.source_id for s in cfg.sources])
-        raise ValueError(f"Unknown source: {source}. Known sources in configs/sources.json: {known}")
-
+    src = cfg.get(source_id)
     if not src.enabled:
-        raise ValueError(f"Source '{source}' is disabled in configs/sources.json (enabled=false).")
+        raise ValueError(f"Source '{source_id}' is disabled (enabled=false)")
 
-    if src.page_type != "rss_atom":
-        raise NotImplementedError(f"discover currently supports page_type='rss_atom' only. Source '{source}' has page_type='{src.page_type}'")
-
-    url = src.entry_url
-
-    out_dir = Path(out_root) / source
+    out_dir = Path(out_root) / source_id
     out_dir.mkdir(parents=True, exist_ok=True)
-    raw_path = out_dir / "raw_feed.xml"
+
+    fetched_at = utc_now_iso()
+
+    raw_ext = "bin"
+    raw_bytes = b""
+    items: List[Dict[str, Any]] = []
+
+    if src.page_type == "rss_atom":
+        raw_ext = "xml"
+        raw_bytes = _http_get_bytes(src.entry_url, timeout_s=src.timeout_s, retries=src.retries)
+        items = _parse_rss_atom(raw_bytes, source_id=source_id, fetched_at=fetched_at)
+
+    elif src.page_type == "json_feed":
+        raw_ext = "json"
+        raw_bytes = _http_get_bytes(src.entry_url, timeout_s=src.timeout_s, retries=src.retries)
+        text = raw_bytes.decode("utf-8", errors="replace")
+        obj = json.loads(text)
+        items = parse_json_feed(obj, source_id=source_id, fetched_at=fetched_at)
+
+    elif src.page_type == "csv_feed":
+        raw_ext = "csv"
+        raw_bytes = _http_get_bytes(src.entry_url, timeout_s=src.timeout_s, retries=src.retries)
+        text = raw_bytes.decode("utf-8", errors="replace")
+        items = parse_csv_feed(text, source_id=source_id, fetched_at=fetched_at)
+
+    else:
+        raise ValueError(f"Unsupported page_type implemented in v1.1: {src.page_type}")
+
+    # Enforce limit early (pre-filter still writes raw feed)
+    items = items[:limit]
+
+    # Apply cheap filters
+    filtered: List[Dict[str, Any]] = []
+    for it in items:
+        if _apply_filters(it, src=src):
+            filtered.append(it)
+    items = filtered[:limit]
+
+    # Load / update state for new-items detection
+    state_path = out_dir / "state.json"
+    state: Dict[str, Any] = {"source": source_id, "seen": {}}
+    if state_path.exists():
+        try:
+            state = json.loads(state_path.read_text(encoding="utf-8"))
+        except Exception:
+            state = {"source": source_id, "seen": {}}
+
+    seen: Dict[str, str] = state.get("seen", {}) if isinstance(state.get("seen", {}), dict) else {}
+    new_items: List[Dict[str, Any]] = []
+    for it in items:
+        guid = _text(it.get("guid"))
+        if not guid:
+            continue
+        if guid not in seen:
+            new_items.append(it)
+        seen[guid] = fetched_at
+
+    state["seen"] = seen
+
+    # Write outputs
+    raw_path = out_dir / f"raw_feed.{raw_ext}"
+    raw_path.write_bytes(raw_bytes)
+
     feed_path = out_dir / "feed.json"
     new_path = out_dir / "new_items.json"
-    state_path = out_dir / "state.json"
 
-    seen = _load_seen(state_path)
+    feed_obj = {"source": source_id, "fetched_at": fetched_at, "items": items}
+    new_obj = {"source": source_id, "fetched_at": fetched_at, "items": new_items}
 
-    session = _build_session(retries=src.retries)
-    t0 = time.monotonic()
-    resp = session.get(url, timeout=(10, src.timeout_s), allow_redirects=True)
-    elapsed_ms = int((time.monotonic() - t0) * 1000)
-
-    resp.raise_for_status()
-    xml_text = resp.text or ""
-    if not xml_text.strip():
-        raise RuntimeError(f"Empty response from {url}")
-
-    raw_path.write_text(xml_text + "\n", encoding="utf8")
-
-    try:
-        root = ET.fromstring(xml_text)
-    except Exception as e:
-        snippet = xml_text[:300]
-        raise RuntimeError(f"Response was not valid XML. First 300 chars:\n{snippet}") from e
-
-    root_name = _strip_ns(root.tag).lower()
-    items_raw: List[Dict[str, str]]
-    if root_name == "rss":
-        items_raw = _parse_rss_items(root)
-    elif root_name == "feed":
-        items_raw = _parse_atom_entries(root)
-    else:
-        # Some feeds may wrap; try to locate rss/feed below
-        rss = None
-        feed = None
-        for el in root.iter():
-            n = _strip_ns(el.tag).lower()
-            if n == "rss":
-                rss = el
-                break
-            if n == "feed":
-                feed = el
-                break
-        if rss is not None:
-            items_raw = _parse_rss_items(rss)
-        elif feed is not None:
-            items_raw = _parse_atom_entries(feed)
-        else:
-            raise RuntimeError(f"Unexpected feed root element: <{root_name}>. See {raw_path}")
-
-    # Sort newest-first before applying limit (important: some feeds are oldest-first)
-    def sort_key(x: Dict[str, str]) -> datetime:
-        dt = _parse_date(x.get("published_raw", ""))
-        return dt or datetime(1970, 1, 1, tzinfo=timezone.utc)
-
-    items_raw = sorted(items_raw, key=sort_key, reverse=True)
-    if limit > 0:
-        items_raw = items_raw[:limit]
-
-    all_items: List[Dict[str, Any]] = []
-    new_items: List[Dict[str, Any]] = []
-
-    for it in items_raw:
-        title = (it.get("title", "") or "").strip()
-        link = (it.get("link", "") or "").strip()
-        summary = (it.get("summary", "") or "").strip()
-        guid = (it.get("guid", "") or "").strip()
-        pub_raw = (it.get("published_raw", "") or "").strip()
-
-        dt = _parse_date(pub_raw)
-        published_date = dt.date().isoformat() if dt else ""
-
-        if not guid:
-            guid = link
-        if not guid:
-            guid = "sha256:" + sha256_text(f"{title}|{summary}")
-
-        if not _passes_filters(title=title, summary=summary, link=link, filters=src.filters):
-            continue
-
-        obj = {
-            "source": source,
-            "guid": guid,
-            "title": title,
-            "link": link,
-            "published_date": published_date,
-            "summary": summary,
-            "fetched_at": utc_now_iso(),
-        }
-
-        all_items.append(obj)
-        if guid not in seen:
-            new_items.append(obj)
-            seen.add(guid)
-
-    feed_out = {
-        "source": source,
-        "url": url,
-        "http_elapsed_ms": elapsed_ms,
-        "fetched_at": utc_now_iso(),
-        "count": len(all_items),
-        "items": all_items,
-    }
-    new_out = {
-        "source": source,
-        "url": url,
-        "http_elapsed_ms": elapsed_ms,
-        "fetched_at": utc_now_iso(),
-        "count": len(new_items),
-        "items": new_items,
-    }
-    state_out = {"source": source, "seen": sorted(list(seen))}
-
-    _write_json(feed_path, feed_out)
-    _write_json(new_path, new_out)
-    _write_json(state_path, state_out)
+    feed_path.write_text(json.dumps(feed_obj, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    new_path.write_text(json.dumps(new_obj, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    state_path.write_text(json.dumps(state, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
     print("Done.")
-    print(f"  Source: {source}")
-    print(f"  URL:    {url}")
-    print(f"  Items:  {len(all_items)}")
+    print(f"  Source: {source_id}")
+    print(f"  URL:    {src.entry_url}")
+    print(f"  Items:  {len(items)}")
     print(f"  New:    {len(new_items)}")
     print(f"  Wrote:  {out_dir}")
     print(f"  Raw:    {raw_path}")
+
     if show_links and new_items:
-        print("\nNew links:")
-        for row in new_items[:15]:
-            print(" - " + (row.get("link") or ""))
-        if len(new_items) > 15:
-            print(f" ... ({len(new_items) - 15} more)")
+        print("")
+        print("New links:")
+        for it in new_items[: min(50, len(new_items))]:
+            link = _text(it.get("link"))
+            if link:
+                print(f" - {link}")
 
     return raw_path, feed_path, new_path, state_path
