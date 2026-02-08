@@ -18,14 +18,19 @@ advisoryops extract --advisory-id $AdvisoryId
 if ($LASTEXITCODE -ne 0) { throw "advisoryops extract failed with exitcode=$LASTEXITCODE" }
 
 # Deep schema + mojibake scan (PowerShell-safe python invocation via temp .py)
+$recFile = Join-Path (Join-Path "outputs\extract" $AdvisoryId) "advisory_record.json"
+if (-not (Test-Path $recFile)) { throw "Missing extract output: $recFile" }
+$env:VERIFY_EXTRACT_RECORD = $recFile
+
 $py = @"
-import json, sys
+import json, sys, os
 from pathlib import Path
 
 markers = ["â€™", "Â", "â€"]
 expected = ["advisory_id","title","published_date","vendor","product","cves","severity","affected_versions","summary","impact","exploitation","mitigations","references"]
 
-rec = sorted(Path("outputs/extract").glob("*/advisory_record.json"), key=lambda x: x.stat().st_mtime, reverse=True)[0]
+# __TARGET_ADVISORY_RECORD__
+rec = Path(os.environ["VERIFY_EXTRACT_RECORD"])
 raw = rec.read_text(encoding="utf-8", errors="replace")
 data = json.loads(raw)
 
@@ -74,6 +79,7 @@ Set-Content -Path $tmpPy -Value $py -Encoding UTF8 -NoNewline
 python $tmpPy
 $code = $LASTEXITCODE
 Remove-Item -Force $tmpPy -ErrorAction SilentlyContinue
+Remove-Item env:VERIFY_EXTRACT_RECORD -ErrorAction SilentlyContinue
 if ($code -ne 0) { throw "verify_extract python scan failed (exitcode=$code)" }
 
 "OK: verify_extract passed"
