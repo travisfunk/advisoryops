@@ -96,9 +96,23 @@ def source_run(
     if not ingest:
         return None
 
+    # If discovery selected nothing, ingest is a no-op (exit cleanly)
+    if not items:
+        print("")
+        print("No items selected; nothing to ingest.")
+        return None
+
     # Scope guardrail: only advisory sources can ingest in v1
     if src.scope != "advisory":
-        raise ValueError(f"Refusing to ingest scope='{src.scope}'. Only scope='advisory' is ingestable in v1.")
+        print("")
+        print(f"Ingest skipped: scope='{src.scope}' is not ingestable in v1 (use advisory sources).")
+        if dry_run:
+            print("")
+            print("DRY RUN: planned ingest URLs (no fetching):")
+            for row in items:
+                print(" - " + str(row.get("link", "")))
+        return None
+
 
     if dry_run:
         print("")
