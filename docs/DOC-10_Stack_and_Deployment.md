@@ -55,3 +55,18 @@ Notes:
 - Queue: Postgres queue → managed queue (Cloud Tasks/PubSub/SQS/CF Queues)
 - Hosting: Railway → Cloud Run/AWS (no architecture rewrite)
 - Add UI separately (optional TS frontend)
+
+## Repo hygiene (encoding + line endings)
+
+To avoid “mystery diffs” and mojibake issues, this repo includes `.gitattributes`:
+
+- Store text files with **LF** line endings in the repo
+- Keep Windows scripts (`*.ps1`, `*.cmd`, `*.bat`) as **CRLF**
+- Mark common binaries (`.png`, `.pdf`, `.zip`, etc.) as `binary`
+
+If you ever see a leading `﻿` at the top of a file, that’s typically a UTF‑8 BOM.
+The docs are kept BOM-free and LF-normalized to reduce churn in diffs.
+
+Recommended workflow on Windows:
+- Always run tools from the venv (`.\.venv\Scripts\python.exe`, `.\.venv\Scriptsdvisoryops.exe`)
+- Let `.gitattributes` handle line endings; avoid manual editor conversions unless necessary

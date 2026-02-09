@@ -1,4 +1,4 @@
-﻿# DOC-09 Prototype & Implementation Plan (v1)
+# DOC-09 Prototype & Implementation Plan (v1)
 
 ## 0) Purpose
 Define a solo-friendly, thin-vertical prototype plan for AdvisoryOps that is:

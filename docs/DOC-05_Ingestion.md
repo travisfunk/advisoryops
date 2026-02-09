@@ -197,7 +197,7 @@ Each entry in `configs/sources.json` includes:
 ### Cheap Filtering (cost control)
 Discovery applies only deterministic, non-LLM filters (per source):
 - `filters.keywords_any`: accept if ANY keyword is present
-- `filters.keywords_all`: accept if ALL keyword are present
+- `filters.keywords_all`: accept if ALL keywords are present
 - `filters.apply_to`: fields to search (`title`, `summary`, `description`)
 - `filters.url_allow_regex` / `filters.url_deny_regex`: URL allow/deny gates
 
@@ -218,3 +218,66 @@ For a source `<source_id>`, discovery writes:
 - `published_date`
 - `summary`
 - `fetched_at`
+
+## Discovery Feeds (rss_atom / json_feed / csv_feed)
+
+Discovery is intentionally **cheap**: pull a feed, normalize it into a common item list, and apply lightweight filtering **before** any heavy ingestion or LLM extraction.
+
+### Normalized item shape
+
+All discovery outputs are normalized into a list of objects with:
+
+- `title` (optional)
+- `link` (required): canonical URL to ingest
+- `published` (optional): ISO-8601 date/time when available
+- `id` (optional): source-provided ID (if available)
+
+### Filtering rules (cheap filtering)
+
+In v1, the discovery filter is simple and conservative:
+
+- If `include_any` is set: keep an item if **ANY** keyword is present in `title` or `link`
+- If `include_all` is set: keep an item if **ALL** keywords are present in `title` or `link`
+- If neither is set: keep all items (up to `--limit`)
+
+This is deliberately dumb-but-fast; it reduces LLM spend by narrowing to high-signal URLs.
+
+### Page types
+
+- `rss_atom` — RSS/Atom feeds (XPath-based parsing)
+- `json_feed` — JSON feeds or datasets where each entry can map to a `link`
+- `csv_feed` — CSV feeds where each row can map to a `link`
+
+Each source chooses its parser via `page_type` in `configs/sources.json`.
+
+### `source-run` orchestration
+
+`source-run` does:
+
+1. Fetch the feed
+2. Parse → normalized items
+3. Apply cheap filtering + `--limit`
+4. Write discovery artifacts to `outputs/discover/<source_id>/`
+5. If `--ingest` is requested, pass selected links into ingestion
+
+Example:
+
+```powershell
+# discovery-only
+.\.venv\Scriptsdvisoryops.exe source-run --source cisa-icsma-rss --limit 5
+
+# discovery + ingest (advisory scopes only in v1)
+.\.venv\Scriptsdvisoryops.exe source-run --source cisa-icsma-rss --limit 5 --ingest
+
+# show planned ingest URLs, no fetching
+.\.venv\Scriptsdvisoryops.exe source-run --source cisa-icsma-rss --limit 5 --ingest --dry-run
+```
+
+### Scope guardrail (v1)
+
+In v1, ingestion is intended for sources with `scope: advisory`.
+
+- `scope: advisory` → `--ingest` is allowed
+- `scope: dataset` → discovery works, but `--ingest` is refused (v1 guardrail)
+
+For dataset feeds (e.g., CISA KEV JSON), use discovery-only or `--dry-run` to see candidate URLs. A future iteration can add an explicit “experimental ingest for dataset links” mode.

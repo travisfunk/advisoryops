@@ -1,4 +1,4 @@
-﻿# DOC-02 Data Contracts & Schemas
+# DOC-02 Data Contracts & Schemas
 
 ## 0) Purpose
 Canonical home for all **data contracts**, **schemas**, and **examples** used by AdvisoryOps.

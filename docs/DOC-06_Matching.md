@@ -1,4 +1,4 @@
-﻿# DOC-06 Matching & Confidence Engine (v1)
+# DOC-06 Matching & Confidence Engine (v1)
 
 ## 0) Purpose
 Define how AdvisoryOps determines whether a healthcare facility is impacted by an IssueCluster, using facility inventory data (MVP: CSV import) and producing explainable match results with confidence scores and human-in-the-loop triggers.

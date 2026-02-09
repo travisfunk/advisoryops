@@ -1,4 +1,4 @@
-﻿# DOC-07 Evaluation Harness & Public Good Deliverables (v1)
+# DOC-07 Evaluation Harness & Public Good Deliverables (v1)
 
 ## 0) Purpose
 Define:
