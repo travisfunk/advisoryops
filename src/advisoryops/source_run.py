@@ -40,6 +40,7 @@ def source_run(
     out_root_discover: str = "outputs/discover",
     out_root_runs: str = "outputs/source_runs",
     show_links: bool = False,
+    reset_state: bool = False,
 ) -> Optional[Path]:
     """
     Orchestrate: discover -> (optional) ingest
@@ -59,6 +60,16 @@ def source_run(
 
     if not src.enabled:
         raise ValueError(f"Source '{source_id}' is disabled (enabled=false)")
+
+    # Optional: reset discovery state (force all items treated as new)
+    if reset_state:
+        state_file = Path(out_root_discover) / source_id / "state.json"
+        try:
+            if state_file.exists():
+                state_file.unlink()
+        except Exception:
+            # Best-effort; discovery will proceed either way
+            pass
 
     # Run discovery (writes outputs/discover/<source_id>/feed.json and new_items.json)
     raw_path, feed_path, new_path, state_path = discover(

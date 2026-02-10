@@ -50,6 +50,7 @@ def cmd_source_run(args: argparse.Namespace) -> int:
         out_root_discover=args.out_root_discover,
         out_root_runs=args.out_root_runs,
         show_links=args.show_links,
+        reset_state=args.reset_state,
     )
     return 0
 
@@ -85,6 +86,7 @@ def build_parser() -> argparse.ArgumentParser:
     p_sr.add_argument("--out-root-discover", default="outputs/discover")
     p_sr.add_argument("--out-root-runs", default="outputs/source_runs")
     p_sr.add_argument("--show-links", action="store_true")
+    p_sr.add_argument("--reset-state", action="store_true", help="Delete outputs/discover/<source>/state.json before discovery (force items treated as new)")
     p_sr.set_defaults(fn=cmd_source_run)
 
     return p
