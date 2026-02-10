@@ -328,5 +328,5 @@ Each connector emits a normalized FeedItem object:
 - source, guid, title, link, published_date, summary, fetched_at
 
 ### Scheduling (MVP → Production)
-- MVP: manual runs via CLI (dvisoryops discover)
+- MVP: manual runs via CLI (advisoryops discover)
 - Later: scheduled runs via cron/GitHub Actions/container scheduler

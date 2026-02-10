@@ -39,9 +39,14 @@ This doc is implementation-facing: developers should be able to build the pipeli
 
 ## 3) AdvisoryRecord JSON Contract (v1.0)
 
-### 3.0 Current implementation note (as of 2026-02-08)
+### 3.0 Current implementation note (as of 2026-02-10)
 
-The extractor currently writes **`advisory_record.json` as a strict, stable subset with exactly 13 keys**:
+The extractor currently writes **`advisory_record.json` as a strict, stable subset with exactly 13 keys**.
+This contract is enforced by `scripts/verify_extract.ps1`.
+
+Note: `scope: dataset` sources are discovery-only in v1 and do **not** produce `AdvisoryRecord` outputs.
+
+Required keys:
 
 - `advisory_id`
 - `title`
@@ -73,7 +78,7 @@ The more expansive schema below remains the **target/roadmap** contract (it may 
 
 **Encoding note (Windows):** `advisory_record.json` is written as UTF-8. PowerShell 5.x may display mojibake if read without specifying encoding. Use `Get-Content -Raw -Encoding utf8` when validating output.
 
-**Mojibake guarantee:** the extractor performs deterministic cleanup so the written JSON should not contain common mojibake markers like `â€™`, `Â`, or `â€…`. See DOC-10 for a canonical validation script.
+**Mojibake guarantee:** the extractor performs deterministic cleanup so the written JSON should not contain common mojibake markers like `\u00e2\u20ac\u2122`, `\u00c2`, or `\u00e2\u20ac\u2026`. See DOC-10 for a canonical validation script.
 
 ### 3.0.1 Stable extract output example (current)
 
