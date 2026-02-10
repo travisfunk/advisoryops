@@ -294,11 +294,21 @@ def discover(
         new_items = []
         for it in items:
             guid = _text(it.get("guid"))
-            if not guid:
-                continue
-            if guid not in seen:
+            sid = _text(it.get("signal_id"))
+
+            # Backwards compatible: treat as seen if either key exists
+            seen_guid = bool(guid) and (guid in seen)
+            seen_sid = bool(sid) and (sid in seen)
+
+            if not (seen_guid or seen_sid):
                 new_items.append(it)
-            seen[guid] = fetched_at
+
+            # Store both keys going forward
+            if guid:
+                seen[guid] = fetched_at
+            if sid:
+                seen[sid] = fetched_at
+
         state["seen"] = seen
 
         # Existing JSON artifacts
