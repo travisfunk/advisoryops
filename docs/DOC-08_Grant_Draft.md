@@ -1,4 +1,7 @@
-# DOC-08 Grant Proposal Draft - AdvisoryOps for Medical Device Remediation
+# Grant Draft (DOC-08)
+
+**Last updated:** 2026-02-10
+
 
 ## 0) Purpose
 Draft the complete OpenAI Trusted Access for Cyber / grant application narrative for **AdvisoryOps**: a defensive system that converts medical device security advisories into facility-specific, role-split remediation packets and ticket-ready tasks.

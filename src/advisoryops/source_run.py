@@ -11,6 +11,63 @@ from .ingest import ingest_url
 from .sources_config import load_sources_config
 
 
+def _write_run_report(
+    *,
+    out_root_runs: str,
+    source_id: str,
+    src,
+    ingest: bool,
+    dry_run: bool,
+    ingest_mode: str,
+    limit: int,
+    started_at: str,
+    finished_at: str,
+    raw_path,
+    feed_path,
+    new_path,
+    state_path,
+    selected_items,
+    out_root_discover: str,
+):
+    out_dir = Path(out_root_runs)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    ts = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    report_path = out_dir / f"{ts}_{source_id}.json"
+
+    discover_dir = Path(out_root_discover) / source_id
+
+    report = {
+        "source_id": source_id,
+        "source_name": getattr(src, "name", None),
+        "scope": getattr(src, "scope", None),
+        "page_type": getattr(src, "page_type", None),
+        "entry_url": getattr(src, "entry_url", None),
+        "ingest": bool(ingest),
+        "dry_run": bool(dry_run),
+        "ingest_mode": ingest_mode,
+        "limit": limit,
+        "started_at": started_at,
+        "finished_at": finished_at,
+        "counts": {
+            "selected": len(selected_items) if selected_items is not None else 0,
+        },
+        "discover_outputs": {
+            "raw_feed": str(raw_path) if raw_path else None,
+            "feed_json": str(feed_path) if feed_path else None,
+            "new_items_json": str(new_path) if new_path else None,
+            "state_json": str(state_path) if state_path else None,
+            "items_jsonl": str(discover_dir / "items.jsonl"),
+            "new_items_jsonl": str(discover_dir / "new_items.jsonl"),
+            "meta_json": str(discover_dir / "meta.json"),
+        },
+        "sample_links": [
+            (row.get("link") or "") for row in (selected_items or [])[:5]
+        ],
+    }
+
+    report_path.write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    return report_path
+
 IngestMode = Literal["new", "all"]
 
 
@@ -40,6 +97,7 @@ def source_run(
     out_root_discover: str = "outputs/discover",
     out_root_runs: str = "outputs/source_runs",
     show_links: bool = False,
+    reset_state: bool = False,
 ) -> Optional[Path]:
     """
     Orchestrate: discover -> (optional) ingest
@@ -57,8 +115,20 @@ def source_run(
     cfg = load_sources_config()
     src = cfg.get(source_id)
 
+
+    started_at = datetime.now(timezone.utc).isoformat()
     if not src.enabled:
         raise ValueError(f"Source '{source_id}' is disabled (enabled=false)")
+
+    # Optional: reset discovery state (force all items treated as new)
+    if reset_state:
+        state_file = Path(out_root_discover) / source_id / "state.json"
+        try:
+            if state_file.exists():
+                state_file.unlink()
+        except Exception:
+            # Best-effort; discovery will proceed either way
+            pass
 
     # Run discovery (writes outputs/discover/<source_id>/feed.json and new_items.json)
     raw_path, feed_path, new_path, state_path = discover(
@@ -92,6 +162,47 @@ def source_run(
         print("  Sample:")
         for row in items[:3]:
             print("   - " + str(row.get("link", "")))
+
+    finished_at = datetime.now(timezone.utc).isoformat()
+
+    report_path = _write_run_report(
+
+        out_root_runs=out_root_runs,
+
+        source_id=source_id,
+
+        src=src,
+
+        ingest=ingest,
+
+        dry_run=dry_run,
+
+        ingest_mode=ingest_mode,
+
+        limit=limit,
+
+        started_at=started_at,
+
+        finished_at=finished_at,
+
+        raw_path=raw_path,
+
+        feed_path=feed_path,
+
+        new_path=new_path,
+
+        state_path=state_path,
+
+        selected_items=items,
+
+        out_root_discover=out_root_discover,
+
+    )
+
+    print("")
+
+    print(f"Wrote run report: {report_path}")
+
 
     if not ingest:
         return None

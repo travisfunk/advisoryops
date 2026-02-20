@@ -1,79 +1,63 @@
-# DOC-09 Prototype & Implementation Plan (v1)
+# Prototype Plan (DOC-09)
 
-## 0) Purpose
+**Last updated:** 2026-02-10
 
-Define a solo-friendly, thin-vertical prototype plan for AdvisoryOps that is:
-
-- grant-aligned (evaluation + public good)
-- MVP-focused (minimum integrations)
-- expandable (core vs pro)
-
-This plan is intentionally biased toward building a working pipeline quickly.
+This document outlines a practical demo/POC path for AdvisoryOps that shows value early (without requiring full correlation/dedup).
 
 ---
 
-## 1) Guiding principles
+## 1) Prototype goals
 
-- Build the **thin vertical slice first**: ingest → extract → cluster → match → packet → export → (optional) ServiceNow ticket
-- Prefer **config-driven** design over per-customer custom code
-- Treat “vendor-managed / can’t patch” as first-class
-- Avoid PHI and sensitive customer data by design
-- Control LLM cost via **cheap discovery/filtering** first + hard `--limit` caps
+### 1.1 “Day 1” value
+- Pull multiple sources reliably.
+- Produce deterministic artifacts (`outputs/discover/...`) suitable for automation.
+- Provide a single **run report JSON** per source-run (`outputs/source_runs/...`) so schedulers can react without parsing stdout.
 
----
+### 1.2 “Day 2” value
+- Ingest + extract advisory pages into normalized `AdvisoryRecord` JSON.
+- Basic reporting (counts, recency, “what’s new”) driven from artifacts.
 
-## 2) Current status (as of 2026-02-10)
-
-### ✅ Completed / working
-
-- **Milestone B — Ingest + AdvisoryRecord extraction** ✅  
-  - `advisoryops ingest` and `advisoryops extract` produce a stable 13-key `AdvisoryRecord`  
-  - `scripts/verify_extract.ps1` is the gate for contract validity
-
-- **Discovery framework** ✅  
-  - Config-driven sources (`configs/sources.json`)
-  - Implemented discovery parsers: `rss_atom`, `json_feed`, `csv_feed`
-  - `advisoryops discover` writes `outputs/discover/<source_id>/...`
-
-### ⚠️ Known regression (must fix next)
-
-- **`source-run --ingest` no-op**  
-  - In this snapshot, `src/advisoryops/source_run.py` is truncated and exits before ingesting selected items.  
-  - A complete implementation exists in `src/advisoryops/source_run.py.bak.*`.  
-  - Workaround: `discover` → manually `ingest --url` → `extract`.
+### 1.3 “Day 3” value (next milestone)
+- Correlation/dedup: collapse duplicate coverage across sources into a single Issue, merge missing fields.
 
 ---
 
-## 3) Next milestones (recommended order)
+## 2) Demo scenarios
 
-### Milestone C — Restore `source-run` ingest + lock it with tests
+### Scenario A — Discovery-only dashboard
+Run:
+```powershell
+.\.venv\Scriptsdvisoryops.exe source-run --source cisa-kev-json --limit 25
+```
 
-Goal:
-- `advisoryops source-run --source <advisory_source> --limit N --ingest --ingest-mode new|all` reliably ingests items and writes run reports.
+Use:
+- `outputs/discover/cisa-kev-json/new_items.jsonl` as the “what’s new” stream.
+- `outputs/source_runs/<ts>_cisa-kev-json.json` as the authoritative pointer to artifacts.
 
-Acceptance criteria:
-- `pytest` includes a test that fails if `source-run` ingest logic is missing
-- `source-run` does not error when Selected == 0 (clean no-op)
-- `scope: dataset` sources remain discover-only in v1 (skip ingest cleanly)
+### Scenario B — Advisory ingest + extract
+Run:
+```powershell
+.\.venv\Scriptsdvisoryops.exe source-run --source cisa-icsma --limit 10 --ingest
+```
 
-### Milestone D — Matching + clustering (thin + deterministic)
-
-- De-dupe across sources
-- Cluster advisories by vendor/product/CVE
-- Persist a minimal “match candidate” record for later enrichment
-
-### Milestone E — Packet/export + integrations (optional)
-
-- Generate a remediation packet (markdown/PDF) per advisory cluster
-- Optional: ticket creation integration (ServiceNow / Jira) behind a feature flag
+Show:
+- `outputs/ingest/<id>/normalized.txt` snapshots for auditability
+- `outputs/extract/<id>/advisory_record.json` for structured consumption
 
 ---
 
-## 4) Engineering constraints (v1)
+## 3) Prototype deliverables (minimal)
 
-- PowerShell-safe scripts/commands
-- Prefer explicit venv invocation: `.\.venv\Scripts\python.exe`
-- Prefer stdlib; no new dependencies unless explicitly approved
-- Polite fetching: timeout + retry/backoff; default rate limit 1 req/sec
-- Store raw snapshots under `outputs/...` and gitignore them
-- After measurable milestones: run `pytest` + `scripts/verify_extract.ps1` before commit/push + doc updates
+- A scheduled job (Task Scheduler / cron / GitHub Actions) that runs `source-run` on a small set of sources.
+- A simple “report builder” script (later) that reads:
+  - `outputs/source_runs/*.json` (what ran, where to look)
+  - `outputs/discover/*/new_items.jsonl` (new signals stream)
+  - `outputs/extract/*/advisory_record.json` (structured advisories)
+- A short “demo pack” folder with sample outputs checked into `examples/` (optional; sanitized).
+
+---
+
+## 4) Out of scope for the prototype (for now)
+- Cross-source correlation/dedup merge policy (tracked as next milestone)
+- Deep enrichment (NVD scraping, vendor parsing beyond MVP)
+- Environment-specific matching (inventory integration)

@@ -1,4 +1,6 @@
-# DOC-04 Integrations & Connectors (v1)
+# Integrations (DOC-04)
+
+**Last updated:** 2026-02-10
 
 ## 0) Purpose
 Define how AdvisoryOps integrates with external systems (ITSM/ticketing, asset inventory enrichment, vendor feeds). This doc is the canonical spec for:

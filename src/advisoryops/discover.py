@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import hashlib
 import re
 import time
 import urllib.request
@@ -16,6 +17,27 @@ from .feed_parsers import parse_json_feed, parse_csv_feed
 
 def utc_now_iso() -> str:
     return datetime.now(timezone.utc).isoformat()
+
+
+def _sha256_hex(s: str) -> str:
+    return hashlib.sha256(s.encode("utf-8", errors="ignore")).hexdigest()
+
+
+def _ensure_signal_id(item: dict, *, source_id: str) -> None:
+    # Deterministic per-source signal id (used later for correlation/dedup).
+    if item.get("signal_id"):
+        return
+    guid = _text(item.get("guid")) or _text(item.get("link")) or _text(item.get("title"))
+    if not guid:
+        return
+    item["signal_id"] = _sha256_hex(f"{source_id}|{guid}")
+
+
+def _write_jsonl(path: Path, items: list) -> None:
+    lines = []
+    for it in items:
+        lines.append(json.dumps(it, ensure_ascii=False, sort_keys=True))
+    path.write_text("\n".join(lines) + ("\n" if lines else ""), encoding="utf-8")
 
 
 def _http_get_bytes(url: str, *, timeout_s: int, retries: int) -> bytes:
@@ -190,92 +212,170 @@ def discover(
     out_dir = Path(out_root) / source_id
     out_dir.mkdir(parents=True, exist_ok=True)
 
+    started_at = utc_now_iso()
     fetched_at = utc_now_iso()
+
+    meta = {
+        "source_id": source_id,
+        "source_name": src.name,
+        "scope": src.scope,
+        "page_type": src.page_type,
+        "entry_url": src.entry_url,
+        "started_at": started_at,
+        "fetched_at": fetched_at,
+        "finished_at": None,
+        "limit": limit,
+        "counts": {},
+        "outputs": {},
+        "errors": [],
+    }
 
     raw_ext = "bin"
     raw_bytes = b""
-    items: List[Dict[str, Any]] = []
+    items = []
 
-    if src.page_type == "rss_atom":
-        raw_ext = "xml"
-        raw_bytes = _http_get_bytes(src.entry_url, timeout_s=src.timeout_s, retries=src.retries)
-        items = _parse_rss_atom(raw_bytes, source_id=source_id, fetched_at=fetched_at)
+    raw_path = None
+    feed_path = None
+    new_path = None
+    state_path = None
+    items_jsonl_path = None
+    new_items_jsonl_path = None
 
-    elif src.page_type == "json_feed":
-        raw_ext = "json"
-        raw_bytes = _http_get_bytes(src.entry_url, timeout_s=src.timeout_s, retries=src.retries)
-        text = raw_bytes.decode("utf-8", errors="replace")
-        obj = json.loads(text)
-        items = parse_json_feed(obj, source_id=source_id, fetched_at=fetched_at)
+    try:
+        if src.page_type == "rss_atom":
+            raw_ext = "xml"
+            raw_bytes = _http_get_bytes(src.entry_url, timeout_s=src.timeout_s, retries=src.retries)
+            items = _parse_rss_atom(raw_bytes, source_id=source_id, fetched_at=fetched_at)
 
-    elif src.page_type == "csv_feed":
-        raw_ext = "csv"
-        raw_bytes = _http_get_bytes(src.entry_url, timeout_s=src.timeout_s, retries=src.retries)
-        text = raw_bytes.decode("utf-8", errors="replace")
-        items = parse_csv_feed(text, source_id=source_id, fetched_at=fetched_at)
+        elif src.page_type == "json_feed":
+            raw_ext = "json"
+            raw_bytes = _http_get_bytes(src.entry_url, timeout_s=src.timeout_s, retries=src.retries)
+            text = raw_bytes.decode("utf-8", errors="replace")
+            obj = json.loads(text)
+            items = parse_json_feed(obj, source_id=source_id, fetched_at=fetched_at)
 
-    else:
-        raise ValueError(f"Unsupported page_type implemented in v1.1: {src.page_type}")
+        elif src.page_type == "csv_feed":
+            raw_ext = "csv"
+            raw_bytes = _http_get_bytes(src.entry_url, timeout_s=src.timeout_s, retries=src.retries)
+            text = raw_bytes.decode("utf-8", errors="replace")
+            items = parse_csv_feed(text, source_id=source_id, fetched_at=fetched_at)
 
-    # Enforce limit early (pre-filter still writes raw feed)
-    items = items[:limit]
+        else:
+            raise ValueError(f"Unsupported page_type implemented in v1.1: {src.page_type}")
 
-    # Apply cheap filters
-    filtered: List[Dict[str, Any]] = []
-    for it in items:
-        if _apply_filters(it, src=src):
-            filtered.append(it)
-    items = filtered[:limit]
+        parsed_count = len(items)
 
-    # Load / update state for new-items detection
-    state_path = out_dir / "state.json"
-    state: Dict[str, Any] = {"source": source_id, "seen": {}}
-    if state_path.exists():
+        # Enforce limit early (pre-filter still writes raw feed)
+        items = items[:limit]
+        limited_count = len(items)
+
+        # Apply cheap filters
+        filtered = []
+        for it in items:
+            if _apply_filters(it, src=src):
+                filtered.append(it)
+        items = filtered[:limit]
+        filtered_count = len(items)
+
+        # Ensure stable signal_id (later correlation/dedup)
+        for it in items:
+            _ensure_signal_id(it, source_id=source_id)
+
+        # Load / update state for new-items detection
+        state_path = out_dir / "state.json"
+        state = {"source": source_id, "seen": {}}
+        if state_path.exists():
+            try:
+                state = json.loads(state_path.read_text(encoding="utf-8"))
+            except Exception:
+                state = {"source": source_id, "seen": {}}
+
+        seen = state.get("seen", {}) if isinstance(state.get("seen", {}), dict) else {}
+        new_items = []
+        for it in items:
+            guid = _text(it.get("guid"))
+            sid = _text(it.get("signal_id"))
+
+            # Backwards compatible: treat as seen if either key exists
+            seen_guid = bool(guid) and (guid in seen)
+            seen_sid = bool(sid) and (sid in seen)
+
+            if not (seen_guid or seen_sid):
+                new_items.append(it)
+
+            # Store both keys going forward
+            if guid:
+                seen[guid] = fetched_at
+            if sid:
+                seen[sid] = fetched_at
+
+        state["seen"] = seen
+
+        # Existing JSON artifacts
+        raw_path = out_dir / f"raw_feed.{raw_ext}"
+        raw_path.write_bytes(raw_bytes)
+
+        feed_path = out_dir / "feed.json"
+        new_path = out_dir / "new_items.json"
+
+        feed_obj = {"source": source_id, "fetched_at": fetched_at, "items": items}
+        new_obj = {"source": source_id, "fetched_at": fetched_at, "items": new_items}
+
+        feed_path.write_text(json.dumps(feed_obj, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+        new_path.write_text(json.dumps(new_obj, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+        state_path.write_text(json.dumps(state, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+        # New JSONL artifacts (stable for diffs + pipelines)
+        items_jsonl_path = out_dir / "items.jsonl"
+        new_items_jsonl_path = out_dir / "new_items.jsonl"
+        _write_jsonl(items_jsonl_path, items)
+        _write_jsonl(new_items_jsonl_path, new_items)
+
+        meta["counts"] = {
+            "parsed": parsed_count,
+            "limited": limited_count,
+            "filtered": filtered_count,
+            "new": len(new_items),
+        }
+        meta["outputs"] = {
+            "raw_feed": str(raw_path),
+            "feed_json": str(feed_path),
+            "new_items_json": str(new_path),
+            "state_json": str(state_path),
+            "items_jsonl": str(items_jsonl_path),
+            "new_items_jsonl": str(new_items_jsonl_path),
+            "meta_json": str(out_dir / "meta.json"),
+        }
+
+        print("Done.")
+        print(f"  Source: {source_id}")
+        print(f"  URL:    {src.entry_url}")
+        print(f"  Items:  {len(items)}")
+        print(f"  New:    {len(new_items)}")
+        print(f"  Wrote:  {out_dir}")
+        print(f"  Raw:    {raw_path}")
+        print(f"  JSONL:  {items_jsonl_path}")
+        print(f"  Meta:   {out_dir / 'meta.json'}")
+
+        if show_links and new_items:
+            print("")
+            print("New links:")
+            for it in new_items[: min(50, len(new_items))]:
+                link = _text(it.get("link"))
+                if link:
+                    print(f" - {link}")
+
+        return raw_path, feed_path, new_path, state_path
+
+    except Exception as e:
+        meta["errors"].append({"type": type(e).__name__, "message": str(e)})
+        raise
+
+    finally:
+        meta["finished_at"] = utc_now_iso()
+        # Always write meta.json for diagnosability (even on errors).
         try:
-            state = json.loads(state_path.read_text(encoding="utf-8"))
+            meta_path = out_dir / "meta.json"
+            meta_path.write_text(json.dumps(meta, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         except Exception:
-            state = {"source": source_id, "seen": {}}
-
-    seen: Dict[str, str] = state.get("seen", {}) if isinstance(state.get("seen", {}), dict) else {}
-    new_items: List[Dict[str, Any]] = []
-    for it in items:
-        guid = _text(it.get("guid"))
-        if not guid:
-            continue
-        if guid not in seen:
-            new_items.append(it)
-        seen[guid] = fetched_at
-
-    state["seen"] = seen
-
-    # Write outputs
-    raw_path = out_dir / f"raw_feed.{raw_ext}"
-    raw_path.write_bytes(raw_bytes)
-
-    feed_path = out_dir / "feed.json"
-    new_path = out_dir / "new_items.json"
-
-    feed_obj = {"source": source_id, "fetched_at": fetched_at, "items": items}
-    new_obj = {"source": source_id, "fetched_at": fetched_at, "items": new_items}
-
-    feed_path.write_text(json.dumps(feed_obj, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    new_path.write_text(json.dumps(new_obj, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    state_path.write_text(json.dumps(state, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-
-    print("Done.")
-    print(f"  Source: {source_id}")
-    print(f"  URL:    {src.entry_url}")
-    print(f"  Items:  {len(items)}")
-    print(f"  New:    {len(new_items)}")
-    print(f"  Wrote:  {out_dir}")
-    print(f"  Raw:    {raw_path}")
-
-    if show_links and new_items:
-        print("")
-        print("New links:")
-        for it in new_items[: min(50, len(new_items))]:
-            link = _text(it.get("link"))
-            if link:
-                print(f" - {link}")
-
-    return raw_path, feed_path, new_path, state_path
+            pass
