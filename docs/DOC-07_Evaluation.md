@@ -1,4 +1,7 @@
-# DOC-07 Evaluation Harness & Public Good Deliverables (v1)
+# Evaluation & Scoring (DOC-07)
+
+**Last updated:** 2026-02-10
+
 
 ## 0) Purpose
 Define:
@@ -10,7 +13,7 @@ This is central to both the grant application and long-term credibility.
 ---
 
 
-## 0.1 Current evaluation/testing status (as of 2026-02-08)
+## 0.1 Current evaluation/testing status (as of 2026-02-10)
 
 What we have today (offline, deterministic):
 

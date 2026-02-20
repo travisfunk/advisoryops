@@ -1,4 +1,6 @@
-# DOC-03 Mitigation Playbook (v1)
+# Mitigation Playbook (DOC-03)
+
+**Last updated:** 2026-02-10
 
 ## 0) Purpose
 This document defines the **approved mitigation patterns** AdvisoryOps is allowed to recommend.  

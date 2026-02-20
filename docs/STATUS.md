@@ -1,29 +1,49 @@
-# STATUS (ground truth)
+# Project Status
 
-This file exists to prevent “drift” between what the docs claim and what the code snapshot actually does.
+**Last updated:** 2026-02-10
 
-## Snapshot date
+This file is the single source of truth for “what is done” vs “what is next”.
 
-- 2026-02-10
+---
 
-## Working today
+## Current state (as of 2026-02-10)
 
-- `advisoryops ingest` produces `outputs/ingest/<advisory_id>/raw.txt`, `normalized.txt`, `source.json`
-- `advisoryops extract` produces `outputs/extract/<advisory_id>/advisory_record.json` and `extract_meta.json`
-- `scripts/verify_extract.ps1` validates the 13-key `AdvisoryRecord` contract
-- `advisoryops discover` supports feed parsing for:
-  - `rss_atom`
-  - `json_feed`
-  - `csv_feed`
+### ✅ Working (verified in local runs)
+- **Ingest**: `advisoryops ingest --url <advisory_url>` writes:
+  - `outputs/ingest/<advisory_id>/raw.txt`
+  - `outputs/ingest/<advisory_id>/normalized.txt`
+  - `outputs/ingest/<advisory_id>/source.json` (paths + metadata)
+- **Extract**: `advisoryops extract --advisory-id <advisory_id>` writes:
+  - `outputs/extract/<advisory_id>/advisory_record.json` (13 top-level keys, schema-validated)
+- **Discovery**: `advisoryops discover --source <id>` writes standardized artifacts including JSONL + meta.
+- **Source runner**: `advisoryops source-run --source <id> --limit N` runs discovery (and optional ingest), prints a summary, and writes a **run report JSON** under `outputs/source_runs/…`.
 
-## Known regression
+### ✅ Discovery hardening (completed)
+- Add `meta.json` under `outputs/discover/<source_id>/` (timings, counts, output paths, errors)
+- Add `items.jsonl` + `new_items.jsonl` (stable, one-item-per-line artifacts for diffs/automation)
+- Add deterministic per-source `signal_id` to each discovered item (SHA-256)
+- Track “new” by `guid` **or** `signal_id` (backwards compatible; state stores both keys)
+- Add `--reset-state` to `source-run` to delete `outputs/discover/<source>/state.json` before discovery
+- Write run report JSON for discovery-only runs (so automation doesn’t parse console output)
 
-- `advisoryops source-run --ingest` is currently a no-op because `src/advisoryops/source_run.py` is truncated and exits before the ingest loop.
-- A complete implementation exists in `src/advisoryops/source_run.py.bak.*`.
+---
 
-## v1 decisions that matter
+## Known gaps / next milestones
 
-- `scope: dataset` sources (e.g., KEV) are **discovery-only** in v1.
-- `configs/sources.json` contains a root `defaults` object, but it is **not currently applied** by the config loader.
-- Declared-future page types (`html_*`, `json_api`, `pdf_bulletin`) must remain disabled until implemented.
+### 🔜 Correlation + de-dup (high priority next)
+Goal: if 5 sources report the same vuln/issue, we recognize and combine them (avoid multiple entries), and optionally merge “missing fields” across sources.
 
+Deliverables (when implemented):
+- Deterministic correlation keys and merge policy (CVE-based matching first; heuristics fallbacks)
+- `Signals → Issues` mapping artifacts + dedup report
+- Doc update: correlation/dedup design + merge policy (tracked as a single docs update after milestone completion)
+
+### 🔜 Enrichment + matching (later)
+- Link to NVD/CVE records; vendor/product normalization
+- Match issues to local environment/inventory (future integration layer)
+
+---
+
+## Operational notes
+- Prefer deterministic, copy/paste scripts (PowerShell-safe) and keep dependencies minimal (stdlib-first).
+- Maintain commit messages with multi-line notes: **Why / How / Verified**.

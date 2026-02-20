@@ -1,171 +1,158 @@
-# DOC-05 Ingestion Sources & Parsers (v1)
+# Discovery and Ingestion (DOC-05)
 
-## 0) Purpose
+**Last updated:** 2026-02-10
 
-Define how AdvisoryOps ingests advisory content (URLs, PDFs, text), normalizes raw content, and produces clean inputs for the extraction model and downstream workflows.
-
-This doc is the canonical spec for:
-
-- supported ingestion inputs (URL / PDF / text)
-- discovery feed parsers (rss/json/csv)
-- snapshot + hashing strategy
-- output artifact locations
-- guardrails (scope, cost control, and parser safety)
+This doc describes the end-to-end **operational workflow** and the CLI surface area for:
+- discovery (feeds → signals + “new” tracking),
+- source-run orchestration (discovery + optional ingest),
+- ingest + extract (advisory pages → `AdvisoryRecord`).
 
 ---
 
-## 1) Ingestion inputs (MVP)
+## 0) Mental model
 
-MVP supports ingestion from:
+### Terms
+- **Source**: a configured feed/dataset/advisory stream in `configs/sources.json`.
+- **Signal**: one discovered item from a source (normalized minimal contract).
+- **Issue**: (future) a correlated/deduped object spanning multiple signals/sources.
 
-1) **URL (HTML pages)**: vendor advisories, security bulletins, regulator pages  
-2) **PDF**: vendor bulletins, FDA communications, offline artifacts  
-3) **Raw text**: pasted email/advisory text  
-
-Ingestion is “best effort” and intentionally uses **stdlib-only** parsing.
-
-### 1.1 URL ingestion (HTML)
-
-- Fetch URL with a standard user-agent
-- Extract text:
-  - strip `<script>`/`<style>` blocks
-  - replace `<br>` and `</p>` with newlines
-  - remove remaining tags
-  - normalize whitespace
-- Persist raw + normalized snapshots
-
-### 1.2 PDF ingestion
-
-- Extract text from PDF (current implementation relies on the configured PDF parsing approach in `ingest.py`)
-- Normalize whitespace
-- Persist raw + normalized snapshots
-
-### 1.3 Raw text ingestion
-
-- Read `.txt` file (or provided string)
-- Normalize whitespace
-- Persist raw + normalized snapshots
+### Stages
+1. **Discovery**: fetch and parse a source feed → write `outputs/discover/<source_id>/…`
+2. **Source-run**: run discovery (+ optional ingest), then write `outputs/source_runs/<ts>_<source>.json`
+3. **Ingest** (advisory sources): fetch each selected advisory link → raw + normalized text
+4. **Extract**: GPT-assisted extraction → `advisory_record.json`
 
 ---
 
-## 2) Normalization, hashing, and advisory_id
+## 1) Discovery
 
-- Normalize text into a deterministic canonical form (`normalized.txt`)
-- Compute SHA-256 on normalized text
-- Derive `advisory_id` from the hash (`adv_<...>`) to ensure stable identity across re-ingests
+### 1.1 Command
+Discovery is available via:
+- `advisoryops discover --source <id> --limit N [...]` (direct), or
+- `advisoryops source-run --source <id> --limit N [...]` (recommended; adds run report)
 
----
+### 1.2 Outputs (authoritative)
+Discovery writes:
 
-## 3) Discovery (configured sources)
-
-Discovery is separate from ingestion.
-
-- Discovery reads a **source feed** (RSS/Atom, JSON feed, or CSV feed)
-- It applies **cheap filters** (keywords/regex) and a hard `--limit`
-- It writes discovery artifacts to `outputs/discover/<source_id>/...`
-- Selected items can later be ingested via `advisoryops ingest --url ...`
-
-### 3.1 Implemented discovery `page_type` parsers (v1.1)
-
-Implemented in code today:
-
-- `rss_atom` — RSS/Atom feeds
-- `json_feed` — JSON feeds where entries map to a `link`
-- `csv_feed` — CSV feeds where rows map to a `link`
-
-Declared (future) page types exist in the config validator, but **must remain disabled** until implemented:
-
-- `html_generic`, `html_list`, `html_table`, `json_api`, `pdf_bulletin`
-
-### 3.2 Discovery outputs
-
-Written to `outputs/discover/<source_id>/`:
-
-- `raw_feed.<ext>` — raw bytes (xml/json/csv)
-- `feed.json` — parsed items (all)
-- `new_items.json` — parsed items not seen before (based on `state.json`)
-- `state.json` — simple dedupe store (seen GUIDs)
-
----
-
-## 4) `discover` vs `source-run`
-
-### 4.1 `advisoryops discover`
-
-`discover` fetches/parses/writes discovery artifacts:
-
-```powershell
-.\.venv\Scripts\advisoryops.exe discover --source cisa-icsma --limit 5
-.\.venv\Scripts\advisoryops.exe discover --source cisa-icsma --limit 5 --show-links
-```
-
-### 4.2 `advisoryops source-run`
-
-`source-run` is intended to orchestrate:
-
-1) discovery  
-2) selection (`--ingest-mode new|all`)  
-3) optional ingest of selected links (`--ingest`)  
-4) run reporting (`outputs/source_runs/...`)  
-
-**Current snapshot note (2026-02-10):** `src/advisoryops/source_run.py` is truncated and exits before the ingest loop.  
-So `source-run` currently performs discovery and printing, but **`--ingest` does not ingest anything**.
-
-Workaround until the regression is fixed:
-- run `discover` (or `source-run` without `--ingest`) to obtain links
-- run `advisoryops ingest --url <link>` manually for the items you want
-
----
-
-## 5) Scope and v1 guardrails
-
-Each configured source declares a `scope`:
-
-- `advisory` — intended to lead to ingest/extract pipelines
-- `dataset` — structured datasets (e.g., KEV). **Discovery-only** in v1.
-
-Decision for v1:
-- `scope: dataset` sources are discoverable, but dataset-to-advisory ingestion is treated as a separate future milestone with its own output contracts.
-
-Cost control guardrail:
-- `source-run --limit` is required (hard cap) to prevent runaway fetch/ingest.
-
-Config note:
-- `configs/sources.json` has a root `defaults` object, but it is **not currently applied** by the loader. Only per-source `timeout_s`, `retries`, and `rate_limit_rps` are honored.
-
----
-
-## 6) Output artifacts (ground truth)
-
-### 6.1 Ingest outputs
-
-`outputs/ingest/<advisory_id>/`:
-
-- `raw.txt`
-- `normalized.txt`
-- `source.json` (paths + metadata)
-
-### 6.2 Extract outputs
-
-`outputs/extract/<advisory_id>/`:
-
-- `advisory_record.json` (stable contract)
-- `extract_meta.json` (model, timestamps, hashes, etc.)
-
-### 6.3 Discovery outputs
-
-`outputs/discover/<source_id>/`:
-
-- `raw_feed.<ext>`
+`outputs/discover/<source_id>/`
+- `raw_feed.<xml|json|csv>`
 - `feed.json`
 - `new_items.json`
 - `state.json`
+- `items.jsonl`
+- `new_items.jsonl`
+- `meta.json`
+
+See `DOC-02_Data_Contracts.md` for exact shapes.
+
+### 1.3 New-item detection (state.json)
+- Items are considered “seen” if **either** `guid` **or** `signal_id` exists in `state.json:seen`.
+- Discovery stores both keys going forward.
+
+### 1.4 `signal_id`
+A deterministic per-source identifier for a discovered item.
+- Used for stable downstream joins and future correlation/dedup.
+- Implemented as SHA-256 hex of `{source_id}|{guid|link|title}`.
 
 ---
 
-## 7) Validation
+## 2) Source-run (discovery orchestration)
 
-- `scripts/verify_extract.ps1` is the MVP “gate”:
-  - checks the 13 required keys exist in `advisory_record.json`
-  - checks no mojibake markers appear in values
+### 2.1 Why `source-run` exists
+Automation should not have to parse console output. `source-run` writes a single JSON report that includes:
+- which source ran,
+- what was selected (“new” count),
+- where artifacts are on disk,
+- sample links.
 
+### 2.2 Command
+```powershell
+.\.venv\Scriptsdvisoryops.exe source-run --source <source_id> --limit <N> [options]
+```
+
+### 2.3 Flags (source-run)
+Required:
+- `--source <source_id>`
+- `--limit <N>`
+
+Optional:
+- `--ingest` — run ingest (and extract where applicable) for selected items
+- `--ingest-mode new|all` — selection strategy (default: `new`)
+  - `new`: act only on `new_items.json`
+  - `all`: act on all items in `feed.json`
+- `--dry-run` — reserved; discovery still runs and writes artifacts, ingest stage is skipped
+- `--show-links` — prints a small sample of selected links to console
+- `--reset-state` — deletes `outputs/discover/<source_id>/state.json` before discovery (forces items treated as new)
+- `--out-root-discover <path>` — override discovery output root (default: `outputs/discover`)
+- `--out-root-runs <path>` — override run-report output root (default: `outputs/source_runs`)
+
+### 2.4 Run report JSON
+After each `source-run`, a report is written:
+
+`outputs/source_runs/<timestamp>_<source_id>.json`
+
+This is the primary contract for schedulers (n8n, Windows Task Scheduler, GitHub Actions, etc.).
+See `DOC-02_Data_Contracts.md` for fields.
+
+---
+
+## 3) Ingest (advisory sources)
+
+### 3.1 When to use ingest
+Use `--ingest` when the selected items’ `link` points at an advisory page you want to snapshot and extract.
+
+Notes:
+- For **dataset sources** (e.g., KEV), links may point to CVE/NVD pages and ingest/extract may not produce a meaningful `AdvisoryRecord`. Dataset ingest is a future enhancement; discovery outputs are still valuable today.
+
+### 3.2 Command
+```powershell
+.\.venv\Scriptsdvisoryops.exe ingest --url <advisory_url>
+```
+
+### 3.3 Outputs
+`outputs/ingest/<advisory_id>/`
+- `raw.txt`
+- `normalized.txt`
+- `source.json`
+
+---
+
+## 4) Extract (AdvisoryRecord)
+
+### 4.1 Command
+```powershell
+.\.venv\Scriptsdvisoryops.exe extract --advisory-id <advisory_id>
+```
+
+### 4.2 Outputs
+`outputs/extract/<advisory_id>/`
+- `advisory_record.json` (13 top-level keys; schema validated)
+
+Verification:
+```powershell
+.\.venv\Scripts\pwsh.exe -File .\scriptserify_extract.ps1
+```
+
+---
+
+## 5) Troubleshooting checklist (fast)
+
+1. **Run tests**
+```powershell
+.\.venv\Scripts\python.exe -m pytest -q
+```
+
+2. **Confirm discovery artifacts exist**
+```powershell
+dir .\outputs\discover\<source_id>
+```
+
+3. **Force re-run as “new”**
+```powershell
+.\.venv\Scriptsdvisoryops.exe source-run --source <source_id> --limit 5 --reset-state
+```
+
+4. **Use run report for paths**
+```powershell
+Get-ChildItem .\outputs\source_runs\*.json | Sort-Object LastWriteTime -Descending | Select-Object -First 1 | Get-Content
+```

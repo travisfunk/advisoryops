@@ -1,45 +1,45 @@
-# DOC-01: Master Index
+# Master Documentation Index (DOC-01)
 
-This is the single entry point for the repo docs.
+**Last updated:** 2026-02-10
 
-## Current status (as of 2026-02-10)
+This index is the starting point for navigating AdvisoryOps documentation.
 
-### Milestones
+---
 
-- **Milestone B (ingest + extract stable)** ✅  
-  - `advisoryops ingest` → `outputs/ingest/<advisory_id>/...`  
-  - `advisoryops extract` → `outputs/extract/<advisory_id>/advisory_record.json`  
-  - `scripts/verify_extract.ps1` validates:
-    - stable 13-key contract
-    - no mojibake markers in JSON output
+## Quick links
+- **Project status:** [STATUS.md](STATUS.md)
+- **MVP guide:** (repo root) `README_MVP.md`
+- **Data contracts:** [DOC-02_Data_Contracts.md](DOC-02_Data_Contracts.md)
+- **Discovery + ingestion details:** [DOC-05_Ingestion.md](DOC-05_Ingestion.md)
 
-- **Discovery Framework (config-driven sources)** ✅  
-  - Source registry: `configs/sources.json`  
-  - Implemented feed parsers (`page_type`):
-    - `rss_atom`
-    - `json_feed`
-    - `csv_feed`
-  - Discovery artifacts: `outputs/discover/<source_id>/raw_feed.*`, `feed.json`, `new_items.json`, `state.json`
-  - CLI:
-    - `advisoryops discover`
-    - `advisoryops source-run` (discovery portion)
+---
 
-- **Source Framework v1 “source-run ingest”** ⚠️ (regression in this snapshot)  
-  - `src/advisoryops/source_run.py` is truncated and exits before the ingest loop.  
-  - A complete implementation exists in `src/advisoryops/source_run.py.bak.*`.  
-  - Workaround: use `advisoryops discover` (or `source-run` without `--ingest`) and then run `advisoryops ingest --url ...` manually.
+## Document map
 
-### Repo hygiene
+### Core (read these first)
+1. [DOC-02_Data_Contracts.md](DOC-02_Data_Contracts.md) — JSON schemas, artifact formats, and file layout
+2. [DOC-05_Ingestion.md](DOC-05_Ingestion.md) — discovery + source-run + ingest/extract workflows
+3. [DOC-10_Stack_and_Deployment.md](DOC-10_Stack_and_Deployment.md) — local dev, CI, deployment notes
 
-- `.gitattributes` enforces consistent line endings:
-  - **LF** for repo text files (platform-agnostic)
-  - **CRLF** for `.ps1/.cmd/.bat` (Windows-friendly)
+### Design (next)
+4. [DOC-06_Matching.md](DOC-06_Matching.md) — planned: Signals → Issues → Matches (future)
+5. [DOC-07_Evaluation.md](DOC-07_Evaluation.md) — planned: scoring/triage and quality gates
 
-### Key docs
+### Supporting
+6. [DOC-03_Mitigation_Playbook.md](DOC-03_Mitigation_Playbook.md) — response guidance patterns (human-facing)
+7. [DOC-04_Integrations.md](DOC-04_Integrations.md) — integration targets (n8n, SIEM, ticketing) and assumptions
+8. [DOC-08_Grant_Draft.md](DOC-08_Grant_Draft.md) — draft notes for grant narrative
+9. [DOC-09_Prototype_Plan.md](DOC-09_Prototype_Plan.md) — prototype roadmap and demo scenarios
 
-- **DOC-02**: Data Contracts (`AdvisoryRecord` schema + verify script)
-- **DOC-05**: Ingestion Sources & Parsers (MVP ingest and discovery parsers)
-- **DOC-09**: Prototype Plan (milestones and immediate next steps)
-- **DOC-10**: Stack & Deployment (Windows PowerShell conventions and hygiene)
-- `docs/STATUS.md` — snapshot truth + known regressions
+---
 
+## Naming conventions
+- `DOC-XX_*.md` are stable docs intended to evolve over time.
+- Outputs are written under `outputs/` and are treated as build artifacts (should be `.gitignore`d).
+- `signal_id` is the deterministic ID for a single discovered “signal” **within a given source**.
+  - Cross-source correlation/dedup will introduce `issue_id` (future milestone).
+
+---
+
+## Doc update policy
+Docs are updated in **milestone-sized changes**, not after every tiny step.

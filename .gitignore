@@ -38,3 +38,6 @@ node_modules/
 *.egg-info/
 src/*.egg-info/
 _repo_export/
+tmp/
+token.txt
+vuln_sources.txt

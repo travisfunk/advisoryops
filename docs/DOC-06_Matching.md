@@ -1,4 +1,7 @@
-# DOC-06 Matching & Confidence Engine (v1)
+# Matching & Confidence Engine (DOC-06)
+
+**Last updated:** 2026-02-10
+
 
 ## 0) Purpose
 Define how AdvisoryOps determines whether a healthcare facility is impacted by an IssueCluster, using facility inventory data (MVP: CSV import) and producing explainable match results with confidence scores and human-in-the-loop triggers.
@@ -6,7 +9,16 @@ Define how AdvisoryOps determines whether a healthcare facility is impacted by a
 ---
 
 
-## 0.1 Dependency note (as of 2026-02-08)
+## 0.2 Terminology update (Signals → Issues)
+
+- **Signal**: a single discovered item from one source. Discovery assigns `signal_id` deterministically.
+- **Issue**: (future) a correlated/deduped object spanning multiple signals/sources, with an `issue_id`.
+
+This DOC-06 assumes correlation will exist and will provide Issues to match against local inventory. Until correlation is implemented, matching can operate directly on extracted `AdvisoryRecord` objects for advisory sources.
+
+---
+
+## 0.1 Dependency note (as of 2026-02-10)
 
 Matching consumes the extractor’s canonical output `advisory_record.json` (strict 13-key schema; DOC-02).  
 Field names used below should map directly to:
