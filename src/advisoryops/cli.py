@@ -56,6 +56,22 @@ def cmd_source_run(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_score(args) -> int:
+    """
+    Score correlated Issues into priority/actions and write outputs/scored artifacts.
+    """
+    from .score import score_issues
+
+    out_scored, out_meta = score_issues(
+        in_issues=args.in_issues,
+        out_root_scored=args.out_root_scored,
+    )
+
+    print("")
+    print(f"Wrote scored issues: {out_scored}")
+    print(f"Wrote score meta:    {out_meta}")
+    return 0
+
 def cmd_correlate(args) -> int:
     """
     Correlate discovered items across sources into Issues.
@@ -129,6 +145,12 @@ def build_parser() -> argparse.ArgumentParser:
     p_corr.add_argument("--out-root-discover", default="outputs/discover")
     p_corr.add_argument("--out-root-correlate", default="outputs/correlate")
     p_corr.set_defaults(fn=cmd_correlate)
+
+
+    p_score = sub.add_parser("score", help="Score correlated issues into priority/actions (writes outputs/scored)")
+    p_score.add_argument("--in-issues", default="outputs/correlate/issues.jsonl", help="Input issues JSONL (default: outputs/correlate/issues.jsonl)")
+    p_score.add_argument("--out-root-scored", default="outputs/scored", help="Output root for scored artifacts (default: outputs/scored)")
+    p_score.set_defaults(fn=cmd_score)
 
     return p
 
