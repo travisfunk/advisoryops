@@ -7,6 +7,7 @@ from .discover import discover
 from .extract import extract_advisory_record
 from .ingest import ingest_pdf_file, ingest_text_file, ingest_url
 from .source_run import source_run
+from .correlate import correlate
 
 
 def cmd_discover(args: argparse.Namespace) -> int:
@@ -55,6 +56,39 @@ def cmd_source_run(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_correlate(args) -> int:
+    """
+    Correlate discovered items across sources into Issues.
+    """
+    from .correlate import correlate
+    import inspect
+
+    sources = []
+    if getattr(args, "sources", ""):
+        sources = [s.strip() for s in args.sources.split(",") if s.strip()]
+
+    kwargs = {
+        "out_root_discover": args.out_root_discover,
+        "sources": sources or None,
+    }
+
+    sig = inspect.signature(correlate)
+
+    # CLI flag is named --out-root-correlate; correlate() may use a different kwarg name.
+    if "out_root_correlate" in sig.parameters:
+        kwargs["out_root_correlate"] = args.out_root_correlate
+    elif "out_root_issues" in sig.parameters:
+        kwargs["out_root_issues"] = args.out_root_correlate
+    elif "out_root" in sig.parameters:
+        kwargs["out_root"] = args.out_root_correlate
+    else:
+        raise TypeError("correlate() signature missing expected output-root parameter")
+
+    result = correlate(**kwargs)
+
+    print("")
+    print(f"Correlate result: {result}")
+    return 0
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(prog="advisoryops", description="AdvisoryOps MVP CLI")
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -88,6 +122,13 @@ def build_parser() -> argparse.ArgumentParser:
     p_sr.add_argument("--show-links", action="store_true")
     p_sr.add_argument("--reset-state", action="store_true", help="Delete outputs/discover/<source>/state.json before discovery (force items treated as new)")
     p_sr.set_defaults(fn=cmd_source_run)
+
+
+    p_corr = sub.add_parser("correlate", help="Correlate discovered items across sources into Issues")
+    p_corr.add_argument("--sources", default="", help="Comma-separated list of source_ids (default: all under outputs/discover)")
+    p_corr.add_argument("--out-root-discover", default="outputs/discover")
+    p_corr.add_argument("--out-root-correlate", default="outputs/correlate")
+    p_corr.set_defaults(fn=cmd_correlate)
 
     return p
 
