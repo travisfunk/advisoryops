@@ -56,6 +56,22 @@ def cmd_source_run(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_tag(args) -> int:
+    """
+    Tag correlated Issues into a strict JSONL tag artifact (outputs/tags).
+    """
+    from .tag import tag_issues
+
+    out_tags, out_meta = tag_issues(
+        in_issues=args.in_issues,
+        out_root_tags=args.out_root_tags,
+    )
+
+    print("")
+    print(f"Wrote tags: {out_tags}")
+    print(f"Wrote meta: {out_meta}")
+    return 0
+
 def cmd_score(args) -> int:
     """
     Score correlated Issues into priority/actions and write outputs/scored artifacts.
@@ -151,6 +167,12 @@ def build_parser() -> argparse.ArgumentParser:
     p_score.add_argument("--in-issues", default="outputs/correlate/issues.jsonl", help="Input issues JSONL (default: outputs/correlate/issues.jsonl)")
     p_score.add_argument("--out-root-scored", default="outputs/scored", help="Output root for scored artifacts (default: outputs/scored)")
     p_score.set_defaults(fn=cmd_score)
+
+
+    p_tag = sub.add_parser("tag", help="Tag correlated issues (writes outputs/tags/tags.jsonl + meta.json)")
+    p_tag.add_argument("--in-issues", default="outputs/correlate/issues.jsonl", help="Input issues JSONL (default: outputs/correlate/issues.jsonl)")
+    p_tag.add_argument("--out-root-tags", default="outputs/tags", help="Output root for tags artifacts (default: outputs/tags)")
+    p_tag.set_defaults(fn=cmd_tag)
 
     return p
 
