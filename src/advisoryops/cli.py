@@ -78,16 +78,18 @@ def cmd_score(args) -> int:
     """
     from .score import score_issues
 
-    out_scored, out_meta = score_issues(
+    out_scored, out_alerts, out_meta = score_issues(
         in_issues=args.in_issues,
         out_root_scored=args.out_root_scored,
+        min_priority=args.min_priority,
+        top=int(args.top),
     )
 
     print("")
     print(f"Wrote scored issues: {out_scored}")
-    print(f"Wrote score meta:    {out_meta}")
+    print(f"Wrote alerts:       {out_alerts}")
+    print(f"Wrote score meta:   {out_meta}")
     return 0
-
 def cmd_correlate(args) -> int:
     """
     Correlate discovered items across sources into Issues.
@@ -166,6 +168,8 @@ def build_parser() -> argparse.ArgumentParser:
     p_score = sub.add_parser("score", help="Score correlated issues into priority/actions (writes outputs/scored)")
     p_score.add_argument("--in-issues", default="outputs/correlate/issues.jsonl", help="Input issues JSONL (default: outputs/correlate/issues.jsonl)")
     p_score.add_argument("--out-root-scored", default="outputs/scored", help="Output root for scored artifacts (default: outputs/scored)")
+    p_score.add_argument("--min-priority", default="P1", choices=["P0","P1","P2","P3"], help="Minimum priority to include in alerts.jsonl (default: P1)")
+    p_score.add_argument("--top", type=int, default=50, help="Maximum number of alerts to write (0 = no limit; default: 50)")
     p_score.set_defaults(fn=cmd_score)
 
 
