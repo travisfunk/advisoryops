@@ -8,6 +8,7 @@ from .extract import extract_advisory_record
 from .ingest import ingest_pdf_file, ingest_text_file, ingest_url
 from .source_run import source_run
 from .correlate import correlate
+from .community_build import build_community_feed
 
 
 def cmd_discover(args: argparse.Namespace) -> int:
@@ -95,6 +96,7 @@ def cmd_correlate(args) -> int:
     Correlate discovered items across sources into Issues.
     """
     from .correlate import correlate
+from .community_build import build_community_feed
     import inspect
 
     sources = []
@@ -123,6 +125,31 @@ def cmd_correlate(args) -> int:
     print("")
     print(f"Correlate result: {result}")
     return 0
+def cmd_community_build(args) -> int:
+    """
+    Build the first combined community/public feed from the validated source set.
+    """
+    out_issues, out_alerts, out_meta = build_community_feed(
+        set_id=args.set_id,
+        refresh=args.refresh,
+        refresh_limit=args.refresh_limit,
+        out_root_discover=args.out_root_discover,
+        out_root_runs=args.out_root_runs,
+        out_root_community=args.out_root_community,
+        only_new=args.only_new,
+        limit_per_source=args.limit_per_source,
+        limit_issues=args.limit_issues,
+        min_priority=args.min_priority,
+        top=int(args.top),
+        latest=int(args.latest),
+    )
+
+    print("")
+    print(f"Wrote public issues: {out_issues}")
+    print(f"Wrote public alerts: {out_alerts}")
+    print(f"Wrote community meta: {out_meta}")
+    return 0
+
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(prog="advisoryops", description="AdvisoryOps MVP CLI")
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -177,6 +204,21 @@ def build_parser() -> argparse.ArgumentParser:
     p_tag.add_argument("--in-issues", default="outputs/correlate/issues.jsonl", help="Input issues JSONL (default: outputs/correlate/issues.jsonl)")
     p_tag.add_argument("--out-root-tags", default="outputs/tags", help="Output root for tags artifacts (default: outputs/tags)")
     p_tag.set_defaults(fn=cmd_tag)
+
+    p_comm = sub.add_parser("community-build", help="Build the combined community/public feed from the validated source manifest")
+    p_comm.add_argument("--set-id", default="gold_pass1", help="Validated set id from configs/community_public_sources.json (default: gold_pass1)")
+    p_comm.add_argument("--refresh", action="store_true", help="Refresh selected sources into discover outputs before building the community feed")
+    p_comm.add_argument("--refresh-limit", type=int, default=10, help="Per-source discover limit when --refresh is used (default: 10)")
+    p_comm.add_argument("--out-root-discover", default="outputs/discover", help="Discover root to read/write source items (default: outputs/discover)")
+    p_comm.add_argument("--out-root-runs", default="outputs/source_runs", help="Source-run report root when --refresh is used (default: outputs/source_runs)")
+    p_comm.add_argument("--out-root-community", default="outputs/community_public", help="Output root for community/public artifacts (default: outputs/community_public)")
+    p_comm.add_argument("--only-new", action="store_true", help="Use new_items.jsonl instead of items.jsonl when correlating source outputs")
+    p_comm.add_argument("--limit-per-source", type=int, default=200, help="Maximum discovered items to load per source during correlation (default: 200)")
+    p_comm.add_argument("--limit-issues", type=int, default=0, help="Optional cap on total issues built (default: 0 = no cap)")
+    p_comm.add_argument("--min-priority", default="P2", choices=["P0", "P1", "P2", "P3"], help="Minimum priority to include in alerts_public.jsonl (default: P2)")
+    p_comm.add_argument("--top", type=int, default=100, help="Maximum number of alert rows to keep (0 = no cap; default: 100)")
+    p_comm.add_argument("--latest", type=int, default=50, help="Maximum number of rows to write to feed_latest.json (default: 50)")
+    p_comm.set_defaults(fn=cmd_community_build)
 
     return p
 

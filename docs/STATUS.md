@@ -44,17 +44,28 @@ This file is the single source of truth for “what is done” vs “what is nex
 - Improved **openFDA device recall** discovery links by generating stable API query links when records do not include a direct URL
 - Broadened keyword coverage for partial-but-reachable feeds like **FDA MedWatch** and **Armis Labs**
 
+### ✅ Validated source manifest + combined public feed (completed)
+- Added `configs/community_public_sources.json` to capture the **Gold Pass 1** validated public source set
+- Added `advisoryops community-build` to build the first combined community/public feed from the validated source set
+- Community build now writes file-based public artifacts:
+  - `issues_public.jsonl`
+  - `alerts_public.jsonl`
+  - `feed_latest.json`
+  - `feed.csv`
+  - `validated_sources.json`
+  - `meta.json`
+
 ---
 
 ## Known gaps / next milestones
 
-### 🔜 Public source hygiene round 2 (high priority next)
-Goal: move from “enabled in config” to “known-good live feed set” for the public side.
+### 🔜 Public source hygiene round 3 (high priority next)
+Goal: keep tightening the public-side signal quality after the first combined feed exists.
 
 Deliverables:
-- Re-run smoke tests on the repaired sources
-- Disable or demote feeds that are still stale/noisy after URL and keyword fixes
-- Add a small “known-good source set” doc/table for the community corpus
+- Demote or disable stale/noisy sources like `health-canada-recalls` if they remain low-value
+- Decide whether `armis-labs` should remain candidate-only or get source-specific filter tuning
+- Expand the validated set only after new sources pass smoke testing
 
 ### 🔜 Correlation + de-dup (high priority next)
 Goal: if 5 sources report the same vuln/issue, we recognize and combine them (avoid multiple entries), and optionally merge “missing fields” across sources.

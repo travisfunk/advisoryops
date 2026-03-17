@@ -244,6 +244,18 @@ Common added fields today:
 For the community/public side, the current recommended public contract is:
 - `SourceObservation v0` = discovery item (`items.jsonl` / `new_items.jsonl`)
 - `CanonicalIssue v0` = correlated issue (`outputs/correlate/issues.jsonl`)
-- public alert feed = `outputs/scored/alerts.jsonl`
+- deterministic alert/scored layer = `outputs/scored/issues_scored.jsonl` + `outputs/scored/alerts.jsonl`
 
-That lets the free side ship from artifacts the repo already produces, instead of inventing a second storage model too early.
+The first combined community/public build now writes a dedicated output root:
+
+`outputs/community_public/`
+
+Artifacts:
+- `issues_public.jsonl` — scored public issue stream built from the validated source set
+- `alerts_public.jsonl` — filtered public alert stream from the validated source set
+- `feed_latest.json` — top N latest/highest-priority feed rows for simple publishing
+- `feed.csv` — flat export of the scored public issue stream
+- `validated_sources.json` — metadata for validated and candidate source ids
+- `meta.json` — parameters, counts, and output paths for the community build
+
+That lets the free side ship from artifacts the repo already produces, while still exposing a stable file-based public feed surface.

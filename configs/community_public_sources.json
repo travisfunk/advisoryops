@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "validated_sets": [
+    {
+      "set_id": "gold_pass1",
+      "name": "Gold Pass 1 validated public sources",
+      "description": "Smoke-tested public sources selected for the first combined community feed build.",
+      "source_ids": [
+        "cisa-icsma",
+        "cisa-icsa",
+        "cisa-kev-json",
+        "cisa-kev-csv",
+        "certcc-vulnotes",
+        "fda-medwatch",
+        "openfda-device-recalls",
+        "ncsc-uk",
+        "claroty-team82",
+        "asimily-blog"
+      ]
+    }
+  ],
+  "candidate_sources": [
+    "armis-labs",
+    "health-canada-recalls"
+  ]
+}

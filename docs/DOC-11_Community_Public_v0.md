@@ -143,3 +143,50 @@ A first smoke-test wave against high-value public sources confirmed that the cor
 - openFDA recall records now emit a stable API-query link when no direct record URL exists
 
 The practical takeaway is that **source quality is now the main bottleneck, not the core plumbing**.
+
+
+## 7) Validated source set and combined feed build
+
+After the first smoke-test and cleanup round, the project now has a **validated Pass 1 source set** captured in `configs/community_public_sources.json`.
+
+### 7.1 Gold Pass 1 validated set
+- `cisa-icsma`
+- `cisa-icsa`
+- `cisa-kev-json`
+- `cisa-kev-csv`
+- `certcc-vulnotes`
+- `fda-medwatch`
+- `openfda-device-recalls`
+- `ncsc-uk`
+- `claroty-team82`
+- `asimily-blog`
+
+### 7.2 Candidate / secondary sources
+- `armis-labs`
+- `health-canada-recalls`
+
+These are kept as candidates because they are reachable but did not yet look strong enough for the first public “gold” feed.
+
+### 7.3 First combined public feed build
+A new CLI command now builds the first combined public/community feed from the validated source set:
+
+```powershell
+.\.venv\Scripts\python.exe -m advisoryops.cli community-build --set-id gold_pass1 --out-root-discover outputs\discover --out-root-community outputs\community_public
+```
+
+Optional refresh mode will first run discovery for the validated set before building the combined feed:
+
+```powershell
+.\.venv\Scripts\python.exe -m advisoryops.cli community-build --set-id gold_pass1 --refresh --refresh-limit 10
+```
+
+### 7.4 Community build outputs
+The combined public feed now writes these artifacts:
+- `outputs/community_public/issues_public.jsonl`
+- `outputs/community_public/alerts_public.jsonl`
+- `outputs/community_public/feed_latest.json`
+- `outputs/community_public/feed.csv`
+- `outputs/community_public/validated_sources.json`
+- `outputs/community_public/meta.json`
+
+This is the first concrete public/community output layer built from the validated source set.

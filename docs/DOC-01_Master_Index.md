@@ -21,7 +21,7 @@ This index is the starting point for navigating AdvisoryOps documentation.
 1. [DOC-02_Data_Contracts.md](DOC-02_Data_Contracts.md) — JSON schemas, artifact formats, and file layout
 2. [DOC-05_Ingestion.md](DOC-05_Ingestion.md) — discovery + source-run + ingest/extract workflows
 3. [DOC-10_Stack_and_Deployment.md](DOC-10_Stack_and_Deployment.md) — local dev, CI, deployment notes
-4. [DOC-11_Community_Public_v0.md](DOC-11_Community_Public_v0.md) — Pass 1 public-side scope, contracts, and source-count rules
+4. [DOC-11_Community_Public_v0.md](DOC-11_Community_Public_v0.md) — Pass 1 public-side scope, contracts, source-count rules, and validated source-set build
 
 ### Design (next)
 5. [DOC-06_Matching.md](DOC-06_Matching.md) — planned: Signals → Issues → Matches (future)
