@@ -96,7 +96,6 @@ def cmd_correlate(args) -> int:
     Correlate discovered items across sources into Issues.
     """
     from .correlate import correlate
-from .community_build import build_community_feed
     import inspect
 
     sources = []
