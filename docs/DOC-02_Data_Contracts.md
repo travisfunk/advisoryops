@@ -1,6 +1,6 @@
 # Data Contracts (DOC-02)
 
-**Last updated:** 2026-02-10
+**Last updated:** 2026-03-17
 
 This document defines the on-disk artifacts AdvisoryOps writes today and the *stable contracts* consumers can rely on.
 
@@ -8,7 +8,7 @@ This document defines the on-disk artifacts AdvisoryOps writes today and the *st
 
 ---
 
-## 1) Discovery artifacts (feeds → “signals”)
+## 1) Discovery artifacts (feeds → “signals” / source observations)
 
 Discovery writes to:
 
@@ -29,7 +29,7 @@ Shape:
 {
   "source": "<source_id>",
   "fetched_at": "<utc_iso>",
-  "items": [ /* DiscoverItem */ ]
+  "items": [ /* DiscoverItem / SourceObservation v0 */ ]
 }
 ```
 
@@ -42,6 +42,7 @@ Shape is identical to `feed.json`.
 **Purpose:** One JSON object per line for:
 - stable diffs in git-friendly pipelines
 - cheap downstream transforms without parsing a giant array
+- the first public-side “observation feed” artifacts
 
 Each line is a `DiscoverItem` serialized with:
 - `sort_keys=true` (stable key ordering)
@@ -87,12 +88,12 @@ Shape:
     "new": 4
   },
   "outputs": {
-    "raw_feed": "outputs\\discover\\<source_id>\\raw_feed.xml",
-    "feed_json": "outputs\\discover\\<source_id>\\feed.json",
-    "new_items_json": "outputs\\discover\\<source_id>\\new_items.json",
-    "state_json": "outputs\\discover\\<source_id>\\state.json",
-    "items_jsonl": "outputs\\discover\\<source_id>\\items.jsonl",
-    "new_items_jsonl": "outputs\\discover\\<source_id>\\new_items.jsonl"
+    "raw_feed": "outputs\discover\<source_id>\raw_feed.xml",
+    "feed_json": "outputs\discover\<source_id>\feed.json",
+    "new_items_json": "outputs\discover\<source_id>\new_items.json",
+    "state_json": "outputs\discover\<source_id>\state.json",
+    "items_jsonl": "outputs\discover\<source_id>\items.jsonl",
+    "new_items_jsonl": "outputs\discover\<source_id>\new_items.jsonl"
   },
   "errors": [
     { "type": "ExceptionType", "message": "..." }
@@ -100,16 +101,16 @@ Shape:
 }
 ```
 
-### 1.7 DiscoverItem (signal) contract
+### 1.7 DiscoverItem / SourceObservation v0 contract
 Discovery outputs normalize different feeds into a common minimal item:
 
 Required-ish (present for most sources):
 - `source` (string) — the `source_id`
 - `fetched_at` (utc iso string)
 - `title` (string)
-- `link` (string url)
+- `link` (string url; may be empty for some dataset-style rows)
 - `guid` (string) — feed GUID or equivalent stable id
-- `published_date` (string `YYYY-MM-DD` where available)
+- `published_date` (string where available; best effort)
 - `summary` (string; may be empty)
 
 Added by AdvisoryOps:
@@ -147,13 +148,13 @@ Minimum fields:
     "selected": 0
   },
   "discover_outputs": {
-    "raw_feed": "outputs\\discover\\<source_id>\\raw_feed.xml",
-    "feed_json": "outputs\\discover\\<source_id>\\feed.json",
-    "new_items_json": "outputs\\discover\\<source_id>\\new_items.json",
-    "state_json": "outputs\\discover\\<source_id>\\state.json",
-    "items_jsonl": "outputs\\discover\\<source_id>\\items.jsonl",
-    "new_items_jsonl": "outputs\\discover\\<source_id>\\new_items.jsonl",
-    "meta_json": "outputs\\discover\\<source_id>\\meta.json"
+    "raw_feed": "outputs\discover\<source_id>\raw_feed.xml",
+    "feed_json": "outputs\discover\<source_id>\feed.json",
+    "new_items_json": "outputs\discover\<source_id>\new_items.json",
+    "state_json": "outputs\discover\<source_id>\state.json",
+    "items_jsonl": "outputs\discover\<source_id>\items.jsonl",
+    "new_items_jsonl": "outputs\discover\<source_id>\new_items.jsonl",
+    "meta_json": "outputs\discover\<source_id>\meta.json"
   },
   "sample_links": []
 }
@@ -204,9 +205,45 @@ When verification is run, a sidecar summary may be produced by tooling/scripts.
 
 ---
 
-## 5) Future contracts (not implemented yet)
+## 5) Correlation + scoring artifacts (public issue layer)
 
-### 5.1 Signals → Issues (correlation/dedup)
-Planned: a cross-source `issue_id` and merge policy so multiple sources can collapse into one Issue.
+### 5.1 outputs/correlate/issues.jsonl
+**Purpose:** Cross-source issue records used as the first public `CanonicalIssue v0` artifact.
 
-Documentation for correlation/dedup will be updated **after** the feature is implemented (tracked in STATUS.md).
+Typical fields today:
+- `issue_id`
+- `issue_type`
+- `title`
+- `summary`
+- `canonical_link`
+- `sources`
+- `links`
+- `cves`
+- `first_seen_at`
+- `last_seen_at`
+- `published_dates`
+- `counts`
+- `signals`
+
+### 5.2 outputs/scored/issues_scored.jsonl
+**Purpose:** Correlated issues with deterministic scoring and prioritization fields added.
+
+### 5.3 outputs/scored/alerts.jsonl
+**Purpose:** Thin alert stream suitable for a first public feed / digest layer.
+
+Common added fields today:
+- `score`
+- `priority`
+- `actions`
+- `why`
+
+---
+
+## 6) Public-side contract guidance
+
+For the community/public side, the current recommended public contract is:
+- `SourceObservation v0` = discovery item (`items.jsonl` / `new_items.jsonl`)
+- `CanonicalIssue v0` = correlated issue (`outputs/correlate/issues.jsonl`)
+- public alert feed = `outputs/scored/alerts.jsonl`
+
+That lets the free side ship from artifacts the repo already produces, instead of inventing a second storage model too early.
