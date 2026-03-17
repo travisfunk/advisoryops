@@ -20,6 +20,13 @@ def test_load_sources_config_valid() -> None:
         assert s.entry_url
 
 
+def test_phase1_public_sources_are_live_config_only() -> None:
+    cfg = load_sources_config(Path("configs/sources.json"))
+    enabled = [s for s in cfg.sources if s.enabled]
+    assert len(enabled) >= 30
+    assert all(s.page_type in {"rss_atom", "json_feed", "csv_feed"} for s in enabled)
+
+
 def test_invalid_regex_rejected(tmp_path: Path) -> None:
     bad = {
         "schema_version": 1,
@@ -32,9 +39,9 @@ def test_invalid_regex_rejected(tmp_path: Path) -> None:
                 "scope": "advisory",
                 "page_type": "rss_atom",
                 "entry_url": "https://example.com/feed.xml",
-                "filters": {"url_allow_regex": "("}
+                "filters": {"url_allow_regex": "("},
             }
-        ]
+        ],
     }
     p = tmp_path / "sources.json"
     p.write_text(json.dumps(bad, indent=2) + "\n", encoding="utf-8")
