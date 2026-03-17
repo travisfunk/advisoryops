@@ -141,7 +141,15 @@
           "exploit",
           "unauthorized",
           "malware",
-          "remote"
+          "remote",
+          "software",
+          "firmware",
+          "network",
+          "wireless",
+          "hardcoded",
+          "hard-coded",
+          "update",
+          "patch"
         ],
         "apply_to": [
           "title",
@@ -192,7 +200,14 @@
           "dicom",
           "hl7",
           "radiology",
-          "firmware"
+          "firmware",
+          "ot",
+          "cps",
+          "ics",
+          "industrial",
+          "manufacturing",
+          "critical infrastructure",
+          "exposure"
         ]
       },
       "timeout_s": 30,
@@ -274,11 +289,11 @@
     },
     {
       "source_id": "claroty-team82",
-      "name": "Claroty Blog / Team82 Research RSS",
+      "name": "Claroty Team82 Disclosure Dashboard RSS",
       "enabled": true,
       "scope": "news",
       "page_type": "rss_atom",
-      "entry_url": "https://claroty.com/blog/feed",
+      "entry_url": "https://social.claroty.com/team82/disclosure-dashboard/feed",
       "filters": {
         "apply_to": [
           "title",
@@ -305,7 +320,10 @@
           "dicom",
           "hl7",
           "radiology",
-          "firmware"
+          "firmware",
+          "ics",
+          "ot",
+          "cps"
         ]
       },
       "timeout_s": 30,
@@ -544,7 +562,7 @@
       "enabled": true,
       "scope": "advisory",
       "page_type": "rss_atom",
-      "entry_url": "http://www.healthycanadians.gc.ca/recall-alert-rappel-avis/rss/feed-31-eng.xml",
+      "entry_url": "https://www.healthycanadians.gc.ca/recall-alert-rappel-avis/rss/feed-31-eng.xml",
       "filters": {
         "apply_to": [
           "title",
@@ -875,7 +893,7 @@
       "enabled": true,
       "scope": "news",
       "page_type": "rss_atom",
-      "entry_url": "https://www.ncsc.gov.uk/section/information/rss",
+      "entry_url": "https://www.ncsc.gov.uk/api/1/services/v1/all-rss-feed.xml",
       "filters": {
         "apply_to": [
           "title",
@@ -902,7 +920,10 @@
           "dicom",
           "hl7",
           "radiology",
-          "firmware"
+          "firmware",
+          "critical infrastructure",
+          "ot",
+          "cps"
         ]
       },
       "timeout_s": 30,

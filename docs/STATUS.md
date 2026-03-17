@@ -1,12 +1,12 @@
 # Project Status
 
-**Last updated:** 2026-02-10
+**Last updated:** 2026-03-17
 
 This file is the single source of truth for “what is done” vs “what is next”.
 
 ---
 
-## Current state (as of 2026-02-10)
+## Current state (as of 2026-03-17)
 
 ### ✅ Working (verified in local runs)
 - **Ingest**: `advisoryops ingest --url <advisory_url>` writes:
@@ -26,9 +26,35 @@ This file is the single source of truth for “what is done” vs “what is nex
 - Add `--reset-state` to `source-run` to delete `outputs/discover/<source>/state.json` before discovery
 - Write run report JSON for discovery-only runs (so automation doesn’t parse console output)
 
+### ✅ Pass 1 public-side expansion (completed)
+- Expanded the low-friction public source set to **30+ enabled RSS/JSON/CSV feeds**
+- Locked the public-side v0 contract in docs:
+  - **SourceObservation v0** via discovery artifacts
+  - **CanonicalIssue v0** via correlation artifacts
+- Added parser support for:
+  - openFDA-style `results` JSON feeds
+  - generic CVE CSV feeds (for example EPSS-style data)
+
+### ✅ Smoke-test cleanup round (completed)
+- Verified a first wave of high-value public sources locally
+- Fixed dead source definitions identified in smoke tests:
+  - updated **NCSC** RSS URL
+  - updated **Claroty Team82** RSS URL
+  - switched **Health Canada** recall feed to HTTPS
+- Improved **openFDA device recall** discovery links by generating stable API query links when records do not include a direct URL
+- Broadened keyword coverage for partial-but-reachable feeds like **FDA MedWatch** and **Armis Labs**
+
 ---
 
 ## Known gaps / next milestones
+
+### 🔜 Public source hygiene round 2 (high priority next)
+Goal: move from “enabled in config” to “known-good live feed set” for the public side.
+
+Deliverables:
+- Re-run smoke tests on the repaired sources
+- Disable or demote feeds that are still stale/noisy after URL and keyword fixes
+- Add a small “known-good source set” doc/table for the community corpus
 
 ### 🔜 Correlation + de-dup (high priority next)
 Goal: if 5 sources report the same vuln/issue, we recognize and combine them (avoid multiple entries), and optionally merge “missing fields” across sources.

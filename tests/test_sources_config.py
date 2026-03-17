@@ -47,3 +47,10 @@ def test_invalid_regex_rejected(tmp_path: Path) -> None:
     p.write_text(json.dumps(bad, indent=2) + "\n", encoding="utf-8")
     with pytest.raises(ValueError):
         load_sources_config(p)
+
+
+def test_smoke_cleanup_source_urls_updated() -> None:
+    cfg = load_sources_config(Path("configs/sources.json"))
+    assert cfg.get("ncsc-uk").entry_url == "https://www.ncsc.gov.uk/api/1/services/v1/all-rss-feed.xml"
+    assert cfg.get("claroty-team82").entry_url == "https://social.claroty.com/team82/disclosure-dashboard/feed"
+    assert cfg.get("health-canada-recalls").entry_url.startswith("https://")

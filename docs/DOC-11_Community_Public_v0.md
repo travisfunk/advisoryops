@@ -117,3 +117,29 @@ A good Pass 1 outcome is:
 - add a simple public search/feed surface
 - publish a community corpus snapshot
 - expose fix/workaround visibility from normalized issue records
+
+
+## 6) Smoke-test findings after Pass 1
+
+A first smoke-test wave against high-value public sources confirmed that the core source-run plumbing is working.
+
+### Confirmed good in the first wave
+- CISA ICS Medical Advisories
+- CISA ICS Advisories
+- CISA KEV (JSON)
+- CISA KEV (CSV)
+- CERT/CC Vulnerability Notes
+- Asimily Blog
+
+### Confirmed partial / needed tuning
+- FDA MedWatch RSS
+- openFDA Device Recalls API
+- Armis Labs RSS
+- Health Canada Recalls RSS
+
+### Fixed after smoke testing
+- NCSC RSS URL updated to the current feed endpoint
+- Claroty Team82 RSS URL updated to the current disclosure-dashboard feed endpoint
+- openFDA recall records now emit a stable API-query link when no direct record URL exists
+
+The practical takeaway is that **source quality is now the main bottleneck, not the core plumbing**.

@@ -22,6 +22,20 @@ def _nvd_link(cve: str) -> str:
     return f"https://nvd.nist.gov/vuln/detail/{cve}"
 
 
+def _openfda_device_recall_link(row: Dict[str, Any]) -> str:
+    """Build a stable per-record openFDA query URL when no direct record URL exists."""
+    searches = [
+        ("res_event_number", _pick_str(row, "res_event_number")),
+        ("event_id", _pick_str(row, "event_id")),
+        ("cfres_id", _pick_str(row, "cfres_id")),
+        ("recall_number", _pick_str(row, "recall_number")),
+    ]
+    for field, value in searches:
+        if value:
+            return f'https://api.fda.gov/device/recall.json?search={field}:"{value}"'
+    return ""
+
+
 def _pick_str(row: Dict[str, Any], *keys: str) -> str:
     for key in keys:
         value = row.get(key)
@@ -100,6 +114,8 @@ def parse_json_feed(obj: Any, *, source_id: str, fetched_at: str) -> List[Dict[s
             "id",
         ) or (cve or "item")
         link = _pick_str(row, "link", "url")
+        if not link and source_id.startswith("openfda-device-recalls"):
+            link = _openfda_device_recall_link(row)
         guid = _pick_str(row, "guid", "id", "event_id", "recall_number", "report_number", "mdr_report_key")
         if not guid:
             guid = cve or link or _sha1(json.dumps(row, sort_keys=True))
