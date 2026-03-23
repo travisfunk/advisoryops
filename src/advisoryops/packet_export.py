@@ -133,6 +133,8 @@ def export_json(packet: RemediationPacket, out_path: Path) -> Path:
         "model": packet.model,
         "tokens_used": packet.tokens_used,
         "from_cache": packet.from_cache,
+        "generated_by": packet.generated_by,
+        "disclaimer": packet.disclaimer,
         "reasoning": packet.reasoning,
         "citations": packet.citations,
         "recommended_patterns": [
@@ -140,6 +142,8 @@ def export_json(packet: RemediationPacket, out_path: Path) -> Path:
                 "priority_order": rec.priority_order,
                 "pattern_id": rec.pattern_id,
                 "why_selected": rec.why_selected,
+                "rationale": rec.rationale,
+                "basis": rec.basis,
                 "parameters": rec.parameters,
             }
             for rec in packet.recommended_patterns
@@ -192,6 +196,11 @@ def export_markdown(packet: RemediationPacket, playbook: Playbook, out_path: Pat
     add(f"**From cache:** {'Yes' if packet.from_cache else 'No'}  ")
     add("")
 
+    # ── Disclaimer ─────────────────────────────────────────────────────────
+    if packet.disclaimer:
+        add(f"> **Disclaimer:** {packet.disclaimer}")
+        add("")
+
     # ── AI Reasoning ─────────────────────────────────────────────────────────
     if packet.reasoning:
         add("## AI Reasoning")
@@ -210,6 +219,12 @@ def export_markdown(packet: RemediationPacket, playbook: Playbook, out_path: Pat
             add("")
             add(f"**Why selected:** {rec.why_selected}")
             add("")
+            if rec.rationale:
+                add(f"**Rationale:** {rec.rationale}")
+                add("")
+            if rec.basis:
+                add(f"**Basis:** {rec.basis}")
+                add("")
             if rec.parameters:
                 add("**Parameters:**")
                 add("")

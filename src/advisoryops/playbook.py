@@ -80,6 +80,7 @@ class MitigationPattern:
     verification: Verification
     rollback: Rollback
     safety_notes: List[str]
+    basis: str = ""
 
 
 @dataclass(frozen=True)
@@ -169,6 +170,7 @@ def _parse_pattern(raw: Dict[str, Any]) -> MitigationPattern:
     rollback = Rollback(steps=list(rb_raw.get("steps", [])))
 
     safety_notes = list(raw.get("safety_notes", []))
+    basis = str(raw.get("basis", "")).strip()
 
     return MitigationPattern(
         id=pid,
@@ -181,6 +183,7 @@ def _parse_pattern(raw: Dict[str, Any]) -> MitigationPattern:
         verification=verification,
         rollback=rollback,
         safety_notes=safety_notes,
+        basis=basis,
     )
 
 

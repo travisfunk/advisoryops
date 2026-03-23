@@ -13,6 +13,7 @@
       "id": "SEGMENTATION_VLAN_ISOLATION",
       "name": "VLAN / Zone Isolation",
       "category": "segmentation",
+      "basis": "IEC 62443 zone/conduit model; NIST SP 800-82 Rev 3 Section 5.3 (network segmentation for ICS)",
       "severity_fit": ["critical", "high", "medium"],
       "when_to_use": {
         "conditions": [
@@ -77,6 +78,7 @@
       "id": "ACCESS_CONTROL_ACL_ALLOWLIST",
       "name": "ACL / Firewall Allowlist",
       "category": "access_control",
+      "basis": "NIST SP 800-82 Rev 3 Section 5.1 (firewall policies for ICS); CISA ICS-CERT recommended practice for defense-in-depth",
       "severity_fit": ["critical", "high"],
       "when_to_use": {
         "conditions": [
@@ -135,6 +137,7 @@
       "id": "ACCESS_CONTROL_NAC_POLICY",
       "name": "NAC Device Policy",
       "category": "access_control",
+      "basis": "Common healthcare network defense practice; IEC 62443 device identity and authentication requirements",
       "severity_fit": ["high", "medium"],
       "when_to_use": {
         "conditions": [
@@ -194,6 +197,7 @@
       "id": "ACCESS_CONTROL_REMOTE_ACCESS_RESTRICT",
       "name": "Vendor Remote Access Restriction",
       "category": "access_control",
+      "basis": "CISA ICS-CERT best practice for remote access to ICS/medical devices; FDA postmarket guidance Section VI.B (compensating controls)",
       "severity_fit": ["critical", "high", "medium"],
       "when_to_use": {
         "conditions": [
@@ -253,6 +257,7 @@
       "id": "VENDOR_PROCESS_OPEN_CASE_AND_TRACK",
       "name": "Vendor Case: Open and Track",
       "category": "vendor_process",
+      "basis": "FDA postmarket guidance (vendor coordination for device vulnerabilities); Practitioner experience from healthcare security operations",
       "severity_fit": ["critical", "high", "medium", "low"],
       "when_to_use": {
         "conditions": [
@@ -317,6 +322,7 @@
       "id": "PATCHING_APPLY_VENDOR_OR_CUSTOMER",
       "name": "Apply Patch / Update / Firmware",
       "category": "patching",
+      "basis": "FDA premarket guidance (software validation); CISA ICS-CERT advisory remediation procedures; Practitioner experience for clinical device patching workflows",
       "severity_fit": ["critical", "high", "medium", "low"],
       "when_to_use": {
         "conditions": [
@@ -379,6 +385,7 @@
       "id": "GOVERNANCE_RISK_ACCEPTANCE",
       "name": "Risk Acceptance (Time-Bound)",
       "category": "governance",
+      "basis": "NIST SP 800-39 (risk management); Practitioner experience for healthcare governance with clinical operational constraints",
       "severity_fit": ["high", "medium", "low"],
       "when_to_use": {
         "conditions": [
@@ -439,6 +446,7 @@
       "id": "COMMUNICATION_CLINICAL_DOWNTIME_NOTICE",
       "name": "Clinical Downtime Notice",
       "category": "communication",
+      "basis": "Common healthcare network defense practice; FDA postmarket guidance Section VI (coordinated disclosure and clinical communication)",
       "severity_fit": ["critical", "high", "medium"],
       "when_to_use": {
         "conditions": [

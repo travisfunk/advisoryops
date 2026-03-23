@@ -295,6 +295,20 @@ def cmd_ask(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_feedback(args: argparse.Namespace) -> int:
+    """Record recommendation feedback."""
+    from .feedback import record_feedback
+
+    entry = record_feedback(
+        args.issue_id,
+        args.recommendation_id or "",
+        args.type,
+        comment=args.comment or "",
+    )
+    print(f"Recorded feedback: {entry['feedback_type']} for {entry['issue_id']}")
+    return 0
+
+
 def cmd_lookup(args: argparse.Namespace) -> int:
     """Look up issues by product name / nickname."""
     import json as _json
@@ -479,6 +493,16 @@ def build_parser() -> argparse.ArgumentParser:
         help="Also print results as a JSON array after the human-readable summary",
     )
     p_lookup.set_defaults(fn=cmd_lookup)
+
+    p_fb = sub.add_parser("feedback", help="Record recommendation feedback")
+    p_fb.add_argument("--issue-id", dest="issue_id", required=True, help="Issue ID to provide feedback on")
+    p_fb.add_argument("--type", required=True,
+                      choices=["incorrect", "too_aggressive", "too_conservative", "missing_context", "helpful"],
+                      help="Feedback type")
+    p_fb.add_argument("--recommendation-id", dest="recommendation_id", default="",
+                      help="Pattern/recommendation ID (optional)")
+    p_fb.add_argument("--comment", default="", help="Free-text comment")
+    p_fb.set_defaults(fn=cmd_feedback)
 
     return p
 

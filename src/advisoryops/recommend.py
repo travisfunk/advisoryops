@@ -54,6 +54,8 @@ class PatternRecommendation:
     why_selected: str
     parameters: Dict[str, str]
     priority_order: int  # 1 = highest priority
+    rationale: str = ""
+    basis: str = ""
 
 
 @dataclass
@@ -75,6 +77,17 @@ class RemediationPacket:
     insufficient_evidence: bool = False
     evidence_gaps: List[str] = field(default_factory=list)
     handling_warnings: List[str] = field(default_factory=list)
+    generated_by: str = "ai"
+    disclaimer: str = (
+        "AI-assisted guidance based on approved mitigation patterns and cited standards. "
+        "Verify against vendor documentation and local operational constraints before implementation."
+    )
+
+
+RECOMMENDATION_DISCLAIMER = (
+    "AI-assisted guidance based on approved mitigation patterns and cited standards. "
+    "Verify against vendor documentation and local operational constraints before implementation."
+)
 
 
 # ---------------------------------------------------------------------------
@@ -97,6 +110,8 @@ def _pattern_catalog_text(playbook: Playbook) -> str:
             lines.append("  Constraints:")
             for c in p.when_to_use.constraints:
                 lines.append(f"    - {c}")
+        if p.basis:
+            lines.append(f"  Basis: {p.basis}")
         if p.inputs_required:
             lines.append(f"  Inputs required: {', '.join(p.inputs_required)}")
         lines.append("")
@@ -134,6 +149,7 @@ def _build_system_prompt(playbook: Playbook) -> str:
         '    {\n'
         '      "pattern_id": "<approved pattern id>",\n'
         '      "why_selected": "<1-2 sentence justification including attack vector analysis>",\n'
+        '      "rationale": "<Selected because: [specific evidence from advisory — exploitability, patch status, device class, source language — that matched this pattern]>",\n'
         '      "parameters": {<key: extracted value from advisory text>},\n'
         '      "priority_order": <integer, 1 = highest priority>\n'
         '    }\n'
@@ -222,16 +238,18 @@ def _parse_ai_response(
         if not isinstance(params, dict):
             params = {}
 
+        pattern = playbook.get(pid)
         rec = PatternRecommendation(
             pattern_id=pid,
             why_selected=str(item.get("why_selected") or ""),
             parameters={str(k): str(v) for k, v in params.items()},
             priority_order=int(item.get("priority_order") or 1),
+            rationale=str(item.get("rationale") or ""),
+            basis=pattern.basis if pattern else "",
         )
         recommendations.append(rec)
 
         # Build role-split task list from playbook steps
-        pattern = playbook.get(pid)
         if pattern:
             for step in pattern.steps:
                 role_tasks = tasks_by_role.setdefault(step.role, [])

@@ -98,6 +98,7 @@ def _feed_entry(issue: Dict[str, Any]) -> Dict[str, Any]:
         "severity": issue.get("severity", ""),
         "affected_versions": issue.get("affected_versions", []) or [],
         "vendor": issue.get("vendor", ""),
+        "generated_by": issue.get("generated_by", "deterministic"),
     }
     return entry
 
@@ -996,6 +997,68 @@ _DASHBOARD_HTML = r'''<!DOCTYPE html>
     .authority-dots .filled { color: #ffd700; }
     .authority-dots .empty  { color: var(--border); }
 
+    /* -- Feedback button ------------------------------------------ */
+    .feedback-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--surface2);
+      color: var(--text-muted);
+      font-family: var(--font);
+      font-size: 11px;
+      cursor: pointer;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+    .feedback-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .feedback-btn.flagged { border-color: var(--p1-text); color: var(--p1-text); background: var(--orange-dim); }
+
+    .feedback-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .feedback-menu {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 100%;
+      margin-top: 4px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 4px 0;
+      min-width: 180px;
+      z-index: 50;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+    .feedback-menu.open { display: block; }
+    .feedback-menu-item {
+      display: block;
+      width: 100%;
+      padding: 6px 12px;
+      border: none;
+      background: none;
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 12px;
+      text-align: left;
+      cursor: pointer;
+    }
+    .feedback-menu-item:hover { background: var(--surface2); }
+
+    /* -- Disclaimer ----------------------------------------------- */
+    .disclaimer-bar {
+      font-size: 10px;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      margin-top: 10px;
+      padding-top: 8px;
+      font-style: italic;
+    }
+
     /* -- Loading / error states ----------------------------------- */
     .state-box {
       text-align: center;
@@ -1684,14 +1747,36 @@ _DASHBOARD_HTML = r'''<!DOCTYPE html>
       + '</div>'
       + factBadgesHtml
       + '</div>'
+      + '<div class="disclaimer-bar">AI-assisted guidance based on approved mitigation patterns and cited standards. Verify against vendor documentation and local operational constraints before implementation.</div>'
       + '</div>'
       + '<div class="detail-actions-col">'
       + canonLink
+      + buildFeedbackButton(row)
       + '<button class="btn btn-secondary" onclick="event.stopPropagation();App.toggleExpand(\'' + (row.issue_id || '').replace(/'/g, "\\'") + '\')">Collapse</button>'
       + '</div>'
       + '</div>'
       + '</td>'
       + '</tr>';
+  }
+
+  // -- Feedback button builder -----------------------------------------------
+  function buildFeedbackButton(row) {
+    var iid = (row.issue_id || '').replace(/'/g, "\\'");
+    var fbKey = 'ao_feedback_' + iid;
+    var existing = null;
+    try { existing = localStorage.getItem(fbKey); } catch(e) {}
+    if (existing) {
+      return '<span class="feedback-btn flagged" title="Feedback submitted">Flagged</span>';
+    }
+    var uid = 'fb_' + (row.issue_id || '').replace(/[^a-z0-9]/gi, '_');
+    return '<div class="feedback-dropdown">'
+      + '<button class="feedback-btn" onclick="event.stopPropagation();var m=document.getElementById(\'' + uid + '\');m.classList.toggle(\'open\')">'
+      + 'Flag this recommendation</button>'
+      + '<div id="' + uid + '" class="feedback-menu">'
+      + ['incorrect','too_aggressive','too_conservative','missing_context','helpful'].map(function(t) {
+        return '<button class="feedback-menu-item" onclick="event.stopPropagation();App.submitFeedback(\'' + iid + '\',\'' + t + '\')">' + t.replace(/_/g,' ') + '</button>';
+      }).join('')
+      + '</div></div>';
   }
 
   function renderError(err) {
@@ -1741,6 +1826,25 @@ _DASHBOARD_HTML = r'''<!DOCTYPE html>
     },
     toggleExpand: function(id) {
       state.expandedId = state.expandedId === id ? null : id;
+      render();
+    },
+    submitFeedback: function(issueId, feedbackType) {
+      var entry = {
+        issue_id: issueId,
+        feedback_type: feedbackType,
+        timestamp: new Date().toISOString(),
+      };
+      try {
+        localStorage.setItem('ao_feedback_' + issueId, JSON.stringify(entry));
+      } catch(e) {}
+      // Collect all feedback for download
+      var all = [];
+      try {
+        var raw = localStorage.getItem('ao_feedback_all');
+        if (raw) all = JSON.parse(raw);
+      } catch(e) {}
+      all.push(entry);
+      try { localStorage.setItem('ao_feedback_all', JSON.stringify(all)); } catch(e) {}
       render();
     },
   };
