@@ -1,0 +1,209 @@
+[
+  {
+    "source_id": "abb-psirt-rss",
+    "name": "ABB PSIRT RSS",
+    "url": "https://psirt.abb.com/rss/abbrssfeed.xml",
+    "expected_page_type": "rss_atom",
+    "feed_format": "RSS",
+    "healthcare_relevance": "high",
+    "notes": "Vendor PSIRT feed for ABB industrial/medical devices. Distinct from abb-alerts-html (HTML table, disabled) already in sources.json."
+  },
+  {
+    "source_id": "urlhaus-recent",
+    "name": "Abuse.ch URLhaus Recent URLs",
+    "url": "https://urlhaus-api.abuse.ch/v1/urls/recent/",
+    "expected_page_type": "json_feed",
+    "feed_format": "JSON",
+    "healthcare_relevance": "low",
+    "notes": "Public JSON API returning recently-added malicious URLs. No API key required for basic queries. Useful for threat intel enrichment."
+  },
+  {
+    "source_id": "bioworld-digital-health",
+    "name": "BioWorld Digital Health RSS",
+    "url": "https://www.bioworld.com/rss/21",
+    "expected_page_type": "rss_atom",
+    "feed_format": "RSS",
+    "healthcare_relevance": "high",
+    "notes": "RSS feed focused on digital health industry news including software, connected devices, and regulatory issues."
+  },
+  {
+    "source_id": "checkpoint-research",
+    "name": "Check Point Research RSS",
+    "url": "https://research.checkpoint.com/feed/",
+    "expected_page_type": "rss_atom",
+    "feed_format": "RSS",
+    "healthcare_relevance": "medium",
+    "notes": "Security research blog. Covers healthcare ransomware campaigns and OT/IoT vulnerabilities periodically. Needs keyword filter."
+  },
+  {
+    "source_id": "claroty-blog",
+    "name": "Claroty Blog RSS",
+    "url": "https://claroty.com/blog/feed",
+    "expected_page_type": "rss_atom",
+    "feed_format": "RSS",
+    "healthcare_relevance": "high",
+    "notes": "Claroty blog RSS (distinct from claroty-team82 disclosure dashboard already in sources.json). Covers healthcare OT/IoMT research and threat reports."
+  },
+  {
+    "source_id": "compliance-junction-cyber",
+    "name": "Compliance Junction Cybersecurity RSS",
+    "url": "https://www.compliancejunction.com/category/cybersecurity/feed/",
+    "expected_page_type": "rss_atom",
+    "feed_format": "RSS",
+    "healthcare_relevance": "medium",
+    "notes": "Compliance-focused security blog with healthcare regulatory coverage (HIPAA, HITECH). Needs keyword filter."
+  },
+  {
+    "source_id": "cvefeed-rss",
+    "name": "CVEfeed RSS",
+    "url": "https://cvefeed.io/rssfeed",
+    "expected_page_type": "rss_atom",
+    "feed_format": "RSS",
+    "healthcare_relevance": "medium",
+    "notes": "Aggregated CVE feed across NVD, vendor advisories. High volume — needs keyword filter for medical/device/healthcare terms."
+  },
+  {
+    "source_id": "cshub-attacks",
+    "name": "Cyber Security Hub – Attacks RSS",
+    "url": "https://www.cshub.com/rss/categories/attacks",
+    "expected_page_type": "rss_atom",
+    "feed_format": "RSS",
+    "healthcare_relevance": "low",
+    "notes": "General attacks category news. Occasionally covers hospital ransomware incidents. Needs aggressive keyword filter."
+  },
+  {
+    "source_id": "cshub-malware",
+    "name": "Cyber Security Hub – Malware RSS",
+    "url": "https://www.cshub.com/rss/categories/malware",
+    "expected_page_type": "rss_atom",
+    "feed_format": "RSS",
+    "healthcare_relevance": "low",
+    "notes": "General malware category news. Occasionally covers healthcare-targeting malware. Needs aggressive keyword filter."
+  },
+  {
+    "source_id": "dark-reading-all",
+    "name": "Dark Reading All RSS",
+    "url": "https://www.darkreading.com/rss/all.xml",
+    "expected_page_type": "rss_atom",
+    "feed_format": "RSS",
+    "healthcare_relevance": "medium",
+    "notes": "High-volume general security news feed. Covers healthcare incidents and medical device security. Needs keyword filter to avoid noise."
+  },
+  {
+    "source_id": "ecrimelabs-metasploit-cve",
+    "name": "eCrimeLabs Metasploit CVE Feed",
+    "url": "https://feeds.ecrimelabs.net/data/metasploit-cve",
+    "expected_page_type": "json_feed",
+    "feed_format": "JSON",
+    "healthcare_relevance": "medium",
+    "notes": "JSON feed of CVEs with known Metasploit exploit modules — useful for exploitability signal. No key required."
+  },
+  {
+    "source_id": "epss-data",
+    "name": "EPSS Exploit Prediction Scoring System Daily CSV",
+    "url": "https://epss.cyentia.com/epss_scores-current.csv.gz",
+    "expected_page_type": "csv_feed",
+    "feed_format": "CSV",
+    "healthcare_relevance": "medium",
+    "notes": "Daily CSV of EPSS scores for all CVEs. Useful dataset for prioritization. Note: vuln_sources.txt points to https://www.first.org/epss/data (landing page) — actual CSV is at epss.cyentia.com. High value for scoring pipeline."
+  },
+  {
+    "source_id": "fierce-healthcare",
+    "name": "Fierce Healthcare RSS",
+    "url": "https://www.fiercehealthcare.com/rss",
+    "expected_page_type": "rss_atom",
+    "feed_format": "RSS",
+    "healthcare_relevance": "high",
+    "notes": "Healthcare industry news publication. Covers hospital cybersecurity incidents, breaches, and regulatory actions. High signal-to-noise."
+  },
+  {
+    "source_id": "mandiant-blog",
+    "name": "Mandiant (FireEye) Blog RSS",
+    "url": "http://www.fireeye.com/blog/feed",
+    "expected_page_type": "rss_atom",
+    "feed_format": "RSS",
+    "healthcare_relevance": "medium",
+    "notes": "Threat research blog. Covers nation-state targeting of healthcare and critical infrastructure. Needs keyword filter. Note: feed URL may have moved post-Google acquisition."
+  },
+  {
+    "source_id": "infosecinstitute-malware",
+    "name": "Infosec Institute Malware Analysis RSS",
+    "url": "https://resources.infosecinstitute.com/topics/malware-analysis/feed/",
+    "expected_page_type": "rss_atom",
+    "feed_format": "RSS",
+    "healthcare_relevance": "low",
+    "notes": "General malware analysis articles. Infrequent healthcare coverage. Needs keyword filter."
+  },
+  {
+    "source_id": "infosecinstitute-threatintel",
+    "name": "Infosec Institute Threat Intelligence RSS",
+    "url": "https://resources.infosecinstitute.com/topics/threat-intelligence/feed/",
+    "expected_page_type": "rss_atom",
+    "feed_format": "RSS",
+    "healthcare_relevance": "low",
+    "notes": "General threat intelligence articles. Occasional healthcare coverage. Needs keyword filter."
+  },
+  {
+    "source_id": "krebs-on-security",
+    "name": "Krebs on Security RSS",
+    "url": "http://krebsonsecurity.com/feed/",
+    "expected_page_type": "rss_atom",
+    "feed_format": "RSS",
+    "healthcare_relevance": "medium",
+    "notes": "Investigative security journalism. Frequently covers healthcare breaches, medical device security, and hospital ransomware. Needs keyword filter for high-value subset."
+  },
+  {
+    "source_id": "openfda-device-events",
+    "name": "openFDA Device Adverse Events API",
+    "url": "https://api.fda.gov/device/event.json?search=mdr_text.mdr_text_key:software+AND+mdr_text.mdr_text_key:cybersecurity&limit=100",
+    "expected_page_type": "json_feed",
+    "feed_format": "JSON",
+    "healthcare_relevance": "high",
+    "notes": "openFDA device adverse event reports filtered for software/cybersecurity. Distinct from openfda-device-recalls already in sources.json. No API key required."
+  },
+  {
+    "source_id": "seclists-rss",
+    "name": "SecLists.org RSS",
+    "url": "https://seclists.org/rss/",
+    "expected_page_type": "rss_atom",
+    "feed_format": "RSS",
+    "healthcare_relevance": "low",
+    "notes": "Aggregates multiple security mailing lists (Full Disclosure, BugTraq, etc.). High noise, but captures zero-day disclosures. Needs aggressive keyword filter."
+  },
+  {
+    "source_id": "talos-intelligence",
+    "name": "Talos Intelligence RSS",
+    "url": "http://feeds.feedburner.com/feedburner/Talos",
+    "expected_page_type": "rss_atom",
+    "feed_format": "RSS",
+    "healthcare_relevance": "medium",
+    "notes": "Cisco Talos threat research. Covers healthcare-targeting malware and vulnerability disclosures. Needs keyword filter."
+  },
+  {
+    "source_id": "tenable-newest-plugins",
+    "name": "Tenable Newest Plugins RSS",
+    "url": "https://www.tenable.com/plugins/feeds?sort=newest",
+    "expected_page_type": "rss_atom",
+    "feed_format": "RSS",
+    "healthcare_relevance": "medium",
+    "notes": "Feed of newest Tenable Nessus plugins — high signal for newly-scannable CVEs. Needs keyword filter for medical device/healthcare terms."
+  },
+  {
+    "source_id": "threatpost",
+    "name": "Threatpost RSS",
+    "url": "https://threatpost.com/feed/",
+    "expected_page_type": "rss_atom",
+    "feed_format": "RSS",
+    "healthcare_relevance": "low",
+    "notes": "CAUTION: Threatpost ceased operations in late 2023 — feed may be defunct. Should verify before enabling. If live, covers general security news including healthcare. Needs keyword filter."
+  },
+  {
+    "source_id": "wired-security",
+    "name": "WIRED Security RSS",
+    "url": "https://www.wired.com/feed/category/security/latest/rss",
+    "expected_page_type": "rss_atom",
+    "feed_format": "RSS",
+    "healthcare_relevance": "low",
+    "notes": "General tech/security journalism. Occasional in-depth healthcare cybersecurity coverage. Needs keyword filter to avoid noise."
+  }
+]

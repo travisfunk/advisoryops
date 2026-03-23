@@ -1,0 +1,22 @@
+[
+  {
+    "fetched_at": "2026-02-21T10:59:38.181766+00:00",
+    "guid": "CVE-2008-0015",
+    "link": "https://nvd.nist.gov/vuln/detail/CVE-2008-0015",
+    "published_date": "2026-02-17",
+    "signal_id": "2caa457f7291053ae61c52fbdfaef6ac942926b363c9ca6889b217db7e543e4b",
+    "source": "cisa-kev-csv",
+    "summary": "Microsoft Windows Video ActiveX Control contains a remote code execution vulnerability. An attacker could exploit the vulnerability by constructing a specially crafted Web page. When a user views the Web page, the vulnerability could allow remote code execution. An attacker who successfully exploited this vulnerability could gain the same user rights as the logged-on user. | Microsoft Windows",
+    "title": "CVE-2008-0015"
+  },
+  {
+    "fetched_at": "2026-03-03T03:44:53.377175+00:00",
+    "guid": "CVE-2008-0015",
+    "link": "https://nvd.nist.gov/vuln/detail/CVE-2008-0015",
+    "published_date": "2026-02-17",
+    "signal_id": "6df53616cf62e5f7fd1d01771347217921a440201494a383605a6e550ad7a34d",
+    "source": "cisa-kev-json",
+    "summary": "Microsoft Windows Video ActiveX Control contains a remote code execution vulnerability. An attacker could exploit the vulnerability by constructing a specially crafted Web page. When a user views the Web page, the vulnerability could allow remote code execution. An attacker who successfully exploited this vulnerability could gain the same user rights as the logged-on user. | Microsoft Windows",
+    "title": "CVE-2008-0015"
+  }
+]

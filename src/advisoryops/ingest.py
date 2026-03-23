@@ -1,3 +1,28 @@
+"""Stage 1b: raw advisory ingestion (URL, text file, or PDF).
+
+Downloads and normalizes a single advisory document into a content-addressed
+snapshot stored under ``outputs/ingest/<advisory_id>/``.
+
+Three public entry points (all required by cli.py):
+  ingest_url(url)          — HTTP GET → HTML→text or PDF→text
+  ingest_text_file(path)   — read a local .txt file
+  ingest_pdf_file(path)    — extract text from a local .pdf
+
+All three converge on ``ingest_from_text`` which:
+  1. Normalizes whitespace (via util.normalize_text)
+  2. SHA-256 hashes the normalized text → stable ``advisory_id = adv_<hex12>``
+  3. Writes raw.txt, normalized.txt, and source.json to
+     ``outputs/ingest/<advisory_id>/``
+  4. Returns (advisory_id, out_dir)
+
+The content-addressed approach means the same advisory fetched twice always
+produces the same advisory_id and skips no work on the extract step (the
+extract step reads from the same dir).
+
+HTML extraction is stdlib-only (no BeautifulSoup dependency): script/style tags
+are stripped, block-level tags become newlines, remaining tags are removed, and
+HTML entities are decoded.  This is good enough for CISA advisory pages.
+"""
 from __future__ import annotations
 import re
 import tempfile

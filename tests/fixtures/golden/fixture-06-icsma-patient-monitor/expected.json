@@ -1,0 +1,11 @@
+{
+  "expected_issue_count": 1,
+  "expected_cves": [
+    "CVE-2025-59668"
+  ],
+  "expected_priority_range": [
+    "P0"
+  ],
+  "expected_healthcare_category": "medical_device",
+  "description": "NIHON KOHDEN Central Monitor CNS-6201 (CVSS 8.7 HIGH). Null pointer dereference, remotely exploitable, low complexity. Central patient monitoring hardware in clinical use. No KEV -> P3."
+}

@@ -34,6 +34,7 @@ node_modules/
 *.log
 *.tmp
 # ---- python env / outputs ----
+.pytest_cache/
 # ---- python build artifacts ----
 *.egg-info/
 src/*.egg-info/

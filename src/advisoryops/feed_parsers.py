@@ -1,10 +1,60 @@
+"""JSON and CSV feed normalizers for AdvisoryOps discovery.
+
+Called by ``discover.py`` for non-RSS/Atom feed types.  Both parsers return the
+same normalized signal shape used throughout the pipeline:
+
+    source, guid, title, link, published_date, summary, fetched_at
+
+Functions
+---------
+parse_json_feed(obj, *, source_id, fetched_at)
+    Handles four JSON structures:
+    - CISA KEV JSON ({"vulnerabilities": [...]})  — special-cased for cveID/dateAdded fields
+    - openFDA device events/recalls ({"results": [...]})
+    - Generic JSON Feed spec ({"items": [...]})
+    - Root list ([...])
+
+parse_csv_feed(csv_text, *, source_id, fetched_at)
+    Handles two CSV structures:
+    - CISA KEV CSV (cveID/dateAdded/shortDescription columns)
+    - EPSS percentile exports (cve/epss/percentile columns)
+    - Generic advisory CSVs (title/link/date/summary columns)
+    Comment lines (starting with #) are stripped before parsing — required
+    for abuse.ch and some SANS feeds.
+
+Both parsers are pure functions: same input always produces the same output.
+"""
 from __future__ import annotations
 
 import csv
 import hashlib
 import json
+import re
 from datetime import datetime, timezone
+from html import unescape
 from typing import Any, Dict, List, Optional
+
+
+_html_script_style_re = re.compile(r"(?is)<(script|style).*?>.*?</\1>")
+_html_tag_re = re.compile(r"(?s)<[^>]+>")
+_html_ws_re = re.compile(r"[ \t\f\v]+")
+
+
+def _strip_html(html: str) -> str:
+    """Strip HTML tags from a string, returning plain text."""
+    if not html or "<" not in html:
+        return html
+    text = _html_script_style_re.sub(" ", html)
+    text = re.sub(r"(?is)<br\s*/?>", " ", text)
+    text = re.sub(r"(?is)</(p|div|li|h[1-6])\s*>", " ", text)
+    text = _html_tag_re.sub(" ", text)
+    text = unescape(text)
+    lines = []
+    for line in text.splitlines():
+        line = _html_ws_re.sub(" ", line).strip()
+        if line:
+            lines.append(line)
+    return " ".join(lines).strip()
 
 
 def utc_now_iso() -> str:
@@ -60,6 +110,40 @@ def parse_json_feed(obj: Any, *, source_id: str, fetched_at: str) -> List[Dict[s
     """
     items: List[Dict[str, Any]] = []
 
+    # NVD CVE API 2.0: {"format": "NVD_CVE", "vulnerabilities": [{"cve": {"id": ...}}]}
+    if (isinstance(obj, dict) and obj.get("format") == "NVD_CVE"
+            and isinstance(obj.get("vulnerabilities"), list)):
+        for row in obj["vulnerabilities"]:
+            if not isinstance(row, dict):
+                continue
+            cve_obj = row.get("cve") or {}
+            if not isinstance(cve_obj, dict):
+                continue
+            cve_id = str(cve_obj.get("id", "") or "").strip()
+            published = str(cve_obj.get("published", "") or cve_obj.get("lastModified", "") or "").strip()
+            descs = cve_obj.get("descriptions") or []
+            summary = ""
+            for d in descs:
+                if isinstance(d, dict) and d.get("lang") == "en":
+                    summary = str(d.get("value", "") or "").strip()
+                    break
+            refs = cve_obj.get("references") or []
+            link = _nvd_link(cve_id) if cve_id else ""
+            for r in refs:
+                if isinstance(r, dict) and r.get("url"):
+                    link = r["url"]
+                    break
+            items.append({
+                "source": source_id,
+                "guid": cve_id or _sha1(json.dumps(row, sort_keys=True)),
+                "title": cve_id or "NVD CVE",
+                "link": link,
+                "published_date": published,
+                "summary": summary,
+                "fetched_at": fetched_at,
+            })
+        return items
+
     if isinstance(obj, dict) and isinstance(obj.get("vulnerabilities"), list):
         # CISA KEV JSON
         for row in obj["vulnerabilities"]:
@@ -86,6 +170,40 @@ def parse_json_feed(obj: Any, *, source_id: str, fetched_at: str) -> List[Dict[s
                     "fetched_at": fetched_at,
                 }
             )
+        return items
+
+    # VulDB CTI API: {"response": {..., "status": "200"}, "result": [{"entry": {...}}]}
+    if (isinstance(obj, dict) and isinstance(obj.get("response"), dict)
+            and isinstance(obj.get("result"), list)):
+        status = str(obj["response"].get("status", ""))
+        if status != "200":
+            # Auth failure or API error — return empty rather than crashing
+            return items
+        for row in obj["result"]:
+            if not isinstance(row, dict):
+                continue
+            entry = row.get("entry") or row
+            if not isinstance(entry, dict):
+                continue
+            entry_id = str(entry.get("id", "") or row.get("id", "") or "").strip()
+            title = str(entry.get("title", "") or entry_id or "VulDB entry").strip()
+            summary = str(entry.get("summary", "") or entry.get("description", "") or "").strip()
+            cve_block = entry.get("cve") or {}
+            cve_id = str(cve_block.get("cve_id", "") or "").strip() if isinstance(cve_block, dict) else ""
+            published = str(entry.get("timestamp", "") or entry.get("date", "") or "").strip()
+            link = str(entry.get("href", "") or entry.get("url", "") or "").strip()
+            if not link and cve_id:
+                link = _nvd_link(cve_id)
+            guid = entry_id or cve_id or _sha1(json.dumps(row, sort_keys=True))
+            items.append({
+                "source": source_id,
+                "guid": guid,
+                "title": title,
+                "link": link,
+                "published_date": published,
+                "summary": summary,
+                "fetched_at": fetched_at,
+            })
         return items
 
     # Generic JSON feed shapes
@@ -129,7 +247,7 @@ def parse_json_feed(obj: Any, *, source_id: str, fetched_at: str) -> List[Dict[s
             "recall_initiation_date",
             "date_created",
         )
-        summary = _pick_str(
+        summary = _strip_html(_pick_str(
             row,
             "summary",
             "description",
@@ -137,7 +255,7 @@ def parse_json_feed(obj: Any, *, source_id: str, fetched_at: str) -> List[Dict[s
             "product_description",
             "event_text",
             "event_type",
-        )
+        ))
 
         firm = _pick_str(row, "recalling_firm", "manufacturer_d_name", "manufacturer_name")
         product = _pick_str(row, "product_description", "brand_name", "device_name", "generic_name")
@@ -174,9 +292,14 @@ def parse_csv_feed(csv_text: str, *, source_id: str, fetched_at: str) -> List[Di
       - generic CVE-centric CSVs (for example EPSS-style exports)
     """
     items: List[Dict[str, Any]] = []
-    reader = csv.DictReader(csv_text.splitlines())
+    # Strip comment lines (lines starting with '#') — used by abuse.ch, SANS, etc.
+    clean_lines = [l for l in csv_text.splitlines() if not l.lstrip().startswith("#")]
+    reader = csv.DictReader(clean_lines)
     for row in reader:
         if not isinstance(row, dict):
+            continue
+        # Skip rows where all values are None (malformed comment lines absorbed by DictReader)
+        if all(v is None for v in row.values()):
             continue
 
         # CISA KEV CSV uses cveID/dateAdded/shortDescription/vendorProject/product/...
@@ -186,7 +309,7 @@ def parse_csv_feed(csv_text: str, *, source_id: str, fetched_at: str) -> List[Di
             guid = cve
             link = _nvd_link(cve)
             published = str(row.get("dateAdded", "") or row.get("published_date", "") or row.get("date", "") or "").strip()
-            summary = str(row.get("shortDescription", "") or row.get("summary", "") or row.get("description", "") or "").strip()
+            summary = _strip_html(str(row.get("shortDescription", "") or row.get("summary", "") or row.get("description", "") or "").strip())
             vendor = str(row.get("vendorProject", "") or row.get("vendor", "") or "").strip()
             product = str(row.get("product", "") or row.get("product_name", "") or "").strip()
             epss = str(row.get("epss", "") or "").strip()
@@ -205,7 +328,7 @@ def parse_csv_feed(csv_text: str, *, source_id: str, fetched_at: str) -> List[Di
             link = str(row.get("link", "") or row.get("url", "") or "").strip()
             guid = str(row.get("guid", "") or row.get("id", "") or "").strip() or link or _sha1(json.dumps(row, sort_keys=True))
             published = str(row.get("published_date", "") or row.get("date", "") or "").strip()
-            summary = str(row.get("summary", "") or row.get("description", "") or "").strip()
+            summary = _strip_html(str(row.get("summary", "") or row.get("description", "") or "").strip())
 
         items.append(
             {

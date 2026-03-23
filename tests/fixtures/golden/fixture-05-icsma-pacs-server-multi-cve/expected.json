@@ -1,0 +1,15 @@
+{
+  "expected_issue_count": 5,
+  "expected_cves": [
+    "CVE-2025-0572",
+    "CVE-2025-53948",
+    "CVE-2025-54156",
+    "CVE-2025-54759",
+    "CVE-2025-54862"
+  ],
+  "expected_priority_range": [
+    "P0"
+  ],
+  "expected_healthcare_category": "medical_device",
+  "description": "Santesoft Sante PACS Server advisory (CVSS 9.1 HIGH). Single ICSMA signal containing 5 CVEs: path traversal, double free, cleartext transmission, XSS. Correlate produces one issue per CVE ID found in summary HTML. No KEV -> all P3."
+}

@@ -1,3 +1,31 @@
+"""Stage 2: AI-powered structured extraction from ingested advisory text.
+
+Reads the normalized text produced by ``ingest.py`` and calls the OpenAI
+Responses API to extract a structured ``AdvisoryRecord`` JSON object.
+
+Pipeline position:
+    ingest.py → **extract.py** → outputs/extract/<advisory_id>/advisory_record.json
+
+Key design decisions
+--------------------
+* **Requires OPENAI_API_KEY** — this is the only module in the core pipeline
+  that makes live API calls (the AI merge/score modules are optional add-ons).
+* **json_object response format** — the API is instructed to return only JSON;
+  the ``_normalize_llm_obj`` function handles common synonym mappings (e.g.
+  ``"overview"`` → ``"summary"``, ``"mitigation"`` → ``"mitigations"``) and
+  coerces list fields so the output always matches the stable AdvisoryRecord
+  schema regardless of which variant the model produces.
+* **Mojibake repair** — CISA ICS advisory pages are notorious for cp1252
+  encoding artifacts (â€™, â€œ, etc.).  Both ``_prep_llm_text`` and
+  ``_normalize_llm_obj`` apply targeted replacement tables and attempt a
+  cp1252→UTF-8 byte-level re-encoding if markers remain.
+* **Content-addressed output** — the advisory_id (from ingest) is enforced
+  on the extracted record so the two stages always agree on identity.
+
+Writes:
+  outputs/extract/<id>/advisory_record.json — 13-key structured record
+  outputs/extract/<id>/extract_meta.json    — model/token/hash audit trail
+"""
 from __future__ import annotations
 import json
 import os
@@ -27,6 +55,7 @@ class AdvisoryRecord(BaseModel):
     exploitation: Optional[str] = None
     mitigations: List[str] = Field(default_factory=list)
     references: List[str] = Field(default_factory=list)
+    handling_warnings: List[str] = Field(default_factory=list, description="Operational cautions for medical device handling (e.g. do not power cycle during procedure)")
 
 def _prep_llm_text(text: str) -> str:
     """
@@ -143,7 +172,7 @@ def _normalize_llm_obj(obj: Any, advisory_id: str, source_text: str = "") -> Dic
     - Coerces list fields to lists
     - Drops extra keys so advisory_record.json stays stable
     """
-    list_fields = {"cves", "affected_versions", "mitigations", "references"}
+    list_fields = {"cves", "affected_versions", "mitigations", "references", "handling_warnings"}
     allowed = set(AdvisoryRecord.model_fields.keys())
 
     if not isinstance(obj, dict):
@@ -344,8 +373,15 @@ def extract_advisory_record(advisory_id: str, model: Optional[str] = None) -> Pa
         "- If unknown: use null for scalars and [] for lists.\n"
         "- Dates: prefer ISO-8601 (YYYY-MM-DD).\n"
         "- cves must be an array of strings like \"CVE-2024-1234\".\n"
-        "- Output a SINGLE JSON object with EXACTLY these keys: advisory_id, title, published_date, vendor, product, cves, severity, affected_versions, summary, impact, exploitation, mitigations, references.\n"
+        "- Output a SINGLE JSON object with EXACTLY these keys: advisory_id, title, published_date, vendor, product, cves, severity, affected_versions, summary, impact, exploitation, mitigations, references, handling_warnings.\n"
         "- Do NOT include any additional keys.\n"
+        "- handling_warnings: list any operational cautions specific to medical devices "
+        "(e.g. 'Do not update firmware while patient is connected', 'Coordinate with clinical "
+        "staff before applying patch', 'Device must not be taken offline during active patient "
+        "monitoring'). Use [] if no such warnings are present in the advisory.\n"
+        "- evidence_gaps: if key fields (vendor, product, CVE) are missing from the advisory "
+        "text, note what could not be extracted — but do NOT add this as a key in the output "
+        "(it is for internal use only).\n"
     )
     llm_text = _prep_llm_text(data.get("normalized_text") or data.get("raw_text") or "")
 

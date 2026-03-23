@@ -1,0 +1,11 @@
+{
+  "expected_issue_count": 1,
+  "expected_cves": [
+    "CVE-2024-22774"
+  ],
+  "expected_priority_range": [
+    "P0"
+  ],
+  "expected_healthcare_category": "medical_device",
+  "description": "Varex Imaging panoramic dental X-ray software (CVE-2024-22774, CVSS 8.5 HIGH). Radiology imaging device. Low attack complexity. No KEV -> P3."
+}

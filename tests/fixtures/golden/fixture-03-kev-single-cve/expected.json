@@ -1,0 +1,11 @@
+{
+  "expected_issue_count": 1,
+  "expected_cves": [
+    "CVE-2025-49113"
+  ],
+  "expected_priority_range": [
+    "P0"
+  ],
+  "expected_healthcare_category": "not_healthcare",
+  "description": "RoundCube Webmail deserialization RCE (CVE-2025-49113), CISA KEV. Known exploited in the wild. Score = 10 (CVE) + 80 (KEV source) + 5 (NVD link) = 95 -> P1."
+}

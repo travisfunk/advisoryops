@@ -1,4 +1,24 @@
-﻿from __future__ import annotations
+﻿"""Pydantic data models for fully-ingested advisory records.
+
+These models represent the *deep extraction* schema used when a raw advisory
+document (HTML page, PDF, or text file) is processed by ``ingest.py`` and then
+structured by the AI extraction step in ``extract.py``.
+
+They are intentionally separate from the lightweight signal dicts used by the
+``discover → correlate → score`` pipeline, which only need source/guid/title/
+summary/link fields.  These models capture the full structured information from
+a single advisory document: affected products with version ranges, recommended
+actions with role hints, and provenance of the AI extraction.
+
+Key classes:
+    AdvisoryRecordMVP — top-level model written to outputs/ingest/<id>/
+    ContentModel      — normalized text content + hash + language
+    IdentifiersModel  — CVE list
+    ProductModel      — vendor/product + models/UDI-DIs
+    RecommendedActionModel — one structured remediation step
+    SourceExtractionModel  — AI model / run metadata for audit trail
+"""
+from __future__ import annotations
 
 from typing import List, Optional, Literal
 from pydantic import BaseModel, Field

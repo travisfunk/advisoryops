@@ -1,0 +1,12 @@
+[
+  {
+    "fetched_at": "2026-02-21T10:59:38.181766+00:00",
+    "guid": "CVE-2007-0671",
+    "link": "https://nvd.nist.gov/vuln/detail/CVE-2007-0671",
+    "published_date": "2025-08-12",
+    "signal_id": "917f4c49b1fa2ff894b13d1785e7a11232d8b3c8df1d78f05ce5808049c28e6f",
+    "source": "cisa-kev-csv",
+    "summary": "Microsoft Office Excel contains a remote code execution vulnerability that can be exploited when a specially crafted Excel file is opened. This malicious file could be delivered as an email attachment or hosted on a malicious website. An attacker could leverage this vulnerability by creating a specially crafted Excel file, which, when opened, allowing an attacker to execute remote code on the affected system. | Microsoft Office",
+    "title": "CVE-2007-0671"
+  }
+]

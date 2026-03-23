@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "description": "Golden test fixtures for AdvisoryOps Phase 5 evaluation harness. Each fixture is a directory with input.json (raw discovery signals) and expected.json (expected pipeline outputs).",
+  "fixtures": [
+    {
+      "id": "fixture-01-icsma-zoll-epcr",
+      "description": "ZOLL ePCR IOS mobile app PHI disclosure (CVE-2025-12699). Single ICSMA signal, CVSS 5.5, no KEV.",
+      "source_types": ["cisa-icsma"],
+      "expected_issue_count": 1,
+      "expected_priority": "P3",
+      "healthcare_category": "medical_device",
+      "tags": ["single-signal", "phi-disclosure", "no-patch"]
+    },
+    {
+      "id": "fixture-02-icsma-whill-wheelchair",
+      "description": "WHILL electric wheelchair Bluetooth missing auth (CVE-2025-14346). CVSS 9.8 CRITICAL, patient safety risk.",
+      "source_types": ["cisa-icsma"],
+      "expected_issue_count": 1,
+      "expected_priority": "P3",
+      "healthcare_category": "medical_device",
+      "tags": ["single-signal", "bluetooth", "critical-cvss", "patient-safety"]
+    },
+    {
+      "id": "fixture-03-kev-single-cve",
+      "description": "RoundCube Webmail RCE (CVE-2025-49113) from CISA KEV. Known exploited, single KEV CSV signal.",
+      "source_types": ["cisa-kev-csv"],
+      "expected_issue_count": 1,
+      "expected_priority": "P1",
+      "healthcare_category": "not_healthcare",
+      "tags": ["kev", "single-signal", "rce"]
+    },
+    {
+      "id": "fixture-04-kev-dedup-two-sources",
+      "description": "MS Windows Video ActiveX RCE (CVE-2008-0015) appears in both kev-csv and kev-json. Tests deduplication.",
+      "source_types": ["cisa-kev-csv", "cisa-kev-json"],
+      "expected_issue_count": 1,
+      "expected_priority": "P1",
+      "healthcare_category": "not_healthcare",
+      "tags": ["kev", "dedup", "multi-source"]
+    },
+    {
+      "id": "fixture-05-icsma-pacs-server-multi-cve",
+      "description": "Santesoft Sante PACS Server (5 CVEs) from single ICSMA advisory. Tests multi-CVE split from one signal.",
+      "source_types": ["cisa-icsma"],
+      "expected_issue_count": 5,
+      "expected_priority": "P3",
+      "healthcare_category": "medical_device",
+      "tags": ["multi-cve", "pacs", "imaging", "single-signal"]
+    },
+    {
+      "id": "fixture-06-icsma-patient-monitor",
+      "description": "NIHON KOHDEN Central Monitor CNS-6201 null pointer dereference (CVE-2025-59668). CVSS 8.7, remotely exploitable.",
+      "source_types": ["cisa-icsma"],
+      "expected_issue_count": 1,
+      "expected_priority": "P3",
+      "healthcare_category": "medical_device",
+      "tags": ["patient-monitor", "single-signal", "remote-exploitable"]
+    },
+    {
+      "id": "fixture-07-icsma-hospital-manager",
+      "description": "Vertikal Systems Hospital Manager backend (2 CVEs, CVSS 8.7). Hospital IT software, not a device.",
+      "source_types": ["cisa-icsma"],
+      "expected_issue_count": 2,
+      "expected_priority": "P3",
+      "healthcare_category": "healthcare_it",
+      "tags": ["healthcare-it", "multi-cve", "single-signal"]
+    },
+    {
+      "id": "fixture-08-kev-rce-excel",
+      "description": "MS Office Excel RCE (CVE-2007-0671) from KEV. Validates KEV scoring path independent of broken keyword patterns.",
+      "source_types": ["cisa-kev-csv"],
+      "expected_issue_count": 1,
+      "expected_priority": "P1",
+      "healthcare_category": "not_healthcare",
+      "tags": ["kev", "rce", "keyword-bug-probe"]
+    },
+    {
+      "id": "fixture-09-two-distinct-kev-cves",
+      "description": "Two RoundCube CVEs (RCE + XSS) from same KEV batch. Same vendor but must produce 2 separate issues.",
+      "source_types": ["cisa-kev-csv"],
+      "expected_issue_count": 2,
+      "expected_priority": "P1",
+      "healthcare_category": "not_healthcare",
+      "tags": ["kev", "multi-signal", "no-merge"]
+    },
+    {
+      "id": "fixture-10-icsma-dental-imaging",
+      "description": "Varex Imaging panoramic dental X-ray software (CVE-2024-22774, CVSS 8.5). Medical imaging device.",
+      "source_types": ["cisa-icsma"],
+      "expected_issue_count": 1,
+      "expected_priority": "P3",
+      "healthcare_category": "medical_device",
+      "tags": ["imaging", "dental", "single-signal"]
+    },
+    {
+      "id": "fixture-11-unknown-nonhealthcare",
+      "description": "Synthetic vendor advisory with no CVE ID. Tests unknown-type issue_id (UNK- prefix) and non-healthcare classification.",
+      "source_types": ["vendor-generic"],
+      "expected_issue_count": 1,
+      "expected_priority": "P3",
+      "healthcare_category": "not_healthcare",
+      "tags": ["unknown-type", "synthetic", "no-cve"]
+    },
+    {
+      "id": "fixture-12-icsma-dicom-library",
+      "description": "Grassroots DICOM (GDCM) library vulnerability (CVE-2025-11266, CVSS 6.8). DICOM standard used in medical imaging.",
+      "source_types": ["cisa-icsma"],
+      "expected_issue_count": 1,
+      "expected_priority": "P3",
+      "healthcare_category": "medical_device",
+      "tags": ["dicom", "imaging-library", "single-signal"]
+    }
+  ]
+}

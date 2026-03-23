@@ -1,0 +1,503 @@
+{
+  "schema_version": 1,
+  "playbook_version": "v1.0",
+  "last_updated": "2026-02-10",
+  "source_doc": "DOC-03_Mitigation_Playbook.md",
+  "roles": ["infosec", "netops", "htm_ce", "it_ops", "vendor", "clinical_ops"],
+  "categories": [
+    "segmentation", "access_control", "host_hardening", "protocol_hardening",
+    "monitoring", "vendor_process", "patching", "governance", "communication"
+  ],
+  "patterns": [
+    {
+      "id": "SEGMENTATION_VLAN_ISOLATION",
+      "name": "VLAN / Zone Isolation",
+      "category": "segmentation",
+      "severity_fit": ["critical", "high", "medium"],
+      "when_to_use": {
+        "conditions": [
+          "Device is network-reachable and lateral movement risk exists.",
+          "Patch is delayed or vendor-managed."
+        ],
+        "constraints": [
+          "Requires network change window and clinical workflow validation.",
+          "DICOM, HL7, and vendor remote-support paths must remain functional."
+        ]
+      },
+      "inputs_required": [
+        "current_vlan_subnet",
+        "target_vlan_subnet",
+        "required_peers",
+        "maintenance_window"
+      ],
+      "steps": [
+        {
+          "role": "netops",
+          "action": "Define target VLAN/VRF/zone",
+          "details": "Create or identify a dedicated VLAN/VRF/zone for the affected device class. Document target subnet and routing policy."
+        },
+        {
+          "role": "netops",
+          "action": "Move ports / WiFi profiles to target VLAN",
+          "details": "Reassign switch ports or WiFi SSID profiles to the target VLAN. Confirm uplink ACLs permit required peer traffic only."
+        },
+        {
+          "role": "infosec",
+          "action": "Approve segmentation plan and document residual risk",
+          "details": "Review proposed VLAN topology. Record which flows are blocked, which remain permitted, and residual risk posture in the remediation packet."
+        },
+        {
+          "role": "htm_ce",
+          "action": "Coordinate downtime and validate modality workflows",
+          "details": "Schedule maintenance window with clinical staff. After move, validate DICOM connectivity, HL7 interfaces, and vendor remote support path."
+        }
+      ],
+      "verification": {
+        "evidence": [
+          "Network diagram or change record showing VLAN assignment",
+          "Before/after routing reachability test results (ping, traceroute, or firewall flow log)",
+          "Clinical/HTM validation signoff confirming device functionality post-move"
+        ]
+      },
+      "rollback": {
+        "steps": [
+          "Move switch ports back to original VLAN assignment.",
+          "Restore original routing/ACL rules on uplinks.",
+          "Notify clinical owners that rollback occurred and re-validate workflows."
+        ]
+      },
+      "safety_notes": [
+        "Validate all clinical workflows (DICOM, HL7, vendor remote support) before and after the move.",
+        "Never execute during active patient procedures without explicit clinical approval.",
+        "Coordinate with HTM/CE to confirm device remains operational post-change."
+      ]
+    },
+
+    {
+      "id": "ACCESS_CONTROL_ACL_ALLOWLIST",
+      "name": "ACL / Firewall Allowlist",
+      "category": "access_control",
+      "severity_fit": ["critical", "high"],
+      "when_to_use": {
+        "conditions": [
+          "Issue is known exploited or high risk, and a patch is not immediately available.",
+          "Full isolation is not feasible but traffic flows can be tightly controlled."
+        ],
+        "constraints": [
+          "Requires knowledge of all required peer IPs/FQDNs and ports.",
+          "Must not block time sync, DNS, or vendor-required update channels."
+        ]
+      },
+      "inputs_required": [
+        "required_peers",
+        "required_ports_protocols",
+        "device_management_access_requirements"
+      ],
+      "steps": [
+        {
+          "role": "netops",
+          "action": "Implement ACL/firewall allowlist policy",
+          "details": "Create firewall or switch ACL entries permitting only required flows (peer IPs, ports, protocols). Default deny all other ingress and egress."
+        },
+        {
+          "role": "infosec",
+          "action": "Review allowlist rationale and record in packet",
+          "details": "Verify that permitted flows are minimally necessary. Record allow-rule rationale in the remediation packet with citations to advisory source."
+        },
+        {
+          "role": "htm_ce",
+          "action": "Validate device functionality and vendor support paths",
+          "details": "Confirm that clinical workflows, DICOM/HL7 interfaces, and vendor remote-support connections are intact post-ACL deployment."
+        }
+      ],
+      "verification": {
+        "evidence": [
+          "Firewall or ACL rule export (or change ticket attachment)",
+          "Flow tests confirming allowed traffic succeeds and blocked traffic fails",
+          "Monitoring confirmation showing no unexpected egress (SIEM or flow log)"
+        ]
+      },
+      "rollback": {
+        "steps": [
+          "Disable or remove the ACL/firewall policy.",
+          "Revert to the previous rule set or remove newly added deny rules.",
+          "Notify infosec and clinical owners; document reason for rollback."
+        ]
+      },
+      "safety_notes": [
+        "Be careful not to block time sync (NTP), DNS, or vendor-required update/telemetry channels.",
+        "Test in a maintenance window if possible; have rollback ready before applying.",
+        "Confirm vendor support access remains functional before closing the change."
+      ]
+    },
+
+    {
+      "id": "ACCESS_CONTROL_NAC_POLICY",
+      "name": "NAC Device Policy",
+      "category": "access_control",
+      "severity_fit": ["high", "medium"],
+      "when_to_use": {
+        "conditions": [
+          "Facility has a NAC platform (e.g., Cisco ISE, Aruba ClearPass).",
+          "Affected devices are unmanaged or require posture enforcement."
+        ],
+        "constraints": [
+          "Requires NAC platform and device profiling capability.",
+          "Hard quarantine must not be applied to life-safety devices without clinical signoff."
+        ]
+      },
+      "inputs_required": [
+        "nac_platform",
+        "device_profiling_method",
+        "allowed_switch_ports_or_wifi_ssids",
+        "vlan_assignment_rules"
+      ],
+      "steps": [
+        {
+          "role": "netops",
+          "action": "Create or adjust NAC policy for the device class",
+          "details": "Define a NAC policy targeting the device class, MAC OUI, or certificate identity. Assign quarantine, restricted, or monitored VLAN based on posture."
+        },
+        {
+          "role": "infosec",
+          "action": "Define policy intent",
+          "details": "Decide on policy posture: quarantine (block), restricted VLAN (limited access), or alert-only (monitor without blocking). Document rationale."
+        },
+        {
+          "role": "htm_ce",
+          "action": "Coordinate port changes with clinical owners",
+          "details": "Notify clinical stakeholders of NAC policy changes. Validate that affected devices can still communicate with required peers after policy activation."
+        }
+      ],
+      "verification": {
+        "evidence": [
+          "NAC policy screenshot or configuration export",
+          "Test device authentication result showing correct VLAN assignment",
+          "VLAN assignment confirmation log or dashboard screenshot"
+        ]
+      },
+      "rollback": {
+        "steps": [
+          "Revert NAC policy to previous state or remove the new policy rule.",
+          "Remove any quarantine VLAN assignments from affected devices.",
+          "Confirm devices reconnect to their original VLAN and communicate normally."
+        ]
+      },
+      "safety_notes": [
+        "Avoid applying 'hard quarantine' to life-safety or life-sustaining devices without explicit clinical signoff.",
+        "Alert-only mode is safer for initial deployment on clinical devices.",
+        "Coordinate with HTM/CE before any policy that could interrupt device connectivity."
+      ]
+    },
+
+    {
+      "id": "ACCESS_CONTROL_REMOTE_ACCESS_RESTRICT",
+      "name": "Vendor Remote Access Restriction",
+      "category": "access_control",
+      "severity_fit": ["critical", "high", "medium"],
+      "when_to_use": {
+        "conditions": [
+          "Device is vendor-managed or vendor-supported and requires remote access.",
+          "Exploit vector involves remote access or unauthenticated external connections."
+        ],
+        "constraints": [
+          "Must not break emergency vendor support capabilities.",
+          "Exceptions require explicit documented approval."
+        ]
+      },
+      "inputs_required": [
+        "vendor_remote_method",
+        "jump_host_details",
+        "approved_maintenance_windows",
+        "mfa_requirements"
+      ],
+      "steps": [
+        {
+          "role": "infosec",
+          "action": "Require vendor remote access through controlled method",
+          "details": "Mandate that all vendor sessions route through an approved jump host or VPN with MFA where possible. Communicate requirement to vendor support team."
+        },
+        {
+          "role": "netops",
+          "action": "Restrict remote access IP ranges, ports, and time windows",
+          "details": "Implement firewall rules permitting remote access only from vendor IP ranges, to required ports, during approved maintenance windows."
+        },
+        {
+          "role": "htm_ce",
+          "action": "Coordinate vendor access scheduling and document case/ticket",
+          "details": "Schedule vendor remote sessions in advance. Capture session start/end times, purpose, and any changes made. Log vendor case/ticket reference."
+        }
+      ],
+      "verification": {
+        "evidence": [
+          "Jump host or VPN access log showing approved vendor session",
+          "Time-window firewall policy evidence (rule export or change ticket)",
+          "Vendor case or ticket reference ID documenting the session purpose"
+        ]
+      },
+      "rollback": {
+        "steps": [
+          "Restore prior remote access paths only with explicit infosec approval.",
+          "Document the reason for rollback in the remediation packet.",
+          "Re-assess need for restrictions if rollback is permanent."
+        ]
+      },
+      "safety_notes": [
+        "Never completely block emergency vendor support for life-safety devices — use documented exceptions with explicit approval instead.",
+        "MFA and jump host requirements may need vendor coordination; allow adequate lead time.",
+        "Retain session logs for audit and incident response purposes."
+      ]
+    },
+
+    {
+      "id": "VENDOR_PROCESS_OPEN_CASE_AND_TRACK",
+      "name": "Vendor Case: Open and Track",
+      "category": "vendor_process",
+      "severity_fit": ["critical", "high", "medium", "low"],
+      "when_to_use": {
+        "conditions": [
+          "System is vendor-managed with no customer admin access, or patching requires OEM service.",
+          "Customer cannot apply patch independently due to contractual or technical restrictions."
+        ],
+        "constraints": [
+          "Vendor responsiveness and SLA may vary.",
+          "Compensating controls (segmentation, ACL) should be applied while awaiting vendor remediation."
+        ]
+      },
+      "inputs_required": [
+        "vendor_support_channel",
+        "contract_details",
+        "device_identifiers",
+        "urgency_level",
+        "downtime_window"
+      ],
+      "steps": [
+        {
+          "role": "htm_ce",
+          "action": "Open vendor case and request patch/mitigation timeline",
+          "details": "Contact vendor support via official channel. Provide device model/serial, firmware version, and describe the vulnerability (CVE, advisory link). Request patch or mitigation timeline."
+        },
+        {
+          "role": "infosec",
+          "action": "Provide security context and required risk controls",
+          "details": "Supply KEV status, known exploitation details, and applicable CISA advisory reference. Communicate urgency and request written confirmation of remediation timeline."
+        },
+        {
+          "role": "vendor",
+          "action": "Provide remediation plan and validation steps",
+          "details": "Vendor delivers patch, firmware update, or compensating control procedure with test/validation checklist."
+        },
+        {
+          "role": "infosec",
+          "action": "Track case until closure; document risk acceptance if delayed",
+          "details": "Maintain tracking record with vendor case ID, dates, and updates. If vendor timeline exceeds risk tolerance, initiate GOVERNANCE_RISK_ACCEPTANCE."
+        }
+      ],
+      "verification": {
+        "evidence": [
+          "Vendor case or ticket ID",
+          "Vendor-provided remediation notes or patch release announcement",
+          "Closure confirmation and validation signoff from HTM/CE"
+        ]
+      },
+      "rollback": {
+        "steps": [
+          "N/A — this is a process pattern; no technical rollback required.",
+          "Re-open case if vendor-provided remediation introduces new issues."
+        ]
+      },
+      "safety_notes": [
+        "Escalate immediately when patient care is impacted or exploitation is confirmed in the wild.",
+        "Do not close the case until validation of the vendor fix is complete.",
+        "Pair with compensating controls (SEGMENTATION, ACL) while awaiting vendor action."
+      ]
+    },
+
+    {
+      "id": "PATCHING_APPLY_VENDOR_OR_CUSTOMER",
+      "name": "Apply Patch / Update / Firmware",
+      "category": "patching",
+      "severity_fit": ["critical", "high", "medium", "low"],
+      "when_to_use": {
+        "conditions": [
+          "A patch, update, or firmware fix is available from the vendor.",
+          "Patching is feasible within clinical and operational constraints."
+        ],
+        "constraints": [
+          "Requires approved maintenance window and clinical downtime plan.",
+          "Backup and restore plan must be in place before patching life-safety systems.",
+          "Never patch life-safety systems without a downtime and validation plan."
+        ]
+      },
+      "inputs_required": [
+        "target_versions",
+        "approved_maintenance_window",
+        "backup_restore_plan",
+        "validation_test_checklist"
+      ],
+      "steps": [
+        {
+          "role": "vendor",
+          "action": "Apply patch per OEM procedure (vendor-managed devices)",
+          "details": "Vendor applies the patch or firmware update following their validated service procedure. Customer should observe and receive documentation of changes made."
+        },
+        {
+          "role": "htm_ce",
+          "action": "Apply patch per OEM procedure (customer-managed devices) and run validation tests",
+          "details": "Apply the patch during the approved maintenance window. After patching, execute the OEM-provided modality validation checklist. Document pass/fail status for each test."
+        },
+        {
+          "role": "infosec",
+          "action": "Record patched version and retire compensating controls",
+          "details": "Capture before/after version evidence (screenshots, command output). Update the remediation packet. Remove or document expiry of any compensating controls that are no longer needed."
+        }
+      ],
+      "verification": {
+        "evidence": [
+          "Before/after version proof (screenshot or version query output)",
+          "Change record or patch ticket",
+          "Completed validation checklist signed by HTM/CE"
+        ]
+      },
+      "rollback": {
+        "steps": [
+          "Execute OEM-supported rollback procedure if available.",
+          "Restore from pre-patch backup image where applicable.",
+          "Re-apply compensating controls (ACL, segmentation) until stable version is confirmed.",
+          "Document rollback event and root cause in the remediation packet."
+        ]
+      },
+      "safety_notes": [
+        "Never patch life-safety or life-sustaining systems without a documented downtime and validation plan.",
+        "Confirm backup/restore is tested and available before beginning.",
+        "Schedule during lowest-clinical-risk window; have clinical team on standby.",
+        "For vendor-managed patches, obtain written confirmation of what was changed."
+      ]
+    },
+
+    {
+      "id": "GOVERNANCE_RISK_ACCEPTANCE",
+      "name": "Risk Acceptance (Time-Bound)",
+      "category": "governance",
+      "severity_fit": ["high", "medium", "low"],
+      "when_to_use": {
+        "conditions": [
+          "Vendor has not released a patch and timeline is unknown.",
+          "Clinical operational constraints prevent applying available mitigations.",
+          "Device is end-of-life with no viable remediation path."
+        ],
+        "constraints": [
+          "Must be time-bound with a defined review date.",
+          "Must document all compensating controls currently in place.",
+          "Requires explicit leadership approval — not infosec-only."
+        ]
+      },
+      "inputs_required": [
+        "business_owner",
+        "clinical_owner",
+        "compensating_controls_in_place",
+        "review_date"
+      ],
+      "steps": [
+        {
+          "role": "infosec",
+          "action": "Draft risk acceptance with residual risk statement",
+          "details": "Document the vulnerability, why remediation is not currently feasible, what compensating controls are active, and the residual risk level. Propose a review date."
+        },
+        {
+          "role": "clinical_ops",
+          "action": "Acknowledge patient care considerations",
+          "details": "Clinical operations reviews and acknowledges the risk acceptance, confirming awareness of patient care implications and any workflow changes needed as compensating controls."
+        },
+        {
+          "role": "infosec",
+          "action": "Obtain leadership approval with review date and conditions",
+          "details": "Escalate to appropriate leadership (CISO, CIO, or clinical leadership per policy). Capture approval in ticketing system with review date and trigger conditions for re-evaluation."
+        }
+      ],
+      "verification": {
+        "evidence": [
+          "Signed or ticket-approved risk acceptance document",
+          "Review date recorded in tracking system",
+          "Compensating controls documented with owner and expiry"
+        ]
+      },
+      "rollback": {
+        "steps": [
+          "Re-open the remediation packet when a viable patch or mitigation becomes available.",
+          "Rescind the risk acceptance and transition to an active remediation pattern."
+        ]
+      },
+      "safety_notes": [
+        "Risk acceptance must be time-bound — never indefinite without re-review.",
+        "Identify trigger conditions that would require immediate re-evaluation (e.g., active exploitation confirmed).",
+        "Compensating controls must be documented and verified as active at time of acceptance."
+      ]
+    },
+
+    {
+      "id": "COMMUNICATION_CLINICAL_DOWNTIME_NOTICE",
+      "name": "Clinical Downtime Notice",
+      "category": "communication",
+      "severity_fit": ["critical", "high", "medium"],
+      "when_to_use": {
+        "conditions": [
+          "Any change requiring device downtime or workflow changes for clinical systems.",
+          "Security remediation will affect clinical staff workflows or patient care delivery."
+        ],
+        "constraints": [
+          "Patient care takes priority over implementation speed.",
+          "Emergency changes require explicit clinical and leadership approval.",
+          "Fallback procedures must be documented before downtime begins."
+        ]
+      },
+      "inputs_required": [
+        "affected_modality_or_system",
+        "downtime_window",
+        "fallback_procedures",
+        "stakeholder_contacts"
+      ],
+      "steps": [
+        {
+          "role": "htm_ce",
+          "action": "Communicate planned downtime and workflow changes to clinical staff",
+          "details": "Draft and distribute downtime notice to affected clinical departments. Include: system/device affected, scheduled window, expected duration, fallback procedures, and contact for questions."
+        },
+        {
+          "role": "clinical_ops",
+          "action": "Confirm fallback procedures and acknowledge notice",
+          "details": "Clinical operations confirms receipt, acknowledges fallback workflows, and provides sign-off that the scheduled window is acceptable for patient care operations."
+        },
+        {
+          "role": "infosec",
+          "action": "Include security rationale and urgency level",
+          "details": "Add security context to the notice: vulnerability severity, exploitation status, and why the change cannot be further delayed. Helps clinical leadership make informed decisions."
+        },
+        {
+          "role": "netops",
+          "action": "Confirm technical readiness before window",
+          "details": "Verify all technical prerequisites are in place: test environment validated, rollback procedure ready, team on standby. Confirm go/no-go with change coordinator."
+        }
+      ],
+      "verification": {
+        "evidence": [
+          "Downtime notice sent with acknowledgement receipts from clinical stakeholders",
+          "Downtime window recorded in change management system",
+          "Post-change validation signoff confirming device and workflow restoration"
+        ]
+      },
+      "rollback": {
+        "steps": [
+          "Reschedule the change if clinical operations cannot support the planned window.",
+          "Notify all stakeholders of the reschedule and updated timeline.",
+          "Re-confirm fallback procedures remain adequate for the extended interim period."
+        ]
+      },
+      "safety_notes": [
+        "Patient care always takes priority over implementation speed.",
+        "Use emergency change procedures only with explicit clinical and leadership approval.",
+        "Ensure fallback (paper-based, manual) procedures are documented and practiced before the window."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -m json.tool)",
+      "Bash(python -c \":*)",
+      "Bash(python:*)",
+      "Bash(python -m pytest tests/test_score_phase1.py tests/test_score_alerts.py -v --rootdir=.)",
+      "Bash(pip install:*)",
+      "Bash(python -m pytest tests/test_score_phase1.py tests/test_score_alerts.py -v)",
+      "Bash(source .venv/Scripts/activate)",
+      "Bash(source .venv/bin/activate)",
+      "Bash(python -m pytest tests/test_score_keywords.py -v)",
+      "Bash(python -m pytest tests/test_score_keywords.py tests/test_score_phase1.py tests/test_score_alerts.py -v)",
+      "Bash(python -m pytest tests/test_score_healthcare.py -v)",
+      "Bash(python -m pytest tests/test_score_phase1.py tests/test_score_alerts.py tests/test_score_keywords.py tests/test_score_healthcare.py -v)",
+      "Bash(python -c \"from advisoryops.sources_config import load_sources_config; from pathlib import Path; cfg=load_sources_config\\(Path\\(''configs/sources.json''\\)\\); s=cfg.get\\(''claroty-team82''\\); print\\(s.entry_url if s else ''NOT FOUND''\\)\")",
+      "Bash(python -m pytest tests/test_sources_config.py -q)",
+      "Bash(python -m pytest tests/ -v)",
+      "Bash(ls src/advisoryops/*.py)",
+      "Bash(advisoryops community-build:*)",
+      "Bash(mkdir:*)",
+      "Bash(python -c \"import sys; sys.argv = [''advisoryops'', ''community-build'', ''--set-id'', ''expanded_pass1'', ''--refresh'', ''--refresh-limit'', ''10'', ''--out-root-community'', ''outputs/community_public_expanded'']; from advisoryops.cli import main; main\\(\\)\")"
+    ]
+  }
+}

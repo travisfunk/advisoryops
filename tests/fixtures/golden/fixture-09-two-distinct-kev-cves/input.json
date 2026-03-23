@@ -1,0 +1,22 @@
+[
+  {
+    "fetched_at": "2026-02-21T10:59:38.181766+00:00",
+    "guid": "CVE-2025-49113",
+    "link": "https://nvd.nist.gov/vuln/detail/CVE-2025-49113",
+    "published_date": "2026-02-20",
+    "signal_id": "9d2aa8c83dece2b8fc4d05664bdff17fea1c7d9ba12d7eb245a298968e378b4a",
+    "source": "cisa-kev-csv",
+    "summary": "RoundCube Webmail contains a deserialization of untrusted data vulnerability that allows remote code execution by authenticated users because the _from parameter in a URL is not validated in program/actions/settings/upload.php. | Roundcube Webmail",
+    "title": "CVE-2025-49113"
+  },
+  {
+    "fetched_at": "2026-02-21T10:59:38.181766+00:00",
+    "guid": "CVE-2025-68461",
+    "link": "https://nvd.nist.gov/vuln/detail/CVE-2025-68461",
+    "published_date": "2026-02-20",
+    "signal_id": "ee0c9288bb7ff67d10aa5bac8e474869c2f31cd47c409cba62951e7683c92219",
+    "source": "cisa-kev-csv",
+    "summary": "RoundCube Webmail contains a cross-site scripting vulnerability via the animate tag in an SVG document. | Roundcube Webmail",
+    "title": "CVE-2025-68461"
+  }
+]

@@ -1,4 +1,31 @@
-﻿from __future__ import annotations
+﻿"""Stage 3 of the pipeline: deterministic exploit/impact tagging.
+
+Reads correlated Issues and annotates each with two structured tag groups:
+
+exploit tags (boolean flags):
+    kev                  — issue originates from or references the CISA KEV catalog
+    active_exploitation  — text mentions "actively exploited" / "active exploitation"
+    poc                  — "proof of concept" or "PoC" mentioned
+    ransomware           — "ransomware" mentioned
+
+impact tags (boolean flags):
+    rce        — "remote code execution" / "code execution" / "RCE"
+    priv_esc   — "privilege escalation" / "priv esc"
+    auth_bypass — "authentication bypass" / "auth bypass"
+    data_exfil  — "data exfiltration" / "exfiltration"
+
+All tagging is **deterministic keyword heuristics** — no AI, no API calls.
+This keeps the tag stage free and fast; the score stage handles weighted scoring.
+
+A simple overall confidence score is calculated for each issue:
+    base 0.4 + CVE present +0.2 + KEV +0.3 + active exploitation +0.1
+    (clamped to [0.0, 1.0])
+
+Outputs:
+  outputs/tags/tags.jsonl   — one tag object per issue (sorted by issue_id)
+  outputs/tags/meta.json    — run metadata + schema documentation
+"""
+from __future__ import annotations
 
 import json
 import re

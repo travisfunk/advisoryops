@@ -1,3 +1,26 @@
+"""AdvisoryOps command-line interface.
+
+This module is the single entry point for all CLI subcommands. It wires argparse
+argument definitions to the underlying pipeline functions and is installed as the
+``advisoryops`` console script via pyproject.toml / setup.cfg.
+
+Pipeline subcommands (in pipeline order):
+  discover        — fetch + parse one source feed → outputs/discover/<source>/
+  ingest          — download and normalize a URL/text/PDF advisory
+  extract         — AI extraction of an ingested advisory → AdvisoryRecord JSON
+  source-run      — discover + optional ingest in one step
+  correlate       — group discover outputs into deduplicated Issues
+  tag             — deterministic exploit/impact tagging of Issues
+  score           — priority scoring of Issues (v1 keyword or v2 healthcare-aware)
+  recommend       — AI pattern selection → remediation packet (JSON/MD/CSV)
+  evaluate        — run golden fixture evaluation harness
+  community-build — end-to-end public feed builder (discover→correlate→score)
+
+Usage::
+
+    advisoryops discover --source cisa-icsma --limit 20
+    advisoryops community-build --set-id gold_pass1 --out-root-community outputs/community_public
+"""
 from __future__ import annotations
 
 import argparse
@@ -9,6 +32,8 @@ from .ingest import ingest_pdf_file, ingest_text_file, ingest_url
 from .source_run import source_run
 from .correlate import correlate
 from .community_build import build_community_feed
+from .product_resolver import resolve_product
+from .advisory_qa import answer_question
 
 
 def cmd_discover(args: argparse.Namespace) -> int:
@@ -84,6 +109,8 @@ def cmd_score(args) -> int:
         out_root_scored=args.out_root_scored,
         min_priority=args.min_priority,
         top=int(args.top),
+        scoring_version=args.scoring_version,
+        ai_score=args.ai_score,
     )
 
     print("")
@@ -105,6 +132,7 @@ def cmd_correlate(args) -> int:
     kwargs = {
         "out_root_discover": args.out_root_discover,
         "sources": sources or None,
+        "ai_merge": args.ai_merge,
     }
 
     sig = inspect.signature(correlate)
@@ -124,6 +152,87 @@ def cmd_correlate(args) -> int:
     print("")
     print(f"Correlate result: {result}")
     return 0
+def cmd_evaluate(args) -> int:
+    """
+    Run golden fixture evaluation and write summary reports.
+    """
+    from .eval_harness import evaluate
+
+    summary_json, summary_md, fixtures_out = evaluate(
+        fixtures_dir=args.fixtures,
+        out_dir=args.out,
+    )
+
+    print("")
+    print(f"Wrote summary JSON: {summary_json}")
+    print(f"Wrote summary MD:   {summary_md}")
+    print(f"Wrote per-fixture:  {fixtures_out}/")
+    return 0
+
+
+def cmd_recommend(args) -> int:
+    """
+    Generate a remediation packet for a scored issue and export it.
+    """
+    import json as _json
+    from pathlib import Path as _Path
+    from .playbook import load_playbook
+    from .recommend import recommend_mitigations
+    from .packet_export import export_json, export_markdown, export_csv_tasks, _safe_stem
+
+    # ── Load issue ────────────────────────────────────────────────────────────
+    in_issues = _Path(args.in_issues)
+    if not in_issues.exists():
+        raise SystemExit(f"Issues file not found: {in_issues}")
+
+    issue = None
+    with in_issues.open(encoding="utf-8") as fh:
+        for line in fh:
+            line = line.strip()
+            if not line:
+                continue
+            obj = _json.loads(line)
+            if obj.get("issue_id") == args.issue_id:
+                issue = obj
+                break
+
+    if issue is None:
+        raise SystemExit(
+            f"Issue '{args.issue_id}' not found in {in_issues}.\n"
+            f"Use --in-issues to specify a different file."
+        )
+
+    # ── Recommend ─────────────────────────────────────────────────────────────
+    pb = load_playbook()
+    packet = recommend_mitigations(
+        issue,
+        pb,
+        model=args.model,
+        no_cache=args.no_cache,
+    )
+
+    # ── Export ────────────────────────────────────────────────────────────────
+    out_dir = _Path(args.out)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    stem = _safe_stem(packet.issue_id)
+
+    fmt = args.format.lower()
+    if fmt == "json":
+        out_path = export_json(packet, out_dir / f"{stem}_packet.json")
+    elif fmt == "md":
+        out_path = export_markdown(packet, pb, out_dir / f"{stem}_packet.md")
+    elif fmt == "csv":
+        out_path = export_csv_tasks(packet, pb, out_dir / f"{stem}_packet.csv")
+    else:
+        raise SystemExit(f"Unknown format: {fmt!r}")
+
+    print(f"Wrote {fmt.upper()} packet: {out_path}")
+    print(f"  Issue:    {packet.issue_id}")
+    print(f"  Patterns: {[r.pattern_id for r in packet.recommended_patterns]}")
+    print(f"  Cached:   {packet.from_cache}")
+    return 0
+
+
 def cmd_community_build(args) -> int:
     """
     Build the first combined community/public feed from the validated source set.
@@ -141,6 +250,7 @@ def cmd_community_build(args) -> int:
         min_priority=args.min_priority,
         top=int(args.top),
         latest=int(args.latest),
+        recommend=args.recommend,
     )
 
     print("")
@@ -148,6 +258,73 @@ def cmd_community_build(args) -> int:
     print(f"Wrote public alerts: {out_alerts}")
     print(f"Wrote community meta: {out_meta}")
     return 0
+
+def cmd_ask(args: argparse.Namespace) -> int:
+    """Answer a natural-language question against the advisory corpus."""
+    import json as _json
+
+    response = answer_question(
+        args.question,
+        issues_path=args.issues_path,
+        top_k=args.top_k,
+        model=args.model,
+    )
+
+    if args.json:
+        print(_json.dumps(response, indent=2, ensure_ascii=False))
+        return 0
+
+    print(f"Question: {response['question']}")
+    print(f"Answer: {response['answer']}")
+    print()
+
+    issues = response.get("supporting_issues") or []
+    if issues:
+        print("Supporting issues:")
+        for si in issues:
+            pri = si.get("priority") or "?"
+            print(f"  [{pri}] {si['issue_id']}: {si['title']}")
+        print()
+
+    gaps = response.get("evidence_gaps") or []
+    if gaps:
+        print("Evidence gaps: " + "; ".join(gaps))
+    else:
+        print("Evidence gaps: (none)")
+
+    return 0
+
+
+def cmd_lookup(args: argparse.Namespace) -> int:
+    """Look up issues by product name / nickname."""
+    import json as _json
+
+    results = resolve_product(
+        args.product,
+        issues_path=args.issues_path,
+        top=args.top,
+    )
+
+    if not results:
+        print(f"No matches found for: {args.product!r}")
+        return 0
+
+    print(f"Found {len(results)} match(es) for {args.product!r}:\n")
+    for r in results:
+        sources = ", ".join(r.get("sources") or []) or "(none)"
+        print(
+            f"  [{r['priority'] or '?':>2}] score={r['score']:>4}  "
+            f"{r['issue_id']}  (matched: {r['match_field']})"
+        )
+        print(f"        {r['title']}")
+        print(f"        sources: {sources}")
+        print()
+
+    if args.json:
+        print(_json.dumps(results, indent=2, ensure_ascii=False))
+
+    return 0
+
 
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(prog="advisoryops", description="AdvisoryOps MVP CLI")
@@ -188,6 +365,8 @@ def build_parser() -> argparse.ArgumentParser:
     p_corr.add_argument("--sources", default="", help="Comma-separated list of source_ids (default: all under outputs/discover)")
     p_corr.add_argument("--out-root-discover", default="outputs/discover")
     p_corr.add_argument("--out-root-correlate", default="outputs/correlate")
+    p_corr.add_argument("--ai-merge", action="store_true", dest="ai_merge",
+                        help="Run AI-assisted merge pass after deterministic correlation (requires OPENAI_API_KEY)")
     p_corr.set_defaults(fn=cmd_correlate)
 
 
@@ -196,6 +375,9 @@ def build_parser() -> argparse.ArgumentParser:
     p_score.add_argument("--out-root-scored", default="outputs/scored", help="Output root for scored artifacts (default: outputs/scored)")
     p_score.add_argument("--min-priority", default="P1", choices=["P0","P1","P2","P3"], help="Minimum priority to include in alerts.jsonl (default: P1)")
     p_score.add_argument("--top", type=int, default=50, help="Maximum number of alerts to write (0 = no limit; default: 50)")
+    p_score.add_argument("--scoring-version", default="v2", choices=["v1", "v2"], dest="scoring_version", help="Scoring algorithm version: v2 (default, healthcare-aware) or v1 (legacy keyword-only)")
+    p_score.add_argument("--ai-score", action="store_true", dest="ai_score",
+                         help="Run AI healthcare classification for issues without deterministic device/clinical signals (requires OPENAI_API_KEY)")
     p_score.set_defaults(fn=cmd_score)
 
 
@@ -203,6 +385,25 @@ def build_parser() -> argparse.ArgumentParser:
     p_tag.add_argument("--in-issues", default="outputs/correlate/issues.jsonl", help="Input issues JSONL (default: outputs/correlate/issues.jsonl)")
     p_tag.add_argument("--out-root-tags", default="outputs/tags", help="Output root for tags artifacts (default: outputs/tags)")
     p_tag.set_defaults(fn=cmd_tag)
+
+    p_eval = sub.add_parser("evaluate", help="Run golden fixture evaluation harness (writes outputs/eval/)")
+    p_eval.add_argument("--fixtures", default="tests/fixtures/golden",
+                        help="Golden fixtures directory (default: tests/fixtures/golden)")
+    p_eval.add_argument("--out", default="outputs/eval",
+                        help="Output directory for reports (default: outputs/eval)")
+    p_eval.set_defaults(fn=cmd_evaluate)
+
+    p_rec = sub.add_parser("recommend", help="Generate a remediation packet for a scored issue")
+    p_rec.add_argument("--issue-id", dest="issue_id", required=True, help="Issue ID to look up (e.g. CVE-2024-1234)")
+    p_rec.add_argument("--in-issues", dest="in_issues", default="outputs/scored/issues_scored.jsonl",
+                       help="JSONL file to search for the issue (default: outputs/scored/issues_scored.jsonl)")
+    p_rec.add_argument("--format", default="json", choices=["json", "md", "csv"],
+                       help="Output format: json (default), md (markdown), or csv")
+    p_rec.add_argument("--out", default="outputs/packets", help="Output directory (default: outputs/packets)")
+    p_rec.add_argument("--model", default="gpt-4o-mini", help="AI model to use (default: gpt-4o-mini)")
+    p_rec.add_argument("--no-cache", dest="no_cache", action="store_true",
+                       help="Bypass AI response cache (always call API)")
+    p_rec.set_defaults(fn=cmd_recommend)
 
     p_comm = sub.add_parser("community-build", help="Build the combined community/public feed from the validated source manifest")
     p_comm.add_argument("--set-id", default="gold_pass1", help="Validated set id from configs/community_public_sources.json (default: gold_pass1)")
@@ -217,7 +418,67 @@ def build_parser() -> argparse.ArgumentParser:
     p_comm.add_argument("--min-priority", default="P2", choices=["P0", "P1", "P2", "P3"], help="Minimum priority to include in alerts_public.jsonl (default: P2)")
     p_comm.add_argument("--top", type=int, default=100, help="Maximum number of alert rows to keep (0 = no cap; default: 100)")
     p_comm.add_argument("--latest", type=int, default=50, help="Maximum number of rows to write to feed_latest.json (default: 50)")
+    p_comm.add_argument("--recommend", action="store_true",
+                        help="Generate JSON remediation packets for P0/P1 alerts (requires OPENAI_API_KEY)")
     p_comm.set_defaults(fn=cmd_community_build)
+
+    p_ask = sub.add_parser(
+        "ask",
+        help="Ask a natural-language question against the advisory corpus",
+    )
+    p_ask.add_argument(
+        "--question", required=True,
+        help='Question to answer (e.g. "Which infusion pumps have critical vulnerabilities?")',
+    )
+    p_ask.add_argument(
+        "--issues-path",
+        dest="issues_path",
+        default="outputs/community_public_expanded/correlate/issues.jsonl",
+        help=(
+            "Path to the correlated issues JSONL file "
+            "(default: outputs/community_public_expanded/correlate/issues.jsonl)"
+        ),
+    )
+    p_ask.add_argument(
+        "--top-k", dest="top_k", type=int, default=5,
+        help="Number of issues to use as context for the AI answer (default: 5)",
+    )
+    p_ask.add_argument(
+        "--model", default="gpt-4o-mini",
+        help="OpenAI model to use (default: gpt-4o-mini)",
+    )
+    p_ask.add_argument(
+        "--json", action="store_true",
+        help="Output the full structured JSON response instead of human-readable format",
+    )
+    p_ask.set_defaults(fn=cmd_ask)
+
+    p_lookup = sub.add_parser(
+        "lookup",
+        help="Look up issues by product name or nickname",
+    )
+    p_lookup.add_argument(
+        "--product", required=True,
+        help='Product name or nickname to search for (e.g. "Sigma Spectrum")',
+    )
+    p_lookup.add_argument(
+        "--issues-path",
+        dest="issues_path",
+        default="outputs/community_public_expanded/correlate/issues.jsonl",
+        help=(
+            "Path to the correlated issues JSONL file "
+            "(default: outputs/community_public_expanded/correlate/issues.jsonl)"
+        ),
+    )
+    p_lookup.add_argument(
+        "--top", type=int, default=20,
+        help="Maximum number of results to return (default: 20)",
+    )
+    p_lookup.add_argument(
+        "--json", action="store_true",
+        help="Also print results as a JSON array after the human-readable summary",
+    )
+    p_lookup.set_defaults(fn=cmd_lookup)
 
     return p
 

@@ -1,3 +1,33 @@
+"""Community source set manifest loader.
+
+Parses ``configs/community_public_sources.json`` into typed dataclasses.
+This manifest defines the *validated* source sets used by the community build
+pipeline, as distinct from the full ``configs/sources.json`` which lists all
+85+ configured sources (most of which may be disabled or experimental).
+
+Key concepts
+------------
+* **validated_sets** — named groups of sources that have been smoke-tested and
+  confirmed to produce useful, parseable output.  Each set has a ``set_id``
+  (e.g. ``"gold_pass1"``), a human-readable name, description, and list of
+  ``source_ids`` that must exist in ``sources.json``.
+* **candidate_sources** — sources under evaluation; listed for transparency but
+  not included in the default build.
+
+Validation at load time:
+  - All ``source_ids`` referenced by validated sets and candidate_sources must
+    exist in ``sources.json`` (cross-validated via ``load_sources_config``).
+  - Duplicate ``set_id`` values raise ``ValueError``.
+  - Any set with an empty ``source_ids`` list raises ``ValueError``.
+
+Typical usage::
+
+    from advisoryops.community_manifest import load_community_manifest
+
+    manifest = load_community_manifest()
+    source_set = manifest.get_set("gold_pass1")
+    print(source_set.source_ids)  # list of validated source IDs
+"""
 from __future__ import annotations
 
 import json

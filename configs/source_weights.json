@@ -1,0 +1,131 @@
+{
+  "schema_version": 2,
+  "description": "Source authority tiers for healthcare-aware scoring. Higher tier weight = more authoritative source. Used in score_issue_v2() to scale the source-authority scoring component.",
+  "base_authority_points": 30,
+  "healthcare_tier1_medical_bonus": 50,
+  "tiers": {
+    "tier_1": {
+      "weight": 1.0,
+      "description": "Primary authoritative sources: government advisories, regulatory agencies, and primary health/security datasets",
+      "sources": [
+        "cisa-icsma",
+        "cisa-icsa",
+        "cisa-kev-json",
+        "cisa-kev-csv",
+        "fda-medwatch",
+        "openfda-device-recalls",
+        "openfda-device-events",
+        "certcc-vulnotes",
+        "health-canada-recalls",
+        "bsi-news",
+        "nhs-digital-cyber"
+      ]
+    },
+    "tier_2": {
+      "weight": 0.85,
+      "description": "Secondary authoritative sources: vendor PSIRTs, national CERTs, standards bodies, and curated vulnerability databases",
+      "sources": [
+        "abb-psirt",
+        "abb-alerts-html",
+        "se-security-notifications",
+        "msrc-blog",
+        "ncsc-uk",
+        "nist-cyber-insights",
+        "cisa-ncas-alerts",
+        "cisa-ncas-analysis",
+        "cisa-ncas-current-activity",
+        "imdrf-consultations",
+        "imdrf-documents",
+        "imdrf-news",
+        "zdi-published",
+        "zdi-upcoming",
+        "nvd-cve-api",
+        "cis-advisories",
+        "osv-dev-api",
+        "circl-misp"
+      ]
+    },
+    "tier_3": {
+      "weight": 0.70,
+      "description": "Specialized security research: IoMT-focused vendors, threat intelligence firms, and academic research",
+      "sources": [
+        "claroty-team82",
+        "armis-labs",
+        "asimily-blog",
+        "google-project-zero",
+        "checkpoint-research",
+        "talos-intelligence",
+        "mandiant-blog",
+        "crowdstrike-blog",
+        "tenable-newest",
+        "fortified-health-security",
+        "deepstrike-blog",
+        "forescout-vedere",
+        "shadowserver-reports",
+        "levelblue-labs"
+      ]
+    },
+    "tier_4": {
+      "weight": 0.50,
+      "description": "Industry news and general security media",
+      "sources": [
+        "dark-reading",
+        "krebs-on-security",
+        "wired-security",
+        "security-magazine-cyber",
+        "healthcare-it-news-security",
+        "hipaa-guide-cyber",
+        "hit-consultant-cyber",
+        "cyberscoop-healthcare",
+        "fierce-healthcare",
+        "medtech-intelligence",
+        "bioworld-digital-health",
+        "beckers-hospital-cyber",
+        "compliance-junction-cyber",
+        "cshub-attacks",
+        "cshub-malware",
+        "zdnet-security",
+        "microsoft-security-blog",
+        "sans-isc",
+        "infosec-malware-analysis",
+        "infosec-threat-intel",
+        "alienvault-otx",
+        "wiz-threat-landscape",
+        "threatpost"
+      ]
+    },
+    "tier_5": {
+      "weight": 0.35,
+      "description": "Threat intelligence feeds and IP/CVE blocklists",
+      "sources": [
+        "urlhaus-recent",
+        "threatfox-iocs",
+        "ssl-blacklist",
+        "feodo-tracker",
+        "binary-defense-banlist",
+        "ellio-ip-feed",
+        "sans-block-ips",
+        "bambenek-c2",
+        "cyber-cure-ips",
+        "ecrimelabs-metasploit",
+        "epss-data",
+        "epss-api",
+        "vuldb-cti-api",
+        "cvefeed-rss",
+        "virustotal-api",
+        "vulners-api",
+        "malwarebazaar-recent",
+        "seclists-rss",
+        "emerging-threats"
+      ]
+    }
+  },
+  "healthcare_tier1_medical_sources": [
+    "cisa-icsma",
+    "fda-medwatch",
+    "openfda-device-recalls",
+    "openfda-device-events",
+    "health-canada-recalls",
+    "nhs-digital-cyber"
+  ]
+}

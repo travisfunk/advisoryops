@@ -1,7 +1,43 @@
+"""Stage 1 of the AdvisoryOps pipeline: feed discovery.
+
+Fetches a single configured source feed, parses it into a normalized signal
+list, applies keyword / URL filters, tracks seen GUIDs in a state file so only
+new items are surfaced on subsequent runs, and writes output artifacts.
+
+Output artifacts (all under ``outputs/discover/<source_id>/``)::
+
+    raw_feed.{xml,json,csv}  — raw bytes exactly as received (for debugging)
+    feed.json                — all items (up to --limit) as a JSON object
+    new_items.json           — subset of items not seen before (state-tracked)
+    items.jsonl              — same as feed.json items, one JSON object per line
+    new_items.jsonl          — same as new_items.json items, JSONL format
+    state.json               — {"seen": {guid/signal_id: fetched_at, ...}}
+    meta.json                — run metadata + counts + error list
+
+Normalized signal shape (every item regardless of source format)::
+
+    {
+      "source":         "<source_id>",
+      "guid":           "<unique id from feed>",
+      "title":          "<item title>",
+      "link":           "<advisory URL>",
+      "published_date": "<date string from feed>",
+      "summary":        "<description / short text>",
+      "fetched_at":     "<ISO-8601 UTC>",
+      "signal_id":      "<SHA-256 of source_id|guid — added after parse>"
+    }
+
+Supported page types (from sources_config.py):
+    rss_atom  — standard RSS 2.0 and Atom 1.0 feeds
+    json_feed — JSON feeds (CISA KEV, openFDA, generic)
+    csv_feed  — CSV exports (CISA KEV CSV, EPSS percentile feed, etc.)
+"""
 from __future__ import annotations
 
+import gzip
 import json
 import hashlib
+import os
 import re
 import time
 import urllib.request
@@ -40,12 +76,21 @@ def _write_jsonl(path: Path, items: list) -> None:
     path.write_text("\n".join(lines) + ("\n" if lines else ""), encoding="utf-8")
 
 
-def _http_get_bytes(url: str, *, timeout_s: int, retries: int) -> bytes:
+def _http_get_bytes(
+    url: str,
+    *,
+    timeout_s: int,
+    retries: int,
+    extra_headers: Optional[Dict[str, str]] = None,
+) -> bytes:
     last_err: Optional[Exception] = None
     headers = {
         "User-Agent": "advisoryops/1.1 (+https://github.com/travisfunk/advisoryops)",
         "Accept": "*/*",
     }
+    if extra_headers:
+        headers.update(extra_headers)
+    # retries+2: attempt 1 is the initial try; attempts 2..retries+1 are retries
     for attempt in range(1, retries + 2):
         try:
             req = urllib.request.Request(url, headers=headers, method="GET")
@@ -68,6 +113,29 @@ def _compile_regex(pat: Optional[str]) -> Optional[re.Pattern]:
 
 def _text(v: Any) -> str:
     return str(v or "").strip()
+
+
+_html_script_style_re = re.compile(r"(?is)<(script|style).*?>.*?</\1>")
+_html_tag_re = re.compile(r"(?s)<[^>]+>")
+_html_ws_re = re.compile(r"[ \t\f\v]+")
+
+
+def _strip_html(html: str) -> str:
+    """Strip HTML tags from a string, returning plain text."""
+    if not html or "<" not in html:
+        return html
+    from html import unescape
+    text = _html_script_style_re.sub(" ", html)
+    text = re.sub(r"(?is)<br\s*/?>", " ", text)
+    text = re.sub(r"(?is)</(p|div|li|h[1-6])\s*>", " ", text)
+    text = _html_tag_re.sub(" ", text)
+    text = unescape(text)
+    lines = []
+    for line in text.splitlines():
+        line = _html_ws_re.sub(" ", line).strip()
+        if line:
+            lines.append(line)
+    return " ".join(lines).strip()
 
 
 def _apply_filters(item: Dict[str, Any], *, src: SourceDef) -> bool:
@@ -109,6 +177,35 @@ def _apply_filters(item: Dict[str, Any], *, src: SourceDef) -> bool:
     return True
 
 
+# Common RSS namespace prefixes that feeds often use without declaring them.
+_COMMON_NS: Dict[str, str] = {
+    "atom":    "http://www.w3.org/2005/Atom",
+    "dc":      "http://purl.org/dc/elements/1.1/",
+    "content": "http://purl.org/rss/1.0/modules/content/",
+    "slash":   "http://purl.org/rss/1.0/modules/slash/",
+    "sy":      "http://purl.org/rss/1.0/modules/syndication/",
+    "geo":     "http://www.w3.org/2003/01/geo/wgs84_pos#",
+    "wfw":     "http://wellformedweb.org/CommentAPI/",
+    "media":   "http://search.yahoo.com/mrss/",
+    "itunes":  "http://www.itunes.com/dtds/podcast-1.0.dtd",
+}
+
+
+def _inject_missing_ns(xml_bytes: bytes) -> bytes:
+    """Inject common namespace declarations for undeclared prefixes (e.g. atom:link in RSS)."""
+    text = xml_bytes.decode("utf-8", errors="replace")
+    injections = []
+    for prefix, uri in _COMMON_NS.items():
+        if f"{prefix}:" in text and f"xmlns:{prefix}" not in text:
+            injections.append(f'xmlns:{prefix}="{uri}"')
+    if not injections:
+        return xml_bytes
+    inject_str = " " + " ".join(injections)
+    # Insert after the root element's opening tag name
+    fixed = re.sub(r"(<(?:rss|feed|RDF)\b)", r"\1" + inject_str, text, count=1)
+    return fixed.encode("utf-8")
+
+
 def _parse_rss_atom(xml_bytes: bytes, *, source_id: str, fetched_at: str) -> List[Dict[str, Any]]:
     """
     stdlib RSS/Atom parse (good enough for CISA, CERT/CC, most feeds)
@@ -117,6 +214,15 @@ def _parse_rss_atom(xml_bytes: bytes, *, source_id: str, fetched_at: str) -> Lis
     items: List[Dict[str, Any]] = []
     try:
         root = ET.fromstring(xml_bytes)
+    except ET.ParseError as e:
+        if "unbound prefix" in str(e).lower() or "namespace" in str(e).lower():
+            # Retry with injected namespace declarations
+            try:
+                root = ET.fromstring(_inject_missing_ns(xml_bytes))
+            except Exception as e2:
+                raise RuntimeError(f"Invalid XML in feed: {e2}")
+        else:
+            raise RuntimeError(f"Invalid XML in feed: {e}")
     except Exception as e:
         raise RuntimeError(f"Invalid XML in feed: {e}")
 
@@ -136,7 +242,7 @@ def _parse_rss_atom(xml_bytes: bytes, *, source_id: str, fetched_at: str) -> Lis
             link = _find_text(it, ["link"])
             guid = _find_text(it, ["guid"]) or link or title
             pub = _find_text(it, ["pubDate", "date"])
-            desc = _find_text(it, ["description"])
+            desc = _strip_html(_find_text(it, ["description"]))
             items.append(
                 {
                     "source": source_id,
@@ -170,7 +276,7 @@ def _parse_rss_atom(xml_bytes: bytes, *, source_id: str, fetched_at: str) -> Lis
                     pub = child.text.strip()
             elif tag in ("summary", "content") and child.text:
                 if not summary:
-                    summary = child.text.strip()
+                    summary = _strip_html(child.text.strip())
             elif tag == "link":
                 href = child.attrib.get("href")
                 rel = child.attrib.get("rel", "alternate")
@@ -241,23 +347,43 @@ def discover(
     items_jsonl_path = None
     new_items_jsonl_path = None
 
+    # Build optional API key header from source config + environment
+    extra_headers: Dict[str, str] = {}
+    if src.api_key_env and src.api_key_header:
+        key_value = os.environ.get(src.api_key_env, "")
+        if key_value:
+            extra_headers[src.api_key_header] = key_value
+
     try:
         if src.page_type == "rss_atom":
             raw_ext = "xml"
-            raw_bytes = _http_get_bytes(src.entry_url, timeout_s=src.timeout_s, retries=src.retries)
+            raw_bytes = _http_get_bytes(
+                src.entry_url, timeout_s=src.timeout_s, retries=src.retries,
+                extra_headers=extra_headers,
+            )
             items = _parse_rss_atom(raw_bytes, source_id=source_id, fetched_at=fetched_at)
 
         elif src.page_type == "json_feed":
             raw_ext = "json"
-            raw_bytes = _http_get_bytes(src.entry_url, timeout_s=src.timeout_s, retries=src.retries)
+            raw_bytes = _http_get_bytes(
+                src.entry_url, timeout_s=src.timeout_s, retries=src.retries,
+                extra_headers=extra_headers,
+            )
             text = raw_bytes.decode("utf-8", errors="replace")
             obj = json.loads(text)
             items = parse_json_feed(obj, source_id=source_id, fetched_at=fetched_at)
 
         elif src.page_type == "csv_feed":
             raw_ext = "csv"
-            raw_bytes = _http_get_bytes(src.entry_url, timeout_s=src.timeout_s, retries=src.retries)
-            text = raw_bytes.decode("utf-8", errors="replace")
+            raw_bytes = _http_get_bytes(
+                src.entry_url, timeout_s=src.timeout_s, retries=src.retries,
+                extra_headers=extra_headers,
+            )
+            # Auto-detect gzip magic bytes and decompress transparently
+            if raw_bytes[:2] == b"\x1f\x8b":
+                text = gzip.decompress(raw_bytes).decode("utf-8", errors="replace")
+            else:
+                text = raw_bytes.decode("utf-8", errors="replace")
             items = parse_csv_feed(text, source_id=source_id, fetched_at=fetched_at)
 
         else:
@@ -281,13 +407,16 @@ def discover(
         for it in items:
             _ensure_signal_id(it, source_id=source_id)
 
-        # Load / update state for new-items detection
+        # Load / update state for new-items detection.
+        # The "seen" dict maps guid/signal_id → fetched_at timestamp.
+        # Items whose guid OR signal_id appear in seen are considered old.
         state_path = out_dir / "state.json"
         state = {"source": source_id, "seen": {}}
         if state_path.exists():
             try:
                 state = json.loads(state_path.read_text(encoding="utf-8"))
             except Exception:
+                # Corrupted state file — start fresh rather than crashing
                 state = {"source": source_id, "seen": {}}
 
         seen = state.get("seen", {}) if isinstance(state.get("seen", {}), dict) else {}

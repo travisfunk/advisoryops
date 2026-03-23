@@ -1,3 +1,31 @@
+"""UTF-8 mojibake detection and repair for advisory text.
+
+Advisory sources — particularly CISA ICS pages — frequently contain text that
+was originally encoded in Windows-1252 (cp1252) but was mis-decoded as Latin-1
+or re-encoded through multiple layers of HTTP transcoding.  The result is
+sequences like "â€™" (which should be "'") or "â€œ" (which should be '"').
+
+This module provides two public functions:
+
+clean_mojibake_text(text)
+    Repairs a single string:
+    1. Apply a table of known complete mojibake sequences → correct characters.
+    2. If artifact markers (specific Unicode chars) remain, attempt a
+       cp1252 → UTF-8 byte-level round-trip and accept it only if it reduces
+       the artifact count without dropping more than 15% of content.
+    3. Strip NBSP (U+00A0) and stray Â (U+00C2) artifacts.
+
+clean_mojibake_value(value)
+    Dispatcher for ``str | list | Any``:
+    - str   → clean_mojibake_text
+    - list  → clean each string element, drop empty results
+    - other → return unchanged
+
+Design note: the repair is intentionally conservative.  A generic "replace every
+unrecognised byte" approach produces broken output for legitimately multi-lingual
+text (e.g. Japanese vendor advisories).  Only complete, known-bad sequences are
+replaced; ambiguous bytes are left alone.
+"""
 from __future__ import annotations
 
 from typing import Any, Optional

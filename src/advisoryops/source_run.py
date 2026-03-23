@@ -1,3 +1,30 @@
+"""Stage 1 orchestrator: discover + optional ingest for a single source.
+
+``source_run`` combines discovery (fetching and parsing a feed) with optional
+ingestion (downloading each advisory URL and normalizing its content).  It is
+the recommended entry point when you want to do more than just parse a feed —
+e.g., you want to archive the full HTML or PDF of each new advisory.
+
+Key behaviours
+--------------
+* **limit is required** — callers must pass an explicit limit to prevent
+  accidentally ingesting hundreds of pages and incurring unexpected costs.
+* **ingest_mode="new"** (default) — only ingest items not seen on previous
+  runs (based on the discover state.json file).  Use ``ingest_mode="all"``
+  to re-ingest the top N items regardless of state.
+* **dry_run=True** — prints planned ingest URLs but never fetches them.
+  Useful for verifying filter/state logic without side effects.
+* **reset_state=True** — deletes the source's state.json before discovery,
+  causing all items to be treated as new regardless of prior runs.
+* **scope guardrail** — only ``scope=advisory`` sources can ingest in v1;
+  news / threatintel / dataset sources silently skip the ingest step.
+* A timestamped JSON run report is written to ``outputs/source_runs/``.
+
+Writes artifacts to:
+    outputs/discover/<source_id>/   — all discover artifacts (via discover.py)
+    outputs/source_runs/<ts>_<source>.json — run report with sample links
+    outputs/ingest/<adv_id>/        — one dir per ingested URL (if ingest=True)
+"""
 from __future__ import annotations
 
 import json

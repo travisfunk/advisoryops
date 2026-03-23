@@ -1,3 +1,27 @@
+"""Source configuration loader and dataclasses.
+
+Parses ``configs/sources.json`` (schema v1) into typed, immutable dataclasses.
+The config file defines every feed the pipeline can consume: its URL, page type
+(rss_atom | json_feed | csv_feed), keyword filters, timeout, retry behaviour,
+and whether it is enabled for community builds.
+
+Key design decisions
+--------------------
+* Frozen dataclasses — source definitions should never be mutated at runtime.
+* Strict validation at load time — bad regex patterns, unknown page types, and
+  duplicate source IDs all raise ``ValueError`` immediately so problems surface
+  before any HTTP calls are made.
+* ``DECLARED_FUTURE_PAGE_TYPES`` lists page types that are planned but not yet
+  implemented; sources that declare them must stay ``enabled=false``.
+
+Typical usage::
+
+    from advisoryops.sources_config import load_sources_config
+
+    cfg = load_sources_config()        # reads configs/sources.json
+    src = cfg.get("cisa-icsma")        # raises KeyError if not found
+    print(src.entry_url, src.enabled)
+"""
 from __future__ import annotations
 
 import json
@@ -39,6 +63,9 @@ class SourceDef:
     timeout_s: int = 30
     retries: int = 2
     rate_limit_rps: float = 1.0
+    api_key_env: Optional[str] = None     # name of env var holding the API key
+    api_key_header: Optional[str] = None  # HTTP header name to send the key in (e.g. "x-apikey")
+    notes: Optional[str] = None           # human-readable note (e.g. "charges beyond 100 calls")
 
 
 @dataclass(frozen=True)
@@ -135,6 +162,9 @@ def load_sources_config(path: Path = CONFIG_PATH) -> SourcesConfig:
         timeout_s = int(s.get("timeout_s", 30))
         retries = int(s.get("retries", 2))
         rate_limit_rps = float(s.get("rate_limit_rps", 1.0))
+        api_key_env = s.get("api_key_env") or None
+        api_key_header = s.get("api_key_header") or None
+        notes = s.get("notes") or None
 
         out.append(
             SourceDef(
@@ -148,6 +178,9 @@ def load_sources_config(path: Path = CONFIG_PATH) -> SourcesConfig:
                 timeout_s=timeout_s,
                 retries=retries,
                 rate_limit_rps=rate_limit_rps,
+                api_key_env=api_key_env,
+                api_key_header=api_key_header,
+                notes=notes,
             )
         )
 

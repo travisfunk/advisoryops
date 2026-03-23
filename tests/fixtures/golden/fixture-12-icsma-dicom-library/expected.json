@@ -1,0 +1,11 @@
+{
+  "expected_issue_count": 1,
+  "expected_cves": [
+    "CVE-2025-11266"
+  ],
+  "expected_priority_range": [
+    "P0"
+  ],
+  "expected_healthcare_category": "medical_device",
+  "description": "Grassroots DICOM (GDCM) library (CVE-2025-11266, CVSS 6.8). DICOM is the medical imaging standard used by MRI, CT, X-ray equipment. Low attack complexity. No KEV -> P3."
+}

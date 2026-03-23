@@ -1,0 +1,11 @@
+{
+  "expected_issue_count": 1,
+  "expected_cves": [
+    "CVE-2007-0671"
+  ],
+  "expected_priority_range": [
+    "P0"
+  ],
+  "expected_healthcare_category": "not_healthcare",
+  "description": "MS Office Excel RCE (CVE-2007-0671), CISA KEV. Summary contains 'remote code execution' but keyword patterns are currently broken (double-escaped backslashes in _KEYWORDS). KEV source bonus (+80) alone produces score = 95 -> P1. Validates that P1 is reached via KEV independent of keyword matching."
+}
