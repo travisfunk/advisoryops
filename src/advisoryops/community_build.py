@@ -99,6 +99,12 @@ def _feed_entry(issue: Dict[str, Any]) -> Dict[str, Any]:
         "affected_versions": issue.get("affected_versions", []) or [],
         "vendor": issue.get("vendor", ""),
         "generated_by": issue.get("generated_by", "deterministic"),
+        # Provenance fields from AI classification / recommendation
+        "extracted_facts": issue.get("extracted_facts") or {},
+        "inferred_facts": issue.get("inferred_facts") or {},
+        "confidence_by_field": issue.get("confidence_by_field") or {},
+        "evidence_sources": issue.get("evidence_sources") or [],
+        "insufficient_evidence": issue.get("insufficient_evidence", False),
     }
     return entry
 
@@ -1875,7 +1881,10 @@ def build_community_feed(
     recommend: bool = False,
     recommend_model: str = "gpt-4o-mini",
     recommend_priorities: Sequence[str] = ("P0", "P1"),
+    ai_score: bool = False,
+    ai_score_model: str = "gpt-4o-mini",
     _recommend_call_fn: Optional[Callable] = None,
+    _ai_classify_fn: Optional[Callable] = None,
 ) -> Tuple[Path, Path, Path]:
     if latest <= 0:
         raise ValueError("--latest must be > 0")
@@ -1924,10 +1933,25 @@ def build_community_feed(
         out_root_scored=str(scored_root),
         min_priority=min_priority,
         top=top,
+        ai_score=ai_score,
+        ai_score_model=ai_score_model,
+        _ai_classify_fn=_ai_classify_fn,
     )
 
     scored_rows = _read_jsonl(scored_root / "issues_scored.jsonl")
     alert_rows = _read_jsonl(alerts_path)
+
+    # --- Run contradiction detector on issues with 2+ sources ---
+    from .contradiction_detector import detect_contradictions
+
+    scored_rows = detect_contradictions(scored_rows)
+    # Also annotate alert_rows (they're a subset of scored_rows by issue_id)
+    consensus_by_id = {r["issue_id"]: r.get("source_consensus", {}) for r in scored_rows}
+    for ar in alert_rows:
+        iid = ar.get("issue_id", "")
+        if iid in consensus_by_id:
+            ar["source_consensus"] = consensus_by_id[iid]
+
     feed_rows = _sort_feed_entries([_feed_entry(r) for r in scored_rows])
     latest_rows = feed_rows[:latest]
     alert_feed_rows = _sort_feed_entries([_feed_entry(r) for r in alert_rows])
@@ -1935,6 +1959,9 @@ def build_community_feed(
     # --- Optional recommendation pass ---
     packets_dir: Optional[Path] = None
     packet_count = 0
+
+    # Collect recommendation trust data to merge back into feed entries
+    packet_trust_by_id: Dict[str, Dict[str, Any]] = {}
 
     if recommend:
         from .playbook import load_playbook
@@ -1964,10 +1991,62 @@ def build_community_feed(
                 packet_count += 1
                 cached_label = " (cached)" if packet.from_cache else ""
                 print(f"    Wrote packet: {issue_id}{cached_label}")
+
+                # Collect trust fields from recommendation for merge-back
+                packet_trust_by_id[issue_id] = {
+                    "handling_warnings": packet.handling_warnings or [],
+                    "evidence_gaps": packet.evidence_gaps or [],
+                    "extracted_facts": packet.extracted_facts or {},
+                    "inferred_facts": packet.inferred_facts or {},
+                    "confidence_by_field": packet.confidence_by_field or {},
+                    "evidence_sources": packet.evidence_sources or [],
+                    "reasoning": packet.reasoning or "",
+                    "generated_by": "ai",
+                }
             except Exception as exc:
                 print(f"    Warning: recommend failed for {issue_id}: {exc}")
 
         print(f"  Recommend: {packet_count}/{len(target_issues)} packets written")
+
+    # --- Merge recommendation trust data back into feed rows ---
+    if packet_trust_by_id:
+        def _merge_trust(rows: List[Dict[str, Any]]) -> None:
+            for row in rows:
+                iid = row.get("issue_id", "")
+                if iid not in packet_trust_by_id:
+                    continue
+                pkt = packet_trust_by_id[iid]
+                # Merge list fields (deduplicate)
+                for list_field in ("handling_warnings", "evidence_gaps"):
+                    existing = set(row.get(list_field) or [])
+                    for v in pkt.get(list_field, []):
+                        if v not in existing:
+                            row.setdefault(list_field, []).append(v)
+                            existing.add(v)
+                # evidence_gaps also populate unknowns (what we don't know)
+                unknowns_existing = set(row.get("unknowns") or [])
+                for v in pkt.get("evidence_gaps", []):
+                    if v not in unknowns_existing:
+                        row.setdefault("unknowns", []).append(v)
+                        unknowns_existing.add(v)
+                # Merge/overwrite dict fields (recommendation is more specific)
+                for dict_field in ("extracted_facts", "inferred_facts", "confidence_by_field"):
+                    existing_d = row.get(dict_field) or {}
+                    pkt_d = pkt.get(dict_field) or {}
+                    if pkt_d:
+                        merged = {**existing_d, **pkt_d}
+                        row[dict_field] = merged
+                # Merge evidence_sources (deduplicate)
+                existing_sources = set(row.get("evidence_sources") or [])
+                for s in pkt.get("evidence_sources", []):
+                    if s not in existing_sources:
+                        row.setdefault("evidence_sources", []).append(s)
+                        existing_sources.add(s)
+                row["generated_by"] = "ai"
+
+        _merge_trust(feed_rows)
+        _merge_trust(alert_feed_rows)
+        _merge_trust(latest_rows)
 
     out_issues_public = community_root / "issues_public.jsonl"
     out_alerts_public = community_root / "alerts_public.jsonl"

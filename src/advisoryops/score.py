@@ -460,6 +460,30 @@ def score_issues(
             )
             ai_classify_count += 1
             row["healthcare_category"] = clf.category
+            row["generated_by"] = "ai"
+
+            # --- Wire ALL trust/provenance fields from AI classification ---
+            if clf.handling_warnings:
+                row.setdefault("handling_warnings", []).extend(clf.handling_warnings)
+            if clf.evidence_gaps:
+                row.setdefault("evidence_gaps", []).extend(clf.evidence_gaps)
+                # evidence_gaps also populate unknowns (what we don't know)
+                row.setdefault("unknowns", []).extend(clf.evidence_gaps)
+            if clf.extracted_facts:
+                row["extracted_facts"] = clf.extracted_facts
+            if clf.inferred_facts:
+                row["inferred_facts"] = clf.inferred_facts
+            if clf.confidence_by_field:
+                row["confidence_by_field"] = clf.confidence_by_field
+            if clf.evidence_sources:
+                row["evidence_sources"] = clf.evidence_sources
+            row["insufficient_evidence"] = clf.insufficient_evidence
+            row["classification"] = {
+                "category": clf.category,
+                "confidence": clf.confidence,
+                "reasoning": clf.reasoning,
+                "device_types": clf.device_types,
+            }
 
             if clf.confidence >= 0.70 and clf.category in _AI_BOOST:
                 pts, label = _AI_BOOST[clf.category]

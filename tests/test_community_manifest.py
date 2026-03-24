@@ -11,4 +11,4 @@ def test_load_community_manifest_default() -> None:
     assert len(gold.source_ids) == 10
     assert "cisa-icsma" in gold.source_ids
     assert "openfda-device-recalls" in gold.source_ids
-    assert manifest.candidate_sources == ["armis-labs", "health-canada-recalls"]
+    assert manifest.candidate_sources == ["nvd-cve-api", "health-canada-recalls"]

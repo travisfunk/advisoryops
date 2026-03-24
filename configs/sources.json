@@ -42,7 +42,6 @@
       "name": "BSI (Germany) RSS Newsfeed",
       "source_id": "bsi-news",
       "scope": "advisory",
-      "enabled": false,
       "timeout_s": 30,
       "rate_limit_rps": 1,
       "notes": "DNS/SSL failure — bsi.bund.de unreachable from this network context (SSL CERTIFICATE_VERIFY_FAILED or getaddrinfo failed)"
@@ -592,7 +591,7 @@
     {
       "source_id": "healthcare-it-news-security",
       "name": "Healthcare IT News Privacy & Security RSS",
-      "enabled": true,
+      "enabled": false,
       "scope": "news",
       "page_type": "rss_atom",
       "entry_url": "https://www.healthcareitnews.com/feed",
@@ -856,7 +855,7 @@
     {
       "source_id": "msrc-blog",
       "name": "Microsoft MSRC Blog RSS",
-      "enabled": true,
+      "enabled": false,
       "scope": "news",
       "page_type": "rss_atom",
       "entry_url": "https://msrc.microsoft.com/feed",
@@ -1613,7 +1612,7 @@
     {
       "source_id": "cshub-attacks",
       "name": "Cyber Security Hub Attacks RSS",
-      "enabled": true,
+      "enabled": false,
       "scope": "news",
       "page_type": "rss_atom",
       "entry_url": "https://www.cshub.com/rss/categories/attacks",
@@ -1902,7 +1901,7 @@
     {
       "source_id": "ellio-ip-feed",
       "name": "ELLIO Community IP Feed",
-      "enabled": true,
+      "enabled": false,
       "scope": "threatintel",
       "page_type": "csv_feed",
       "entry_url": "https://feed.ellio.tech",
@@ -1938,7 +1937,7 @@
     {
       "source_id": "epss-api",
       "name": "EPSS API (Exploit Prediction Scoring System)",
-      "enabled": true,
+      "enabled": false,
       "scope": "dataset",
       "page_type": "json_feed",
       "entry_url": "https://api.first.org/data/v1/epss",
@@ -2113,7 +2112,7 @@
     {
       "source_id": "nvd-cve-api",
       "name": "NVD CVE API",
-      "enabled": true,
+      "enabled": false,
       "scope": "dataset",
       "page_type": "json_feed",
       "entry_url": "https://services.nvd.nist.gov/rest/json/cves/2.0?resultsPerPage=20",
@@ -2156,7 +2155,7 @@
     {
       "source_id": "vuldb-cti-api",
       "name": "VulDB CTI API",
-      "enabled": true,
+      "enabled": false,
       "scope": "dataset",
       "page_type": "json_feed",
       "entry_url": "https://vuldb.com/?api&id.recent&type.json",

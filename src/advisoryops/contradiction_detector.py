@@ -297,10 +297,26 @@ def detect_contradictions(
 
         multi_source_count += 1
 
-        # Extract facts per source
+        # Extract facts per source from individual signals
         facts_by_source = {}
         for src in sources:
             facts_by_source[src] = _source_facts(signals, src)
+
+        # Enrich with issue-level text (title + summary) which contains
+        # merged content from all sources.  Extract facts from this combined
+        # text and merge into each source's fact set so that "agreed" fields
+        # get populated even when individual RSS signals are sparse.
+        issue_text = f"{issue.get('title', '')} {issue.get('summary', '')}"
+        if issue_text.strip():
+            shared_sevs = _extract_severities(issue_text)
+            shared_cves = _extract_cves(issue_text)
+            shared_patch = _extract_patch_status(issue_text)
+            shared_exploit = _extract_exploit_status(issue_text)
+            for src in sources:
+                facts_by_source[src]["severities"].update(shared_sevs)
+                facts_by_source[src]["cves"].update(shared_cves)
+                facts_by_source[src]["patch_status"].update(shared_patch)
+                facts_by_source[src]["exploit_status"].update(shared_exploit)
 
         consensus = _build_consensus(facts_by_source)
         issue["source_consensus"] = consensus

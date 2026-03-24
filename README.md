@@ -4,7 +4,7 @@
 ![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)
 
 **Open-source healthcare cybersecurity intelligence pipeline.**
-AdvisoryOps continuously monitors 51 live public sources — CISA ICS-Medical, the Known Exploited Vulnerabilities catalog, FDA device recalls, CERT/CC, NVD, and more — and produces a prioritized, healthcare-aware alert feed your team can act on.
+AdvisoryOps continuously monitors 58 live public sources — CISA ICS-Medical, the Known Exploited Vulnerabilities catalog, FDA device recalls, CERT/CC, NVD, and more — and produces a prioritized, healthcare-aware alert feed your team can act on.
 
 > **Why it matters:** Medical device vulnerabilities are chronically under-tracked. Most SIEM tools treat a pacemaker firmware advisory the same as a WordPress plugin bug. AdvisoryOps understands the difference and scores accordingly.
 
@@ -68,7 +68,7 @@ advisoryops evaluate --fixtures tests/fixtures/golden --out outputs/eval
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                        DATA SOURCES (51 live)                   │
+│                        DATA SOURCES (58 live)                   │
 │  CISA ICS-Medical · CISA KEV · FDA Recalls · CERT/CC · NVD     │
 │  MS MSRC · Cisco · Siemens · Philips · GitHub Security · more  │
 └─────────────────────┬───────────────────────────────────────────┘
@@ -156,7 +156,7 @@ advisoryops evaluate --fixtures tests/fixtures/golden --out outputs/eval
 
 ## Source Coverage
 
-**85 configured · 51 live (enabled=true)**
+**85 configured · 58 live (enabled=true) · 10 validated in gold_pass1 set**
 
 | Category | Count | Examples |
 |----------|-------|---------|
@@ -200,14 +200,21 @@ advisoryops/
 │   ├── eval_harness.py        # golden fixture evaluation harness
 │   ├── ai_cache.py            # on-disk SHA-256 keyed AI response cache
 │   ├── models.py              # Pydantic AdvisoryRecord schema
+│   ├── contradiction_detector.py  # cross-source contradiction detection
+│   ├── change_tracker.py      # what-changed tracking between runs
+│   ├── feedback.py            # recommendation feedback recorder
+│   ├── source_weights.py      # source authority tier weights
+│   ├── product_resolver.py    # product name/nickname lookup
+│   ├── advisory_qa.py         # natural language advisory Q&A
 │   ├── sources_config.py      # sources.json loader + SourceDef dataclasses
 │   ├── mojibake.py            # UTF-8/cp1252 encoding artifact repair
 │   └── util.py                # shared utilities (hashing, file I/O)
 ├── configs/
 │   ├── sources.json                    # 85 source definitions (schema v1)
 │   ├── community_public_sources.json   # validated gold source sets
-│   └── mitigation_playbook.json        # approved mitigation patterns
-├── tests/                     # pytest suite (258 tests, all mocked — no API key needed)
+│   ├── mitigation_playbook.json        # approved mitigation patterns
+│   └── source_weights.json            # source authority tiers + weights
+├── tests/                     # pytest suite (448 tests, all mocked — no API key needed)
 ├── scripts/
 │   ├── smoke_test_all_sources.py       # batch connectivity + parse test
 │   └── build_golden_fixtures.py        # golden fixture generator
@@ -235,6 +242,12 @@ python -m pytest tests/test_community_build.py -v
 # Quick smoke check
 python -m pytest -q
 ```
+
+---
+
+## Trust & Provenance
+
+Every AI-generated output in AdvisoryOps carries an evidence trail. Remediation recommendations cite the specific advisory evidence that triggered each pattern selection (rationale), reference the standard or guidance behind the pattern (basis — NIST SP 800-82, IEC 62443, FDA pre/postmarket guidance, CISA ICS-CERT best practices), and include a disclaimer requiring verification against vendor documentation before implementation. Cross-source contradiction detection compares severity, CVE lists, and patch status across contributing sources, surfacing agreements and disagreements so analysts see where sources diverge. A `generated_by` label on every output (`ai`, `deterministic`, or `hybrid`) makes clear what was extracted from source text versus inferred by a model. Analysts can flag recommendations directly from the dashboard or CLI (`advisoryops feedback --issue-id X --type incorrect --comment "..."`), creating an audit trail for continuous improvement.
 
 ---
 

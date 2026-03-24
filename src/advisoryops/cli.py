@@ -251,6 +251,7 @@ def cmd_community_build(args) -> int:
         top=int(args.top),
         latest=int(args.latest),
         recommend=args.recommend,
+        ai_score=getattr(args, "ai_score", False),
     )
 
     print("")
@@ -434,6 +435,8 @@ def build_parser() -> argparse.ArgumentParser:
     p_comm.add_argument("--latest", type=int, default=50, help="Maximum number of rows to write to feed_latest.json (default: 50)")
     p_comm.add_argument("--recommend", action="store_true",
                         help="Generate JSON remediation packets for P0/P1 alerts (requires OPENAI_API_KEY)")
+    p_comm.add_argument("--ai-score", action="store_true", dest="ai_score",
+                        help="Run AI healthcare classification for issues without deterministic signals (requires OPENAI_API_KEY)")
     p_comm.set_defaults(fn=cmd_community_build)
 
     p_ask = sub.add_parser(
