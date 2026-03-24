@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-03-24T22:00:00+00:00",
-  "source_count": 55,
+  "generated_at": "2026-03-24T23:30:00+00:00",
+  "source_count": 57,
   "sources_in_manifest": 57,
   "sources_recovered": 6,
   "sources_confirmed_dead": 28,
   "issue_count": 2056,
   "alert_count": 961,
-  "packet_count": 686,
+  "packet_count": 100,
   "playbook_patterns": 11,
   "priority_distribution": {
     "P0": 478,
@@ -21,34 +21,38 @@
   },
   "contradictions_detected": 3,
   "source_consensus_populated": 2056,
-  "tests_passing": 571,
-  "ioc_extraction": {
-    "issues_with_iocs": 1700,
-    "total_iocs": 31719,
-    "by_type": {
-      "cve": 19355,
-      "domain": 7246,
-      "url": 2827,
-      "hash_sha1": 868,
-      "ip": 743,
-      "hash_sha256": 512,
-      "hash_md5": 168
-    }
+  "tests_passing": 595,
+  "page_enrichment": {
+    "pages_fetched": 729,
+    "pages_failed_or_empty": 232,
+    "page_cache_size": 494,
+    "notes": "729/961 P0-P2 issues had fetchable advisory pages"
   },
   "source_mitigation_extraction": {
     "p012_issues": 961,
-    "viable_for_extraction": 713,
-    "too_sparse": 248,
-    "sample_20_issues_with_mits": 5,
-    "sample_20_total_mits": 27,
-    "by_type_sample": {
-      "process": 11,
-      "network": 6,
-      "patch": 4,
-      "other": 4,
-      "monitor": 2
-    }
+    "issues_with_source_mitigations": 614,
+    "extraction_rate": "63%",
+    "total_mitigations": 1160,
+    "notes": "Up from 18% (177 issues) before page enrichment"
   },
-  "api_calls_this_session": 1971,
-  "estimated_cost": "~$5.91"
+  "ioc_extraction": {
+    "issues_with_iocs": 1700,
+    "total_iocs": 4687,
+    "notes": "Deterministic regex extraction, no AI"
+  },
+  "guidance_coverage": {
+    "source_cited_mitigations": 614,
+    "source_cited_rate": "63%",
+    "playbook_recommendations": 961,
+    "playbook_rate": "100%",
+    "any_guidance": 961,
+    "any_guidance_rate": "100%",
+    "no_guidance": 0,
+    "no_guidance_rate": "0%"
+  },
+  "api_cost_this_session": {
+    "mitigation_extraction_calls": 961,
+    "estimated_cost_usd": 2.88,
+    "notes": "gpt-4o-mini at ~$0.003/call"
+  }
 }

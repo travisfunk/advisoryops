@@ -1893,6 +1893,8 @@ def build_community_feed(
     extract_mitigations: bool = False,
     extract_mitigations_model: str = "gpt-4o-mini",
     extract_mitigations_priorities: Sequence[str] = ("P0", "P1", "P2"),
+    enrich_pages: bool = False,
+    enrich_pages_priorities: Sequence[str] = ("P0", "P1", "P2"),
     _recommend_call_fn: Optional[Callable] = None,
     _ai_classify_fn: Optional[Callable] = None,
     _summarize_call_fn: Optional[Callable] = None,
@@ -2017,6 +2019,31 @@ def build_community_feed(
 
         print(f"  Summarize: {summarize_count}/{len(targets)} issues rewritten")
 
+    # --- Optional page enrichment pass (fetch advisory pages for richer text) ---
+    pages_fetched = 0
+    pages_failed = 0
+    if enrich_pages:
+        from .page_enrich import enrich_issue_from_links
+
+        priority_set_e = set(enrich_pages_priorities)
+        enrich_targets = [r for r in scored_rows if r.get("priority") in priority_set_e]
+        print(f"\n  Page enrichment: fetching pages for {len(enrich_targets)} issues "
+              f"(priorities: {', '.join(sorted(priority_set_e))})")
+
+        for issue in enrich_targets:
+            try:
+                enriched = enrich_issue_from_links(issue)
+                if enriched:
+                    issue["enriched_text"] = enriched
+                    pages_fetched += 1
+                else:
+                    pages_failed += 1
+            except Exception as exc:
+                pages_failed += 1
+                print(f"    Warning: page fetch failed for {issue.get('issue_id', '?')}: {exc}")
+
+        print(f"  Page enrichment: {pages_fetched} fetched, {pages_failed} failed/empty")
+
     # --- IOC extraction (deterministic — runs on ALL issues) ---
     from .ioc_extract import extract_iocs
 
@@ -2041,7 +2068,6 @@ def build_community_feed(
         print(f"\n  Source mitigations: extracting from {len(mit_targets)} issues "
               f"(priorities: {', '.join(sorted(priority_set_m))})")
 
-        scored_by_id_m = {r["issue_id"]: r for r in scored_rows}
         alert_by_id_m = {r["issue_id"]: r for r in alert_rows}
 
         for issue in mit_targets:
@@ -2064,8 +2090,41 @@ def build_community_feed(
             except Exception as exc:
                 print(f"    Warning: mitigation extraction failed for {issue_id}: {exc}")
 
-        mit_issues = sum(1 for r in scored_rows if r.get("source_mitigations"))
-        print(f"  Source mitigations: {mitigation_count} mitigations from {mit_issues} issues")
+        mit_issues_direct = sum(1 for r in scored_rows if r.get("source_mitigations"))
+        print(f"  Source mitigations: {mitigation_count} mitigations from {mit_issues_direct} issues")
+
+        # --- Cross-source CVE correlation (deterministic) ---
+        from .source_mitigations import correlate_mitigations_by_cve
+
+        cross_count = correlate_mitigations_by_cve(
+            [r for r in scored_rows if r.get("priority") in priority_set_m]
+        )
+        if cross_count:
+            # Propagate cross-source mitigations to alert_rows
+            for r in scored_rows:
+                iid = r.get("issue_id", "")
+                if iid in alert_by_id_m and r.get("source_mitigations"):
+                    alert_by_id_m[iid]["source_mitigations"] = r["source_mitigations"]
+            print(f"  Cross-source correlation: {cross_count} additional issues gained mitigations")
+
+        mit_issues_total = sum(
+            1 for r in scored_rows
+            if r.get("priority") in priority_set_m and r.get("source_mitigations")
+        )
+        print(f"  Total issues with source mitigations: {mit_issues_total}/{len(mit_targets)}")
+
+    # --- Coverage tracking ---
+    p012 = [r for r in scored_rows if r.get("priority") in ("P0", "P1", "P2")]
+    if p012:
+        has_src_mits = sum(1 for r in p012 if r.get("source_mitigations"))
+        has_actions = sum(1 for r in p012 if r.get("actions"))
+        has_any = sum(1 for r in p012 if r.get("source_mitigations") or r.get("actions"))
+        has_none = len(p012) - has_any
+        print(f"\n  --- P0-P2 guidance coverage ({len(p012)} issues) ---")
+        print(f"    Source-cited mitigations: {has_src_mits} ({has_src_mits*100//len(p012)}%)")
+        print(f"    Playbook recommendations: {has_actions} ({has_actions*100//len(p012)}%)")
+        print(f"    ANY guidance:             {has_any} ({has_any*100//len(p012)}%)")
+        print(f"    NO guidance:              {has_none} ({has_none*100//len(p012)}%)")
 
     feed_rows = _sort_feed_entries([_feed_entry(r) for r in scored_rows])
     latest_rows = feed_rows[:latest]

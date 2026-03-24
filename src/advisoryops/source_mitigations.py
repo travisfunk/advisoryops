@@ -87,9 +87,21 @@ def _build_user_prompt(issue: Dict[str, Any], source_id: str) -> str:
     """Build the user prompt for a single source's contribution to an issue."""
     issue_id = str(issue.get("issue_id") or "unknown")
     title = sanitize_for_prompt(str(issue.get("title") or ""), field_name="title")
-    summary = sanitize_for_prompt(
-        str(issue.get("summary") or ""), field_name="summary", max_length=6000,
-    )
+
+    # Prefer enriched page text (richer), fall back to RSS summary
+    enriched = str(issue.get("enriched_text") or "").strip()
+    summary = str(issue.get("summary") or "").strip()
+    if enriched and len(enriched) > len(summary):
+        advisory_text = sanitize_for_prompt(
+            enriched, field_name="enriched_text", max_length=12000,
+        )
+        text_source = "full advisory page"
+    else:
+        advisory_text = sanitize_for_prompt(
+            summary, field_name="summary", max_length=6000,
+        )
+        text_source = "RSS summary"
+
     cves = ", ".join(issue.get("cves") or []) or "(none)"
 
     lines = [
@@ -97,12 +109,14 @@ def _build_user_prompt(issue: Dict[str, Any], source_id: str) -> str:
         f"Title: {title}",
         f"CVEs: {cves}",
         f"Source being analyzed: {source_id}",
+        f"Text source: {text_source}",
         "",
-        "Advisory text from this source:",
-        summary or "(no text available)",
+        "Advisory text:",
+        advisory_text or "(no text available)",
         "",
-        "Extract ONLY the mitigation actions explicitly stated in this text. "
-        "If no specific mitigations are stated, return an empty list. "
+        "Focus on the MITIGATIONS, RECOMMENDATIONS, or REMEDIATION sections "
+        "if present. Extract ONLY the mitigation actions explicitly stated in "
+        "this text. If no specific mitigations are stated, return an empty list. "
         "Respond in JSON.",
     ]
     return "\n".join(lines)
@@ -192,11 +206,14 @@ def extract_source_mitigations(
         return all_mitigations
 
     # Production path: one AI call per issue (all sources combined)
+    # Use enriched text in cache key so enriched issues get fresh calls
+    enriched = str(issue.get("enriched_text") or "").strip()
+    text_for_key = enriched[:3000] if enriched else summary_text[:3000]
     key_data = {
-        "fn": "extract_source_mitigations_v1",
+        "fn": "extract_source_mitigations_v2",
         "model": model,
         "issue_id": issue_id,
-        "summary": summary_text[:3000],
+        "text": text_for_key,
         "sources": sorted(sources),
     }
 
@@ -263,3 +280,73 @@ def extract_source_mitigations(
         })
 
     return all_mitigations
+
+
+# ---------------------------------------------------------------------------
+# Cross-source CVE correlation (deterministic — no AI)
+# ---------------------------------------------------------------------------
+
+def correlate_mitigations_by_cve(
+    issues: List[Dict[str, Any]],
+) -> int:
+    """Fill in source_mitigations for issues that share CVEs with other issues.
+
+    For any issue that has ZERO source_mitigations but shares CVEs with
+    issues that DO have mitigations, copy those mitigations with a
+    "(via CVE-XXXX)" attribution note.
+
+    Mutates issues in place. Returns the count of issues that gained mitigations.
+
+    Args:
+        issues: List of scored issue dicts (already processed by
+                extract_source_mitigations).
+
+    Returns:
+        Number of issues that received cross-source mitigations.
+    """
+    # Build CVE -> mitigations index
+    cve_mits: Dict[str, List[Dict[str, Any]]] = {}
+    for iss in issues:
+        mits = iss.get("source_mitigations") or []
+        if not mits:
+            continue
+        for cve in iss.get("cves") or []:
+            if cve not in cve_mits:
+                cve_mits[cve] = []
+            cve_mits[cve].extend(mits)
+
+    if not cve_mits:
+        return 0
+
+    count = 0
+    for iss in issues:
+        if iss.get("source_mitigations"):
+            continue  # already has mitigations
+        cves = iss.get("cves") or []
+        if not cves:
+            continue
+
+        cross_mits: List[Dict[str, Any]] = []
+        seen_actions: set = set()
+
+        for cve in cves:
+            for m in cve_mits.get(cve, []):
+                action = m["action"]
+                if action in seen_actions:
+                    continue
+                seen_actions.add(action)
+                cross_mits.append({
+                    "source": f"{m['source']} (via {cve})",
+                    "source_tier": m["source_tier"],
+                    "action": action,
+                    "citation": m["citation"],
+                    "url": m["url"],
+                    "mitigation_type": m["mitigation_type"],
+                    "cross_source": True,
+                })
+
+        if cross_mits:
+            iss["source_mitigations"] = cross_mits
+            count += 1
+
+    return count

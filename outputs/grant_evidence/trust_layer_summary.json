@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-03-24T22:00:00+00:00",
+  "generated_at": "2026-03-24T23:30:00+00:00",
   "total_issues": 2056,
-  "total_packets": 686,
+  "total_packets": 100,
   "trust_fields": {
     "ai_summary": 1949,
     "handling_warnings": 942,
@@ -12,7 +12,9 @@
     "confidence_by_field": 678,
     "non_applicability": 99,
     "generated_by": 2056,
-    "source_consensus": 2056
+    "source_consensus": 2056,
+    "source_mitigations": 614,
+    "iocs": 1700
   },
   "trust_field_percentages": {
     "ai_summary": "94%",
@@ -24,45 +26,44 @@
     "confidence_by_field": "32%",
     "non_applicability": "4%",
     "generated_by": "100%",
-    "source_consensus": "100%"
+    "source_consensus": "100%",
+    "source_mitigations": "63% of P0-P2",
+    "iocs": "82%"
   },
-  "packet_fields": {
-    "side_effects": 672,
-    "friction_level": 672,
-    "side_effects_pct": "97%",
-    "friction_level_pct": "97%"
+  "guidance_coverage": {
+    "target": "100% of P0-P2 issues show actionable guidance",
+    "result": "100% (961/961)",
+    "breakdown": {
+      "source_cited_mitigations": "614 issues (63%)",
+      "playbook_recommendations": "961 issues (100%)",
+      "both": "614 issues have BOTH source-cited AND playbook guidance",
+      "playbook_only": "347 issues have playbook guidance only",
+      "no_guidance": "0 issues"
+    },
+    "notes": "Every P0-P2 issue has at least playbook recommendations. 63% also have source-cited mitigations extracted from advisory pages."
   },
-  "source_consensus": {
-    "issues_with_consensus": 2056,
-    "issues_with_contradictions": 3,
-    "contradiction_examples": [
-      "CVE-2023-38831: severity (cisa-ncas-alerts=high vs mandiant-blog=critical,high)",
-      "CVE-2026-4539: patch_status (epss-api=patch_available vs tenable-newest=no_patch,patch_available)",
-      "CVE-2026-4541: patch_status (epss-api=patch_available vs tenable-newest=no_patch,patch_available)"
-    ]
+  "page_enrichment": {
+    "description": "Fetches advisory web pages to get richer text than RSS summaries. Content cached to outputs/page_cache/ for reuse.",
+    "pages_fetched": 729,
+    "pages_failed": 232,
+    "impact": "Extraction rate improved from 18% to 63% after page enrichment",
+    "remaining_gap": "37% of P0-P2 issues have no source-cited mitigations. These are primarily: (1) KEV catalog entries linking to pages that only say 'apply vendor mitigations' without specifics, (2) issues from sources that block scraping (403/robots.txt), (3) issues with no usable links."
   },
-  "evidence_completeness": {
-    "note": "Evidence completeness is derived from trust field population rather than a single numeric score. Issues with packets have the highest completeness (686/2056 = 33%). AI-summarized issues represent 94% coverage."
+  "cross_source_correlation": {
+    "description": "Deterministic CVE matching fills mitigations for issues sharing CVEs with other issues that have them",
+    "additional_issues_covered": 0,
+    "notes": "In this corpus, most CVE-sharing issues already had mitigations after page enrichment"
   },
   "source_cited_mitigations": {
-    "description": "Mitigations explicitly stated by authoritative sources (CISA, vendors), extracted and attributed — separate from AI-assisted playbook recommendations",
-    "p012_eligible": 961,
-    "viable_for_extraction": 713,
-    "too_sparse_for_extraction": 248,
-    "sparse_note": "25% of P0-P2 issues have summaries too brief (<300 chars) for meaningful mitigation extraction. These are mostly KEV catalog entries with CVE IDs but no vendor guidance.",
-    "mitigation_type_distribution": {
-      "process": "operational steps (inventory, review, harden)",
-      "network": "segmentation, firewall, isolation actions",
-      "patch": "apply firmware/software updates",
-      "monitor": "logging, hunting, detection",
-      "credential": "password rotation, key management",
-      "other": "miscellaneous"
-    }
+    "description": "Mitigations explicitly stated by authoritative sources (CISA, vendors), extracted and attributed",
+    "total_mitigations": 1160,
+    "issues_with_mitigations": 614,
+    "extraction_rate": "63%"
   },
   "ioc_extraction": {
-    "description": "Deterministic IOC extraction (no AI) — CVEs, IPs, domains, hashes, URLs from all 2056 issues",
+    "description": "Deterministic IOC extraction (no AI) from all 2056 issues",
+    "total_iocs": 4687,
     "issues_with_iocs": 1700,
-    "total_iocs": 31719,
     "export_formats": ["CSV", "STIX 2.1 JSON"]
   }
 }
