@@ -102,6 +102,7 @@ class Playbook:
 _VALID_CATEGORIES = {
     "segmentation", "access_control", "host_hardening", "protocol_hardening",
     "monitoring", "vendor_process", "patching", "governance", "communication",
+    "hardening",
 }
 
 _VALID_ROLES = {"infosec", "netops", "htm_ce", "it_ops", "vendor", "clinical_ops"}

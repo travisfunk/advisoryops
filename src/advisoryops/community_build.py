@@ -2121,6 +2121,16 @@ def build_community_feed(
     out_latest.write_text(json.dumps(latest_rows, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     _write_csv(out_csv, feed_rows)
     _write_rss(out_rss, feed_rows, top=50)
+
+    # Excel export (optional — only if openpyxl is available)
+    try:
+        from .excel_export import export_excel
+        out_xlsx = community_root / "issues_public.xlsx"
+        export_excel(feed_rows, out_xlsx)
+        print(f"  Excel:      {out_xlsx}")
+    except ImportError:
+        pass  # openpyxl not installed; skip silently
+
     _generate_dashboard(out_dashboard)
 
     validated_sources = []

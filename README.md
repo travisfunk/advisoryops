@@ -249,6 +249,8 @@ python -m pytest -q
 
 Every AI-generated output in AdvisoryOps carries an evidence trail. Remediation recommendations cite the specific advisory evidence that triggered each pattern selection (rationale), reference the standard or guidance behind the pattern (basis — NIST SP 800-82, IEC 62443, FDA pre/postmarket guidance, CISA ICS-CERT best practices), and include a disclaimer requiring verification against vendor documentation before implementation. Cross-source contradiction detection compares severity, CVE lists, and patch status across contributing sources, surfacing agreements and disagreements so analysts see where sources diverge. A `generated_by` label on every output (`ai`, `deterministic`, or `hybrid`) makes clear what was extracted from source text versus inferred by a model. Analysts can flag recommendations directly from the dashboard or CLI (`advisoryops feedback --issue-id X --type incorrect --comment "..."`), creating an audit trail for continuous improvement.
 
+> **Important:** The AI extracts, normalizes, compares, and recommends from approved mitigation patterns. It does not replace vendor guidance or make final operational decisions. All recommendations must be verified against vendor documentation and validated by qualified personnel before implementation in clinical environments.
+
 ---
 
 ## Contributing

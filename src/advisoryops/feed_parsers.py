@@ -211,6 +211,8 @@ def parse_json_feed(obj: Any, *, source_id: str, fetched_at: str) -> List[Dict[s
         raw_list = obj["results"]
     elif isinstance(obj, dict) and isinstance(obj.get("items"), list):
         raw_list = obj["items"]
+    elif isinstance(obj, dict) and isinstance(obj.get("data"), list):
+        raw_list = obj["data"]
     elif isinstance(obj, list):
         raw_list = obj
     else:

@@ -342,6 +342,25 @@ def cmd_ask(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_export_excel(args: argparse.Namespace) -> int:
+    """Export issues JSONL to formatted .xlsx."""
+    import json as _json
+    from .excel_export import export_excel
+
+    issues_path = Path(args.issues_path)
+    if not issues_path.exists():
+        raise SystemExit(f"File not found: {issues_path}")
+
+    issues = []
+    for line in issues_path.read_text(encoding="utf-8").strip().splitlines():
+        if line.strip():
+            issues.append(_json.loads(line))
+
+    out = export_excel(issues, Path(args.out))
+    print(f"Wrote {len(issues)} issues to {out}")
+    return 0
+
+
 def cmd_feedback(args: argparse.Namespace) -> int:
     """Record recommendation feedback."""
     from .feedback import record_feedback
@@ -555,6 +574,12 @@ def build_parser() -> argparse.ArgumentParser:
         help="Also print results as a JSON array after the human-readable summary",
     )
     p_lookup.set_defaults(fn=cmd_lookup)
+
+    p_excel = sub.add_parser("export-excel", help="Export issues JSONL to formatted .xlsx")
+    p_excel.add_argument("--issues-path", dest="issues_path", required=True,
+                         help="Path to issues JSONL file")
+    p_excel.add_argument("--out", required=True, help="Output .xlsx path")
+    p_excel.set_defaults(fn=cmd_export_excel)
 
     p_fb = sub.add_parser("feedback", help="Record recommendation feedback")
     p_fb.add_argument("--issue-id", dest="issue_id", required=True, help="Issue ID to provide feedback on")

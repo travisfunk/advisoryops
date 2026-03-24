@@ -226,18 +226,28 @@ def _parse_rss_atom(xml_bytes: bytes, *, source_id: str, fetched_at: str) -> Lis
     except Exception as e:
         raise RuntimeError(f"Invalid XML in feed: {e}")
 
-    # namespace helpers
+    # namespace helpers — try both bare and wildcard-namespaced tag searches
     def _find_text(elem: ET.Element, tags: List[str]) -> str:
         for t in tags:
             x = elem.find(t)
             if x is not None and x.text:
                 return x.text.strip()
+        # Retry with wildcard namespace (handles default-ns feeds like xmlns="...Atom")
+        for t in tags:
+            x = elem.find(f"{{*}}{t}")
+            if x is not None and x.text:
+                return x.text.strip()
         return ""
 
-    # RSS: channel/item
+    # RSS: channel/item — also handle feeds that set a default namespace
     channel = root.find("./channel")
+    if channel is None:
+        channel = root.find("./{*}channel")
     if channel is not None:
-        for it in channel.findall("./item"):
+        rss_items = channel.findall("./item")
+        if not rss_items:
+            rss_items = channel.findall("./{*}item")
+        for it in rss_items:
             title = _find_text(it, ["title"])
             link = _find_text(it, ["link"])
             guid = _find_text(it, ["guid"]) or link or title

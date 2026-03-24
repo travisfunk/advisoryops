@@ -6,7 +6,8 @@
   "roles": ["infosec", "netops", "htm_ce", "it_ops", "vendor", "clinical_ops"],
   "categories": [
     "segmentation", "access_control", "host_hardening", "protocol_hardening",
-    "monitoring", "vendor_process", "patching", "governance", "communication"
+    "monitoring", "vendor_process", "patching", "governance", "communication",
+    "hardening"
   ],
   "patterns": [
     {
@@ -505,6 +506,220 @@
         "Patient care always takes priority over implementation speed.",
         "Use emergency change procedures only with explicit clinical and leadership approval.",
         "Ensure fallback (paper-based, manual) procedures are documented and practiced before the window."
+      ]
+    },
+
+    {
+      "id": "MONITORING_ENHANCED_DETECTION",
+      "name": "Enhanced Detection and Monitoring",
+      "category": "monitoring",
+      "basis": "NIST SP 800-82 Rev 3 Section 6.2 (monitoring and detection for ICS); CISA ICS-CERT defense-in-depth recommended practice",
+      "severity_fit": ["critical", "high", "medium", "low"],
+      "when_to_use": {
+        "conditions": [
+          "Vulnerability cannot be immediately patched or segmented.",
+          "Exploit activity is possible and early detection is needed.",
+          "Compensating controls are in place but verification of their effectiveness is required."
+        ],
+        "constraints": [
+          "Requires IDS/IPS infrastructure or SIEM with relevant rulesets.",
+          "Alert tuning may be needed to avoid false-positive fatigue on clinical networks.",
+          "Monitoring rules should not introduce latency on clinical data flows."
+        ]
+      },
+      "inputs_required": [
+        "device_ip_ranges",
+        "expected_traffic_patterns",
+        "ids_ips_platform",
+        "siem_platform",
+        "alert_escalation_contacts"
+      ],
+      "steps": [
+        {
+          "role": "infosec",
+          "action": "Deploy or update IDS/IPS signatures for the vulnerability",
+          "details": "Add detection signatures targeting the specific CVE or attack pattern. Use vendor-provided signatures (Snort, Suricata) or create custom rules matching the exploit vector described in the advisory."
+        },
+        {
+          "role": "netops",
+          "action": "Increase logging on affected device network segments",
+          "details": "Enable enhanced flow logging, packet capture triggers, or NetFlow/sFlow collection on switch ports and firewall zones serving the affected devices. Ensure logs are forwarded to SIEM."
+        },
+        {
+          "role": "infosec",
+          "action": "Create SIEM correlation rules and alert thresholds",
+          "details": "Build SIEM rules to alert on anomalous traffic to/from the affected device class — unusual ports, unexpected source IPs, high connection rates, or protocol anomalies. Set escalation thresholds appropriate for clinical environment."
+        },
+        {
+          "role": "infosec",
+          "action": "Establish monitoring review cadence until remediation",
+          "details": "Assign daily or shift-based review of detection alerts for the affected device segment. Document review schedule and escalation path. Continue until patch is applied or risk is formally accepted."
+        }
+      ],
+      "verification": {
+        "evidence": [
+          "IDS/IPS signature deployment confirmation (rule ID, deployment date)",
+          "SIEM alert rule configuration screenshot or export",
+          "Sample alert test showing detection fires on simulated traffic",
+          "Monitoring review schedule documented with assigned owners"
+        ]
+      },
+      "rollback": {
+        "steps": [
+          "Disable or remove custom IDS/IPS signatures if they cause false positives affecting clinical operations.",
+          "Revert enhanced logging to baseline levels to reduce storage/performance impact.",
+          "Remove SIEM correlation rules and notify monitoring team of rollback."
+        ]
+      },
+      "safety_notes": [
+        "Monitoring rules must not introduce latency or packet loss on clinical network segments.",
+        "Tune alert thresholds to avoid alarm fatigue — high false-positive rates reduce detection effectiveness.",
+        "Coordinate with clinical engineering before deploying inline IPS (vs passive IDS) on medical device segments.",
+        "This pattern is a compensating control — it detects but does not prevent exploitation."
+      ]
+    },
+
+    {
+      "id": "CREDENTIAL_HARDENING",
+      "name": "Credential Hardening",
+      "category": "access_control",
+      "basis": "NIST SP 800-82 Rev 3 Section 5.2 (identification and authentication for ICS); FDA postmarket guidance (authentication and access controls)",
+      "severity_fit": ["critical", "high", "medium"],
+      "when_to_use": {
+        "conditions": [
+          "Advisory mentions default credentials, hardcoded passwords, or authentication bypass.",
+          "Vulnerability involves weak or missing authentication on device management interfaces.",
+          "Device has factory-default accounts that have not been changed since deployment."
+        ],
+        "constraints": [
+          "Credential changes on vendor-managed devices may require vendor coordination.",
+          "Some medical devices do not support password changes — vendor confirmation required.",
+          "Service accounts used by clinical applications must be coordinated before rotation."
+        ]
+      },
+      "inputs_required": [
+        "device_management_interfaces",
+        "current_account_inventory",
+        "vendor_password_change_procedure",
+        "service_account_dependencies",
+        "mfa_capability"
+      ],
+      "steps": [
+        {
+          "role": "infosec",
+          "action": "Audit device accounts and identify default or weak credentials",
+          "details": "Inventory all management accounts on affected devices. Identify factory-default passwords, shared credentials, and accounts without password expiry. Cross-reference with vendor advisory for specific hardcoded credentials."
+        },
+        {
+          "role": "htm_ce",
+          "action": "Coordinate credential changes with vendor if device is vendor-managed",
+          "details": "Contact vendor support to confirm supported password change procedure. Some devices require vendor-specific tools or firmware settings to change credentials. Document vendor case ID and approved procedure."
+        },
+        {
+          "role": "infosec",
+          "action": "Change default passwords and rotate service credentials",
+          "details": "Change all default and factory passwords to unique, strong credentials per facility policy. Rotate service account credentials used for device integration. Store new credentials in approved secrets manager."
+        },
+        {
+          "role": "infosec",
+          "action": "Disable unused administrative accounts",
+          "details": "Disable or remove administrative accounts not required for clinical operation or vendor support. Document which accounts remain active and their business justification."
+        },
+        {
+          "role": "htm_ce",
+          "action": "Validate device functionality after credential changes",
+          "details": "After credential changes, validate all clinical workflows, DICOM/HL7 interfaces, and vendor remote-support connections. Confirm service accounts used by integration systems still authenticate successfully."
+        }
+      ],
+      "verification": {
+        "evidence": [
+          "Account audit report showing default accounts addressed",
+          "Password change confirmation (change ticket or screenshot of account settings)",
+          "Disabled account list with business justification for remaining active accounts",
+          "Clinical validation signoff confirming device functionality post-change"
+        ]
+      },
+      "rollback": {
+        "steps": [
+          "Restore previous credentials from documented backup if new credentials break clinical workflows.",
+          "Re-enable disabled accounts only with explicit infosec approval and documented justification.",
+          "Notify vendor support if vendor-managed credentials need reversal."
+        ]
+      },
+      "safety_notes": [
+        "Never change credentials on life-safety devices without a validated rollback procedure.",
+        "Coordinate service account changes with all dependent clinical applications before rotation.",
+        "Some devices may become inoperable if credentials are changed without following the vendor procedure — always confirm with vendor first.",
+        "Document all credential changes in the remediation packet for audit trail."
+      ]
+    },
+
+    {
+      "id": "SERVICE_DISABLE_UNUSED",
+      "name": "Disable Unused Services and Protocols",
+      "category": "hardening",
+      "basis": "IEC 62443-3-3 SR 7.7 (least functionality); CISA ICS-CERT recommended practice for attack surface reduction",
+      "severity_fit": ["critical", "high", "medium"],
+      "when_to_use": {
+        "conditions": [
+          "Advisory affects a specific service or protocol that is not required for clinical operation.",
+          "Device exposes unnecessary network services that increase attack surface.",
+          "Vulnerability is in a component or feature that can be disabled without clinical impact."
+        ],
+        "constraints": [
+          "Clinical engineering must confirm which services are required for device operation.",
+          "Some services may be required for vendor remote support — confirm before disabling.",
+          "Disabling services on FDA-cleared devices may require vendor guidance to maintain clearance status."
+        ]
+      },
+      "inputs_required": [
+        "device_service_inventory",
+        "clinically_required_services",
+        "vendor_required_services",
+        "disable_procedure"
+      ],
+      "steps": [
+        {
+          "role": "infosec",
+          "action": "Identify unnecessary services and protocols on affected devices",
+          "details": "Scan or review device configuration to enumerate running services, open ports, and enabled protocols. Cross-reference with the advisory to identify which vulnerable service can be disabled."
+        },
+        {
+          "role": "htm_ce",
+          "action": "Confirm which services are required for clinical operation",
+          "details": "Review service inventory with clinical engineering. Identify which services are required for patient care workflows, DICOM/HL7 communication, and vendor support. Document the minimum required service set."
+        },
+        {
+          "role": "htm_ce",
+          "action": "Disable unnecessary services following vendor procedure",
+          "details": "Disable identified unnecessary services using the vendor-documented procedure. If no vendor procedure exists, disable via device management interface during a maintenance window with rollback plan ready."
+        },
+        {
+          "role": "infosec",
+          "action": "Verify attack surface reduction and document changes",
+          "details": "Rescan or verify that disabled services are no longer accessible. Document before/after service state in the remediation packet. Confirm the vulnerable service identified in the advisory is no longer exposed."
+        }
+      ],
+      "verification": {
+        "evidence": [
+          "Before/after port scan or service inventory showing disabled services",
+          "Clinical engineering signoff confirming no impact to clinical workflows",
+          "Change record documenting which services were disabled and why",
+          "Vendor confirmation that disabling the service does not void device clearance (where applicable)"
+        ]
+      },
+      "rollback": {
+        "steps": [
+          "Re-enable disabled services using vendor procedure or device management interface.",
+          "Verify clinical workflows resume normally after re-enabling services.",
+          "Document reason for rollback and re-assess alternative mitigations."
+        ]
+      },
+      "safety_notes": [
+        "Never disable services on life-safety devices without clinical engineering confirmation that the service is not required.",
+        "Some seemingly unnecessary services (e.g., SNMP, Telnet) may be used by biomedical monitoring or asset management systems — verify before disabling.",
+        "Disabling services on FDA-cleared devices should be coordinated with the vendor to ensure continued regulatory compliance.",
+        "Maintain a documented record of the original service configuration for rollback purposes."
       ]
     }
   ]

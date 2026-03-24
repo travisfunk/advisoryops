@@ -86,7 +86,7 @@
     {
       "set_id": "gold_pass2",
       "name": "Gold Pass 2 — all sources with verified discover data",
-      "description": "51 sources with confirmed signal data on disk (2026-03-23). Excludes 7 sources disabled due to 404s, empty feeds, or API key requirements (nvd-cve-api, vuldb-cti-api, healthcare-it-news-security, msrc-blog, cshub-attacks, ellio-ip-feed, epss-api).",
+      "description": "57 sources with confirmed discovery output (2026-03-24). Recovered 6 previously disabled sources: healthcare-it-news-security, msrc-blog, cshub-attacks, threatpost, nvd-cve-api, epss-api. All 57 fetch+parse successfully; 55 have filtered signals, 2 parse but have no current keyword matches.",
       "source_ids": [
         "abb-psirt",
         "asimily-blog",
@@ -104,10 +104,12 @@
         "cisa-ncas-current-activity",
         "compliance-junction-cyber",
         "crowdstrike-blog",
+        "cshub-attacks",
         "cshub-malware",
         "cyberscoop-healthcare",
         "dark-reading",
         "ecrimelabs-metasploit",
+        "epss-api",
         "epss-data",
         "fda-medwatch",
         "feodo-tracker",
@@ -115,6 +117,7 @@
         "fortified-health-security",
         "google-project-zero",
         "health-canada-recalls",
+        "healthcare-it-news-security",
         "hipaa-guide-cyber",
         "hit-consultant-cyber",
         "imdrf-consultations",
@@ -124,8 +127,10 @@
         "mandiant-blog",
         "medtech-intelligence",
         "microsoft-security-blog",
+        "msrc-blog",
         "ncsc-uk",
         "nist-cyber-insights",
+        "nvd-cve-api",
         "openfda-device-events",
         "openfda-device-recalls",
         "sans-block-ips",
@@ -134,6 +139,7 @@
         "ssl-blacklist",
         "talos-intelligence",
         "tenable-newest",
+        "threatpost",
         "urlhaus-recent",
         "wired-security",
         "zdi-published",
@@ -143,7 +149,6 @@
     }
   ],
   "candidate_sources": [
-    "nvd-cve-api",
-    "health-canada-recalls"
+    "vuldb-cti-api"
   ]
 }

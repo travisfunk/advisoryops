@@ -591,7 +591,7 @@
     {
       "source_id": "healthcare-it-news-security",
       "name": "Healthcare IT News Privacy & Security RSS",
-      "enabled": false,
+      "enabled": true,
       "scope": "news",
       "page_type": "rss_atom",
       "entry_url": "https://www.healthcareitnews.com/feed",
@@ -620,7 +620,7 @@
       "timeout_s": 30,
       "retries": 2,
       "rate_limit_rps": 1.0,
-      "notes": "Invalid XML — rss.xml feed uses unbound namespace prefix (malformed RSS); original taxonomy feed also 404d"
+      "notes": "Recovered 2026-03-23 — feed now serves valid Atom XML (was broken XML previously)"
     },
     {
       "source_id": "hipaa-guide-cyber",
@@ -855,7 +855,7 @@
     {
       "source_id": "msrc-blog",
       "name": "Microsoft MSRC Blog RSS",
-      "enabled": false,
+      "enabled": true,
       "scope": "news",
       "page_type": "rss_atom",
       "entry_url": "https://msrc.microsoft.com/feed",
@@ -891,7 +891,7 @@
       "timeout_s": 30,
       "retries": 2,
       "rate_limit_rps": 1.0,
-      "notes": "HTTP 404 — msrc-blog.microsoft.com decommissioned; no working replacement"
+      "notes": "Recovered 2026-03-23 — msrc.microsoft.com/feed now serves valid XML (was 404 previously)"
     },
     {
       "source_id": "ncsc-uk",
@@ -1612,7 +1612,7 @@
     {
       "source_id": "cshub-attacks",
       "name": "Cyber Security Hub Attacks RSS",
-      "enabled": false,
+      "enabled": true,
       "scope": "news",
       "page_type": "rss_atom",
       "entry_url": "https://www.cshub.com/rss/categories/attacks",
@@ -1789,8 +1789,8 @@
     },
     {
       "source_id": "threatpost",
-      "name": "Threatpost RSS (may be defunct)",
-      "enabled": false,
+      "name": "Threatpost RSS",
+      "enabled": true,
       "scope": "news",
       "page_type": "rss_atom",
       "entry_url": "https://threatpost.com/feed/",
@@ -1937,7 +1937,7 @@
     {
       "source_id": "epss-api",
       "name": "EPSS API (Exploit Prediction Scoring System)",
-      "enabled": false,
+      "enabled": true,
       "scope": "dataset",
       "page_type": "json_feed",
       "entry_url": "https://api.first.org/data/v1/epss",
@@ -2112,17 +2112,15 @@
     {
       "source_id": "nvd-cve-api",
       "name": "NVD CVE API",
-      "enabled": false,
+      "enabled": true,
       "scope": "dataset",
       "page_type": "json_feed",
       "entry_url": "https://services.nvd.nist.gov/rest/json/cves/2.0?resultsPerPage=20",
       "filters": {},
-      "api_key_env": "NVD_API_KEY",
-      "api_key_header": "apiKey",
-      "notes": "Free API key at nvd.nist.gov/developers/request-an-api-key — key raises rate limit from 5 to 50 req/30s; works unauthenticated at lower rate",
-      "timeout_s": 30,
-      "retries": 2,
-      "rate_limit_rps": 0.2
+      "notes": "Recovered 2026-03-23 — works unauthenticated at 5 req/30s; set NVD_API_KEY env + api_key_env/api_key_header fields to use higher rate",
+      "timeout_s": 45,
+      "retries": 3,
+      "rate_limit_rps": 0.15
     },
     {
       "source_id": "virustotal-api",
