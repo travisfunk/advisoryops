@@ -260,6 +260,7 @@ def cmd_community_build(args) -> int:
         recommend=args.recommend,
         ai_score=getattr(args, "ai_score", False),
         summarize=getattr(args, "summarize", False),
+        extract_mitigations=getattr(args, "extract_mitigations", False),
     )
 
     print("")
@@ -506,6 +507,8 @@ def build_parser() -> argparse.ArgumentParser:
                         help="Run AI healthcare classification for issues without deterministic signals (requires OPENAI_API_KEY)")
     p_comm.add_argument("--summarize", action="store_true",
                         help="Rewrite P0/P1/P2 issue summaries into plain-language descriptions (requires OPENAI_API_KEY)")
+    p_comm.add_argument("--extract-mitigations", action="store_true", dest="extract_mitigations",
+                        help="Extract source-cited mitigations for P0/P1/P2 issues (requires OPENAI_API_KEY)")
     p_comm.set_defaults(fn=cmd_community_build)
 
     p_sum = sub.add_parser("summarize", help="Summarize a single issue into plain language")

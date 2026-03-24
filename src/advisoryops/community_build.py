@@ -106,6 +106,9 @@ def _feed_entry(issue: Dict[str, Any]) -> Dict[str, Any]:
         "evidence_sources": issue.get("evidence_sources") or [],
         "insufficient_evidence": issue.get("insufficient_evidence", False),
         "non_applicability": issue.get("non_applicability") or [],
+        # Source-cited mitigations and IOCs
+        "source_mitigations": issue.get("source_mitigations") or [],
+        "iocs": issue.get("iocs") or [],
     }
     return entry
 
@@ -1887,9 +1890,13 @@ def build_community_feed(
     summarize: bool = False,
     summarize_model: str = "gpt-4o-mini",
     summarize_priorities: Sequence[str] = ("P0", "P1", "P2"),
+    extract_mitigations: bool = False,
+    extract_mitigations_model: str = "gpt-4o-mini",
+    extract_mitigations_priorities: Sequence[str] = ("P0", "P1", "P2"),
     _recommend_call_fn: Optional[Callable] = None,
     _ai_classify_fn: Optional[Callable] = None,
     _summarize_call_fn: Optional[Callable] = None,
+    _extract_mitigations_call_fn: Optional[Callable] = None,
 ) -> Tuple[Path, Path, Path]:
     if latest <= 0:
         raise ValueError("--latest must be > 0")
@@ -2009,6 +2016,56 @@ def build_community_feed(
                 print(f"    Warning: summarize failed for {issue_id}: {exc}")
 
         print(f"  Summarize: {summarize_count}/{len(targets)} issues rewritten")
+
+    # --- IOC extraction (deterministic — runs on ALL issues) ---
+    from .ioc_extract import extract_iocs
+
+    ioc_total = 0
+    for issue in scored_rows:
+        iocs = extract_iocs(issue)
+        issue["iocs"] = iocs
+        ioc_total += len(iocs)
+    # Propagate to alert_rows
+    ioc_by_id = {r["issue_id"]: r.get("iocs", []) for r in scored_rows}
+    for ar in alert_rows:
+        ar["iocs"] = ioc_by_id.get(ar.get("issue_id", ""), [])
+    print(f"\n  IOCs: extracted {ioc_total} indicators from {len(scored_rows)} issues")
+
+    # --- Optional source mitigation extraction pass ---
+    mitigation_count = 0
+    if extract_mitigations:
+        from .source_mitigations import extract_source_mitigations
+
+        priority_set_m = set(extract_mitigations_priorities)
+        mit_targets = [r for r in scored_rows if r.get("priority") in priority_set_m]
+        print(f"\n  Source mitigations: extracting from {len(mit_targets)} issues "
+              f"(priorities: {', '.join(sorted(priority_set_m))})")
+
+        scored_by_id_m = {r["issue_id"]: r for r in scored_rows}
+        alert_by_id_m = {r["issue_id"]: r for r in alert_rows}
+
+        for issue in mit_targets:
+            issue_id = issue.get("issue_id", "unknown")
+            try:
+                mits = extract_source_mitigations(
+                    issue,
+                    model=extract_mitigations_model,
+                    _call_fn=_extract_mitigations_call_fn,
+                )
+                issue["source_mitigations"] = mits
+                mitigation_count += len(mits)
+
+                # Propagate to alert_rows
+                if issue_id in alert_by_id_m:
+                    alert_by_id_m[issue_id]["source_mitigations"] = mits
+
+                if len([r for r in scored_rows if r.get("source_mitigations")]) <= 3:
+                    print(f"    Extracted {len(mits)} mitigations: {issue_id}")
+            except Exception as exc:
+                print(f"    Warning: mitigation extraction failed for {issue_id}: {exc}")
+
+        mit_issues = sum(1 for r in scored_rows if r.get("source_mitigations"))
+        print(f"  Source mitigations: {mitigation_count} mitigations from {mit_issues} issues")
 
     feed_rows = _sort_feed_entries([_feed_entry(r) for r in scored_rows])
     latest_rows = feed_rows[:latest]

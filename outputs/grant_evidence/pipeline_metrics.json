@@ -1,0 +1,54 @@
+{
+  "generated_at": "2026-03-24T22:00:00+00:00",
+  "source_count": 55,
+  "sources_in_manifest": 57,
+  "sources_recovered": 6,
+  "sources_confirmed_dead": 28,
+  "issue_count": 2056,
+  "alert_count": 961,
+  "packet_count": 686,
+  "playbook_patterns": 11,
+  "priority_distribution": {
+    "P0": 478,
+    "P1": 200,
+    "P2": 283,
+    "P3": 1095
+  },
+  "multi_source_issues": {
+    "2_plus": 233,
+    "3_plus": 89,
+    "4_plus": 15
+  },
+  "contradictions_detected": 3,
+  "source_consensus_populated": 2056,
+  "tests_passing": 571,
+  "ioc_extraction": {
+    "issues_with_iocs": 1700,
+    "total_iocs": 31719,
+    "by_type": {
+      "cve": 19355,
+      "domain": 7246,
+      "url": 2827,
+      "hash_sha1": 868,
+      "ip": 743,
+      "hash_sha256": 512,
+      "hash_md5": 168
+    }
+  },
+  "source_mitigation_extraction": {
+    "p012_issues": 961,
+    "viable_for_extraction": 713,
+    "too_sparse": 248,
+    "sample_20_issues_with_mits": 5,
+    "sample_20_total_mits": 27,
+    "by_type_sample": {
+      "process": 11,
+      "network": 6,
+      "patch": 4,
+      "other": 4,
+      "monitor": 2
+    }
+  },
+  "api_calls_this_session": 1971,
+  "estimated_cost": "~$5.91"
+}

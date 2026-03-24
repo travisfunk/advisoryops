@@ -464,3 +464,112 @@ def export_action_checklist(
     add(f"  {packet.disclaimer or CHECKLIST_DISCLAIMER}")
 
     return "\n".join(lines)
+
+
+# ---------------------------------------------------------------------------
+# IOC export formats
+# ---------------------------------------------------------------------------
+
+def export_iocs_csv(iocs: List[Dict[str, str]], out_path: Path) -> Path:
+    """Write IOCs to a simple CSV file.
+
+    Columns: type, value, source
+
+    Args:
+        iocs:     List of IOC dicts (type, value, source).
+        out_path: File path to write.
+
+    Returns:
+        Resolved path to the written file.
+    """
+    out_path = Path(out_path)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+
+    with out_path.open("w", encoding="utf-8", newline="") as fh:
+        writer = csv.DictWriter(fh, fieldnames=["type", "value", "source"])
+        writer.writeheader()
+        for ioc in iocs:
+            writer.writerow({
+                "type": ioc.get("type", ""),
+                "value": ioc.get("value", ""),
+                "source": ioc.get("source", ""),
+            })
+
+    return out_path
+
+
+def export_iocs_stix(iocs: List[Dict[str, str]], out_path: Path) -> Path:
+    """Write IOCs as a STIX 2.1 bundle (plain JSON, no external library).
+
+    Each IOC becomes a STIX indicator object with a pattern string.
+
+    Args:
+        iocs:     List of IOC dicts (type, value, source).
+        out_path: File path to write.
+
+    Returns:
+        Resolved path to the written file.
+    """
+    import uuid
+
+    out_path = Path(out_path)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+
+    now_iso = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000Z")
+
+    objects: List[Dict[str, Any]] = []
+    for ioc in iocs:
+        ioc_type = ioc.get("type", "other")
+        value = ioc.get("value", "")
+        source = ioc.get("source", "unknown")
+
+        # Build STIX pattern
+        pattern = _stix_pattern(ioc_type, value)
+        if not pattern:
+            continue
+
+        indicator_id = f"indicator--{uuid.uuid5(uuid.NAMESPACE_URL, f'{ioc_type}:{value}')}"
+
+        objects.append({
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": indicator_id,
+            "created": now_iso,
+            "modified": now_iso,
+            "name": f"{ioc_type}: {value}",
+            "description": f"Extracted from advisory source: {source}",
+            "pattern": pattern,
+            "pattern_type": "stix",
+            "valid_from": now_iso,
+            "labels": ["malicious-activity"],
+        })
+
+    bundle = {
+        "type": "bundle",
+        "id": f"bundle--{uuid.uuid4()}",
+        "objects": objects,
+    }
+
+    out_path.write_text(
+        json.dumps(bundle, indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
+    return out_path
+
+
+def _stix_pattern(ioc_type: str, value: str) -> str:
+    """Convert an IOC type+value to a STIX 2.1 pattern string."""
+    if ioc_type == "ip":
+        return f"[ipv4-addr:value = '{value}']"
+    elif ioc_type == "domain":
+        return f"[domain-name:value = '{value}']"
+    elif ioc_type == "url":
+        return f"[url:value = '{value}']"
+    elif ioc_type in ("hash_md5", "hash_sha1", "hash_sha256"):
+        algo = ioc_type.replace("hash_", "").upper().replace("SHA", "SHA-")
+        if algo == "MD5":
+            return f"[file:hashes.'{algo}' = '{value}']"
+        return f"[file:hashes.'{algo}' = '{value}']"
+    elif ioc_type == "cve":
+        return f"[vulnerability:name = '{value}']"
+    return ""
