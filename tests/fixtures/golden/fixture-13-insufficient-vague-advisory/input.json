@@ -1,0 +1,12 @@
+{
+  "signals": [
+    {
+      "source": "vendor-generic",
+      "title": "Security update available for product",
+      "summary": "An update is available. Please contact your vendor representative for details.",
+      "guid": "vendor-advisory-vague-001",
+      "link": "",
+      "published_date": "2026-03-15"
+    }
+  ]
+}

@@ -119,9 +119,11 @@ confidence >= 0.6, else choose healthcare_adjacent or not_healthcare.\
 
 
 def _build_user_prompt(issue: Dict[str, Any]) -> str:
+    from .sanitize import sanitize_for_prompt
+
     issue_id = str(issue.get("issue_id") or "unknown")
-    title = str(issue.get("title") or "")
-    summary = str(issue.get("summary") or "")
+    title = sanitize_for_prompt(str(issue.get("title") or ""), field_name="title")
+    summary = sanitize_for_prompt(str(issue.get("summary") or ""), field_name="summary")
     sources = ", ".join(str(s) for s in (issue.get("sources") or []))
     links = " ".join(str(lnk) for lnk in (issue.get("links") or []))
 

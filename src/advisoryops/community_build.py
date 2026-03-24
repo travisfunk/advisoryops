@@ -105,6 +105,7 @@ def _feed_entry(issue: Dict[str, Any]) -> Dict[str, Any]:
         "confidence_by_field": issue.get("confidence_by_field") or {},
         "evidence_sources": issue.get("evidence_sources") or [],
         "insufficient_evidence": issue.get("insufficient_evidence", False),
+        "non_applicability": issue.get("non_applicability") or [],
     }
     return entry
 
@@ -1883,8 +1884,12 @@ def build_community_feed(
     recommend_priorities: Sequence[str] = ("P0", "P1"),
     ai_score: bool = False,
     ai_score_model: str = "gpt-4o-mini",
+    summarize: bool = False,
+    summarize_model: str = "gpt-4o-mini",
+    summarize_priorities: Sequence[str] = ("P0", "P1", "P2"),
     _recommend_call_fn: Optional[Callable] = None,
     _ai_classify_fn: Optional[Callable] = None,
+    _summarize_call_fn: Optional[Callable] = None,
 ) -> Tuple[Path, Path, Path]:
     if latest <= 0:
         raise ValueError("--latest must be > 0")
@@ -1952,6 +1957,59 @@ def build_community_feed(
         if iid in consensus_by_id:
             ar["source_consensus"] = consensus_by_id[iid]
 
+    # --- Optional AI summarization pass ---
+    summarize_count = 0
+    if summarize:
+        from .summarize import summarize_advisory
+
+        priority_set_s = set(summarize_priorities)
+        targets = [r for r in scored_rows if r.get("priority") in priority_set_s]
+        print(f"\n  Summarize: rewriting summaries for {len(targets)} issues "
+              f"(priorities: {', '.join(sorted(priority_set_s))})")
+
+        scored_by_id = {r["issue_id"]: r for r in scored_rows}
+        alert_by_id = {r["issue_id"]: r for r in alert_rows}
+
+        for issue in targets:
+            issue_id = issue.get("issue_id", "unknown")
+            try:
+                result = summarize_advisory(
+                    issue,
+                    model=summarize_model,
+                    _call_fn=_summarize_call_fn,
+                )
+                summarize_count += 1
+                cached_label = " (cached)" if result.get("from_cache") else ""
+
+                # Merge results back into scored_rows and alert_rows
+                for row_dict in (scored_by_id, alert_by_id):
+                    row = row_dict.get(issue_id)
+                    if row is None:
+                        continue
+                    if result["summary"]:
+                        row["summary"] = result["summary"]
+                    # Merge unknowns (deduplicate)
+                    existing_u = set(row.get("unknowns") or [])
+                    for u in result.get("unknowns", []):
+                        if u not in existing_u:
+                            row.setdefault("unknowns", []).append(u)
+                            existing_u.add(u)
+                    # Merge handling_warnings (deduplicate)
+                    existing_hw = set(row.get("handling_warnings") or [])
+                    for w in result.get("handling_warnings", []):
+                        if w not in existing_hw:
+                            row.setdefault("handling_warnings", []).append(w)
+                            existing_hw.add(w)
+                    row["evidence_completeness"] = result.get("evidence_completeness", 0.0)
+                    row["generated_by"] = "ai"
+
+                if summarize_count <= 3 or summarize_count % 50 == 0:
+                    print(f"    Summarized: {issue_id}{cached_label}")
+            except Exception as exc:
+                print(f"    Warning: summarize failed for {issue_id}: {exc}")
+
+        print(f"  Summarize: {summarize_count}/{len(targets)} issues rewritten")
+
     feed_rows = _sort_feed_entries([_feed_entry(r) for r in scored_rows])
     latest_rows = feed_rows[:latest]
     alert_feed_rows = _sort_feed_entries([_feed_entry(r) for r in alert_rows])
@@ -2001,6 +2059,7 @@ def build_community_feed(
                     "confidence_by_field": packet.confidence_by_field or {},
                     "evidence_sources": packet.evidence_sources or [],
                     "reasoning": packet.reasoning or "",
+                    "non_applicability": packet.non_applicability or [],
                     "generated_by": "ai",
                 }
             except Exception as exc:
@@ -2017,7 +2076,7 @@ def build_community_feed(
                     continue
                 pkt = packet_trust_by_id[iid]
                 # Merge list fields (deduplicate)
-                for list_field in ("handling_warnings", "evidence_gaps"):
+                for list_field in ("handling_warnings", "evidence_gaps", "non_applicability"):
                     existing = set(row.get(list_field) or [])
                     for v in pkt.get(list_field, []):
                         if v not in existing:

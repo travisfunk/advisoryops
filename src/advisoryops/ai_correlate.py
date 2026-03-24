@@ -372,13 +372,14 @@ def _issue_fingerprint(issue: Dict[str, Any]) -> Dict[str, Any]:
 
 def _build_user_prompt(issue_a: Dict[str, Any], issue_b: Dict[str, Any]) -> str:
     """Build the user-turn prompt for the merge decision call."""
+    from .sanitize import sanitize_for_prompt
 
     def _fmt(issue: Dict[str, Any]) -> str:
         lines = [
             f"  issue_id   : {issue.get('issue_id', '')}",
             f"  cves       : {', '.join(issue.get('cves') or []) or '(none)'}",
-            f"  title      : {str(issue.get('title') or '')[:150]}",
-            f"  summary    : {str(issue.get('summary') or '')[:400]}",
+            f"  title      : {sanitize_for_prompt(str(issue.get('title') or '')[:150], field_name='title')}",
+            f"  summary    : {sanitize_for_prompt(str(issue.get('summary') or '')[:400], field_name='summary')}",
             f"  sources    : {', '.join(issue.get('sources') or [])}",
             f"  dates      : {', '.join(issue.get('published_dates') or [])}",
         ]

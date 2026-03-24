@@ -1,0 +1,12 @@
+{
+  "signals": [
+    {
+      "source": "vendor-generic",
+      "title": "Important notice regarding software component",
+      "summary": "A vulnerability has been identified in a software component used across multiple industries. Severity and impact are under assessment. No CVE has been assigned yet.",
+      "guid": "vendor-advisory-generic-002",
+      "link": "",
+      "published_date": "2026-03-18"
+    }
+  ]
+}

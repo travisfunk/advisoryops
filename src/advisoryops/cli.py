@@ -216,6 +216,13 @@ def cmd_recommend(args) -> int:
     out_dir.mkdir(parents=True, exist_ok=True)
     stem = _safe_stem(packet.issue_id)
 
+    # ── Checklist mode ────────────────────────────────────────────────────────
+    if getattr(args, "checklist", False):
+        from .packet_export import export_action_checklist
+        checklist = export_action_checklist(packet, pb)
+        print(checklist)
+        return 0
+
     fmt = args.format.lower()
     if fmt == "json":
         out_path = export_json(packet, out_dir / f"{stem}_packet.json")
@@ -252,6 +259,7 @@ def cmd_community_build(args) -> int:
         latest=int(args.latest),
         recommend=args.recommend,
         ai_score=getattr(args, "ai_score", False),
+        summarize=getattr(args, "summarize", False),
     )
 
     print("")
@@ -259,6 +267,44 @@ def cmd_community_build(args) -> int:
     print(f"Wrote public alerts: {out_alerts}")
     print(f"Wrote community meta: {out_meta}")
     return 0
+
+def cmd_summarize(args: argparse.Namespace) -> int:
+    """Summarize a single issue into plain-language output."""
+    import json as _json
+    from pathlib import Path as _Path
+    from .summarize import summarize_advisory
+
+    in_path = _Path(args.issues_path)
+    if not in_path.exists():
+        raise SystemExit(f"Issues file not found: {in_path}")
+
+    issue = None
+    with in_path.open(encoding="utf-8") as fh:
+        for line in fh:
+            line = line.strip()
+            if not line:
+                continue
+            obj = _json.loads(line)
+            if obj.get("issue_id") == args.issue_id:
+                issue = obj
+                break
+
+    if issue is None:
+        raise SystemExit(f"Issue '{args.issue_id}' not found in {in_path}.")
+
+    result = summarize_advisory(issue, no_cache=getattr(args, "no_cache", False))
+
+    print(f"Issue: {args.issue_id}")
+    print(f"Summary: {result['summary']}")
+    print()
+    if result["unknowns"]:
+        print("Unknowns: " + "; ".join(result["unknowns"]))
+    if result["handling_warnings"]:
+        print("Handling warnings: " + "; ".join(result["handling_warnings"]))
+    print(f"Evidence completeness: {result['evidence_completeness']:.0%}")
+    print(f"Cached: {result.get('from_cache', False)}")
+    return 0
+
 
 def cmd_ask(args: argparse.Namespace) -> int:
     """Answer a natural-language question against the advisory corpus."""
@@ -418,6 +464,8 @@ def build_parser() -> argparse.ArgumentParser:
     p_rec.add_argument("--model", default="gpt-4o-mini", help="AI model to use (default: gpt-4o-mini)")
     p_rec.add_argument("--no-cache", dest="no_cache", action="store_true",
                        help="Bypass AI response cache (always call API)")
+    p_rec.add_argument("--checklist", action="store_true",
+                       help="Print a hospital action checklist instead of exporting a packet file")
     p_rec.set_defaults(fn=cmd_recommend)
 
     p_comm = sub.add_parser("community-build", help="Build the combined community/public feed from the validated source manifest")
@@ -437,7 +485,18 @@ def build_parser() -> argparse.ArgumentParser:
                         help="Generate JSON remediation packets for P0/P1 alerts (requires OPENAI_API_KEY)")
     p_comm.add_argument("--ai-score", action="store_true", dest="ai_score",
                         help="Run AI healthcare classification for issues without deterministic signals (requires OPENAI_API_KEY)")
+    p_comm.add_argument("--summarize", action="store_true",
+                        help="Rewrite P0/P1/P2 issue summaries into plain-language descriptions (requires OPENAI_API_KEY)")
     p_comm.set_defaults(fn=cmd_community_build)
+
+    p_sum = sub.add_parser("summarize", help="Summarize a single issue into plain language")
+    p_sum.add_argument("--issue-id", dest="issue_id", required=True, help="Issue ID to summarize")
+    p_sum.add_argument("--issues-path", dest="issues_path",
+                       default="outputs/community_public_final/issues_public.jsonl",
+                       help="JSONL file to search for the issue")
+    p_sum.add_argument("--no-cache", dest="no_cache", action="store_true",
+                       help="Bypass AI response cache")
+    p_sum.set_defaults(fn=cmd_summarize)
 
     p_ask = sub.add_parser(
         "ask",

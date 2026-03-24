@@ -145,10 +145,16 @@ def export_json(packet: RemediationPacket, out_path: Path) -> Path:
                 "rationale": rec.rationale,
                 "basis": rec.basis,
                 "parameters": rec.parameters,
+                "side_effects": rec.side_effects,
+                "friction_level": rec.friction_level,
+                "friction_reason": rec.friction_reason,
             }
             for rec in packet.recommended_patterns
         ],
         "tasks_by_role": packet.tasks_by_role,
+        "non_applicability": packet.non_applicability,
+        "handling_warnings": packet.handling_warnings,
+        "evidence_gaps": packet.evidence_gaps,
     }
 
     out_path.write_text(
@@ -272,6 +278,24 @@ def export_markdown(packet: RemediationPacket, playbook: Playbook, out_path: Pat
                 add(f"- [ ] {ev}")
             add("")
 
+    # ── Handling Warnings ──────────────────────────────────────────────────────
+    if packet.handling_warnings:
+        add("## Handling Warnings")
+        add("")
+        for hw in packet.handling_warnings:
+            add(f"- ⚠ {hw}")
+        add("")
+
+    # ── Non-Applicability ─────────────────────────────────────────────────────
+    if packet.non_applicability:
+        add("## Non-Applicability Conditions")
+        add("")
+        add("This advisory may NOT apply if:")
+        add("")
+        for na in packet.non_applicability:
+            add(f"- {na}")
+        add("")
+
     # ── Citations ─────────────────────────────────────────────────────────────
     if packet.citations:
         add("## References")
@@ -332,3 +356,111 @@ def export_csv_tasks(packet: RemediationPacket, playbook: Playbook, out_path: Pa
             })
 
     return out_path
+
+
+# ---------------------------------------------------------------------------
+# Action checklist export (Part 4)
+# ---------------------------------------------------------------------------
+
+_BIOMED_ROLES = {"htm_ce", "clinical_ops"}
+_VENDOR_ROLES = {"vendor"}
+
+CHECKLIST_DISCLAIMER = (
+    "AI-assisted guidance based on approved mitigation patterns and cited standards. "
+    "Verify against vendor documentation and local operational constraints before implementation."
+)
+
+
+def export_action_checklist(
+    packet: RemediationPacket,
+    playbook: Playbook | None = None,
+) -> str:
+    """Produce a simplified hospital action checklist from a recommendation packet.
+
+    Returns a multi-line string suitable for copy/paste into a hospital
+    change-management ticket or email.
+    """
+    lines: List[str] = []
+    add = lines.append
+
+    add(f"ACTION CHECKLIST: {packet.issue_id}")
+    add(f"Generated: {_utc_now_iso()}")
+    add("")
+
+    # Partition tasks by friction / role
+    immediate: List[str] = []
+    biomed: List[str] = []
+    vendor_tasks: List[str] = []
+    validation: List[str] = []
+
+    for rec in packet.recommended_patterns:
+        pattern = playbook.get(rec.pattern_id) if playbook else None
+        label = pattern.name if pattern else rec.pattern_id
+        task_line = f"[{label}] {rec.why_selected}"
+
+        if rec.friction_level == "low" or (not rec.friction_level and rec.priority_order <= 2):
+            immediate.append(task_line)
+        elif rec.friction_level == "high":
+            if pattern and any(s.role in _VENDOR_ROLES for s in pattern.steps):
+                vendor_tasks.append(task_line)
+            else:
+                biomed.append(task_line)
+        else:
+            if pattern and any(s.role in _BIOMED_ROLES for s in pattern.steps):
+                biomed.append(task_line)
+            else:
+                immediate.append(task_line)
+
+        # Collect verification steps
+        if pattern:
+            for ev in pattern.verification.evidence:
+                if ev not in validation:
+                    validation.append(ev)
+
+    if immediate:
+        add("IMMEDIATE SAFE ACTIONS:")
+        for t in immediate:
+            add(f"  - {t}")
+        add("")
+
+    if biomed:
+        add("ACTIONS REQUIRING BIOMED / HTM:")
+        for t in biomed:
+            add(f"  - {t}")
+        add("")
+
+    if vendor_tasks:
+        add("ACTIONS REQUIRING VENDOR:")
+        for t in vendor_tasks:
+            add(f"  - {t}")
+        add("")
+
+    if validation:
+        add("VALIDATION STEPS:")
+        for v in validation:
+            add(f"  - [ ] {v}")
+        add("")
+
+    if packet.non_applicability:
+        add("KEY ASSUMPTIONS (advisory may not apply if):")
+        for na in packet.non_applicability:
+            add(f"  - {na}")
+        add("")
+
+    unknowns = list(packet.evidence_gaps)
+    if unknowns:
+        add("KNOWN UNKNOWNS:")
+        for u in unknowns:
+            add(f"  - {u}")
+        add("")
+
+    if packet.handling_warnings:
+        add("HANDLING WARNINGS:")
+        for hw in packet.handling_warnings:
+            add(f"  - {hw}")
+        add("")
+
+    add("DISCLAIMER:")
+    add(f"  {packet.disclaimer or CHECKLIST_DISCLAIMER}")
+
+    return "\n".join(lines)

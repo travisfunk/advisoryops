@@ -1,0 +1,8 @@
+{
+  "expected_issue_count": 1,
+  "expected_cves": [],
+  "expected_priority_range": ["P3"],
+  "expected_healthcare_category": "not_healthcare",
+  "insufficient_evidence": true,
+  "description": "Vague vendor advisory with no CVE, no product name, no severity. The AI classification should return insufficient_evidence=true because there is not enough information to determine healthcare relevance. Evidence gaps should include 'affected product unclear', 'vulnerability type unknown', 'severity not specified'."
+}

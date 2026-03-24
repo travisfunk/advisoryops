@@ -100,14 +100,16 @@ _SYSTEM_PROMPT = (
 
 
 def _build_user_prompt(question: str, context_issues: List[Dict[str, Any]]) -> str:
+    from .sanitize import sanitize_for_prompt
+
     lines: List[str] = [
-        f"Question: {question}",
+        f"Question: {sanitize_for_prompt(question, field_name='question')}",
         "",
         "Advisory context:",
         "",
     ]
     for issue in context_issues:
-        summary = (str(issue.get("summary") or ""))[:400]
+        summary = sanitize_for_prompt((str(issue.get("summary") or ""))[:400], field_name="summary")
         sources = ", ".join(issue.get("sources") or []) or "(unknown)"
         lines += [
             f"Issue ID: {issue.get('issue_id', '')}",
@@ -117,7 +119,7 @@ def _build_user_prompt(question: str, context_issues: List[Dict[str, Any]]) -> s
             f"Sources: {sources}",
             "",
         ]
-    lines.append("Answer the question based only on the context above.")
+    lines.append("Answer the question based only on the context above. Respond in JSON.")
     return "\n".join(lines)
 
 

@@ -56,6 +56,9 @@ class PatternRecommendation:
     priority_order: int  # 1 = highest priority
     rationale: str = ""
     basis: str = ""
+    side_effects: List[str] = field(default_factory=list)
+    friction_level: str = ""  # "low" / "medium" / "high"
+    friction_reason: str = ""
 
 
 @dataclass
@@ -77,6 +80,7 @@ class RemediationPacket:
     insufficient_evidence: bool = False
     evidence_gaps: List[str] = field(default_factory=list)
     handling_warnings: List[str] = field(default_factory=list)
+    non_applicability: List[str] = field(default_factory=list)
     generated_by: str = "ai"
     disclaimer: str = (
         "AI-assisted guidance based on approved mitigation patterns and cited standards. "
@@ -151,10 +155,14 @@ def _build_system_prompt(playbook: Playbook) -> str:
         '      "why_selected": "<1-2 sentence justification including attack vector analysis>",\n'
         '      "rationale": "<Selected because: [specific evidence from advisory — exploitability, patch status, device class, source language — that matched this pattern]>",\n'
         '      "parameters": {<key: extracted value from advisory text>},\n'
-        '      "priority_order": <integer, 1 = highest priority>\n'
+        '      "priority_order": <integer, 1 = highest priority>,\n'
+        '      "side_effects": ["<thing that may break or be disrupted by this action>", ...],\n'
+        '      "friction_level": "<low|medium|high>",\n'
+        '      "friction_reason": "<why this action has this friction level>"\n'
         '    }\n'
         '  ],\n'
         '  "reasoning": "<2-3 sentence overall summary including attack vector and why these patterns were chosen>",\n'
+        '  "non_applicability": ["<condition under which this advisory may NOT apply>", ...],\n'
         '  "evidence_sources": ["<source_id from the issue>", ...],\n'
         '  "confidence_by_field": {\n'
         '    "pattern_selection": <float 0.0-1.0>,\n'
@@ -173,9 +181,11 @@ def _build_system_prompt(playbook: Playbook) -> str:
 
 def _build_user_prompt(issue: Dict[str, Any]) -> str:
     """Build the user/input prompt from a scored issue dict."""
+    from .sanitize import sanitize_for_prompt
+
     issue_id = issue.get("issue_id", "unknown")
-    title = issue.get("title", "")
-    summary = issue.get("summary", "")
+    title = sanitize_for_prompt(str(issue.get("title") or ""), field_name="title")
+    summary = sanitize_for_prompt(str(issue.get("summary") or ""), field_name="summary")
     priority = issue.get("priority", "")
     score = issue.get("score", "")
     cves = issue.get("cves") or []
@@ -239,6 +249,14 @@ def _parse_ai_response(
             params = {}
 
         pattern = playbook.get(pid)
+        side_effects_raw = item.get("side_effects") or []
+        if not isinstance(side_effects_raw, list):
+            side_effects_raw = []
+
+        friction_level = str(item.get("friction_level") or "").strip().lower()
+        if friction_level not in ("low", "medium", "high"):
+            friction_level = ""
+
         rec = PatternRecommendation(
             pattern_id=pid,
             why_selected=str(item.get("why_selected") or ""),
@@ -246,6 +264,9 @@ def _parse_ai_response(
             priority_order=int(item.get("priority_order") or 1),
             rationale=str(item.get("rationale") or ""),
             basis=pattern.basis if pattern else "",
+            side_effects=[str(s) for s in side_effects_raw if s],
+            friction_level=friction_level,
+            friction_reason=str(item.get("friction_reason") or ""),
         )
         recommendations.append(rec)
 
@@ -267,6 +288,7 @@ def _parse_ai_response(
         "evidence_gaps": [str(g) for g in (raw_json.get("evidence_gaps") or []) if g],
         "insufficient_evidence": bool(raw_json.get("insufficient_evidence", False)),
         "handling_warnings": [str(w) for w in (raw_json.get("handling_warnings") or []) if w],
+        "non_applicability": [str(n) for n in (raw_json.get("non_applicability") or []) if n],
     }
 
     return recommendations, tasks_by_role, reasoning, provenance
@@ -388,4 +410,5 @@ def recommend_mitigations(
         insufficient_evidence=provenance["insufficient_evidence"],
         evidence_gaps=provenance["evidence_gaps"],
         handling_warnings=provenance["handling_warnings"],
+        non_applicability=provenance["non_applicability"],
     )

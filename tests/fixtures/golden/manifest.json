@@ -109,6 +109,26 @@
       "expected_priority": "P3",
       "healthcare_category": "medical_device",
       "tags": ["dicom", "imaging-library", "single-signal"]
+    },
+    {
+      "id": "fixture-13-insufficient-vague-advisory",
+      "description": "Vague vendor advisory with no CVE, no product, no severity. Tests insufficient_evidence=true classification.",
+      "source_types": ["vendor-generic"],
+      "expected_issue_count": 1,
+      "expected_priority": "P3",
+      "healthcare_category": "not_healthcare",
+      "insufficient_evidence": true,
+      "tags": ["insufficient-evidence", "vague", "no-cve"]
+    },
+    {
+      "id": "fixture-14-insufficient-generic-software",
+      "description": "Generic software advisory with unknown severity and unclear healthcare relevance. Tests insufficient_evidence=true.",
+      "source_types": ["vendor-generic"],
+      "expected_issue_count": 1,
+      "expected_priority": "P3",
+      "healthcare_category": "not_healthcare",
+      "insufficient_evidence": true,
+      "tags": ["insufficient-evidence", "generic", "no-cve"]
     }
   ]
 }
