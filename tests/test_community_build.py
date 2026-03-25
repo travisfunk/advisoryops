@@ -466,10 +466,9 @@ def test_dashboard_html_contains_trust_layer_sections() -> None:
     assert "handling-warnings" in html
     assert "evidence-gaps" in html
     assert "source-consensus" in html
-    assert "evidence-completeness" in html
-    assert "evidence-bar" in html
-    assert "fact-badge" in html
-    assert "authority-badge" in html
+    assert "ev-bar" in html
+    assert "provenance-badge" in html
+    assert "auth-dot" in html
 
 
 def test_dashboard_html_valid_structure() -> None:
@@ -490,6 +489,82 @@ def test_generate_dashboard_writes_file(tmp_path: Path) -> None:
     html = out.read_text(encoding="utf-8")
     assert len(html) > 1000
     assert "handling-warnings" in html
+
+
+def test_dashboard_html_contains_section_ids() -> None:
+    """Dashboard contains required section anchor IDs."""
+    html = _DASHBOARD_HTML
+    for section_id in ("issues-section", "sources-section", "methodology-section", "about-section"):
+        assert section_id in html, f"Missing section ID: {section_id}"
+
+
+def test_dashboard_html_contains_action_row_classes() -> None:
+    """Dashboard contains action row classes for remediate/detect/block/feedback."""
+    html = _DASHBOARD_HTML
+    assert "action-row" in html
+    assert "action-row-label" in html
+    assert "action-row-btns" in html
+
+
+def test_dashboard_html_contains_source_mitigation_and_ioc_classes() -> None:
+    """Dashboard contains source-mitigation and IOC section classes."""
+    html = _DASHBOARD_HTML
+    assert "source-mitigations" in html or "mit-card" in html
+    assert "ioc-section" in html
+    assert "ioc-item" in html
+    assert "ioc-type" in html
+
+
+def test_dashboard_html_contains_mobile_media_query() -> None:
+    """Dashboard includes a mobile responsive media query."""
+    assert "@media" in _DASHBOARD_HTML
+
+
+def test_dashboard_html_contains_fetch_urls() -> None:
+    """Dashboard fetches feed_latest.json and validated_sources.json."""
+    html = _DASHBOARD_HTML
+    assert 'fetch("feed_latest.json")' in html
+    assert 'fetch("validated_sources.json")' in html
+
+
+def test_docs_folder_created_by_build(tmp_path: Path, monkeypatch) -> None:
+    """build_community_feed deploys docs/ with index.html and data files."""
+    signals = [
+        {
+            "source": "cisa-icsma",
+            "guid": "https://example.test/advisory/CVE-2026-8001",
+            "title": "Test advisory CVE-2026-8001",
+            "summary": "Test summary for docs deployment.",
+            "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-8001",
+            "published_date": "2026-03-20",
+            "fetched_at": "2026-03-20T09:00:00Z",
+        },
+    ]
+    discover_root, out_root = _setup_community_env(tmp_path, monkeypatch, signals)
+
+    # Create a fake .git directory so _deploy_docs finds the repo root
+    (tmp_path / ".git").mkdir()
+
+    build_community_feed(
+        set_id="gold_pass1",
+        refresh=False,
+        out_root_discover=str(discover_root),
+        out_root_runs=str(tmp_path / "source_runs"),
+        out_root_community=str(out_root),
+        only_new=False,
+        limit_per_source=50,
+        limit_issues=0,
+        min_priority="P3",
+        top=100,
+        latest=10,
+    )
+
+    docs = tmp_path / "docs"
+    assert (docs / "index.html").exists(), "docs/index.html was not created"
+    assert (docs / "feed_latest.json").exists(), "docs/feed_latest.json was not created"
+    assert (docs / "validated_sources.json").exists(), "docs/validated_sources.json was not created"
+    html = (docs / "index.html").read_text(encoding="utf-8")
+    assert "AdvisoryOps" in html
 
 
 def test_dashboard_feed_entry_includes_trust_fields(tmp_path: Path, monkeypatch) -> None:

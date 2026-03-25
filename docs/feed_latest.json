@@ -1,0 +1,5466 @@
+[
+  {
+    "issue_id": "CVE-2008-0015",
+    "issue_type": "cve",
+    "title": "CVE-2008-0015",
+    "summary": "CISA has identified a critical remote code execution vulnerability in Microsoft Windows Video ActiveX Control that is currently being actively exploited. A patch is available, so it's essential to apply it immediately to protect your system from potential attacks. Prioritize this vulnerability remediation as part of your security practices.",
+    "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2008-0015",
+    "cves": [
+      "CVE-2008-0015"
+    ],
+    "sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "cisa-ncas-current-activity"
+    ],
+    "published_dates": [
+      "2026-02-17",
+      "Tue, 17 Feb 26 12:00:00 +0000"
+    ],
+    "first_seen_at": "2026-03-24T02:56:10.388631+00:00",
+    "last_seen_at": "2026-03-24T02:56:12.060923+00:00",
+    "score": 260,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Ensure all systems using the affected Windows component are identified before applying patches",
+      "Monitor for system stability post-patching",
+      "Ensure testing is conducted post-patch to validate functionality."
+    ],
+    "evidence_gaps": [],
+    "unknowns": [
+      "Specific affected versions of Microsoft Windows",
+      "Patch application timeline",
+      "Impact on hospital operations during patching"
+    ],
+    "source_consensus": {
+      "agreed": [
+        "CVEs: CVE-2008-0015, CVE-2020-7796, CVE-2024-7694, CVE-2026-2441"
+      ],
+      "contradicted": [],
+      "unique_contributions": {
+        "cisa-ncas-current-activity": [
+          "unique links (1)"
+        ]
+      }
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-kev-csv",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "vulnerability_id": "CVE-2008-0015",
+      "vulnerability_type": "remote code execution",
+      "vulnerability_status": "actively exploited",
+      "patch_status": "available"
+    },
+    "inferred_facts": {
+      "patch_application_urgency": "high",
+      "system_impact": "critical"
+    },
+    "confidence_by_field": {
+      "pattern_selection": 1.0,
+      "parameter_extraction": 1.0
+    },
+    "evidence_sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "cisa-ncas-current-activity"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "apply mitigations per vendor instructions",
+        "citation": "CVE-2008-0015",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2008-0015",
+        "mitigation_type": "other"
+      }
+    ],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2008-0015",
+        "source": "cisa-kev-csv"
+      }
+    ]
+  },
+  {
+    "issue_id": "CVE-2020-7796",
+    "issue_type": "cve",
+    "title": "CVE-2020-7796",
+    "summary": "The Synacor Zimbra Collaboration Suite has a serious Server-Side Request Forgery vulnerability, which is being actively exploited. This vulnerability is classified as Critical, and it's important to take action as soon as possible. Please prioritize applying any available patches to secure the system against potential attacks.",
+    "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2020-7796",
+    "cves": [
+      "CVE-2020-7796"
+    ],
+    "sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "cisa-ncas-current-activity"
+    ],
+    "published_dates": [
+      "2026-02-17",
+      "Tue, 17 Feb 26 12:00:00 +0000"
+    ],
+    "first_seen_at": "2026-03-24T02:56:10.388631+00:00",
+    "last_seen_at": "2026-03-24T02:56:12.060923+00:00",
+    "score": 260,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Ensure that communications related to this vulnerability are monitored closely",
+      "Review access controls to limit exploitation opportunities"
+    ],
+    "evidence_gaps": [
+      "specific patch details from the vendor"
+    ],
+    "unknowns": [
+      "Patch availability details for specific versions",
+      "Timeline for patch deployment",
+      "specific patch details from the vendor"
+    ],
+    "source_consensus": {
+      "agreed": [
+        "CVEs: CVE-2008-0015, CVE-2020-7796, CVE-2024-7694, CVE-2026-2441"
+      ],
+      "contradicted": [],
+      "unique_contributions": {
+        "cisa-ncas-current-activity": [
+          "unique links (1)"
+        ]
+      }
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-kev-csv",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "cve_id": "CVE-2020-7796",
+      "severity": "critical",
+      "score": 260,
+      "vulnerability_type": "Server-Side Request Forgery"
+    },
+    "inferred_facts": {
+      "patch_availability": "Vendor likely has released a patch",
+      "exploit_status": "actively exploited in the wild"
+    },
+    "confidence_by_field": {
+      "pattern_selection": 1.0,
+      "parameter_extraction": 1.0
+    },
+    "evidence_sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "cisa-ncas-current-activity"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "Apply mitigations per vendor instructions",
+        "citation": "CVE-2020-7796",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2020-7796",
+        "mitigation_type": "other"
+      },
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "follow applicable BOD 22-01 guidance for cloud services",
+        "citation": "CVE-2020-7796",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2020-7796",
+        "mitigation_type": "other"
+      },
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "discontinue use of the product if mitigations are unavailable",
+        "citation": "CVE-2020-7796",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2020-7796",
+        "mitigation_type": "other"
+      }
+    ],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2020-7796",
+        "source": "cisa-kev-csv"
+      }
+    ]
+  },
+  {
+    "issue_id": "CVE-2024-7694",
+    "issue_type": "cve",
+    "title": "CVE-2024-7694",
+    "summary": "A critical vulnerability has been identified in TeamT5's ThreatSonar Anti-Ransomware product, which allows unrestricted file uploads of potentially dangerous types. A patch is not specifically mentioned, so it's essential to assess your current version for any risks. We recommend immediately reviewing your systems for this vulnerability and taking steps to mitigate any potential threats.",
+    "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2024-7694",
+    "cves": [
+      "CVE-2024-7694"
+    ],
+    "sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "cisa-ncas-current-activity"
+    ],
+    "published_dates": [
+      "2026-02-17",
+      "Tue, 17 Feb 26 12:00:00 +0000"
+    ],
+    "first_seen_at": "2026-03-24T02:56:10.388631+00:00",
+    "last_seen_at": "2026-03-24T02:56:12.060923+00:00",
+    "score": 260,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Monitor systems closely for unusual activity related to file uploads",
+      "Ensure proper file upload restrictions are enforced",
+      "Ensure that patient safety is not compromised during monitoring and traffic adjustments"
+    ],
+    "evidence_gaps": [
+      "Detailed information on required peer connections and service interactions",
+      "Clarification on device network configurations"
+    ],
+    "unknowns": [
+      "Patch availability details",
+      "Specific affected versions of ThreatSonar",
+      "Detailed information on required peer connections and service interactions",
+      "Clarification on device network configurations"
+    ],
+    "source_consensus": {
+      "agreed": [
+        "CVEs: CVE-2008-0015, CVE-2020-7796, CVE-2024-7694, CVE-2026-2441"
+      ],
+      "contradicted": [],
+      "unique_contributions": {
+        "cisa-ncas-current-activity": [
+          "unique links (1)"
+        ]
+      }
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-kev-csv",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "cve_id": "CVE-2024-7694",
+      "device": "TeamT5 ThreatSonar Anti-Ransomware product"
+    },
+    "inferred_facts": {
+      "patch_status": "No patch specifically mentioned"
+    },
+    "confidence_by_field": {
+      "pattern_selection": 0.9,
+      "parameter_extraction": 0.8
+    },
+    "evidence_sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "cisa-ncas-current-activity"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [
+      "The device is not present in the environment",
+      "Existing compensating controls are already sufficient"
+    ],
+    "source_mitigations": [
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "Apply mitigations per vendor instructions",
+        "citation": "CVE-2024-7694",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-7694",
+        "mitigation_type": "process"
+      },
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "follow applicable BOD 22-01 guidance for cloud services",
+        "citation": "CVE-2024-7694",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-7694",
+        "mitigation_type": "process"
+      },
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "discontinue use of the product if mitigations are unavailable",
+        "citation": "CVE-2024-7694",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-7694",
+        "mitigation_type": "process"
+      }
+    ],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2024-7694",
+        "source": "cisa-kev-csv"
+      }
+    ]
+  },
+  {
+    "issue_id": "CVE-2026-2441",
+    "issue_type": "cve",
+    "title": "CVE-2026-2441",
+    "summary": "Google's Chromium web browser has a critical vulnerability that could allow remote code execution. A patch is recommended for immediate application to protect your systems from potential attacks. Ensure your software is up to date to minimize risks.",
+    "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2026-2441",
+    "cves": [
+      "CVE-2026-2441"
+    ],
+    "sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "cisa-ncas-current-activity"
+    ],
+    "published_dates": [
+      "2026-02-17",
+      "Tue, 17 Feb 26 12:00:00 +0000"
+    ],
+    "first_seen_at": "2026-03-24T02:56:10.388631+00:00",
+    "last_seen_at": "2026-03-24T02:56:12.060923+00:00",
+    "score": 260,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Verify all browser instances are updated before use",
+      "Monitor for abnormal behavior in systems using affected software"
+    ],
+    "evidence_gaps": [],
+    "unknowns": [
+      "Specific versions of Chromium affected",
+      "Timeline for patch availability"
+    ],
+    "source_consensus": {
+      "agreed": [
+        "CVEs: CVE-2008-0015, CVE-2020-7796, CVE-2024-7694, CVE-2026-2441"
+      ],
+      "contradicted": [],
+      "unique_contributions": {
+        "cisa-ncas-current-activity": [
+          "unique links (1)"
+        ]
+      }
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-kev-csv",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "vulnerability": "CVE-2026-2441",
+      "affected_software": "Google Chromium web browser",
+      "severity": "critical",
+      "recommendation": "Apply patch immediately"
+    },
+    "inferred_facts": {
+      "impact": "Allows remote code execution, posing a significant risk to systems using the affected software."
+    },
+    "confidence_by_field": {
+      "pattern_selection": 1.0,
+      "parameter_extraction": 1.0
+    },
+    "evidence_sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "cisa-ncas-current-activity"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
+        "citation": "CVE-2026-2441",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-2441",
+        "mitigation_type": "process"
+      }
+    ],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2026-2441",
+        "source": "cisa-kev-csv"
+      }
+    ]
+  },
+  {
+    "issue_id": "CVE-2018-0171",
+    "issue_type": "cve",
+    "title": "CVE-2018-0171",
+    "summary": "Chinese state-sponsored hackers are actively targeting global networks, including healthcare environments. To protect your systems, it's crucial to monitor for unusual activities and implement recommended security measures immediately. Ensure your response aligns with local laws and regulations.",
+    "canonical_link": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa25-239a",
+    "cves": [
+      "CVE-2018-0171"
+    ],
+    "sources": [
+      "cisa-ncas-alerts"
+    ],
+    "published_dates": [
+      "Mon, 25 Aug 2025 09:36:40 EDT"
+    ],
+    "first_seen_at": "2026-03-24T02:56:11.184470+00:00",
+    "last_seen_at": "2026-03-24T02:56:11.184470+00:00",
+    "score": 241,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Monitor for unusual network behavior",
+      "Ensure compliance with local regulations during response actions"
+    ],
+    "evidence_gaps": [
+      "Specific details on affected systems and their configurations"
+    ],
+    "unknowns": [
+      "Specific vulnerabilities in medical devices are not detailed",
+      "No information on applicable patches or updates provided",
+      "Specific details on affected systems and their configurations"
+    ],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 0.85,
+    "highest_authority_source": "cisa-ncas-alerts",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "cve_id": "CVE-2018-0171",
+      "issue_score": "241"
+    },
+    "inferred_facts": {
+      "threat_actor": "Chinese state-sponsored hackers target healthcare environments"
+    },
+    "confidence_by_field": {
+      "pattern_selection": 0.9,
+      "parameter_extraction": 0.0
+    },
+    "evidence_sources": [
+      "cisa-ncas-alerts"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [
+      "If a relevant patch becomes available",
+      "If the issue is resolved through other means"
+    ],
+    "source_mitigations": [],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2018-0171",
+        "source": "cisa-ncas-alerts"
+      }
+    ]
+  },
+  {
+    "issue_id": "CVE-2023-20198",
+    "issue_type": "cve",
+    "title": "CVE-2023-20198",
+    "summary": "Chinese state-sponsored hackers are targeting network systems globally, including healthcare environments. This advisory highlights the need for vigilance in monitoring networks for malicious activities. It is essential to implement the recommended security measures to mitigate risks from these threats and remain compliant with local regulations.",
+    "canonical_link": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa25-239a",
+    "cves": [
+      "CVE-2023-20198"
+    ],
+    "sources": [
+      "cisa-ncas-alerts"
+    ],
+    "published_dates": [
+      "Mon, 25 Aug 2025 09:36:40 EDT"
+    ],
+    "first_seen_at": "2026-03-24T02:56:11.184470+00:00",
+    "last_seen_at": "2026-03-24T02:56:11.184470+00:00",
+    "score": 241,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Ensure compliance with local laws for any security measures taken",
+      "Monitor network activity for suspicious behavior continuously",
+      "Increased risk of unauthorized access if segmentation is not properly configured"
+    ],
+    "evidence_gaps": [
+      "Specific device types affected",
+      "Current VLAN configuration details"
+    ],
+    "unknowns": [
+      "Specific devices affected",
+      "Timeline for mitigation measures",
+      "Specific device types affected",
+      "Current VLAN configuration details"
+    ],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 0.85,
+    "highest_authority_source": "cisa-ncas-alerts",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "issue_id": "CVE-2023-20198",
+      "score": 241
+    },
+    "inferred_facts": {
+      "threat_actor": "Chinese state-sponsored hackers",
+      "target_environment": "healthcare"
+    },
+    "confidence_by_field": {
+      "pattern_selection": 1.0,
+      "parameter_extraction": 0.0
+    },
+    "evidence_sources": [
+      "cisa-ncas-alerts"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2023-20198",
+        "source": "cisa-ncas-alerts"
+      }
+    ]
+  },
+  {
+    "issue_id": "CVE-2023-20273",
+    "issue_type": "cve",
+    "title": "CVE-2023-20273",
+    "summary": "Chinese state-sponsored cyber threat actors are targeting networks globally, including healthcare systems. While no specific patch is mentioned, it's critical to enhance your security monitoring and implement mitigation strategies outlined in the advisory to deter potential threats. Regularly review and strengthen defenses to protect sensitive hospital data.",
+    "canonical_link": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa25-239a",
+    "cves": [
+      "CVE-2023-20273"
+    ],
+    "sources": [
+      "cisa-ncas-alerts"
+    ],
+    "published_dates": [
+      "Mon, 25 Aug 2025 09:36:40 EDT"
+    ],
+    "first_seen_at": "2026-03-24T02:56:11.184470+00:00",
+    "last_seen_at": "2026-03-24T02:56:11.184470+00:00",
+    "score": 241,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Ensure any security measures comply with local laws",
+      "Stay vigilant for any signs of unusual network activity"
+    ],
+    "evidence_gaps": [
+      "Specific details on compensating controls that can be implemented"
+    ],
+    "unknowns": [
+      "Specific devices or products affected",
+      "Patch timelines",
+      "Detailed mitigation strategies",
+      "Specific details on compensating controls that can be implemented"
+    ],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 0.85,
+    "highest_authority_source": "cisa-ncas-alerts",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "cve_id": "CVE-2023-20273",
+      "priority": "P0",
+      "score": 241
+    },
+    "inferred_facts": {
+      "vendor_patch_status": "unknown"
+    },
+    "confidence_by_field": {
+      "pattern_selection": 0.9,
+      "parameter_extraction": 0.0
+    },
+    "evidence_sources": [
+      "cisa-ncas-alerts"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2023-20273",
+        "source": "cisa-ncas-alerts"
+      }
+    ]
+  },
+  {
+    "issue_id": "CVE-2023-46805",
+    "issue_type": "cve",
+    "title": "CVE-2023-46805",
+    "summary": "Chinese state-sponsored cyber threat actors are targeting networks worldwide, including hospitals. This advisory highlights the importance of monitoring your systems for malicious activity and implementing recommended security measures to protect against these threats. Be vigilant and ensure that any defensive actions you take comply with local laws and regulations.",
+    "canonical_link": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa25-239a",
+    "cves": [
+      "CVE-2023-46805"
+    ],
+    "sources": [
+      "cisa-ncas-alerts"
+    ],
+    "published_dates": [
+      "Mon, 25 Aug 2025 09:36:40 EDT"
+    ],
+    "first_seen_at": "2026-03-24T02:56:11.184470+00:00",
+    "last_seen_at": "2026-03-24T02:56:11.184470+00:00",
+    "score": 241,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Ensure compliance with local laws when implementing security measures",
+      "Monitor for unusual network activity regularly"
+    ],
+    "evidence_gaps": [
+      "Specific details on affected devices or networks",
+      "Local regulatory requirements for defensive actions"
+    ],
+    "unknowns": [
+      "Specific affected devices or systems",
+      "Exact security measures recommended",
+      "Timeline for additional information",
+      "Specific details on affected devices or networks",
+      "Local regulatory requirements for defensive actions"
+    ],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 0.85,
+    "highest_authority_source": "cisa-ncas-alerts",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "score": 241,
+      "title": "CVE-2023-46805",
+      "summary": "Chinese state-sponsored cyber threat actors are targeting networks worldwide, including hospitals."
+    },
+    "inferred_facts": {
+      "threat_actor": "state-sponsored",
+      "target": "hospitals"
+    },
+    "confidence_by_field": {
+      "pattern_selection": 1.0,
+      "parameter_extraction": 0.8
+    },
+    "evidence_sources": [
+      "cisa-ncas-alerts"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2023-46805",
+        "source": "cisa-ncas-alerts"
+      }
+    ]
+  },
+  {
+    "issue_id": "CVE-2024-21887",
+    "issue_type": "cve",
+    "title": "CVE-2024-21887",
+    "summary": "State-sponsored cyber threats from China are targeting various global networks, aiming particularly at telecommunications infrastructure. Although no specific device or patch is mentioned, it's critical for hospital network teams to actively monitor for any signs of unauthorized activity and apply suggested security measures to mitigate these risks. Remain compliant with local laws when implementing any changes to your cybersecurity practices.",
+    "canonical_link": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa25-239a",
+    "cves": [
+      "CVE-2024-21887"
+    ],
+    "sources": [
+      "cisa-ncas-alerts"
+    ],
+    "published_dates": [
+      "Mon, 25 Aug 2025 09:36:40 EDT"
+    ],
+    "first_seen_at": "2026-03-24T02:56:11.184470+00:00",
+    "last_seen_at": "2026-03-24T02:56:11.184470+00:00",
+    "score": 241,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Increased vigilance is urged due to targeted attacks",
+      "Ensure compliance with local regulations while enhancing security"
+    ],
+    "evidence_gaps": [
+      "Specific devices affected by the CVE",
+      "Details on suggested security measures for implementation"
+    ],
+    "unknowns": [
+      "Specific affected devices or systems",
+      "Available patches or fixes",
+      "Detailed timeline for mitigation measures",
+      "Specific devices affected by the CVE",
+      "Details on suggested security measures for implementation"
+    ],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 0.85,
+    "highest_authority_source": "cisa-ncas-alerts",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "CVE_ID": "CVE-2024-21887"
+    },
+    "inferred_facts": {
+      "attack_vector": "State-sponsored threats targeting network infrastructure"
+    },
+    "confidence_by_field": {
+      "pattern_selection": 0.9,
+      "parameter_extraction": 0.8
+    },
+    "evidence_sources": [
+      "cisa-ncas-alerts"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [
+      "If specific device vulnerabilities are identified with available patches",
+      "If the advisory includes clear remediation steps for affected systems"
+    ],
+    "source_mitigations": [],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2024-21887",
+        "source": "cisa-ncas-alerts"
+      }
+    ]
+  },
+  {
+    "issue_id": "CVE-2018-14634",
+    "issue_type": "cve",
+    "title": "CVE-2018-14634",
+    "summary": "CISA has identified a critical vulnerability in the Linux Kernel that is currently being actively exploited. Although a patch is not specified, it's essential to prioritize remediation efforts for this vulnerability to protect hospital networks. Review your systems and implement necessary security measures promptly.",
+    "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2018-14634",
+    "cves": [
+      "CVE-2018-14634"
+    ],
+    "sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "cisa-ncas-current-activity"
+    ],
+    "published_dates": [
+      "2026-01-26",
+      "Mon, 26 Jan 26 12:00:00 +0000"
+    ],
+    "first_seen_at": "2026-03-24T02:56:10.388631+00:00",
+    "last_seen_at": "2026-03-24T02:56:12.060923+00:00",
+    "score": 230,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Ensure all Linux-based devices are monitored for this vulnerability.",
+      "Implement additional security layers to mitigate potential exploitation.",
+      "Monitor the clinical impact of any implemented segmentation changes."
+    ],
+    "evidence_gaps": [
+      "Specific details about network segments and active devices are missing to tailor the mitigation plan more effectively."
+    ],
+    "unknowns": [
+      "Patch availability timeline",
+      "Specific affected Linux Kernel versions",
+      "Specific details about network segments and active devices are missing to tailor the mitigation plan more effectively."
+    ],
+    "source_consensus": {
+      "agreed": [
+        "CVEs: CVE-2018-14634, CVE-2025-52691, CVE-2026-21509, CVE-2026-23760, CVE-2026-24061"
+      ],
+      "contradicted": [],
+      "unique_contributions": {
+        "cisa-ncas-current-activity": [
+          "unique links (1)"
+        ]
+      }
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-kev-csv",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "cve_id": "CVE-2018-14634",
+      "summary": "CISA has identified a critical vulnerability in the Linux Kernel that is currently being actively exploited."
+    },
+    "inferred_facts": {
+      "current_exploit_status": "actively exploited",
+      "patch_availability": "no patch specified"
+    },
+    "confidence_by_field": {
+      "pattern_selection": 1.0,
+      "parameter_extraction": 0.0
+    },
+    "evidence_sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "cisa-ncas-current-activity"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "Apply mitigations per vendor instructions",
+        "citation": "CVE-2018-14634",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2018-14634",
+        "mitigation_type": "process"
+      }
+    ],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2018-14634",
+        "source": "cisa-kev-csv"
+      }
+    ]
+  },
+  {
+    "issue_id": "CVE-2021-22054",
+    "issue_type": "cve",
+    "title": "CVE-2021-22054",
+    "summary": "CISA has identified a critical vulnerability in Omnissa Workspace that could allow attackers to exploit server-side requests. Immediate action is advised, as a patch has not been specified. Your organization should prioritize fixing this vulnerability to prevent potential cyberattacks.",
+    "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2021-22054",
+    "cves": [
+      "CVE-2021-22054"
+    ],
+    "sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "cisa-ncas-current-activity"
+    ],
+    "published_dates": [
+      "2026-03-09",
+      "Mon, 09 Mar 26 12:00:00 +0000"
+    ],
+    "first_seen_at": "2026-03-24T02:56:10.388631+00:00",
+    "last_seen_at": "2026-03-24T02:56:12.060923+00:00",
+    "score": 230,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Ensure all devices are monitored for unusual activity due to potential active exploitation."
+    ],
+    "evidence_gaps": [
+      "Details on the current VLAN configuration and traffic patterns"
+    ],
+    "unknowns": [
+      "No patch timeline provided",
+      "Specific versions affected are unclear",
+      "Details on the current VLAN configuration and traffic patterns"
+    ],
+    "source_consensus": {
+      "agreed": [
+        "CVEs: CVE-2021-22054, CVE-2025-26399, CVE-2026-1603"
+      ],
+      "contradicted": [],
+      "unique_contributions": {
+        "cisa-ncas-current-activity": [
+          "unique links (1)"
+        ]
+      }
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-kev-csv",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "issue_id": "CVE-2021-22054",
+      "title": "CVE-2021-22054",
+      "priority": "P0",
+      "score": 230,
+      "patch_status": "no patch specified"
+    },
+    "inferred_facts": {
+      "exploitability": "high risk due to the critical vulnerability",
+      "device_accessibility": "network-accessible"
+    },
+    "confidence_by_field": {
+      "pattern_selection": 1.0,
+      "parameter_extraction": 0.0
+    },
+    "evidence_sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "cisa-ncas-current-activity"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
+        "citation": "CVE-2021-22054",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2021-22054",
+        "mitigation_type": "process"
+      }
+    ],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2021-22054",
+        "source": "cisa-kev-csv"
+      }
+    ]
+  },
+  {
+    "issue_id": "CVE-2022-20775",
+    "issue_type": "cve",
+    "title": "CVE-2022-20775",
+    "summary": "Cisco has identified a critical authentication vulnerability in their SD-WAN systems, which is being actively exploited. A patch is available, and it is essential for hospital IT teams to inventory all Cisco SD-WAN systems, apply the available updates, and look for any signs of unauthorized activity. Please follow Cisco's hardening guidance to enhance system security.",
+    "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2022-20775",
+    "cves": [
+      "CVE-2022-20775"
+    ],
+    "sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "cisa-ncas-current-activity"
+    ],
+    "published_dates": [
+      "2026-02-25",
+      "Wed, 25 Feb 26 12:00:00 +0000"
+    ],
+    "first_seen_at": "2026-03-24T02:56:10.388631+00:00",
+    "last_seen_at": "2026-03-24T02:56:12.060923+00:00",
+    "score": 230,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Carefully monitor for suspicious activities after patching",
+      "Ensure backups of system configurations are taken before updates"
+    ],
+    "evidence_gaps": [],
+    "unknowns": [
+      "Specific versions affected by the vulnerability",
+      "Exact timeline for patch deployment"
+    ],
+    "source_consensus": {
+      "agreed": [
+        "CVEs: CVE-2022-20775, CVE-2026-20127",
+        "patch status: workaround",
+        "severity: informational"
+      ],
+      "contradicted": [],
+      "unique_contributions": {
+        "cisa-ncas-current-activity": [
+          "unique links (2)"
+        ]
+      }
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-kev-csv",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "vendor": "Cisco",
+      "vulnerability": "CVE-2022-20775",
+      "patch_status": "Patch is available",
+      "device_type": "SD-WAN systems"
+    },
+    "inferred_facts": {
+      "severity": "critical",
+      "exploitability": "actively exploited"
+    },
+    "confidence_by_field": {
+      "pattern_selection": 1.0,
+      "parameter_extraction": 1.0
+    },
+    "evidence_sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "cisa-ncas-current-activity"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "apply software updates",
+        "citation": "CVE-2022-20775",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-20775",
+        "mitigation_type": "patch"
+      },
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "adopt applicable BOD 22-01 guidance for cloud services or discontinue use of the product if mitigations are not available",
+        "citation": "CVE-2022-20775",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-20775",
+        "mitigation_type": "process"
+      }
+    ],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2022-20775",
+        "source": "cisa-kev-csv"
+      }
+    ]
+  },
+  {
+    "issue_id": "CVE-2025-26399",
+    "issue_type": "cve",
+    "title": "CVE-2025-26399",
+    "summary": "A critical vulnerability has been identified in SolarWinds Web Help Desk that allows attackers to manipulate data through untrusted sources. This vulnerability is actively being exploited, and while a patch has not been specified, immediate action is advised to address potential risks. Ensure your systems are reviewed and updated as soon as possible to protect against exploitation.",
+    "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2025-26399",
+    "cves": [
+      "CVE-2025-26399"
+    ],
+    "sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "cisa-ncas-current-activity"
+    ],
+    "published_dates": [
+      "2026-03-09",
+      "Mon, 09 Mar 26 12:00:00 +0000"
+    ],
+    "first_seen_at": "2026-03-24T02:56:10.388631+00:00",
+    "last_seen_at": "2026-03-24T02:56:12.060923+00:00",
+    "score": 230,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Monitor systems closely for unusual activity",
+      "Review system configurations to identify vulnerabilities"
+    ],
+    "evidence_gaps": [
+      "Specific traffic paths and management access requirements",
+      "IP ranges for monitoring parameters"
+    ],
+    "unknowns": [
+      "Patch availability timeline",
+      "Specific versions affected",
+      "Specific traffic paths and management access requirements",
+      "IP ranges for monitoring parameters"
+    ],
+    "source_consensus": {
+      "agreed": [
+        "CVEs: CVE-2021-22054, CVE-2025-26399, CVE-2026-1603"
+      ],
+      "contradicted": [],
+      "unique_contributions": {
+        "cisa-ncas-current-activity": [
+          "unique links (1)"
+        ]
+      }
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-kev-csv",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "vulnerability_description": "allows attackers to manipulate data through untrusted sources",
+      "priority": "P0",
+      "score": 230
+    },
+    "inferred_facts": {
+      "urgency": "immediate action is advised to protect against exploitation"
+    },
+    "confidence_by_field": {
+      "pattern_selection": 1.0,
+      "parameter_extraction": 1.0
+    },
+    "evidence_sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "cisa-ncas-current-activity"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [
+      "No active SolarWinds systems in the environment",
+      "Existing mitigations already in place"
+    ],
+    "source_mitigations": [
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "Apply mitigations per vendor instructions",
+        "citation": "CVE-2025-26399",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-26399",
+        "mitigation_type": "process"
+      },
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "follow applicable BOD 22-01 guidance for cloud services",
+        "citation": "CVE-2025-26399",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-26399",
+        "mitigation_type": "process"
+      },
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "discontinue use of the product if mitigations are unavailable",
+        "citation": "CVE-2025-26399",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-26399",
+        "mitigation_type": "process"
+      }
+    ],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2025-26399",
+        "source": "cisa-kev-csv"
+      }
+    ]
+  },
+  {
+    "issue_id": "CVE-2025-52691",
+    "issue_type": "cve",
+    "title": "CVE-2025-52691",
+    "summary": "SmarterTools SmarterMail has a critical vulnerability that allows for the unrestricted upload of dangerous files. A patch is not currently mentioned, so it is essential to immediately restrict file uploads to prevent potential exploitation. Review your systems and apply strict controls on file types that can be uploaded to mitigate risks.",
+    "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2025-52691",
+    "cves": [
+      "CVE-2025-52691"
+    ],
+    "sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "cisa-ncas-current-activity"
+    ],
+    "published_dates": [
+      "2026-01-26",
+      "Mon, 26 Jan 26 12:00:00 +0000"
+    ],
+    "first_seen_at": "2026-03-24T02:56:10.388631+00:00",
+    "last_seen_at": "2026-03-24T02:56:12.060923+00:00",
+    "score": 230,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Be cautious with file upload functionalities in SmarterMail until further updates or patches are provided."
+    ],
+    "evidence_gaps": [
+      "specific details on device service requirements",
+      "additional specifics on user access patterns"
+    ],
+    "unknowns": [
+      "Is there a specific patch timeline or available patch for this vulnerability?",
+      "What versions of SmarterMail are affected?",
+      "specific details on device service requirements",
+      "additional specifics on user access patterns"
+    ],
+    "source_consensus": {
+      "agreed": [
+        "CVEs: CVE-2018-14634, CVE-2025-52691, CVE-2026-21509, CVE-2026-23760, CVE-2026-24061"
+      ],
+      "contradicted": [],
+      "unique_contributions": {
+        "cisa-ncas-current-activity": [
+          "unique links (1)"
+        ]
+      }
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-kev-csv",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "vulnerability": "critical vulnerability allowing unrestricted file uploads",
+      "patch_status": "no patch currently mentioned"
+    },
+    "inferred_facts": {
+      "immediate_action": "restrict file uploads is necessary to prevent exploitation",
+      "system_impact": "file upload functionality must be reviewed"
+    },
+    "confidence_by_field": {
+      "pattern_selection": 1.0,
+      "parameter_extraction": 0.9
+    },
+    "evidence_sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "cisa-ncas-current-activity"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [
+      "if an immediate patch becomes available",
+      "if additional service dependencies are identified"
+    ],
+    "source_mitigations": [
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "Apply mitigations per vendor instructions",
+        "citation": "CVE-2025-52691",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-52691",
+        "mitigation_type": "process"
+      },
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "follow applicable BOD 22-01 guidance for cloud services",
+        "citation": "CVE-2025-52691",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-52691",
+        "mitigation_type": "process"
+      },
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "discontinue use of the product if mitigations are unavailable",
+        "citation": "CVE-2025-52691",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-52691",
+        "mitigation_type": "process"
+      }
+    ],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2025-52691",
+        "source": "cisa-kev-csv"
+      }
+    ]
+  },
+  {
+    "issue_id": "CVE-2025-59718",
+    "issue_type": "cve",
+    "title": "CVE-2025-59718",
+    "summary": "Fortinet products, including FortiOS and FortiWeb, have a critical vulnerability that allows attackers to bypass login authentication if FortiCloud's single sign-on is enabled. A patch has been released, so it's crucial to update your affected devices immediately to prevent unauthorized access and potential configuration changes. Make sure to also check for any signs of compromise on your systems.",
+    "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2025-59718",
+    "cves": [
+      "CVE-2025-59718"
+    ],
+    "sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "cisa-ncas-current-activity"
+    ],
+    "published_dates": [
+      "2025-12-16",
+      "Wed, 28 Jan 26 12:00:00 +0000"
+    ],
+    "first_seen_at": "2026-03-24T02:56:10.388631+00:00",
+    "last_seen_at": "2026-03-24T02:56:12.060923+00:00",
+    "score": 230,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Monitor for unauthorized changes in device configurations.",
+      "Ensure all updates are applied promptly to maintain security.",
+      "Ensure backup is conducted and test authentication after patching before returning to normal operations"
+    ],
+    "evidence_gaps": [],
+    "unknowns": [
+      "Specific versions affected are not detailed.",
+      "Exact timeline for patch application is unclear."
+    ],
+    "source_consensus": {
+      "agreed": [
+        "CVEs: CVE-2025-59718, CVE-2025-59719, CVE-2026-24858",
+        "patch status: workaround",
+        "severity: informational"
+      ],
+      "contradicted": [],
+      "unique_contributions": {
+        "cisa-ncas-current-activity": [
+          "unique links (1)"
+        ]
+      }
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-kev-csv",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "vendor_name": "Fortinet",
+      "device_type": "FortiOS and FortiWeb",
+      "CVE_ID": "CVE-2025-59718",
+      "patch_status": "available"
+    },
+    "inferred_facts": {
+      "attack_vector": "authentication bypass via FortiCloud's single sign-on"
+    },
+    "confidence_by_field": {
+      "pattern_selection": 1.0,
+      "parameter_extraction": 1.0
+    },
+    "evidence_sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "cisa-ncas-current-activity"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
+        "citation": "CVE-2025-59718",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-59718",
+        "mitigation_type": "process"
+      }
+    ],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2025-59718",
+        "source": "cisa-kev-csv"
+      },
+      {
+        "type": "cve",
+        "value": "CVE-2026-24858",
+        "source": "cisa-ncas-current-activity"
+      }
+    ]
+  },
+  {
+    "issue_id": "CVE-2025-59719",
+    "issue_type": "cve",
+    "title": "CVE-2025-59719",
+    "summary": "Fortinet products, including FortiOS and FortiManager, have a critical vulnerability that allows unauthorized access through single sign-on accounts. A patch is available, so it's essential to update your Fortinet devices immediately and check for any signs of security breaches. Make sure to follow Fortinet’s instructions to mitigate this risk effectively.",
+    "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2025-59718",
+    "cves": [
+      "CVE-2025-59719"
+    ],
+    "sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "cisa-ncas-current-activity"
+    ],
+    "published_dates": [
+      "2025-12-16",
+      "Wed, 28 Jan 26 12:00:00 +0000"
+    ],
+    "first_seen_at": "2026-03-24T02:56:10.388631+00:00",
+    "last_seen_at": "2026-03-24T02:56:12.060923+00:00",
+    "score": 230,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Ensure Fortinet devices are not accessible to the internet until patched.",
+      "Monitor devices closely for any unauthorized configuration changes.",
+      "Ensure proper backup is in place before applying the patch."
+    ],
+    "evidence_gaps": [],
+    "unknowns": [
+      "Specific versions affected by the vulnerabilities are unclear.",
+      "The exact timeline for when patches will be available was not specified."
+    ],
+    "source_consensus": {
+      "agreed": [
+        "CVEs: CVE-2025-59718, CVE-2025-59719, CVE-2026-24858",
+        "patch status: workaround",
+        "severity: informational"
+      ],
+      "contradicted": [],
+      "unique_contributions": {
+        "cisa-ncas-current-activity": [
+          "unique links (1)"
+        ]
+      }
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-kev-csv",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "vulnerability": "CVE-2025-59719",
+      "vendor": "Fortinet",
+      "affected_products": "FortiOS and FortiManager"
+    },
+    "inferred_facts": {
+      "exploitability": "high due to the critical vulnerability allowing unauthorized access"
+    },
+    "confidence_by_field": {
+      "pattern_selection": 1.0,
+      "parameter_extraction": 1.0
+    },
+    "evidence_sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "cisa-ncas-current-activity"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
+        "citation": "CVE-2025-59718",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-59718",
+        "mitigation_type": "other"
+      }
+    ],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2025-59719",
+        "source": "cisa-kev-csv"
+      },
+      {
+        "type": "cve",
+        "value": "CVE-2025-59718",
+        "source": "cisa-kev-csv"
+      },
+      {
+        "type": "cve",
+        "value": "CVE-2026-24858",
+        "source": "cisa-ncas-current-activity"
+      }
+    ]
+  },
+  {
+    "issue_id": "CVE-2026-20127",
+    "issue_type": "cve",
+    "title": "CVE-2026-20127",
+    "summary": "Cisco's SD-WAN systems have a critical authentication bypass vulnerability that is currently being exploited by cyber attackers. A patch is available, and it is essential to inventory your devices, update them, and check for any signs of compromise immediately. Follow security guidance from Cisco and CISA to enhance your network's defenses.",
+    "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2026-20127",
+    "cves": [
+      "CVE-2026-20127"
+    ],
+    "sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "cisa-ncas-current-activity"
+    ],
+    "published_dates": [
+      "2026-02-25",
+      "Wed, 25 Feb 26 12:00:00 +0000"
+    ],
+    "first_seen_at": "2026-03-24T02:56:10.388631+00:00",
+    "last_seen_at": "2026-03-24T02:56:12.060923+00:00",
+    "score": 230,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Ensure that critical systems are isolated and monitored during updates",
+      "Be cautious when applying updates to avoid disrupting medical operations"
+    ],
+    "evidence_gaps": [],
+    "unknowns": [
+      "Specific versions affected by the vulnerability",
+      "Exact timeline for patch application recommendations"
+    ],
+    "source_consensus": {
+      "agreed": [
+        "CVEs: CVE-2022-20775, CVE-2026-20127",
+        "patch status: workaround",
+        "severity: informational"
+      ],
+      "contradicted": [],
+      "unique_contributions": {
+        "cisa-ncas-current-activity": [
+          "unique links (2)"
+        ]
+      }
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-kev-csv",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "vulnerability": "authentication bypass",
+      "affected_device": "Cisco SD-WAN systems"
+    },
+    "inferred_facts": {
+      "exploit_active": "true",
+      "immediate_action_needed": "true"
+    },
+    "confidence_by_field": {
+      "pattern_selection": 1.0,
+      "parameter_extraction": 1.0
+    },
+    "evidence_sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "cisa-ncas-current-activity"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "adhere to CISA’s guidelines to assess exposure and mitigate risks associated with Cisco SD-WAN devices as outlined in CISA’s Emergency Directive 26-03",
+        "citation": "CVE-2026-20127",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-20127",
+        "mitigation_type": "process"
+      },
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "adhere to the applicable BOD 22-01 guidance for cloud services or discontinue use of the product if mitigations are not available",
+        "citation": "CVE-2026-20127",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-20127",
+        "mitigation_type": "process"
+      }
+    ],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2026-20127",
+        "source": "cisa-kev-csv"
+      }
+    ]
+  },
+  {
+    "issue_id": "CVE-2026-21509",
+    "issue_type": "cve",
+    "title": "CVE-2026-21509",
+    "summary": "A critical security vulnerability has been identified in Microsoft Office that allows attackers to bypass security features. There is currently no patch available to fix this issue. It is crucial to prioritize addressing this vulnerability to protect your systems from potential exploitation.",
+    "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2026-21509",
+    "cves": [
+      "CVE-2026-21509"
+    ],
+    "sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "cisa-ncas-current-activity"
+    ],
+    "published_dates": [
+      "2026-01-26",
+      "Mon, 26 Jan 26 12:00:00 +0000"
+    ],
+    "first_seen_at": "2026-03-24T02:56:10.388631+00:00",
+    "last_seen_at": "2026-03-24T02:56:12.060923+00:00",
+    "score": 230,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Ensure all Microsoft Office applications are regularly monitored for updates and security patches",
+      "Educate staff about phishing attacks that exploit this vulnerability"
+    ],
+    "evidence_gaps": [
+      "Information on specific device configurations and communication requirements"
+    ],
+    "unknowns": [
+      "Availability of specific versions affected by the vulnerability",
+      "Timeline for when a patch may be released",
+      "Information on specific device configurations and communication requirements"
+    ],
+    "source_consensus": {
+      "agreed": [
+        "CVEs: CVE-2018-14634, CVE-2025-52691, CVE-2026-21509, CVE-2026-23760, CVE-2026-24061"
+      ],
+      "contradicted": [],
+      "unique_contributions": {
+        "cisa-ncas-current-activity": [
+          "unique links (1)"
+        ]
+      }
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-kev-csv",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "vulnerability_title": "CVE-2026-21509",
+      "patch_status": "no patch available"
+    },
+    "inferred_facts": {
+      "device_type": "Microsoft Office"
+    },
+    "confidence_by_field": {
+      "pattern_selection": 1.0,
+      "parameter_extraction": 0.0
+    },
+    "evidence_sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "cisa-ncas-current-activity"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "Apply mitigations per vendor instructions",
+        "citation": "CVE-2026-21509",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-21509",
+        "mitigation_type": "other"
+      },
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "follow applicable BOD 22-01 guidance for cloud services",
+        "citation": "CVE-2026-21509",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-21509",
+        "mitigation_type": "other"
+      },
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "discontinue use of the product if mitigations are unavailable",
+        "citation": "CVE-2026-21509",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-21509",
+        "mitigation_type": "other"
+      }
+    ],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2026-21509",
+        "source": "cisa-kev-csv"
+      }
+    ]
+  },
+  {
+    "issue_id": "CVE-2026-23760",
+    "issue_type": "cve",
+    "title": "CVE-2026-23760",
+    "summary": "SmarterTools SmarterMail has a critical vulnerability that allows attackers to bypass authentication, potentially compromising the security of your email system. A patch is not mentioned, so immediate action is needed. It is highly recommended to assess your systems and apply any available workarounds or mitigate risks to protect against exploitation.",
+    "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2026-23760",
+    "cves": [
+      "CVE-2026-23760"
+    ],
+    "sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "cisa-ncas-current-activity"
+    ],
+    "published_dates": [
+      "2026-01-26",
+      "Mon, 26 Jan 26 12:00:00 +0000"
+    ],
+    "first_seen_at": "2026-03-24T02:56:10.388631+00:00",
+    "last_seen_at": "2026-03-24T02:56:12.060923+00:00",
+    "score": 230,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Monitor for unusual activity in email systems",
+      "Ensure additional security layers are in place until resolved"
+    ],
+    "evidence_gaps": [
+      "Detailed network architecture and system configuration information would improve the recommendations."
+    ],
+    "unknowns": [
+      "Whether a patch is available",
+      "Specific versions affected",
+      "Detailed network architecture and system configuration information would improve the recommendations."
+    ],
+    "source_consensus": {
+      "agreed": [
+        "CVEs: CVE-2018-14634, CVE-2025-52691, CVE-2026-21509, CVE-2026-23760, CVE-2026-24061"
+      ],
+      "contradicted": [],
+      "unique_contributions": {
+        "cisa-ncas-current-activity": [
+          "unique links (1)"
+        ]
+      }
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-kev-csv",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "summary": "SmarterTools SmarterMail has a critical vulnerability that allows attackers to bypass authentication."
+    },
+    "inferred_facts": {
+      "patch_status": "no patch mentioned"
+    },
+    "confidence_by_field": {
+      "pattern_selection": 1.0,
+      "parameter_extraction": 0.0
+    },
+    "evidence_sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "cisa-ncas-current-activity"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "Apply mitigations per vendor instructions",
+        "citation": "CVE-2026-23760",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-23760",
+        "mitigation_type": "other"
+      },
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "follow applicable BOD 22-01 guidance for cloud services",
+        "citation": "CVE-2026-23760",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-23760",
+        "mitigation_type": "other"
+      },
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "discontinue use of the product if mitigations are unavailable",
+        "citation": "CVE-2026-23760",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-23760",
+        "mitigation_type": "other"
+      }
+    ],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2026-23760",
+        "source": "cisa-kev-csv"
+      }
+    ]
+  },
+  {
+    "issue_id": "CVE-2026-24061",
+    "issue_type": "cve",
+    "title": "CVE-2026-24061",
+    "summary": "CISA has identified a critical vulnerability in GNU InetUtils that allows for argument injection, which could be exploited by attackers. Although there is no patch mentioned, immediate action is recommended to identify and mitigate exposure to this threat. Regular updates and security practices are essential to protect against these types of vulnerabilities.",
+    "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2026-24061",
+    "cves": [
+      "CVE-2026-24061"
+    ],
+    "sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "cisa-ncas-current-activity"
+    ],
+    "published_dates": [
+      "2026-01-26",
+      "Mon, 26 Jan 26 12:00:00 +0000"
+    ],
+    "first_seen_at": "2026-03-24T02:56:10.388631+00:00",
+    "last_seen_at": "2026-03-24T02:56:12.060923+00:00",
+    "score": 230,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Monitor network traffic for unusual behavior",
+      "Regularly update security measures"
+    ],
+    "evidence_gaps": [
+      "Details on specific devices affected by the vulnerability, information on existing security practices implementing segmentation."
+    ],
+    "unknowns": [
+      "Patch availability",
+      "Specific versions affected",
+      "Details on specific devices affected by the vulnerability, information on existing security practices implementing segmentation."
+    ],
+    "source_consensus": {
+      "agreed": [
+        "CVEs: CVE-2018-14634, CVE-2025-52691, CVE-2026-21509, CVE-2026-23760, CVE-2026-24061"
+      ],
+      "contradicted": [],
+      "unique_contributions": {
+        "cisa-ncas-current-activity": [
+          "unique links (1)"
+        ]
+      }
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-kev-csv",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "cve_id": "CVE-2026-24061",
+      "vulnerability_description": "Critical vulnerability in GNU InetUtils allowing for argument injection."
+    },
+    "inferred_facts": {
+      "patch_available": "No patch mentioned.",
+      "device_accessible": "Yes, network-accessible."
+    },
+    "confidence_by_field": {
+      "pattern_selection": 1.0,
+      "parameter_extraction": 1.0
+    },
+    "evidence_sources": [
+      "cisa-kev-csv",
+      "cisa-ncas-current-activity"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "Apply mitigations per vendor instructions",
+        "citation": "CVE-2026-24061",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-24061",
+        "mitigation_type": "process"
+      },
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "follow applicable BOD 22-01 guidance for cloud services",
+        "citation": "CVE-2026-24061",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-24061",
+        "mitigation_type": "process"
+      },
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "discontinue use of the product if mitigations are unavailable",
+        "citation": "CVE-2026-24061",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-24061",
+        "mitigation_type": "process"
+      }
+    ],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2026-24061",
+        "source": "cisa-kev-csv"
+      }
+    ]
+  },
+  {
+    "issue_id": "CVE-2025-55182",
+    "issue_type": "cve",
+    "title": "CVE-2025-55182",
+    "summary": "A critical vulnerability has been identified in React Server Components that allows unauthorized users to execute code remotely. Organizations using affected versions should update their systems immediately, as exploits are actively being used by cybercriminals and can severely compromise security. Ensure that all instances of React and Next.js are patched to protect against this threat.",
+    "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2025-55182",
+    "cves": [
+      "CVE-2025-55182"
+    ],
+    "sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "mandiant-blog"
+    ],
+    "published_dates": [
+      "2025-12-05",
+      "Fri, 12 Dec 2025 14:00:00 +0000"
+    ],
+    "first_seen_at": "2026-03-24T02:56:10.388631+00:00",
+    "last_seen_at": "2026-03-24T02:56:28.307282+00:00",
+    "score": 230,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Monitor for suspicious activity due to the high risk of exploitation",
+      "Ensure that all software dependencies are regularly updated",
+      "ensure that patching does not disrupt critical operations"
+    ],
+    "evidence_gaps": [
+      "details on specific affected versions of React and Next.js"
+    ],
+    "unknowns": [
+      "Specific versions that are vulnerable outside the mentioned ones",
+      "Details on when a patch will be available",
+      "details on specific affected versions of React and Next.js"
+    ],
+    "source_consensus": {
+      "agreed": [
+        "CVEs: CVE-2025-55182, CVE-2025-55183, CVE-2025-55184, CVE-2025-66478, CVE-2025-67779",
+        "exploit status: poc_available",
+        "patch status: no_patch, workaround",
+        "severity: critical, high"
+      ],
+      "contradicted": [],
+      "unique_contributions": {
+        "mandiant-blog": [
+          "unique links (1)"
+        ]
+      }
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-kev-csv",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "vulnerability": "CVE-2025-55182",
+      "severity": "critical",
+      "exploit_status": "actively being exploited"
+    },
+    "inferred_facts": {
+      "risk": "significant risk of unauthorized remote code execution",
+      "action_needed": "urgent patch implementation required"
+    },
+    "confidence_by_field": {
+      "pattern_selection": 1.0,
+      "parameter_extraction": 1.0
+    },
+    "evidence_sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "mandiant-blog"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
+        "citation": "CVE-2025-55182",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-55182",
+        "mitigation_type": "process"
+      }
+    ],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2025-55182",
+        "source": "cisa-kev-csv"
+      },
+      {
+        "type": "domain",
+        "value": "next.js",
+        "source": "cisa-kev-csv"
+      },
+      {
+        "type": "url",
+        "value": "https://cloud.google.com/blog/topics/threat-intelligence/threat-actors-exploit-react2shell-cve-2025-55182/",
+        "source": "mandiant-blog"
+      },
+      {
+        "type": "domain",
+        "value": "cloud.google.com",
+        "source": "mandiant-blog"
+      }
+    ]
+  },
+  {
+    "issue_id": "CVE-2025-66478",
+    "issue_type": "cve",
+    "title": "CVE-2025-66478",
+    "summary": "A critical security vulnerability has been identified in React Server Components, which allows attackers to execute remote code without authentication. This is a high-severity issue, and a patch is available. It is crucial to update your systems immediately to protect against potential exploitation.",
+    "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2025-55182",
+    "cves": [
+      "CVE-2025-66478"
+    ],
+    "sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "mandiant-blog"
+    ],
+    "published_dates": [
+      "2025-12-05",
+      "Fri, 12 Dec 2025 14:00:00 +0000"
+    ],
+    "first_seen_at": "2026-03-24T02:56:10.388631+00:00",
+    "last_seen_at": "2026-03-24T02:56:28.307282+00:00",
+    "score": 230,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Ensure all systems using affected components are updated promptly.",
+      "Monitor for unusual activity on networks running React applications."
+    ],
+    "evidence_gaps": [],
+    "unknowns": [
+      "Specific affected versions of React Server Components beyond those listed.",
+      "Timeline for when the patch needs to be applied."
+    ],
+    "source_consensus": {
+      "agreed": [
+        "CVEs: CVE-2025-55182, CVE-2025-55183, CVE-2025-55184, CVE-2025-66478, CVE-2025-67779",
+        "exploit status: poc_available",
+        "patch status: no_patch, workaround",
+        "severity: critical, high"
+      ],
+      "contradicted": [],
+      "unique_contributions": {
+        "mandiant-blog": [
+          "unique links (1)"
+        ]
+      }
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-kev-csv",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "cve_id": "CVE-2025-66478",
+      "vulnerability_type": "remote code execution",
+      "patch_status": "available"
+    },
+    "inferred_facts": {
+      "urgency_level": "high",
+      "device_type": "React Server Components"
+    },
+    "confidence_by_field": {
+      "pattern_selection": 1.0,
+      "parameter_extraction": 1.0
+    },
+    "evidence_sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "mandiant-blog"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "Apply mitigations per vendor instructions",
+        "citation": "CVE-2025-55182",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-55182",
+        "mitigation_type": "other"
+      },
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "follow applicable BOD 22-01 guidance for cloud services",
+        "citation": "CVE-2025-55182",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-55182",
+        "mitigation_type": "other"
+      },
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "discontinue use of the product if mitigations are unavailable",
+        "citation": "CVE-2025-55182",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-55182",
+        "mitigation_type": "other"
+      }
+    ],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2025-66478",
+        "source": "cisa-kev-csv"
+      },
+      {
+        "type": "cve",
+        "value": "CVE-2025-55182",
+        "source": "cisa-kev-csv"
+      },
+      {
+        "type": "url",
+        "value": "https://cloud.google.com/blog/topics/threat-intelligence/threat-actors-exploit-react2shell-cve-2025-55182/",
+        "source": "mandiant-blog"
+      },
+      {
+        "type": "domain",
+        "value": "cloud.google.com",
+        "source": "mandiant-blog"
+      }
+    ]
+  },
+  {
+    "issue_id": "CVE-2026-1603",
+    "issue_type": "cve",
+    "title": "CVE-2026-1603",
+    "summary": "Ivanti's Endpoint Manager has a critical authentication bypass vulnerability that is currently being exploited by attackers. A patch is recommended, and it is vital to address this issue immediately to protect hospital systems from potential breaches. Prioritize updating your systems to mitigate risks associated with this vulnerability.",
+    "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2026-1603",
+    "cves": [
+      "CVE-2026-1603"
+    ],
+    "sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "cisa-ncas-current-activity",
+      "zdi-published"
+    ],
+    "published_dates": [
+      "2026-03-09",
+      "Mon, 09 Mar 26 12:00:00 +0000",
+      "Thu, 12 Feb 2026 00:00:00 -0600"
+    ],
+    "first_seen_at": "2026-03-24T02:56:10.388631+00:00",
+    "last_seen_at": "2026-03-24T02:56:41.497661+00:00",
+    "score": 230,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Ensure that all medical devices using this software are updated promptly",
+      "Monitor network activity for unusual access attempts",
+      "ensure clinical operations are informed of downtime"
+    ],
+    "evidence_gaps": [
+      "specific details about the exact patch version",
+      "impacted system details for further context"
+    ],
+    "unknowns": [
+      "Specific versions affected",
+      "Availability timeframe for the patch",
+      "specific details about the exact patch version",
+      "impacted system details for further context"
+    ],
+    "source_consensus": {
+      "agreed": [
+        "CVEs: CVE-2021-22054, CVE-2025-26399, CVE-2026-1603"
+      ],
+      "contradicted": [],
+      "unique_contributions": {
+        "cisa-ncas-current-activity": [
+          "unique links (1)"
+        ],
+        "zdi-published": [
+          "unique links (1)"
+        ]
+      }
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-kev-csv",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "vulnerability": "authentication bypass",
+      "vendor": "Ivanti",
+      "device": "Endpoint Manager",
+      "patch_status": "recommended"
+    },
+    "inferred_facts": {
+      "exploit_status": "actively being exploited",
+      "impact": "high risk for hospital systems"
+    },
+    "confidence_by_field": {
+      "pattern_selection": 1.0,
+      "parameter_extraction": 1.0
+    },
+    "evidence_sources": [
+      "cisa-kev-json",
+      "cisa-ncas-current-activity",
+      "zdi-published"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [
+      "no patch available",
+      "device not network-accessible"
+    ],
+    "source_mitigations": [
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
+        "citation": "CVE-2026-1603",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-1603",
+        "mitigation_type": "process"
+      }
+    ],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2026-1603",
+        "source": "cisa-kev-csv"
+      }
+    ]
+  },
+  {
+    "issue_id": "CVE-2025-21042",
+    "issue_type": "cve",
+    "title": "CVE-2025-21042",
+    "summary": "In 2025, a significant number of unpatched security vulnerabilities have been detected, particularly affecting enterprise technologies like security appliances and edge devices. The severity is critical, and immediate action is recommended to secure your systems, as these weaknesses may expose sensitive patient data. Please prioritize regular updates and implement enhanced monitoring to protect against potential exploits.",
+    "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2025-21042",
+    "cves": [
+      "CVE-2025-21042"
+    ],
+    "sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "mandiant-blog"
+    ],
+    "published_dates": [
+      "2025-11-10",
+      "Thu, 05 Mar 2026 14:00:00 +0000"
+    ],
+    "first_seen_at": "2026-03-24T02:56:10.388631+00:00",
+    "last_seen_at": "2026-03-24T02:56:28.307282+00:00",
+    "score": 225,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Ensure regular updates for all enterprise devices and security systems",
+      "Monitor for unusual behavior in network traffic targeting enterprise technologies"
+    ],
+    "evidence_gaps": [
+      "specific affected devices or technologies",
+      "details on patch availability"
+    ],
+    "unknowns": [
+      "Specific products affected",
+      "Details on available patches",
+      "Exactly when patches will be released",
+      "specific affected devices or technologies",
+      "details on patch availability"
+    ],
+    "source_consensus": {
+      "agreed": [
+        "CVEs: CVE-2021-37973, CVE-2023-2136, CVE-2023-33106, CVE-2023-6345, CVE-2024-0519, CVE-2025-0282, CVE-2025-14174, CVE-2025-21042, CVE-2025-21043, CVE-2025-21590, CVE-2025-23006, CVE-2025-27038, CVE-2025-2783, CVE-2025-38352, CVE-2025-40602, CVE-2025-43300, CVE-2025-48543, CVE-2025-5419, CVE-2025-61882, CVE-2025-61884, CVE-2025-6558, CVE-2025-8088",
+        "exploit status: actively_exploited",
+        "patch status: patch_available",
+        "severity: critical, high"
+      ],
+      "contradicted": [],
+      "unique_contributions": {
+        "mandiant-blog": [
+          "unique links (1)"
+        ]
+      }
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-kev-csv",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "CVE_ID": "CVE-2025-21042",
+      "priority": "P0",
+      "criticality": "critical"
+    },
+    "inferred_facts": {
+      "immediate_action_required": "yes",
+      "vulnerabilities may expose sensitive patient data": "true"
+    },
+    "confidence_by_field": {
+      "pattern_selection": 1.0,
+      "parameter_extraction": 1.0
+    },
+    "evidence_sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "mandiant-blog"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
+        "citation": "CVE-2025-21042",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-21042",
+        "mitigation_type": "process"
+      }
+    ],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2025-21042",
+        "source": "cisa-kev-csv"
+      },
+      {
+        "type": "url",
+        "value": "https://cloud.google.com/blog/topics/threat-intelligence/2025-zero-day-review/",
+        "source": "mandiant-blog"
+      },
+      {
+        "type": "domain",
+        "value": "cloud.google.com",
+        "source": "mandiant-blog"
+      }
+    ]
+  },
+  {
+    "issue_id": "CVE-2025-21043",
+    "issue_type": "cve",
+    "title": "CVE-2025-21043",
+    "summary": "Google's latest report highlights that in 2025, there has been a significant rise in zero-day vulnerabilities targeting enterprise technologies, particularly edge devices and security appliances. These vulnerabilities pose a serious risk, indicating that organizations must prioritize their cybersecurity measures, especially for critical network components. Regular updates and increased vigilance are recommended to prevent potential exploits.",
+    "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2025-21043",
+    "cves": [
+      "CVE-2025-21043"
+    ],
+    "sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "mandiant-blog"
+    ],
+    "published_dates": [
+      "2025-10-02",
+      "Thu, 05 Mar 2026 14:00:00 +0000"
+    ],
+    "first_seen_at": "2026-03-24T02:56:10.388631+00:00",
+    "last_seen_at": "2026-03-24T02:56:28.307282+00:00",
+    "score": 225,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Ensure all security appliances and edge devices are monitored closely",
+      "Regularly apply vendor updates to mitigate risks from zero-day vulnerabilities"
+    ],
+    "evidence_gaps": [
+      "specifics about available patches from vendors",
+      "details on the devices affected by the CVE"
+    ],
+    "unknowns": [
+      "Specific products or devices affected",
+      "Exact timeline for patches or mitigations",
+      "Detailed technical information on the zero-day vulnerabilities",
+      "specifics about available patches from vendors",
+      "details on the devices affected by the CVE"
+    ],
+    "source_consensus": {
+      "agreed": [
+        "CVEs: CVE-2021-37973, CVE-2023-2136, CVE-2023-33106, CVE-2023-6345, CVE-2024-0519, CVE-2025-0282, CVE-2025-14174, CVE-2025-21042, CVE-2025-21043, CVE-2025-21590, CVE-2025-23006, CVE-2025-27038, CVE-2025-2783, CVE-2025-38352, CVE-2025-40602, CVE-2025-43300, CVE-2025-48543, CVE-2025-5419, CVE-2025-61882, CVE-2025-61884, CVE-2025-6558, CVE-2025-8088",
+        "exploit status: actively_exploited",
+        "patch status: patch_available",
+        "severity: critical, high"
+      ],
+      "contradicted": [],
+      "unique_contributions": {
+        "mandiant-blog": [
+          "unique links (1)"
+        ]
+      }
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-kev-csv",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "cve_id": "CVE-2025-21043",
+      "priority": "P0",
+      "score": "225"
+    },
+    "inferred_facts": {
+      "vulnerability_type": "zero-day",
+      "impact": "critical network components at risk"
+    },
+    "confidence_by_field": {
+      "pattern_selection": 1.0,
+      "parameter_extraction": 1.0
+    },
+    "evidence_sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "mandiant-blog"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "Apply mitigations per vendor instructions",
+        "citation": "CVE-2025-21043",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-21043",
+        "mitigation_type": "other"
+      },
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "follow applicable BOD 22-01 guidance for cloud services",
+        "citation": "CVE-2025-21043",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-21043",
+        "mitigation_type": "other"
+      },
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "discontinue use of the product if mitigations are unavailable",
+        "citation": "CVE-2025-21043",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-21043",
+        "mitigation_type": "other"
+      }
+    ],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2025-21043",
+        "source": "cisa-kev-csv"
+      },
+      {
+        "type": "url",
+        "value": "https://cloud.google.com/blog/topics/threat-intelligence/2025-zero-day-review/",
+        "source": "mandiant-blog"
+      },
+      {
+        "type": "domain",
+        "value": "cloud.google.com",
+        "source": "mandiant-blog"
+      }
+    ]
+  },
+  {
+    "issue_id": "CVE-2025-27038",
+    "issue_type": "cve",
+    "title": "CVE-2025-27038",
+    "summary": "In 2025, there has been a notable increase in the exploitation of vulnerabilities in enterprise technologies, highlighting the importance of securing essential systems like networking and security devices. This year saw the highest percentage of zero-day vulnerabilities targeting these technologies, indicating a critical risk for healthcare environments. It is recommended to assess and strengthen security measures around your systems to prevent possible cyber threats, especially from state-sponsored actors.",
+    "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2025-27038",
+    "cves": [
+      "CVE-2025-27038"
+    ],
+    "sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "mandiant-blog"
+    ],
+    "published_dates": [
+      "2025-06-03",
+      "Thu, 05 Mar 2026 14:00:00 +0000"
+    ],
+    "first_seen_at": "2026-03-24T02:56:10.388631+00:00",
+    "last_seen_at": "2026-03-24T02:56:28.307282+00:00",
+    "score": 225,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Be cautious when handling network and security appliances, as they are prime targets for attackers.",
+      "Ensure that access to sensitive systems is restricted and monitored."
+    ],
+    "evidence_gaps": [
+      "specific device types affected",
+      "details on what security measures can be integrated quickly"
+    ],
+    "unknowns": [
+      "Specific vendor and product details",
+      "Exact vulnerability patch timeline",
+      "Affected versions of devices or software",
+      "specific device types affected",
+      "details on what security measures can be integrated quickly"
+    ],
+    "source_consensus": {
+      "agreed": [
+        "CVEs: CVE-2021-37973, CVE-2023-2136, CVE-2023-33106, CVE-2023-6345, CVE-2024-0519, CVE-2025-0282, CVE-2025-14174, CVE-2025-21042, CVE-2025-21043, CVE-2025-21590, CVE-2025-23006, CVE-2025-27038, CVE-2025-2783, CVE-2025-38352, CVE-2025-40602, CVE-2025-43300, CVE-2025-48543, CVE-2025-5419, CVE-2025-61882, CVE-2025-61884, CVE-2025-6558, CVE-2025-8088",
+        "exploit status: actively_exploited",
+        "patch status: patch_available",
+        "severity: critical, high"
+      ],
+      "contradicted": [],
+      "unique_contributions": {
+        "mandiant-blog": [
+          "unique links (1)"
+        ]
+      }
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-kev-csv",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "issue_id": "CVE-2025-27038",
+      "score": 225,
+      "priority": "P0"
+    },
+    "inferred_facts": {
+      "vulnerability_exploitation": "likely increased due to state-sponsored threats"
+    },
+    "confidence_by_field": {
+      "pattern_selection": 0.95,
+      "parameter_extraction": 0.85
+    },
+    "evidence_sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "mandiant-blog"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "Apply mitigations per vendor instructions",
+        "citation": "CVE-2025-27038",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-27038",
+        "mitigation_type": "other"
+      },
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "follow applicable BOD 22-01 guidance for cloud services",
+        "citation": "CVE-2025-27038",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-27038",
+        "mitigation_type": "other"
+      },
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "discontinue use of the product if mitigations are unavailable",
+        "citation": "CVE-2025-27038",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-27038",
+        "mitigation_type": "other"
+      }
+    ],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2025-27038",
+        "source": "cisa-kev-csv"
+      },
+      {
+        "type": "url",
+        "value": "https://cloud.google.com/blog/topics/threat-intelligence/2025-zero-day-review/",
+        "source": "mandiant-blog"
+      },
+      {
+        "type": "domain",
+        "value": "cloud.google.com",
+        "source": "mandiant-blog"
+      }
+    ]
+  },
+  {
+    "issue_id": "CVE-2025-38352",
+    "issue_type": "cve",
+    "title": "CVE-2025-38352",
+    "summary": "A recent report highlights a significant rise in zero-day vulnerabilities, particularly targeting enterprise technologies and edge devices, marking an all-time high for 2025. Hospitals should remain vigilant and implement strong security measures as these vulnerabilities can lead to unauthorized access to critical systems. It's crucial to stay updated on security patches from your technology vendors.",
+    "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2025-38352",
+    "cves": [
+      "CVE-2025-38352"
+    ],
+    "sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "mandiant-blog"
+    ],
+    "published_dates": [
+      "2025-09-04",
+      "Thu, 05 Mar 2026 14:00:00 +0000"
+    ],
+    "first_seen_at": "2026-03-24T02:56:10.388631+00:00",
+    "last_seen_at": "2026-03-24T02:56:28.307282+00:00",
+    "score": 225,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Ensure all edge devices and enterprise software are closely monitored for signs of exploitation",
+      "Review security protocols regularly to protect against new threats"
+    ],
+    "evidence_gaps": [],
+    "unknowns": [
+      "Specific vendor and product details related to the vulnerabilities",
+      "Availability and timeline of relevant patches"
+    ],
+    "source_consensus": {
+      "agreed": [
+        "CVEs: CVE-2021-37973, CVE-2023-2136, CVE-2023-33106, CVE-2023-6345, CVE-2024-0519, CVE-2025-0282, CVE-2025-14174, CVE-2025-21042, CVE-2025-21043, CVE-2025-21590, CVE-2025-23006, CVE-2025-27038, CVE-2025-2783, CVE-2025-38352, CVE-2025-40602, CVE-2025-43300, CVE-2025-48543, CVE-2025-5419, CVE-2025-61882, CVE-2025-61884, CVE-2025-6558, CVE-2025-8088",
+        "exploit status: actively_exploited",
+        "patch status: patch_available",
+        "severity: critical, high"
+      ],
+      "contradicted": [],
+      "unique_contributions": {
+        "mandiant-blog": [
+          "unique links (1)"
+        ]
+      }
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-kev-csv",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "issue_id": "CVE-2025-38352",
+      "priority": "P0",
+      "score": 225
+    },
+    "inferred_facts": {
+      "patch_required": "high urgency due to critical system vulnerabilities"
+    },
+    "confidence_by_field": {
+      "pattern_selection": 1.0,
+      "parameter_extraction": 0.9
+    },
+    "evidence_sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "mandiant-blog"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
+        "citation": "CVE-2025-38352",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-38352",
+        "mitigation_type": "process"
+      }
+    ],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2025-38352",
+        "source": "cisa-kev-csv"
+      },
+      {
+        "type": "url",
+        "value": "https://cloud.google.com/blog/topics/threat-intelligence/2025-zero-day-review/",
+        "source": "mandiant-blog"
+      },
+      {
+        "type": "domain",
+        "value": "cloud.google.com",
+        "source": "mandiant-blog"
+      }
+    ]
+  },
+  {
+    "issue_id": "CVE-2025-40602",
+    "issue_type": "cve",
+    "title": "CVE-2025-40602",
+    "summary": "In 2025, Google reported an increase in the number of zero-day vulnerabilities that target enterprise technologies and edge devices, with state-sponsored groups leading the way. The situation poses a critical risk for hospital networks, especially as threat actors adjust their methods to exploit these devices. It is important to stay vigilant and monitor updated security measures to safeguard against potential breaches.",
+    "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2025-40602",
+    "cves": [
+      "CVE-2025-40602"
+    ],
+    "sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "mandiant-blog"
+    ],
+    "published_dates": [
+      "2025-12-17",
+      "Thu, 05 Mar 2026 14:00:00 +0000"
+    ],
+    "first_seen_at": "2026-03-24T02:56:10.388631+00:00",
+    "last_seen_at": "2026-03-24T02:56:28.307282+00:00",
+    "score": 225,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Ensure all edge devices and enterprise software are monitored regularly",
+      "Stay informed about emerging vulnerabilities to maintain network security"
+    ],
+    "evidence_gaps": [
+      "Specific devices impacted",
+      "Mitigation strategies currently in place"
+    ],
+    "unknowns": [
+      "Specific devices or software versions impacted",
+      "Timeline for any patches or mitigations",
+      "Details on the exact nature of the vulnerabilities",
+      "Specific devices impacted",
+      "Mitigation strategies currently in place"
+    ],
+    "source_consensus": {
+      "agreed": [
+        "CVEs: CVE-2021-37973, CVE-2023-2136, CVE-2023-33106, CVE-2023-6345, CVE-2024-0519, CVE-2025-0282, CVE-2025-14174, CVE-2025-21042, CVE-2025-21043, CVE-2025-21590, CVE-2025-23006, CVE-2025-27038, CVE-2025-2783, CVE-2025-38352, CVE-2025-40602, CVE-2025-43300, CVE-2025-48543, CVE-2025-5419, CVE-2025-61882, CVE-2025-61884, CVE-2025-6558, CVE-2025-8088",
+        "exploit status: actively_exploited",
+        "patch status: patch_available",
+        "severity: critical, high"
+      ],
+      "contradicted": [],
+      "unique_contributions": {
+        "mandiant-blog": [
+          "unique links (1)"
+        ]
+      }
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-kev-csv",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "cvss_score": 225,
+      "cve_id": "CVE-2025-40602"
+    },
+    "inferred_facts": {
+      "risk_level": "critical",
+      "vulnerability_type": "zero-day"
+    },
+    "confidence_by_field": {
+      "pattern_selection": 1.0,
+      "parameter_extraction": 1.0
+    },
+    "evidence_sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "mandiant-blog"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "Apply mitigations per vendor instructions",
+        "citation": "CVE-2025-40602",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-40602",
+        "mitigation_type": "process"
+      },
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "follow applicable BOD 22-01 guidance for cloud services",
+        "citation": "CVE-2025-40602",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-40602",
+        "mitigation_type": "process"
+      },
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "discontinue use of the product if mitigations are unavailable",
+        "citation": "CVE-2025-40602",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-40602",
+        "mitigation_type": "process"
+      }
+    ],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2025-40602",
+        "source": "cisa-kev-csv"
+      },
+      {
+        "type": "url",
+        "value": "https://cloud.google.com/blog/topics/threat-intelligence/2025-zero-day-review/",
+        "source": "mandiant-blog"
+      },
+      {
+        "type": "domain",
+        "value": "cloud.google.com",
+        "source": "mandiant-blog"
+      }
+    ]
+  },
+  {
+    "issue_id": "CVE-2025-43300",
+    "issue_type": "cve",
+    "title": "CVE-2025-43300",
+    "summary": "A critical vulnerability has been identified that affects enterprise technologies and is actively being exploited by various threat actors. There is no information on a patch at this time, so it's crucial to closely monitor your systems for suspicious activity and apply any available security measures. Stay vigilant, as these vulnerabilities can lead to significant risks in your network.",
+    "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2025-43300",
+    "cves": [
+      "CVE-2025-43300"
+    ],
+    "sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "mandiant-blog"
+    ],
+    "published_dates": [
+      "2025-08-21",
+      "Thu, 05 Mar 2026 14:00:00 +0000"
+    ],
+    "first_seen_at": "2026-03-24T02:56:10.388631+00:00",
+    "last_seen_at": "2026-03-24T02:56:28.307282+00:00",
+    "score": 225,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Ensure systems are monitored for unusual activity",
+      "Implement additional security measures while awaiting patch information"
+    ],
+    "evidence_gaps": [],
+    "unknowns": [
+      "Specific products affected",
+      "Patch availability timeline"
+    ],
+    "source_consensus": {
+      "agreed": [
+        "CVEs: CVE-2021-37973, CVE-2023-2136, CVE-2023-33106, CVE-2023-6345, CVE-2024-0519, CVE-2025-0282, CVE-2025-14174, CVE-2025-21042, CVE-2025-21043, CVE-2025-21590, CVE-2025-23006, CVE-2025-27038, CVE-2025-2783, CVE-2025-38352, CVE-2025-40602, CVE-2025-43300, CVE-2025-48543, CVE-2025-5419, CVE-2025-61882, CVE-2025-61884, CVE-2025-6558, CVE-2025-8088",
+        "exploit status: actively_exploited",
+        "patch status: patch_available",
+        "severity: critical, high"
+      ],
+      "contradicted": [],
+      "unique_contributions": {
+        "mandiant-blog": [
+          "unique links (1)"
+        ]
+      }
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-kev-csv",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "cve_id": "CVE-2025-43300",
+      "exploit_status": "actively exploited",
+      "patch_status": "no patch available"
+    },
+    "inferred_facts": {
+      "vulnerability_severity": "critical",
+      "network_risk": "significant"
+    },
+    "confidence_by_field": {
+      "pattern_selection": 1.0,
+      "parameter_extraction": 1.0
+    },
+    "evidence_sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "mandiant-blog"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "Apply mitigations per vendor instructions",
+        "citation": "CVE-2025-43300",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-43300",
+        "mitigation_type": "patch"
+      },
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "follow applicable BOD 22-01 guidance for cloud services",
+        "citation": "CVE-2025-43300",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-43300",
+        "mitigation_type": "process"
+      },
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "discontinue use of the product if mitigations are unavailable",
+        "citation": "CVE-2025-43300",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-43300",
+        "mitigation_type": "process"
+      }
+    ],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2025-43300",
+        "source": "cisa-kev-csv"
+      },
+      {
+        "type": "url",
+        "value": "https://cloud.google.com/blog/topics/threat-intelligence/2025-zero-day-review/",
+        "source": "mandiant-blog"
+      },
+      {
+        "type": "domain",
+        "value": "cloud.google.com",
+        "source": "mandiant-blog"
+      }
+    ]
+  },
+  {
+    "issue_id": "CVE-2025-48543",
+    "issue_type": "cve",
+    "title": "CVE-2025-48543",
+    "summary": "In 2025, there has been a significant rise in zero-day vulnerabilities targeting enterprise technologies, with 48% of these exploits focused on critical security and networking devices. Hospitals should prioritize securing these systems as they are prime targets for cyber threats. Continuous monitoring and applying any available patches is essential to protect our network infrastructure.",
+    "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2025-48543",
+    "cves": [
+      "CVE-2025-48543"
+    ],
+    "sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "mandiant-blog"
+    ],
+    "published_dates": [
+      "2025-09-04",
+      "Thu, 05 Mar 2026 14:00:00 +0000",
+      "Wed, 03 Dec 2025 14:00:00 +0000"
+    ],
+    "first_seen_at": "2026-03-24T02:56:10.388631+00:00",
+    "last_seen_at": "2026-03-24T02:56:28.307282+00:00",
+    "score": 225,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Increased targeting of medical devices and network infrastructure may require more stringent access controls.",
+      "Ensure clinical validations before implementing downtime for patches."
+    ],
+    "evidence_gaps": [
+      "Specific devices affected by CVE-2025-48543",
+      "Details on current patch status"
+    ],
+    "unknowns": [
+      "Specific devices affected by CVE-2025-48543",
+      "Details on current patch status"
+    ],
+    "source_consensus": {
+      "agreed": [
+        "CVEs: CVE-2021-37973, CVE-2023-2136, CVE-2023-33106, CVE-2023-6345, CVE-2024-0519, CVE-2025-0282, CVE-2025-14174, CVE-2025-21042, CVE-2025-21043, CVE-2025-21590, CVE-2025-23006, CVE-2025-27038, CVE-2025-2783, CVE-2025-38352, CVE-2025-40602, CVE-2025-43300, CVE-2025-48543, CVE-2025-5419, CVE-2025-61882, CVE-2025-61884, CVE-2025-6558, CVE-2025-8088",
+        "exploit status: actively_exploited",
+        "patch status: patch_available",
+        "severity: critical, high"
+      ],
+      "contradicted": [],
+      "unique_contributions": {
+        "mandiant-blog": [
+          "unique links (2)"
+        ]
+      }
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-kev-csv",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "cve_id": "CVE-2025-48543"
+    },
+    "inferred_facts": {
+      "urgency": "High due to the rise in zero-day vulnerabilities targeting critical devices."
+    },
+    "confidence_by_field": {
+      "pattern_selection": 1.0,
+      "parameter_extraction": 0.8
+    },
+    "evidence_sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "mandiant-blog"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [
+      "Device is not critical to patient care.",
+      "Operational constraints prevent applying available mitigations."
+    ],
+    "source_mitigations": [
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "Apply mitigations per vendor instructions",
+        "citation": "CVE-2025-48543",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-48543",
+        "mitigation_type": "process"
+      }
+    ],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2025-48543",
+        "source": "cisa-kev-csv"
+      },
+      {
+        "type": "url",
+        "value": "https://cloud.google.com/blog/topics/threat-intelligence/2025-zero-day-review/",
+        "source": "mandiant-blog"
+      },
+      {
+        "type": "domain",
+        "value": "cloud.google.com",
+        "source": "mandiant-blog"
+      },
+      {
+        "type": "url",
+        "value": "https://cloud.google.com/blog/topics/threat-intelligence/intellexa-zero-day-exploits-continue/",
+        "source": "mandiant-blog"
+      }
+    ]
+  },
+  {
+    "issue_id": "CVE-2025-5419",
+    "issue_type": "cve",
+    "title": "CVE-2025-5419",
+    "summary": "In 2025, Google identified a high number of zero-day vulnerabilities, particularly affecting enterprise technologies and edge devices, which are critical for network security. These vulnerabilities pose a significant risk to hospitals as they could allow unauthorized access to sensitive information. It's crucial to regularly update security measures and monitor devices to protect against these threats.",
+    "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2025-5419",
+    "cves": [
+      "CVE-2025-5419"
+    ],
+    "sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "mandiant-blog"
+    ],
+    "published_dates": [
+      "2025-06-05",
+      "Thu, 05 Mar 2026 14:00:00 +0000"
+    ],
+    "first_seen_at": "2026-03-24T02:56:10.388631+00:00",
+    "last_seen_at": "2026-03-24T02:56:28.307282+00:00",
+    "score": 225,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Stay vigilant for alerts on device vulnerabilities",
+      "Regularly check for firmware updates",
+      "Monitor for unauthorized access while remediation plans are in place"
+    ],
+    "evidence_gaps": [
+      "Detailed patch availability status from the vendor",
+      "Specific affected device types"
+    ],
+    "unknowns": [
+      "Specific devices affected",
+      "Patch availability details",
+      "Exact timeline for patch release",
+      "Detailed patch availability status from the vendor",
+      "Specific affected device types"
+    ],
+    "source_consensus": {
+      "agreed": [
+        "CVEs: CVE-2021-37973, CVE-2023-2136, CVE-2023-33106, CVE-2023-6345, CVE-2024-0519, CVE-2025-0282, CVE-2025-14174, CVE-2025-21042, CVE-2025-21043, CVE-2025-21590, CVE-2025-23006, CVE-2025-27038, CVE-2025-2783, CVE-2025-38352, CVE-2025-40602, CVE-2025-43300, CVE-2025-48543, CVE-2025-5419, CVE-2025-61882, CVE-2025-61884, CVE-2025-6558, CVE-2025-8088",
+        "exploit status: actively_exploited",
+        "patch status: patch_available",
+        "severity: critical, high"
+      ],
+      "contradicted": [],
+      "unique_contributions": {
+        "mandiant-blog": [
+          "unique links (1)"
+        ]
+      }
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-kev-csv",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "issue_id": "CVE-2025-5419",
+      "summary": "Google identified multiple zero-day vulnerabilities affecting critical enterprise technologies."
+    },
+    "inferred_facts": {
+      "vulnerability_impact": "significant risk to hospitals' sensitive information"
+    },
+    "confidence_by_field": {
+      "pattern_selection": 1.0,
+      "parameter_extraction": 0.9
+    },
+    "evidence_sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "mandiant-blog"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [
+      "If no devices are affected by CVE-2025-5419",
+      "If the organization is not utilizing affected enterprise technologies"
+    ],
+    "source_mitigations": [
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "Apply mitigations per vendor instructions",
+        "citation": "CVE-2025-5419",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-5419",
+        "mitigation_type": "other"
+      }
+    ],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2025-5419",
+        "source": "cisa-kev-csv"
+      },
+      {
+        "type": "url",
+        "value": "https://cloud.google.com/blog/topics/threat-intelligence/2025-zero-day-review/",
+        "source": "mandiant-blog"
+      },
+      {
+        "type": "domain",
+        "value": "cloud.google.com",
+        "source": "mandiant-blog"
+      }
+    ]
+  },
+  {
+    "issue_id": "CVE-2025-61884",
+    "issue_type": "cve",
+    "title": "CVE-2025-61884",
+    "summary": "A recent report highlights a troubling trend in zero-day vulnerabilities, with nearly half targeting enterprise technologies. While no specific patch has been mentioned, hospitals should prioritize updating security appliances and enterprise software to defend against potential exploitation. Regular monitoring and prompt response strategies are essential to protect patient data and network integrity.",
+    "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2025-61884",
+    "cves": [
+      "CVE-2025-61884"
+    ],
+    "sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "mandiant-blog"
+    ],
+    "published_dates": [
+      "2025-10-20",
+      "Thu, 05 Mar 2026 14:00:00 +0000"
+    ],
+    "first_seen_at": "2026-03-24T02:56:10.388631+00:00",
+    "last_seen_at": "2026-03-24T02:56:28.307282+00:00",
+    "score": 225,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Ensure comprehensive monitoring of all enterprise and edge devices",
+      "Be cautious with patient data access and device interactions"
+    ],
+    "evidence_gaps": [
+      "specific affected devices",
+      "details on current monitoring capabilities"
+    ],
+    "unknowns": [
+      "Specific vendor and product details for the vulnerabilities",
+      "Patch availability timeline",
+      "Version numbers affected by the vulnerabilities",
+      "specific affected devices",
+      "details on current monitoring capabilities"
+    ],
+    "source_consensus": {
+      "agreed": [
+        "CVEs: CVE-2021-37973, CVE-2023-2136, CVE-2023-33106, CVE-2023-6345, CVE-2024-0519, CVE-2025-0282, CVE-2025-14174, CVE-2025-21042, CVE-2025-21043, CVE-2025-21590, CVE-2025-23006, CVE-2025-27038, CVE-2025-2783, CVE-2025-38352, CVE-2025-40602, CVE-2025-43300, CVE-2025-48543, CVE-2025-5419, CVE-2025-61882, CVE-2025-61884, CVE-2025-6558, CVE-2025-8088",
+        "exploit status: actively_exploited",
+        "patch status: patch_available",
+        "severity: critical, high"
+      ],
+      "contradicted": [],
+      "unique_contributions": {
+        "mandiant-blog": [
+          "unique links (1)"
+        ]
+      }
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-kev-csv",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "cve_id": "CVE-2025-61884",
+      "patch_status": "none provided"
+    },
+    "inferred_facts": {
+      "risk_exposure": "high due to no patches and potential for exploitation"
+    },
+    "confidence_by_field": {
+      "pattern_selection": 0.9,
+      "parameter_extraction": 0.0
+    },
+    "evidence_sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "mandiant-blog"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "Apply mitigations per vendor instructions",
+        "citation": "CVE-2025-61884",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-61884",
+        "mitigation_type": "other"
+      }
+    ],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2025-61884",
+        "source": "cisa-kev-csv"
+      },
+      {
+        "type": "url",
+        "value": "https://cloud.google.com/blog/topics/threat-intelligence/2025-zero-day-review/",
+        "source": "mandiant-blog"
+      },
+      {
+        "type": "domain",
+        "value": "cloud.google.com",
+        "source": "mandiant-blog"
+      }
+    ]
+  },
+  {
+    "issue_id": "CVE-2025-6558",
+    "issue_type": "cve",
+    "title": "CVE-2025-6558",
+    "summary": "A significant trend has been observed in 2025 with 48% of zero-day vulnerabilities targeting enterprise technologies and networking devices, which are essential for hospital operations. This increase signals a growing risk, especially from state-sponsored groups exploiting these vulnerabilities for access. It is crucial to regularly update and secure your enterprise and networking devices to protect against these evolving threats.",
+    "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2025-6558",
+    "cves": [
+      "CVE-2025-6558"
+    ],
+    "sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "mandiant-blog"
+    ],
+    "published_dates": [
+      "2025-07-22",
+      "Thu, 05 Mar 2026 14:00:00 +0000"
+    ],
+    "first_seen_at": "2026-03-24T02:56:10.388631+00:00",
+    "last_seen_at": "2026-03-24T02:56:28.307282+00:00",
+    "score": 225,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Be cautious when updating or applying security patches to critical devices as this may impact operations.",
+      "Ensure backup systems are in place before making changes to network appliances.",
+      "Monitor critical device availability closely during patching."
+    ],
+    "evidence_gaps": [
+      "Specific patch availability details from the vendor",
+      "More information on affected device types"
+    ],
+    "unknowns": [
+      "Specific devices affected",
+      "Exact exploit details or timelines",
+      "Patch availability for targeted technologies",
+      "Specific patch availability details from the vendor",
+      "More information on affected device types"
+    ],
+    "source_consensus": {
+      "agreed": [
+        "CVEs: CVE-2021-37973, CVE-2023-2136, CVE-2023-33106, CVE-2023-6345, CVE-2024-0519, CVE-2025-0282, CVE-2025-14174, CVE-2025-21042, CVE-2025-21043, CVE-2025-21590, CVE-2025-23006, CVE-2025-27038, CVE-2025-2783, CVE-2025-38352, CVE-2025-40602, CVE-2025-43300, CVE-2025-48543, CVE-2025-5419, CVE-2025-61882, CVE-2025-61884, CVE-2025-6558, CVE-2025-8088",
+        "exploit status: actively_exploited",
+        "patch status: patch_available",
+        "severity: critical, high"
+      ],
+      "contradicted": [],
+      "unique_contributions": {
+        "mandiant-blog": [
+          "unique links (1)"
+        ]
+      }
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-kev-csv",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "vulnerability": "CVE-2025-6558",
+      "risk_factor": "48% of zero-day vulnerabilities targeting enterprise technologies"
+    },
+    "inferred_facts": {
+      "device_type": "enterprise networking devices",
+      "impact": "state-sponsored exploit attempts"
+    },
+    "confidence_by_field": {
+      "pattern_selection": 0.9,
+      "parameter_extraction": 0.8
+    },
+    "evidence_sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "mandiant-blog"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [
+      "No patch available from vendor",
+      "Device is not critical for clinical operations"
+    ],
+    "source_mitigations": [
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
+        "citation": "CVE-2025-6558",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-6558",
+        "mitigation_type": "other"
+      }
+    ],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2025-6558",
+        "source": "cisa-kev-csv"
+      },
+      {
+        "type": "url",
+        "value": "https://cloud.google.com/blog/topics/threat-intelligence/2025-zero-day-review/",
+        "source": "mandiant-blog"
+      },
+      {
+        "type": "domain",
+        "value": "cloud.google.com",
+        "source": "mandiant-blog"
+      }
+    ]
+  },
+  {
+    "issue_id": "CVE-2023-48788",
+    "issue_type": "cve",
+    "title": "CVE-2023-48788",
+    "summary": "The Medusa ransomware poses a critical threat to healthcare organizations, as it targets a variety of sectors including medical facilities. There is no patch available for this vulnerability, so it's crucial to implement recommended security measures to minimize the risk of ransomware attacks. Take immediate action to strengthen your network defenses against potential threats from this ransomware variant.",
+    "canonical_link": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa25-071a",
+    "cves": [
+      "CVE-2023-48788"
+    ],
+    "sources": [
+      "cisa-ncas-alerts"
+    ],
+    "published_dates": [
+      "Tue, 11 Mar 2025 10:52:42 EDT"
+    ],
+    "first_seen_at": "2026-03-24T02:56:11.184470+00:00",
+    "last_seen_at": "2026-03-24T02:56:11.184470+00:00",
+    "score": 221,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Ensure all software is up-to-date",
+      "Implement strong user authentication practices",
+      "Educate staff on phishing prevention"
+    ],
+    "evidence_gaps": [
+      "Information on current VLAN and required peers",
+      "Details on vendor support and contract specifics"
+    ],
+    "unknowns": [
+      "Specific versions affected",
+      "Exact patch timeline",
+      "Additional mitigation steps recommended",
+      "Information on current VLAN and required peers",
+      "Details on vendor support and contract specifics"
+    ],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 0.85,
+    "highest_authority_source": "cisa-ncas-alerts",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "issue_id": "CVE-2023-48788",
+      "title": "CVE-2023-48788",
+      "priority": "P0",
+      "score": 221,
+      "cves": "CVE-2023-48788",
+      "sources": "cisa-ncas-alerts",
+      "links": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa25-071a"
+    },
+    "inferred_facts": {
+      "critical_threat": "The Medusa ransomware critically threatens healthcare, requiring immediate action.",
+      "no_patch_available": "There is no patch for the identified vulnerability."
+    },
+    "confidence_by_field": {
+      "pattern_selection": 1.0,
+      "parameter_extraction": 0.8
+    },
+    "evidence_sources": [
+      "cisa-ncas-alerts"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [
+      {
+        "source": "cisa-ncas-alerts",
+        "source_tier": 2,
+        "action": "ensure operating systems, software, and firmware are patched and up to date within a risk-informed span of time",
+        "citation": "/node/23109",
+        "url": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa25-071a",
+        "mitigation_type": "patch"
+      },
+      {
+        "source": "cisa-ncas-alerts",
+        "source_tier": 2,
+        "action": "segment networks to restrict lateral movement from initial infected devices and other devices in the same organization",
+        "citation": "/node/23109",
+        "url": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa25-071a",
+        "mitigation_type": "network"
+      },
+      {
+        "source": "cisa-ncas-alerts",
+        "source_tier": 2,
+        "action": "filter network traffic by preventing unknown or untrusted origins from accessing remote services on internal systems",
+        "citation": "/node/23109",
+        "url": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa25-071a",
+        "mitigation_type": "network"
+      }
+    ],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2023-48788",
+        "source": "cisa-ncas-alerts"
+      }
+    ]
+  },
+  {
+    "issue_id": "CVE-2024-1709",
+    "issue_type": "cve",
+    "title": "CVE-2024-1709",
+    "summary": "The Medusa ransomware is a significant threat, recently attacking various sectors including healthcare. It exploits unpatched software vulnerabilities like the ScreenConnect vulnerability, which could lead to serious security breaches. Implement recommended security measures immediately to reduce the risk of ransomware attacks and protect sensitive patient data.",
+    "canonical_link": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa25-071a",
+    "cves": [
+      "CVE-2024-1709"
+    ],
+    "sources": [
+      "cisa-ncas-alerts"
+    ],
+    "published_dates": [
+      "Tue, 11 Mar 2025 10:52:42 EDT"
+    ],
+    "first_seen_at": "2026-03-24T02:56:11.184470+00:00",
+    "last_seen_at": "2026-03-24T02:56:11.184470+00:00",
+    "score": 221,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Ensure all software is regularly updated",
+      "Exercise caution when handling potential phishing attempts",
+      "ensure patient data is secure during backup and restoration processes"
+    ],
+    "evidence_gaps": [
+      "specific versions of patches available",
+      "details on affected systems"
+    ],
+    "unknowns": [
+      "Specific versions affected by the vulnerability",
+      "Timeline for patch availability",
+      "specific versions of patches available",
+      "details on affected systems"
+    ],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 0.85,
+    "highest_authority_source": "cisa-ncas-alerts",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "issue_id": "CVE-2024-1709",
+      "vendor_name": "ScreenConnect",
+      "attack_type": "ransomware"
+    },
+    "inferred_facts": {
+      "risk_assessment": "high risk due to active ransomware targeting healthcare"
+    },
+    "confidence_by_field": {
+      "pattern_selection": 0.95,
+      "parameter_extraction": 0.9
+    },
+    "evidence_sources": [
+      "cisa-ncas-alerts"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [
+      {
+        "source": "cisa-ncas-alerts",
+        "source_tier": 2,
+        "action": "ensure operating systems, software, and firmware are patched and up to date within a risk-informed span of time",
+        "citation": "/node/23109",
+        "url": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa25-071a",
+        "mitigation_type": "patch"
+      },
+      {
+        "source": "cisa-ncas-alerts",
+        "source_tier": 2,
+        "action": "segment networks to restrict lateral movement from initial infected devices and other devices in the same organization",
+        "citation": "/node/23109",
+        "url": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa25-071a",
+        "mitigation_type": "network"
+      },
+      {
+        "source": "cisa-ncas-alerts",
+        "source_tier": 2,
+        "action": "filter network traffic by preventing unknown or untrusted origins from accessing remote services on internal systems",
+        "citation": "/node/23109",
+        "url": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa25-071a",
+        "mitigation_type": "network"
+      }
+    ],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2024-1709",
+        "source": "cisa-ncas-alerts"
+      }
+    ]
+  },
+  {
+    "issue_id": "CVE-2024-43468",
+    "issue_type": "cve",
+    "title": "CVE-2024-43468",
+    "summary": "Microsoft Configuration Manager is affected by a critical SQL injection vulnerability. There is no mention of a patch being available, so it's essential to limit exposure to this vulnerability. We recommend assessing your systems and taking immediate steps to secure them against potential exploits.",
+    "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2024-43468",
+    "cves": [
+      "CVE-2024-43468"
+    ],
+    "sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "cisa-ncas-current-activity"
+    ],
+    "published_dates": [
+      "2026-02-12",
+      "Thu, 12 Feb 26 12:00:00 +0000"
+    ],
+    "first_seen_at": "2026-03-24T02:56:10.388631+00:00",
+    "last_seen_at": "2026-03-24T02:56:12.060923+00:00",
+    "score": 220,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Ensure systems are monitored for unusual activity until fully secured."
+    ],
+    "evidence_gaps": [
+      "Specific impact on clinical workflows during segmentation",
+      "Detailed configuration requirements for allowlisting"
+    ],
+    "unknowns": [
+      "Patch availability timeline",
+      "Affected versions的具体信息",
+      "Specific impact on clinical workflows during segmentation",
+      "Detailed configuration requirements for allowlisting"
+    ],
+    "source_consensus": {
+      "agreed": [
+        "CVEs: CVE-2024-43468, CVE-2025-15556, CVE-2025-40536, CVE-2026-20700"
+      ],
+      "contradicted": [],
+      "unique_contributions": {
+        "cisa-ncas-current-activity": [
+          "unique links (1)"
+        ]
+      }
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-kev-csv",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "vulnerability": "SQL injection",
+      "vendor": "Microsoft",
+      "product": "Configuration Manager",
+      "patch_status": "no patch available"
+    },
+    "inferred_facts": {
+      "device_class": "management system",
+      "exploitability": "high due to critical nature and lack of patch"
+    },
+    "confidence_by_field": {
+      "pattern_selection": 1.0,
+      "parameter_extraction": 0.0
+    },
+    "evidence_sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "cisa-ncas-current-activity"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
+        "citation": "CVE-2024-43468",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-43468",
+        "mitigation_type": "process"
+      }
+    ],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2024-43468",
+        "source": "cisa-kev-csv"
+      }
+    ]
+  },
+  {
+    "issue_id": "CVE-2025-15556",
+    "issue_type": "cve",
+    "title": "CVE-2025-15556",
+    "summary": "Notepad++ has a serious vulnerability that allows attackers to download code without checking its integrity, which could lead to harmful exploits. This has been marked as critical, and organizations are urged to take immediate action to mitigate the risk. Ensure that you apply any available patches or updates to protect your systems from this threat.",
+    "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2025-15556",
+    "cves": [
+      "CVE-2025-15556"
+    ],
+    "sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "cisa-ncas-current-activity"
+    ],
+    "published_dates": [
+      "2026-02-12",
+      "Thu, 12 Feb 26 12:00:00 +0000"
+    ],
+    "first_seen_at": "2026-03-24T02:56:10.388631+00:00",
+    "last_seen_at": "2026-03-24T02:56:12.060923+00:00",
+    "score": 220,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Monitor systems for unusual activity, especially with Notepad++ use",
+      "Review security policies regarding code downloads"
+    ],
+    "evidence_gaps": [],
+    "unknowns": [
+      "Specific version information for Notepad++ affected",
+      "Availability of a patch timeline"
+    ],
+    "source_consensus": {
+      "agreed": [
+        "CVEs: CVE-2024-43468, CVE-2025-15556, CVE-2025-40536, CVE-2026-20700"
+      ],
+      "contradicted": [],
+      "unique_contributions": {
+        "cisa-ncas-current-activity": [
+          "unique links (1)"
+        ]
+      }
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-kev-csv",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "vulnerability_type": "serious",
+      "impact": "allows attackers to download code without checking its integrity"
+    },
+    "inferred_facts": {
+      "urgency": "immediate action is necessary to protect systems"
+    },
+    "confidence_by_field": {
+      "pattern_selection": 1.0,
+      "parameter_extraction": 1.0
+    },
+    "evidence_sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "cisa-ncas-current-activity"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
+        "citation": "CVE-2025-15556",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-15556",
+        "mitigation_type": "process"
+      }
+    ],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2025-15556",
+        "source": "cisa-kev-csv"
+      }
+    ]
+  },
+  {
+    "issue_id": "CVE-2025-40536",
+    "issue_type": "cve",
+    "title": "CVE-2025-40536",
+    "summary": "CISA has identified a critical security vulnerability in SolarWinds Web Help Desk that allows security controls to be bypassed. Organizations are urged to take immediate action as no patch is currently available. Prioritize monitoring for this threat and implement additional protective measures to safeguard your systems.",
+    "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2025-40536",
+    "cves": [
+      "CVE-2025-40536"
+    ],
+    "sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "cisa-ncas-current-activity"
+    ],
+    "published_dates": [
+      "2026-02-12",
+      "Thu, 12 Feb 26 12:00:00 +0000"
+    ],
+    "first_seen_at": "2026-03-24T02:56:10.388631+00:00",
+    "last_seen_at": "2026-03-24T02:56:12.060923+00:00",
+    "score": 220,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Increased monitoring of affected systems is advised",
+      "Be prepared for potential exploitation attempts",
+      "Monitor operational impacts during segmentation implementation"
+    ],
+    "evidence_gaps": [
+      "Details on current VLAN configurations",
+      "Expected traffic patterns for improved monitoring"
+    ],
+    "unknowns": [
+      "No patch availability timeline mentioned",
+      "Specific versions affected not specified",
+      "Details on current VLAN configurations",
+      "Expected traffic patterns for improved monitoring"
+    ],
+    "source_consensus": {
+      "agreed": [
+        "CVEs: CVE-2024-43468, CVE-2025-15556, CVE-2025-40536, CVE-2026-20700"
+      ],
+      "contradicted": [],
+      "unique_contributions": {
+        "cisa-ncas-current-activity": [
+          "unique links (1)"
+        ]
+      }
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-kev-csv",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "vulnerability": "CVE-2025-40536",
+      "status": "no patch currently available"
+    },
+    "inferred_facts": {
+      "system_type": "SolarWinds Web Help Desk",
+      "vulnerability_type": "critical security vulnerability"
+    },
+    "confidence_by_field": {
+      "pattern_selection": 1.0,
+      "parameter_extraction": 0.0
+    },
+    "evidence_sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "cisa-ncas-current-activity"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [
+      "If a patch is released before implementing these patterns",
+      "If the vulnerability does not affect critical clinical systems"
+    ],
+    "source_mitigations": [
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "Apply mitigations per vendor instructions",
+        "citation": "CVE-2025-40536",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-40536",
+        "mitigation_type": "process"
+      },
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "follow applicable BOD 22-01 guidance for cloud services",
+        "citation": "CVE-2025-40536",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-40536",
+        "mitigation_type": "process"
+      },
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "discontinue use of the product if mitigations are unavailable",
+        "citation": "CVE-2025-40536",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-40536",
+        "mitigation_type": "process"
+      }
+    ],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2025-40536",
+        "source": "cisa-kev-csv"
+      }
+    ]
+  },
+  {
+    "issue_id": "CVE-2025-47813",
+    "issue_type": "cve",
+    "title": "CVE-2025-47813",
+    "summary": "A critical vulnerability has been identified in Wing FTP Server that can lead to information disclosure. This vulnerability is currently being exploited, and while a patch is likely, it is crucial to prioritize its remediation immediately. Make sure to monitor updates and apply necessary fixes to protect your network.",
+    "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2025-47813",
+    "cves": [
+      "CVE-2025-47813"
+    ],
+    "sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "cisa-ncas-current-activity"
+    ],
+    "published_dates": [
+      "2026-03-16",
+      "Mon, 16 Mar 26 12:00:00 +0000"
+    ],
+    "first_seen_at": "2026-03-24T02:56:10.388631+00:00",
+    "last_seen_at": "2026-03-24T02:56:12.060923+00:00",
+    "score": 220,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Be cautious when using affected devices until the vulnerability is patched"
+    ],
+    "evidence_gaps": [
+      "Specific details on the network environment",
+      "Exact method of exploitation"
+    ],
+    "unknowns": [
+      "Whether a patch is currently available",
+      "Specific versions affected",
+      "Specific details on the network environment",
+      "Exact method of exploitation"
+    ],
+    "source_consensus": {
+      "agreed": [
+        "CVEs: CVE-2025-47813"
+      ],
+      "contradicted": [],
+      "unique_contributions": {
+        "cisa-ncas-current-activity": [
+          "unique links (1)"
+        ]
+      }
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-kev-csv",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "issue_id": "CVE-2025-47813",
+      "score": 220,
+      "summary": "A critical vulnerability has been identified in Wing FTP Server that can lead to information disclosure."
+    },
+    "inferred_facts": {
+      "exploitability": "The vulnerability is being actively exploited."
+    },
+    "confidence_by_field": {
+      "pattern_selection": 0.9,
+      "parameter_extraction": 0.8
+    },
+    "evidence_sources": [
+      "cisa-kev-csv",
+      "cisa-ncas-current-activity"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
+        "citation": "CVE-2025-47813",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-47813",
+        "mitigation_type": "other"
+      }
+    ],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2025-47813",
+        "source": "cisa-kev-csv"
+      }
+    ]
+  },
+  {
+    "issue_id": "CVE-2019-6693",
+    "issue_type": "cve",
+    "title": "CVE-2019-6693",
+    "summary": "A critical vulnerability has been identified in certain products, which could allow attackers to exploit systems. A patch is available, and it's strongly recommended that hospital IT teams apply this update immediately to protect sensitive networks and data. Vigilance is essential as ransomware attacks are expected to continue evolving and targeting healthcare organizations.",
+    "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2019-6693",
+    "cves": [
+      "CVE-2019-6693"
+    ],
+    "sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "mandiant-blog"
+    ],
+    "published_dates": [
+      "2025-06-25",
+      "Mon, 16 Mar 2026 14:00:00 +0000"
+    ],
+    "first_seen_at": "2026-03-24T02:56:10.388631+00:00",
+    "last_seen_at": "2026-03-24T02:56:28.307282+00:00",
+    "score": 215,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Monitor networks for unusual activity post-patch application",
+      "Ensure backup systems are secure and accessible",
+      "Ensure systems are backed up before patching",
+      "Monitor for potential service disruptions during patch application"
+    ],
+    "evidence_gaps": [
+      "details on specific affected products or systems"
+    ],
+    "unknowns": [
+      "Specific products/devices affected",
+      "Patch details and instructions",
+      "details on specific affected products or systems"
+    ],
+    "source_consensus": {
+      "agreed": [
+        "CVEs: CVE-2019-6693, CVE-2021-27877, CVE-2021-27878, CVE-2021-40539, CVE-2023-4966, CVE-2024-21762, CVE-2024-3400, CVE-2024-37085, CVE-2024-40766, CVE-2024-55591, CVE-2025-31161, CVE-2025-31324, CVE-2025-53770, CVE-2025-53771, CVE-2025-61882, CVE-2025-8088",
+        "severity: critical, high, low, medium"
+      ],
+      "contradicted": [],
+      "unique_contributions": {
+        "mandiant-blog": [
+          "unique links (1)"
+        ]
+      }
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-kev-csv",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "cve_id": "CVE-2019-6693",
+      "issue_priority": "P0",
+      "score": 215
+    },
+    "inferred_facts": {
+      "vendor_patch_available": "true",
+      "device_class": "healthcare systems"
+    },
+    "confidence_by_field": {
+      "pattern_selection": 1.0,
+      "parameter_extraction": 1.0
+    },
+    "evidence_sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "mandiant-blog"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
+        "citation": "CVE-2019-6693",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2019-6693",
+        "mitigation_type": "process"
+      }
+    ],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2019-6693",
+        "source": "cisa-kev-csv"
+      },
+      {
+        "type": "url",
+        "value": "https://cloud.google.com/blog/topics/threat-intelligence/ransomware-ttps-shifting-threat-landscape/",
+        "source": "mandiant-blog"
+      },
+      {
+        "type": "domain",
+        "value": "cloud.google.com",
+        "source": "mandiant-blog"
+      }
+    ]
+  },
+  {
+    "issue_id": "CVE-2025-14174",
+    "issue_type": "cve",
+    "title": "CVE-2025-14174",
+    "summary": "Google has reported a critical security vulnerability affecting iOS devices, which allowed hackers to fully compromise the devices through a complex exploit called DarkSword. A patch is available in iOS version 26.3, and it's essential for all users to update their devices immediately. If updating is not possible, enabling Lockdown Mode can provide additional security protection.",
+    "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2025-14174",
+    "cves": [
+      "CVE-2025-14174"
+    ],
+    "sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "mandiant-blog"
+    ],
+    "published_dates": [
+      "2025-12-12",
+      "Thu, 05 Mar 2026 14:00:00 +0000",
+      "Wed, 18 Mar 2026 14:00:00 +0000"
+    ],
+    "first_seen_at": "2026-03-24T02:56:10.388631+00:00",
+    "last_seen_at": "2026-03-24T02:56:28.307282+00:00",
+    "score": 215,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Ensure Lockdown Mode is enabled if updates cannot be applied",
+      "Monitor devices for any unusual activities after update"
+    ],
+    "evidence_gaps": [],
+    "unknowns": [
+      "Specific versions of iOS that are still affected",
+      "Details on how soon patches will be available for all devices"
+    ],
+    "source_consensus": {
+      "agreed": [
+        "CVEs: CVE-2025-14174, CVE-2025-31277, CVE-2025-43510, CVE-2025-43520, CVE-2025-43529, CVE-2026-20700",
+        "patch status: patch_available, workaround"
+      ],
+      "contradicted": [],
+      "unique_contributions": {
+        "mandiant-blog": [
+          "unique links (2)"
+        ]
+      }
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-kev-csv",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "vendor_name": "Google",
+      "device_type": "iOS devices",
+      "cve_id": "CVE-2025-14174",
+      "patch_status": "available in iOS version 26.3"
+    },
+    "inferred_facts": {
+      "exploit_impact": "Critical, full device compromise is possible"
+    },
+    "confidence_by_field": {
+      "pattern_selection": 1.0,
+      "parameter_extraction": 1.0
+    },
+    "evidence_sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "mandiant-blog"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "Apply mitigations per vendor instructions",
+        "citation": "CVE-2025-14174",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-14174",
+        "mitigation_type": "other"
+      }
+    ],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2025-14174",
+        "source": "cisa-kev-csv"
+      },
+      {
+        "type": "url",
+        "value": "https://cloud.google.com/blog/topics/threat-intelligence/darksword-ios-exploit-chain/",
+        "source": "mandiant-blog"
+      },
+      {
+        "type": "domain",
+        "value": "cloud.google.com",
+        "source": "mandiant-blog"
+      },
+      {
+        "type": "url",
+        "value": "https://cloud.google.com/blog/topics/threat-intelligence/2025-zero-day-review/",
+        "source": "mandiant-blog"
+      }
+    ]
+  },
+  {
+    "issue_id": "CVE-2025-31277",
+    "issue_type": "cve",
+    "title": "CVE-2025-31277",
+    "summary": "Google has identified a serious security risk in iOS known as DarkSword, affecting versions 18.4 through 18.7. The vulnerability is rated as Critical, but a patch is available in the latest iOS version 26.3. To ensure security, it's crucial to update all devices to the latest iOS or enable Lockdown Mode if an update cannot be performed.",
+    "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2025-31277",
+    "cves": [
+      "CVE-2025-31277"
+    ],
+    "sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "cisa-ncas-current-activity",
+      "mandiant-blog"
+    ],
+    "published_dates": [
+      "2026-03-20",
+      "Fri, 20 Mar 26 12:00:00 +0000",
+      "Wed, 18 Mar 2026 14:00:00 +0000"
+    ],
+    "first_seen_at": "2026-03-24T02:56:10.388631+00:00",
+    "last_seen_at": "2026-03-24T02:56:28.307282+00:00",
+    "score": 215,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Be cautious with device updates in medical environments",
+      "Ensure that Lockdown Mode is used on devices where updates cannot be applied"
+    ],
+    "evidence_gaps": [
+      "Approved maintenance window",
+      "Backup and restore plan details",
+      "Validation checklist"
+    ],
+    "unknowns": [
+      "Specific details about affected devices",
+      "Exact timeline for patch deployment prior to iOS 26.3",
+      "Approved maintenance window",
+      "Backup and restore plan details",
+      "Validation checklist"
+    ],
+    "source_consensus": {
+      "agreed": [
+        "CVEs: CVE-2025-14174, CVE-2025-31277, CVE-2025-43510, CVE-2025-43520, CVE-2025-43529, CVE-2026-20700",
+        "patch status: patch_available, workaround"
+      ],
+      "contradicted": [],
+      "unique_contributions": {
+        "cisa-ncas-current-activity": [
+          "unique links (1)"
+        ],
+        "mandiant-blog": [
+          "unique links (1)"
+        ]
+      }
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-kev-csv",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "vulnerability": "DarkSword",
+      "affected_versions": "18.4 to 18.7",
+      "patch_version": "26.3"
+    },
+    "inferred_facts": {
+      "acknowledgment_of_patching_importance": "Patching is crucial to mitigate risks from the identified vulnerability."
+    },
+    "confidence_by_field": {
+      "pattern_selection": 1.0,
+      "parameter_extraction": 0.8
+    },
+    "evidence_sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "cisa-ncas-current-activity",
+      "mandiant-blog"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
+        "citation": "CVE-2025-31277",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-31277",
+        "mitigation_type": "process"
+      }
+    ],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2025-31277",
+        "source": "cisa-kev-csv"
+      },
+      {
+        "type": "url",
+        "value": "https://cloud.google.com/blog/topics/threat-intelligence/darksword-ios-exploit-chain/",
+        "source": "mandiant-blog"
+      },
+      {
+        "type": "domain",
+        "value": "cloud.google.com",
+        "source": "mandiant-blog"
+      }
+    ]
+  },
+  {
+    "issue_id": "CVE-2025-43510",
+    "issue_type": "cve",
+    "title": "CVE-2025-43510",
+    "summary": "Google has identified a critical security vulnerability called DarkSword that affects iOS devices from version 18.4 to 18.7. A patch is available in iOS version 26.3, and it's crucial to update devices immediately to protect against this exploit. If updating is not possible, enabling Lockdown Mode is strongly advised for enhanced security.",
+    "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2025-43510",
+    "cves": [
+      "CVE-2025-43510"
+    ],
+    "sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "cisa-ncas-current-activity",
+      "mandiant-blog"
+    ],
+    "published_dates": [
+      "2026-03-20",
+      "Fri, 20 Mar 26 12:00:00 +0000",
+      "Wed, 18 Mar 2026 14:00:00 +0000"
+    ],
+    "first_seen_at": "2026-03-24T02:56:10.388631+00:00",
+    "last_seen_at": "2026-03-24T02:56:28.307282+00:00",
+    "score": 215,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Be cautious with unsupported devices in the hospital network",
+      "Monitor for related malware activity in the environment",
+      "Patching may require downtime with implications for patient care delivery"
+    ],
+    "evidence_gaps": [
+      "Details on approved maintenance window for patching",
+      "Full details on the Lockdown Mode implementation"
+    ],
+    "unknowns": [
+      "Specific older iOS versions affected",
+      "Timeline for when all vulnerabilities were reported and patched",
+      "Details on approved maintenance window for patching",
+      "Full details on the Lockdown Mode implementation"
+    ],
+    "source_consensus": {
+      "agreed": [
+        "CVEs: CVE-2025-14174, CVE-2025-31277, CVE-2025-43510, CVE-2025-43520, CVE-2025-43529, CVE-2026-20700",
+        "patch status: patch_available, workaround"
+      ],
+      "contradicted": [],
+      "unique_contributions": {
+        "cisa-ncas-current-activity": [
+          "unique links (1)"
+        ],
+        "mandiant-blog": [
+          "unique links (1)"
+        ]
+      }
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-kev-csv",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "vendor_name": "Google",
+      "device_type": "iOS devices",
+      "CVEs": "CVE-2025-43510",
+      "patch_status": "available in iOS version 26.3"
+    },
+    "inferred_facts": {
+      "device_class": "life-critical or patient-care adjacent",
+      "urgency_level": "high due to exploitability"
+    },
+    "confidence_by_field": {
+      "pattern_selection": 1.0,
+      "parameter_extraction": 0.8
+    },
+    "evidence_sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "cisa-ncas-current-activity",
+      "mandiant-blog"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "Apply mitigations per vendor instructions",
+        "citation": "CVE-2025-43510",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-43510",
+        "mitigation_type": "patch"
+      }
+    ],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2025-43510",
+        "source": "cisa-kev-csv"
+      },
+      {
+        "type": "url",
+        "value": "https://cloud.google.com/blog/topics/threat-intelligence/darksword-ios-exploit-chain/",
+        "source": "mandiant-blog"
+      },
+      {
+        "type": "domain",
+        "value": "cloud.google.com",
+        "source": "mandiant-blog"
+      }
+    ]
+  },
+  {
+    "issue_id": "CVE-2025-43520",
+    "issue_type": "cve",
+    "title": "CVE-2025-43520",
+    "summary": "A severe security risk has been identified in iOS devices, linked to a complex exploit known as DarkSword, which affects versions 18.4 through 18.7. Apple has released patches for all related vulnerabilities with the latest iOS version, 26.3, and users are strongly advised to update their devices immediately. If an update cannot be performed, enable Lockdown Mode for better protection.",
+    "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2025-43520",
+    "cves": [
+      "CVE-2025-43520"
+    ],
+    "sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "cisa-ncas-current-activity",
+      "mandiant-blog"
+    ],
+    "published_dates": [
+      "2026-03-20",
+      "Fri, 20 Mar 26 12:00:00 +0000",
+      "Wed, 18 Mar 2026 14:00:00 +0000"
+    ],
+    "first_seen_at": "2026-03-24T02:56:10.388631+00:00",
+    "last_seen_at": "2026-03-24T02:56:28.307282+00:00",
+    "score": 215,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Ensure all devices are updated to the latest iOS version",
+      "Use Lockdown Mode on devices that cannot be updated"
+    ],
+    "evidence_gaps": [
+      "Information on the maintenance window for patching",
+      "Backup and restore plan details"
+    ],
+    "unknowns": [
+      "Specific versions of iOS that are still unsupported",
+      "Patch timelines for earlier versions",
+      "Information on the maintenance window for patching",
+      "Backup and restore plan details"
+    ],
+    "source_consensus": {
+      "agreed": [
+        "CVEs: CVE-2025-14174, CVE-2025-31277, CVE-2025-43510, CVE-2025-43520, CVE-2025-43529, CVE-2026-20700",
+        "patch status: patch_available, workaround"
+      ],
+      "contradicted": [],
+      "unique_contributions": {
+        "cisa-ncas-current-activity": [
+          "unique links (1)"
+        ],
+        "mandiant-blog": [
+          "unique links (1)"
+        ]
+      }
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-kev-csv",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "issue_id": "CVE-2025-43520",
+      "vendor_name": "Apple",
+      "affected_versions": "18.4 through 18.7",
+      "latest_version": "26.3",
+      "exploit_name": "DarkSword"
+    },
+    "inferred_facts": {
+      "patch_status": "A patch is available and needs to be applied to mitigate the risk."
+    },
+    "confidence_by_field": {
+      "pattern_selection": 1.0,
+      "parameter_extraction": 0.8
+    },
+    "evidence_sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "cisa-ncas-current-activity",
+      "mandiant-blog"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "Apply mitigations per vendor instructions",
+        "citation": "CVE-2025-43520",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-43520",
+        "mitigation_type": "other"
+      },
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "follow applicable BOD 22-01 guidance for cloud services",
+        "citation": "CVE-2025-43520",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-43520",
+        "mitigation_type": "other"
+      },
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "discontinue use of the product if mitigations are unavailable",
+        "citation": "CVE-2025-43520",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-43520",
+        "mitigation_type": "other"
+      }
+    ],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2025-43520",
+        "source": "cisa-kev-csv"
+      },
+      {
+        "type": "url",
+        "value": "https://cloud.google.com/blog/topics/threat-intelligence/darksword-ios-exploit-chain/",
+        "source": "mandiant-blog"
+      },
+      {
+        "type": "domain",
+        "value": "cloud.google.com",
+        "source": "mandiant-blog"
+      }
+    ]
+  },
+  {
+    "issue_id": "CVE-2025-43529",
+    "issue_type": "cve",
+    "title": "CVE-2025-43529",
+    "summary": "A new critical exploit, known as DarkSword, affects iOS devices running versions 18.4 through 18.7, allowing attackers to fully compromise them. Apple has patched these vulnerabilities in iOS version 26.3; therefore, it is strongly recommended to update all iOS devices immediately. If updating is not possible, enabling Lockdown Mode is advised to enhance security.",
+    "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2025-43529",
+    "cves": [
+      "CVE-2025-43529"
+    ],
+    "sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "mandiant-blog"
+    ],
+    "published_dates": [
+      "2025-12-15",
+      "Wed, 18 Mar 2026 14:00:00 +0000"
+    ],
+    "first_seen_at": "2026-03-24T02:56:10.388631+00:00",
+    "last_seen_at": "2026-03-24T02:56:28.307282+00:00",
+    "score": 215,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Enabling Lockdown Mode may affect the functionality of some applications",
+      "Careful monitoring of devices is necessary until updates are applied"
+    ],
+    "evidence_gaps": [
+      "Details on the required maintenance window for patching"
+    ],
+    "unknowns": [
+      "Exact timeline for when all patches were made available",
+      "Specific impacted models or configurations of iOS devices",
+      "Details on the required maintenance window for patching"
+    ],
+    "source_consensus": {
+      "agreed": [
+        "CVEs: CVE-2025-14174, CVE-2025-31277, CVE-2025-43510, CVE-2025-43520, CVE-2025-43529, CVE-2026-20700",
+        "patch status: patch_available, workaround"
+      ],
+      "contradicted": [],
+      "unique_contributions": {
+        "mandiant-blog": [
+          "unique links (1)"
+        ]
+      }
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-kev-csv",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "affected_versions": "18.4 through 18.7",
+      "vendor_name": "Apple",
+      "patch_version": "26.3"
+    },
+    "inferred_facts": {
+      "exploit_vector": "remote exploitation of iOS device vulnerabilities"
+    },
+    "confidence_by_field": {
+      "pattern_selection": 1.0,
+      "parameter_extraction": 1.0
+    },
+    "evidence_sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "mandiant-blog"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
+        "citation": "CVE-2025-43529",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-43529",
+        "mitigation_type": "process"
+      }
+    ],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2025-43529",
+        "source": "cisa-kev-csv"
+      },
+      {
+        "type": "url",
+        "value": "https://cloud.google.com/blog/topics/threat-intelligence/darksword-ios-exploit-chain/",
+        "source": "mandiant-blog"
+      },
+      {
+        "type": "domain",
+        "value": "cloud.google.com",
+        "source": "mandiant-blog"
+      }
+    ]
+  },
+  {
+    "issue_id": "CVE-2025-53770",
+    "issue_type": "cve",
+    "title": "CVE-2025-53770",
+    "summary": "A critical vulnerability has been identified that affects certain vendor products, posing a significant security risk. A patch is not currently available, so it is crucial to implement immediate protective measures, such as monitoring network traffic and disabling unnecessary services to safeguard against potential exploitations. Teams should prioritize assessing their network for vulnerabilities and enhancing overall security practices.",
+    "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2025-49704",
+    "cves": [
+      "CVE-2025-53770"
+    ],
+    "sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "cisa-ncas-analysis",
+      "mandiant-blog"
+    ],
+    "published_dates": [
+      "2025-07-20",
+      "2025-07-22",
+      "Mon, 16 Mar 2026 14:00:00 +0000",
+      "Wed, 06 Aug 2025 09:54:53 EDT"
+    ],
+    "first_seen_at": "2026-03-24T02:56:10.388631+00:00",
+    "last_seen_at": "2026-03-24T02:56:28.307282+00:00",
+    "score": 215,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Monitor network traffic closely for unusual activity",
+      "Disable any services not in use to reduce attack surface"
+    ],
+    "evidence_gaps": [
+      "Specific vendor products affected",
+      "Details on service dependencies",
+      "Information about the necessary monitoring setup"
+    ],
+    "unknowns": [
+      "Specific vendor and product information",
+      "Exact versions affected",
+      "Timeline for patch availability",
+      "Specific vendor products affected",
+      "Details on service dependencies",
+      "Information about the necessary monitoring setup"
+    ],
+    "source_consensus": {
+      "agreed": [
+        "CVEs: CVE-2019-6693, CVE-2021-27877, CVE-2021-27878, CVE-2021-40539, CVE-2023-4966, CVE-2024-21762, CVE-2024-3400, CVE-2024-37085, CVE-2024-40766, CVE-2024-55591, CVE-2025-31161, CVE-2025-31324, CVE-2025-53770, CVE-2025-53771, CVE-2025-61882, CVE-2025-8088",
+        "severity: critical, high, low, medium"
+      ],
+      "contradicted": [],
+      "unique_contributions": {
+        "cisa-ncas-analysis": [
+          "unique links (1)"
+        ],
+        "mandiant-blog": [
+          "unique links (1)"
+        ]
+      }
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-kev-csv",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "issue_id": "CVE-2025-53770",
+      "title": "CVE-2025-53770",
+      "priority": "P0",
+      "score": 215
+    },
+    "inferred_facts": {
+      "patch_status": "no patch available"
+    },
+    "confidence_by_field": {
+      "pattern_selection": 1.0,
+      "parameter_extraction": 0.0
+    },
+    "evidence_sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "cisa-ncas-analysis",
+      "mandiant-blog"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "disconnect public-facing versions of SharePoint Server that have reached their end-of-life (EOL) or end-of-service (EOS)",
+        "citation": "CVE-2025-49704",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-49704",
+        "mitigation_type": "network"
+      },
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "follow the mitigations according to CISA and vendor instructions",
+        "citation": "CVE-2025-49704",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-49704",
+        "mitigation_type": "process"
+      },
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "adhere to the applicable BOD 22-01 guidance for cloud services or discontinue use of the product if mitigations are not available",
+        "citation": "CVE-2025-49704",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-49704",
+        "mitigation_type": "process"
+      }
+    ],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2025-53770",
+        "source": "cisa-kev-csv"
+      },
+      {
+        "type": "cve",
+        "value": "CVE-2025-49704",
+        "source": "cisa-kev-csv"
+      },
+      {
+        "type": "url",
+        "value": "https://cloud.google.com/blog/topics/threat-intelligence/ransomware-ttps-shifting-threat-landscape/",
+        "source": "mandiant-blog"
+      },
+      {
+        "type": "domain",
+        "value": "cloud.google.com",
+        "source": "mandiant-blog"
+      }
+    ]
+  },
+  {
+    "issue_id": "CVE-2025-53771",
+    "issue_type": "cve",
+    "title": "CVE-2025-53771",
+    "summary": "A critical vulnerability affecting multiple devices has been identified, posing a significant risk to hospital networks. A patch is available, and it is essential to apply this update promptly to protect against potential ransomware attacks. Please ensure your systems are up to date to prevent exploitation by malicious actors.",
+    "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2025-49706",
+    "cves": [
+      "CVE-2025-53771"
+    ],
+    "sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "cisa-ncas-analysis",
+      "mandiant-blog"
+    ],
+    "published_dates": [
+      "2025-07-20",
+      "2025-07-22",
+      "Mon, 16 Mar 2026 14:00:00 +0000",
+      "Wed, 06 Aug 2025 09:54:53 EDT"
+    ],
+    "first_seen_at": "2026-03-24T02:56:10.388631+00:00",
+    "last_seen_at": "2026-03-24T02:56:28.307282+00:00",
+    "score": 215,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Ensure systems are backed up before applying patches",
+      "Monitor for unusual network activities post-patch application",
+      "Ensure clinical validation post-patching to maintain patient safety."
+    ],
+    "evidence_gaps": [
+      "specific device identifiers affected",
+      "timeline for patch application"
+    ],
+    "unknowns": [
+      "Specific vendor and product details",
+      "Affected versions of the devices",
+      "Patch release timeline",
+      "specific device identifiers affected",
+      "timeline for patch application"
+    ],
+    "source_consensus": {
+      "agreed": [
+        "CVEs: CVE-2019-6693, CVE-2021-27877, CVE-2021-27878, CVE-2021-40539, CVE-2023-4966, CVE-2024-21762, CVE-2024-3400, CVE-2024-37085, CVE-2024-40766, CVE-2024-55591, CVE-2025-31161, CVE-2025-31324, CVE-2025-53770, CVE-2025-53771, CVE-2025-61882, CVE-2025-8088",
+        "severity: critical, high, low, medium"
+      ],
+      "contradicted": [],
+      "unique_contributions": {
+        "cisa-ncas-analysis": [
+          "unique links (1)"
+        ],
+        "mandiant-blog": [
+          "unique links (1)"
+        ]
+      }
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-kev-csv",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "cve_id": "CVE-2025-53771",
+      "patch_status": "available"
+    },
+    "inferred_facts": {
+      "risk_type": "ransomware attack",
+      "device_impact": "hospital networks"
+    },
+    "confidence_by_field": {
+      "pattern_selection": 1.0,
+      "parameter_extraction": 1.0
+    },
+    "evidence_sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "cisa-ncas-analysis",
+      "mandiant-blog"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "disconnect public-facing versions of SharePoint Server that have reached their end-of-life (EOL) or end-of-service (EOS), including SharePoint Server 2013 and earlier versions",
+        "citation": "CVE-2025-53770",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-53770",
+        "mitigation_type": "network"
+      },
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "follow the mitigations according to CISA and vendor instructions for supported versions",
+        "citation": "CVE-2025-53770",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-53770",
+        "mitigation_type": "other"
+      },
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "adhere to the applicable BOD 22-01 guidance for cloud services or discontinue use of the product if mitigations are not available",
+        "citation": "CVE-2025-53770",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-53770",
+        "mitigation_type": "process"
+      }
+    ],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2025-53771",
+        "source": "cisa-kev-csv"
+      },
+      {
+        "type": "cve",
+        "value": "CVE-2025-53770",
+        "source": "cisa-kev-csv"
+      },
+      {
+        "type": "cve",
+        "value": "CVE-2025-49706",
+        "source": "cisa-kev-csv"
+      },
+      {
+        "type": "url",
+        "value": "https://cloud.google.com/blog/topics/threat-intelligence/ransomware-ttps-shifting-threat-landscape/",
+        "source": "mandiant-blog"
+      },
+      {
+        "type": "domain",
+        "value": "cloud.google.com",
+        "source": "mandiant-blog"
+      }
+    ]
+  },
+  {
+    "issue_id": "CVE-2025-61882",
+    "issue_type": "cve",
+    "title": "CVE-2025-61882",
+    "summary": "The 2025 ransomware landscape shows an increase in targeting organizations, especially those using common VPNs and firewalls. This threat is rated as critical, and while no specific patch exists for recent vulnerabilities, organizations should enhance their cybersecurity practices and consider adopting robust ransomware protection strategies. Immediate actions include securing network entry points and improving data recovery capabilities.",
+    "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2025-61882",
+    "cves": [
+      "CVE-2025-61882"
+    ],
+    "sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "mandiant-blog"
+    ],
+    "published_dates": [
+      "2025-10-06",
+      "Mon, 16 Mar 2026 14:00:00 +0000",
+      "Thu, 05 Mar 2026 14:00:00 +0000"
+    ],
+    "first_seen_at": "2026-03-24T02:56:10.388631+00:00",
+    "last_seen_at": "2026-03-24T02:56:28.307282+00:00",
+    "score": 215,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Ensure medical devices are protected against ransomware by securing network access",
+      "Monitor for unusual activity that may indicate attempted breaches",
+      "Increased caution advised for operational workflows due to ransomware threat"
+    ],
+    "evidence_gaps": [
+      "Detailed device identifiers for effective monitoring and access control",
+      "Specific vendor support details that may affect remote access"
+    ],
+    "unknowns": [
+      "Specific vulnerabilities or devices impacted",
+      "Timeline for any additional recommended patches or updates",
+      "Detailed device identifiers for effective monitoring and access control",
+      "Specific vendor support details that may affect remote access"
+    ],
+    "source_consensus": {
+      "agreed": [
+        "CVEs: CVE-2019-6693, CVE-2021-27877, CVE-2021-27878, CVE-2021-40539, CVE-2023-4966, CVE-2024-21762, CVE-2024-3400, CVE-2024-37085, CVE-2024-40766, CVE-2024-55591, CVE-2025-31161, CVE-2025-31324, CVE-2025-53770, CVE-2025-53771, CVE-2025-61882, CVE-2025-8088",
+        "severity: critical, high, low, medium"
+      ],
+      "contradicted": [],
+      "unique_contributions": {
+        "mandiant-blog": [
+          "unique links (2)"
+        ]
+      }
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-kev-csv",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "issue_id": "CVE-2025-61882",
+      "title": "CVE-2025-61882",
+      "priority": "P0",
+      "score": 215
+    },
+    "inferred_facts": {
+      "risk_environment": "Increased targeting of organizations using common VPNs and firewalls",
+      "operational_implications": "Enhanced cybersecurity practices required without specific patches"
+    },
+    "confidence_by_field": {
+      "pattern_selection": 1.0,
+      "parameter_extraction": 0.7
+    },
+    "evidence_sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "mandiant-blog"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [
+      "If a patch is released by the vendor",
+      "If the organization does not use VPNs or firewalls mentioned in the advisory"
+    ],
+    "source_mitigations": [
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "Apply mitigations per vendor instructions",
+        "citation": "CVE-2025-61882",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-61882",
+        "mitigation_type": "other"
+      }
+    ],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2025-61882",
+        "source": "cisa-kev-csv"
+      },
+      {
+        "type": "url",
+        "value": "https://cloud.google.com/blog/topics/threat-intelligence/ransomware-ttps-shifting-threat-landscape/",
+        "source": "mandiant-blog"
+      },
+      {
+        "type": "domain",
+        "value": "cloud.google.com",
+        "source": "mandiant-blog"
+      },
+      {
+        "type": "url",
+        "value": "https://cloud.google.com/blog/topics/threat-intelligence/2025-zero-day-review/",
+        "source": "mandiant-blog"
+      }
+    ]
+  },
+  {
+    "issue_id": "CVE-2025-8088",
+    "issue_type": "cve",
+    "title": "Amaranth-Dragon: Weaponizing CVE-2025-8088 for Targeted Espionage in the Southeast Asia",
+    "summary": "A new vulnerability identified as critical could expose organizations to targeted ransomware attacks, particularly affecting VPNs and firewalls. While a specific patch has not been mentioned, it's crucial to review your network defenses and update any affected devices immediately. Implement strong monitoring and data protection strategies to mitigate risks associated with this vulnerability.",
+    "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2025-8088",
+    "cves": [
+      "CVE-2025-8088"
+    ],
+    "sources": [
+      "checkpoint-research",
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "mandiant-blog"
+    ],
+    "published_dates": [
+      "2025-08-12",
+      "Mon, 16 Mar 2026 14:00:00 +0000",
+      "Thu, 05 Mar 2026 14:00:00 +0000",
+      "Tue, 27 Jan 2026 14:00:00 +0000",
+      "Wed, 04 Feb 2026 13:57:37 +0000"
+    ],
+    "first_seen_at": "2026-03-24T02:56:08.968526+00:00",
+    "last_seen_at": "2026-03-24T02:56:28.307282+00:00",
+    "score": 215,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Consider additional monitoring for unusual network activity",
+      "Ensure data backup processes are current and effective"
+    ],
+    "evidence_gaps": [
+      "Specific types of affected devices and configurations",
+      "Details on existing network infrastructure"
+    ],
+    "unknowns": [
+      "Specific devices or software versions affected",
+      "Patch availability timeline",
+      "Specific types of affected devices and configurations",
+      "Details on existing network infrastructure"
+    ],
+    "source_consensus": {
+      "agreed": [
+        "CVEs: CVE-2019-6693, CVE-2021-27877, CVE-2021-27878, CVE-2021-40539, CVE-2023-4966, CVE-2024-21762, CVE-2024-3400, CVE-2024-37085, CVE-2024-40766, CVE-2024-55591, CVE-2025-31161, CVE-2025-31324, CVE-2025-53770, CVE-2025-53771, CVE-2025-61882, CVE-2025-8088",
+        "severity: critical, high, low, medium"
+      ],
+      "contradicted": [],
+      "unique_contributions": {
+        "checkpoint-research": [
+          "unique links (1)"
+        ],
+        "mandiant-blog": [
+          "unique links (3)"
+        ]
+      }
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-kev-csv",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "issue_id": "CVE-2025-8088",
+      "priority": "P0",
+      "score": 215,
+      "impacted_area": "VPNs and firewalls",
+      "vulnerability_type": "critical"
+    },
+    "inferred_facts": {
+      "patch_available": "false",
+      "targeted_attacks": "high risk",
+      "monitoring_needed": "immediate"
+    },
+    "confidence_by_field": {
+      "pattern_selection": 1.0,
+      "parameter_extraction": 0.9
+    },
+    "evidence_sources": [
+      "checkpoint-research",
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "mandiant-blog"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
+        "citation": "CVE-2025-8088",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-8088",
+        "mitigation_type": "other"
+      }
+    ],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2025-8088",
+        "source": "checkpoint-research"
+      },
+      {
+        "type": "url",
+        "value": "https://research.checkpoint.com/?p=32567",
+        "source": "checkpoint-research"
+      },
+      {
+        "type": "domain",
+        "value": "research.checkpoint.com",
+        "source": "checkpoint-research"
+      },
+      {
+        "type": "url",
+        "value": "https://cloud.google.com/blog/topics/threat-intelligence/ransomware-ttps-shifting-threat-landscape/",
+        "source": "mandiant-blog"
+      },
+      {
+        "type": "domain",
+        "value": "cloud.google.com",
+        "source": "mandiant-blog"
+      },
+      {
+        "type": "url",
+        "value": "https://cloud.google.com/blog/topics/threat-intelligence/2025-zero-day-review/",
+        "source": "mandiant-blog"
+      },
+      {
+        "type": "url",
+        "value": "https://cloud.google.com/blog/topics/threat-intelligence/exploiting-critical-winrar-vulnerability/",
+        "source": "mandiant-blog"
+      }
+    ]
+  },
+  {
+    "issue_id": "CVE-2026-20700",
+    "issue_type": "cve",
+    "title": "CVE-2026-20700",
+    "summary": "Google has identified a serious vulnerability in iOS devices, known as DarkSword, that can fully compromise devices running versions 18.4 to 18.7. This issue is classified as Critical, but Apple has released updates to address it in iOS 26.3. It is strongly recommended to update affected devices immediately; if an update cannot be performed, enabling Lockdown Mode is advised for added protection.",
+    "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2026-20700",
+    "cves": [
+      "CVE-2026-20700"
+    ],
+    "sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "cisa-ncas-current-activity",
+      "mandiant-blog"
+    ],
+    "published_dates": [
+      "2026-02-12",
+      "Thu, 12 Feb 26 12:00:00 +0000",
+      "Wed, 18 Mar 2026 14:00:00 +0000"
+    ],
+    "first_seen_at": "2026-03-24T02:56:10.388631+00:00",
+    "last_seen_at": "2026-03-24T02:56:28.307282+00:00",
+    "score": 215,
+    "priority": "P0",
+    "actions": [
+      "notify",
+      "ingest",
+      "track"
+    ],
+    "handling_warnings": [
+      "Ensure devices are regularly updated to the latest iOS version.",
+      "Be cautious with third-party apps and links to mitigate risks.",
+      "Ensure testing of device functionality after applying the patch or enabling Lockdown Mode."
+    ],
+    "evidence_gaps": [],
+    "unknowns": [
+      "Specific iOS versions beyond 18.7 affected prior to patch",
+      "Exact timeline for patch deployment",
+      "Impact of Lockdown Mode on device functionality"
+    ],
+    "source_consensus": {
+      "agreed": [
+        "CVEs: CVE-2025-14174, CVE-2025-31277, CVE-2025-43510, CVE-2025-43520, CVE-2025-43529, CVE-2026-20700",
+        "patch status: patch_available, workaround"
+      ],
+      "contradicted": [],
+      "unique_contributions": {
+        "cisa-ncas-current-activity": [
+          "unique links (1)"
+        ],
+        "mandiant-blog": [
+          "unique links (1)"
+        ]
+      }
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-kev-csv",
+    "healthcare_category": "deterministic",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "ai",
+    "extracted_facts": {
+      "vendor_name": "Apple",
+      "device_type": "iOS devices",
+      "CVE_ID": "CVE-2026-20700",
+      "patch_status": "patch available in iOS 26.3"
+    },
+    "inferred_facts": {
+      "device_is_critical": "yes",
+      "need_for_timely_action": "high"
+    },
+    "confidence_by_field": {
+      "pattern_selection": 1.0,
+      "parameter_extraction": 1.0
+    },
+    "evidence_sources": [
+      "cisa-kev-csv",
+      "cisa-kev-json",
+      "cisa-ncas-current-activity",
+      "mandiant-blog"
+    ],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "Apply mitigations per vendor instructions",
+        "citation": "CVE-2026-20700",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-20700",
+        "mitigation_type": "other"
+      },
+      {
+        "source": "cisa-kev-csv",
+        "source_tier": 1,
+        "action": "discontinue use of the product if mitigations are unavailable",
+        "citation": "CVE-2026-20700",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-20700",
+        "mitigation_type": "other"
+      }
+    ],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2026-20700",
+        "source": "cisa-kev-csv"
+      },
+      {
+        "type": "url",
+        "value": "https://cloud.google.com/blog/topics/threat-intelligence/darksword-ios-exploit-chain/",
+        "source": "mandiant-blog"
+      },
+      {
+        "type": "domain",
+        "value": "cloud.google.com",
+        "source": "mandiant-blog"
+      }
+    ]
+  }
+]
