@@ -4,7 +4,7 @@
     "CVE-2025-12699"
   ],
   "expected_priority_range": [
-    "P0"
+    "P1"
   ],
   "expected_healthcare_category": "medical_device",
   "description": "ZOLL ePCR IOS mobile app - PHI disclosure via XSS in medical record fields (CVSS 5.5 MEDIUM). Product decommissioned, no patch. Single ICSMA signal, no KEV, no NVD link. Score = 10 (CVE base) -> P3."

@@ -19,7 +19,11 @@
       "Bash(ls src/advisoryops/*.py)",
       "Bash(advisoryops community-build:*)",
       "Bash(mkdir:*)",
-      "Bash(python -c \"import sys; sys.argv = [''advisoryops'', ''community-build'', ''--set-id'', ''expanded_pass1'', ''--refresh'', ''--refresh-limit'', ''10'', ''--out-root-community'', ''outputs/community_public_expanded'']; from advisoryops.cli import main; main\\(\\)\")"
+      "Bash(python -c \"import sys; sys.argv = [''advisoryops'', ''community-build'', ''--set-id'', ''expanded_pass1'', ''--refresh'', ''--refresh-limit'', ''10'', ''--out-root-community'', ''outputs/community_public_expanded'']; from advisoryops.cli import main; main\\(\\)\")",
+      "mcp__plugin_playwright_playwright__browser_navigate",
+      "mcp__plugin_playwright_playwright__browser_console_messages",
+      "mcp__plugin_playwright_playwright__browser_snapshot",
+      "mcp__plugin_playwright_playwright__browser_click"
     ]
   }
 }

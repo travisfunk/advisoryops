@@ -5,7 +5,7 @@
     "CVE-2025-61959"
   ],
   "expected_priority_range": [
-    "P0"
+    "P1"
   ],
   "expected_healthcare_category": "healthcare_it",
   "description": "Vertikal Systems Hospital Manager backend services (2 CVEs, CVSS 8.7). Hospital scheduling/operations software. Healthcare IT (not direct medical device). Remote exploit, low complexity. No KEV -> P3."

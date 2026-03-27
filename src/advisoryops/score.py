@@ -6,7 +6,8 @@ to each issue.  Two scoring versions are available:
 v1 — keyword-only baseline
     Pure regex matching on title + summary + issue_id text.
     Fast and deterministic.  Used as the base for v2.
-    Score ranges: P0 ≥ 100 · P1 ≥ 70 · P2 ≥ 40 · P3 < 40
+    Score ranges (tunable via PRIORITY_THRESHOLDS):
+    P0 ≥ 150 · P1 ≥ 100 · P2 ≥ 60 · P3 < 60
 
 v2 — healthcare-aware (default)
     Runs all v1 factors first, then adds four healthcare-specific dimensions:
@@ -38,7 +39,7 @@ import re
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Optional, Tuple
+from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
 
 
 def _utc_now_iso() -> str:
@@ -95,12 +96,24 @@ _KEYWORDS: List[Tuple[re.Pattern[str], int, str]] = [
 ]
 
 
-def _priority_from_score(score: int) -> str:
-    if score >= 100:
+# ---------------------------------------------------------------------------
+# Tunable priority thresholds — adjust these to calibrate alert distribution
+# ---------------------------------------------------------------------------
+PRIORITY_THRESHOLDS = {
+    "P0": 150,   # score >= 150  (KEV + healthcare stacked, or multiple critical signals)
+    "P1": 100,   # score 100–149 (significant: KEV source, or strong healthcare context)
+    "P2": 60,    # score 60–99   (moderate concern)
+    "P3": 0,     # score < 60    (informational)
+}
+
+
+def _priority_from_score(score: int, thresholds: Optional[Dict[str, int]] = None) -> str:
+    t = thresholds or PRIORITY_THRESHOLDS
+    if score >= t["P0"]:
         return "P0"
-    if score >= 70:
+    if score >= t["P1"]:
         return "P1"
-    if score >= 40:
+    if score >= t["P2"]:
         return "P2"
     return "P3"
 

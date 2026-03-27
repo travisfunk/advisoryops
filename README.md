@@ -115,7 +115,7 @@ advisoryops evaluate --fixtures tests/fixtures/golden --out outputs/eval
 │    Patch feasibility: no patch +20 · EOL +15 · firmware +10    │
 │    Clinical impact:  patient safety +25 · ICU +20 · PHI +15    │
 │  Optional AI: --ai-score classifies ambiguous issues via GPT    │
-│  Priority: P0 ≥ 100 · P1 ≥ 70 · P2 ≥ 40 · P3 < 40           │
+│  Priority: P0 ≥ 150 · P1 ≥ 100 · P2 ≥ 60 · P3 < 60           │
 │  Output: outputs/scored/issues_scored.jsonl + alerts.jsonl      │
 └─────────────────────┬───────────────────────────────────────────┘
                       │
@@ -214,7 +214,7 @@ advisoryops/
 │   ├── community_public_sources.json   # validated gold source sets
 │   ├── mitigation_playbook.json        # approved mitigation patterns
 │   └── source_weights.json            # source authority tiers + weights
-├── tests/                     # pytest suite (448 tests, all mocked — no API key needed)
+├── tests/                     # pytest suite (601 tests, all mocked — no API key needed)
 ├── scripts/
 │   ├── smoke_test_all_sources.py       # batch connectivity + parse test
 │   └── build_golden_fixtures.py        # golden fixture generator

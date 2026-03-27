@@ -150,7 +150,7 @@ def test_multiple_keywords_stack() -> None:
         links=["https://nvd.nist.gov/vuln/detail/CVE-2024-TEST"],
     ))
     assert r.score >= 100, f"Expected >=100, got {r.score}. why={r.why}"
-    assert r.priority == "P0", f"Expected P0, got {r.priority}"
+    assert r.priority == "P1", f"Expected P1, got {r.priority}"
     assert _has_keyword_label(r.why, "actively exploited")
     assert _has_keyword_label(r.why, "RCE")
 
@@ -161,9 +161,9 @@ def test_kev_source_plus_rce_reaches_p0() -> None:
         "Remote code execution in widely deployed component.",
         sources=["cisa-kev-json"],
     ))
-    # base(10) + kev_source(80) + rce(30) = 120 -> P0
+    # base(10) + kev_source(80) + rce(30) = 120 -> P1
     assert r.score >= 120, f"Expected >=120, got {r.score}. why={r.why}"
-    assert r.priority == "P0", f"Expected P0, got {r.priority}"
+    assert r.priority == "P1", f"Expected P1, got {r.priority}"
 
 
 # ── build plan verification case ──────────────────────────────────────────

@@ -6,13 +6,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Release date | 2026-03-22 |
-| Validated sources | 12 |
-| Issues (public feed) | 230 |
-| Alerts (P0/P1, public feed) | 100 |
-| Remediation packets | 100 |
-| Automated tests | 258 |
-| Pass rate (golden fixtures) | 11/12 (91.7%) |
+| Release date | 2026-03-25 |
+| Validated sources | 58 |
+| Issues (public feed) | 545 |
+| Alerts (P0–P2, public feed) | 487 |
+| Remediation packets | 686 |
+| Automated tests | 601 |
+| Pass rate (golden fixtures) | 14/14 (100%) |
 
 ### Sources
 
@@ -48,12 +48,12 @@ Key stages:
 
 Priority tiers (v2 scorer):
 
-| Priority | Criteria |
-|----------|----------|
-| P0 | KEV + CVSS ≥ 9.0 or KEV + RCE or patient safety critical |
-| P1 | KEV or CVSS ≥ 9.0 or ICSMA medical device |
-| P2 | CVSS 7.0–8.9 or healthcare context |
-| P3 | Low-signal / informational |
+| Priority | Threshold | Criteria |
+|----------|-----------|----------|
+| P0 | score ≥ 150 | KEV + RCE + healthcare stacked, or multiple critical signals |
+| P1 | score 100–149 | KEV source, or strong healthcare context (ICSMA + device) |
+| P2 | score 60–99 | Moderate concern (significant keywords or healthcare context) |
+| P3 | score < 60 | Low-signal / informational |
 
 ### Remediation Playbook
 
@@ -70,7 +70,7 @@ Priority tiers (v2 scorer):
 
 ### Test Coverage
 
-258 automated tests across 18 test modules covering:
+601 automated tests across 35 test modules covering:
 
 - Source discovery and ingestion
 - Advisory record extraction

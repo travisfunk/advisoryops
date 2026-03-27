@@ -1150,7 +1150,7 @@ def build_community_feed(
     limit_issues: int = 0,
     min_priority: str = "P2",
     top: int = 100,
-    latest: int = 50,
+    latest: int = 0,
     recommend: bool = False,
     recommend_model: str = "gpt-4o-mini",
     recommend_priorities: Sequence[str] = ("P0", "P1"),
@@ -1169,8 +1169,8 @@ def build_community_feed(
     _summarize_call_fn: Optional[Callable] = None,
     _extract_mitigations_call_fn: Optional[Callable] = None,
 ) -> Tuple[Path, Path, Path]:
-    if latest <= 0:
-        raise ValueError("--latest must be > 0")
+    if latest < 0:
+        raise ValueError("--latest must be >= 0")
 
     manifest = load_community_manifest()
     selected_set = manifest.get_set(set_id)
@@ -1396,7 +1396,7 @@ def build_community_feed(
         print(f"    NO guidance:              {has_none} ({has_none*100//len(p012)}%)")
 
     feed_rows = _sort_feed_entries([_feed_entry(r) for r in scored_rows])
-    latest_rows = feed_rows[:latest]
+    latest_rows = feed_rows[:latest] if latest > 0 else feed_rows
     alert_feed_rows = _sort_feed_entries([_feed_entry(r) for r in alert_rows])
 
     # --- Optional recommendation pass ---

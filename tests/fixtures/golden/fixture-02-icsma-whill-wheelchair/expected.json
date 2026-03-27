@@ -4,7 +4,7 @@
     "CVE-2025-14346"
   ],
   "expected_priority_range": [
-    "P0"
+    "P1"
   ],
   "expected_healthcare_category": "medical_device",
   "description": "WHILL electric wheelchair Bluetooth missing auth (CVSS 9.8 CRITICAL). Attacker in BT range can override speed and take full control of mobility device. Single ICSMA signal, no KEV. Score = 10 (CVE base) -> P3. Note: Phase 3 scorer should elevate this to P0/P1 given patient safety impact."

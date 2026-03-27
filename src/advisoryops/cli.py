@@ -203,6 +203,14 @@ def cmd_recommend(args) -> int:
         )
 
     # ── Recommend ─────────────────────────────────────────────────────────────
+    import os as _os
+    if not _os.environ.get("OPENAI_API_KEY"):
+        raise SystemExit(
+            "OPENAI_API_KEY is not set.\n"
+            "The 'recommend' command requires an OpenAI API key for AI-assisted\n"
+            "pattern selection. Set it with: export OPENAI_API_KEY=sk-..."
+        )
+
     pb = load_playbook()
     packet = recommend_mitigations(
         issue,
@@ -501,7 +509,7 @@ def build_parser() -> argparse.ArgumentParser:
     p_comm.add_argument("--limit-issues", type=int, default=0, help="Optional cap on total issues built (default: 0 = no cap)")
     p_comm.add_argument("--min-priority", default="P2", choices=["P0", "P1", "P2", "P3"], help="Minimum priority to include in alerts_public.jsonl (default: P2)")
     p_comm.add_argument("--top", type=int, default=100, help="Maximum number of alert rows to keep (0 = no cap; default: 100)")
-    p_comm.add_argument("--latest", type=int, default=50, help="Maximum number of rows to write to feed_latest.json (default: 50)")
+    p_comm.add_argument("--latest", type=int, default=0, help="Maximum number of rows to write to feed_latest.json (0 = all; default: 0)")
     p_comm.add_argument("--recommend", action="store_true",
                         help="Generate JSON remediation packets for P0/P1 alerts (requires OPENAI_API_KEY)")
     p_comm.add_argument("--ai-score", action="store_true", dest="ai_score",

@@ -364,7 +364,7 @@ def test_combined_icsma_device_no_patch_patient_safety() -> None:
     result = score_issue_v2(iss)
     # base(10) + authority(30) + hc_bonus(50) + patient_monitor(20)
     # + no_patch(20) + vendor_mgd(10) + patient_safety(25) + icu(20) + clinical(5) >= 190
-    assert result.score >= 100, f"Expected >=100, got {result.score}. why={result.why}"
+    assert result.score >= 150, f"Expected >=150, got {result.score}. why={result.why}"
     assert result.priority == "P0", f"Expected P0, got {result.priority}"
 
 
@@ -383,9 +383,9 @@ def test_whill_wheelchair_upgrades_from_p3() -> None:
     assert v1_result.priority == "P3", f"v1 should be P3, got {v1_result.priority}"
     assert v2_result.score > v1_result.score, "v2 must score higher than v1"
     # tier-1 authority(+30) + healthcare_bonus(+50) + healthcare_context(+10) = +90
-    # total = 10+90+10 = 110 → P0
-    assert v2_result.priority == "P0", \
-        f"v2 should be P0, got {v2_result.priority} (score={v2_result.score})"
+    # total = 10+90+10 = 110 → P1
+    assert v2_result.priority == "P1", \
+        f"v2 should be P1, got {v2_result.priority} (score={v2_result.score})"
 
 
 def test_kev_icsma_combined_reaches_p0() -> None:
