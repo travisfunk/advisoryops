@@ -159,8 +159,7 @@ def parse_json_feed(obj: Any, *, source_id: str, fetched_at: str) -> List[Dict[s
             if vendor or product:
                 summary = (summary + " | " if summary else "") + f"{vendor} {product}".strip()
 
-            items.append(
-                {
+            item: Dict[str, Any] = {
                     "source": source_id,
                     "guid": guid,
                     "title": title,
@@ -169,7 +168,21 @@ def parse_json_feed(obj: Any, *, source_id: str, fetched_at: str) -> List[Dict[s
                     "summary": summary,
                     "fetched_at": fetched_at,
                 }
-            )
+            # Preserve KEV-specific fields for downstream enrichment
+            required_action = str(row.get("requiredAction", "") or "").strip()
+            due_date = str(row.get("dueDate", "") or "").strip()
+            vuln_name = str(row.get("vulnerabilityName", "") or "").strip()
+            if required_action:
+                item["kev_required_action"] = required_action
+            if due_date:
+                item["kev_due_date"] = due_date
+            if vendor:
+                item["kev_vendor"] = vendor
+            if product:
+                item["kev_product"] = product
+            if vuln_name:
+                item["kev_vulnerability_name"] = vuln_name
+            items.append(item)
         return items
 
     # VulDB CTI API: {"response": {..., "status": "200"}, "result": [{"entry": {...}}]}
@@ -332,8 +345,7 @@ def parse_csv_feed(csv_text: str, *, source_id: str, fetched_at: str) -> List[Di
             published = str(row.get("published_date", "") or row.get("date", "") or "").strip()
             summary = _strip_html(str(row.get("summary", "") or row.get("description", "") or "").strip())
 
-        items.append(
-            {
+        item_csv: Dict[str, Any] = {
                 "source": source_id,
                 "guid": guid,
                 "title": title,
@@ -342,6 +354,18 @@ def parse_csv_feed(csv_text: str, *, source_id: str, fetched_at: str) -> List[Di
                 "summary": summary,
                 "fetched_at": fetched_at,
             }
-        )
+        # Preserve KEV-specific fields for downstream enrichment (CSV variant)
+        if cve:
+            required_action = str(row.get("requiredAction", "") or "").strip()
+            due_date = str(row.get("dueDate", "") or "").strip()
+            if required_action:
+                item_csv["kev_required_action"] = required_action
+            if due_date:
+                item_csv["kev_due_date"] = due_date
+            if vendor:
+                item_csv["kev_vendor"] = vendor
+            if product:
+                item_csv["kev_product"] = product
+        items.append(item_csv)
 
     return items

@@ -110,6 +110,19 @@ def _feed_entry(issue: Dict[str, Any]) -> Dict[str, Any]:
         # Source-cited mitigations and IOCs
         "source_mitigations": issue.get("source_mitigations") or [],
         "iocs": issue.get("iocs") or [],
+        # NVD enrichment fields
+        "cvss_score": issue.get("cvss_score", 0),
+        "cvss_severity": issue.get("cvss_severity", ""),
+        "cvss_vector": issue.get("cvss_vector", ""),
+        "cwe_ids": issue.get("cwe_ids") or [],
+        "affected_products": issue.get("affected_products") or [],
+        "nvd_description": issue.get("nvd_description", ""),
+        "source_summary": issue.get("source_summary", ""),
+        # KEV-specific fields
+        "kev_required_action": issue.get("kev_required_action", ""),
+        "kev_due_date": issue.get("kev_due_date", ""),
+        # Human-readable remediation
+        "remediation_steps": issue.get("remediation_steps") or [],
     }
     return entry
 
@@ -1168,6 +1181,7 @@ def build_community_feed(
     _ai_classify_fn: Optional[Callable] = None,
     _summarize_call_fn: Optional[Callable] = None,
     _extract_mitigations_call_fn: Optional[Callable] = None,
+    _nvd_fetch_fn: Optional[Callable] = None,
 ) -> Tuple[Path, Path, Path]:
     if latest < 0:
         raise ValueError("--latest must be >= 0")
@@ -1234,6 +1248,69 @@ def build_community_feed(
         iid = ar.get("issue_id", "")
         if iid in consensus_by_id:
             ar["source_consensus"] = consensus_by_id[iid]
+
+    # --- Extract KEV fields from signals into issue-level fields ---
+    from .nvd_enrich import (
+        enrich_issues as nvd_enrich_issues,
+        deduplicate_summary,
+        generate_remediation_steps,
+    )
+
+    _KEV_SOURCES = {"cisa-kev-json", "cisa-kev-csv"}
+    _KEV_FIELDS = ("kev_required_action", "kev_due_date", "kev_vendor", "kev_product")
+    kev_enriched = 0
+    for issue in scored_rows:
+        signals = issue.get("signals") or []
+        for sig in signals:
+            if sig.get("source", "") not in _KEV_SOURCES:
+                continue
+            for field in _KEV_FIELDS:
+                val = sig.get(field, "")
+                if val and not issue.get(field):
+                    issue[field] = val
+        # Populate vendor/severity from KEV if still empty
+        if not issue.get("vendor") and issue.get("kev_vendor"):
+            issue["vendor"] = issue["kev_vendor"]
+        if issue.get("kev_vendor") or issue.get("kev_required_action"):
+            kev_enriched += 1
+    if kev_enriched:
+        print(f"\n  KEV fields: enriched {kev_enriched} issues with KEV-specific data")
+
+    # --- NVD enrichment (deterministic — cached, no AI) ---
+    nvd_count = nvd_enrich_issues(scored_rows, _fetch_fn=_nvd_fetch_fn)
+    print(f"\n  NVD enrichment: enriched {nvd_count}/{len(scored_rows)} issues with CVSS/CWE/CPE data")
+
+    # Backfill severity from CVSS if the scorer left it empty
+    for issue in scored_rows:
+        if not issue.get("severity") and issue.get("cvss_severity"):
+            issue["severity"] = issue["cvss_severity"].lower()
+
+    # --- Summary deduplication ---
+    dedup_count = 0
+    for issue in scored_rows:
+        old_summary = issue.get("summary", "")
+        deduplicate_summary(issue)
+        if issue.get("summary") != old_summary:
+            dedup_count += 1
+    if dedup_count:
+        print(f"  Summary dedup: {dedup_count} issues got per-CVE descriptions")
+
+    # Propagate KEV/NVD fields to alert_rows
+    enriched_by_id = {r["issue_id"]: r for r in scored_rows}
+    _NVD_KEV_FIELDS = (
+        "kev_required_action", "kev_due_date", "kev_vendor", "kev_product",
+        "nvd_description", "cvss_score", "cvss_severity", "cvss_vector",
+        "cwe_ids", "affected_products", "source_summary", "vendor", "severity",
+    )
+    for ar in alert_rows:
+        iid = ar.get("issue_id", "")
+        src = enriched_by_id.get(iid)
+        if src:
+            for field in _NVD_KEV_FIELDS:
+                if src.get(field) and not ar.get(field):
+                    ar[field] = src[field]
+            # Summary should match
+            ar["summary"] = src.get("summary", ar.get("summary", ""))
 
     # --- Optional AI summarization pass ---
     summarize_count = 0
@@ -1381,6 +1458,21 @@ def build_community_feed(
             if r.get("priority") in priority_set_m and r.get("source_mitigations")
         )
         print(f"  Total issues with source mitigations: {mit_issues_total}/{len(mit_targets)}")
+
+    # --- Generate human-readable remediation steps ---
+    remediation_count = 0
+    for issue in scored_rows:
+        steps = generate_remediation_steps(issue)
+        if steps:
+            issue["remediation_steps"] = steps
+            remediation_count += 1
+    # Propagate to alert_rows
+    remediation_by_id = {r["issue_id"]: r.get("remediation_steps", []) for r in scored_rows}
+    for ar in alert_rows:
+        iid = ar.get("issue_id", "")
+        if iid in remediation_by_id:
+            ar["remediation_steps"] = remediation_by_id[iid]
+    print(f"\n  Remediation: generated human-readable steps for {remediation_count} issues")
 
     # --- Coverage tracking ---
     p012 = [r for r in scored_rows if r.get("priority") in ("P0", "P1", "P2")]
