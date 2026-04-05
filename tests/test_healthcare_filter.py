@@ -1,0 +1,179 @@
+"""Tests for the healthcare relevance filter."""
+
+from __future__ import annotations
+
+import pytest
+
+from advisoryops.healthcare_filter import is_healthcare_relevant
+
+
+# -- helpers ----------------------------------------------------------------
+
+def _issue(
+    *,
+    title: str = "",
+    summary: str = "",
+    vendor: str = "",
+    sources: list[str] | None = None,
+    healthcare_category: str = "",
+) -> dict:
+    return {
+        "issue_id": "CVE-2024-0001",
+        "title": title,
+        "summary": summary,
+        "vendor": vendor,
+        "sources": sources or [],
+        "healthcare_category": healthcare_category,
+    }
+
+
+# -- (a) healthcare-specific source ----------------------------------------
+
+class TestHealthcareSource:
+    @pytest.mark.parametrize("src", [
+        "cisa-icsma",
+        "fda-medwatch",
+        "openfda-device-recalls",
+        "openfda-device-events",
+        "health-canada-recalls",
+    ])
+    def test_healthcare_source_is_relevant(self, src):
+        assert is_healthcare_relevant(_issue(sources=[src])) is True
+
+    def test_healthcare_source_among_others(self):
+        issue = _issue(sources=["cisa-kev-csv", "cisa-icsma"])
+        assert is_healthcare_relevant(issue) is True
+
+
+# -- (b) keyword matching --------------------------------------------------
+
+class TestKeywordMatching:
+    @pytest.mark.parametrize("keyword", [
+        "infusion pump",
+        "ventilator",
+        "patient monitor",
+        "defibrillator",
+        "pacemaker",
+        "PACS",
+        "DICOM",
+        "MRI",
+        "x-ray",
+        "ultrasound",
+        "surgical robot",
+        "insulin pump",
+        "blood gas analyzer",
+        "pulse oximeter",
+        "EHR",
+        "EMR",
+        "HL7",
+        "FHIR",
+        "medical device",
+        "clinical",
+        "biomedical",
+        "telehealth",
+        "point of care",
+        "bedside",
+        "wearable medical",
+    ])
+    def test_device_keyword_in_title(self, keyword):
+        assert is_healthcare_relevant(_issue(title=f"Vuln in {keyword} firmware")) is True
+
+    def test_keyword_in_summary(self):
+        issue = _issue(summary="Remote code execution affecting infusion pump controller")
+        assert is_healthcare_relevant(issue) is True
+
+    @pytest.mark.parametrize("keyword", [
+        "FDA",
+        "IEC 62443",
+        "HIPAA",
+        "510(k)",
+        "premarket",
+        "postmarket",
+        "medical device regulation",
+    ])
+    def test_regulatory_keyword(self, keyword):
+        assert is_healthcare_relevant(_issue(title=f"Advisory related to {keyword}")) is True
+
+    @pytest.mark.parametrize("vendor_name", [
+        "GE Healthcare",
+        "Philips",
+        "Siemens Healthineers",
+        "Medtronic",
+        "Baxter",
+        "BD",
+        "B. Braun",
+        "Epic Systems",
+        "Roche Diagnostics",
+        "Contec Health",
+        "WHILL",
+    ])
+    def test_vendor_in_text(self, vendor_name):
+        assert is_healthcare_relevant(_issue(title=f"{vendor_name} advisory")) is True
+
+    def test_vendor_in_vendor_field(self):
+        assert is_healthcare_relevant(_issue(vendor="GE Healthcare")) is True
+
+    def test_case_insensitive(self):
+        assert is_healthcare_relevant(_issue(title="INFUSION PUMP overflow")) is True
+
+
+# -- (c) healthcare_category -----------------------------------------------
+
+class TestHealthcareCategory:
+    def test_non_empty_category(self):
+        assert is_healthcare_relevant(_issue(healthcare_category="infusion pump")) is True
+
+    def test_empty_category_not_sufficient(self):
+        assert is_healthcare_relevant(_issue(healthcare_category="")) is False
+
+
+# -- (d) KEV + medical vendor ----------------------------------------------
+
+class TestKevVendor:
+    def test_kev_with_medical_vendor(self):
+        issue = _issue(sources=["cisa-kev-csv"], vendor="Philips")
+        assert is_healthcare_relevant(issue) is True
+
+    def test_kev_with_generic_vendor(self):
+        issue = _issue(sources=["cisa-kev-json"], vendor="Microsoft")
+        assert is_healthcare_relevant(issue) is False
+
+    def test_kev_vendor_case_insensitive(self):
+        issue = _issue(sources=["cisa-kev-csv"], vendor="medtronic")
+        assert is_healthcare_relevant(issue) is True
+
+
+# -- negatives (should NOT match) ------------------------------------------
+
+class TestNotRelevant:
+    def test_generic_it_vuln(self):
+        issue = _issue(
+            title="Chrome V8 type confusion",
+            summary="Use-after-free in V8 JavaScript engine",
+            vendor="Google",
+            sources=["cisa-kev-csv"],
+        )
+        assert is_healthcare_relevant(issue) is False
+
+    def test_sharepoint_vuln(self):
+        issue = _issue(
+            title="SharePoint Server remote code execution",
+            vendor="Microsoft",
+            sources=["cisa-ncas-alerts"],
+        )
+        assert is_healthcare_relevant(issue) is False
+
+    def test_laravel_vuln(self):
+        issue = _issue(
+            title="Laravel framework SQL injection",
+            vendor="Laravel",
+            sources=["github-advisories"],
+        )
+        assert is_healthcare_relevant(issue) is False
+
+    def test_empty_issue(self):
+        assert is_healthcare_relevant({}) is False
+
+    def test_kev_without_medical_vendor(self):
+        issue = _issue(sources=["cisa-kev-csv"], vendor="Cisco")
+        assert is_healthcare_relevant(issue) is False

@@ -34,9 +34,14 @@ _NVD_API_BASE = "https://services.nvd.nist.gov/rest/json/cves/2.0"
 _DEFAULT_CACHE_DIR = Path("outputs/nvd_cache")
 _USER_AGENT = "AdvisoryOps/1.0 (security advisory aggregator)"
 _TIMEOUT = 30
+_429_CONSECUTIVE_ABORT = 3  # Abort NVD fetching after this many consecutive 429s
 
 # CVE pattern
 _CVE_RE = re.compile(r"CVE-\d{4}-\d{4,}")
+
+# Track whether the API key has been validated this session
+_api_key_valid: Optional[bool] = None
+_consecutive_429s = 0
 
 
 class _RateLimiter:
@@ -46,6 +51,11 @@ class _RateLimiter:
         self._max = max_requests
         self._window = window_seconds
         self._timestamps: List[float] = []
+
+    def downgrade(self, max_requests: int, window_seconds: float) -> None:
+        """Reduce the rate limit (e.g., after API key invalidation)."""
+        self._max = max_requests
+        self._window = window_seconds
 
     def wait(self) -> None:
         now = time.monotonic()
@@ -167,12 +177,18 @@ def _fetch_cve(
     if _fetch_fn is not None:
         return _fetch_fn(cve_id)
 
+    global _api_key_valid, _consecutive_429s
+
+    # Abort if NVD is persistently rate-limiting us
+    if _consecutive_429s >= _429_CONSECUTIVE_ABORT:
+        return None
+
     rate_limiter.wait()
 
     url = f"{_NVD_API_BASE}?cveId={cve_id}"
     headers = {"User-Agent": _USER_AGENT}
     api_key = os.environ.get("NVD_API_KEY")
-    if api_key:
+    if api_key and _api_key_valid is not False:
         headers["apiKey"] = api_key
 
     try:
@@ -185,10 +201,50 @@ def _fetch_cve(
             logger.warning("NVD returned no vulnerabilities for %s", cve_id)
             return None
 
+        if api_key and _api_key_valid is None:
+            _api_key_valid = True
+            logger.info("NVD API key validated successfully")
+
+        _consecutive_429s = 0  # Reset on success
         cve_item = vulns[0].get("cve") or {}
         return _extract_nvd_fields(cve_item)
 
-    except (urllib.error.URLError, urllib.error.HTTPError, json.JSONDecodeError) as exc:
+    except urllib.error.HTTPError as exc:
+        # NVD returns 404 with "Invalid apiKey." header when key is bad
+        if api_key and _api_key_valid is not False:
+            msg = exc.headers.get("message", "") if hasattr(exc, "headers") else ""
+            if "invalid apikey" in msg.lower() or (exc.code in (403, 404) and api_key):
+                logger.warning(
+                    "NVD API key is invalid — falling back to unauthenticated mode "
+                    "(rate limit: 5 req/30s). Unset NVD_API_KEY or provide a valid key."
+                )
+                _api_key_valid = False
+                # Downgrade rate limiter to unauthenticated limits
+                rate_limiter.downgrade(max_requests=4, window_seconds=30)
+                # Retry this CVE without the key
+                return _fetch_cve(cve_id, rate_limiter=rate_limiter)
+
+        if exc.code == 429:
+            _consecutive_429s += 1
+            if _consecutive_429s >= _429_CONSECUTIVE_ABORT:
+                logger.warning(
+                    "NVD rate limit: %d consecutive 429s — aborting remaining NVD "
+                    "fetches. Cached entries (%d) will still be used.",
+                    _consecutive_429s, 0,
+                )
+            else:
+                # Back off before next attempt
+                backoff = min(10 * _consecutive_429s, 30)
+                logger.warning(
+                    "NVD rate limited for %s (429 #%d) — backing off %ds",
+                    cve_id, _consecutive_429s, backoff,
+                )
+                time.sleep(backoff)
+            return None
+
+        logger.warning("NVD fetch failed for %s: %s", cve_id, exc)
+        return None
+    except (urllib.error.URLError, json.JSONDecodeError) as exc:
         logger.warning("NVD fetch failed for %s: %s", cve_id, exc)
         return None
     except Exception as exc:
@@ -289,6 +345,10 @@ def enrich_issues(
     _fetch_fn: Optional[Callable[[str], Dict[str, Any]]] = None,
 ) -> int:
     """Enrich a list of issues with NVD data. Returns count of enriched issues."""
+    global _api_key_valid, _consecutive_429s
+    _api_key_valid = None
+    _consecutive_429s = 0
+
     if cache_dir is None:
         cache_dir = _DEFAULT_CACHE_DIR
     rate_limiter = _get_rate_limiter()

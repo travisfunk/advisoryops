@@ -123,6 +123,8 @@ def _feed_entry(issue: Dict[str, Any]) -> Dict[str, Any]:
         "kev_due_date": issue.get("kev_due_date", ""),
         # Human-readable remediation
         "remediation_steps": issue.get("remediation_steps") or [],
+        # Healthcare relevance tag
+        "healthcare_relevant": bool(issue.get("healthcare_relevant", False)),
     }
     return entry
 
@@ -1473,6 +1475,19 @@ def build_community_feed(
         if iid in remediation_by_id:
             ar["remediation_steps"] = remediation_by_id[iid]
     print(f"\n  Remediation: generated human-readable steps for {remediation_count} issues")
+
+    # --- Healthcare relevance tagging ---
+    from .healthcare_filter import is_healthcare_relevant
+
+    hc_count = 0
+    for issue in scored_rows:
+        relevant = is_healthcare_relevant(issue)
+        issue["healthcare_relevant"] = relevant
+        if relevant:
+            hc_count += 1
+    for ar in alert_rows:
+        ar["healthcare_relevant"] = is_healthcare_relevant(ar)
+    print(f"\n  Healthcare relevance: {hc_count}/{len(scored_rows)} issues tagged as healthcare-relevant")
 
     # --- Coverage tracking ---
     p012 = [r for r in scored_rows if r.get("priority") in ("P0", "P1", "P2")]

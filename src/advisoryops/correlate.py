@@ -153,17 +153,22 @@ class _IssueBuilder:
             if (self.last_seen_at is None) or (fetched_at > self.last_seen_at):
                 self.last_seen_at = fetched_at
 
-        self.signals.append(
-            {
-                "source": src,
-                "signal_id": sid,
-                "guid": guid,
-                "link": link,
-                "title": title,
-                "published_date": pub,
-                "fetched_at": fetched_at,
-            }
-        )
+        sig = {
+            "source": src,
+            "signal_id": sid,
+            "guid": guid,
+            "link": link,
+            "title": title,
+            "published_date": pub,
+            "fetched_at": fetched_at,
+        }
+        # Passthrough KEV fields from discover items
+        for key in ("kev_required_action", "kev_due_date", "kev_vendor",
+                     "kev_product", "kev_vulnerability_name"):
+            val = it.get(key)
+            if val:
+                sig[key] = val
+        self.signals.append(sig)
 
     def to_obj(self) -> Dict[str, Any]:
         # canonical title/summary: pick the longest (cheap + deterministic)
