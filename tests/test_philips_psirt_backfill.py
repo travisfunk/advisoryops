@@ -26,24 +26,27 @@ _SAMPLE_HTML = """
 <html>
 <head><title>Philips Security Advisories</title></head>
 <body>
-<div class="advisory-list">
-  <div class="advisory-item">
-    <a href="/a-w/security/security-advisories/philips-patient-monitoring-2024.html">
-      Philips Patient Monitoring Network Vulnerability Advisory
-    </a>
-    <span class="date">January 15, 2024</span>
-    <p>Addresses CVE-2024-1234 and CVE-2024-1235 in patient monitoring firmware.</p>
-  </div>
-  <div class="advisory-item">
-    <a href="/a-w/security/security-advisories/philips-intellispace-portal-2024.html">
-      Philips IntelliSpace Portal Security Update Advisory
-    </a>
-    <span class="date">March 20, 2024</span>
-    <p>Security update for IntelliSpace Portal addressing CVE-2024-5678.</p>
-  </div>
-  <div class="advisory-item">
-    <a href="https://www.example.com/unrelated">Not an advisory link</a>
-  </div>
+<div class="p-faq-container">
+  <dt tabindex="0">
+    <div class="p-faq-title">
+      Philips Patient Monitoring Network Vulnerability Advisory (CVE-2024-1234) and (CVE-2024-1235) (2024 January 15)
+    </div>
+  </dt>
+  <dd><div class="faqitempage"><p>Description of the vulnerability.</p></div></dd>
+
+  <dt tabindex="0">
+    <div class="p-faq-title">
+      Philips IntelliSpace Portal Security Update Advisory (CVE-2024-5678) (2024 March 20)
+    </div>
+  </dt>
+  <dd><div class="faqitempage"><p>Security update for IntelliSpace Portal.</p></div></dd>
+
+  <dt tabindex="0">
+    <div class="p-faq-title">
+      Philips General Security Best Practices Update (2024 February 01)
+    </div>
+  </dt>
+  <dd><div class="faqitempage"><p>No CVE, general guidance.</p></div></dd>
 </div>
 </body>
 </html>
@@ -56,10 +59,9 @@ _SAMPLE_HTML = """
 
 class TestParseAdvisoryPage:
 
-    def test_extracts_advisory_links(self):
+    def test_extracts_faq_entries(self):
         advisories = parse_advisory_page(_SAMPLE_HTML, year=2024)
-        # Should find the two advisory links (not the unrelated one)
-        assert len(advisories) >= 2
+        assert len(advisories) == 3
 
     def test_extracts_titles(self):
         advisories = parse_advisory_page(_SAMPLE_HTML, year=2024)
@@ -73,21 +75,30 @@ class TestParseAdvisoryPage:
         for a in advisories:
             all_cves.extend(a.get("cves", []))
         assert "CVE-2024-1234" in all_cves
+        assert "CVE-2024-1235" in all_cves
+        assert "CVE-2024-5678" in all_cves
 
-    def test_builds_full_urls(self):
+    def test_extracts_dates(self):
         advisories = parse_advisory_page(_SAMPLE_HTML, year=2024)
-        for a in advisories:
-            assert a["link"].startswith("https://")
+        dates = [a["date"] for a in advisories]
+        assert "2024 January 15" in dates
+        assert "2024 March 20" in dates
+
+    def test_cve_based_advisory_id(self):
+        advisories = parse_advisory_page(_SAMPLE_HTML, year=2024)
+        ids = [a["advisory_id"] for a in advisories]
+        assert "PHILIPS-CVE-2024-1234" in ids
+
+    def test_slug_based_advisory_id_when_no_cve(self):
+        advisories = parse_advisory_page(_SAMPLE_HTML, year=2024)
+        no_cve = [a for a in advisories if not a["cves"]]
+        assert len(no_cve) == 1
+        assert no_cve[0]["advisory_id"].startswith("PHILIPS-")
 
     def test_sets_vendor(self):
         advisories = parse_advisory_page(_SAMPLE_HTML, year=2024)
         for a in advisories:
             assert a["vendor"] == "Philips"
-
-    def test_advisory_ids_prefixed(self):
-        advisories = parse_advisory_page(_SAMPLE_HTML, year=2024)
-        for a in advisories:
-            assert a["advisory_id"].startswith("PHILIPS-")
 
     def test_empty_html(self):
         assert parse_advisory_page("", year=2024) == []

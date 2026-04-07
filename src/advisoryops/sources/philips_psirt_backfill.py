@@ -108,14 +108,19 @@ def _save_progress(cache_dir: Path, progress: Dict[str, Any]) -> None:
 # HTML parsing — extract advisory entries from Philips pages
 # ---------------------------------------------------------------------------
 
-# Pattern to find advisory-like entries in Philips HTML
-# Philips advisory pages contain titles with dates and CVE references
-_DATE_RE = re.compile(r"\b(\d{1,2}[/-]\d{1,2}[/-]\d{2,4}|\w+ \d{1,2},? \d{4}|\d{4}-\d{2}-\d{2})\b")
 _CVE_RE = re.compile(r"CVE-\d{4}-\d{4,}")
-_LINK_RE = re.compile(r'href=["\']([^"\']*(?:advisory|security|bulletin|psirt)[^"\']*)["\']', re.IGNORECASE)
-_TITLE_RE = re.compile(
-    r'<(?:h[1-6]|a|div|span|td|li)[^>]*>([^<]*(?:advisory|security|vulnerability|update|bulletin)[^<]*)</(?:h[1-6]|a|div|span|td|li)>',
-    re.IGNORECASE,
+
+# Date patterns: "2024 November 22", "November 22, 2024", "2024-11-22", etc.
+_DATE_PATTERN_RE = re.compile(
+    r"\((\d{4}\s+\w+\s+\d{1,2})\)"  # (2024 November 22) — Philips' preferred format
+    r"|(\w+\s+\d{1,2},?\s+\d{4})"   # November 22, 2024
+    r"|(\d{4}-\d{2}-\d{2})",         # 2024-11-22
+)
+
+# Philips uses FAQ accordion: <div class="p-faq-title">Title (CVE-...) (Date)</div>
+_FAQ_TITLE_RE = re.compile(
+    r'<div\s+class="p-faq-title">\s*(.*?)\s*</div>',
+    re.DOTALL | re.IGNORECASE,
 )
 
 
@@ -127,83 +132,60 @@ def parse_advisory_page(
 ) -> List[Dict[str, Any]]:
     """Parse a Philips advisory archive page and extract advisory entries.
 
+    Philips uses FAQ/accordion structure where each advisory is a
+    <div class="p-faq-title"> containing the title, CVE IDs, and date.
+
     Returns a list of advisory dicts with: advisory_id, title, date,
-    cves, link, summary.
+    cves, link, summary, vendor.
     """
     advisories: List[Dict[str, Any]] = []
+    seen_ids: set = set()
 
-    # Strategy: find all links that look like advisory detail pages,
-    # then extract title, date, CVE from surrounding context.
-    # Philips pages use <a> tags with advisory titles as link text.
+    for match in _FAQ_TITLE_RE.finditer(html):
+        raw_title = re.sub(r"<[^>]+>", "", match.group(1)).strip()
+        raw_title = re.sub(r"\s+", " ", raw_title)
 
-    # Find all anchor tags with href and text content
-    anchor_re = re.compile(
-        r'<a\s[^>]*href=["\']([^"\']+)["\'][^>]*>(.*?)</a>',
-        re.IGNORECASE | re.DOTALL,
-    )
-
-    seen_links: set = set()
-
-    for match in anchor_re.finditer(html):
-        href = match.group(1).strip()
-        text = re.sub(r"<[^>]+>", "", match.group(2)).strip()
-
-        if not text or len(text) < 10:
+        if not raw_title or len(raw_title) < 10:
             continue
 
-        # Normalize the link
-        if href.startswith("/"):
-            href = f"https://www.philips.com{href}"
-        elif not href.startswith("http"):
+        # Extract CVEs
+        cves = sorted(set(_CVE_RE.findall(raw_title)))
+
+        # Extract date from title (Philips format: "Title (2024 November 22)")
+        date_str = ""
+        for dm in _DATE_PATTERN_RE.finditer(raw_title):
+            date_str = dm.group(1) or dm.group(2) or dm.group(3) or ""
+            if date_str:
+                break
+        if not date_str and year:
+            date_str = str(year)
+
+        # Build advisory ID from CVEs or title slug
+        if cves:
+            advisory_id = cves[0]  # Use primary CVE as ID
+        else:
+            slug = re.sub(r"[^a-zA-Z0-9]", "_", raw_title[:60]).strip("_")
+            advisory_id = slug[:80]
+
+        full_id = f"PHILIPS-{advisory_id}"
+        if full_id in seen_ids:
             continue
+        seen_ids.add(full_id)
 
-        # Only accept Philips-hosted links (reject external sites)
-        href_lower = href.lower()
-        if not ("philips.com" in href_lower):
-            continue
+        # Clean title: remove trailing date parenthetical
+        title = re.sub(r"\s*\(\d{4}\s+\w+\s+\d{1,2}\)\s*$", "", raw_title).strip()
 
-        # Filter for advisory-like links on Philips
-        text_lower = text.lower()
-        is_advisory = (
-            "advisory" in href_lower
-            or "security" in href_lower
-            or "bulletin" in href_lower
-            or "psirt" in href_lower
-            or "cve" in text_lower
-            or "vulnerability" in text_lower
-            or "advisory" in text_lower
-        )
-
-        if not is_advisory:
-            continue
-
-        if href in seen_links:
-            continue
-        seen_links.add(href)
-
-        # Extract CVEs from surrounding context
-        context_start = max(0, match.start() - 500)
-        context_end = min(len(html), match.end() + 500)
-        context = html[context_start:context_end]
-        cves = sorted(set(_CVE_RE.findall(context)))
-
-        # Extract date
-        dates = _DATE_RE.findall(context)
-        date_str = dates[0] if dates else (str(year) if year else "")
-
-        # Build advisory ID from URL or title (cap length for filesystem safety)
-        advisory_id = href.rsplit("/", 1)[-1].replace(".html", "").replace(".htm", "")[:80]
-        if not advisory_id or advisory_id == "security-advisories":
-            advisory_id = re.sub(r"[^a-zA-Z0-9_\-]", "_", text[:60])
+        # Link to the archive page with anchor
+        link = page_url or f"https://www.philips.com/a-w/security/security-advisories.html"
 
         advisories.append({
-            "advisory_id": f"PHILIPS-{advisory_id}",
-            "title": text,
-            "link": href,
+            "advisory_id": full_id,
+            "title": title,
+            "link": link,
             "date": date_str,
             "cves": cves,
             "vendor": "Philips",
-            "summary": text,
+            "summary": title,
         })
 
     return advisories
