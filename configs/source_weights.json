@@ -9,6 +9,7 @@
       "description": "Primary authoritative sources: government advisories, regulatory agencies, and primary health/security datasets",
       "sources": [
         "cisa-icsma",
+        "cisa-icsma-historical",
         "cisa-icsa",
         "cisa-kev-json",
         "cisa-kev-csv",

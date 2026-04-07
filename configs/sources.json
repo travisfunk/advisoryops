@@ -2166,6 +2166,19 @@
       "rate_limit_rps": 0.5
     },
     {
+      "source_id": "cisa-icsma-historical",
+      "name": "CISA ICS Medical Advisories (Historical Backfill)",
+      "enabled": true,
+      "scope": "advisory",
+      "page_type": "json_feed",
+      "entry_url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/",
+      "filters": {},
+      "notes": "Full ICSMA archive via ICS Advisory Project CSV + cisagov/CSAF JSON. ~182 advisories back to 2016. Use cisa_icsma_backfill.py to populate cache.",
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
       "source_id": "nvd-historical",
       "name": "NVD CVE Database (Historical Backfill)",
       "enabled": true,
