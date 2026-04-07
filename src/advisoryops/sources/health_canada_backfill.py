@@ -1,23 +1,25 @@
-"""Health Canada medical device recalls historical backfill.
+"""Health Canada medical device recalls — incremental polling backfill.
 
-Pulls the Health Canada recalls database via their JSON API:
+The Health Canada recalls API only exposes the most recent 15 records per
+category via:
   https://healthycanadians.gc.ca/recall-alert-rappel-avis/api/recent/en
 
-Individual recall details are accessible at:
+There is no paginated historical endpoint. The older recalls-rappels.canada.ca
+portal has ~6,030 health records but no public API (HTML only).
+
+Strategy: **incremental polling**. Each run fetches all categories from the
+recent API, filters for health (cat=3), fetches detail pages, and caches them.
+Over time the cache accumulates history. This yields ~15 new records per run
+when new recalls are published.
+
+Individual recall details accessible at:
   https://healthycanadians.gc.ca/recall-alert-rappel-avis/api/{recallId}/en
-
-Category 3 = Health Products (medical devices).
-~6,030 health product records in the newer recalls-rappels.canada.ca portal.
-
-The API returns recent recalls with basic metadata. Individual recall detail
-pages provide full text, affected products, and actions required.
 
 Usage:
     from advisoryops.sources.health_canada_backfill import run_backfill, incremental_update
 
-    stats = run_backfill(max_results=200)  # Test sample
-    stats = run_backfill()                  # Full pull
-    stats = incremental_update()            # Recent + publish
+    stats = run_backfill()           # Fetch current recent + cache
+    stats = incremental_update()     # Same, plus publish to discover
 """
 from __future__ import annotations
 
@@ -139,20 +141,17 @@ def parse_recent_api(response: Dict[str, Any]) -> List[Dict[str, Any]]:
     """
     recalls: List[Dict[str, Any]] = []
 
+    # Collect entries from ALL categories to maximize coverage per API call.
+    # The recent API returns {"results": {"ALL": [...], "HEALTH": [...], ...}}
+    # We merge all lists and deduplicate by recallId.
     results = response.get("results") or response
+    entries: List[Dict[str, Any]] = []
     if isinstance(results, dict):
-        # Try HEALTH category first, fall back to ALL
-        entries = results.get("HEALTH") or results.get("ALL") or []
-        if not entries:
-            # Maybe it's a flat list in "results"
-            for key in results:
-                val = results[key]
-                if isinstance(val, list):
-                    entries.extend(val)
+        for key, val in results.items():
+            if isinstance(val, list):
+                entries.extend(val)
     elif isinstance(results, list):
         entries = results
-    else:
-        entries = []
 
     seen_ids: set = set()
     for entry in entries:
@@ -256,12 +255,9 @@ def run_backfill(
         cache_dir = _DEFAULT_CACHE_DIR
     cache_dir.mkdir(parents=True, exist_ok=True)
 
+    # No "completed" check — this is incremental polling, each run
+    # checks for new recent recalls and caches any not yet seen.
     progress = _load_progress(cache_dir)
-    if progress.get("completed"):
-        return {
-            "status": "already_completed",
-            "records_total": progress.get("records_total", 0),
-        }
 
     rate_limiter = _RateLimiter(max_requests=3, window_seconds=1.0)
 

@@ -120,12 +120,6 @@ class TestRunBackfill:
         assert stats["recalls_discovered"] == 1
         assert stats["details_fetched"] == 1
 
-    def test_already_completed(self, tmp_path):
-        _save_progress(tmp_path, {"recall_ids_fetched": [], "records_total": 5,
-                                   "completed": True, "last_updated": "x"})
-        stats = run_backfill(cache_dir=tmp_path, _fetch_fn=lambda u: b"err")
-        assert stats["status"] == "already_completed"
-
     def test_skips_cached(self, tmp_path):
         _save_recall_cache("70001", {"recall_id": "70001"}, tmp_path)
         fetch = self._make_fetch_fn(

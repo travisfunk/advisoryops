@@ -50,6 +50,21 @@ class TestRegistry:
 
 class TestRunAllIncremental:
 
+    @pytest.fixture(autouse=True)
+    def _isolate_caches(self, tmp_path, monkeypatch):
+        """Redirect all default cache dirs to tmp_path to avoid reading production caches."""
+        import advisoryops.sources.nvd_backfill as nvd
+        import advisoryops.sources.cisa_icsma_backfill as icsma
+        import advisoryops.sources.openfda_backfill as openfda
+        import advisoryops.sources.fda_safety_comms_backfill as fda
+        import advisoryops.sources.mhra_uk_backfill as mhra
+        import advisoryops.sources.health_canada_backfill as hc
+        import advisoryops.sources.philips_psirt_backfill as philips
+        import advisoryops.sources.siemens_productcert_backfill as siemens
+
+        for mod in [nvd, icsma, openfda, fda, mhra, hc, philips, siemens]:
+            monkeypatch.setattr(mod, "_DEFAULT_CACHE_DIR", tmp_path / mod.__name__.split(".")[-1])
+
     def _empty_fda_page(self):
         """Empty openFDA page (works for both recall and enforcement endpoints)."""
         return {"meta": {"results": {"total": 0}}, "results": []}
