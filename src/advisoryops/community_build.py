@@ -1611,6 +1611,13 @@ def build_community_feed(
     _write_jsonl(out_issues_public, feed_rows)
     _write_jsonl(out_alerts_public, alert_feed_rows)
     out_latest.write_text(json.dumps(latest_rows, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+    # Healthcare-relevant feed
+    out_healthcare = community_root / "feed_healthcare.json"
+    healthcare_rows = [r for r in latest_rows if r.get("healthcare_relevant") is True]
+    out_healthcare.write_text(json.dumps(healthcare_rows, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    print(f"  Healthcare feed:  {out_healthcare} ({len(healthcare_rows)} issues)")
+
     _write_csv(out_csv, feed_rows)
     _write_rss(out_rss, feed_rows, top=50)
 
@@ -1677,12 +1684,14 @@ def build_community_feed(
             "issues_public": len(feed_rows),
             "alerts_public": len(alert_feed_rows),
             "latest": len(latest_rows),
+            "healthcare": len(healthcare_rows),
             "packets": packet_count,
         },
         "outputs": {
             "issues_public_jsonl": str(out_issues_public),
             "alerts_public_jsonl": str(out_alerts_public),
             "feed_latest_json": str(out_latest),
+            "feed_healthcare_json": str(out_healthcare),
             "feed_csv": str(out_csv),
             "feed_rss_xml": str(out_rss),
             "validated_sources_json": str(out_sources),
@@ -1707,6 +1716,7 @@ def build_community_feed(
     print(f"  Wrote:            {out_issues_public}")
     print(f"  Wrote:            {out_alerts_public}")
     print(f"  Wrote:            {out_latest}")
+    print(f"  Wrote:            {out_healthcare}")
     print(f"  Wrote:            {out_csv}")
     print(f"  Wrote:            {out_rss}")
     print(f"  Wrote:            {out_dashboard}")

@@ -1,0 +1,37 @@
+{
+  "set_id": "full_public",
+  "set_name": "Full Public — all 57 enabled sources",
+  "description": "Every enabled source from sources.json (2026-03-27). Maximizes dashboard coverage across advisories, threat intel, IOC feeds, regulatory, and industry news.",
+  "out_root_discover": "outputs/discover",
+  "out_root_runs": "outputs/source_runs",
+  "out_root_community": "outputs\\community_public",
+  "params": {
+    "refresh": false,
+    "refresh_limit": 10,
+    "only_new": false,
+    "limit_per_source": 200,
+    "limit_issues": 0,
+    "min_priority": "P2",
+    "top": 0,
+    "latest": 0
+  },
+  "counts": {
+    "validated_sources": 57,
+    "candidate_sources": 1,
+    "issues_public": 1990,
+    "alerts_public": 757,
+    "latest": 1990,
+    "packets": 0
+  },
+  "outputs": {
+    "issues_public_jsonl": "outputs\\community_public\\issues_public.jsonl",
+    "alerts_public_jsonl": "outputs\\community_public\\alerts_public.jsonl",
+    "feed_latest_json": "outputs\\community_public\\feed_latest.json",
+    "feed_csv": "outputs\\community_public\\feed.csv",
+    "feed_rss_xml": "outputs\\community_public\\feed.xml",
+    "validated_sources_json": "outputs\\community_public\\validated_sources.json",
+    "meta_json": "outputs\\community_public\\meta.json",
+    "dashboard_html": "outputs\\community_public\\dashboard.html",
+    "packets_dir": null
+  }
+}
