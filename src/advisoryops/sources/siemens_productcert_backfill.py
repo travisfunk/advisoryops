@@ -295,7 +295,8 @@ def run_backfill(
             "advisories_total": progress.get("advisories_in_feed", 0),
         }
 
-    rate_limiter = _RateLimiter(max_requests=5, window_seconds=1.0)
+    # Conservative rate limit: Siemens returns 403 if too fast
+    rate_limiter = _RateLimiter(max_requests=1, window_seconds=2.0)
 
     stats: Dict[str, Any] = {
         "status": "running",
@@ -322,7 +323,8 @@ def run_backfill(
     progress["feed_fetched"] = True
     progress["advisories_in_feed"] = len(entries)
 
-    # Fetch each advisory's CSAF JSON
+    # Fetch each advisory's CSAF JSON with retry on 403/429/5xx
+    max_retries = 3
     for entry in entries:
         advisory_id = entry["advisory_id"]
 
@@ -330,21 +332,35 @@ def run_backfill(
             stats["csaf_cached"] += 1
             continue
 
-        rate_limiter.wait()
+        fetched = False
+        for attempt in range(1, max_retries + 1):
+            rate_limiter.wait()
+            try:
+                csaf_bytes = _http_get(entry["url"], _fetch_fn=_fetch_fn)
+                csaf_json = json.loads(csaf_bytes.decode("utf-8"))
+                parsed = parse_csaf_advisory(csaf_json)
+                merged = {**entry, **parsed}
+                merged["vendor"] = "Siemens"
+                _save_advisory_cache(advisory_id, merged, cache_dir)
+                stats["csaf_fetched"] += 1
+                fetched = True
+                break
+            except Exception as exc:
+                exc_str = str(exc)
+                is_retryable = any(code in exc_str for code in ("403", "429", "500", "502", "503"))
+                if is_retryable and attempt < max_retries:
+                    backoff = 10 * attempt
+                    logger.debug(
+                        "Retryable error for %s (attempt %d/%d): %s. Backing off %ds.",
+                        advisory_id, attempt, max_retries, exc, backoff,
+                    )
+                    time.sleep(backoff)
+                else:
+                    logger.warning("Failed to fetch CSAF for %s: %s", advisory_id, exc)
+                    break
 
-        try:
-            csaf_bytes = _http_get(entry["url"], _fetch_fn=_fetch_fn)
-            csaf_json = json.loads(csaf_bytes.decode("utf-8"))
-            parsed = parse_csaf_advisory(csaf_json)
-            # Merge feed metadata with CSAF data
-            merged = {**entry, **parsed}
-            merged["vendor"] = "Siemens"
-            _save_advisory_cache(advisory_id, merged, cache_dir)
-            stats["csaf_fetched"] += 1
-        except Exception as exc:
-            logger.warning("Failed to fetch CSAF for %s: %s", advisory_id, exc)
+        if not fetched:
             stats["csaf_failed"] += 1
-            # Still cache the feed entry without CSAF enrichment
             entry["vendor"] = "Siemens"
             _save_advisory_cache(advisory_id, entry, cache_dir)
 
@@ -446,25 +462,33 @@ def incremental_update(
         feed_json = json.loads(feed_bytes.decode("utf-8"))
         entries = parse_csaf_feed(feed_json)
 
-        rate_limiter = _RateLimiter(max_requests=5, window_seconds=1.0)
+        rate_limiter = _RateLimiter(max_requests=1, window_seconds=2.0)
 
         for entry in entries:
             advisory_id = entry["advisory_id"]
             if _load_advisory_cache(advisory_id, cache_dir) is not None:
                 continue
 
-            rate_limiter.wait()
-
-            try:
-                csaf_bytes = _http_get(entry["url"], _fetch_fn=_fetch_fn)
-                csaf_json = json.loads(csaf_bytes.decode("utf-8"))
-                parsed = parse_csaf_advisory(csaf_json)
-                merged = {**entry, **parsed}
-                merged["vendor"] = "Siemens"
-                _save_advisory_cache(advisory_id, merged, cache_dir)
-                stats["new_advisories"] += 1
-            except Exception as exc:
-                logger.warning("CSAF fetch failed for %s: %s", advisory_id, exc)
+            fetched = False
+            for attempt in range(1, 4):
+                rate_limiter.wait()
+                try:
+                    csaf_bytes = _http_get(entry["url"], _fetch_fn=_fetch_fn)
+                    csaf_json = json.loads(csaf_bytes.decode("utf-8"))
+                    parsed = parse_csaf_advisory(csaf_json)
+                    merged = {**entry, **parsed}
+                    merged["vendor"] = "Siemens"
+                    _save_advisory_cache(advisory_id, merged, cache_dir)
+                    stats["new_advisories"] += 1
+                    fetched = True
+                    break
+                except Exception as exc:
+                    if attempt < 3 and any(c in str(exc) for c in ("403", "429", "500")):
+                        time.sleep(10 * attempt)
+                    else:
+                        logger.warning("CSAF fetch failed for %s: %s", advisory_id, exc)
+                        break
+            if not fetched:
                 entry["vendor"] = "Siemens"
                 _save_advisory_cache(advisory_id, entry, cache_dir)
                 stats["new_advisories"] += 1
