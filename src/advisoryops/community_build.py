@@ -1179,14 +1179,40 @@ def build_community_feed(
     extract_mitigations_priorities: Sequence[str] = ("P0", "P1", "P2"),
     enrich_pages: bool = False,
     enrich_pages_priorities: Sequence[str] = ("P0", "P1", "P2"),
+    backfill: bool = True,
     _recommend_call_fn: Optional[Callable] = None,
     _ai_classify_fn: Optional[Callable] = None,
     _summarize_call_fn: Optional[Callable] = None,
     _extract_mitigations_call_fn: Optional[Callable] = None,
     _nvd_fetch_fn: Optional[Callable] = None,
+    _backfill_fetch_fns: Optional[Dict[str, Callable]] = None,
 ) -> Tuple[Path, Path, Path]:
     if latest < 0:
         raise ValueError("--latest must be >= 0")
+
+    # --- Backfill incremental updates (before discover/correlate) ---
+    if backfill:
+        from .sources.backfill_registry import run_all_incremental
+
+        print("")
+        print("Running backfill incremental updates...")
+        backfill_results = run_all_incremental(
+            out_root=out_root_discover,
+            _fetch_fns=_backfill_fetch_fns,
+        )
+        print(
+            f"  Backfill: {backfill_results['modules_run']} run, "
+            f"{backfill_results['modules_skipped']} skipped, "
+            f"{backfill_results['modules_failed']} failed"
+        )
+        for src_id, detail in backfill_results.get("details", {}).items():
+            status = detail.get("status", "unknown")
+            if status == "error":
+                print(f"  WARNING: {src_id} failed: {detail.get('error', '?')}")
+            elif status == "completed":
+                new_sigs = detail.get("new_signals_published", 0)
+                total_sigs = detail.get("total_signals_published", 0)
+                print(f"  {src_id}: {total_sigs} signals ({new_sigs} new)")
 
     manifest = load_community_manifest()
     selected_set = manifest.get_set(set_id)
