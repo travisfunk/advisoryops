@@ -118,8 +118,18 @@ def parse_csaf_feed(feed_json: Dict[str, Any]) -> List[Dict[str, str]]:
     """
     entries: List[Dict[str, str]] = []
 
-    # The CSAF feed format: list of objects with advisory metadata
-    feed_list = feed_json if isinstance(feed_json, list) else feed_json.get("advisories") or feed_json.get("items") or []
+    # Siemens uses ROLIE (RFC 8322) format:
+    #   {"feed": {"entry": [...], "id": ..., "title": ..., "updated": ...}}
+    # Each entry has: id, title, link (list of {rel, href}), updated
+    # Also support flat list or {"advisories": [...]} for testing.
+    if isinstance(feed_json, dict) and "feed" in feed_json:
+        feed_list = feed_json["feed"].get("entry") or []
+    elif isinstance(feed_json, dict):
+        feed_list = feed_json.get("advisories") or feed_json.get("items") or feed_json.get("entry") or []
+    elif isinstance(feed_json, list):
+        feed_list = feed_json
+    else:
+        feed_list = []
 
     for entry in feed_list:
         if not isinstance(entry, dict):
@@ -127,11 +137,22 @@ def parse_csaf_feed(feed_json: Dict[str, Any]) -> List[Dict[str, str]]:
 
         advisory_id = str(entry.get("id", "") or entry.get("name", "") or "").strip()
         title = str(entry.get("title", "") or entry.get("summary", "") or "").strip()
-        published = str(entry.get("published", "") or entry.get("initial_release_date", "") or "").strip()
-        url = str(entry.get("url", "") or entry.get("href", "") or "").strip()
+        published = str(entry.get("published", "") or entry.get("updated", "") or entry.get("initial_release_date", "") or "").strip()
+
+        # Extract URL: may be a string or a list of {rel, href} objects
+        url = ""
+        link_field = entry.get("link") or entry.get("url") or entry.get("href") or ""
+        if isinstance(link_field, str):
+            url = link_field
+        elif isinstance(link_field, list):
+            for link_obj in link_field:
+                if isinstance(link_obj, dict):
+                    href = link_obj.get("href", "")
+                    rel = link_obj.get("rel", "")
+                    if href and (rel == "self" or not url):
+                        url = href
 
         if not advisory_id:
-            # Try to extract from URL
             if url:
                 advisory_id = url.rsplit("/", 1)[-1].replace(".json", "")
 

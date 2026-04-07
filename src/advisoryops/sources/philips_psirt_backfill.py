@@ -151,10 +151,19 @@ def parse_advisory_page(
         if not text or len(text) < 10:
             continue
 
-        # Filter for advisory-like links
-        href_lower = href.lower()
-        text_lower = text.lower()
+        # Normalize the link
+        if href.startswith("/"):
+            href = f"https://www.philips.com{href}"
+        elif not href.startswith("http"):
+            continue
 
+        # Only accept Philips-hosted links (reject external sites)
+        href_lower = href.lower()
+        if not ("philips.com" in href_lower):
+            continue
+
+        # Filter for advisory-like links on Philips
+        text_lower = text.lower()
         is_advisory = (
             "advisory" in href_lower
             or "security" in href_lower
@@ -163,16 +172,9 @@ def parse_advisory_page(
             or "cve" in text_lower
             or "vulnerability" in text_lower
             or "advisory" in text_lower
-            or "security" in text_lower
         )
 
         if not is_advisory:
-            continue
-
-        # Normalize the link
-        if href.startswith("/"):
-            href = f"https://www.philips.com{href}"
-        elif not href.startswith("http"):
             continue
 
         if href in seen_links:
@@ -189,8 +191,8 @@ def parse_advisory_page(
         dates = _DATE_RE.findall(context)
         date_str = dates[0] if dates else (str(year) if year else "")
 
-        # Build advisory ID from URL or title
-        advisory_id = href.rsplit("/", 1)[-1].replace(".html", "").replace(".htm", "")
+        # Build advisory ID from URL or title (cap length for filesystem safety)
+        advisory_id = href.rsplit("/", 1)[-1].replace(".html", "").replace(".htm", "")[:80]
         if not advisory_id or advisory_id == "security-advisories":
             advisory_id = re.sub(r"[^a-zA-Z0-9_\-]", "_", text[:60])
 
@@ -212,7 +214,7 @@ def _save_advisory_cache(
     data: Dict[str, Any],
     cache_dir: Path,
 ) -> None:
-    safe_id = re.sub(r"[^a-zA-Z0-9_\-]", "_", advisory_id)
+    safe_id = re.sub(r"[^a-zA-Z0-9_\-]", "_", advisory_id)[:120]
     cache_file = cache_dir / f"{safe_id}.json"
     if cache_file.exists():
         return  # Don't overwrite
@@ -226,7 +228,7 @@ def _load_advisory_cache(
     advisory_id: str,
     cache_dir: Path,
 ) -> Optional[Dict[str, Any]]:
-    safe_id = re.sub(r"[^a-zA-Z0-9_\-]", "_", advisory_id)
+    safe_id = re.sub(r"[^a-zA-Z0-9_\-]", "_", advisory_id)[:120]
     cache_file = cache_dir / f"{safe_id}.json"
     if cache_file.exists():
         try:
