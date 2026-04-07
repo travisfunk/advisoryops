@@ -24,7 +24,7 @@ If you see an issue where the product or vendor name is clearly wrong — pointi
 
 ### Reporting or suggesting sources
 
-AdvisoryOps currently ingests approximately 85 validated sources covering medical device security, ICS/OT advisories, healthcare cybersecurity news, and threat intelligence. We want sources that publish structured, machine-readable feeds (RSS, JSON API, or structured CSV) and maintain a consistent publishing schedule.
+AdvisoryOps currently ingests 57 enabled sources covering medical device security, ICS/OT advisories, healthcare cybersecurity news, and threat intelligence. We want sources that publish structured, machine-readable feeds (RSS, JSON API, or structured CSV) and maintain a consistent publishing schedule.
 
 Use the [source correction template](.github/ISSUE_TEMPLATE/source_correction.md) to report broken or outdated source URLs, or to suggest a new source. The `source_id` field in every issue record tells you exactly which source contributed that data — check the original advisory at that source before reporting a URL issue.
 

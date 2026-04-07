@@ -2,11 +2,43 @@
 
 ![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)
 ![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)
+![Tests: 696 passing](https://img.shields.io/badge/tests-696_passing-brightgreen.svg)
+[![Dashboard](https://img.shields.io/badge/dashboard-GitHub_Pages-blue.svg)](https://travisfunk.github.io/advisoryops-dashboard/)
 
-**Open-source healthcare cybersecurity intelligence pipeline.**
-AdvisoryOps continuously monitors 58 live public sources — CISA ICS-Medical, the Known Exploited Vulnerabilities catalog, FDA device recalls, CERT/CC, NVD, and more — and produces a prioritized, healthcare-aware alert feed your team can act on.
+**Open-source healthcare medical device security intelligence pipeline.**
+AdvisoryOps continuously monitors 57 public sources — CISA ICS-Medical, the Known Exploited Vulnerabilities catalog, FDA device recalls, NVD, CERT/CC, and more — and produces a prioritized, healthcare-aware feed of medical device vulnerabilities. Built for hospital security teams that can't afford commercial platforms like Claroty or TRIMEDX.
 
-> **Why it matters:** Medical device vulnerabilities are chronically under-tracked. Most SIEM tools treat a pacemaker firmware advisory the same as a WordPress plugin bug. AdvisoryOps understands the difference and scores accordingly.
+---
+
+## Why it exists
+
+Medical device vulnerabilities are chronically under-tracked. Most vulnerability tools treat a pacemaker firmware advisory the same as a WordPress plugin bug. Infusion pumps, ventilators, patient monitors, and imaging systems have unique risk profiles — they sit on clinical networks, they can't always be patched on schedule, and when they fail the consequences are measured in patient safety, not just downtime.
+
+Small and rural hospitals face the same threats as large health systems but with a fraction of the security staff and budget. Commercial medical device security platforms start at six figures per year. Meanwhile, the raw data — CISA advisories, FDA recalls, NVD records, KEV deadlines — is all public. What's missing is the pipeline to pull it together, score it for healthcare relevance, and present it in a way that a two-person security team can act on.
+
+AdvisoryOps closes that gap. The data is free, the analysis is free, the dashboard is free. Apache 2.0 forever.
+
+---
+
+## Live demo
+
+**Dashboard:** [https://travisfunk.github.io/advisoryops-dashboard/](https://travisfunk.github.io/advisoryops-dashboard/)
+
+The "Medical devices" view shows 234 healthcare-relevant issues with CVSS scores, KEV deadlines, and remediation steps. Color-coded priority badges (P0-P3), click-to-expand rows with CVE links, and a search/filter bar. No framework, no build step — single-file vanilla HTML/JS.
+
+---
+
+## Current scope
+
+| Metric | Value |
+|--------|-------|
+| Total sources monitored | 57 |
+| Total issues tracked | 1,990 |
+| Medical device issues | 234 |
+| Issues with NVD enrichment | 1,138 |
+| Issues with KEV required actions | 203 |
+| Automated tests | 696 |
+| Full corpus rebuild cost | $1.40 |
 
 ---
 
@@ -20,23 +52,12 @@ cd advisoryops
 pip install -e .
 ```
 
-### Run the full community pipeline (one command)
+### Run the full public pipeline (one command)
 
 ```bash
-advisoryops community-build --set-id gold_pass1 --out-root-community outputs/community_public
-# Writes: issues_public.jsonl · alerts_public.jsonl · feed_latest.json · feed.csv · meta.json · dashboard.html
+advisoryops community-build --set-id full_public --out-root-community outputs/community_public
 ```
-
-### View the dashboard
-
-```bash
-cd outputs/community_public
-python -m http.server 8080
-# Open: http://localhost:8080/dashboard.html
-```
-
-The dashboard is a single-file vanilla HTML/JS app — sortable issue table, color-coded priority badges, click-to-expand rows with CVE links, search/filter bar. No framework, no build step.
-
+Outputs: `issues_public.jsonl` · `alerts_public.jsonl` · `feed_latest.json` · `feed_healthcare.json` · `feed.csv` · `feed.xml` · `issues_public.xlsx` · `meta.json`
 ### Run individual pipeline stages
 
 ```bash
@@ -64,11 +85,11 @@ advisoryops evaluate --fixtures tests/fixtures/golden --out outputs/eval
 
 ---
 
-## Pipeline Architecture
+## Pipeline architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                        DATA SOURCES (58 live)                   │
+│                        DATA SOURCES (57 enabled)                │
 │  CISA ICS-Medical · CISA KEV · FDA Recalls · CERT/CC · NVD     │
 │  MS MSRC · Cisco · Siemens · Philips · GitHub Security · more  │
 └─────────────────────┬───────────────────────────────────────────┘
@@ -78,66 +99,54 @@ advisoryops evaluate --fixtures tests/fixtures/golden --out outputs/eval
 │  1. DISCOVER  (discover.py + feed_parsers.py)                   │
 │  HTTP fetch with retry/backoff → parse → keyword filter         │
 │  Track seen GUIDs in state.json for new-item detection          │
-│  Normalize all formats into a common signal shape:              │
-│    source · guid · title · summary · published_date · link      │
+│  Normalize all formats into a common signal shape               │
 │  Output: outputs/discover/<source>/items.jsonl                  │
 └─────────────────────┬───────────────────────────────────────────┘
                       │
                       ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │  2. CORRELATE  (correlate.py + ai_correlate.py)                 │
-│  Pass 1 (deterministic): group by CVE ID or SHA-256 of          │
-│    normalized title + date → stable UNK-<hex> for non-CVEs     │
-│  Pass 2 (optional AI): Jaccard similarity pre-filter then       │
-│    GPT-4o-mini decides whether two issues are the same vuln     │
-│    Union-Find builds transitive merge groups                     │
-│    Writes merge_log.jsonl for audit/reproducibility             │
+│  Pass 1 (deterministic): group by CVE ID or title+date hash    │
+│  Pass 2 (optional AI): Jaccard similarity + GPT-4o-mini merge  │
 │  Output: outputs/correlate/issues.jsonl                         │
 └─────────────────────┬───────────────────────────────────────────┘
                       │
                       ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│  3. TAG  (tag.py)                                               │
-│  Deterministic keyword heuristics — no AI                       │
-│    exploit: kev, active_exploitation, poc, ransomware           │
-│    impact:  rce, priv_esc, auth_bypass, data_exfil             │
-│  Output: outputs/tags/tags.jsonl                                │
+│  3. NVD ENRICH  (nvd_enrich.py)                                 │
+│  CVE → CVSS base score, vector, CWE, affected products (CPE)   │
+│  KEV cross-reference → required action, due date, ransomware    │
+│  1,138 issues enriched in current corpus                        │
+│  Output: NVD fields merged into issues.jsonl                    │
 └─────────────────────┬───────────────────────────────────────────┘
                       │
                       ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│  4. SCORE  (score.py + ai_score.py)                             │
-│  v1 baseline: keyword regex scoring                             │
-│    RCE +30 · KEV source +80 · actively exploited +40 · …       │
-│  v2 healthcare dimensions (added on top of v1):                 │
-│    Source authority: CISA ICS-Medical +20 · ICS +15            │
-│    Device context:   infusion pump +25 · ventilator +25 · …    │
-│    Patch feasibility: no patch +20 · EOL +15 · firmware +10    │
-│    Clinical impact:  patient safety +25 · ICU +20 · PHI +15    │
-│  Optional AI: --ai-score classifies ambiguous issues via GPT    │
+│  4. TAG + SCORE  (tag.py + score.py + ai_score.py)              │
+│  Keyword heuristics: exploit, impact, RCE, KEV, ransomware     │
+│  Healthcare scoring dimensions:                                 │
+│    Source authority · Device context · Patch feasibility         │
+│    Clinical impact (patient safety, ICU, PHI)                   │
 │  Priority: P0 ≥ 150 · P1 ≥ 100 · P2 ≥ 60 · P3 < 60           │
 │  Output: outputs/scored/issues_scored.jsonl + alerts.jsonl      │
 └─────────────────────┬───────────────────────────────────────────┘
                       │
                       ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│  5. RECOMMEND  (recommend.py + playbook.py + packet_export.py)  │
-│  AI selects 1-4 patterns from the approved mitigation playbook  │
-│  (SEGMENTATION_VLAN_ISOLATION, ACCESS_CONTROL_ACL_ALLOWLIST,   │
-│   VENDOR_PROCESS_OPEN_CASE_AND_TRACK, PATCHING_APPLY_VENDOR…)  │
-│  Role-split tasks: infosec / netops / htm_ce / vendor / clinical│
-│  Exports: JSON packet · Markdown report · CSV for ticket import │
-│  Output: outputs/packets/<issue>_packet.{json,md,csv}           │
+│  5. HEALTHCARE FILTER  (healthcare_filter.py)                   │
+│  Tags issues as healthcare-relevant using device keywords,      │
+│  ICS-Medical source, FDA recalls, clinical context signals      │
+│  234 / 1,990 issues tagged in current corpus                    │
+│  Output: feed_healthcare.json                                   │
 └─────────────────────┬───────────────────────────────────────────┘
                       │
                       ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│  6. COMMUNITY BUILD  (community_build.py)                       │
-│  Orchestrates Discover → Correlate → Score → (Recommend)        │
-│  for the validated gold source set and publishes:               │
-│    issues_public.jsonl  · alerts_public.jsonl                   │
-│    feed_latest.json     · feed.csv                              │
-│    validated_sources.json · meta.json · dashboard.html          │
+│  6. RECOMMEND  (recommend.py + playbook.py + packet_export.py)  │
+│  AI selects from approved mitigation playbook patterns          │
+│  Role-split tasks: infosec / netops / htm_ce / vendor / clinical│
+│  Exports: JSON packet · Markdown report · CSV for ticket import │
+│  Output: outputs/packets/<issue>_packet.{json,md,csv}           │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
@@ -146,17 +155,18 @@ advisoryops evaluate --fixtures tests/fixtures/golden --out outputs/eval
 | Choice | Rationale |
 |--------|-----------|
 | **Feeds only, no scraping** | RSS/JSON/CSV feeds are reliable, legal, and don't break on DOM changes |
-| **Deterministic first pass** | Group by CVE ID before calling any AI — keeps cost near zero for routine runs |
-| **AI as a second pass only** | AI merge and AI score only run when deterministic scoring leaves uncertainty |
+| **Deterministic first, AI second** | Group by CVE ID before calling any AI — keeps cost near zero for routine runs |
+| **NVD enrichment + KEV cross-ref** | CVSS scores, CWE IDs, and KEV deadlines added automatically for every CVE |
+| **Healthcare relevance filter** | Separates medical device issues from general IT vulnerabilities |
 | **Playbook-constrained recommendations** | AI selects from an approved pattern list; hallucinated IDs are silently dropped |
 | **On-disk AI response cache** | SHA-256 keyed; same issue never costs twice across runs |
 | **JSONL everywhere** | Line-delimited JSON is git-diffable, stream-processable, and appendable |
 
 ---
 
-## Source Coverage
+## Source coverage
 
-**85 configured · 58 live (enabled=true) · 10 validated in gold_pass1 set**
+**57 enabled sources across 7 categories**
 
 | Category | Count | Examples |
 |----------|-------|---------|
@@ -176,78 +186,29 @@ python scripts/smoke_test_all_sources.py
 
 ---
 
-## Project Layout
-
-```
-advisoryops/
-├── src/advisoryops/           # Python package (pip install -e .)
-│   ├── cli.py                 # argparse entry point — all CLI subcommands
-│   ├── discover.py            # HTTP fetch + RSS/Atom/JSON/CSV parsing
-│   ├── feed_parsers.py        # JSON feed + CSV feed normalizers
-│   ├── source_run.py          # discover → optional ingest orchestrator
-│   ├── ingest.py              # URL / text file / PDF → normalized snapshot
-│   ├── extract.py             # AI extraction → AdvisoryRecord JSON
-│   ├── correlate.py           # signal grouping → issues (+ AI merge pass)
-│   ├── ai_correlate.py        # similarity pre-filter + AI merge decisions
-│   ├── tag.py                 # exploit / impact keyword tagger
-│   ├── score.py               # v1 keyword + v2 healthcare scorer
-│   ├── ai_score.py            # AI healthcare relevance classifier
-│   ├── recommend.py           # AI pattern selection engine
-│   ├── playbook.py            # mitigation playbook loader + dataclasses
-│   ├── packet_export.py       # JSON / Markdown / CSV packet formatters
-│   ├── community_build.py     # end-to-end community feed builder
-│   ├── community_manifest.py  # community source set manifest loader
-│   ├── eval_harness.py        # golden fixture evaluation harness
-│   ├── ai_cache.py            # on-disk SHA-256 keyed AI response cache
-│   ├── models.py              # Pydantic AdvisoryRecord schema
-│   ├── contradiction_detector.py  # cross-source contradiction detection
-│   ├── change_tracker.py      # what-changed tracking between runs
-│   ├── feedback.py            # recommendation feedback recorder
-│   ├── source_weights.py      # source authority tier weights
-│   ├── product_resolver.py    # product name/nickname lookup
-│   ├── advisory_qa.py         # natural language advisory Q&A
-│   ├── sources_config.py      # sources.json loader + SourceDef dataclasses
-│   ├── mojibake.py            # UTF-8/cp1252 encoding artifact repair
-│   └── util.py                # shared utilities (hashing, file I/O)
-├── configs/
-│   ├── sources.json                    # 85 source definitions (schema v1)
-│   ├── community_public_sources.json   # validated gold source sets
-│   ├── mitigation_playbook.json        # approved mitigation patterns
-│   └── source_weights.json            # source authority tiers + weights
-├── tests/                     # pytest suite (601 tests, all mocked — no API key needed)
-├── scripts/
-│   ├── smoke_test_all_sources.py       # batch connectivity + parse test
-│   └── build_golden_fixtures.py        # golden fixture generator
-└── outputs/                   # gitignored; created at runtime
-    ├── discover/              # per-source raw + parsed artifacts
-    ├── correlate/             # correlated issues.jsonl
-    ├── scored/                # prioritized alerts
-    ├── community_public/      # published feed + dashboard
-    └── ai_cache/              # cached AI responses (skip re-billing)
-```
-
----
-
-## Running Tests
+## Running tests
 
 ```bash
 # Full suite — no API key required (all AI calls use injectable mocks)
-python -m pytest
+python -m pytest            # 696 tests
 
-# Verbose output for a specific module
+# Specific modules
 python -m pytest tests/test_score_healthcare.py -v
-python -m pytest tests/test_ai_correlate.py -v
+python -m pytest tests/test_healthcare_filter.py -v
+python -m pytest tests/test_nvd_enrich.py -v
 python -m pytest tests/test_community_build.py -v
-
-# Quick smoke check
-python -m pytest -q
 ```
 
 ---
 
-## Trust & Provenance
+## Trust & provenance
 
-Every AI-generated output in AdvisoryOps carries an evidence trail. Remediation recommendations cite the specific advisory evidence that triggered each pattern selection (rationale), reference the standard or guidance behind the pattern (basis — NIST SP 800-82, IEC 62443, FDA pre/postmarket guidance, CISA ICS-CERT best practices), and include a disclaimer requiring verification against vendor documentation before implementation. Cross-source contradiction detection compares severity, CVE lists, and patch status across contributing sources, surfacing agreements and disagreements so analysts see where sources diverge. A `generated_by` label on every output (`ai`, `deterministic`, or `hybrid`) makes clear what was extracted from source text versus inferred by a model. Analysts can flag recommendations directly from the dashboard or CLI (`advisoryops feedback --issue-id X --type incorrect --comment "..."`), creating an audit trail for continuous improvement.
+Every AI-generated output carries an evidence trail:
+
+- **Remediation recommendations** cite the specific advisory evidence that triggered each pattern selection, reference the standard behind the pattern (NIST SP 800-82, IEC 62443, FDA pre/postmarket guidance, CISA ICS-CERT best practices), and include a disclaimer requiring verification against vendor documentation before implementation.
+- **Cross-source contradiction detection** compares severity, CVE lists, and patch status across contributing sources, surfacing where sources agree and diverge.
+- **NVD enrichment** adds authoritative CVSS scores, CWE IDs, and KEV required actions with due dates — drawn directly from NIST and CISA data.
+- A `generated_by` label on every output (`ai`, `deterministic`, or `hybrid`) makes clear what was extracted from source text versus inferred by a model.
 
 > **Important:** The AI extracts, normalizes, compares, and recommends from approved mitigation patterns. It does not replace vendor guidance or make final operational decisions. All recommendations must be verified against vendor documentation and validated by qualified personnel before implementation in clinical environments.
 
@@ -256,7 +217,7 @@ Every AI-generated output in AdvisoryOps carries an evidence trail. Remediation 
 ## Contributing
 
 1. **Fork** the repo and create a feature branch (`git checkout -b feat/my-source`)
-2. **Write tests** first — every new function needs at least one pytest test
+2. **Write tests first** — every new function needs at least one pytest test
 3. **Feeds only** — new sources must use `rss_atom`, `json_feed`, or `csv_feed` page_type
 4. **Run the full suite** before opening a PR: `python -m pytest -q`
 5. **For new sources**: add to `configs/sources.json`, smoke-test, document in your PR

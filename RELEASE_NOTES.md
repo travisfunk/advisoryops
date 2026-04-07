@@ -1,48 +1,53 @@
 # AdvisoryOps — Release Notes
 
-## Pass 1 Public Dataset (2026-03-22)
+## v1.0 — Initial Public Release (April 2026)
 
 ### Summary
 
 | Metric | Value |
 |--------|-------|
-| Release date | 2026-03-25 |
-| Validated sources | 58 |
-| Issues (public feed) | 545 |
-| Alerts (P0–P2, public feed) | 487 |
-| Remediation packets | 686 |
-| Automated tests | 601 |
-| Pass rate (golden fixtures) | 14/14 (100%) |
+| Release date | 2026-04-06 |
+| Validated sources | 57 |
+| Issues (public feed) | 1,990 |
+| Healthcare-relevant issues | 234 |
+| Alerts (P0-P2) | 757 |
+| Remediation packets | 1,990 (all issues) |
+| NVD-enriched issues | 1,138 |
+| KEV required actions | 203 |
+| Automated tests | 696 |
+| Golden fixture pass rate | 14/14 (100%) |
+| Full corpus rebuild cost | ~$1.40 |
+| Total API cost (all builds) | ~$12.70 |
+
+### What's new in this release
+
+- **Healthcare relevance filter** — separates 234 medical device issues from 1,756 general IT vulnerabilities
+- **NVD enrichment** — automated CVSS, CWE, and CPE lookup for 1,138 CVEs
+- **KEV cross-reference** — 203 issues now carry CISA's required action and due date
+- **Human-readable remediation steps** on all 1,990 issues
+- **GitHub Pages dashboard** at https://travisfunk.github.io/advisoryops-dashboard/
+- **57 sources** expanded from the original 12 gold sources
 
 ### Sources
 
-12 validated public sources across four categories:
-
-- **CISA KEV** — CISA Known Exploited Vulnerabilities catalog
-- **CISA ICS-Medical (ICSMA)** — ICS medical device advisories
-- **NVD** — NIST National Vulnerability Database CVE feed
-- **Vendor / community** — Siemens ProductCERT, Schneider Electric, ICS-CERT, Claroty, Dragos, Medigate, Nozomi
-
-All sources validated with smoke tests in `tests/fixtures/golden/` (12 golden fixtures, 100% correlation and CVE coverage accuracy).
+57 enabled sources across 5 authority tiers. Highlights include CISA ICS-Medical, CISA KEV, FDA MedWatch, openFDA Device Recalls, NVD CVE API, CERT/CC, Health Canada, plus 30+ vendor PSIRTs and threat intelligence feeds. See `validated_sources.json` for the complete list.
 
 ### Pipeline
 
-The full deterministic pipeline is:
+The full pipeline is:
 
 ```
-source-run → correlate → score (v2, healthcare-aware) → tag → community-build
+Discover → Correlate → NVD Enrich → Tag/Score → Healthcare Filter → Recommend
 ```
 
 Key stages:
 
 1. **Discover** — fetch item lists from each source RSS/API
-2. **Ingest** — normalize raw HTML/PDF/text to snapshot
-3. **Extract** — LLM-assisted structured `AdvisoryRecord` extraction
-4. **Correlate** — deterministic CVE-key deduplication across sources
-5. **Score v2** — healthcare-aware priority scoring (P0–P3) with `why` explanations
-6. **Tag** — keyword + healthcare/ICS taxonomy tags
-7. **Recommend** — AI pattern selection from 8 playbook patterns (cached)
-8. **Community build** — assembles public feed artifacts
+2. **Correlate** — deterministic CVE-key deduplication across sources
+3. **NVD Enrich** — CVSS score, CWE IDs, CPE matches, and NVD description via NIST API
+4. **Tag / Score** — healthcare-aware priority scoring (P0-P3) with keyword and ICS taxonomy tags
+5. **Healthcare Filter** — classify issues as medical-device-relevant or general IT
+6. **Recommend** — AI pattern selection from 8 playbook patterns with human-readable remediation steps
 
 ### Scoring
 
@@ -50,41 +55,20 @@ Priority tiers (v2 scorer):
 
 | Priority | Threshold | Criteria |
 |----------|-----------|----------|
-| P0 | score ≥ 150 | KEV + RCE + healthcare stacked, or multiple critical signals |
-| P1 | score 100–149 | KEV source, or strong healthcare context (ICSMA + device) |
-| P2 | score 60–99 | Moderate concern (significant keywords or healthcare context) |
+| P0 | score >= 150 | KEV + RCE + healthcare stacked, or multiple critical signals |
+| P1 | score 100-149 | KEV source, or strong healthcare context (ICSMA + device) |
+| P2 | score 60-99 | Moderate concern (significant keywords or healthcare context) |
 | P3 | score < 60 | Low-signal / informational |
 
-### Remediation Playbook
+Healthcare-aware factors boost scores for issues affecting medical devices, clinical infrastructure, and patient safety systems.
 
-8 approved mitigation patterns:
+### Known limitations
 
-- `PATCH_MANAGEMENT_EXPEDITED` — expedited patch deployment
-- `SEGMENTATION_VLAN_ISOLATION` — VLAN-based network isolation
-- `ACCESS_CONTROL_ACL_ALLOWLIST` — ACL allowlist restriction
-- `MONITORING_ANOMALY_DETECTION` — anomaly detection + alerting
-- `COMPENSATING_CONTROL_DISABLE_FEATURE` — disable vulnerable feature
-- `VENDOR_COORDINATION_PATCH_REQUEST` — vendor patch coordination
-- `MFA_PRIVILEGED_ACCESS` — MFA for privileged access
-- `INCIDENT_RESPONSE_ACTIVATION` — IR plan activation
+- Some Apple NVD descriptions are vague ("The issue was addressed with improved memory handling") — that's Apple's style, not our pipeline
+- FDA recall IDs lack human-readable descriptions and display as "FDA Device Recall: &lt;ID&gt;"
+- Incremental builds are not yet supported — each run reprocesses the full corpus (~5 minutes, $1.40)
+- Single maintainer; see CONTRIBUTING.md for ways to help
 
-### Test Coverage
+### Acknowledgments
 
-601 automated tests across 35 test modules covering:
-
-- Source discovery and ingestion
-- Advisory record extraction
-- CVE correlation
-- Healthcare-aware scoring (v2)
-- Issue tagging
-- Playbook loading
-- Pattern recommendation (with AI cache)
-- Remediation packet export (JSON, Markdown, CSV)
-- Golden fixture evaluation harness (12 fixtures)
-- Community build pipeline
-
-### Known Limitations
-
-- fixture-07 (hospital-manager advisory) is classified as `medical_device` by the deterministic heuristic due to CISA ICS-Medical source authority, but the expected category is `healthcare_it`. This ambiguity is a known limitation of the deterministic classifier.
-- AI-assisted extraction (`extract`) and recommendation (`recommend`) require `OPENAI_API_KEY`. All other pipeline stages are fully deterministic.
-- Source discovery is rate-limited; `--limit` flags prevent runaway API spend.
+Built on public data from CISA, NIST NVD, FDA, Health Canada, and the broader vulnerability disclosure community.
