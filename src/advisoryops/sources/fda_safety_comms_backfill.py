@@ -373,6 +373,157 @@ def run_backfill(
     return stats
 
 
+# Default date ranges for full enforcement historical pull
+ENFORCEMENT_DATE_RANGES = [
+    ("20040101", "20111231"),   # pre-2012 records
+    ("20120101", "20141231"),   # ~6K records
+    ("20150101", "20171231"),   # ~9K records
+    ("20180101", "20201231"),   # ~9K records
+    ("20210101", "20231231"),   # ~9K records
+    ("20240101", "20261231"),   # recent
+]
+
+
+def run_backfill_date_ranges(
+    *,
+    cache_dir: Optional[Path] = None,
+    date_ranges: Optional[List[Tuple[str, str]]] = None,
+    date_field: str = "report_date",
+    page_size: int = _PAGE_SIZE,
+    _fetch_fn: Optional[Callable[[str], bytes]] = None,
+) -> Dict[str, Any]:
+    """Backfill FDA enforcement using date-range queries to bypass the 25K skip limit.
+
+    Args:
+        cache_dir: Cache directory.
+        date_ranges: List of (start_date, end_date) tuples in YYYYMMDD format.
+        date_field: API field to filter by date.
+        page_size: Results per page.
+        _fetch_fn: Injectable fetch function for testing.
+
+    Returns:
+        Stats dict.
+    """
+    if cache_dir is None:
+        cache_dir = _DEFAULT_CACHE_DIR
+    cache_dir.mkdir(parents=True, exist_ok=True)
+
+    if date_ranges is None:
+        date_ranges = ENFORCEMENT_DATE_RANGES
+
+    rate_limiter = _get_rate_limiter()
+    progress = _load_progress(cache_dir)
+
+    completed_ranges = set()
+    for r in progress.get("completed_date_ranges") or []:
+        completed_ranges.add(tuple(r))
+
+    stats: Dict[str, Any] = {
+        "status": "running",
+        "started_at": datetime.now(timezone.utc).isoformat(),
+        "ranges_total": len(date_ranges),
+        "ranges_completed": len(completed_ranges),
+        "records_fetched": 0,
+        "records_new": 0,
+        "records_skipped": 0,
+        "cyber_relevant": 0,
+        "errors": [],
+    }
+
+    try:
+        for start_date, end_date in date_ranges:
+            range_key = (start_date, end_date)
+            if range_key in completed_ranges:
+                logger.info("Range %s–%s already completed, skipping.", start_date, end_date)
+                continue
+
+            search = f"{date_field}:[{start_date}+TO+{end_date}]"
+            skip = 0
+            consecutive_errors = 0
+            range_fetched = 0
+
+            logger.info("Starting range %s–%s", start_date, end_date)
+
+            while True:
+                if skip > 25000:
+                    logger.warning("Hit 25K skip in range %s–%s. Moving to next.", start_date, end_date)
+                    break
+
+                try:
+                    data, status_code = _fetch_page(
+                        skip, page_size,
+                        search=search,
+                        rate_limiter=rate_limiter,
+                        _fetch_fn=_fetch_fn,
+                    )
+                except RuntimeError as exc:
+                    stats["errors"].append({"range": f"{start_date}-{end_date}", "skip": skip, "error": str(exc)})
+                    break
+
+                if status_code in (429, 500, 502, 503):
+                    consecutive_errors += 1
+                    if consecutive_errors >= 5:
+                        stats["errors"].append({"range": f"{start_date}-{end_date}", "error": f"{status_code} after 5 retries"})
+                        break
+                    time.sleep(min(30 * consecutive_errors, 120))
+                    continue
+
+                consecutive_errors = 0
+
+                results = data.get("results") or []
+                if not results:
+                    break
+
+                for record in results:
+                    if not isinstance(record, dict):
+                        continue
+                    cache_id = _record_cache_id(record)
+                    if not cache_id:
+                        continue
+                    cache_file = cache_dir / f"enf_{cache_id}.json"
+                    if cache_file.exists():
+                        stats["records_skipped"] += 1
+                    else:
+                        _save_record_cache(record, cache_dir)
+                        stats["records_new"] += 1
+                    if is_cyber_relevant(record):
+                        stats["cyber_relevant"] += 1
+
+                range_fetched += len(results)
+                stats["records_fetched"] += len(results)
+                skip += page_size
+
+            completed_ranges.add(range_key)
+            stats["ranges_completed"] = len(completed_ranges)
+            progress["completed_date_ranges"] = [list(r) for r in sorted(completed_ranges)]
+            _save_progress(cache_dir, progress)
+
+            logger.info(
+                "Range %s–%s: %d records. Total: %d new, %d cached.",
+                start_date, end_date, range_fetched,
+                stats["records_new"], stats["records_skipped"],
+            )
+
+    except Exception as exc:
+        logger.error("Unexpected error in date-range backfill: %s", exc)
+        stats["errors"].append({"error": f"unhandled: {exc}"})
+        stats["status"] = "error"
+
+    progress["completed_date_ranges"] = [list(r) for r in sorted(completed_ranges)]
+    _save_progress(cache_dir, progress)
+    stats["finished_at"] = datetime.now(timezone.utc).isoformat()
+    if stats["status"] != "error":
+        stats["status"] = "completed" if len(completed_ranges) == len(date_ranges) else "paused"
+
+    logger.info(
+        "Date-range backfill %s: %d/%d ranges, %d new, %d cached, %d cyber.",
+        stats["status"], stats["ranges_completed"], stats["ranges_total"],
+        stats["records_new"], stats["records_skipped"], stats["cyber_relevant"],
+    )
+
+    return stats
+
+
 def generate_signals_from_cache(
     *,
     cache_dir: Optional[Path] = None,

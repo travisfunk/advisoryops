@@ -16,6 +16,7 @@ from advisoryops.sources.openfda_backfill import (
     incremental_update,
     is_cyber_relevant,
     run_backfill,
+    run_backfill_date_ranges,
 )
 
 
@@ -429,6 +430,100 @@ class TestIncrementalUpdate:
             cache_dir=cache_dir, out_root=str(discover_root), _fetch_fn=fetch_fn,
         )
         assert stats2["new_signals_published"] == 0
+
+
+# ---------------------------------------------------------------------------
+# Date-range backfill
+# ---------------------------------------------------------------------------
+
+class TestDateRangeBackfill:
+
+    def test_fetches_across_ranges(self, tmp_path):
+        """Two date ranges, 3 records each."""
+        def mock_fetch(url):
+            if "20100101" in url:
+                return json.dumps(_fda_page(
+                    skip=0, total=3,
+                    recalls=[_fda_recall(f"RES-A{i}", recall_initiation_date="20100601") for i in range(3)],
+                )).encode()
+            if "20150101" in url:
+                return json.dumps(_fda_page(
+                    skip=0, total=2,
+                    recalls=[_fda_recall(f"RES-B{i}", recall_initiation_date="20150601") for i in range(2)],
+                )).encode()
+            return json.dumps(_fda_page(total=0, recalls=[])).encode()
+
+        stats = run_backfill_date_ranges(
+            cache_dir=tmp_path,
+            date_ranges=[("20100101", "20141231"), ("20150101", "20191231")],
+            _fetch_fn=mock_fetch,
+        )
+
+        assert stats["status"] == "completed"
+        assert stats["ranges_completed"] == 2
+        assert stats["recalls_new"] == 5
+
+    def test_resumes_completed_ranges(self, tmp_path):
+        """Skips already-completed ranges."""
+        progress = {
+            "completed_date_ranges": [["20100101", "20141231"]],
+            "last_updated": None,
+        }
+        _save_progress(tmp_path, progress)
+
+        fetch_calls = []
+        def mock_fetch(url):
+            fetch_calls.append(url)
+            return json.dumps(_fda_page(
+                skip=0, total=2,
+                recalls=[_fda_recall(f"RES-X{i}") for i in range(2)],
+            )).encode()
+
+        stats = run_backfill_date_ranges(
+            cache_dir=tmp_path,
+            date_ranges=[("20100101", "20141231"), ("20150101", "20191231")],
+            _fetch_fn=mock_fetch,
+        )
+
+        assert stats["ranges_completed"] == 2
+        # Should NOT have fetched the first range
+        assert not any("20100101" in u for u in fetch_calls)
+        assert any("20150101" in u for u in fetch_calls)
+
+    def test_uses_date_field_in_search(self, tmp_path):
+        urls = []
+        def mock_fetch(url):
+            urls.append(url)
+            return json.dumps(_fda_page(total=0, recalls=[])).encode()
+
+        run_backfill_date_ranges(
+            cache_dir=tmp_path,
+            date_ranges=[("20200101", "20201231")],
+            date_field="event_date_initiated",
+            _fetch_fn=mock_fetch,
+        )
+
+        assert any("event_date_initiated" in u for u in urls)
+
+    def test_skips_already_cached_records(self, tmp_path):
+        _save_recall_cache(_fda_recall("RES-EXIST"), tmp_path)
+
+        def mock_fetch(url):
+            if "skip=0" in url or "skip" not in url:
+                return json.dumps(_fda_page(
+                    skip=0, total=2,
+                    recalls=[_fda_recall("RES-EXIST"), _fda_recall("RES-NEW01")],
+                )).encode()
+            return json.dumps(_fda_page(total=2, recalls=[])).encode()
+
+        stats = run_backfill_date_ranges(
+            cache_dir=tmp_path,
+            date_ranges=[("20200101", "20201231")],
+            _fetch_fn=mock_fetch,
+        )
+
+        assert stats["recalls_new"] == 1
+        assert stats["recalls_skipped"] == 1
 
 
 # ---------------------------------------------------------------------------

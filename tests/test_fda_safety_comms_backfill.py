@@ -15,6 +15,7 @@ from advisoryops.sources.fda_safety_comms_backfill import (
     incremental_update,
     is_cyber_relevant,
     run_backfill,
+    run_backfill_date_ranges,
 )
 
 
@@ -292,6 +293,76 @@ class TestGenerateSignals:
         _save_progress(tmp_path, {"completed": True})
         signals = generate_signals_from_cache(cache_dir=tmp_path)
         assert len(signals) == 1
+
+
+# ---------------------------------------------------------------------------
+# Incremental update
+# ---------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
+# Date-range backfill
+# ---------------------------------------------------------------------------
+
+class TestDateRangeBackfill:
+
+    def test_fetches_across_ranges(self, tmp_path):
+        def mock_fetch(url):
+            if "20120101" in url:
+                return json.dumps(_enforcement_page(
+                    skip=0, total=2,
+                    records=[_enforcement_record(f"Z-A{i}-2012") for i in range(2)],
+                )).encode()
+            if "20150101" in url:
+                return json.dumps(_enforcement_page(
+                    skip=0, total=1,
+                    records=[_enforcement_record("Z-B0-2015")],
+                )).encode()
+            return json.dumps(_enforcement_page(total=0, records=[])).encode()
+
+        stats = run_backfill_date_ranges(
+            cache_dir=tmp_path,
+            date_ranges=[("20120101", "20141231"), ("20150101", "20171231")],
+            _fetch_fn=mock_fetch,
+        )
+        assert stats["status"] == "completed"
+        assert stats["ranges_completed"] == 2
+        assert stats["records_new"] == 3
+
+    def test_resumes_completed_ranges(self, tmp_path):
+        _save_progress(tmp_path, {
+            "completed_date_ranges": [["20120101", "20141231"]],
+            "last_updated": None,
+        })
+
+        fetch_calls = []
+        def mock_fetch(url):
+            fetch_calls.append(url)
+            return json.dumps(_enforcement_page(
+                skip=0, total=1,
+                records=[_enforcement_record("Z-X0-2015")],
+            )).encode()
+
+        stats = run_backfill_date_ranges(
+            cache_dir=tmp_path,
+            date_ranges=[("20120101", "20141231"), ("20150101", "20171231")],
+            _fetch_fn=mock_fetch,
+        )
+        assert stats["ranges_completed"] == 2
+        assert not any("20120101" in u for u in fetch_calls)
+
+    def test_uses_date_field_in_search(self, tmp_path):
+        urls = []
+        def mock_fetch(url):
+            urls.append(url)
+            return json.dumps(_enforcement_page(total=0, records=[])).encode()
+
+        run_backfill_date_ranges(
+            cache_dir=tmp_path,
+            date_ranges=[("20200101", "20201231")],
+            date_field="report_date",
+            _fetch_fn=mock_fetch,
+        )
+        assert any("report_date" in u for u in urls)
 
 
 # ---------------------------------------------------------------------------

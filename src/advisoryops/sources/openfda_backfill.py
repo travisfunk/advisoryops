@@ -401,6 +401,165 @@ def run_backfill(
     return stats
 
 
+# Default date ranges for full historical pull (each under 25K skip limit)
+RECALL_DATE_RANGES = [
+    ("19900101", "20021231"),   # ~268 records
+    ("20030101", "20051231"),   # chunk 1
+    ("20060101", "20081231"),   # chunk 2
+    ("20090101", "20101231"),   # chunk 3
+    ("20110101", "20131231"),   # chunk 4
+    ("20140101", "20151231"),   # chunk 5
+    ("20160101", "20171231"),   # chunk 6
+    ("20180101", "20191231"),   # chunk 7
+    ("20200101", "20211231"),   # chunk 8
+    ("20220101", "20231231"),   # chunk 9
+    ("20240101", "20261231"),   # chunk 10
+]
+
+
+def run_backfill_date_ranges(
+    *,
+    cache_dir: Optional[Path] = None,
+    date_ranges: Optional[List[Tuple[str, str]]] = None,
+    date_field: str = "event_date_initiated",
+    page_size: int = _PAGE_SIZE,
+    _fetch_fn: Optional[Callable[[str], bytes]] = None,
+) -> Dict[str, Any]:
+    """Backfill openFDA recalls using date-range queries to bypass the 25K skip limit.
+
+    Iterates through date windows, paginating within each. Records already
+    in cache are skipped automatically.
+
+    Args:
+        cache_dir: Cache directory.
+        date_ranges: List of (start_date, end_date) tuples in YYYYMMDD format.
+        date_field: API field to filter by date.
+        page_size: Results per page.
+        _fetch_fn: Injectable fetch function for testing.
+
+    Returns:
+        Stats dict.
+    """
+    if cache_dir is None:
+        cache_dir = _DEFAULT_CACHE_DIR
+    cache_dir.mkdir(parents=True, exist_ok=True)
+
+    if date_ranges is None:
+        date_ranges = RECALL_DATE_RANGES
+
+    rate_limiter = _get_rate_limiter()
+    progress = _load_progress(cache_dir)
+
+    completed_ranges = set()
+    for r in progress.get("completed_date_ranges") or []:
+        completed_ranges.add(tuple(r))
+
+    stats: Dict[str, Any] = {
+        "status": "running",
+        "started_at": datetime.now(timezone.utc).isoformat(),
+        "ranges_total": len(date_ranges),
+        "ranges_completed": len(completed_ranges),
+        "recalls_fetched": 0,
+        "recalls_new": 0,
+        "recalls_skipped": 0,
+        "cyber_relevant": 0,
+        "errors": [],
+    }
+
+    try:
+        for start_date, end_date in date_ranges:
+            range_key = (start_date, end_date)
+            if range_key in completed_ranges:
+                logger.info("Range %s–%s already completed, skipping.", start_date, end_date)
+                continue
+
+            search = f"{date_field}:[{start_date}+TO+{end_date}]"
+            skip = 0
+            consecutive_errors = 0
+            range_fetched = 0
+
+            logger.info("Starting range %s–%s", start_date, end_date)
+
+            while True:
+                if skip > 25000:
+                    logger.warning("Hit 25K skip in range %s–%s. Moving to next range.", start_date, end_date)
+                    break
+
+                try:
+                    data, status_code = _fetch_page(
+                        skip, page_size,
+                        search=search,
+                        rate_limiter=rate_limiter,
+                        _fetch_fn=_fetch_fn,
+                    )
+                except RuntimeError as exc:
+                    stats["errors"].append({"range": f"{start_date}-{end_date}", "skip": skip, "error": str(exc)})
+                    break
+
+                if status_code in (429, 500, 502, 503):
+                    consecutive_errors += 1
+                    if consecutive_errors >= 5:
+                        stats["errors"].append({"range": f"{start_date}-{end_date}", "error": f"{status_code} after 5 retries"})
+                        break
+                    time.sleep(min(30 * consecutive_errors, 120))
+                    continue
+
+                consecutive_errors = 0
+
+                results = data.get("results") or []
+                if not results:
+                    break
+
+                for recall in results:
+                    if not isinstance(recall, dict):
+                        continue
+                    cache_id = _recall_cache_id(recall)
+                    if not cache_id:
+                        continue
+                    cache_file = cache_dir / f"recall_{cache_id}.json"
+                    if cache_file.exists():
+                        stats["recalls_skipped"] += 1
+                    else:
+                        _save_recall_cache(recall, cache_dir)
+                        stats["recalls_new"] += 1
+                    if is_cyber_relevant(recall):
+                        stats["cyber_relevant"] += 1
+
+                range_fetched += len(results)
+                stats["recalls_fetched"] += len(results)
+                skip += page_size
+
+            completed_ranges.add(range_key)
+            stats["ranges_completed"] = len(completed_ranges)
+            progress["completed_date_ranges"] = [list(r) for r in sorted(completed_ranges)]
+            _save_progress(cache_dir, progress)
+
+            logger.info(
+                "Range %s–%s: %d records. Total: %d new, %d cached.",
+                start_date, end_date, range_fetched,
+                stats["recalls_new"], stats["recalls_skipped"],
+            )
+
+    except Exception as exc:
+        logger.error("Unexpected error in date-range backfill: %s", exc)
+        stats["errors"].append({"error": f"unhandled: {exc}"})
+        stats["status"] = "error"
+
+    progress["completed_date_ranges"] = [list(r) for r in sorted(completed_ranges)]
+    _save_progress(cache_dir, progress)
+    stats["finished_at"] = datetime.now(timezone.utc).isoformat()
+    if stats["status"] != "error":
+        stats["status"] = "completed" if len(completed_ranges) == len(date_ranges) else "paused"
+
+    logger.info(
+        "Date-range backfill %s: %d/%d ranges, %d new, %d cached, %d cyber.",
+        stats["status"], stats["ranges_completed"], stats["ranges_total"],
+        stats["recalls_new"], stats["recalls_skipped"], stats["cyber_relevant"],
+    )
+
+    return stats
+
+
 def generate_signals_from_cache(
     *,
     cache_dir: Optional[Path] = None,
