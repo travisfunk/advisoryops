@@ -14,6 +14,7 @@ from advisoryops.sources.cisa_icsma_backfill import (
     _merge_advisory,
     discover_csaf_files,
     generate_signals_from_cache,
+    incremental_update,
     parse_csaf_advisory,
     parse_icsma_csv,
     run_backfill,
@@ -442,3 +443,129 @@ class TestGenerateSignals:
         _save_progress(tmp_path, {"completed": True})
         signals = generate_signals_from_cache(cache_dir=tmp_path)
         assert len(signals) == 2  # Only the ICSMA files, not progress
+
+
+# ---------------------------------------------------------------------------
+# Incremental update
+# ---------------------------------------------------------------------------
+
+class TestIcsmaIncrementalUpdate:
+
+    def _make_fetch_fn(self, csv_text, tree_json=None, csaf_map=None):
+        """Create a mock fetch function."""
+        if tree_json is None:
+            tree_json = {"tree": []}
+        if csaf_map is None:
+            csaf_map = {}
+
+        def fetch(url):
+            if "CISA_ICS_ADV_Master.csv" in url:
+                return csv_text.encode("utf-8")
+            if "git/trees" in url:
+                return json.dumps(tree_json).encode("utf-8")
+            for advisory_id, csaf_data in csaf_map.items():
+                if advisory_id.lower() in url.lower():
+                    return json.dumps(csaf_data).encode("utf-8")
+            raise ValueError(f"Unexpected URL: {url}")
+        return fetch
+
+    def test_detects_new_advisories(self, tmp_path):
+        """Incremental should detect advisories not yet cached."""
+        cache_dir = tmp_path / "cache"
+        discover_root = tmp_path / "discover"
+
+        # Pre-cache one advisory
+        cache_dir.mkdir()
+        _save_advisory_cache("ICSMA-20-112-01", {
+            "advisory_id": "ICSMA-20-112-01",
+            "title": "Baxter ExactaMix",
+            "original_release_date": "04/21/2020",
+        }, cache_dir)
+
+        # CSV has 2 advisories (one cached, one new)
+        fetch_fn = self._make_fetch_fn(_SAMPLE_CSV, _SAMPLE_TREE)
+
+        stats = incremental_update(
+            cache_dir=cache_dir,
+            out_root=str(discover_root),
+            _fetch_fn=fetch_fn,
+        )
+
+        assert stats["status"] == "completed"
+        assert stats["new_advisories"] == 1  # Only ICSMA-22-076-01 is new
+        assert stats["total_signals_published"] == 2  # Both in discover
+
+    def test_no_new_advisories_still_publishes(self, tmp_path):
+        """Even with no new advisories, should publish all cached signals."""
+        cache_dir = tmp_path / "cache"
+        discover_root = tmp_path / "discover"
+
+        # Pre-cache both advisories
+        cache_dir.mkdir()
+        for adv_id, title in [
+            ("ICSMA-20-112-01", "Baxter ExactaMix"),
+            ("ICSMA-22-076-01", "Philips e-Alert"),
+        ]:
+            _save_advisory_cache(adv_id, {
+                "advisory_id": adv_id,
+                "title": title,
+                "original_release_date": "01/01/2020",
+            }, cache_dir)
+
+        fetch_fn = self._make_fetch_fn(_SAMPLE_CSV)
+
+        stats = incremental_update(
+            cache_dir=cache_dir,
+            out_root=str(discover_root),
+            _fetch_fn=fetch_fn,
+        )
+
+        assert stats["new_advisories"] == 0
+        assert stats["total_signals_published"] == 2
+
+        # Verify discover artifacts
+        items_path = discover_root / "cisa-icsma-historical" / "items.jsonl"
+        assert items_path.exists()
+
+    def test_new_signals_detected_across_runs(self, tmp_path):
+        """Second run should mark previously-published signals as not new."""
+        cache_dir = tmp_path / "cache"
+        discover_root = tmp_path / "discover"
+        cache_dir.mkdir()
+
+        # Only 1 advisory in CSV on first run
+        csv1 = _SAMPLE_CSV.split("\n")
+        csv1_text = "\n".join(csv1[:2])  # Header + first ICSMA row
+
+        fetch_fn1 = self._make_fetch_fn(csv1_text, _SAMPLE_TREE, {"icsma-20-112-01": _SAMPLE_CSAF})
+        stats1 = incremental_update(
+            cache_dir=cache_dir, out_root=str(discover_root), _fetch_fn=fetch_fn1,
+        )
+        assert stats1["new_signals_published"] == 1
+
+        # Second run with same data — no new signals
+        fetch_fn2 = self._make_fetch_fn(csv1_text)
+        stats2 = incremental_update(
+            cache_dir=cache_dir, out_root=str(discover_root), _fetch_fn=fetch_fn2,
+        )
+        assert stats2["new_signals_published"] == 0
+        assert stats2["total_signals_published"] == 1
+
+    def test_publishes_to_correct_discover_dir(self, tmp_path):
+        cache_dir = tmp_path / "cache"
+        discover_root = tmp_path / "discover"
+        cache_dir.mkdir()
+
+        fetch_fn = self._make_fetch_fn(_SAMPLE_CSV, _SAMPLE_TREE, {"icsma-20-112-01": _SAMPLE_CSAF})
+        incremental_update(
+            cache_dir=cache_dir,
+            out_root=str(discover_root),
+            source_id="cisa-icsma-historical",
+            _fetch_fn=fetch_fn,
+        )
+
+        out_dir = discover_root / "cisa-icsma-historical"
+        assert (out_dir / "items.jsonl").exists()
+        assert (out_dir / "feed.json").exists()
+        assert (out_dir / "state.json").exists()
+        assert (out_dir / "meta.json").exists()

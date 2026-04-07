@@ -11,15 +11,20 @@ Key features:
   - Rate-limited: 50 req/30s with API key, 5 req/30s without
   - 429 backoff: exponential backoff on rate-limit responses
   - Progress tracking: writes outputs/nvd_cache/_backfill_progress.json
+  - Incremental discovery: ``incremental_update()`` checks for new/modified
+    CVEs since last run and publishes to discover output for pipeline pickup
 
 Usage:
-    from advisoryops.sources.nvd_backfill import run_backfill
+    from advisoryops.sources.nvd_backfill import run_backfill, incremental_update
 
     # Test with 5,000 records
     stats = run_backfill(max_results=5000)
 
     # Full pull (all 240K+ CVEs)
     stats = run_backfill()
+
+    # Incremental: fetch new CVEs + publish to discover dir
+    stats = incremental_update()
 """
 from __future__ import annotations
 
@@ -512,3 +517,156 @@ def generate_signals_from_cache(
         })
 
     return signals
+
+
+def incremental_update(
+    *,
+    cache_dir: Optional[Path] = None,
+    out_root: str = "outputs/discover",
+    source_id: str = "nvd-historical",
+    days_back: int = 7,
+    max_results: Optional[int] = None,
+    page_size: int = _PAGE_SIZE,
+    signal_limit: Optional[int] = None,
+    _fetch_fn: Optional[Callable[[str], bytes]] = None,
+) -> Dict[str, Any]:
+    """Incremental update: fetch new/modified CVEs and publish to discover dir.
+
+    1. Queries NVD API with lastModStartDate for CVEs modified in the
+       last ``days_back`` days (default 7).
+    2. Caches any new CVEs found.
+    3. Publishes ALL cached signals to ``outputs/discover/<source_id>/``
+       so the pipeline's correlate stage picks them up.
+
+    Args:
+        cache_dir: Cache directory. Defaults to outputs/nvd_cache/
+        out_root: Root discover output directory.
+        source_id: Source ID for discover output.
+        days_back: How many days back to check for modifications.
+        max_results: Cap on how many new CVEs to fetch per run.
+        page_size: API page size.
+        signal_limit: Limit on how many cached signals to publish.
+        _fetch_fn: Injectable fetch function for testing.
+
+    Returns:
+        Stats dict with backfill + publish counts.
+    """
+    from .discover_sync import publish_to_discover
+
+    if cache_dir is None:
+        cache_dir = _DEFAULT_CACHE_DIR
+    cache_dir.mkdir(parents=True, exist_ok=True)
+
+    rate_limiter = _get_rate_limiter()
+
+    # Build date range for incremental query
+    now = datetime.now(timezone.utc)
+    start_date = now - __import__("datetime").timedelta(days=days_back)
+    date_fmt = "%Y-%m-%dT%H:%M:%S.000"
+
+    stats: Dict[str, Any] = {
+        "status": "running",
+        "started_at": now.isoformat(),
+        "incremental_range": f"{start_date.strftime(date_fmt)} to {now.strftime(date_fmt)}",
+        "new_cves_fetched": 0,
+        "new_cves_cached": 0,
+        "errors": [],
+    }
+
+    # Paginate through recent modifications
+    start_index = 0
+    total_results = None
+    consecutive_429s = 0
+
+    while True:
+        if max_results is not None and stats["new_cves_fetched"] >= max_results:
+            break
+        if total_results is not None and start_index >= total_results:
+            break
+
+        url = (
+            f"{_NVD_API_BASE}"
+            f"?resultsPerPage={page_size}"
+            f"&startIndex={start_index}"
+            f"&lastModStartDate={start_date.strftime(date_fmt)}"
+            f"&lastModEndDate={now.strftime(date_fmt)}"
+        )
+
+        try:
+            if _fetch_fn is not None:
+                raw = _fetch_fn(url)
+                data = json.loads(raw)
+                status_code = 200
+            else:
+                rate_limiter.wait()
+                headers = {"User-Agent": _USER_AGENT}
+                api_key = os.environ.get("NVD_API_KEY")
+                if api_key:
+                    headers["apiKey"] = api_key
+                req = urllib.request.Request(url, headers=headers)
+                try:
+                    with urllib.request.urlopen(req, timeout=_TIMEOUT) as resp:
+                        data = json.loads(resp.read().decode("utf-8"))
+                        status_code = 200
+                except urllib.error.HTTPError as exc:
+                    if exc.code == 429:
+                        data, status_code = {}, 429
+                    else:
+                        raise
+        except Exception as exc:
+            stats["errors"].append({"start_index": start_index, "error": str(exc)})
+            break
+
+        if status_code == 429:
+            consecutive_429s += 1
+            if consecutive_429s >= _429_MAX_RETRIES:
+                stats["errors"].append({"error": "429 rate limit exceeded"})
+                break
+            time.sleep(min(30 * consecutive_429s, 120))
+            continue
+
+        consecutive_429s = 0
+
+        if total_results is None:
+            total_results = data.get("totalResults", 0)
+
+        for vuln in data.get("vulnerabilities") or []:
+            if not isinstance(vuln, dict):
+                continue
+            cve_obj = vuln.get("cve") or {}
+            cve_id = cve_obj.get("id", "")
+            if not cve_id:
+                continue
+
+            stats["new_cves_fetched"] += 1
+            cache_file = cache_dir / f"{cve_id}.json"
+            if not cache_file.exists():
+                _save_cve_raw(vuln, cache_dir)
+                stats["new_cves_cached"] += 1
+
+        start_index += page_size
+
+    # Publish ALL cached signals to discover dir
+    signals = generate_signals_from_cache(
+        cache_dir=cache_dir, source_id=source_id, limit=signal_limit,
+    )
+    publish_stats = publish_to_discover(
+        signals, source_id=source_id, out_root=out_root,
+    )
+
+    stats["status"] = "completed"
+    stats["finished_at"] = datetime.now(timezone.utc).isoformat()
+    stats["total_signals_published"] = publish_stats["total_signals"]
+    stats["new_signals_published"] = publish_stats["new_signals"]
+
+    logger.info(
+        "NVD incremental update: %d new CVEs fetched, %d cached. "
+        "Published %d signals (%d new) to %s.",
+        stats["new_cves_fetched"],
+        stats["new_cves_cached"],
+        publish_stats["total_signals"],
+        publish_stats["new_signals"],
+        publish_stats["out_dir"],
+    )
+
+    return stats

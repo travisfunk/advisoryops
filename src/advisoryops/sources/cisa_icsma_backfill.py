@@ -16,11 +16,14 @@ Strategy:
   - CSV gives the complete list with basic metadata
   - CSAF JSON enriches each advisory with structured vulnerability details
   - Cache CSAF JSON locally for resumability
+  - ``incremental_update()`` re-checks CSV for new advisories and publishes
+    to discover output for automatic pipeline pickup
 
 Usage:
-    from advisoryops.sources.cisa_icsma_backfill import run_backfill
+    from advisoryops.sources.cisa_icsma_backfill import run_backfill, incremental_update
 
-    stats = run_backfill()  # Fetches all ~182 ICSMA advisories
+    stats = run_backfill()           # Initial full backfill
+    stats = incremental_update()     # Incremental: new advisories + publish
 """
 from __future__ import annotations
 
@@ -560,3 +563,127 @@ def generate_signals_from_cache(
         })
 
     return signals
+
+
+def incremental_update(
+    *,
+    cache_dir: Optional[Path] = None,
+    out_root: str = "outputs/discover",
+    source_id: str = "cisa-icsma-historical",
+    signal_limit: Optional[int] = None,
+    _fetch_fn: Optional[Callable[[str], bytes]] = None,
+) -> Dict[str, Any]:
+    """Incremental update: check for new ICSMA advisories and publish to discover.
+
+    1. Re-downloads the ICS Advisory Project CSV (single lightweight GET).
+    2. Compares advisory IDs against existing cache.
+    3. Fetches CSAF enrichment for any new advisories.
+    4. Publishes ALL cached signals to ``outputs/discover/<source_id>/``
+       so the pipeline's correlate stage picks them up automatically.
+
+    Args:
+        cache_dir: Cache directory.
+        out_root: Root discover output directory.
+        source_id: Source ID for discover output.
+        signal_limit: Limit on how many cached signals to publish.
+        _fetch_fn: Injectable fetch function for testing.
+
+    Returns:
+        Stats dict with counts.
+    """
+    from .discover_sync import publish_to_discover
+
+    if cache_dir is None:
+        cache_dir = _DEFAULT_CACHE_DIR
+    cache_dir.mkdir(parents=True, exist_ok=True)
+
+    stats: Dict[str, Any] = {
+        "status": "running",
+        "started_at": datetime.now(timezone.utc).isoformat(),
+        "csv_advisories": 0,
+        "new_advisories": 0,
+        "csaf_enriched": 0,
+        "errors": [],
+    }
+
+    # Stage 1: Fetch current CSV
+    try:
+        csv_bytes = _http_get(_CSV_URL, _fetch_fn=_fetch_fn)
+        csv_text = csv_bytes.decode("utf-8", errors="replace")
+    except Exception as exc:
+        logger.error("Failed to fetch CSV: %s", exc)
+        stats["errors"].append({"stage": "csv_fetch", "error": str(exc)})
+        stats["status"] = "error"
+        return stats
+
+    csv_advisories = parse_icsma_csv(csv_text)
+    stats["csv_advisories"] = len(csv_advisories)
+
+    # Find advisories not yet cached
+    new_advisories = [
+        adv for adv in csv_advisories
+        if _load_advisory_cache(adv["advisory_id"], cache_dir) is None
+    ]
+    stats["new_advisories"] = len(new_advisories)
+
+    if new_advisories:
+        logger.info(
+            "Found %d new ICSMA advisories to cache.", len(new_advisories)
+        )
+
+        # Discover CSAF files for enrichment
+        csaf_map: Dict[str, str] = {}
+        try:
+            tree_bytes = _http_get(_CSAF_TREE_URL, _fetch_fn=_fetch_fn)
+            tree_json = json.loads(tree_bytes.decode("utf-8"))
+            for f in discover_csaf_files(tree_json):
+                fname = f["path"].rsplit("/", 1)[-1].replace(".json", "")
+                csaf_map[fname.upper()] = f["url"]
+        except Exception as exc:
+            logger.warning("CSAF discovery failed: %s. Using CSV only.", exc)
+            stats["errors"].append({"stage": "csaf_discovery", "error": str(exc)})
+
+        rate_limiter = _RateLimiter(max_requests=10, window_seconds=10)
+
+        for adv in new_advisories:
+            advisory_id = adv["advisory_id"]
+            csaf_data = None
+            csaf_url = csaf_map.get(advisory_id)
+            if csaf_url:
+                try:
+                    rate_limiter.wait()
+                    csaf_bytes = _http_get(csaf_url, _fetch_fn=_fetch_fn)
+                    csaf_json = json.loads(csaf_bytes.decode("utf-8"))
+                    csaf_data = parse_csaf_advisory(csaf_json)
+                    stats["csaf_enriched"] += 1
+                except Exception as exc:
+                    logger.warning("CSAF fetch failed for %s: %s", advisory_id, exc)
+
+            merged = _merge_advisory(adv, csaf_data)
+            _save_advisory_cache(advisory_id, merged, cache_dir)
+    else:
+        logger.info("No new ICSMA advisories found.")
+
+    # Publish ALL cached signals to discover dir
+    signals = generate_signals_from_cache(
+        cache_dir=cache_dir, source_id=source_id, limit=signal_limit,
+    )
+    publish_stats = publish_to_discover(
+        signals, source_id=source_id, out_root=out_root,
+    )
+
+    stats["status"] = "completed"
+    stats["finished_at"] = datetime.now(timezone.utc).isoformat()
+    stats["total_signals_published"] = publish_stats["total_signals"]
+    stats["new_signals_published"] = publish_stats["new_signals"]
+
+    logger.info(
+        "ICSMA incremental update: %d new advisories. "
+        "Published %d signals (%d new) to %s.",
+        stats["new_advisories"],
+        publish_stats["total_signals"],
+        publish_stats["new_signals"],
+        publish_stats["out_dir"],
+    )
+
+    return stats

@@ -13,6 +13,7 @@ from advisoryops.sources.nvd_backfill import (
     _save_progress,
     _save_cve_raw,
     generate_signals_from_cache,
+    incremental_update,
     run_backfill,
 )
 
@@ -372,6 +373,118 @@ class TestGenerateSignalsFromCache:
         _save_progress(tmp_path, {"completed": True})
         signals = generate_signals_from_cache(cache_dir=tmp_path)
         assert len(signals) == 1  # Only the CVE, not the progress file
+
+
+# ---------------------------------------------------------------------------
+# Incremental update
+# ---------------------------------------------------------------------------
+
+class TestNvdIncrementalUpdate:
+
+    def test_fetches_recent_cves_and_publishes(self, tmp_path):
+        """Incremental update should query with lastModStartDate and publish signals."""
+        cache_dir = tmp_path / "cache"
+        discover_root = tmp_path / "discover"
+
+        # Pre-populate 2 cached CVEs
+        cache_dir.mkdir()
+        for i in range(2):
+            vuln = _nvd_vuln(f"CVE-2024-{i:04d}")
+            _save_cve_raw(vuln, cache_dir)
+
+        # Mock: return 1 new CVE from the "recent" query
+        page = _nvd_page(
+            start_index=0, total_results=1,
+            cves=[_nvd_vuln("CVE-2024-9999")],
+        )
+
+        def mock_fetch(url: str) -> bytes:
+            return json.dumps(page).encode()
+
+        stats = incremental_update(
+            cache_dir=cache_dir,
+            out_root=str(discover_root),
+            _fetch_fn=mock_fetch,
+        )
+
+        assert stats["status"] == "completed"
+        assert stats["new_cves_fetched"] == 1
+        assert stats["new_cves_cached"] == 1
+        # Should publish all 3 signals (2 old + 1 new)
+        assert stats["total_signals_published"] == 3
+
+        # Verify discover artifacts exist
+        items_path = discover_root / "nvd-historical" / "items.jsonl"
+        assert items_path.exists()
+        lines = items_path.read_text().strip().split("\n")
+        assert len(lines) == 3
+
+    def test_publishes_existing_cache_even_with_no_new_cves(self, tmp_path):
+        """Even if no new CVEs, should still publish cached signals."""
+        cache_dir = tmp_path / "cache"
+        discover_root = tmp_path / "discover"
+
+        cache_dir.mkdir()
+        vuln = _nvd_vuln("CVE-2024-0001")
+        _save_cve_raw(vuln, cache_dir)
+
+        page = _nvd_page(start_index=0, total_results=0, cves=[])
+
+        stats = incremental_update(
+            cache_dir=cache_dir,
+            out_root=str(discover_root),
+            _fetch_fn=lambda url: json.dumps(page).encode(),
+        )
+
+        assert stats["status"] == "completed"
+        assert stats["new_cves_cached"] == 0
+        assert stats["total_signals_published"] == 1
+
+    def test_uses_lastmod_date_in_url(self, tmp_path):
+        """Incremental should use lastModStartDate parameter."""
+        cache_dir = tmp_path / "cache"
+        cache_dir.mkdir()
+
+        fetched_urls = []
+        page = _nvd_page(start_index=0, total_results=0, cves=[])
+
+        def mock_fetch(url: str) -> bytes:
+            fetched_urls.append(url)
+            return json.dumps(page).encode()
+
+        incremental_update(
+            cache_dir=cache_dir,
+            out_root=str(tmp_path / "discover"),
+            _fetch_fn=mock_fetch,
+        )
+
+        assert len(fetched_urls) == 1
+        assert "lastModStartDate=" in fetched_urls[0]
+        assert "lastModEndDate=" in fetched_urls[0]
+
+    def test_new_items_detected_on_second_run(self, tmp_path):
+        """Second incremental run should detect previously published as not-new."""
+        cache_dir = tmp_path / "cache"
+        discover_root = tmp_path / "discover"
+        cache_dir.mkdir()
+
+        vuln = _nvd_vuln("CVE-2024-0001")
+        _save_cve_raw(vuln, cache_dir)
+
+        page = _nvd_page(start_index=0, total_results=0, cves=[])
+        fetch_fn = lambda url: json.dumps(page).encode()
+
+        # First run
+        stats1 = incremental_update(
+            cache_dir=cache_dir, out_root=str(discover_root), _fetch_fn=fetch_fn,
+        )
+        assert stats1["new_signals_published"] == 1
+
+        # Second run (same cache, no new CVEs)
+        stats2 = incremental_update(
+            cache_dir=cache_dir, out_root=str(discover_root), _fetch_fn=fetch_fn,
+        )
+        assert stats2["new_signals_published"] == 0
 
 
 # ---------------------------------------------------------------------------
