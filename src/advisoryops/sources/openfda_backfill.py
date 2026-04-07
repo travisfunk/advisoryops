@@ -181,14 +181,17 @@ def _fetch_page(
         "limit": str(limit),
         "skip": str(skip),
     }
-    if search:
-        params["search"] = search
 
     api_key = os.environ.get("OPENFDA_API_KEY", "")
     if api_key:
         params["api_key"] = api_key
 
-    url = f"{_API_BASE}?{urllib.parse.urlencode(params)}"
+    # Build URL with search parameter appended literally (not via urlencode)
+    # because openFDA requires unencoded +TO+, colons, and brackets in search queries.
+    qs = urllib.parse.urlencode(params)
+    if search:
+        qs += f"&search={search}"
+    url = f"{_API_BASE}?{qs}"
 
     if _fetch_fn is not None:
         raw = _fetch_fn(url)
@@ -529,7 +532,19 @@ def run_backfill_date_ranges(
                 stats["recalls_fetched"] += len(results)
                 skip += page_size
 
-            completed_ranges.add(range_key)
+            # Only mark range as completed if we actually fetched records
+            # or got an empty result (genuine zero records, no errors)
+            range_had_errors = consecutive_errors >= 5
+            if range_fetched > 0 or not range_had_errors:
+                completed_ranges.add(range_key)
+            else:
+                stats.setdefault("ranges_failed", 0)
+                stats["ranges_failed"] = stats.get("ranges_failed", 0) + 1
+                logger.error(
+                    "Range %s–%s FAILED: 0 records, %d errors.",
+                    start_date, end_date, consecutive_errors,
+                )
+
             stats["ranges_completed"] = len(completed_ranges)
             progress["completed_date_ranges"] = [list(r) for r in sorted(completed_ranges)]
             _save_progress(cache_dir, progress)
@@ -548,12 +563,21 @@ def run_backfill_date_ranges(
     progress["completed_date_ranges"] = [list(r) for r in sorted(completed_ranges)]
     _save_progress(cache_dir, progress)
     stats["finished_at"] = datetime.now(timezone.utc).isoformat()
+
+    # Determine final status with clear failure detection
+    ranges_failed = stats.get("ranges_failed", 0)
     if stats["status"] != "error":
-        stats["status"] = "completed" if len(completed_ranges) == len(date_ranges) else "paused"
+        if ranges_failed > 0 or (stats["recalls_fetched"] == 0 and stats["errors"]):
+            stats["status"] = "error"
+        elif len(completed_ranges) == len(date_ranges):
+            stats["status"] = "completed"
+        else:
+            stats["status"] = "paused"
 
     logger.info(
-        "Date-range backfill %s: %d/%d ranges, %d new, %d cached, %d cyber.",
+        "Date-range backfill %s: %d/%d ranges (%d failed), %d new, %d cached, %d cyber.",
         stats["status"], stats["ranges_completed"], stats["ranges_total"],
+        ranges_failed,
         stats["recalls_new"], stats["recalls_skipped"], stats["cyber_relevant"],
     )
 

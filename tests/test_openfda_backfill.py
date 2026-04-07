@@ -527,6 +527,32 @@ class TestDateRangeBackfill:
 
 
 # ---------------------------------------------------------------------------
+# Integration test (hits real API — skip in CI)
+# ---------------------------------------------------------------------------
+
+@pytest.mark.integration
+class TestDateRangeIntegration:
+    """Real API test. Run with: pytest -m integration tests/test_openfda_backfill.py"""
+
+    def test_real_api_date_range_returns_records(self, tmp_path):
+        """Verify a small date range actually returns records from the live API."""
+        stats = run_backfill_date_ranges(
+            cache_dir=tmp_path,
+            date_ranges=[("20240101", "20240107")],  # One week
+            date_field="event_date_initiated",
+        )
+        assert stats["recalls_fetched"] > 0, (
+            f"Expected records from openFDA but got 0. Status: {stats['status']}, "
+            f"Errors: {stats.get('errors', [])}"
+        )
+        assert stats["status"] == "completed"
+        assert stats.get("ranges_failed", 0) == 0
+
+        cached = list(tmp_path.glob("recall_*.json"))
+        assert len(cached) > 0
+
+
+# ---------------------------------------------------------------------------
 # Rate limiter
 # ---------------------------------------------------------------------------
 
