@@ -2166,6 +2166,32 @@
       "rate_limit_rps": 0.5
     },
     {
+      "source_id": "philips-psirt",
+      "name": "Philips Product Security Advisories (Historical Backfill)",
+      "enabled": true,
+      "scope": "advisory",
+      "page_type": "json_feed",
+      "entry_url": "https://www.philips.com/a-w/security/security-advisories.html",
+      "filters": {},
+      "notes": "Full Philips PSIRT archive via HTML scraping of yearly pages (2017-present). ~200 advisories. All healthcare-relevant.",
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 2.0
+    },
+    {
+      "source_id": "siemens-productcert-psirt",
+      "name": "Siemens ProductCERT Advisories (CSAF Feed)",
+      "enabled": true,
+      "scope": "advisory",
+      "page_type": "json_feed",
+      "entry_url": "https://cert-portal.siemens.com/productcert/csaf/ssa-feed-tlp-white.json",
+      "filters": {},
+      "notes": "Siemens ProductCERT CSAF v2.0 advisories. Covers Siemens industrial products (SIMATIC, SCALANCE, etc.) widely deployed in healthcare infrastructure. Siemens Healthineers operates separately (~4 public advisories).",
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 5.0
+    },
+    {
       "source_id": "fda-safety-comms-historical",
       "name": "FDA Device Enforcement / Safety Communications (Historical Backfill)",
       "enabled": true,

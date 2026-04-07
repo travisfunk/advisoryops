@@ -28,6 +28,8 @@
       "weight": 0.85,
       "description": "Secondary authoritative sources: vendor PSIRTs, national CERTs, standards bodies, and curated vulnerability databases",
       "sources": [
+        "philips-psirt",
+        "siemens-productcert-psirt",
         "abb-psirt",
         "abb-alerts-html",
         "se-security-notifications",

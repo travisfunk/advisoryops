@@ -22,12 +22,14 @@ class TestRegistry:
 
     def test_has_registered_modules(self):
         modules = get_registered_modules()
-        assert len(modules) >= 4
+        assert len(modules) >= 6
         source_ids = [m[0] for m in modules]
         assert "nvd-historical" in source_ids
         assert "cisa-icsma-historical" in source_ids
         assert "openfda-recalls-historical" in source_ids
         assert "fda-safety-comms-historical" in source_ids
+        assert "philips-psirt" in source_ids
+        assert "siemens-productcert-psirt" in source_ids
 
     def test_each_entry_has_three_fields(self):
         for source_id, import_path, description in get_registered_modules():
@@ -76,43 +78,51 @@ class TestRunAllIncremental:
             raise ValueError(f"Unexpected URL: {url}")
         return fetch
 
+    def _empty_html_page(self):
+        return b"<html><body>No advisories</body></html>"
+
+    def _empty_csaf_feed(self):
+        return json.dumps([]).encode()
+
+    def _all_fetch_fns(self):
+        """Return mock fetch functions for all registered modules."""
+        return {
+            "nvd-historical": lambda url: json.dumps(self._empty_nvd_page()).encode(),
+            "cisa-icsma-historical": self._make_icsma_fetch(),
+            "openfda-recalls-historical": lambda url: json.dumps(self._empty_fda_page()).encode(),
+            "fda-safety-comms-historical": lambda url: json.dumps(self._empty_fda_page()).encode(),
+            "philips-psirt": lambda url: self._empty_html_page(),
+            "siemens-productcert-psirt": lambda url: self._empty_csaf_feed(),
+        }
+
     def test_calls_all_modules(self, tmp_path):
         """With mock fetch functions, all modules should be called and succeed."""
         discover_root = str(tmp_path / "discover")
 
         results = run_all_incremental(
             out_root=discover_root,
-            _fetch_fns={
-                "nvd-historical": lambda url: json.dumps(self._empty_nvd_page()).encode(),
-                "cisa-icsma-historical": self._make_icsma_fetch(),
-                "openfda-recalls-historical": lambda url: json.dumps(self._empty_fda_page()).encode(),
-                "fda-safety-comms-historical": lambda url: json.dumps(self._empty_fda_page()).encode(),
-            },
+            _fetch_fns=self._all_fetch_fns(),
         )
 
-        assert results["modules_run"] == 4
+        num_modules = len(get_registered_modules())
+        assert results["modules_run"] == num_modules
         assert results["modules_failed"] == 0
         assert results["modules_skipped"] == 0
 
-        assert results["details"]["nvd-historical"]["status"] == "completed"
-        assert results["details"]["cisa-icsma-historical"]["status"] == "completed"
-        assert results["details"]["openfda-recalls-historical"]["status"] == "completed"
-        assert results["details"]["fda-safety-comms-historical"]["status"] == "completed"
+        for source_id, _, _ in get_registered_modules():
+            assert results["details"][source_id]["status"] == "completed"
 
     def test_skip_sources(self, tmp_path):
         """Skipped sources should not be called."""
         results = run_all_incremental(
             out_root=str(tmp_path / "discover"),
             skip_sources=["nvd-historical"],
-            _fetch_fns={
-                "cisa-icsma-historical": self._make_icsma_fetch(),
-                "openfda-recalls-historical": lambda url: json.dumps(self._empty_fda_page()).encode(),
-                "fda-safety-comms-historical": lambda url: json.dumps(self._empty_fda_page()).encode(),
-            },
+            _fetch_fns=self._all_fetch_fns(),
         )
 
+        num_modules = len(get_registered_modules())
         assert results["modules_skipped"] == 1
-        assert results["modules_run"] == 3
+        assert results["modules_run"] == num_modules - 1
         assert results["details"]["nvd-historical"]["status"] == "skipped"
 
     def test_module_failure_does_not_abort(self, tmp_path):
@@ -127,22 +137,20 @@ class TestRunAllIncremental:
             nvd_mod.incremental_update = exploding_update
             results = run_all_incremental(
                 out_root=str(tmp_path / "discover"),
-                _fetch_fns={
-                    "cisa-icsma-historical": self._make_icsma_fetch(),
-                    "openfda-recalls-historical": lambda url: json.dumps(self._empty_fda_page()).encode(),
-                    "fda-safety-comms-historical": lambda url: json.dumps(self._empty_fda_page()).encode(),
-                },
+                _fetch_fns=self._all_fetch_fns(),
             )
         finally:
             nvd_mod.incremental_update = original_fn
 
+        num_modules = len(get_registered_modules())
         assert results["modules_failed"] == 1
-        assert results["modules_run"] == 3
+        assert results["modules_run"] == num_modules - 1
         assert results["details"]["nvd-historical"]["status"] == "error"
         assert "NVD is down" in results["details"]["nvd-historical"]["error"]
-        assert results["details"]["cisa-icsma-historical"]["status"] == "completed"
-        assert results["details"]["openfda-recalls-historical"]["status"] == "completed"
-        assert results["details"]["fda-safety-comms-historical"]["status"] == "completed"
+        # All other modules should have completed
+        for source_id, _, _ in get_registered_modules():
+            if source_id != "nvd-historical":
+                assert results["details"][source_id]["status"] == "completed"
 
     def test_creates_discover_output_dirs(self, tmp_path):
         """Modules should create their discover output directories."""
@@ -150,18 +158,12 @@ class TestRunAllIncremental:
 
         run_all_incremental(
             out_root=discover_root,
-            _fetch_fns={
-                "nvd-historical": lambda url: json.dumps(self._empty_nvd_page()).encode(),
-                "cisa-icsma-historical": self._make_icsma_fetch(),
-                "openfda-recalls-historical": lambda url: json.dumps(self._empty_fda_page()).encode(),
-                "fda-safety-comms-historical": lambda url: json.dumps(self._empty_fda_page()).encode(),
-            },
+            _fetch_fns=self._all_fetch_fns(),
         )
 
-        assert (tmp_path / "discover" / "nvd-historical" / "items.jsonl").exists()
-        assert (tmp_path / "discover" / "cisa-icsma-historical" / "items.jsonl").exists()
-        assert (tmp_path / "discover" / "openfda-recalls-historical" / "items.jsonl").exists()
-        assert (tmp_path / "discover" / "fda-safety-comms-historical" / "items.jsonl").exists()
+        for source_id, _, _ in get_registered_modules():
+            assert (tmp_path / "discover" / source_id / "items.jsonl").exists(), \
+                f"Missing items.jsonl for {source_id}"
 
 
 # ---------------------------------------------------------------------------

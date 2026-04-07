@@ -49,6 +49,16 @@ _REGISTRY: List[Tuple[str, str, str]] = [
         "advisoryops.sources.fda_safety_comms_backfill:incremental_update",
         "FDA device enforcement / safety communications",
     ),
+    (
+        "philips-psirt",
+        "advisoryops.sources.philips_psirt_backfill:incremental_update",
+        "Philips Product Security advisories",
+    ),
+    (
+        "siemens-productcert-psirt",
+        "advisoryops.sources.siemens_productcert_backfill:incremental_update",
+        "Siemens ProductCERT CSAF advisories",
+    ),
 ]
 
 
