@@ -2166,6 +2166,36 @@
       "rate_limit_rps": 0.5
     },
     {
+      "source_id": "cwe-catalog",
+      "name": "MITRE CWE Catalog (Enrichment)",
+      "enabled": true,
+      "scope": "dataset",
+      "page_type": "json_feed",
+      "entry_url": "https://cwe.mitre.org/data/downloads.html",
+      "filters": {},
+      "notes": "CWE ID to name/description lookup. Built-in catalog of ~60 common medical device CWEs. Full MITRE XML parse available for expansion."
+    },
+    {
+      "source_id": "attack-ics",
+      "name": "MITRE ATT&CK for ICS (Enrichment)",
+      "enabled": true,
+      "scope": "dataset",
+      "page_type": "json_feed",
+      "entry_url": "https://raw.githubusercontent.com/mitre/cti/master/ics-attack/ics-attack.json",
+      "filters": {},
+      "notes": "STIX 2.0 JSON bundle with ICS attack techniques and tactics. Single-file download from GitHub."
+    },
+    {
+      "source_id": "cisa-vulnrichment",
+      "name": "CISA Vulnrichment (Enrichment)",
+      "enabled": true,
+      "scope": "dataset",
+      "page_type": "json_feed",
+      "entry_url": "https://github.com/cisagov/vulnrichment",
+      "filters": {},
+      "notes": "Per-CVE enrichment from CISA: ADP CVSS scores, SSVC decision points, CWE mappings. 80K+ CVE records on GitHub. On-demand per-CVE fetch."
+    },
+    {
       "source_id": "mhra-uk-alerts",
       "name": "MHRA UK Medical Device Alerts (Historical Backfill)",
       "enabled": true,

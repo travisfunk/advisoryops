@@ -1308,6 +1308,17 @@ def build_community_feed(
     nvd_count = nvd_enrich_issues(scored_rows, _fetch_fn=_nvd_fetch_fn)
     print(f"\n  NVD enrichment: enriched {nvd_count}/{len(scored_rows)} issues with CVSS/CWE/CPE data")
 
+    # --- Cross-reference enrichment (EPSS, CWE names) ---
+    try:
+        from .enrichment.cross_reference import apply_enrichments
+        xref_counts = apply_enrichments(scored_rows, epss=True, cwe=True, vulnrichment=False)
+        xref_parts = [f"{k}={v}" for k, v in xref_counts.items() if v]
+        if xref_parts:
+            print(f"  Cross-reference enrichment: {', '.join(xref_parts)}")
+    except Exception as exc:
+        import logging as _logging
+        _logging.getLogger(__name__).warning("Cross-reference enrichment failed: %s", exc)
+
     # Backfill severity from CVSS if the scorer left it empty
     for issue in scored_rows:
         if not issue.get("severity") and issue.get("cvss_severity"):
