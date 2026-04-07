@@ -44,6 +44,11 @@ _REGISTRY: List[Tuple[str, str, str]] = [
         "advisoryops.sources.openfda_backfill:incremental_update",
         "openFDA device recalls",
     ),
+    (
+        "fda-safety-comms-historical",
+        "advisoryops.sources.fda_safety_comms_backfill:incremental_update",
+        "FDA device enforcement / safety communications",
+    ),
 ]
 
 

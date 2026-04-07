@@ -14,6 +14,7 @@
         "cisa-kev-json",
         "cisa-kev-csv",
         "fda-medwatch",
+        "fda-safety-comms-historical",
         "openfda-device-recalls",
         "openfda-recalls-historical",
         "openfda-device-events",

@@ -2166,6 +2166,19 @@
       "rate_limit_rps": 0.5
     },
     {
+      "source_id": "fda-safety-comms-historical",
+      "name": "FDA Device Enforcement / Safety Communications (Historical Backfill)",
+      "enabled": true,
+      "scope": "advisory",
+      "page_type": "json_feed",
+      "entry_url": "https://api.fda.gov/device/enforcement.json",
+      "filters": {},
+      "notes": "Full openFDA device enforcement archive via paginated API. 38K+ records (formal actions behind FDA safety communications). Filtered for cybersecurity relevance. Use fda_safety_comms_backfill.py to populate cache.",
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 4.0
+    },
+    {
       "source_id": "openfda-recalls-historical",
       "name": "openFDA Device Recalls (Historical Backfill)",
       "enabled": true,
