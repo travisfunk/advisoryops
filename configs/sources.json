@@ -2166,6 +2166,19 @@
       "rate_limit_rps": 0.5
     },
     {
+      "source_id": "openfda-recalls-historical",
+      "name": "openFDA Device Recalls (Historical Backfill)",
+      "enabled": true,
+      "scope": "advisory",
+      "page_type": "json_feed",
+      "entry_url": "https://api.fda.gov/device/recall.json",
+      "filters": {},
+      "notes": "Full openFDA device recall archive via paginated API. 60K+ recalls, filtered for cybersecurity relevance. Use openfda_backfill.py to populate cache.",
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 4.0
+    },
+    {
       "source_id": "cisa-icsma-historical",
       "name": "CISA ICS Medical Advisories (Historical Backfill)",
       "enabled": true,

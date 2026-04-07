@@ -15,6 +15,7 @@
         "cisa-kev-csv",
         "fda-medwatch",
         "openfda-device-recalls",
+        "openfda-recalls-historical",
         "openfda-device-events",
         "certcc-vulnotes",
         "health-canada-recalls",

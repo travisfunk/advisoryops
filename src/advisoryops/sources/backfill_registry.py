@@ -39,6 +39,11 @@ _REGISTRY: List[Tuple[str, str, str]] = [
         "advisoryops.sources.cisa_icsma_backfill:incremental_update",
         "CISA ICS Medical Advisories",
     ),
+    (
+        "openfda-recalls-historical",
+        "advisoryops.sources.openfda_backfill:incremental_update",
+        "openFDA device recalls",
+    ),
 ]
 
 
