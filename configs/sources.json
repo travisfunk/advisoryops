@@ -2164,6 +2164,20 @@
       "timeout_s": 30,
       "retries": 2,
       "rate_limit_rps": 0.5
+    },
+    {
+      "source_id": "nvd-historical",
+      "name": "NVD CVE Database (Historical Backfill)",
+      "enabled": true,
+      "scope": "dataset",
+      "page_type": "json_feed",
+      "entry_url": "https://services.nvd.nist.gov/rest/json/cves/2.0",
+      "filters": {},
+      "api_key_env": "NVD_API_KEY",
+      "notes": "Full NVD backfill via paginated API. Use nvd_backfill.py to populate cache, then discover reads from cache. 240K+ CVEs.",
+      "timeout_s": 60,
+      "retries": 3,
+      "rate_limit_rps": 1.5
     }
   ]
 }

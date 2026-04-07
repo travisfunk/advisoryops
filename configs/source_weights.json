@@ -40,6 +40,7 @@
         "zdi-published",
         "zdi-upcoming",
         "nvd-cve-api",
+        "nvd-historical",
         "cis-advisories",
         "osv-dev-api",
         "circl-misp"
