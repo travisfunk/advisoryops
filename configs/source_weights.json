@@ -20,6 +20,8 @@
         "openfda-device-events",
         "certcc-vulnotes",
         "health-canada-recalls",
+        "health-canada-recalls-historical",
+        "mhra-uk-alerts",
         "bsi-news",
         "nhs-digital-cyber"
       ]

@@ -2166,6 +2166,32 @@
       "rate_limit_rps": 0.5
     },
     {
+      "source_id": "mhra-uk-alerts",
+      "name": "MHRA UK Medical Device Alerts (Historical Backfill)",
+      "enabled": true,
+      "scope": "advisory",
+      "page_type": "json_feed",
+      "entry_url": "https://www.gov.uk/api/search.json?filter_document_type=medical_safety_alert",
+      "filters": {},
+      "notes": "Full MHRA medical safety alert archive via GOV.UK search API. 1,381 alerts with JSON pagination. All healthcare-relevant.",
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 4.0
+    },
+    {
+      "source_id": "health-canada-recalls-historical",
+      "name": "Health Canada Medical Device Recalls (Historical Backfill)",
+      "enabled": true,
+      "scope": "advisory",
+      "page_type": "json_feed",
+      "entry_url": "https://healthycanadians.gc.ca/recall-alert-rappel-avis/api/recent/en",
+      "filters": {},
+      "notes": "Health Canada recalls JSON API filtered for health products (cat=3). ~6,030 records. Detail pages at /api/{recallId}/en.",
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 3.0
+    },
+    {
       "source_id": "philips-psirt",
       "name": "Philips Product Security Advisories (Historical Backfill)",
       "enabled": true,

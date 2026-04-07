@@ -50,6 +50,16 @@ _REGISTRY: List[Tuple[str, str, str]] = [
         "FDA device enforcement / safety communications",
     ),
     (
+        "mhra-uk-alerts",
+        "advisoryops.sources.mhra_uk_backfill:incremental_update",
+        "MHRA UK medical device alerts",
+    ),
+    (
+        "health-canada-recalls-historical",
+        "advisoryops.sources.health_canada_backfill:incremental_update",
+        "Health Canada medical device recalls",
+    ),
+    (
         "philips-psirt",
         "advisoryops.sources.philips_psirt_backfill:incremental_update",
         "Philips Product Security advisories",

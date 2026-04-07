@@ -84,6 +84,12 @@ class TestRunAllIncremental:
     def _empty_csaf_feed(self):
         return json.dumps([]).encode()
 
+    def _empty_govuk_page(self):
+        return json.dumps({"results": [], "total": 0}).encode()
+
+    def _empty_hc_recent(self):
+        return json.dumps({"results": {"HEALTH": []}}).encode()
+
     def _all_fetch_fns(self):
         """Return mock fetch functions for all registered modules."""
         return {
@@ -91,6 +97,8 @@ class TestRunAllIncremental:
             "cisa-icsma-historical": self._make_icsma_fetch(),
             "openfda-recalls-historical": lambda url: json.dumps(self._empty_fda_page()).encode(),
             "fda-safety-comms-historical": lambda url: json.dumps(self._empty_fda_page()).encode(),
+            "mhra-uk-alerts": lambda url: self._empty_govuk_page(),
+            "health-canada-recalls-historical": lambda url: self._empty_hc_recent(),
             "philips-psirt": lambda url: self._empty_html_page(),
             "siemens-productcert-psirt": lambda url: self._empty_csaf_feed(),
         }
