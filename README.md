@@ -86,7 +86,21 @@ advisoryops evaluate --fixtures tests/fixtures/golden --out outputs/eval
 ---
 
 ## Pipeline architecture
-
+```mermaid
+flowchart TD
+    A[57 Public Sources<br/>CISA · FDA · NVD · Vendor PSIRTs · Threat Intel] --> B[Discover<br/>Fetch & normalize feeds]
+    B --> C[Correlate<br/>Dedupe by CVE / signal hash]
+    C --> D[NVD Enrich<br/>CVSS · CWE · CPE · KEV]
+    D --> E[Score<br/>Healthcare-aware priority P0-P3]
+    E --> F[Healthcare Filter<br/>Tag medical device relevance]
+    F --> G[Recommend<br/>Remediation steps from playbook]
+    G --> H[Public Outputs<br/>JSON · CSV · XML · Excel · Dashboard]
+    
+    style A fill:#1e3a5f,stroke:#3b82f6,color:#fff
+    style D fill:#1c1207,stroke:#92400e,color:#fcd34d
+    style F fill:#0d3d3d,stroke:#5eead4,color:#5eead4
+    style H fill:#0a1629,stroke:#3b82f6,color:#fff
+```
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │                        DATA SOURCES (57 enabled)                │
