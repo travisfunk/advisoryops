@@ -202,8 +202,8 @@ def _fetch_page(
             data = json.loads(resp.read().decode("utf-8"))
             return data, 200
     except urllib.error.HTTPError as exc:
-        if exc.code == 429:
-            return {}, 429
+        if exc.code in (429, 500, 502, 503):
+            return {}, exc.code
         if exc.code == 404:
             # openFDA returns 404 when skip exceeds total
             return {"results": []}, 404
@@ -301,14 +301,20 @@ def run_backfill(
             stats["errors"].append({"skip": skip, "error": str(exc)})
             break
 
-        if status_code == 429:
+        if status_code in (429, 500, 502, 503):
             consecutive_429s += 1
             if consecutive_429s >= max_429_retries:
-                logger.error("Too many 429s. Stopping. Progress is saved.")
-                stats["errors"].append({"skip": skip, "error": "429 rate limit"})
+                logger.error(
+                    "Too many retryable errors (%d). Stopping. Progress is saved.",
+                    status_code,
+                )
+                stats["errors"].append({"skip": skip, "error": f"{status_code} after {max_429_retries} retries"})
                 break
             backoff = min(30 * consecutive_429s, 120)
-            logger.warning("429 rate limited. Backing off %ds.", backoff)
+            logger.warning(
+                "HTTP %d at skip=%d (attempt %d/%d). Backing off %ds.",
+                status_code, skip, consecutive_429s, max_429_retries, backoff,
+            )
             time.sleep(backoff)
             continue
 
@@ -542,7 +548,7 @@ def incremental_update(
             stats["errors"].append({"skip": skip, "error": str(exc)})
             break
 
-        if status_code == 429:
+        if status_code in (429, 500, 502, 503):
             time.sleep(30)
             continue
 
