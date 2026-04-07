@@ -21,6 +21,7 @@ Usage:
 """
 from __future__ import annotations
 
+import http.client
 import json
 import logging
 import re
@@ -148,15 +149,24 @@ def _fetch_page(
             data = json.loads(resp.read().decode("utf-8"))
             return data, 200
     except urllib.error.HTTPError as exc:
-        if exc.code == 429:
-            return {}, 429
+        if exc.code in (429, 500, 502, 503):
+            return {}, exc.code
         raise RuntimeError(
             f"GOV.UK API error {exc.code} at start={start}: {exc}"
         ) from exc
-    except (urllib.error.URLError, json.JSONDecodeError) as exc:
-        raise RuntimeError(
-            f"GOV.UK API request failed at start={start}: {exc}"
-        ) from exc
+    except (
+        http.client.IncompleteRead,
+        http.client.RemoteDisconnected,
+        ConnectionResetError,
+        ConnectionError,
+        TimeoutError,
+        urllib.error.URLError,
+    ) as exc:
+        logger.debug("Transient error at start=%d: %s", start, exc)
+        return {}, 503
+    except json.JSONDecodeError as exc:
+        logger.debug("JSON decode error at start=%d: %s", start, exc)
+        return {}, 503
 
 
 def run_backfill(

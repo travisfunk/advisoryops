@@ -25,10 +25,12 @@ Usage:
 """
 from __future__ import annotations
 
+import http.client
 import json
 import logging
 import re
 import time
+import urllib.error
 import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
@@ -71,8 +73,22 @@ def _http_get(
         return _fetch_fn(url)
     headers = {"User-Agent": _USER_AGENT}
     req = urllib.request.Request(url, headers=headers)
-    with urllib.request.urlopen(req, timeout=timeout) as resp:
-        return resp.read()
+    last_exc: Optional[Exception] = None
+    for attempt in range(1, 4):
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as resp:
+                return resp.read()
+        except (
+            http.client.IncompleteRead,
+            http.client.RemoteDisconnected,
+            ConnectionResetError,
+            ConnectionError,
+            TimeoutError,
+        ) as exc:
+            last_exc = exc
+            if attempt < 3:
+                time.sleep(5 * attempt)
+    raise last_exc  # type: ignore[misc]
 
 
 def _load_progress(cache_dir: Path) -> Dict[str, Any]:

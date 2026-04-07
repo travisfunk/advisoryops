@@ -23,6 +23,7 @@ Usage:
 """
 from __future__ import annotations
 
+import http.client
 import json
 import logging
 import os
@@ -190,10 +191,21 @@ def _fetch_page(
         raise RuntimeError(
             f"openFDA enforcement API error {exc.code} at skip={skip}: {exc}"
         ) from exc
-    except (urllib.error.URLError, json.JSONDecodeError) as exc:
-        raise RuntimeError(
-            f"openFDA enforcement API request failed at skip={skip}: {exc}"
-        ) from exc
+    except (
+        http.client.IncompleteRead,
+        http.client.RemoteDisconnected,
+        ConnectionResetError,
+        ConnectionError,
+        TimeoutError,
+        urllib.error.URLError,
+    ) as exc:
+        # Transient network errors — treat as 503 for retry
+        logger.debug("Transient error at skip=%d: %s", skip, exc)
+        return {}, 503
+    except json.JSONDecodeError as exc:
+        # Partial/corrupt response — treat as retryable
+        logger.debug("JSON decode error at skip=%d: %s", skip, exc)
+        return {}, 503
 
 
 def run_backfill(
@@ -251,99 +263,106 @@ def run_backfill(
         skip, max_results or "all",
     )
 
-    while True:
-        if max_results is not None and stats["records_fetched"] >= max_results:
-            break
-
-        if total_results is not None and skip >= total_results:
-            progress["completed"] = True
-            break
-
-        # openFDA skip cap
-        if skip > 25000:
-            logger.info("Reached openFDA skip limit (25000). Marking completed.")
-            progress["completed"] = True
-            break
-
-        try:
-            data, status_code = _fetch_page(
-                skip, page_size,
-                rate_limiter=rate_limiter,
-                _fetch_fn=_fetch_fn,
-            )
-        except RuntimeError as exc:
-            logger.error("Page fetch error at skip=%d: %s", skip, exc)
-            stats["errors"].append({"skip": skip, "error": str(exc)})
-            break
-
-        if status_code in (429, 500, 502, 503):
-            consecutive_429s += 1
-            if consecutive_429s >= max_429_retries:
-                stats["errors"].append({"skip": skip, "error": f"{status_code} after {max_429_retries} retries"})
+    try:
+        while True:
+            if max_results is not None and stats["records_fetched"] >= max_results:
                 break
-            backoff = min(30 * consecutive_429s, 120)
-            logger.warning(
-                "HTTP %d at skip=%d (attempt %d/%d). Backing off %ds.",
-                status_code, skip, consecutive_429s, max_429_retries, backoff,
+
+            if total_results is not None and skip >= total_results:
+                progress["completed"] = True
+                break
+
+            # openFDA skip cap
+            if skip > 25000:
+                logger.info("Reached openFDA skip limit (25000). Marking completed.")
+                progress["completed"] = True
+                break
+
+            try:
+                data, status_code = _fetch_page(
+                    skip, page_size,
+                    rate_limiter=rate_limiter,
+                    _fetch_fn=_fetch_fn,
+                )
+            except RuntimeError as exc:
+                logger.error("Page fetch error at skip=%d: %s", skip, exc)
+                stats["errors"].append({"skip": skip, "error": str(exc)})
+                break
+
+            if status_code in (429, 500, 502, 503):
+                consecutive_429s += 1
+                if consecutive_429s >= max_429_retries:
+                    stats["errors"].append({"skip": skip, "error": f"{status_code} after {max_429_retries} retries"})
+                    break
+                backoff = min(30 * consecutive_429s, 120)
+                logger.warning(
+                    "HTTP %d at skip=%d (attempt %d/%d). Backing off %ds.",
+                    status_code, skip, consecutive_429s, max_429_retries, backoff,
+                )
+                time.sleep(backoff)
+                continue
+
+            consecutive_429s = 0
+
+            if total_results is None:
+                meta = data.get("meta") or {}
+                total_obj = meta.get("results") or {}
+                total_results = total_obj.get("total", 0)
+                stats["total_results"] = total_results
+                progress["total_results"] = total_results
+                logger.info("openFDA reports %d total enforcement records.", total_results)
+
+            results = data.get("results") or []
+            if not results:
+                progress["completed"] = True
+                break
+
+            page_new = 0
+            page_skipped = 0
+            page_cyber = 0
+            for record in results:
+                if not isinstance(record, dict):
+                    continue
+                cache_id = _record_cache_id(record)
+                if not cache_id:
+                    continue
+                cache_file = cache_dir / f"enf_{cache_id}.json"
+                if cache_file.exists():
+                    page_skipped += 1
+                else:
+                    _save_record_cache(record, cache_dir)
+                    page_new += 1
+                if is_cyber_relevant(record):
+                    page_cyber += 1
+
+            stats["records_new"] += page_new
+            stats["records_skipped"] += page_skipped
+            stats["cyber_relevant"] += page_cyber
+            stats["records_fetched"] += len(results)
+            stats["pages_fetched"] += 1
+
+            skip += page_size
+            progress["last_skip"] = skip
+            progress["records_fetched"] = stats["records_fetched"]
+            progress["pages_fetched"] = stats["pages_fetched"]
+            _save_progress(cache_dir, progress)
+
+            logger.info(
+                "Page %d: %d records (%d new, %d cached, %d cyber). Progress: %d/%s",
+                stats["pages_fetched"], len(results),
+                page_new, page_skipped, page_cyber,
+                stats["records_fetched"], total_results or "?",
             )
-            time.sleep(backoff)
-            continue
 
-        consecutive_429s = 0
-
-        if total_results is None:
-            meta = data.get("meta") or {}
-            total_obj = meta.get("results") or {}
-            total_results = total_obj.get("total", 0)
-            stats["total_results"] = total_results
-            progress["total_results"] = total_results
-            logger.info("openFDA reports %d total enforcement records.", total_results)
-
-        results = data.get("results") or []
-        if not results:
-            progress["completed"] = True
-            break
-
-        page_new = 0
-        page_skipped = 0
-        page_cyber = 0
-        for record in results:
-            if not isinstance(record, dict):
-                continue
-            cache_id = _record_cache_id(record)
-            if not cache_id:
-                continue
-            cache_file = cache_dir / f"enf_{cache_id}.json"
-            if cache_file.exists():
-                page_skipped += 1
-            else:
-                _save_record_cache(record, cache_dir)
-                page_new += 1
-            if is_cyber_relevant(record):
-                page_cyber += 1
-
-        stats["records_new"] += page_new
-        stats["records_skipped"] += page_skipped
-        stats["cyber_relevant"] += page_cyber
-        stats["records_fetched"] += len(results)
-        stats["pages_fetched"] += 1
-
-        skip += page_size
-        progress["last_skip"] = skip
-        progress["records_fetched"] = stats["records_fetched"]
-        progress["pages_fetched"] = stats["pages_fetched"]
-        _save_progress(cache_dir, progress)
-
-        logger.info(
-            "Page %d: %d records (%d new, %d cached, %d cyber). Progress: %d/%s",
-            stats["pages_fetched"], len(results),
-            page_new, page_skipped, page_cyber,
-            stats["records_fetched"], total_results or "?",
-        )
+    except Exception as exc:
+        logger.error("Unexpected error in FDA enforcement backfill: %s", exc)
+        stats["errors"].append({"error": f"unhandled: {exc}"})
+        stats["status"] = "error"
 
     _save_progress(cache_dir, progress)
     stats["finished_at"] = datetime.now(timezone.utc).isoformat()
-    stats["status"] = "completed" if progress.get("completed") else "paused"
+    if stats["status"] != "error":
+        stats["status"] = "completed" if progress.get("completed") else "paused"
 
     logger.info(
         "FDA enforcement backfill %s: %d records (%d new, %d cached, %d cyber).",

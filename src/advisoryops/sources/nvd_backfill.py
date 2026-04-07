@@ -28,6 +28,7 @@ Usage:
 """
 from __future__ import annotations
 
+import http.client
 import json
 import logging
 import os
@@ -259,15 +260,24 @@ def _fetch_page(
             data = json.loads(resp.read().decode("utf-8"))
             return data, 200
     except urllib.error.HTTPError as exc:
-        if exc.code == 429:
-            return {}, 429
+        if exc.code in (429, 500, 502, 503):
+            return {}, exc.code
         raise RuntimeError(
             f"NVD API error {exc.code} for startIndex={start_index}: {exc}"
         ) from exc
-    except (urllib.error.URLError, json.JSONDecodeError) as exc:
-        raise RuntimeError(
-            f"NVD API request failed for startIndex={start_index}: {exc}"
-        ) from exc
+    except (
+        http.client.IncompleteRead,
+        http.client.RemoteDisconnected,
+        ConnectionResetError,
+        ConnectionError,
+        TimeoutError,
+        urllib.error.URLError,
+    ) as exc:
+        logger.debug("Transient error at startIndex=%d: %s", start_index, exc)
+        return {}, 503
+    except json.JSONDecodeError as exc:
+        logger.debug("JSON decode error at startIndex=%d: %s", start_index, exc)
+        return {}, 503
 
 
 def _find_resume_index(cache_dir: Path, progress: Dict[str, Any]) -> int:
