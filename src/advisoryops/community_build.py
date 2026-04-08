@@ -158,17 +158,22 @@ def _rss_pub_date(date_str: str) -> str:
         return ""
 
 
-def _write_rss(path: Path, rows: List[Dict[str, Any]], *, top: int = 50) -> None:
+def _write_rss(
+    path: Path,
+    rows: List[Dict[str, Any]],
+    *,
+    top: int = 50,
+    title: str = "AdvisoryOps Community Feed",
+    description: str = "Top-scored healthcare cybersecurity and device-safety advisories",
+) -> None:
     """Write an RSS 2.0 feed of the top *top* scored issues and validate XML."""
     path.parent.mkdir(parents=True, exist_ok=True)
 
     channel = ET.Element("channel")
 
-    ET.SubElement(channel, "title").text = "AdvisoryOps Community Feed"
+    ET.SubElement(channel, "title").text = title
     ET.SubElement(channel, "link").text = "https://github.com/advisoryops/advisoryops"
-    ET.SubElement(channel, "description").text = (
-        "Top-scored healthcare cybersecurity and device-safety advisories"
-    )
+    ET.SubElement(channel, "description").text = description
     now_rfc = datetime.now(tz=timezone.utc).strftime("%a, %d %b %Y %H:%M:%S +0000")
     ET.SubElement(channel, "lastBuildDate").text = now_rfc
     ET.SubElement(channel, "language").text = "en-us"
@@ -1911,6 +1916,37 @@ def build_community_feed(
 
     _write_csv(out_csv, feed_rows)
     _write_rss(out_rss, feed_rows, top=50)
+
+    # Filtered RSS feeds
+    _write_rss(
+        community_root / "feed_healthcare.xml",
+        healthcare_rows, top=100,
+        title="AdvisoryOps \u2014 Healthcare Medical Device Advisories",
+        description="Healthcare and medical device cybersecurity advisories",
+    )
+    _write_rss(
+        community_root / "feed_kev_medical_device.xml",
+        kev_med_rows, top=100,
+        title="AdvisoryOps \u2014 Actively Exploited Medical Device Vulnerabilities",
+        description="Medical device vulnerabilities in CISA's Known Exploited Vulnerabilities catalog",
+    )
+    class_3_rows = [r for r in latest_rows if r.get("fda_risk_class") == "3"]
+    _write_rss(
+        community_root / "feed_class_3.xml",
+        class_3_rows, top=100,
+        title="AdvisoryOps \u2014 FDA Class III Medical Device Advisories",
+        description="Advisories affecting FDA Class III (highest-risk) medical devices",
+    )
+    p0_p1_rows = [r for r in latest_rows if r.get("priority") in ("P0", "P1")]
+    _write_rss(
+        community_root / "feed_p0_p1.xml",
+        p0_p1_rows, top=100,
+        title="AdvisoryOps \u2014 High Priority Advisories",
+        description="P0 and P1 priority cybersecurity advisories requiring immediate attention",
+    )
+    print(f"  RSS feeds:  feed.xml (50), feed_healthcare.xml ({len(healthcare_rows[:100])}), "
+          f"feed_kev_medical_device.xml ({len(kev_med_rows[:100])}), "
+          f"feed_class_3.xml ({len(class_3_rows[:100])}), feed_p0_p1.xml ({len(p0_p1_rows[:100])})")
 
     # Excel export (optional — only if openpyxl is available)
     try:
