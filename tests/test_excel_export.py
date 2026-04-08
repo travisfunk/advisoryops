@@ -129,3 +129,32 @@ def test_export_excel_frozen_panes(sample_issues, tmp_path):
     wb = load_workbook(str(out))
     ws = wb.active
     assert ws.freeze_panes == "A2"
+
+
+def test_export_excel_sanitizes_illegal_characters(tmp_path):
+    """Control characters \\x00-\\x08, \\x0B, \\x0C, \\x0E-\\x1F should not crash openpyxl."""
+    from openpyxl import load_workbook
+    issues = [
+        {
+            "issue_id": "CVE-2024-CTRL",
+            "priority": "P2",
+            "score": 50,
+            "title": "Device with \x00null \x07bell \x0Bvtab chars",
+            "summary": "Images may be missing\x00 when a system parameter\x07 is set.\x1F End.",
+            "cves": ["CVE-2024-CTRL"],
+            "sources": ["openfda-recalls-historical"],
+            "vendor": "Test\x08Corp",
+        },
+    ]
+    out = tmp_path / "ctrl.xlsx"
+    # This should NOT raise IllegalCharacterError
+    result = export_excel(issues, out)
+    assert result.exists()
+    wb = load_workbook(str(out))
+    ws = wb.active
+    # Verify data is present but control chars are stripped
+    title_val = ws.cell(row=2, column=4).value
+    assert "null" in title_val
+    assert "bell" in title_val
+    assert "\x00" not in title_val
+    assert "\x07" not in title_val
