@@ -1532,14 +1532,45 @@ def build_community_feed(
     fda_rc_lookup_count = 0
 
     def _apply_fda_score_bonus(issue: Dict[str, Any]) -> None:
-        """Inline-update score/why/priority after setting fda_risk_class."""
-        pts, why_strs = _score_fda_risk_class(issue)
-        if not pts:
-            return
-        issue["score"] = issue.get("score", 0) + pts
+        """Inline-update score/why/priority after setting fda_risk_class and enriching title.
+
+        Two responsibilities:
+        1. Apply the FDA risk class bonus (+30/+10/+0).
+        2. Re-scan the (now-enriched) title/summary for device, clinical, and
+           patch signals that the original scoring missed because the text was
+           thin at scoring time. Only adds bonuses not already present.
+        """
+        from .score import (
+            _DEVICE_SIGNALS, _CLINICAL_SIGNALS, _PATCH_SIGNALS,
+        )
+
         issue_why = issue.get("why") or []
         issue_why = [w for w in issue_why if not w.startswith("priority:")]
-        issue_why.extend(why_strs)
+        added_pts = 0
+
+        # 1. FDA risk class bonus
+        fda_pts, fda_why_strs = _score_fda_risk_class(issue)
+        if fda_pts:
+            added_pts += fda_pts
+            issue_why.extend(fda_why_strs)
+
+        # 2. Re-scan enriched text for device/clinical/patch signals not already awarded
+        text = f"{issue.get('issue_id', '')}\n{issue.get('title', '')}\n{issue.get('summary', '')}"
+        existing_labels = set(issue_why)
+
+        for signal_list in (_DEVICE_SIGNALS, _CLINICAL_SIGNALS, _PATCH_SIGNALS):
+            for rx, pts, label in signal_list:
+                if label in existing_labels:
+                    continue  # Already awarded in original scoring
+                if rx.search(text):
+                    added_pts += pts
+                    issue_why.append(label)
+                    existing_labels.add(label)
+
+        if added_pts == 0 and fda_pts == 0:
+            return
+
+        issue["score"] = issue.get("score", 0) + added_pts
         new_priority = _priority_from_score(issue["score"])
         issue_why.append(f"priority: {new_priority} (score={issue['score']})")
         issue["why"] = issue_why
@@ -1558,6 +1589,47 @@ def build_community_feed(
         r"|fda|recall|class\s+[iI]{1,3}\b",
         _re.IGNORECASE,
     )
+
+    def _enrich_issue_from_recall(issue: Dict[str, Any], recall_data: dict) -> None:
+        """Enrich issue title and summary from recall record fields.
+
+        Existing issue titles from cached signals may be thin (e.g. just
+        "30666: Philips Medical Systems"). The recall record has richer
+        fields (openfda.device_name, product_description, reason_for_recall)
+        that provide clinical keywords for scoring.
+        """
+        openfda = recall_data.get("openfda") or {}
+        device_name = str(openfda.get("device_name", "") or "").strip()
+        product_desc = str(recall_data.get("product_description", "") or "").strip()
+        reason = str(recall_data.get("reason_for_recall", "") or "").strip()
+        firm = str(recall_data.get("recalling_firm", "") or "").strip()
+
+        # Enrich title if it's thin (just recall number + firm)
+        current_title = issue.get("title", "")
+        title_device = device_name or product_desc[:120]
+        if title_device and title_device not in current_title:
+            if firm:
+                issue["title"] = f"{title_device} recall ({firm})"
+            else:
+                issue["title"] = f"{title_device} recall"
+
+        # Enrich summary with device name and reason
+        current_summary = issue.get("summary", "")
+        enrichment_parts = []
+        if device_name and device_name not in current_summary:
+            enrichment_parts.append(f"Device: {device_name}.")
+        if product_desc and product_desc not in current_summary and product_desc not in (device_name or ""):
+            enrichment_parts.append(product_desc)
+        if reason and reason not in current_summary:
+            enrichment_parts.append(f"Reason: {reason}")
+        if enrichment_parts:
+            enrichment = " | ".join(enrichment_parts)
+            if current_summary:
+                issue["summary"] = f"{current_summary} | {enrichment}"
+            else:
+                issue["summary"] = enrichment
+
+    fda_titles_enriched = 0
 
     for issue in scored_rows:
         if issue.get("fda_risk_class"):
@@ -1582,8 +1654,10 @@ def build_community_feed(
                     rc = extract_risk_class_from_recall(recall_data)
                     if rc:
                         issue["fda_risk_class"] = rc
+                        _enrich_issue_from_recall(issue, recall_data)
                         _apply_fda_score_bonus(issue)
                         fda_rc_count += 1
+                        fda_titles_enriched += 1
                         break
                 except Exception:
                     continue
