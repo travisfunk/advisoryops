@@ -319,6 +319,17 @@ def _score_fda_risk_class(issue: Dict[str, Any]) -> Tuple[int, List[str]]:
     return 0, []
 
 
+def _score_kev_medical_device(issue: Dict[str, Any]) -> Tuple[int, List[str]]:
+    """Highest priority signal: actively exploited medical device vulnerability.
+
+    +40 bonus when a CVE is both in CISA's KEV catalog and affects a medical device.
+    Stacks with existing KEV bonuses (+80 source, +80 keyword).
+    """
+    if issue.get("is_kev_medical_device"):
+        return 40, ["kev-medical-device: actively exploited medical device (+40)"]
+    return 0, []
+
+
 def _score_source_authority(src_text: str) -> Tuple[int, str]:
     """Return the highest-authority source bonus for the given source string."""
     for prefix, pts, label in _SOURCE_AUTHORITY_EXACT:

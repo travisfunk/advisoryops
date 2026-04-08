@@ -128,6 +128,8 @@ def _feed_entry(issue: Dict[str, Any]) -> Dict[str, Any]:
         "healthcare_relevant": bool(issue.get("healthcare_relevant", False)),
         # FDA device risk classification
         "fda_risk_class": issue.get("fda_risk_class") or None,
+        # KEV + medical device cross-reference
+        "is_kev_medical_device": bool(issue.get("is_kev_medical_device", False)),
     }
     return entry
 
@@ -1730,6 +1732,48 @@ def build_community_feed(
         ar["healthcare_relevant"] = is_healthcare_relevant(ar)
     print(f"\n  Healthcare relevance: {hc_count}/{len(scored_rows)} issues tagged as healthcare-relevant")
 
+    # --- KEV + medical device cross-reference ---
+    from .score import _score_kev_medical_device
+
+    _KEV_SOURCE_INDICATORS = {"cisa-kev-json", "cisa-kev-csv"}
+    kev_med_count = 0
+    for issue in scored_rows:
+        if not issue.get("healthcare_relevant"):
+            continue
+        # Check KEV indicators
+        has_kev = bool(issue.get("kev_due_date")) or bool(issue.get("kev_required_action"))
+        if not has_kev:
+            sources = issue.get("sources") or []
+            has_kev = any("kev" in s.lower() for s in sources)
+        if has_kev:
+            issue["is_kev_medical_device"] = True
+            # Inline-update score/why/priority
+            pts, why_strs = _score_kev_medical_device(issue)
+            if pts:
+                issue_why = issue.get("why") or []
+                issue_why = [w for w in issue_why if not w.startswith("priority:")]
+                issue_why.extend(why_strs)
+                issue["score"] = issue.get("score", 0) + pts
+                new_priority = _priority_from_score(issue["score"])
+                issue_why.append(f"priority: {new_priority} (score={issue['score']})")
+                issue["why"] = issue_why
+                issue["priority"] = new_priority
+                issue["actions"] = _actions_for_priority(new_priority)
+            kev_med_count += 1
+
+    # Propagate to alert_rows
+    kev_med_by_id = {r["issue_id"]: r for r in scored_rows if r.get("is_kev_medical_device")}
+    _KEV_MED_FIELDS = ("is_kev_medical_device", "score", "priority", "actions", "why")
+    for ar in alert_rows:
+        iid = ar.get("issue_id", "")
+        src = kev_med_by_id.get(iid)
+        if src:
+            for fld in _KEV_MED_FIELDS:
+                if src.get(fld) is not None:
+                    ar[fld] = src[fld]
+
+    print(f"\n  KEV medical device: {kev_med_count} issues flagged as actively exploited medical device vulnerabilities")
+
     # --- Coverage tracking ---
     p012 = [r for r in scored_rows if r.get("priority") in ("P0", "P1", "P2")]
     if p012:
@@ -1858,6 +1902,12 @@ def build_community_feed(
     healthcare_rows = [r for r in latest_rows if r.get("healthcare_relevant") is True]
     out_healthcare.write_text(json.dumps(healthcare_rows, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(f"  Healthcare feed:  {out_healthcare} ({len(healthcare_rows)} issues)")
+
+    # KEV medical device feed
+    out_kev_med = community_root / "feed_medical_device_kev.json"
+    kev_med_rows = [r for r in latest_rows if r.get("is_kev_medical_device") is True]
+    out_kev_med.write_text(json.dumps(kev_med_rows, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    print(f"  KEV medical feed: {out_kev_med} ({len(kev_med_rows)} issues)")
 
     _write_csv(out_csv, feed_rows)
     _write_rss(out_rss, feed_rows, top=50)

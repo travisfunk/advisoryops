@@ -136,6 +136,7 @@ score = base
       + sum(patch_signals)
       + sum(clinical_signals)
       + fda_risk_class_bonus
+      + kev_medical_device_bonus
 ```
 
 ## Theoretical Score Range
@@ -152,7 +153,8 @@ score = base
 | Patch signals | 0 | 55 |
 | Clinical signals | 0 | 95 |
 | FDA risk class | 0 | 30 |
-| **Total** | **2** | **765** |
+| KEV medical device | 0 | 40 |
+| **Total** | **2** | **805** |
 
 In practice, observed range is 17-163 (most issues score 17-60). P0 threshold is 150.
 
