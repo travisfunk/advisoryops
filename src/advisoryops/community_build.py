@@ -87,6 +87,7 @@ def _feed_entry(issue: Dict[str, Any]) -> Dict[str, Any]:
         "score": int(issue.get("score", 0) or 0),
         "priority": issue.get("priority", ""),
         "actions": issue.get("actions", []) or [],
+        "why": issue.get("why", []) or [],
         # Trust layer fields (gracefully default to empty when absent)
         "handling_warnings": issue.get("handling_warnings", []) or [],
         "evidence_gaps": issue.get("evidence_gaps", []) or [],
@@ -125,6 +126,8 @@ def _feed_entry(issue: Dict[str, Any]) -> Dict[str, Any]:
         "remediation_steps": issue.get("remediation_steps") or [],
         # Healthcare relevance tag
         "healthcare_relevant": bool(issue.get("healthcare_relevant", False)),
+        # FDA device risk classification
+        "fda_risk_class": issue.get("fda_risk_class") or None,
     }
     return entry
 
@@ -1512,6 +1515,133 @@ def build_community_feed(
         if iid in remediation_by_id:
             ar["remediation_steps"] = remediation_by_id[iid]
     print(f"\n  Remediation: generated human-readable steps for {remediation_count} issues")
+
+    # --- FDA risk class enrichment ---
+    from .enrichment.fda_classification import (
+        extract_risk_class_from_recall,
+        lookup_risk_class,
+        fetch_classification_database,
+    )
+    from .score import _score_fda_risk_class, _priority_from_score, _actions_for_priority
+
+    _OPENFDA_SOURCES = {"openfda-device-recalls", "openfda-recalls-historical"}
+    _FDA_ENFORCEMENT_SOURCES = {"fda-safety-comms-historical"}
+    _ALL_FDA_SOURCES = _OPENFDA_SOURCES | _FDA_ENFORCEMENT_SOURCES
+    openfda_cache_dir = Path("outputs/openfda_cache")
+    fda_rc_count = 0
+    fda_rc_lookup_count = 0
+
+    def _apply_fda_score_bonus(issue: Dict[str, Any]) -> None:
+        """Inline-update score/why/priority after setting fda_risk_class."""
+        pts, why_strs = _score_fda_risk_class(issue)
+        if not pts:
+            return
+        issue["score"] = issue.get("score", 0) + pts
+        issue_why = issue.get("why") or []
+        issue_why = [w for w in issue_why if not w.startswith("priority:")]
+        issue_why.extend(why_strs)
+        new_priority = _priority_from_score(issue["score"])
+        issue_why.append(f"priority: {new_priority} (score={issue['score']})")
+        issue["why"] = issue_why
+        issue["priority"] = new_priority
+        issue["actions"] = _actions_for_priority(new_priority)
+
+    # Load classification database lazily (only if needed for secondary lookups)
+    _classifications_db: Optional[Dict[str, Any]] = None
+
+    # Device-like keywords to gate secondary lookup
+    import re as _re
+    _DEVICE_GATE_RE = _re.compile(
+        r"medical device|infusion pump|ventilator|pacemaker|defibrillator|implant"
+        r"|monitor|imaging|dicom|pacs|catheter|surgical|diagnostic|therapeutic"
+        r"|x-ray|ultrasound|mri|ct scan|insulin|oxygenator|respirator"
+        r"|fda|recall|class\s+[iI]{1,3}\b",
+        _re.IGNORECASE,
+    )
+
+    for issue in scored_rows:
+        if issue.get("fda_risk_class"):
+            continue
+
+        sources = issue.get("sources") or []
+        signals = issue.get("signals") or []
+
+        # Primary: extract from cached recall record
+        if any(s in _OPENFDA_SOURCES for s in sources):
+            for sig in signals:
+                if sig.get("source", "") not in _OPENFDA_SOURCES:
+                    continue
+                guid = sig.get("guid", "")
+                if not guid:
+                    continue
+                recall_file = openfda_cache_dir / f"recall_{guid}.json"
+                if not recall_file.exists():
+                    continue
+                try:
+                    recall_data = json.loads(recall_file.read_text(encoding="utf-8"))
+                    rc = extract_risk_class_from_recall(recall_data)
+                    if rc:
+                        issue["fda_risk_class"] = rc
+                        _apply_fda_score_bonus(issue)
+                        fda_rc_count += 1
+                        break
+                except Exception:
+                    continue
+
+        # Secondary: classification database lookup (only for device-like issues)
+        if not issue.get("fda_risk_class"):
+            text = f"{issue.get('title', '')} {issue.get('summary', '')}"
+            if _DEVICE_GATE_RE.search(text):
+                if _classifications_db is None:
+                    try:
+                        _classifications_db = fetch_classification_database()
+                    except Exception as exc:
+                        import logging as _log
+                        _log.getLogger(__name__).warning(
+                            "Failed to load classification database: %s", exc
+                        )
+                        _classifications_db = {}
+
+                # Try product_code from signals first
+                product_code = None
+                for sig in signals:
+                    if sig.get("source", "") in _OPENFDA_SOURCES:
+                        guid = sig.get("guid", "")
+                        recall_file = openfda_cache_dir / f"recall_{guid}.json"
+                        if recall_file.exists():
+                            try:
+                                rd = json.loads(recall_file.read_text(encoding="utf-8"))
+                                product_code = rd.get("product_code")
+                            except Exception:
+                                pass
+
+                device_name = issue.get("title", "")
+                rc = lookup_risk_class(
+                    product_code=product_code,
+                    device_name=device_name,
+                    classifications=_classifications_db,
+                )
+                if rc:
+                    issue["fda_risk_class"] = rc
+                    _apply_fda_score_bonus(issue)
+                    fda_rc_lookup_count += 1
+
+    # Propagate FDA fields + updated score/why/priority to alert_rows
+    fda_enriched_by_id = {
+        r["issue_id"]: r for r in scored_rows if r.get("fda_risk_class")
+    }
+    _FDA_PROPAGATE_FIELDS = ("fda_risk_class", "score", "priority", "actions", "why")
+    for ar in alert_rows:
+        iid = ar.get("issue_id", "")
+        src = fda_enriched_by_id.get(iid)
+        if src:
+            for fld in _FDA_PROPAGATE_FIELDS:
+                if src.get(fld) is not None:
+                    ar[fld] = src[fld]
+
+    fda_total = fda_rc_count + fda_rc_lookup_count
+    print(f"\n  FDA risk class: {fda_total} issues enriched "
+          f"({fda_rc_count} from recalls, {fda_rc_lookup_count} from classification DB)")
 
     # --- Healthcare relevance tagging ---
     from .healthcare_filter import is_healthcare_relevant

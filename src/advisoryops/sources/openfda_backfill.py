@@ -631,15 +631,27 @@ def generate_signals_from_cache(
         product_desc = str(data.get("product_description", "") or "").strip()
         reason = str(data.get("reason_for_recall", "") or "").strip()
 
-        title = recall_number or event_id or "FDA Device Recall"
-        if firm:
-            title = f"{title}: {firm}"
+        # Extract device name from openfda nested data (rich clinical terms)
+        openfda = data.get("openfda") or {}
+        device_name = str(openfda.get("device_name", "") or "").strip()
 
+        # Title: prefer device_name (clinical terms), fall back to product_desc
+        title_device = device_name or product_desc[:120]
+        if title_device:
+            title = f"{title_device} recall ({firm})" if firm else f"{title_device} recall"
+        else:
+            title = recall_number or event_id or "FDA Device Recall"
+            if firm:
+                title = f"{title}: {firm}"
+
+        # Summary: combine all available fields for rich keyword matching
         summary_parts = []
-        if reason:
-            summary_parts.append(reason)
-        if product_desc and product_desc not in reason:
+        if device_name:
+            summary_parts.append(f"Device: {device_name}.")
+        if product_desc and product_desc not in (device_name or ""):
             summary_parts.append(product_desc)
+        if reason:
+            summary_parts.append(f"Reason: {reason}")
         if firm and firm not in " ".join(summary_parts):
             summary_parts.append(firm)
         summary = " | ".join(summary_parts) if summary_parts else title

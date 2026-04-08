@@ -10,11 +10,12 @@ v1 — keyword-only baseline
     P0 ≥ 150 · P1 ≥ 100 · P2 ≥ 60 · P3 < 60
 
 v2 — healthcare-aware (default)
-    Runs all v1 factors first, then adds four healthcare-specific dimensions:
+    Runs all v1 factors first, then adds five healthcare-specific dimensions:
     1. Source authority weight — CISA ICS-Medical (+20), ICS (+15), generic CISA (+10)
     2. Device context signals — infusion pump (+25), ventilator (+25), PACS (+15), EHR (+10)
     3. Patch feasibility — no patch (+20), EOL (+15), firmware (+10)
     4. Clinical impact — life-sustaining (+30), patient safety (+25), ICU (+20), PHI (+15)
+    5. FDA risk class — Class III (+30), Class II (+10), Class I (+0)
 
 Optional AI pass (``--ai-score``, v2 only):
     Issues where deterministic scoring found *no* device/clinical signals are
@@ -301,6 +302,23 @@ _CLINICAL_SIGNALS: List[Tuple[re.Pattern[str], int, str]] = [
 ]
 
 
+def _score_fda_risk_class(issue: Dict[str, Any]) -> Tuple[int, List[str]]:
+    """Calculate FDA risk class bonus.
+
+    Calibrated against real healthcare corpus distribution:
+    - Class III: +30 (promotes critical devices from P3 to P2, P2 to P1)
+    - Class II: +10 (modest nudge, Class II is 72% of FDA recalls)
+    - Class I:  +0  (genuinely low-risk devices, no bonus)
+    - null:     +0  (don't fake certainty)
+    """
+    rc = issue.get("fda_risk_class")
+    if rc == "3":
+        return 30, ["fda-risk-class: Class III highest-risk device (+30)"]
+    if rc == "2":
+        return 10, ["fda-risk-class: Class II moderate-risk device (+10)"]
+    return 0, []
+
+
 def _score_source_authority(src_text: str) -> Tuple[int, str]:
     """Return the highest-authority source bonus for the given source string."""
     for prefix, pts, label in _SOURCE_AUTHORITY_EXACT:
@@ -315,11 +333,12 @@ def _score_source_authority(src_text: str) -> Tuple[int, str]:
 def score_issue_v2(issue: Dict[str, Any], _weights=None) -> ScoreResult:
     """Healthcare-aware scorer (v2).
 
-    Runs all v1 factors first, then adds four healthcare-specific dimensions:
+    Runs all v1 factors first, then adds five healthcare-specific dimensions:
       1. Source authority weight — tier-weight scaled from source_weights.json
       2. Device context signals (infusion pump, ventilator, PACS, etc.)
       3. Patch feasibility indicators (no patch, EOL, firmware)
       4. Clinical impact indicators (patient safety, life-sustaining, ICU)
+      5. FDA risk class — Class III (+30), Class II (+10), Class I (+0)
       + Healthcare source bonus — +50 if any source is tier-1 medical-specific
 
     Scores are fully deterministic — same input always produces the same output.
@@ -375,6 +394,12 @@ def score_issue_v2(issue: Dict[str, Any], _weights=None) -> ScoreResult:
         if rx.search(text):
             score += pts
             why.append(label)
+
+    # --- Dimension 5: FDA risk class ---
+    fda_pts, fda_why = _score_fda_risk_class(issue)
+    if fda_pts:
+        score += fda_pts
+        why.extend(fda_why)
 
     priority = _priority_from_score(score)
     actions = _actions_for_priority(priority)

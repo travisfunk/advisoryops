@@ -55,7 +55,7 @@ The KEV source bonus is **separate** from the KEV keyword bonus and can stack wi
 
 ## v2 Scoring: Healthcare-Aware (default)
 
-v2 runs v1 first, then adds four healthcare dimensions.
+v2 runs v1 first, then adds five healthcare dimensions.
 
 ### Dimension 1: Source Authority Weight
 
@@ -108,6 +108,19 @@ Matched on issue_id + title + summary. **Multiple matches stack.**
 | PHI/patient data | +15 | phi, protected health information |
 | Clinical context | +5 | clinical |
 
+### Dimension 5: FDA Risk Class
+
+Based on the `fda_risk_class` field extracted from openFDA recall records or the classification database. **Single value, no stacking.**
+
+Calibrated against real 873-issue healthcare corpus distribution (Class II is 72% of FDA recalls).
+
+| Risk Class | Points | Description |
+|------------|--------|-------------|
+| Class III | +30 | Highest-risk devices (pacemakers, implantable defibrillators). Promotes P3→P2, P2→P1. |
+| Class II | +10 | Moderate-risk devices (infusion pumps, most diagnostic equipment). Modest nudge. |
+| Class I | +0 | Low-risk devices (bandages, stethoscopes). No bonus. |
+| null | +0 | Unknown or not applicable. No bonus. |
+
 ## Score Combination Method
 
 **Purely additive.** All dimensions add their points to the running total. No multiplication, weighting, or subtraction. The formula is:
@@ -122,6 +135,7 @@ score = base
       + sum(device_signals)
       + sum(patch_signals)
       + sum(clinical_signals)
+      + fda_risk_class_bonus
 ```
 
 ## Theoretical Score Range
@@ -137,7 +151,8 @@ score = base
 | Device signals | 0 | 130 |
 | Patch signals | 0 | 55 |
 | Clinical signals | 0 | 95 |
-| **Total** | **2** | **735** |
+| FDA risk class | 0 | 30 |
+| **Total** | **2** | **765** |
 
 In practice, observed range is 17-163 (most issues score 17-60). P0 threshold is 150.
 
