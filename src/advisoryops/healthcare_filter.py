@@ -150,3 +150,96 @@ def is_healthcare_relevant(issue: Dict[str, Any]) -> bool:
             return True
 
     return False
+
+
+# ---------------------------------------------------------------------------
+# Healthcare category classification
+# ---------------------------------------------------------------------------
+
+# Sources that are definitively medical-device-specific
+_MEDICAL_DEVICE_SOURCES: frozenset[str] = frozenset({
+    "cisa-icsma",
+    "fda-medwatch",
+    "openfda-device-recalls",
+    "openfda-device-events",
+    "openfda-recalls-historical",
+    "fda-safety-comms-historical",
+    "health-canada-recalls",
+    "philips-psirt",
+    "siemens-productcert",
+})
+
+# Device-type keywords → medical_device
+_MEDICAL_DEVICE_RE: re.Pattern[str] = re.compile(
+    r"infusion pump|ventilator|defibrillator|pacemaker|implantable"
+    r"|patient monitor|pulse oximeter|surgical robot|insulin pump"
+    r"|blood gas analyzer|x-ray|ultrasound|\bmri\b|\bct\b"
+    r"|medical device|biomedical|imaging|pacs|dicom"
+    r"|catheter|oxygenator|respirator|wearable medical"
+    r"|510\(k\)|premarket|postmarket|medical device regulation"
+    r"|\bfda\b|iec 62443",
+    re.IGNORECASE,
+)
+
+# Healthcare IT keywords → healthcare_it
+_HEALTHCARE_IT_RE: re.Pattern[str] = re.compile(
+    r"\behr\b|\bemr\b|electronic health record|electronic medical record"
+    r"|\bhl7\b|\bfhir\b|telehealth|point of care|clinical informatics"
+    r"|health information (system|exchange)|cerner|epic systems",
+    re.IGNORECASE,
+)
+
+# Healthcare infrastructure keywords → healthcare_infrastructure
+_HEALTHCARE_INFRA_RE: re.Pattern[str] = re.compile(
+    r"\bhospital\b|\bclinic\b|health care|healthcare"
+    r"|hipaa|\bphi\b|\bephi\b|protected health information"
+    r"|clinical|bedside|\bicu\b|intensive care",
+    re.IGNORECASE,
+)
+
+
+def classify_healthcare_category(issue: Dict[str, Any]) -> str:
+    """Classify a healthcare-relevant issue into a specific category.
+
+    Returns one of:
+      - "medical_device"
+      - "healthcare_it"
+      - "healthcare_infrastructure"
+      - "healthcare_adjacent"
+
+    Only call this on issues where is_healthcare_relevant() == True.
+    """
+    sources = issue.get("sources") or []
+    text = " ".join(str(issue.get(f, "")) for f in ("title", "summary", "vendor"))
+
+    # 1. Medical device sources are definitive
+    if any(s in _MEDICAL_DEVICE_SOURCES for s in sources):
+        return "medical_device"
+
+    # 2. Medical device vendor in text
+    if _VENDOR_TEXT_RE.search(text):
+        return "medical_device"
+
+    # 3. FDA risk class present → medical_device
+    if issue.get("fda_risk_class"):
+        return "medical_device"
+
+    # 4. Device keywords in text
+    if _MEDICAL_DEVICE_RE.search(text):
+        return "medical_device"
+
+    # 5. Healthcare IT keywords
+    if _HEALTHCARE_IT_RE.search(text):
+        return "healthcare_it"
+
+    # 6. Healthcare infrastructure keywords
+    if _HEALTHCARE_INFRA_RE.search(text):
+        return "healthcare_infrastructure"
+
+    # 7. KEV + medical vendor (condition d from is_healthcare_relevant)
+    if any(s in _KEV_SOURCES for s in sources):
+        vendor_lower = (issue.get("vendor") or "").lower()
+        if any(v in vendor_lower for v in MEDICAL_DEVICE_VENDORS):
+            return "medical_device"
+
+    return "healthcare_adjacent"

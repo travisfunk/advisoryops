@@ -1724,18 +1724,27 @@ def build_community_feed(
     print(f"\n  FDA risk class: {fda_total} issues enriched "
           f"({fda_rc_count} from recalls, {fda_rc_lookup_count} from classification DB)")
 
-    # --- Healthcare relevance tagging ---
-    from .healthcare_filter import is_healthcare_relevant
+    # --- Healthcare relevance tagging + category classification ---
+    from .healthcare_filter import is_healthcare_relevant, classify_healthcare_category
 
     hc_count = 0
+    hc_categories: Dict[str, int] = {}
     for issue in scored_rows:
         relevant = is_healthcare_relevant(issue)
         issue["healthcare_relevant"] = relevant
         if relevant:
             hc_count += 1
+            cat = classify_healthcare_category(issue)
+            issue["healthcare_category"] = cat
+            hc_categories[cat] = hc_categories.get(cat, 0) + 1
     for ar in alert_rows:
         ar["healthcare_relevant"] = is_healthcare_relevant(ar)
+        if ar["healthcare_relevant"]:
+            ar["healthcare_category"] = classify_healthcare_category(ar)
     print(f"\n  Healthcare relevance: {hc_count}/{len(scored_rows)} issues tagged as healthcare-relevant")
+    if hc_categories:
+        cats_str = ", ".join(f"{k}={v}" for k, v in sorted(hc_categories.items()))
+        print(f"  Healthcare categories: {cats_str}")
 
     # --- KEV + medical device cross-reference ---
     from .score import _score_kev_medical_device
