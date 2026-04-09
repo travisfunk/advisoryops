@@ -263,35 +263,46 @@ def _generate_dashboard(path: Path) -> None:
     path.write_text(html, encoding="utf-8", newline="\n")
 
 
-def _deploy_docs(dashboard_path: Path, feed_path: Path, sources_path: Path) -> None:
-    """Copy dashboard and data files to ``docs/`` for GitHub Pages deployment.
+def _publish_to_docs(community_root: Path, repo_root: Path) -> None:
+    """Copy generated artifacts to docs/ for GitHub Pages serving.
 
-    Creates ``docs/index.html`` (renamed from dashboard.html),
-    ``docs/feed_latest.json``, and ``docs/validated_sources.json``.
+    The dashboard source of truth is dashboard/index.html. The data
+    files are written by the pipeline to outputs/community_public/.
+    GitHub Pages serves from docs/, so we copy both the dashboard
+    HTML and the published data files into docs/ at the end of each
+    community build.
     """
-    # Walk up from the dashboard to find the repo root (contains .git)
-    repo_root: Optional[Path] = None
-    candidate = dashboard_path.parent
-    for _ in range(10):
-        if (candidate / ".git").exists():
-            repo_root = candidate
-            break
-        if candidate.parent == candidate:
-            break
-        candidate = candidate.parent
-
-    if repo_root is None:
-        # Fallback: use cwd or skip silently (e.g. during tests in tmp_path)
-        return
-
     docs_dir = repo_root / "docs"
     docs_dir.mkdir(parents=True, exist_ok=True)
 
-    shutil.copy2(str(dashboard_path), str(docs_dir / "index.html"))
-    if feed_path.exists():
-        shutil.copy2(str(feed_path), str(docs_dir / "feed_latest.json"))
-    if sources_path.exists():
-        shutil.copy2(str(sources_path), str(docs_dir / "validated_sources.json"))
+    # Copy dashboard HTML from source-of-truth location
+    dashboard_src = repo_root / "dashboard" / "index.html"
+    if dashboard_src.exists():
+        shutil.copy2(str(dashboard_src), str(docs_dir / "index.html"))
+    else:
+        print(f"  Warning: dashboard/index.html not found, skipping HTML publish")
+
+    # Copy generated feed/data files
+    artifacts = [
+        "feed_latest.json",
+        "feed_healthcare.json",
+        "feed_medical_device_kev.json",
+        "feed.csv",
+        "feed.xml",
+        "feed_healthcare.xml",
+        "feed_kev_medical_device.xml",
+        "feed_class_3.xml",
+        "feed_p0_p1.xml",
+        "validated_sources.json",
+        "meta.json",
+    ]
+    copied = 0
+    for name in artifacts:
+        src = community_root / name
+        if src.exists():
+            shutil.copy2(str(src), str(docs_dir / name))
+            copied += 1
+    print(f"  Published to docs/: 1 dashboard + {copied} data files")
 
 
 # The dashboard template is defined as a module-level constant so tests can
@@ -2038,8 +2049,9 @@ def build_community_feed(
     }
     out_meta.write_text(json.dumps(meta, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
-    # --- Deploy to docs/ for GitHub Pages ---
-    _deploy_docs(out_dashboard, out_latest, out_sources)
+    # --- Publish dashboard + data files to docs/ for GitHub Pages ---
+    _repo_root = Path(__file__).resolve().parent.parent.parent
+    _publish_to_docs(community_root, _repo_root)
 
     print("")
     print("Community build summary:")

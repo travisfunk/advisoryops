@@ -1,5 +1,77 @@
 [
   {
+    "source_id": "nvd-historical",
+    "name": "NVD CVE Database (Historical Backfill)",
+    "scope": "dataset",
+    "page_type": "json_feed",
+    "entry_url": "https://services.nvd.nist.gov/rest/json/cves/2.0",
+    "enabled": true,
+    "status": "validated"
+  },
+  {
+    "source_id": "cisa-icsma-historical",
+    "name": "CISA ICS Medical Advisories (Historical Backfill)",
+    "scope": "advisory",
+    "page_type": "json_feed",
+    "entry_url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/",
+    "enabled": true,
+    "status": "validated"
+  },
+  {
+    "source_id": "openfda-recalls-historical",
+    "name": "openFDA Device Recalls (Historical Backfill)",
+    "scope": "advisory",
+    "page_type": "json_feed",
+    "entry_url": "https://api.fda.gov/device/recall.json",
+    "enabled": true,
+    "status": "validated"
+  },
+  {
+    "source_id": "fda-safety-comms-historical",
+    "name": "FDA Device Enforcement / Safety Communications (Historical Backfill)",
+    "scope": "advisory",
+    "page_type": "json_feed",
+    "entry_url": "https://api.fda.gov/device/enforcement.json",
+    "enabled": true,
+    "status": "validated"
+  },
+  {
+    "source_id": "mhra-uk-alerts",
+    "name": "MHRA UK Medical Device Alerts (Historical Backfill)",
+    "scope": "advisory",
+    "page_type": "json_feed",
+    "entry_url": "https://www.gov.uk/api/search.json?filter_document_type=medical_safety_alert",
+    "enabled": true,
+    "status": "validated"
+  },
+  {
+    "source_id": "health-canada-recalls-historical",
+    "name": "Health Canada Medical Device Recalls (Historical Backfill)",
+    "scope": "advisory",
+    "page_type": "json_feed",
+    "entry_url": "https://healthycanadians.gc.ca/recall-alert-rappel-avis/api/recent/en",
+    "enabled": true,
+    "status": "validated"
+  },
+  {
+    "source_id": "philips-psirt",
+    "name": "Philips Product Security Advisories (Historical Backfill)",
+    "scope": "advisory",
+    "page_type": "json_feed",
+    "entry_url": "https://www.philips.com/a-w/security/security-advisories.html",
+    "enabled": true,
+    "status": "validated"
+  },
+  {
+    "source_id": "siemens-productcert-psirt",
+    "name": "Siemens ProductCERT Advisories (CSAF Feed)",
+    "scope": "advisory",
+    "page_type": "json_feed",
+    "entry_url": "https://cert-portal.siemens.com/productcert/csaf/ssa-feed-tlp-white.json",
+    "enabled": true,
+    "status": "validated"
+  },
+  {
     "source_id": "abb-psirt",
     "name": "ABB PSIRT RSS",
     "scope": "advisory",

@@ -3,861 +3,1300 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AdvisoryOps &mdash; Healthcare Advisory Intelligence</title>
+<title>AdvisoryOps — Healthcare Advisory Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#1a1a1a;--bg2:#222;--bg3:#2a2a2a;
-  --text:#e8e8e8;--text2:#999;--text3:#666;
-  --border:rgba(255,255,255,0.08);--border2:rgba(255,255,255,0.15);
-  --p0-bg:#501313;--p0-text:#F09595;
-  --p1-bg:#412402;--p1-text:#FAC775;
-  --p2-bg:#27500A;--p2-text:#C0DD97;
-  --p3-bg:#333;--p3-text:#999;
-  --tag-ai-bg:#E6F1FB;--tag-ai-text:#0C447C;
-  --tag-det-bg:#333;--tag-det-text:#666;
-  --tag-warn-bg:#FAEEDA;--tag-warn-text:#854F0B;
-  --tag-src-bg:#EAF3DE;--tag-src-text:#27500A;
-  --fric-low-bg:#EAF3DE;--fric-low-text:#27500A;
-  --fric-med-bg:#FAEEDA;--fric-med-text:#854F0B;
-  --fric-high-bg:#FCEBEB;--fric-high-text:#791F1F;
-  --gold:#EF9F27;--dot-empty:#444;
-  --score-p0:#E24B4A;--score-p1:#EF9F27;--score-p2:#97C459;--score-p3:#666;
-  --ev-green:#639922;--ev-yellow:#EF9F27;--ev-red:#E24B4A;
-  --font:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
-  --mono:"SFMono-Regular",Consolas,"Liberation Mono",monospace;
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --bg: #0b0c10;
+  --surface: #10111a;
+  --card-bg: #12131a;
+  --card-border: #1e2030;
+  --card-hover-bg: #161722;
+  --card-hover-border: #252738;
+  --card-selected-bg: rgba(59,130,246,.06);
+  --card-selected-border: #2a3f6b;
+  --text-primary: #f0f1f5;
+  --text-body: #d0d3e0;
+  --text-secondary: #9096ab;
+  --text-muted: #6b7089;
+  --accent-blue: #60a5fa;
+  --blue-border: #3b82f6;
+  --p0-bg: #7f1d1d; --p0-text: #fca5a5;
+  --p1-bg: #78350f; --p1-text: #fcd34d;
+  --p2-bg: #1e3a5f; --p2-text: #93c5fd;
+  --p3-bg: #1f2937; --p3-text: #9ca3af;
+  --warn-bg: #1c1207; --warn-border: #78350f; --warn-text: #fcd34d;
+  --action-bg: #0a1a14; --action-border: #1a3a2a; --action-title: #6ee7b7; --action-text: #bbf7d0; --action-num-bg: #064e3b; --action-num-text: #34d399;
+  --ai-bg: #0e1629; --ai-border: #1e3050; --ai-title: #60a5fa; --ai-text: #93c5fd;
+  --authority-filled: #EF9F27; --authority-empty: #1e2030;
 }
-@media(prefers-color-scheme:light){
-  :root{
-    --bg:#fff;--bg2:#f8f8f6;--bg3:#f0efe8;
-    --text:#1a1a1a;--text2:#666;--text3:#999;
-    --border:rgba(0,0,0,0.08);--border2:rgba(0,0,0,0.15);
-    --dot-empty:#ddd;--tag-det-bg:#f0f0f0;--tag-det-text:#666;
-    --p3-bg:#f0f0f0;--p3-text:#999;
-  }
-}
-html{scroll-behavior:smooth}
-body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:13px;line-height:1.6;min-width:320px}
-a{color:#4A90D9;text-decoration:none}
-a:hover{opacity:.8}
+html, body { height:100%; background:var(--bg); color:var(--text-body); font-family:'IBM Plex Sans',system-ui,-apple-system,sans-serif; font-size:13px; line-height:1.5; overflow:hidden; }
+a { color:var(--accent-blue); text-decoration:none; }
+a:hover { text-decoration:underline; }
+.mono { font-family:'IBM Plex Mono',ui-monospace,monospace; }
+.label { font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:.8px; color:var(--text-secondary); }
 
-/* header */
-.hdr{display:flex;align-items:center;padding:12px 20px;border-bottom:.5px solid var(--border)}
-.hdr-logo{display:flex;align-items:baseline;gap:6px;text-decoration:none}
-.hdr-name{font-size:17px;font-weight:500;color:var(--text)}
-.hdr-sub{font-size:11px;color:var(--text2)}
-.hdr-nav{display:flex;gap:2px;margin:0 auto}
-.hdr-nav a{font-size:12px;padding:5px 10px;border-radius:8px;color:var(--text2)}
-.hdr-nav a:hover,.hdr-nav a.active{background:var(--bg2);color:var(--text);text-decoration:none}
-.hdr-right{display:flex;align-items:center;gap:10px;font-size:11px;color:var(--text2)}
-.hdr-gh{font-size:11px;padding:4px 8px;border:.5px solid var(--border);border-radius:8px;color:#4A90D9}
-.hdr-gh:hover{border-color:#4A90D9;text-decoration:none}
+/* Priority badges */
+.badge { display:inline-block; font-size:10px; font-weight:600; padding:3px 8px; border-radius:3px; line-height:1; }
+.badge-P0 { background:var(--p0-bg); color:var(--p0-text); }
+.badge-P1 { background:var(--p1-bg); color:var(--p1-text); }
+.badge-P2 { background:var(--p2-bg); color:var(--p2-text); }
+.badge-P3 { background:var(--p3-bg); color:var(--p3-text); }
 
-/* stats bar */
-.stats{display:flex;align-items:center;gap:8px;padding:8px 20px;background:var(--bg2);border-bottom:.5px solid var(--border);flex-wrap:wrap}
-.stat-chip{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;font-size:11px;background:var(--bg);border:.5px solid var(--border);border-radius:8px}
-.stat-chip b{font-variant-numeric:tabular-nums}
-.stat-chip.p0 b{color:var(--p0-text)}.stat-chip.p1 b{color:var(--p1-text)}
-.stat-chip.p2 b{color:var(--p2-text)}.stat-chip.p3 b{color:var(--p3-text)}
-.stat-ts{margin-left:auto;font-size:11px;color:var(--text3)}
+/* Scope badges */
+.scope-advisory { background:#1e3a5f; color:#93c5fd; }
+.scope-news { background:#2d1a4e; color:#c4b5fd; }
+.scope-threat-intel { background:#78350f; color:#fcd34d; }
+.scope-dataset { background:#1f2937; color:#9ca3af; }
 
-/* filter bar */
-.filters{display:flex;align-items:center;gap:8px;padding:10px 20px;border-bottom:.5px solid var(--border);flex-wrap:wrap}
-.search-input{flex:1;min-width:240px;font-size:13px;padding:7px 12px;border:.5px solid var(--border);border-radius:8px;background:var(--bg);color:var(--text);font-family:var(--font);outline:none}
-.search-input:focus{border-color:#4A90D9}
-.search-input::placeholder{color:var(--text3)}
-.pill{font-size:11px;padding:4px 10px;border-radius:14px;border:.5px solid var(--border);background:transparent;color:var(--text2);cursor:pointer;font-family:var(--font);white-space:nowrap}
-.pill:hover{border-color:var(--border2);color:var(--text)}
-.pill.active{background:#E6F1FB;color:#0C447C;border-color:#85B7EB}
-.pill.active.fp0{border-color:#791F1F;color:#F09595;background:transparent}
-.pill.active.fp1{border-color:#633806;color:#FAC775;background:transparent}
+/* Status badges */
+.status-active { background:#0a1a14; border:1px solid #1a3a2a; color:#6ee7b7; }
+.status-inactive { background:#1f2937; border:1px solid #2a2d40; color:#6b7089; }
 
-/* issue cards */
-.issues-list{padding:8px 20px}
-.issue-card{border:.5px solid var(--border);border-radius:8px;overflow:hidden;margin:4px 0}
-.issue-row{display:grid;grid-template-columns:48px 110px minmax(0,1fr) 72px 80px 80px 90px;padding:10px 16px;gap:8px;cursor:pointer;align-items:center}
-.issue-row:hover{background:var(--bg2)}
-.cell-label{display:block;font-size:9px;text-transform:uppercase;letter-spacing:.3px;color:var(--text3);line-height:1;margin-bottom:2px}
-.pri-badge{display:inline-block;width:36px;text-align:center;padding:3px 0;border-radius:4px;font-size:11px;font-weight:500}
-.pri-badge.p0{background:var(--p0-bg);color:var(--p0-text)}
-.pri-badge.p1{background:var(--p1-bg);color:var(--p1-text)}
-.pri-badge.p2{background:var(--p2-bg);color:var(--p2-text)}
-.pri-badge.p3{background:var(--p3-bg);color:var(--p3-text)}
-.issue-id-text{font-size:12px;font-weight:500;color:#4A90D9}
-.issue-title-text{font-size:13px;font-weight:500;line-height:1.3}
-.issue-vendor{font-size:11px;color:var(--text2);margin-top:1px}
-.score-val{font-size:14px;font-weight:500;text-align:right;font-variant-numeric:tabular-nums}
-.score-bar{height:3px;background:var(--bg3);border-radius:2px;margin-top:3px}
-.score-fill{height:100%;border-radius:2px}
-.auth-dots{display:flex;gap:3px;justify-content:center}
-.auth-dot{width:7px;height:7px;border-radius:50%;background:var(--gold)}
-.auth-dot.empty{background:var(--dot-empty)}
-.tier-label{font-size:10px;color:var(--text3);text-align:center;margin-top:2px}
-.ev-wrap{text-align:center}
-.ev-bar{display:inline-block;width:48px;height:3px;background:var(--bg3);border-radius:2px;vertical-align:middle;overflow:hidden}
-.ev-fill{height:100%;border-radius:2px}
-.ev-num{font-size:11px;color:var(--text2);margin-left:4px;font-family:var(--mono)}
-.analysis-tags{display:flex;gap:4px;justify-content:flex-end;flex-wrap:wrap}
-.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:500}
-.tag-ai{background:var(--tag-ai-bg);color:var(--tag-ai-text)}
-.tag-det{background:var(--tag-det-bg);color:var(--tag-det-text)}
-.tag-warn{background:var(--tag-warn-bg);color:var(--tag-warn-text)}
-.tag-src{background:var(--tag-src-bg);color:var(--tag-src-text)}
+/* Layout */
+#app { display:flex; flex-direction:column; height:100vh; min-width:1024px; }
 
-/* detail panel */
-.detail-panel{border-top:.5px solid var(--border);padding:0 16px 16px}
-.handling-warnings{border-left:3px solid #EF9F27;background:#FAEEDA;padding:10px 14px;margin:14px 0;border-radius:0}
-.hw-title{font-size:11px;text-transform:uppercase;letter-spacing:.3px;color:#854F0B;font-weight:500;margin-bottom:4px}
-.hw-list{margin:0;padding-left:16px;font-size:12px;color:#633806;line-height:1.6}
-.detail-summary{font-size:13px;line-height:1.7;margin:12px 0 8px}
-.detail-meta{display:flex;flex-wrap:wrap;gap:12px;font-size:11px;color:var(--text2);margin-bottom:16px}
-.meta-contra{color:#BA7517}
-.two-col{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}
-.col-hdr{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:500;padding-bottom:8px;border-bottom:.5px solid var(--border);margin-bottom:10px}
-.mit-card,.rec-card{border:.5px solid var(--border);border-radius:8px;padding:10px 12px;margin-bottom:6px}
-.mit-hdr{display:flex;align-items:center;gap:8px;margin-bottom:4px;font-size:12px}
-.mit-source{font-weight:500}
-.tier-tag{font-size:10px;padding:2px 7px;border-radius:4px}
-.tier-tag.t1{background:var(--tag-src-bg);color:var(--tag-src-text)}
-.tier-tag.other{background:var(--bg2);color:var(--text2)}
-.mit-action{font-size:12px;line-height:1.6}
-.mit-cite{font-size:11px;color:var(--text2)}
-.mit-link{font-size:11px;margin-top:3px}
-.mit-empty,.rec-empty{font-size:12px;color:var(--text2);padding:8px 0}
-.ioc-section{margin-top:14px}
-.ioc-title{font-size:11px;text-transform:uppercase;letter-spacing:.3px;color:var(--text3);font-weight:500;margin-bottom:6px}
-.ioc-item{display:flex;align-items:center;gap:8px;padding:4px 8px;background:var(--bg2);border-radius:4px;margin-bottom:3px;font-size:12px}
-.ioc-type{font-size:10px;font-weight:500;background:var(--bg);border:.5px solid var(--border);border-radius:3px;min-width:38px;text-align:center;padding:1px 4px;text-transform:uppercase}
-.ioc-val{font-family:var(--mono);font-size:11px;word-break:break-all}
-.ioc-src{font-size:10px;color:var(--text2);margin-left:auto;white-space:nowrap}
-.rec-hdr{display:flex;align-items:center;gap:8px;margin-bottom:4px;font-size:12px}
-.rec-name{font-weight:500}
-.fric-tag{font-size:10px;padding:2px 7px;border-radius:4px}
-.fric-tag.low{background:var(--fric-low-bg);color:var(--fric-low-text)}
-.fric-tag.medium{background:var(--fric-med-bg);color:var(--fric-med-text)}
-.fric-tag.high{background:var(--fric-high-bg);color:var(--fric-high-text)}
-.rec-rationale{font-size:11px;color:var(--text2);line-height:1.6}
-.rec-basis{font-size:11px;color:var(--text2);font-style:italic}
-.rec-side{font-size:11px;color:var(--text2);border-top:.5px solid var(--border);padding-top:6px;margin-top:6px}
-.subsec-title{font-size:11px;text-transform:uppercase;letter-spacing:.3px;color:var(--text3);font-weight:500;margin:12px 0 4px}
-.unknown-item{font-size:12px;color:var(--text2);padding:1px 0}
-.consensus-ok{font-size:11px;color:#27500A}
-.consensus-bad{font-size:11px;color:#BA7517}
-.provenance-badges{margin-top:12px;display:flex;flex-direction:column;gap:4px}
-.prov-row{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text2)}
+/* Top bar */
+#topbar { display:flex; align-items:center; justify-content:space-between; height:44px; padding:0 16px; background:var(--surface); border-bottom:1px solid var(--card-border); flex-shrink:0; }
+#topbar .brand { display:flex; align-items:baseline; gap:10px; }
+#topbar .brand-name { font-size:15px; font-weight:600; color:var(--text-primary); }
+#topbar .brand-sub { font-size:10px; font-variant:small-caps; letter-spacing:1px; color:var(--text-secondary); }
+#topbar .meta { display:flex; align-items:center; gap:14px; font-size:11px; color:var(--text-secondary); }
 
-/* action rows */
-.action-rows{border-top:.5px solid var(--border);padding-top:12px;margin-top:16px;display:flex;flex-direction:column;gap:6px}
-.action-row{display:flex;align-items:center}
-.action-row-label{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.3px;color:var(--text3);width:88px;flex-shrink:0}
-.action-row-btns{display:flex;flex-wrap:wrap;gap:4px}
-.btn{padding:5px 11px;border:.5px solid var(--border);border-radius:6px;font-size:11px;background:var(--bg);color:var(--text2);cursor:pointer;font-family:var(--font)}
-.btn:hover{border-color:var(--border2);color:var(--text)}
-.btn:disabled{opacity:.35;cursor:not-allowed}
-.btn:disabled:hover{border-color:var(--border);color:var(--text2)}
-.btn-primary{background:#E6F1FB;color:#0C447C;border-color:#85B7EB}
-.btn-primary:hover{opacity:.85}
-.btn-warn{border-color:#EF9F27;color:#854F0B}
-.btn-warn:hover{opacity:.85}
-.btn-warn.flagged{opacity:.6;cursor:default}
-.disclaimer-bar{font-size:11px;color:var(--text3);font-style:italic;line-height:1.6;margin-top:12px}
+/* Urgency row */
+#urgency-row { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; padding:8px 12px; flex-shrink:0; }
+.urgency-card { background:var(--card-bg); border:1px solid var(--card-border); border-radius:8px; padding:8px 12px; cursor:pointer; text-align:center; transition:border-color .15s; }
+.urgency-card:hover { border-color:var(--card-hover-border); }
+.urgency-card.active { border-color:var(--blue-border); }
+.urgency-card .num { font-size:20px; font-weight:500; font-family:'IBM Plex Mono',monospace; }
+.urgency-card .lbl { font-size:10px; text-transform:uppercase; color:var(--text-secondary); letter-spacing:.5px; margin-top:2px; }
 
-/* feedback dropdown */
-.feedback-dropdown{position:relative;display:inline-block}
-.feedback-btn{padding:5px 11px;border:.5px solid #EF9F27;border-radius:6px;font-size:11px;background:var(--bg);color:#854F0B;cursor:pointer;font-family:var(--font)}
-.feedback-btn:hover{opacity:.85}
-.feedback-btn.flagged{opacity:.6;cursor:default}
-.feedback-menu{display:none;position:absolute;bottom:100%;left:0;background:var(--bg);border:.5px solid var(--border2);border-radius:8px;padding:4px 0;z-index:50;min-width:150px}
-.feedback-menu.open{display:block}
-.feedback-menu-item{display:block;width:100%;text-align:left;padding:5px 12px;font-size:11px;border:none;background:none;color:var(--text);cursor:pointer;font-family:var(--font)}
-.feedback-menu-item:hover{background:var(--bg2)}
+/* Tabs */
+#tab-bar { display:flex; align-items:center; gap:0; background:var(--surface); border-bottom:1px solid var(--card-border); flex-shrink:0; padding:0 12px; }
+.tab-btn { padding:10px 16px; font-size:13px; font-weight:500; color:var(--text-secondary); background:none; border:none; border-bottom:2px solid transparent; cursor:pointer; transition:color .15s, border-color .15s; font-family:inherit; }
+.tab-btn:hover { color:var(--text-body); }
+.tab-btn.active { color:var(--text-primary); border-bottom-color:var(--blue-border); }
 
-/* code overlay */
-.code-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:200;display:flex;align-items:center;justify-content:center}
-.code-box{background:var(--bg);border:.5px solid var(--border2);border-radius:8px;width:640px;max-height:80vh;display:flex;flex-direction:column}
-.code-box-hdr{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:.5px solid var(--border)}
-.code-box-hdr span{font-size:13px;font-weight:500}
-.code-box pre{flex:1;overflow:auto;padding:14px;font-family:var(--mono);font-size:11px;line-height:1.5;color:var(--text);white-space:pre-wrap;word-break:break-all}
+/* Filter bar */
+#filter-bar { display:flex; align-items:center; gap:10px; padding:6px 12px; flex-shrink:0; border-bottom:1px solid var(--card-border); }
+#filter-bar.hidden { display:none; }
+#search-input { width:240px; background:var(--card-bg); border:1px solid var(--card-border); border-radius:4px; padding:5px 10px; font-size:12px; color:var(--text-primary); outline:none; font-family:inherit; }
+#search-input::placeholder { color:var(--text-muted); }
+#search-input:focus { border-color:var(--blue-border); }
+.filter-sep { width:1px; height:20px; background:var(--card-border); }
+.filter-label { font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:.8px; color:var(--text-secondary); }
+.pill { font-size:10px; padding:3px 8px; border-radius:3px; border:1px solid transparent; background:transparent; color:var(--text-secondary); cursor:pointer; transition:all .15s; font-family:inherit; }
+.pill:hover { color:var(--text-body); }
+.pill.active { background:var(--card-border); color:var(--text-primary); border-color:#2a2d40; }
 
-/* sections */
-.page-section{max-width:1400px;margin:0 auto;padding:24px 20px}
-.section-heading{font-size:16px;font-weight:500;margin-bottom:16px}
-.sources-table{width:100%;border-collapse:collapse}
-.sources-table th{text-align:left;padding:6px 10px;font-size:11px;font-weight:500;color:var(--text2);text-transform:uppercase;letter-spacing:.3px;border-bottom:.5px solid var(--border);cursor:pointer}
-.sources-table th:hover{color:var(--text)}
-.sources-table td{padding:6px 10px;border-bottom:.5px solid var(--border);font-size:12px}
-.sources-table tr:hover{background:var(--bg2)}
-.prose{max-width:720px;font-size:13px;line-height:1.7;color:var(--text2)}
-.prose h3{font-size:14px;font-weight:500;color:var(--text);margin:16px 0 4px}
-.prose p{margin-bottom:10px}
-.prose code{background:var(--bg2);padding:1px 5px;border-radius:3px;font-family:var(--mono);font-size:12px}
+/* Content area */
+#content { flex:1; overflow:hidden; position:relative; }
+.tab-content { position:absolute; inset:0; opacity:0; pointer-events:none; transition:opacity .15s; }
+.tab-content.visible { opacity:1; pointer-events:auto; }
 
-/* footer */
-.site-footer{display:flex;justify-content:space-between;padding:16px 20px;border-top:.5px solid var(--border);font-size:11px;color:var(--text2);max-width:1400px;margin:0 auto}
-.site-footer a{color:var(--text2)}
-.site-footer a:hover{color:var(--text)}
+/* Issues tab - split pane */
+#issues-section { display:flex; }
+#issue-list-pane { flex:1; overflow-y:auto; padding:8px 12px; }
+#detail-pane { width:400px; border-left:1px solid var(--card-border); overflow-y:auto; background:#0e0f17; }
 
-/* sort arrow */
-.sort-ind{font-size:9px;margin-left:2px;opacity:.5}
-.sort-ind.on{opacity:1;color:#4A90D9}
+/* Issue cards */
+.issue-card { border-radius:6px; border:1px solid #1a1b26; background:#111219; padding:8px 10px; margin-bottom:6px; cursor:pointer; transition:background .12s, border-color .12s; }
+.issue-card:hover { background:var(--card-hover-bg); border-color:var(--card-hover-border); }
+.issue-card.selected { background:var(--card-selected-bg); border-color:var(--card-selected-border); }
+.issue-card .ic-top { display:flex; align-items:center; gap:8px; }
+.issue-card .ic-title { font-size:13px; color:var(--text-body); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; flex:1; }
+.issue-card .ic-meta { display:flex; align-items:center; gap:10px; font-size:11px; color:var(--text-secondary); margin-top:4px; }
+.issue-card .ic-meta .cve-link { color:var(--accent-blue); font-family:'IBM Plex Mono',monospace; font-size:11px; }
+.hc-badge { display:inline-block; font-size:9px; font-weight:600; padding:2px 5px; border-radius:3px; background:#0d3d3d; color:#5eead4; line-height:1; letter-spacing:.5px; flex-shrink:0; }
+.fda-badge { display:inline-block; font-size:9px; font-weight:600; padding:2px 5px; border-radius:3px; line-height:1; letter-spacing:.5px; flex-shrink:0; cursor:default; position:relative; }
+.fda-badge-3 { background:#c62828; color:#ffffff; }
+.fda-badge-2 { background:#f9a825; color:#1a1a1a; }
+.fda-badge-1 { background:#757575; color:#ffffff; }
+.fda-badge .fda-tooltip { display:none; position:absolute; bottom:calc(100% + 6px); left:50%; transform:translateX(-50%); background:#1e2030; color:var(--text-body); border:1px solid var(--card-border); border-radius:4px; padding:6px 10px; font-size:11px; font-weight:400; letter-spacing:0; white-space:normal; width:260px; z-index:100; line-height:1.4; text-transform:none; pointer-events:none; box-shadow:0 4px 12px rgba(0,0,0,.4); }
+.fda-badge:hover .fda-tooltip { display:block; }
+.kev-med-badge { display:inline-block; font-size:9px; font-weight:700; padding:2px 6px; border-radius:3px; background:#dc2626; color:#ffffff; line-height:1; letter-spacing:.5px; flex-shrink:0; cursor:default; position:relative; text-transform:uppercase; }
+.kev-med-badge .kev-med-tooltip { display:none; position:absolute; bottom:calc(100% + 6px); left:50%; transform:translateX(-50%); background:#1e2030; color:var(--text-body); border:1px solid var(--card-border); border-radius:4px; padding:6px 10px; font-size:11px; font-weight:400; letter-spacing:0; white-space:normal; width:280px; z-index:100; line-height:1.4; text-transform:none; pointer-events:none; box-shadow:0 4px 12px rgba(0,0,0,.4); }
+.kev-med-badge:hover .kev-med-tooltip { display:block; }
 
-/* loading / empty */
-.state-msg{text-align:center;padding:48px 20px;color:var(--text2)}
-.state-msg h2{font-size:15px;font-weight:500;color:var(--text);margin-bottom:6px}
-.state-msg code{background:var(--bg2);padding:1px 5px;border-radius:3px;font-family:var(--mono);font-size:12px}
+/* Scope toggle */
+.scope-toggle { display:inline-flex; border-radius:4px; overflow:hidden; border:1px solid var(--card-border); margin-left:auto; }
+.scope-toggle .toggle-btn { font-size:11px; padding:4px 12px; background:transparent; border:none; color:var(--text-secondary); cursor:pointer; font-family:inherit; transition:all .15s; }
+.scope-toggle .toggle-btn:hover { color:var(--text-body); }
+.scope-toggle .toggle-btn.active { background:#1e3a5f; color:#93c5fd; }
 
-/* toast */
-.toast{position:fixed;bottom:20px;right:20px;background:var(--bg);border:.5px solid #4A90D9;border-radius:8px;padding:8px 14px;font-size:12px;color:#4A90D9;z-index:300;opacity:0;transition:opacity .15s}
-.toast.show{opacity:1}
+/* Detail panel empty state */
+#detail-empty { display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; padding:24px; text-align:center; }
+#detail-empty .de-icon { width:48px; height:48px; border-radius:10px; border:1px solid var(--card-border); display:flex; align-items:center; justify-content:center; margin-bottom:12px; color:var(--text-secondary); }
+#detail-empty .de-title { font-size:14px; color:#c0c4d6; margin-bottom:6px; }
+#detail-empty .de-sub { font-size:12px; color:var(--text-secondary); max-width:260px; line-height:1.5; margin-bottom:16px; }
+.key-badge { display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:10px; background:var(--card-bg); border:1px solid var(--card-border); border-radius:3px; padding:2px 6px; color:var(--text-secondary); }
 
-/* table header row for sortable */
-.tbl-hdr{display:grid;grid-template-columns:48px 110px minmax(0,1fr) 72px 80px 80px 90px;padding:6px 16px;gap:8px;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.3px;color:var(--text3);border-bottom:.5px solid var(--border);position:sticky;top:0;background:var(--bg);z-index:10}
-.tbl-hdr span{cursor:pointer}
-.tbl-hdr span:hover{color:var(--text)}
-.tbl-hdr .h-score,.tbl-hdr .h-analysis{text-align:right}
-.tbl-hdr .h-sources,.tbl-hdr .h-evidence{text-align:center}
+/* Detail panel cards */
+#detail-content { padding:16px; display:none; }
+#detail-content > .dcard { background:var(--card-bg); border:1px solid var(--card-border); border-radius:6px; padding:12px 14px; margin-bottom:10px; }
+#detail-content .dtitle { font-size:15px; color:var(--text-primary); font-weight:500; margin-top:4px; }
+.dsummary { font-size:13px; color:#c0c4d6; line-height:1.6; word-wrap:break-word; overflow-wrap:break-word; max-width:100%; }
+.dsummary .section-block { margin-bottom:12px; }
+.dsummary .section-header { font-weight:600; color:#e2e8f0; display:block; margin-bottom:2px; }
+.cve-pill { display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--accent-blue); background:var(--ai-bg); border:1px solid var(--ai-border); border-radius:4px; padding:3px 8px; margin:2px 4px 2px 0; cursor:pointer; text-decoration:none; }
+.cve-pill:hover { text-decoration:underline; }
+.product-pill { display:inline-block; font-size:12px; color:#93c5fd; background:#111827; border:1px solid #1e3a5f; border-radius:4px; padding:3px 8px; margin:2px 4px 2px 0; }
+.warn-box { background:var(--warn-bg); border:1px solid var(--warn-border); border-radius:6px; padding:12px 14px; margin-bottom:10px; color:var(--warn-text); font-size:12px; line-height:1.5; }
+.action-box { background:var(--action-bg); border:1px solid var(--action-border); border-radius:6px; padding:12px 14px; margin-bottom:10px; }
+.action-box .ab-title { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.8px; color:var(--action-title); margin-bottom:8px; }
+.action-step { display:flex; align-items:flex-start; gap:10px; margin-bottom:8px; }
+.action-step .step-num { width:18px; height:18px; border-radius:50%; background:var(--action-num-bg); color:var(--action-num-text); font-size:10px; font-weight:600; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px; }
+.action-step .step-text { font-size:12px; color:var(--action-text); line-height:1.5; }
+.placeholder-card { background:var(--card-bg); border:1px solid var(--card-border); border-radius:6px; padding:12px 14px; margin-bottom:10px; font-style:italic; color:var(--text-muted); font-size:12px; }
 
-/* mobile */
-@media(max-width:768px){
-  .hdr-nav{display:none}
-  .stats{overflow-x:auto;flex-wrap:nowrap}
-  .filters{flex-wrap:wrap}
-  .search-input{min-width:0;width:100%}
-  .pill{flex-shrink:0}
-  .filter-pills-wrap{display:flex;overflow-x:auto;gap:6px;width:100%}
-  .tbl-hdr{grid-template-columns:40px minmax(0,1fr) 56px}
-  .tbl-hdr .h-sources,.tbl-hdr .h-evidence,.tbl-hdr .h-analysis{display:none}
-  .issue-row{grid-template-columns:40px minmax(0,1fr) 56px}
-  .issue-row .cell-sources,.issue-row .cell-evidence,.issue-row .cell-analysis{display:none}
-  .two-col{grid-template-columns:1fr}
-  .action-row{flex-direction:column;align-items:flex-start}
-  .action-row-label{width:auto;margin-bottom:4px}
-  .action-row-btns{width:100%;flex-direction:column}
-  .action-row-btns .btn{width:100%}
-  .sources-table-wrap{overflow-x:auto}
-  .prose{padding:0 16px}
-  .site-footer{flex-direction:column;gap:6px;text-align:center}
-}
+/* Sources */
+#sources-section { display:flex; flex-direction:column; height:100%; }
+#sources-filter-bar { display:flex; align-items:center; gap:10px; padding:8px 12px; border-bottom:1px solid var(--card-border); flex-shrink:0; }
+#source-search { width:240px; background:var(--card-bg); border:1px solid var(--card-border); border-radius:4px; padding:5px 10px; font-size:12px; color:var(--text-primary); outline:none; font-family:inherit; }
+#source-search::placeholder { color:var(--text-muted); }
+#source-search:focus { border-color:var(--blue-border); }
+#sources-count { margin-left:auto; font-size:11px; color:var(--text-secondary); }
+#source-list { flex:1; overflow-y:auto; padding:8px 12px; }
+.source-row { display:flex; align-items:center; background:var(--card-bg); border:1px solid var(--card-border); border-radius:6px; padding:10px 14px; margin-bottom:6px; gap:16px; transition:border-color .12s; }
+.source-row:hover { border-color:var(--card-hover-border); }
+.source-row .sr-name { font-size:13px; color:var(--text-body); font-weight:500; }
+.source-row .sr-id { font-size:11px; color:var(--text-muted); font-family:'IBM Plex Mono',monospace; }
+.source-row .sr-info { flex:1; }
+.authority-dots { display:flex; gap:3px; align-items:center; }
+.authority-dots .dot { width:8px; height:8px; border-radius:50%; }
+.authority-dots .dot.filled { background:var(--authority-filled); }
+.authority-dots .dot.empty { background:var(--authority-empty); }
+.tier-label { font-size:10px; color:var(--text-secondary); margin-left:4px; font-weight:600; }
+
+/* Prose layouts */
+.prose-wrap { max-width:780px; margin:0 auto; padding:24px 20px; overflow-y:auto; height:100%; }
+.prose-wrap h2 { font-size:18px; color:var(--text-primary); font-weight:600; margin-bottom:12px; }
+.prose-wrap h3 { font-size:14px; color:var(--text-primary); font-weight:600; margin-bottom:8px; margin-top:20px; }
+.prose-wrap p { color:var(--text-body); line-height:1.7; margin-bottom:14px; }
+.prose-card { background:var(--card-bg); border:1px solid var(--card-border); border-radius:6px; padding:16px; margin-bottom:14px; }
+.prose-divider { border:none; border-top:1px solid var(--card-border); margin:24px 0; }
+
+/* Scoring factors grid */
+.factor-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 24px; }
+.factor-row { display:flex; justify-content:space-between; padding:4px 0; border-bottom:1px solid #1a1b26; }
+.factor-row .fname { color:var(--text-body); font-size:13px; }
+.factor-row .fpts { color:var(--accent-blue); font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:500; }
+
+/* Threshold table */
+.threshold-row { display:flex; align-items:center; gap:14px; padding:8px 0; border-bottom:1px solid #1a1b26; }
+.threshold-row:last-child { border-bottom:none; }
+.threshold-row .tscore { font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--text-secondary); min-width:90px; }
+.threshold-row .tsev { font-size:12px; color:var(--text-body); min-width:70px; }
+.threshold-row .taction { font-size:12px; color:var(--text-muted); }
+
+/* Tier visualization */
+.tier-row { display:flex; align-items:center; gap:12px; padding:8px 0; border-bottom:1px solid #1a1b26; }
+.tier-row:last-child { border-bottom:none; }
+.tier-row .tname { font-size:13px; color:var(--text-body); min-width:180px; }
+.tier-row .texample { font-size:11px; color:var(--text-muted); }
+
+/* CVSS pill */
+.cvss-pill { display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600; padding:3px 8px; border-radius:3px; line-height:1; }
+.cvss-pill-critical { background:#7f1d1d; color:#fca5a5; }
+.cvss-pill-high { background:#78350f; color:#fcd34d; }
+.cvss-pill-medium { background:#78350f; color:#fbbf24; }
+.cvss-pill-low { background:#1e3a5f; color:#93c5fd; }
+.cvss-pill-sm { font-size:9px; padding:2px 6px; }
+.cvss-severity { font-size:11px; font-weight:600; margin-left:6px; }
+.cwe-pill { display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--text-secondary); background:var(--card-bg); border:1px solid var(--card-border); border-radius:3px; padding:2px 6px; margin:2px 4px 2px 0; }
+
+/* KEV box */
+.kev-box { background:#1c1207; border:1px solid #92400e; border-radius:6px; padding:12px 14px; margin-bottom:10px; }
+.kev-box .kev-header { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.8px; color:#fbbf24; margin-bottom:6px; display:flex; align-items:center; gap:6px; }
+.kev-box .kev-body { font-size:12px; color:#fde68a; line-height:1.6; }
+.kev-box .kev-due { font-size:11px; color:#f59e0b; margin-top:8px; font-weight:500; }
+
+/* Remediation box */
+.remediation-box { background:#0a1629; border:1px solid #1e3050; border-radius:6px; padding:12px 14px; margin-bottom:10px; }
+.remediation-box .rem-title { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.8px; color:var(--ai-title); margin-bottom:8px; }
+
+/* AI info box */
+.ai-box { background:var(--ai-bg); border:1px solid var(--ai-border); border-radius:6px; padding:14px 16px; margin-bottom:14px; }
+.ai-box .ab-title { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.8px; color:var(--ai-title); margin-bottom:6px; }
+.ai-box .ab-body { font-size:13px; color:var(--ai-text); line-height:1.6; }
+
+/* About tab */
+.metric-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:14px; }
+.metric-card { background:var(--card-bg); border:1px solid var(--card-border); border-radius:6px; padding:14px; text-align:center; }
+.metric-card .mv { font-size:22px; font-weight:500; font-family:'IBM Plex Mono',monospace; color:var(--text-primary); }
+.metric-card .ml { font-size:11px; color:var(--text-secondary); margin-top:4px; }
+.builder-card { display:flex; align-items:center; gap:14px; background:var(--card-bg); border:1px solid var(--card-border); border-radius:6px; padding:14px; margin-bottom:14px; }
+.builder-avatar { width:44px; height:44px; border-radius:50%; background:#1e3a5f; color:#93c5fd; display:flex; align-items:center; justify-content:center; font-weight:600; font-size:16px; flex-shrink:0; }
+.builder-card .bname { font-size:14px; color:var(--text-primary); font-weight:500; }
+.builder-card .brole { font-size:12px; color:var(--text-secondary); }
+.builder-card .bexp { font-size:11px; color:var(--text-muted); margin-top:2px; }
+.detail-row { display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid #1a1b26; font-size:12px; }
+.detail-row:last-child { border-bottom:none; }
+.detail-row .dk { color:var(--text-secondary); }
+.detail-row .dv { color:var(--text-body); }
+.license-bar { background:var(--card-bg); border:1px solid var(--card-border); border-radius:6px; padding:10px 14px; display:flex; justify-content:space-between; align-items:center; font-size:12px; color:var(--text-secondary); }
+
+/* Footer */
+#footer { text-align:center; font-size:10px; color:var(--text-muted); padding:8px; border-top:1px solid var(--card-border); flex-shrink:0; }
+#footer a { color:var(--text-muted); }
+#footer a:hover { color:var(--accent-blue); }
+
+/* Source row badges */
+.source-row .badge { font-size:9px; padding:2px 7px; }
+.source-row .status-badge { font-size:9px; padding:2px 7px; border-radius:3px; }
+
+/* Source detail link */
+.src-link { display:flex; align-items:center; gap:6px; margin-bottom:4px; font-size:12px; }
+.src-dot { width:5px; height:5px; border-radius:50%; background:var(--authority-filled); flex-shrink:0; }
+
+/* Scrollbar styling */
+::-webkit-scrollbar { width:6px; }
+::-webkit-scrollbar-track { background:transparent; }
+::-webkit-scrollbar-thumb { background:#2a2d40; border-radius:3px; }
+::-webkit-scrollbar-thumb:hover { background:#3a3d50; }
 </style>
 </head>
 <body>
+<div id="app">
+  <!-- Top bar -->
+  <header id="topbar">
+    <div class="brand">
+      <span class="brand-name">AdvisoryOps</span>
+      <span class="brand-sub">HEALTHCARE ADVISORY INTELLIGENCE</span>
+    </div>
+    <div class="meta">
+      <span id="meta-stats"></span>
+      <span id="meta-updated"></span>
+      <a href="https://github.com/advisoryops" target="_blank">GitHub</a>
+    </div>
+  </header>
 
-<header class="hdr">
-  <a class="hdr-logo" href="#">
-    <span class="hdr-name">AdvisoryOps</span>
-    <span class="hdr-sub">healthcare advisory intelligence</span>
-  </a>
-  <nav class="hdr-nav">
-    <a href="#issues-section" class="active">Issues</a>
-    <a href="#sources-section">Sources</a>
-    <a href="#methodology-section">Methodology</a>
-    <a href="#about-section">About</a>
+  <!-- Urgency row -->
+  <div id="urgency-row">
+    <div class="urgency-card" data-priority="P0">
+      <div class="num" style="color:#fca5a5" id="count-p0">0</div>
+      <div class="lbl">P0 — ACT NOW</div>
+    </div>
+    <div class="urgency-card" data-priority="P1">
+      <div class="num" style="color:#fcd34d" id="count-p1">0</div>
+      <div class="lbl">P1 — THIS WEEK</div>
+    </div>
+    <div class="urgency-card" data-priority="P2">
+      <div class="num" style="color:#93c5fd" id="count-p2">0</div>
+      <div class="lbl">P2 — SCHEDULED</div>
+    </div>
+    <div class="urgency-card" data-priority="P3">
+      <div class="num" style="color:#9ca3af" id="count-p3">0</div>
+      <div class="lbl">P3 — MONITOR</div>
+    </div>
+  </div>
+
+  <!-- Tab bar -->
+  <nav id="tab-bar">
+    <button class="tab-btn active" data-tab="issues">Issues</button>
+    <button class="tab-btn" data-tab="sources">Sources</button>
+    <button class="tab-btn" data-tab="methodology">Methodology</button>
+    <button class="tab-btn" data-tab="about">About</button>
   </nav>
-  <div class="hdr-right">
-    <span id="hdr-issues"></span>
-    <span id="hdr-sources"></span>
-    <a class="hdr-gh" href="https://github.com/advisoryops/advisoryops" target="_blank" rel="noopener">GitHub</a>
+
+  <!-- Filter bar (issues only) -->
+  <div id="filter-bar">
+    <input type="text" id="search-input" placeholder="Search CVEs, vendors, devices...">
+    <div class="filter-sep"></div>
+    <span class="filter-label">SHOW</span>
+    <button class="pill active" data-filter="all">All</button>
+    <button class="pill" data-filter="warnings">Warnings</button>
+    <button class="pill" data-filter="multisrc">Multi-src</button>
+    <button class="pill" data-filter="hasfix">Has fix</button>
+    <div class="filter-sep"></div>
+    <span class="filter-label">KEV</span>
+    <button class="pill" data-kev-filter="exploited">Actively exploited</button>
+    <div class="filter-sep"></div>
+    <span class="filter-label">FDA CLASS</span>
+    <button class="pill active" data-fda-filter="all">All</button>
+    <button class="pill" data-fda-filter="3">III only</button>
+    <button class="pill" data-fda-filter="23">II &amp; III</button>
+    <button class="pill" data-fda-filter="1">I only</button>
+    <div class="scope-toggle">
+      <button class="toggle-btn active" data-scope-mode="healthcare">Medical devices</button>
+      <button class="toggle-btn" data-scope-mode="all">All vulnerabilities</button>
+    </div>
   </div>
-</header>
 
-<div class="stats" id="stats-bar"></div>
+  <!-- Content -->
+  <div id="content">
+    <!-- Issues tab -->
+    <div id="issues-section" class="tab-content visible">
+      <div id="issue-list-pane"></div>
+      <div id="detail-pane">
+        <div id="detail-empty">
+          <div class="de-icon">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+          </div>
+          <div class="de-title">Select an issue</div>
+          <div class="de-sub">Click any issue on the left to see its full summary, affected products, and recommended actions.</div>
+          <div style="display:flex;gap:8px;align-items:center;font-size:11px;color:var(--text-secondary)">
+            <span class="key-badge">↑</span><span class="key-badge">↓</span> to navigate
+            <span style="margin-left:4px" class="key-badge">Enter</span> to select
+          </div>
+        </div>
+        <div id="detail-content"></div>
+      </div>
+    </div>
 
-<div class="filters" id="issues-section">
-  <input class="search-input" type="text" placeholder="Search issues, CVEs, vendors, devices..." oninput="App.onSearch(this.value)">
-  <div class="filter-pills-wrap" id="filter-pills"></div>
-</div>
+    <!-- Sources tab -->
+    <div id="sources-section" class="tab-content">
+      <div id="sources-filter-bar">
+        <input type="text" id="source-search" placeholder="Search sources...">
+        <div class="filter-sep"></div>
+        <button class="pill source-scope-pill active" data-scope="all">All</button>
+        <button class="pill source-scope-pill" data-scope="advisory">Advisory</button>
+        <button class="pill source-scope-pill" data-scope="news">News</button>
+        <button class="pill source-scope-pill" data-scope="dataset">Dataset</button>
+        <button class="pill source-scope-pill" data-scope="threatintel">Threat intel</button>
+        <span id="sources-count"></span>
+      </div>
+      <div id="source-list"></div>
+    </div>
 
-<div class="issues-list" id="issues-list">
-  <div class="state-msg"><h2>Loading&hellip;</h2></div>
-</div>
+    <!-- Methodology tab -->
+    <div id="methodology-section" class="tab-content">
+      <div class="prose-wrap">
+        <h2>How scoring works</h2>
+        <p>AdvisoryOps uses a deterministic, healthcare-aware scoring system. Each issue receives points based on observable evidence — source authority, exploit status, attack vector, healthcare context, and patch availability. The system does not rely on AI judgment for scoring; every point is traceable to a specific evidence factor.</p>
 
-<div class="page-section" id="sources-section">
-  <h2 class="section-heading">Sources</h2>
-  <div class="sources-table-wrap" id="sources-wrap"><div class="state-msg">Loading sources&hellip;</div></div>
-</div>
+        <div class="prose-card">
+          <div class="label" style="margin-bottom:10px">SCORING FACTORS</div>
+          <div class="factor-grid">
+            <div class="factor-row"><span class="fname">KEV source</span><span class="fpts">+80</span></div>
+            <div class="factor-row"><span class="fname">Known exploited keyword</span><span class="fpts">+80</span></div>
+            <div class="factor-row"><span class="fname">RCE</span><span class="fpts">+30</span></div>
+            <div class="factor-row"><span class="fname">Healthcare context</span><span class="fpts">+50</span></div>
+            <div class="factor-row"><span class="fname">Patient safety</span><span class="fpts">+25</span></div>
+            <div class="factor-row"><span class="fname">No patch</span><span class="fpts">+20</span></div>
+            <div class="factor-row"><span class="fname">ICU/life-sustaining</span><span class="fpts">+20</span></div>
+            <div class="factor-row"><span class="fname">Tier 1 authority</span><span class="fpts">+30</span></div>
+          </div>
+        </div>
 
-<div class="page-section" id="methodology-section">
-  <h2 class="section-heading">Methodology</h2>
-  <div class="prose">
-    <h3>Healthcare-specific scoring</h3>
-    <p>Issues are scored for healthcare impact, not generic CVSS severity. A critical vulnerability on a ventilator scores higher than the same CVE on a back-office workstation.</p>
-    <h3>Source authority tiers</h3>
-    <p>Sources are weighted by authority. Tier 1 (CISA, FDA) carries more weight than Tier 4 (news). When sources disagree, the higher-tier source's assessment is noted.</p>
-    <h3>AI usage</h3>
-    <p>AI extracts facts, normalizes data, compares sources, and recommends from approved mitigation patterns. It does not invent mitigations or replace vendor guidance.</p>
-    <h3>Evidence completeness</h3>
-    <p>Each issue is scored 0&ndash;8 based on which fields are populated: title, summary, CVEs, severity, affected versions, vendor, handling warnings, and multi-source confirmation.</p>
-    <h3>Playbook governance</h3>
-    <p>All mitigation patterns cite specific standards (NIST SP 800-82, IEC 62443, FDA guidance, CISA best practices). Patterns are reviewed before inclusion. AI-generated recommendations are constrained to approved patterns only. See <code>docs/playbook_governance.md</code> for details.</p>
+        <div class="prose-card">
+          <div class="label" style="margin-bottom:10px">PRIORITY THRESHOLDS</div>
+          <div class="threshold-row"><span class="badge badge-P0">P0</span><span class="tscore">score ≥ 190</span><span class="tsev">Critical</span><span class="taction">Act now</span></div>
+          <div class="threshold-row"><span class="badge badge-P1">P1</span><span class="tscore">score ≥ 150</span><span class="tsev">High</span><span class="taction">This week</span></div>
+          <div class="threshold-row"><span class="badge badge-P2">P2</span><span class="tscore">score ≥ 100</span><span class="tsev">Medium</span><span class="taction">Scheduled</span></div>
+          <div class="threshold-row"><span class="badge badge-P3">P3</span><span class="tscore">score &lt; 100</span><span class="tsev">Low</span><span class="taction">Monitor</span></div>
+        </div>
+
+        <hr class="prose-divider">
+
+        <h2>Source authority tiers</h2>
+        <p>Each source is assigned an authority tier from T1 (highest) to T5 (lowest) based on its institutional mandate, editorial rigor, and proximity to the vulnerability disclosure process. Higher-tier sources contribute more points to an issue's score.</p>
+
+        <div class="prose-card">
+          <div class="tier-row">
+            <div class="authority-dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div></div>
+            <span class="tier-label">T1</span>
+            <span class="tname">Government / Regulatory</span>
+            <span class="texample">CISA KEV, CISA ICS-CERT, FDA</span>
+          </div>
+          <div class="tier-row">
+            <div class="authority-dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot empty"></div></div>
+            <span class="tier-label">T2</span>
+            <span class="tname">Coordinated Disclosure</span>
+            <span class="texample">CERT/CC, NVD, vendor SIRTs</span>
+          </div>
+          <div class="tier-row">
+            <div class="authority-dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot empty"></div><div class="dot empty"></div></div>
+            <span class="tier-label">T3</span>
+            <span class="tname">Security Research</span>
+            <span class="texample">Claroty Team82, Nozomi, Dragos</span>
+          </div>
+          <div class="tier-row">
+            <div class="authority-dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot empty"></div><div class="dot empty"></div><div class="dot empty"></div></div>
+            <span class="tier-label">T4</span>
+            <span class="tname">Curated News</span>
+            <span class="texample">BleepingComputer, The Record, NCSC</span>
+          </div>
+          <div class="tier-row">
+            <div class="authority-dots"><div class="dot filled"></div><div class="dot empty"></div><div class="dot empty"></div><div class="dot empty"></div><div class="dot empty"></div></div>
+            <span class="tier-label">T5</span>
+            <span class="tname">Community / Aggregator</span>
+            <span class="texample">VulDB, social media, unverified feeds</span>
+          </div>
+        </div>
+
+        <hr class="prose-divider">
+
+        <h3>How AI is used</h3>
+        <div class="ai-box">
+          <div class="ab-title">EXTRACTION, NOT INVENTION</div>
+          <div class="ab-body">The AI extracts, normalizes, compares, and recommends from approved mitigation patterns. It does not generate novel security advice, diagnose vulnerabilities, or make clinical decisions. Every AI-generated field is labeled as such, and every recommendation is traceable to an approved playbook pattern with a cited basis.</div>
+        </div>
+
+        <div class="prose-card">
+          <div class="label" style="margin-bottom:10px">EVIDENCE COMPLETENESS</div>
+          <p style="font-size:12px;color:var(--text-secondary);margin:0">Each issue is evaluated across 8 evidence fields: CVEs, summary, affected products, severity, vendor, patch status, mitigations, and source consensus. The evidence completeness score reflects how many of these fields contain meaningful data from authoritative sources.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- About tab -->
+    <div id="about-section" class="tab-content">
+      <div class="prose-wrap">
+        <h2>What is AdvisoryOps?</h2>
+        <p>AdvisoryOps is a deterministic, healthcare-focused vulnerability intelligence pipeline. It continuously ingests advisories from government, vendor, and research sources — scores them for healthcare relevance and urgency — and produces structured, actionable issue records for security teams at hospitals and health systems.</p>
+
+        <div class="metric-grid">
+          <div class="metric-card"><div class="mv" id="about-issues">0</div><div class="ml">Total issues</div></div>
+          <div class="metric-card"><div class="mv" id="about-sources">0</div><div class="ml">Sources monitored</div></div>
+          <div class="metric-card"><div class="mv" id="about-remediation">0</div><div class="ml">Remediation packets</div></div>
+          <div class="metric-card"><div class="mv" id="about-tests">696</div><div class="ml">Automated tests</div></div>
+          <div class="metric-card"><div class="mv" id="about-api-cost">$12.70</div><div class="ml">Total API cost</div></div>
+          <div class="metric-card"><div class="mv" id="about-fixture-pass">14/14</div><div class="ml">Golden fixture pass rate</div></div>
+          <div class="metric-card"><div class="mv" id="about-medical">0</div><div class="ml">Medical device issues</div></div>
+        </div>
+
+        <hr class="prose-divider">
+
+        <h3>Why this exists</h3>
+        <p>Small and rural hospitals face the same cyber threats as large health systems but with a fraction of the security staff. A 25-bed critical-access hospital cannot afford a dedicated vulnerability analyst, yet its patient monitors, infusion pumps, and imaging systems carry the same CVEs as those in a 900-bed academic medical center. AdvisoryOps exists to close that gap — providing structured, prioritized intelligence that would otherwise require a full-time analyst to produce.</p>
+
+        <hr class="prose-divider">
+
+        <div class="builder-card">
+          <div class="builder-avatar">TF</div>
+          <div>
+            <div class="bname">Travis Funkhouser</div>
+            <div class="brole">Creator and maintainer</div>
+            <div class="bexp">20+ years healthcare security — IU Health, ForeScout, Attivo Networks, Flashpoint</div>
+          </div>
+        </div>
+
+        <div class="prose-card">
+          <div class="label" style="margin-bottom:10px">PROJECT DETAILS</div>
+          <div class="detail-row"><span class="dk">Language</span><span class="dv">Python 3.11+</span></div>
+          <div class="detail-row"><span class="dk">AI model</span><span class="dv">GPT-4o-mini (extraction only)</span></div>
+          <div class="detail-row"><span class="dk">Full corpus rebuild cost</span><span class="dv">$1.40</span></div>
+          <div class="detail-row"><span class="dk">Dashboard</span><span class="dv">Vanilla HTML/CSS/JS — no frameworks</span></div>
+          <div class="detail-row"><span class="dk">Repository</span><span class="dv"><a href="https://github.com/advisoryops" target="_blank">github.com/advisoryops</a></span></div>
+        </div>
+
+        <div class="prose-card">
+          <div class="label" style="margin-bottom:10px">RSS FEEDS</div>
+          <p style="margin-bottom:8px;color:var(--text-secondary);font-size:12px">Subscribe to filtered feeds in your RSS reader:</p>
+          <div class="detail-row"><span class="dk">All issues (top 50)</span><span class="dv"><a href="feed.xml" target="_blank">feed.xml</a></span></div>
+          <div class="detail-row"><span class="dk">Healthcare devices</span><span class="dv"><a href="feed_healthcare.xml" target="_blank">feed_healthcare.xml</a></span></div>
+          <div class="detail-row"><span class="dk">FDA Class III only</span><span class="dv"><a href="feed_class_3.xml" target="_blank">feed_class_3.xml</a></span></div>
+          <div class="detail-row"><span class="dk">Actively exploited (KEV)</span><span class="dv"><a href="feed_kev_medical_device.xml" target="_blank">feed_kev_medical_device.xml</a></span></div>
+          <div class="detail-row"><span class="dk">High priority (P0/P1)</span><span class="dv"><a href="feed_p0_p1.xml" target="_blank">feed_p0_p1.xml</a></span></div>
+        </div>
+
+        <div class="license-bar">
+          <span>Apache 2.0 — free to use, modify, and distribute</span>
+          <a href="https://www.apache.org/licenses/LICENSE-2.0" target="_blank">View license</a>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <!-- Footer -->
+  <footer id="footer">
+    AdvisoryOps · Apache 2.0 · <a href="https://github.com/advisoryops" target="_blank">GitHub</a> · Built by Travis Funkhouser
+  </footer>
 </div>
-
-<div class="page-section" id="about-section">
-  <h2 class="section-heading">About</h2>
-  <div class="prose">
-    <p>AdvisoryOps is an open-source advisory-to-action pipeline for healthcare cybersecurity. It monitors <span id="about-src-ct">0</span> public sources, normalizes and deduplicates advisories, scores them for healthcare impact, and generates actionable defensive guidance.</p>
-    <p>The AI extracts, normalizes, compares, and recommends from approved mitigation patterns. It does not replace vendor guidance or make final operational decisions. All recommendations must be verified against vendor documentation before implementation in clinical environments.</p>
-    <p><span id="about-issue-ct">0</span> issues &middot; <span id="about-src-ct2">0</span> sources &middot; <span id="about-pkt-ct">0</span> remediation packets</p>
-    <p>License: Apache 2.0 &middot; <a href="https://github.com/advisoryops/advisoryops" target="_blank" rel="noopener">GitHub</a></p>
-    <p>Built by Travis Funkhouser</p>
-  </div>
-</div>
-
-<footer class="site-footer" id="site-footer">
-  <div>AdvisoryOps &middot; Apache 2.0 &middot; <a href="https://github.com/advisoryops/advisoryops" target="_blank" rel="noopener">GitHub</a> &middot; Built by Travis Funkhouser</div>
-  <div id="footer-meta"></div>
-</footer>
-
-<div class="toast" id="toast"></div>
 
 <script>
 (function(){
-"use strict";
-var $=function(id){return document.getElementById(id)};
-var escEl=document.createElement("div");
-function esc(s){if(s==null)return"";escEl.textContent=String(s);return escEl.innerHTML}
-function showToast(m,ms){var t=$("toast");t.textContent=m;t.classList.add("show");setTimeout(function(){t.classList.remove("show")},ms||2000)}
-function copyText(t){if(navigator.clipboard){navigator.clipboard.writeText(t).then(function(){showToast("Copied to clipboard")})}else{showToast("Clipboard not available")}}
-function downloadFile(name,content,mime){var b=new Blob([content],{type:mime||"application/octet-stream"});var a=document.createElement("a");a.href=URL.createObjectURL(b);a.download=name;a.click();URL.revokeObjectURL(a.href)}
+  'use strict';
 
-/* state */
-var S={
-  issues:[],sources:[],search:"",
-  filters:{priority:"",hasWarnings:false,multiSource:false,hasIocs:false,contradictions:false},
-  expanded:null,sortCol:"score",sortDir:-1,
-  srcSortCol:"source_id",srcSortDir:1
-};
+  // State
+  let issues = [];
+  let sources = [];
+  let selectedIdx = -1;
+  let activeTab = 'issues';
+  let activePriority = null;
+  let activeFilter = 'all';
+  let activeSourceScope = 'all';
+  let searchQuery = '';
+  let sourceSearchQuery = '';
+  let filteredIssues = [];
+  let activeFdaFilter = 'all';
+  let activeKevFilter = false;
+  let healthcareMode = true;
+  let allIssuesCache = null;
+  let healthcareIssues = null;
+  let allIssuesLoading = false;
 
-/* load */
-Promise.all([
-  fetch("feed_latest.json").then(function(r){return r.json()}),
-  fetch("validated_sources.json").then(function(r){return r.json()}).catch(function(){return[]})
-]).then(function(res){
-  S.issues=res[0]||[];S.sources=res[1]||[];
-  renderAll();
-}).catch(function(err){
-  $("issues-list").innerHTML='<div class="state-msg"><h2>Could not load data</h2><p>'+esc(err.message)+'</p><p>Run <code>python -m http.server 8080</code> from <code>outputs/community_public/</code></p></div>';
-});
+  // Authority tier mapping
+  const AUTHORITY_MAP = {
+    // Tier 1 — Authoritative: government advisories, regulatory agencies
+    'cisa-icsma': 1, 'cisa-icsa': 1, 'cisa-kev-json': 1, 'cisa-kev-csv': 1,
+    'fda-medwatch': 1, 'openfda-device-recalls': 1, 'openfda-device-events': 1,
+    'certcc-vulnotes': 1, 'health-canada-recalls': 1, 'bsi-news': 1,
+    'nhs-digital-cyber': 1,
+    // Tier 2 — Vendor PSIRTs, national CERTs, standards bodies, vuln databases
+    'abb-psirt': 2, 'abb-alerts-html': 2, 'se-security-notifications': 2,
+    'msrc-blog': 2, 'ncsc-uk': 2, 'nist-cyber-insights': 2,
+    'cisa-ncas-alerts': 2, 'cisa-ncas-analysis': 2, 'cisa-ncas-current-activity': 2,
+    'imdrf-consultations': 2, 'imdrf-documents': 2, 'imdrf-news': 2,
+    'zdi-published': 2, 'zdi-upcoming': 2, 'nvd-cve-api': 2,
+    'cis-advisories': 2, 'osv-dev-api': 2, 'circl-misp': 2,
+    // Tier 3 — Security research: IoMT vendors, threat intel firms
+    'claroty-team82': 3, 'armis-labs': 3, 'asimily-blog': 3,
+    'google-project-zero': 3, 'checkpoint-research': 3, 'talos-intelligence': 3,
+    'mandiant-blog': 3, 'crowdstrike-blog': 3, 'tenable-newest': 3,
+    'fortified-health-security': 3, 'deepstrike-blog': 3, 'forescout-vedere': 3,
+    'shadowserver-reports': 3, 'levelblue-labs': 3,
+    // Tier 4 — Industry news and general security media
+    'dark-reading': 4, 'krebs-on-security': 4, 'wired-security': 4,
+    'security-magazine-cyber': 4, 'healthcare-it-news-security': 4,
+    'hipaa-guide-cyber': 4, 'hit-consultant-cyber': 4, 'cyberscoop-healthcare': 4,
+    'fierce-healthcare': 4, 'medtech-intelligence': 4, 'bioworld-digital-health': 4,
+    'beckers-hospital-cyber': 4, 'compliance-junction-cyber': 4,
+    'cshub-attacks': 4, 'cshub-malware': 4, 'zdnet-security': 4,
+    'microsoft-security-blog': 4, 'sans-isc': 4, 'infosec-malware-analysis': 4,
+    'infosec-threat-intel': 4, 'alienvault-otx': 4, 'wiz-threat-landscape': 4,
+    'threatpost': 4,
+    // Tier 5 — Threat intel feeds and blocklists
+    'urlhaus-recent': 5, 'threatfox-iocs': 5, 'ssl-blacklist': 5,
+    'feodo-tracker': 5, 'binary-defense-banlist': 5, 'ellio-ip-feed': 5,
+    'sans-block-ips': 5, 'bambenek-c2': 5, 'cyber-cure-ips': 5,
+    'ecrimelabs-metasploit': 5, 'epss-data': 5, 'epss-api': 5,
+    'vuldb-cti-api': 5, 'cvefeed-rss': 5, 'virustotal-api': 5,
+    'vulners-api': 5, 'malwarebazaar-recent': 5, 'seclists-rss': 5,
+    'emerging-threats': 5
+  };
 
-/* evidence */
-var EV_FIELDS=["title","summary","cves","severity","affected_versions","vendor","handling_warnings","sources"];
-function evScore(r){var n=0;EV_FIELDS.forEach(function(f){var v=r[f];if(Array.isArray(v)){if(v.length)n++}else if(v)n++});return n}
-function evColor(n){return n>=7?"var(--ev-green)":n>=5?"var(--ev-yellow)":"var(--ev-red)"}
-
-/* authority */
-function tierNum(r){var w=r.source_authority_weight;if(w>=1)return 1;if(w>=0.75)return 2;if(w>=0.5)return 3;return 4}
-function tierDots(t){var filled=t===1?4:t===2?3:t===3?2:1;var h="";for(var i=0;i<4;i++)h+='<span class="auth-dot'+(i<filled?"":" empty")+'"></span>';return h}
-
-/* score color */
-function scoreColor(p){return p==="P0"?"var(--score-p0)":p==="P1"?"var(--score-p1)":p==="P2"?"var(--score-p2)":"var(--score-p3)"}
-
-/* filter/sort */
-function filterIssues(){
-  var s=S.search.toLowerCase();
-  return S.issues.filter(function(r){
-    if(s){var hay=((r.issue_id||"")+" "+(r.title||"")+" "+(r.summary||"")+" "+(r.cves||[]).join(" ")+" "+(r.sources||[]).join(" ")+" "+(r.vendor||"")).toLowerCase();if(hay.indexOf(s)===-1)return false}
-    var f=S.filters;
-    if(f.priority&&r.priority!==f.priority)return false;
-    if(f.hasWarnings&&!(r.handling_warnings&&r.handling_warnings.length))return false;
-    if(f.multiSource&&(r.sources||[]).length<2)return false;
-    if(f.hasIocs&&!(r.iocs&&r.iocs.length))return false;
-    if(f.contradictions){var sc=r.source_consensus||{};if(!(sc.contradicted&&sc.contradicted.length))return false}
-    return true;
-  });
-}
-function sortIssues(rows){
-  var col=S.sortCol,dir=S.sortDir;
-  return rows.slice().sort(function(a,b){
-    var va,vb;
-    if(col==="score"){va=a.score||0;vb=b.score||0}
-    else if(col==="priority"){va=a.priority||"P9";vb=b.priority||"P9"}
-    else if(col==="issue_id"){va=a.issue_id||"";vb=b.issue_id||""}
-    else if(col==="title"){va=(a.title||"").toLowerCase();vb=(b.title||"").toLowerCase()}
-    else if(col==="sources"){va=(a.sources||[]).length;vb=(b.sources||[]).length}
-    else if(col==="evidence"){va=evScore(a);vb=evScore(b)}
-    else{va=a[col]||"";vb=b[col]||""}
-    if(va<vb)return -dir;if(va>vb)return dir;return 0;
-  });
-}
-
-/* render all */
-function renderAll(){renderHeader();renderStats();renderPills();renderTable();renderSources();renderAbout();renderFooter()}
-
-function renderHeader(){
-  $("hdr-issues").textContent=S.issues.length+" issues";
-  $("hdr-sources").textContent=S.sources.length+" sources";
-}
-
-function renderStats(){
-  var ct={P0:0,P1:0,P2:0,P3:0},pkts=0,contras=0,lastTs="";
-  S.issues.forEach(function(r){
-    ct[r.priority]=(ct[r.priority]||0)+1;
-    if((r.actions||[]).length)pkts++;
-    var sc=r.source_consensus||{};if(sc.contradicted&&sc.contradicted.length)contras++;
-    var ls=r.last_seen_at||"";if(ls>lastTs)lastTs=ls;
-  });
-  var h='<span class="stat-chip p0"><b>'+ct.P0+'</b> P0</span>'
-    +'<span class="stat-chip p1"><b>'+ct.P1+'</b> P1</span>'
-    +'<span class="stat-chip p2"><b>'+ct.P2+'</b> P2</span>'
-    +'<span class="stat-chip p3"><b>'+ct.P3+'</b> P3</span>'
-    +'<span class="stat-chip"><b>'+pkts+'</b> packets</span>'
-    +'<span class="stat-chip"><b>'+contras+'</b> contradictions</span>';
-  if(lastTs)h+='<span class="stat-ts">Updated '+esc(lastTs.slice(0,16).replace("T"," "))+'</span>';
-  $("stats-bar").innerHTML=h;
-}
-
-var PILL_DEFS=[
-  {label:"All",key:"priority",val:""},
-  {label:"P0",key:"priority",val:"P0"},
-  {label:"P1",key:"priority",val:"P1"},
-  {label:"P2",key:"priority",val:"P2"},
-  {label:"P3",key:"priority",val:"P3"},
-  {label:"Has warnings",key:"hasWarnings",val:true},
-  {label:"Multi-source",key:"multiSource",val:true},
-  {label:"Has IOCs",key:"hasIocs",val:true},
-  {label:"Contradictions",key:"contradictions",val:true}
-];
-
-function renderPills(){
-  var h="";
-  PILL_DEFS.forEach(function(p,i){
-    var active=false;
-    if(p.key==="priority")active=S.filters.priority===p.val;
-    else active=!!S.filters[p.key];
-    var cls="pill"+(active?" active":"");
-    if(active&&p.val==="P0")cls+=" fp0";
-    if(active&&p.val==="P1")cls+=" fp1";
-    h+='<span class="'+cls+'" onclick="App.toggleFilter('+i+')">'+p.label+'</span>';
-  });
-  $("filter-pills").innerHTML=h;
-}
-
-function sortArrow(col){
-  if(S.sortCol!==col)return'<span class="sort-ind"></span>';
-  return'<span class="sort-ind on">'+(S.sortDir===1?"\u25B2":"\u25BC")+'</span>';
-}
-
-function renderTable(){
-  var rows=sortIssues(filterIssues());
-  if(!rows.length){$("issues-list").innerHTML='<div class="state-msg"><h2>No issues match filters</h2></div>';return}
-  var h='<div class="tbl-hdr">'
-    +'<span onclick="App.setSort(\'priority\')">Priority'+sortArrow("priority")+'</span>'
-    +'<span onclick="App.setSort(\'issue_id\')">Issue'+sortArrow("issue_id")+'</span>'
-    +'<span onclick="App.setSort(\'title\')">Title'+sortArrow("title")+'</span>'
-    +'<span class="h-score" onclick="App.setSort(\'score\')">Score'+sortArrow("score")+'</span>'
-    +'<span class="h-sources" onclick="App.setSort(\'sources\')">Sources'+sortArrow("sources")+'</span>'
-    +'<span class="h-evidence" onclick="App.setSort(\'evidence\')">Evidence'+sortArrow("evidence")+'</span>'
-    +'<span class="h-analysis">Analysis</span>'
-    +'</div>';
-  rows.forEach(function(r){h+=renderIssueCard(r)});
-  $("issues-list").innerHTML=h;
-}
-
-function renderIssueCard(r){
-  var p=(r.priority||"P3").toLowerCase();
-  var ev=evScore(r);var evPct=Math.round(ev/8*100);
-  var tier=tierNum(r);
-  var srcCt=(r.sources||[]).length;
-  var genBy=r.generated_by||"deterministic";
-  var hasWarn=(r.handling_warnings||[]).length>0;
-  var sc=scoreColor(r.priority||"P3");
-  var id_safe=esc((r.issue_id||"").replace(/'/g,""));
-  var expanded=S.expanded===r.issue_id;
-
-  var h='<div class="issue-card">';
-  h+='<div class="issue-row" onclick="App.toggle(\''+id_safe+'\')">';
-  h+='<div><span class="pri-badge '+p+'">'+esc(r.priority)+'</span></div>';
-  h+='<div><span class="cell-label">'+(r.issue_type==="cve"?"cve":"id")+'</span><span class="issue-id-text">'+esc(r.issue_id)+'</span></div>';
-  h+='<div><span class="issue-title-text">'+esc(r.title)+'</span>'+(r.vendor?'<div class="issue-vendor">'+esc(r.vendor)+'</div>':'')+'</div>';
-  h+='<div><span class="score-val" style="color:'+sc+'">'+(r.score||0)+'</span><div class="score-bar"><div class="score-fill" style="width:'+Math.min(100,Math.round((r.score||0)/300*100))+'%;background:'+sc+'"></div></div></div>';
-  h+='<div class="cell-sources"><div class="auth-dots">'+tierDots(tier)+'</div><div class="tier-label">Tier '+tier+'</div></div>';
-  h+='<div class="cell-evidence ev-wrap"><div class="ev-bar"><div class="ev-fill" style="width:'+evPct+'%;background:'+evColor(ev)+'"></div></div><span class="ev-num">'+ev+'/8</span></div>';
-  h+='<div class="cell-analysis"><div class="analysis-tags">';
-  h+=genBy==="ai"?'<span class="tag tag-ai">AI-enriched</span>':'<span class="tag tag-det">Deterministic</span>';
-  if(hasWarn)h+='<span class="tag tag-warn">warnings</span>';
-  h+='</div></div>';
-  h+='</div>'; /* end issue-row */
-
-  if(expanded)h+=renderDetail(r);
-  h+='</div>'; /* end issue-card */
-  return h;
-}
-
-function renderDetail(r){
-  var hw=r.handling_warnings||[];
-  var sm=r.source_mitigations||[];
-  var iocs=r.iocs||[];
-  var actions=r.actions||[];
-  var unknowns=(r.unknowns||[]).concat(r.evidence_gaps||[]);
-  var sc=r.source_consensus||{};
-  var genBy=r.generated_by||"deterministic";
-  var cves=r.cves||[];
-  var sources=r.sources||[];
-  var ef=r.extracted_facts||{};
-  var inf=r.inferred_facts||{};
-  var na=r.non_applicability||[];
-
-  /* dedupe unknowns */
-  var seen={};unknowns=unknowns.filter(function(u){if(seen[u])return false;seen[u]=1;return true});
-
-  var h='<div class="detail-panel">';
-
-  /* handling warnings */
-  if(hw.length){
-    h+='<div class="handling-warnings"><div class="hw-title">Handling warnings</div><ul class="hw-list">';
-    hw.forEach(function(w){h+='<li>'+esc(w)+'</li>'});
-    h+='</ul></div>';
+  function getAuthorityTier(sourceId) {
+    return AUTHORITY_MAP[sourceId] || 3;
   }
 
-  /* summary */
-  h+='<div class="detail-summary">'+esc(r.summary||"No summary available.")+'</div>';
+  // Action keyword → full-sentence mapping
+  const ACTION_MAP = {
+    'notify': 'Notify security team and affected department leads',
+    'ingest': 'Add IOCs to SIEM and endpoint detection tools',
+    'track': 'Track for vendor patch release and schedule remediation',
+    'patch': 'Apply vendor patch after testing in non-production environment',
+    'isolate': 'Isolate affected devices to dedicated network segment',
+    'monitor': 'Monitor affected systems for signs of exploitation',
+    'update': 'Update affected software to the latest version',
+    'mitigate': 'Apply recommended mitigations until a patch is available',
+    'scan': 'Scan environment for affected assets and versions',
+    'assess': 'Assess exposure and impact within your environment',
+    'block': 'Block associated indicators at network boundary',
+    'review': 'Review access controls and configurations on affected systems',
+    'backup': 'Verify backups of affected systems are current and tested',
+    'segment': 'Segment affected devices to limit lateral movement',
+    'disable': 'Disable affected feature or service until remediated',
+    'escalate': 'Escalate to vendor support for remediation guidance',
+    'restrict': 'Restrict network access to affected systems',
+    'replace': 'Plan replacement of end-of-life affected devices',
+    'audit': 'Audit logs for indicators of prior exploitation',
+    'workaround': 'Implement vendor-recommended workaround'
+  };
 
-  /* meta */
-  h+='<div class="detail-meta">';
-  if(cves.length)h+='<span>'+cves.map(function(c){return'<a href="https://nvd.nist.gov/vuln/detail/'+encodeURIComponent(c)+'" target="_blank" rel="noopener">'+esc(c)+'</a>'}).join(", ")+'</span>';
-  if(sources.length)h+='<span>'+sources.map(function(s){return esc(s)}).join(", ")+'</span>';
-  h+='<span>'+esc(r.priority||"")+" &middot; Score "+(r.score||0)+'</span>';
-  if(sc.contradicted&&sc.contradicted.length)h+='<span class="meta-contra">Contradictions found</span>';
-  h+='</div>';
+  function expandAction(action) {
+    var key = (action || '').trim().toLowerCase();
+    return ACTION_MAP[key] || action;
+  }
 
-  /* two-col */
-  h+='<div class="two-col">';
+  const PRIORITY_ORDER = { P0: 0, P1: 1, P2: 2, P3: 3 };
 
-  /* LEFT */
-  h+='<div class="source-mitigations-col">';
-  h+='<div class="col-hdr">What sources recommend <span class="tag tag-src">Source-cited</span></div>';
-  if(sm.length){
-    sm.forEach(function(m){
-      var t=m.source_tier||4;
-      h+='<div class="mit-card"><div class="mit-hdr"><span class="mit-source">'+esc(m.source)+'</span><span class="tier-tag'+(t===1?" t1":" other")+'">Tier '+t+'</span></div>';
-      h+='<div class="mit-action">'+esc(m.action)+'</div>';
-      if(m.citation)h+='<div class="mit-cite">'+esc(m.citation)+'</div>';
-      if(m.url)h+='<div class="mit-link"><a href="'+esc(m.url)+'" target="_blank" rel="noopener">View source</a></div>';
-      h+='</div>';
+  function parseDate(d) {
+    if (!d) return null;
+    var t = new Date(d);
+    return isNaN(t.getTime()) ? null : t;
+  }
+
+  function getIssueDate(issue) {
+    if (issue.published_dates && issue.published_dates.length) {
+      var d = parseDate(issue.published_dates[0]);
+      if (d) return d;
+    }
+    return parseDate(issue.first_seen_at) || new Date(0);
+  }
+
+  function formatDate(d) {
+    if (!d || isNaN(d.getTime())) return '';
+    return d.toISOString().slice(0, 10);
+  }
+
+  function isCveOnly(title) {
+    return /^CVE-\d{4}-\d{4,}$/.test((title || '').trim());
+  }
+
+  function truncTitle(t, max) {
+    t = t.replace(/\s{2,}/g, ' ').trim();
+    if (t.length > max) t = t.slice(0, max - 1) + '\u2026';
+    return t;
+  }
+
+  function getDisplayTitle(issue) {
+    // 1. Non-CVE titles: use as-is
+    if (!isCveOnly(issue.title)) {
+      var raw = (issue.title || issue.issue_id).replace(/\s*-\s*CVE-\d{4}-\d{4,}\s*$/, '');
+      return truncTitle(raw, 80);
+    }
+    // 2. NVD description first sentence
+    if (issue.nvd_description) {
+      var desc = issue.nvd_description.trim();
+      var dotPos = desc.indexOf('. ');
+      var sentence = dotPos > 0 ? desc.slice(0, dotPos) : desc;
+      return truncTitle(sentence, 80);
+    }
+    // 3. KEV vulnerability name
+    if (issue.kev_vulnerability_name) {
+      return truncTitle(issue.kev_vulnerability_name, 80);
+    }
+    // 4. Vendor + KEV product
+    if (issue.vendor && issue.kev_product) {
+      return truncTitle(issue.vendor + ' ' + issue.kev_product, 80);
+    }
+    // 5. Recall IDs (digits and dashes only, e.g. openfda): prefix with FDA Device Recall
+    var fallback = issue.title || issue.issue_id;
+    if (/^[\d-]+$/.test(fallback)) {
+      return 'FDA Device Recall: ' + fallback;
+    }
+    // 6. Last resort: raw title / issue_id
+    return fallback;
+  }
+
+  function formatSummaryContent(text) {
+    // Insert <br> before sentences starting with common lead-in phrases
+    var escaped = escapeHtml(text);
+    escaped = escaped.replace(/(?<=[.;])\s+(The |A CVSS|Successful|This could|The Food|CISA has|An attacker|Exploitation|According to|Products |No known|CVE-\d)/g, '<br><br>$1');
+    return escaped;
+  }
+
+  function escapeHtml(s) {
+    var d = document.createElement('div');
+    d.textContent = s || '';
+    return d.innerHTML;
+  }
+
+  // Filter logic
+  function applyFilters() {
+    var list = issues.slice();
+    if (healthcareMode) {
+      list = list.filter(function(i) { return i.healthcare_relevant === true; });
+    }
+    if (activePriority) {
+      list = list.filter(function(i) { return i.priority === activePriority; });
+    }
+    if (searchQuery) {
+      var q = searchQuery.toLowerCase();
+      list = list.filter(function(i) {
+        var text = [i.issue_id, i.title, i.summary, i.vendor].concat(i.cves || []).concat(i.affected_versions || []).concat(i.affected_products || []).concat(i.cwe_ids || []).join(' ').toLowerCase();
+        return text.indexOf(q) !== -1;
+      });
+    }
+    if (activeFilter === 'warnings') {
+      list = list.filter(function(i) { return i.handling_warnings && i.handling_warnings.length > 0; });
+    } else if (activeFilter === 'multisrc') {
+      list = list.filter(function(i) { return i.sources && i.sources.length > 1; });
+    } else if (activeFilter === 'hasfix') {
+      list = list.filter(function(i) { return i.actions && i.actions.length > 0; });
+    }
+    if (activeKevFilter) {
+      list = list.filter(function(i) { return i.is_kev_medical_device === true; });
+    }
+    if (activeFdaFilter === '3') {
+      list = list.filter(function(i) { return i.fda_risk_class === '3'; });
+    } else if (activeFdaFilter === '23') {
+      list = list.filter(function(i) { return i.fda_risk_class === '2' || i.fda_risk_class === '3'; });
+    } else if (activeFdaFilter === '1') {
+      list = list.filter(function(i) { return i.fda_risk_class === '1'; });
+    }
+    list.sort(function(a, b) {
+      var pa = PRIORITY_ORDER[a.priority] !== undefined ? PRIORITY_ORDER[a.priority] : 9;
+      var pb = PRIORITY_ORDER[b.priority] !== undefined ? PRIORITY_ORDER[b.priority] : 9;
+      if (pa !== pb) return pa - pb;
+      return getIssueDate(b) - getIssueDate(a);
     });
-  } else {
-    h+='<div class="mit-empty">No source-specific mitigations found for this issue. See our analysis for playbook-based guidance.</div>';
+    filteredIssues = list;
+    selectedIdx = -1;
+    renderIssueList();
+    renderDetail();
   }
 
-  /* IOCs */
-  if(iocs.length){
-    h+='<div class="ioc-section"><div class="ioc-title">Published indicators</div>';
-    iocs.forEach(function(ioc){
-      h+='<div class="ioc-item"><span class="ioc-type">'+esc((ioc.type||"").toUpperCase())+'</span><span class="ioc-val">'+esc(ioc.value)+'</span><span class="ioc-src">'+esc(ioc.source)+'</span></div>';
+  var FDA_TOOLTIPS = {
+    '3': 'FDA Class III devices are highest-risk (e.g., pacemakers, implantable defibrillators). Require premarket approval.',
+    '2': 'FDA Class II devices are moderate-risk (e.g., infusion pumps, most diagnostic equipment). Require 510(k) clearance.',
+    '1': 'FDA Class I devices are low-risk (e.g., bandages, stethoscopes). Subject to general controls only.'
+  };
+  var FDA_LABELS = { '3': 'FDA Class III', '2': 'FDA Class II', '1': 'FDA Class I' };
+
+  function fdaBadgeHtml(rc) {
+    if (!rc || !FDA_LABELS[rc]) return '';
+    return '<span class="fda-badge fda-badge-' + rc + '">' + FDA_LABELS[rc] +
+      '<span class="fda-tooltip">' + FDA_TOOLTIPS[rc] + '</span></span>';
+  }
+
+  var HC_CATEGORY_LABELS = {
+    'medical_device': 'Medical Device',
+    'healthcare_it': 'Healthcare IT',
+    'healthcare_infrastructure': 'HC Infrastructure',
+    'healthcare_adjacent': 'HC Adjacent'
+  };
+
+  function kevMedBadgeHtml(issue) {
+    if (!issue.is_kev_medical_device) return '';
+    return '<span class="kev-med-badge">ACTIVELY EXPLOITED' +
+      '<span class="kev-med-tooltip">This vulnerability is in CISA\'s Known Exploited Vulnerabilities catalog AND affects a medical device. Immediate review required.</span></span>';
+  }
+
+  function renderIssueList() {
+    var pane = document.getElementById('issue-list-pane');
+    if (!filteredIssues.length) {
+      pane.innerHTML = '<div style="text-align:center;padding:40px;color:var(--text-muted);font-size:13px">No issues match the current filters.</div>';
+      return;
+    }
+    var html = '';
+    for (var idx = 0; idx < filteredIssues.length; idx++) {
+      var issue = filteredIssues[idx];
+      var sel = idx === selectedIdx ? ' selected' : '';
+      var title = escapeHtml(getDisplayTitle(issue));
+      var cve = (issue.cves && issue.cves[0]) || '';
+      var srcCount = (issue.sources || []).length;
+      var date = formatDate(getIssueDate(issue));
+      var cvssPill = issue.cvss_score ? '<span class="cvss-pill cvss-pill-sm ' + cvssClass(issue.cvss_score) + '">' + issue.cvss_score + '</span>' : '';
+      var hcBadge = issue.healthcare_relevant ? '<span class="hc-badge">HC</span>' : '';
+      var fdaBadge = fdaBadgeHtml(issue.fda_risk_class);
+      var kevMedBadge = kevMedBadgeHtml(issue);
+      html += '<div class="issue-card' + sel + '" data-idx="' + idx + '">' +
+        '<div class="ic-top">' +
+        kevMedBadge +
+        '<span class="badge badge-' + issue.priority + '">' + issue.priority + '</span>' +
+        hcBadge +
+        fdaBadge +
+        cvssPill +
+        '<span class="ic-title">' + title + '</span>' +
+        '</div>' +
+        '<div class="ic-meta">' +
+        (cve ? '<a class="cve-link" href="https://nvd.nist.gov/vuln/detail/' + cve + '" target="_blank" onclick="event.stopPropagation()">' + cve + '</a>' : '') +
+        '<span>' + srcCount + ' source' + (srcCount !== 1 ? 's' : '') + '</span>' +
+        '<span>' + date + '</span>' +
+        (issue.healthcare_category && HC_CATEGORY_LABELS[issue.healthcare_category] ? '<span style="color:var(--text-muted)">' + HC_CATEGORY_LABELS[issue.healthcare_category] + '</span>' : '') +
+        '</div></div>';
+    }
+    pane.innerHTML = html;
+    var cards = pane.querySelectorAll('.issue-card');
+    for (var i = 0; i < cards.length; i++) {
+      (function(card) {
+        card.addEventListener('click', function() {
+          selectedIdx = parseInt(card.getAttribute('data-idx'));
+          updateSelection();
+          renderDetail();
+        });
+      })(cards[i]);
+    }
+  }
+
+  function updateSelection() {
+    var cards = document.querySelectorAll('.issue-card');
+    for (var i = 0; i < cards.length; i++) {
+      if (i === selectedIdx) cards[i].classList.add('selected');
+      else cards[i].classList.remove('selected');
+    }
+    var sel = document.querySelector('.issue-card.selected');
+    if (sel) sel.scrollIntoView({ block: 'nearest' });
+  }
+
+  function cvssClass(score) {
+    if (score >= 9) return 'cvss-pill-critical';
+    if (score >= 7) return 'cvss-pill-high';
+    if (score >= 4) return 'cvss-pill-medium';
+    return 'cvss-pill-low';
+  }
+  function cvssSeverityWord(score) {
+    if (score >= 9) return 'CRITICAL';
+    if (score >= 7) return 'HIGH';
+    if (score >= 4) return 'MEDIUM';
+    return 'LOW';
+  }
+
+  function renderDetail() {
+    var empty = document.getElementById('detail-empty');
+    var content = document.getElementById('detail-content');
+    if (selectedIdx < 0 || selectedIdx >= filteredIssues.length) {
+      empty.style.display = 'flex';
+      content.style.display = 'none';
+      return;
+    }
+    empty.style.display = 'none';
+    content.style.display = 'block';
+
+    var issue = filteredIssues[selectedIdx];
+    var html = '';
+
+    // Header
+    html += '<div class="dcard">' + kevMedBadgeHtml(issue) +
+      '<span class="badge badge-' + issue.priority + '">' + issue.priority + '</span>' +
+      ' <span class="mono" style="font-size:11px;color:var(--text-secondary);margin-left:4px">Score: ' + (issue.score || 0) + '</span>' +
+      (issue.cvss_score ? ' <span class="cvss-pill ' + cvssClass(issue.cvss_score) + '" style="margin-left:4px">' + issue.cvss_score + '</span>' : '') +
+      fdaBadgeHtml(issue.fda_risk_class) +
+      '<div class="dtitle">' + escapeHtml(issue.title || issue.issue_id) + '</div></div>';
+
+    // CVSS card
+    if (issue.cvss_score) {
+      var sevWord = issue.cvss_severity ? issue.cvss_severity.toUpperCase() : cvssSeverityWord(issue.cvss_score);
+      html += '<div class="dcard" style="display:flex;align-items:center;flex-wrap:wrap;gap:8px">' +
+        '<span class="cvss-pill ' + cvssClass(issue.cvss_score) + '">CVSS ' + issue.cvss_score + '</span>' +
+        '<span class="cvss-severity" style="color:' + (issue.cvss_score >= 9 ? '#fca5a5' : issue.cvss_score >= 7 ? '#fcd34d' : issue.cvss_score >= 4 ? '#fbbf24' : '#93c5fd') + '">' + sevWord + '</span>';
+      if (issue.cwe_ids && issue.cwe_ids.length) {
+        for (var ci = 0; ci < issue.cwe_ids.length; ci++) {
+          html += '<span class="cwe-pill">' + escapeHtml(issue.cwe_ids[ci]) + '</span>';
+        }
+      }
+      html += '</div>';
+    }
+
+    // Summary
+    var summaryHtml;
+    if (issue.summary && issue.summary.trim()) {
+      var raw = issue.summary.trim();
+      // Collapse CVSS vector strings to just the base score
+      raw = raw.replace(/CVSS\s+v[\d.]+\s+([\d.]+)\s*[\/:;]\s*(?:AV:[A-Z]\/AC:[A-Z]\/[A-Za-z0-9\/:]+)/gi, 'CVSS $1');
+      raw = raw.replace(/\(?\s*AV:[A-Z]\/AC:[A-Z](?:\/[A-Za-z0-9:]+)+\s*\)?/g, '');
+      // Split on numbered section/sub-section headers
+      var sectionPattern = /(\d+(?:\.\d+)*\.?\s*(?:EXECUTIVE SUMMARY|RISK EVALUATION|TECHNICAL DETAILS|MITIGATIONS|UPDATE HISTORY|AFFECTED PRODUCTS|BACKGROUND|VULNERABILITY OVERVIEW|VULNERABILITY DETAILS|RECOMMENDED PRACTICES|CISA CONTACT|REFERENCES|OUT[- ]OF[- ]BOUNDS[^\n]*|STACK[- ]BASED[^\n]*|HEAP[- ]BASED[^\n]*|USE[- ]AFTER[- ]FREE[^\n]*|BUFFER[^\n]*|HIDDEN[^\n]*|IMPROPER[^\n]*|MISSING[^\n]*|INTEGER[^\n]*|SQL[^\n]*|CROSS[- ]SITE[^\n]*|PATH[^\n]*|UNRESTRICTED[^\n]*|UNCONTROLLED[^\n]*|COMMAND[^\n]*|CODE[^\n]*|REMOTE[^\n]*))/gi;
+      var parts = raw.split(sectionPattern);
+      if (parts.length > 1) {
+        summaryHtml = '';
+        for (var si = 0; si < parts.length; si++) {
+          var part = parts[si].trim();
+          if (!part) continue;
+          sectionPattern.lastIndex = 0;
+          if (sectionPattern.test(part)) {
+            summaryHtml += '<div class="section-block"><span class="section-header">' + escapeHtml(part) + '</span>';
+            if (si + 1 < parts.length) {
+              summaryHtml += formatSummaryContent(parts[si + 1].trim());
+              si++;
+            }
+            summaryHtml += '</div>';
+          } else {
+            summaryHtml += '<div class="section-block">' + formatSummaryContent(part) + '</div>';
+          }
+        }
+      } else {
+        summaryHtml = formatSummaryContent(raw);
+        // For non-sectioned summaries, add paragraph breaks before sentences starting with a capital letter
+        summaryHtml = summaryHtml.replace(/\.\s+([A-Z])/g, '.<br><br>$1');
+      }
+    } else {
+      summaryHtml = 'No detailed summary available. See source advisory for full description.';
+    }
+    html += '<div class="dcard"><div class="label" style="margin-bottom:6px">SUMMARY</div><div class="dsummary">' + summaryHtml + '</div></div>';
+
+    // CVEs
+    if (issue.cves && issue.cves.length) {
+      html += '<div class="dcard"><div class="label" style="margin-bottom:6px">CVES</div><div>';
+      for (var c = 0; c < issue.cves.length; c++) {
+        html += '<a class="cve-pill" href="https://nvd.nist.gov/vuln/detail/' + issue.cves[c] + '" target="_blank">' + issue.cves[c] + '</a>';
+      }
+      html += '</div></div>';
+    }
+
+    // Affected products — prefer enriched affected_products, then kev_vendor+kev_product, then vendor, then affected_versions
+    var products = (issue.affected_products && issue.affected_products.length) ? issue.affected_products :
+      (issue.kev_vendor && issue.kev_product) ? [issue.kev_vendor + ' ' + issue.kev_product] :
+      (issue.vendor && issue.vendor.trim()) ? [issue.vendor.trim()] :
+      (issue.affected_versions || []);
+    if (products.length) {
+      html += '<div class="dcard"><div class="label" style="margin-bottom:6px">AFFECTED PRODUCTS</div><div>';
+      for (var p = 0; p < products.length; p++) {
+        html += '<span class="product-pill">' + escapeHtml(products[p]) + '</span>';
+      }
+      html += '</div></div>';
+    } else {
+      html += '<div class="placeholder-card"><div class="label" style="margin-bottom:4px">AFFECTED PRODUCTS</div>No affected products identified</div>';
+    }
+
+    // Warnings
+    if (issue.handling_warnings && issue.handling_warnings.length) {
+      html += '<div class="warn-box">';
+      for (var w = 0; w < issue.handling_warnings.length; w++) {
+        html += '<div>' + escapeHtml(issue.handling_warnings[w]) + '</div>';
+      }
+      html += '</div>';
+    }
+
+    // KEV required action
+    if (issue.kev_required_action) {
+      html += '<div class="kev-box">' +
+        '<div class="kev-header">\u26A0 CISA KEV \u2014 Required Action</div>' +
+        '<div class="kev-body">' + escapeHtml(issue.kev_required_action) + '</div>' +
+        (issue.kev_due_date ? '<div class="kev-due">Due: ' + escapeHtml(issue.kev_due_date) + '</div>' : '') +
+        '</div>';
+    }
+
+    // Remediation steps (from enrichment pipeline) — deduplicate against KEV action
+    var remSteps = (issue.remediation_steps || []).slice();
+    if (issue.kev_required_action && remSteps.length && remSteps[0].trim() === issue.kev_required_action.trim()) {
+      remSteps = remSteps.slice(1);
+    }
+    if (remSteps.length) {
+      html += '<div class="remediation-box"><div class="rem-title">REMEDIATION STEPS</div>';
+      for (var rs = 0; rs < remSteps.length; rs++) {
+        var stepText = expandAction(remSteps[rs]);
+        html += '<div class="action-step"><div class="step-num" style="background:var(--ai-border);color:var(--ai-title)">' + (rs + 1) + '</div><div class="step-text" style="color:var(--ai-text)">' + escapeHtml(stepText) + '</div></div>';
+      }
+      html += '</div>';
+    }
+
+    // Recommended actions — only show if no remediation steps (avoid duplicate guidance)
+    var actions = issue.actions || [];
+    if (!remSteps.length && actions.length) {
+      html += '<div class="action-box"><div class="ab-title">RECOMMENDED ACTIONS</div>';
+      for (var m = 0; m < actions.length; m++) {
+        html += '<div class="action-step"><div class="step-num">' + (m + 1) + '</div><div class="step-text">' + escapeHtml(expandAction(actions[m])) + '</div></div>';
+      }
+      html += '</div>';
+    } else if (!remSteps.length) {
+      html += '<div class="placeholder-card"><div class="label" style="margin-bottom:4px">RECOMMENDED ACTIONS</div>No recommended actions available for this issue</div>';
+    }
+
+    // Sources
+    if (issue.sources && issue.sources.length) {
+      html += '<div class="dcard"><div class="label" style="margin-bottom:6px">SOURCES</div>';
+      for (var si = 0; si < issue.sources.length; si++) {
+        var sid = issue.sources[si];
+        var src = null;
+        for (var j = 0; j < sources.length; j++) {
+          if (sources[j].source_id === sid) { src = sources[j]; break; }
+        }
+        var name = src ? src.name : sid;
+        var url = issue.canonical_link || (src ? src.entry_url : '#');
+        html += '<div class="src-link"><span class="src-dot"></span><span style="color:var(--text-body);font-size:12px">' + escapeHtml(name) + '</span> <a href="' + url + '" target="_blank" style="font-size:11px">View</a></div>';
+      }
+      html += '</div>';
+    }
+
+    content.innerHTML = html;
+  }
+
+  function renderSources() {
+    var list = sources.slice();
+    if (activeSourceScope !== 'all') {
+      list = list.filter(function(s) { return s.scope === activeSourceScope; });
+    }
+    if (sourceSearchQuery) {
+      var q = sourceSearchQuery.toLowerCase();
+      list = list.filter(function(s) { return (s.name + ' ' + s.source_id).toLowerCase().indexOf(q) !== -1; });
+    }
+    document.getElementById('sources-count').textContent = list.length + ' sources monitored';
+    var container = document.getElementById('source-list');
+    var html = '';
+    for (var i = 0; i < list.length; i++) {
+      var src = list[i];
+      var tier = getAuthorityTier(src.source_id);
+      var scopeClass = src.scope === 'advisory' ? 'scope-advisory' : src.scope === 'news' ? 'scope-news' : src.scope === 'threatintel' ? 'scope-threat-intel' : 'scope-dataset';
+      var scopeLabel = src.scope === 'advisory' ? 'Advisory' : src.scope === 'news' ? 'News' : src.scope === 'threatintel' ? 'Threat intel' : 'Dataset';
+      var statusClass = src.enabled ? 'status-active' : 'status-inactive';
+      var statusLabel = src.enabled ? 'Active' : 'Inactive';
+      var filledCount = 6 - tier;
+      var dotsHtml = '';
+      for (var d = 1; d <= 5; d++) {
+        dotsHtml += '<div class="dot ' + (d <= filledCount ? 'filled' : 'empty') + '"></div>';
+      }
+      html += '<div class="source-row">' +
+        '<div class="sr-info"><div class="sr-name">' + escapeHtml(src.name) + '</div><div class="sr-id">' + src.source_id + '</div></div>' +
+        '<span class="badge ' + scopeClass + '">' + scopeLabel + '</span>' +
+        '<div class="authority-dots">' + dotsHtml + '<span class="tier-label">T' + tier + '</span></div>' +
+        '<span class="badge status-badge ' + statusClass + '">' + statusLabel + '</span>' +
+        '</div>';
+    }
+    container.innerHTML = html;
+  }
+
+  function updateHeaderStats() {
+    var enabledSources = 0;
+    for (var i = 0; i < sources.length; i++) { if (sources[i].enabled) enabledSources++; }
+    if (healthcareMode) {
+      var hcCount = 0;
+      for (var j = 0; j < issues.length; j++) { if (issues[j].healthcare_relevant) hcCount++; }
+      document.getElementById('meta-stats').textContent = hcCount + ' medical device issues \u00B7 ' + enabledSources + ' sources';
+    } else {
+      document.getElementById('meta-stats').textContent = issues.length + ' issues \u00B7 ' + enabledSources + ' sources';
+    }
+  }
+
+  function updateUrgencyCounts() {
+    var counts = { P0: 0, P1: 0, P2: 0, P3: 0 };
+    for (var i = 0; i < issues.length; i++) {
+      if (healthcareMode && !issues[i].healthcare_relevant) continue;
+      if (counts[issues[i].priority] !== undefined) counts[issues[i].priority]++;
+    }
+    document.getElementById('count-p0').textContent = counts.P0;
+    document.getElementById('count-p1').textContent = counts.P1;
+    document.getElementById('count-p2').textContent = counts.P2;
+    document.getElementById('count-p3').textContent = counts.P3;
+  }
+
+  function switchTab(tab) {
+    activeTab = tab;
+    var btns = document.querySelectorAll('.tab-btn');
+    for (var i = 0; i < btns.length; i++) {
+      if (btns[i].getAttribute('data-tab') === tab) btns[i].classList.add('active');
+      else btns[i].classList.remove('active');
+    }
+    var tabs = document.querySelectorAll('.tab-content');
+    for (var j = 0; j < tabs.length; j++) {
+      if (tabs[j].id === tab + '-section') tabs[j].classList.add('visible');
+      else tabs[j].classList.remove('visible');
+    }
+    var fb = document.getElementById('filter-bar');
+    if (tab === 'issues') fb.classList.remove('hidden');
+    else fb.classList.add('hidden');
+    window.location.hash = tab;
+  }
+
+  async function loadAllIssues() {
+    if (allIssuesCache) return allIssuesCache;
+    if (allIssuesLoading) return allIssuesLoading;
+    allIssuesLoading = fetch('feed_latest.json').then(function(r) { return r.json(); }).then(function(data) {
+      allIssuesCache = data;
+      allIssuesLoading = false;
+      return data;
     });
-    h+='</div>';
+    return allIssuesLoading;
   }
-  h+='</div>'; /* end left */
 
-  /* RIGHT */
-  h+='<div class="analysis-col">';
-  h+='<div class="col-hdr">Our analysis <span class="tag tag-ai">AI-assisted</span></div>';
+  async function init() {
+    try {
+      var responses = await Promise.all([
+        fetch('feed_healthcare.json').then(function(r) { return r.json(); }),
+        fetch('validated_sources.json').then(function(r) { return r.json(); })
+      ]);
+      healthcareIssues = responses[0];
+      issues = healthcareIssues;
+      sources = responses[1];
+    } catch (e) {
+      console.error('Failed to load data:', e);
+      document.getElementById('issue-list-pane').innerHTML = '<div style="text-align:center;padding:40px;color:var(--p0-text)">Failed to load data. Ensure feed_healthcare.json and validated_sources.json are accessible.</div>';
+      return;
+    }
 
-  if(actions.length&&genBy==="ai"){
-    actions.forEach(function(act){
-      var friction=inf.friction_level||(act==="notify"||act==="ingest"?"low":"medium");
-      var fc=friction==="low"?"low":friction==="high"?"high":"medium";
-      h+='<div class="rec-card"><div class="rec-hdr"><span class="rec-name">'+esc(act)+'</span><span class="fric-tag '+fc+'">'+esc(friction)+' friction</span></div>';
-      if(ef.rationale)h+='<div class="rec-rationale">'+esc(ef.rationale)+'</div>';
-      if(ef.basis)h+='<div class="rec-basis">'+esc(ef.basis)+'</div>';
-      if(inf.side_effects)h+='<div class="rec-side">Side effects: '+esc(inf.side_effects)+'</div>';
-      h+='</div>';
+    var enabledSources = 0;
+    for (var i = 0; i < sources.length; i++) { if (sources[i].enabled) enabledSources++; }
+    updateHeaderStats();
+
+    var latest = null;
+    for (var j = 0; j < issues.length; j++) {
+      var d = parseDate(issues[j].last_seen_at) || parseDate(issues[j].first_seen_at);
+      if (d && (!latest || d > latest)) latest = d;
+    }
+    document.getElementById('meta-updated').textContent = latest ? 'Updated ' + formatDate(latest) : '';
+    document.getElementById('about-issues').textContent = issues.length;
+    document.getElementById('about-sources').textContent = enabledSources;
+
+    // Dynamic about metrics: remediation packets & medical device issues
+    var remediationCount = 0, medicalCount = 0;
+    for (var k = 0; k < issues.length; k++) {
+      if (issues[k].remediation_steps && issues[k].remediation_steps.length > 0) remediationCount++;
+      if (issues[k].healthcare_relevant === true) medicalCount++;
+    }
+    document.getElementById('about-remediation').textContent = remediationCount;
+    document.getElementById('about-medical').textContent = medicalCount;
+
+    // Load pipeline metrics from meta.json if available
+    fetch('meta.json').then(function(r) {
+      if (!r.ok) return;
+      return r.json();
+    }).then(function(meta) {
+      if (!meta) return;
+      if (meta.test_count != null) document.getElementById('about-tests').textContent = meta.test_count;
+      if (meta.api_cost_total != null) document.getElementById('about-api-cost').textContent = '$' + meta.api_cost_total.toFixed(2);
+      if (meta.fixture_pass_rate != null) document.getElementById('about-fixture-pass').textContent = meta.fixture_pass_rate;
+    }).catch(function() {});
+
+    updateUrgencyCounts();
+    applyFilters();
+    renderSources();
+
+    var hash = window.location.hash.slice(1);
+    if (['issues', 'sources', 'methodology', 'about'].indexOf(hash) !== -1) {
+      switchTab(hash);
+    }
+  }
+
+  // Tab clicks
+  var tabBtns = document.querySelectorAll('.tab-btn');
+  for (var ti = 0; ti < tabBtns.length; ti++) {
+    (function(btn) {
+      btn.addEventListener('click', function() { switchTab(btn.getAttribute('data-tab')); });
+    })(tabBtns[ti]);
+  }
+
+  // Urgency card clicks
+  var urgCards = document.querySelectorAll('.urgency-card');
+  for (var ui = 0; ui < urgCards.length; ui++) {
+    (function(card) {
+      card.addEventListener('click', function() {
+        var p = card.getAttribute('data-priority');
+        if (activePriority === p) {
+          activePriority = null;
+          card.classList.remove('active');
+        } else {
+          activePriority = p;
+          for (var k = 0; k < urgCards.length; k++) {
+            if (urgCards[k].getAttribute('data-priority') === p) urgCards[k].classList.add('active');
+            else urgCards[k].classList.remove('active');
+          }
+        }
+        if (activeTab !== 'issues') switchTab('issues');
+        applyFilters();
+      });
+    })(urgCards[ui]);
+  }
+
+  // Filter pills
+  var filterPills = document.querySelectorAll('#filter-bar .pill');
+  for (var fi = 0; fi < filterPills.length; fi++) {
+    (function(pill) {
+      pill.addEventListener('click', function() {
+        activeFilter = pill.getAttribute('data-filter');
+        for (var k = 0; k < filterPills.length; k++) {
+          if (filterPills[k].getAttribute('data-filter') === activeFilter) filterPills[k].classList.add('active');
+          else filterPills[k].classList.remove('active');
+        }
+        applyFilters();
+      });
+    })(filterPills[fi]);
+  }
+
+  // KEV filter pill (toggle)
+  var kevPill = document.querySelector('#filter-bar [data-kev-filter]');
+  if (kevPill) {
+    kevPill.addEventListener('click', function() {
+      activeKevFilter = !activeKevFilter;
+      if (activeKevFilter) kevPill.classList.add('active');
+      else kevPill.classList.remove('active');
+      applyFilters();
     });
-  } else if(actions.length){
-    actions.forEach(function(act){
-      h+='<div class="rec-card"><div class="rec-hdr"><span class="rec-name">'+esc(act)+'</span></div></div>';
-    });
-  } else {
-    h+='<div class="rec-empty">Deterministic scoring only.</div>';
   }
 
-  /* unknowns / evidence gaps */
-  if(unknowns.length){
-    h+='<div class="evidence-gaps"><div class="subsec-title">What we don\'t know</div>';
-    unknowns.forEach(function(u){h+='<div class="unknown-item">&bull; '+esc(u)+'</div>'});
-    h+='</div>';
+  // FDA filter pills
+  var fdaPills = document.querySelectorAll('#filter-bar [data-fda-filter]');
+  for (var fdi = 0; fdi < fdaPills.length; fdi++) {
+    (function(pill) {
+      pill.addEventListener('click', function() {
+        activeFdaFilter = pill.getAttribute('data-fda-filter');
+        for (var k = 0; k < fdaPills.length; k++) {
+          if (fdaPills[k].getAttribute('data-fda-filter') === activeFdaFilter) fdaPills[k].classList.add('active');
+          else fdaPills[k].classList.remove('active');
+        }
+        applyFilters();
+      });
+    })(fdaPills[fdi]);
   }
 
-  /* consensus */
-  if((sc.agreed&&sc.agreed.length)||(sc.contradicted&&sc.contradicted.length)){
-    h+='<div class="source-consensus"><div class="subsec-title">Source consensus</div>';
-    (sc.agreed||[]).forEach(function(a){h+='<div class="consensus-ok">&check; '+esc(a)+'</div>'});
-    (sc.contradicted||[]).forEach(function(c){h+='<div class="consensus-bad">&cross; '+esc(c)+'</div>'});
-    h+='</div>';
+  // Scope toggle (healthcare / all) with lazy loading
+  var scopeToggles = document.querySelectorAll('.scope-toggle .toggle-btn');
+  for (var sti = 0; sti < scopeToggles.length; sti++) {
+    (function(btn) {
+      btn.addEventListener('click', async function() {
+        var mode = btn.getAttribute('data-scope-mode');
+        healthcareMode = mode === 'healthcare';
+        for (var k = 0; k < scopeToggles.length; k++) {
+          if (scopeToggles[k].getAttribute('data-scope-mode') === mode) scopeToggles[k].classList.add('active');
+          else scopeToggles[k].classList.remove('active');
+        }
+        if (!healthcareMode) {
+          if (!allIssuesCache) {
+            btn.textContent = 'Loading\u2026';
+            btn.disabled = true;
+            try {
+              issues = await loadAllIssues();
+            } catch (e) {
+              console.error('Failed to load full feed:', e);
+              btn.textContent = 'All vulnerabilities';
+              btn.disabled = false;
+              return;
+            }
+            btn.textContent = 'All vulnerabilities';
+            btn.disabled = false;
+          } else {
+            issues = allIssuesCache;
+          }
+        } else {
+          issues = healthcareIssues;
+        }
+        updateHeaderStats();
+        updateUrgencyCounts();
+        applyFilters();
+      });
+    })(scopeToggles[sti]);
   }
 
-  /* provenance */
-  h+='<div class="provenance-badges">';
-  if(genBy==="ai"){
-    h+='<div class="prov-row"><span class="tag tag-ai">AI-enriched</span> Summary, recommendations, handling warnings</div>';
-    h+='<div class="prov-row"><span class="tag tag-det">Deterministic</span> Score, priority, correlation</div>';
-  } else {
-    h+='<div class="prov-row"><span class="tag tag-det">Deterministic</span> Score, priority, correlation</div>';
+  // Search (debounced)
+  var searchTimer;
+  document.getElementById('search-input').addEventListener('input', function(e) {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(function() {
+      searchQuery = e.target.value.trim();
+      applyFilters();
+    }, 200);
+  });
+
+  // Source scope pills
+  var scopePills = document.querySelectorAll('.source-scope-pill');
+  for (var si = 0; si < scopePills.length; si++) {
+    (function(pill) {
+      pill.addEventListener('click', function() {
+        activeSourceScope = pill.getAttribute('data-scope');
+        for (var k = 0; k < scopePills.length; k++) {
+          if (scopePills[k].getAttribute('data-scope') === activeSourceScope) scopePills[k].classList.add('active');
+          else scopePills[k].classList.remove('active');
+        }
+        renderSources();
+      });
+    })(scopePills[si]);
   }
-  h+='</div>';
 
-  h+='</div>'; /* end right */
-  h+='</div>'; /* end two-col */
-
-  /* ACTION ROWS */
-  var hasIocData=iocs.length>0;
-  var id_safe=esc((r.issue_id||"").replace(/'/g,""));
-  h+='<div class="action-rows">';
-  h+=actRow("Remediate",[
-    {label:"Copy action checklist",fn:"copyChecklist",id:id_safe,cls:"btn-primary"},
-    {label:"Export packet (JSON)",fn:"exportJSON",id:id_safe},
-    {label:"Export packet (Markdown)",fn:"exportMD",id:id_safe}
-  ]);
-  h+=actRow("Detect",[
-    {label:"Generate Sigma rule",fn:"genSigma",id:id_safe,dis:!hasIocData},
-    {label:"Generate Suricata rule",fn:"genSuricata",id:id_safe,dis:!hasIocData}
-  ]);
-  h+=actRow("Block / Hunt",[
-    {label:"Copy IOCs (CSV)",fn:"copyIocsCsv",id:id_safe,dis:!hasIocData},
-    {label:"Copy IOCs (STIX)",fn:"copyIocsStix",id:id_safe,dis:!hasIocData},
-    {label:"Generate ACL",fn:"genAcl",id:id_safe,dis:!hasIocData}
-  ]);
-  h+=actRow("Sources",[
-    {label:"View all source links",fn:"viewLinks",id:id_safe},
-    {label:"View raw advisory text",fn:"viewRaw",id:id_safe}
-  ]);
-  /* feedback row with dropdown */
-  h+='<div class="action-row"><span class="action-row-label">Feedback</span><div class="action-row-btns">';
-  h+='<div class="feedback-dropdown"><button class="feedback-btn" onclick="event.stopPropagation();App.toggleFb(\''+id_safe+'\')">Flag this recommendation</button>';
-  h+='<div id="fb_'+id_safe.replace(/[^a-z0-9]/gi,"_")+'" class="feedback-menu">';
-  ["incorrect","too_aggressive","too_conservative","missing_context","helpful"].forEach(function(t){
-    h+='<button class="feedback-menu-item" onclick="event.stopPropagation();App.submitFeedback(\''+id_safe+'\',\''+t+'\')">'+t.replace(/_/g," ")+'</button>';
+  // Source search
+  var srcSearchTimer;
+  document.getElementById('source-search').addEventListener('input', function(e) {
+    clearTimeout(srcSearchTimer);
+    srcSearchTimer = setTimeout(function() {
+      sourceSearchQuery = e.target.value.trim();
+      renderSources();
+    }, 200);
   });
-  h+='</div></div>';
-  h+='<button class="btn" onclick="event.stopPropagation();App.reportIncorrect(\''+id_safe+'\')">Report incorrect data</button>';
-  h+='</div></div>';
-  h+='</div>'; /* end action-rows */
 
-  /* disclaimer */
-  h+='<div class="disclaimer-bar">AI-assisted guidance based on approved mitigation patterns and cited standards. Source mitigations are extracted from published advisories and attributed to their original authors. Verify against vendor documentation and local operational constraints before implementation.</div>';
-
-  h+='</div>'; /* end detail-panel */
-  return h;
-}
-
-function actRow(label,btns){
-  var h='<div class="action-row"><span class="action-row-label">'+esc(label)+'</span><div class="action-row-btns">';
-  btns.forEach(function(b){
-    var cls="btn"+(b.cls?" "+b.cls:"");
-    var dis=b.dis?" disabled":"";
-    h+='<button class="'+cls+'"'+dis+' onclick="event.stopPropagation();App.'+b.fn+'(\''+b.id+'\')">'+esc(b.label)+'</button>';
+  // Keyboard navigation
+  document.addEventListener('keydown', function(e) {
+    if (activeTab !== 'issues') return;
+    if (e.target.tagName === 'INPUT') return;
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (selectedIdx < filteredIssues.length - 1) {
+        selectedIdx++;
+        updateSelection();
+        renderDetail();
+      }
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (selectedIdx > 0) {
+        selectedIdx--;
+        updateSelection();
+        renderDetail();
+      }
+    } else if (e.key === 'Enter' && selectedIdx >= 0) {
+      renderDetail();
+    }
   });
-  h+='</div></div>';return h;
-}
 
-/* sources */
-function renderSources(){
-  if(!S.sources.length){$("sources-wrap").innerHTML='<div class="state-msg">No source data available.</div>';return}
-  var rows=S.sources.slice().sort(function(a,b){
-    var c=S.srcSortCol,d=S.srcSortDir;
-    var va=a[c]||"",vb=b[c]||"";
-    if(typeof va==="number"&&typeof vb==="number"){if(va<vb)return -d;if(va>vb)return d;return 0}
-    va=String(va).toLowerCase();vb=String(vb).toLowerCase();
-    if(va<vb)return -d;if(va>vb)return d;return 0;
+  // Hash change
+  window.addEventListener('hashchange', function() {
+    var h = window.location.hash.slice(1);
+    if (['issues', 'sources', 'methodology', 'about'].indexOf(h) !== -1) switchTab(h);
   });
-  function sa(c){return S.srcSortCol===c?'<span class="sort-ind on">'+(S.srcSortDir===1?"\u25B2":"\u25BC")+"</span>":""}
-  var h='<table class="sources-table"><thead><tr>';
-  h+='<th onclick="App.sortSrc(\'source_id\')">Source ID'+sa("source_id")+'</th>';
-  h+='<th onclick="App.sortSrc(\'name\')">Name'+sa("name")+'</th>';
-  h+='<th onclick="App.sortSrc(\'scope\')">Scope'+sa("scope")+'</th>';
-  h+='<th onclick="App.sortSrc(\'status\')">Status'+sa("status")+'</th>';
-  h+='</tr></thead><tbody>';
-  rows.forEach(function(s){
-    h+='<tr><td style="font-family:var(--mono);font-size:11px">'+esc(s.source_id)+'</td>';
-    h+='<td>'+esc(s.name)+'</td><td>'+esc(s.scope)+'</td><td>'+esc(s.status)+'</td></tr>';
-  });
-  h+='</tbody></table>';
-  $("sources-wrap").innerHTML=h;
-}
 
-function renderAbout(){
-  var pkts=0;S.issues.forEach(function(r){if((r.actions||[]).length)pkts++});
-  $("about-src-ct").textContent=S.sources.length;
-  $("about-src-ct2").textContent=S.sources.length;
-  $("about-issue-ct").textContent=S.issues.length;
-  $("about-pkt-ct").textContent=pkts;
-}
-
-function renderFooter(){
-  var lastTs="";
-  S.issues.forEach(function(r){var ls=r.last_seen_at||"";if(ls>lastTs)lastTs=ls});
-  $("footer-meta").textContent="Pipeline: "+(lastTs?lastTs.slice(0,16).replace("T"," "):"unknown")+" \u00B7 "+S.sources.length+" sources";
-}
-
-/* helpers */
-function findIssue(id){for(var i=0;i<S.issues.length;i++){if(S.issues[i].issue_id===id)return S.issues[i]}return null}
-
-function showCode(title,code){
-  var ol=document.createElement("div");ol.className="code-overlay";
-  ol.onclick=function(e){if(e.target===ol)ol.remove()};
-  ol.innerHTML='<div class="code-box"><div class="code-box-hdr"><span>'+esc(title)+'</span><div><button class="btn" onclick="App._copyCode()">Copy</button> <button class="btn" onclick="this.closest(\'.code-overlay\').remove()">Close</button></div></div><pre id="code-content">'+esc(code)+'</pre></div>';
-  document.body.appendChild(ol);
-  showCode._last=code;
-}
-
-/* action implementations */
-function copyChecklist(id){
-  var r=findIssue(id);if(!r)return;
-  var lines=["ACTION CHECKLIST: "+r.issue_id,""];
-  var lowFric=[],highFric=[];
-  (r.actions||[]).forEach(function(a){
-    var inf=r.inferred_facts||{};
-    var f=inf.friction_level||(a==="notify"||a==="ingest"?"low":"medium");
-    if(f==="low")lowFric.push(a);else highFric.push(a);
-  });
-  if(lowFric.length){lines.push("IMMEDIATE SAFE ACTIONS:");lowFric.forEach(function(a){lines.push("  [ ] "+a)});lines.push("")}
-  if(highFric.length){lines.push("ACTIONS REQUIRING BIOMED:");highFric.forEach(function(a){lines.push("  [ ] "+a)});lines.push("")}
-  (r.source_mitigations||[]).forEach(function(m){lines.push("  [ ] "+m.action+" ("+m.source+")")});
-  if((r.extracted_facts||{}).rationale){lines.push("");lines.push("VALIDATION STEPS:");lines.push("  "+r.extracted_facts.rationale)}
-  if((r.non_applicability||[]).length){lines.push("");lines.push("KEY ASSUMPTIONS:");r.non_applicability.forEach(function(n){lines.push("  - "+n)})}
-  var unknowns=(r.unknowns||[]).concat(r.evidence_gaps||[]);
-  if(unknowns.length){lines.push("");lines.push("KNOWN UNKNOWNS:");unknowns.forEach(function(u){lines.push("  - "+u)})}
-  if((r.handling_warnings||[]).length){lines.push("");lines.push("HANDLING WARNINGS:");r.handling_warnings.forEach(function(w){lines.push("  ! "+w)})}
-  lines.push("");lines.push("DISCLAIMER: AI-assisted guidance based on approved mitigation patterns. Verify against vendor documentation before implementation.");
-  copyText(lines.join("\n"));
-  /* flash button */
-  var btn=document.querySelector('.btn-primary');if(btn){var orig=btn.textContent;btn.textContent="Copied!";setTimeout(function(){btn.textContent=orig},2000)}
-}
-
-function exportJSON(id){var r=findIssue(id);if(!r)return;downloadFile(id+"_packet.json",JSON.stringify(r,null,2),"application/json")}
-
-function exportMD(id){
-  var r=findIssue(id);if(!r)return;
-  var md="# "+(r.priority||"")+" "+(r.issue_id||"")+"\n\n**"+(r.title||"")+"**\n\n"+(r.summary||"")+"\n\n";
-  if((r.source_mitigations||[]).length){md+="## Source mitigations\n\n";r.source_mitigations.forEach(function(m){md+="- **"+m.source+"** (Tier "+(m.source_tier||"?")+"): "+m.action+"\n"});md+="\n"}
-  if((r.actions||[]).length){md+="## Recommended actions\n\n";r.actions.forEach(function(a){md+="- [ ] "+a+"\n"});md+="\n"}
-  if((r.iocs||[]).length){md+="## IOCs\n\n| Type | Value | Source |\n|------|-------|--------|\n";r.iocs.forEach(function(i){md+="| "+i.type+" | `"+i.value+"` | "+i.source+" |\n"})}
-  downloadFile(id+"_packet.md",md,"text/markdown");
-}
-
-function genSigma(id){
-  var r=findIssue(id);if(!r)return;
-  var iocs=r.iocs||[];
-  var cves=iocs.filter(function(i){return i.type==="cve"}).map(function(i){return i.value});
-  var ips=iocs.filter(function(i){return i.type==="ip"}).map(function(i){return i.value});
-  var hashes=iocs.filter(function(i){return i.type==="hash"}).map(function(i){return i.value});
-  var domains=iocs.filter(function(i){return i.type==="domain"}).map(function(i){return i.value});
-  var rule="title: 'AdvisoryOps: "+r.issue_id+"'\nstatus: experimental\ndescription: "+(r.summary||"").slice(0,200)+"\nreferences:\n  - "+(r.canonical_link||"")+"\nlogsource:\n  product: windows\n  category: process_creation\ndetection:\n  selection:\n";
-  if(domains.length)rule+="    DestinationHostname|contains:\n"+domains.map(function(d){return"      - '"+d+"'"}).join("\n")+"\n";
-  if(ips.length)rule+="    DestinationIp:\n"+ips.map(function(ip){return"      - '"+ip+"'"}).join("\n")+"\n";
-  if(hashes.length)rule+="    Hashes|contains:\n"+hashes.map(function(h){return"      - '"+h+"'"}).join("\n")+"\n";
-  if(!domains.length&&!ips.length&&!hashes.length&&cves.length)rule+="    # CVE-based - customize for your environment\n    CommandLine|contains:\n"+cves.map(function(c){return"      - '"+c+"'"}).join("\n")+"\n";
-  rule+="  condition: selection\nlevel: high\ntags:\n  - attack.initial_access\n";
-  showCode("Sigma rule: "+r.issue_id,rule);
-}
-
-function genSuricata(id){
-  var r=findIssue(id);if(!r)return;
-  var iocs=r.iocs||[];
-  var ips=iocs.filter(function(i){return i.type==="ip"}).map(function(i){return i.value});
-  var domains=iocs.filter(function(i){return i.type==="domain"}).map(function(i){return i.value});
-  var sid=9000000+Math.abs(hashCode(r.issue_id||""));
-  var rules=[];
-  ips.forEach(function(ip,idx){rules.push('alert ip '+ip+' any -> $HOME_NET any (msg:"AdvisoryOps '+r.issue_id+'"; reference:cve,'+(r.cves||[])[0]+'; sid:'+(sid+idx)+'; rev:1;)')});
-  domains.forEach(function(d,idx){rules.push('alert dns any any -> any any (msg:"AdvisoryOps '+r.issue_id+' domain"; dns.query; content:"'+d+'"; sid:'+(sid+100+idx)+'; rev:1;)')});
-  if(!rules.length)rules.push("# No network IOCs available for Suricata rule generation\n# CVE: "+(r.cves||[]).join(", "));
-  showCode("Suricata rules: "+r.issue_id,rules.join("\n"));
-}
-
-function hashCode(s){var h=0;for(var i=0;i<s.length;i++)h=((h<<5)-h+s.charCodeAt(i))|0;return h}
-
-function copyIocsCsv(id){
-  var r=findIssue(id);if(!r)return;
-  var lines=["type,value,source"];
-  (r.iocs||[]).forEach(function(i){lines.push(i.type+","+i.value+","+(i.source||""))});
-  copyText(lines.join("\n"));
-}
-
-function copyIocsStix(id){
-  var r=findIssue(id);if(!r)return;
-  var objects=(r.iocs||[]).map(function(ioc,idx){
-    var type=ioc.type||"unknown";
-    var stixType=type==="ip"?"ipv4-addr":type==="domain"?"domain-name":type==="hash"?"file":type==="url"?"url":"indicator";
-    var obj={type:stixType,id:stixType+"--"+idx,spec_version:"2.1"};
-    if(stixType==="ipv4-addr")obj.value=ioc.value;
-    else if(stixType==="domain-name")obj.value=ioc.value;
-    else if(stixType==="url")obj.value=ioc.value;
-    else if(stixType==="file")obj.hashes={"SHA-256":ioc.value};
-    else{obj.pattern="[indicator:value = '"+ioc.value+"']";obj.pattern_type="stix"}
-    return obj;
-  });
-  downloadFile(r.issue_id+"_iocs.stix.json",JSON.stringify({type:"bundle",id:"bundle--"+r.issue_id,objects:objects},null,2),"application/json");
-}
-
-function genAcl(id){
-  var r=findIssue(id);if(!r)return;
-  var iocs=r.iocs||[];
-  var ips=iocs.filter(function(i){return i.type==="ip"}).map(function(i){return i.value});
-  var domains=iocs.filter(function(i){return i.type==="domain"}).map(function(i){return i.value});
-  var lines=["# ACL rules for "+r.issue_id,"# Review before applying"];
-  ips.forEach(function(ip){lines.push("deny ip host "+ip+" any")});
-  domains.forEach(function(d){lines.push("# Block domain: "+d)});
-  if(!ips.length&&!domains.length)lines.push("# No network IOCs available");
-  showCode("ACL rules: "+r.issue_id,lines.join("\n"));
-}
-
-function viewLinks(id){
-  var r=findIssue(id);if(!r)return;
-  var links=[];
-  if(r.canonical_link)links.push(r.canonical_link);
-  (r.source_mitigations||[]).forEach(function(m){if(m.url&&links.indexOf(m.url)===-1)links.push(m.url)});
-  if(links.length){var w=window.open("","_blank");w.document.write("<pre>"+links.join("\n")+"</pre>")}
-  else showToast("No source links available");
-}
-
-function viewRaw(id){
-  var r=findIssue(id);if(!r)return;
-  showCode("Raw advisory: "+r.issue_id,r.summary||"No summary available.");
-}
-
-function toggleFb(id_safe){
-  var el=document.getElementById("fb_"+id_safe.replace(/[^a-z0-9]/gi,"_"));
-  if(el)el.classList.toggle("open");
-}
-
-function submitFeedback(id,feedbackType){
-  try{
-    var entry={issue_id:id,feedback_type:feedbackType,timestamp:new Date().toISOString()};
-    localStorage.setItem("ao_feedback_"+id,JSON.stringify(entry));
-    var all=[];try{var raw=localStorage.getItem("ao_feedback_all");if(raw)all=JSON.parse(raw)}catch(e){}
-    all.push(entry);
-    try{localStorage.setItem("ao_feedback_all",JSON.stringify(all))}catch(e){}
-    showToast("Feedback recorded: "+feedbackType.replace(/_/g," "));
-    renderTable();
-  }catch(e){showToast("Could not save feedback")}
-}
-
-function reportIncorrect(id){
-  try{
-    localStorage.setItem("ao_report_"+id,JSON.stringify({issue_id:id,feedback_type:"incorrect",timestamp:new Date().toISOString()}));
-    showToast("Report recorded");
-  }catch(e){showToast("Could not save report")}
-}
-
-/* public API */
-window.App={
-  onSearch:function(v){S.search=v;S.expanded=null;renderTable()},
-  toggleFilter:function(i){
-    var p=PILL_DEFS[i];if(!p)return;
-    if(p.key==="priority")S.filters.priority=S.filters.priority===p.val?"":p.val;
-    else S.filters[p.key]=!S.filters[p.key];
-    S.expanded=null;renderPills();renderTable();
-  },
-  setSort:function(col){if(S.sortCol===col)S.sortDir*=-1;else{S.sortCol=col;S.sortDir=col==="issue_id"||col==="title"?1:-1}renderTable()},
-  toggle:function(id){S.expanded=S.expanded===id?null:id;renderTable()},
-  sortSrc:function(col){if(S.srcSortCol===col)S.srcSortDir*=-1;else{S.srcSortCol=col;S.srcSortDir=1}renderSources()},
-  copyChecklist:copyChecklist,exportJSON:exportJSON,exportMD:exportMD,
-  genSigma:genSigma,genSuricata:genSuricata,
-  copyIocsCsv:copyIocsCsv,copyIocsStix:copyIocsStix,genAcl:genAcl,
-  viewLinks:viewLinks,viewRaw:viewRaw,
-  toggleFb:toggleFb,submitFeedback:submitFeedback,reportIncorrect:reportIncorrect,
-  _copyCode:function(){if(showCode._last)copyText(showCode._last)}
-};
+  init();
 })();
 </script>
 </body>
