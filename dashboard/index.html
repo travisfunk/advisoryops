@@ -222,6 +222,21 @@ a:hover { text-decoration:underline; }
 .ai-box { background:var(--ai-bg); border:1px solid var(--ai-border); border-radius:6px; padding:14px 16px; margin-bottom:14px; }
 .ai-box .ab-title { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.8px; color:var(--ai-title); margin-bottom:6px; }
 .ai-box .ab-body { font-size:13px; color:var(--ai-text); line-height:1.6; }
+.pattern-card { background:var(--ai-bg); border:1px solid var(--ai-border); border-radius:6px; padding:12px 14px; margin-bottom:8px; }
+.pattern-card .pattern-name { font-size:13px; font-weight:600; color:var(--ai-title); margin-bottom:4px; }
+.pattern-card .pattern-why { font-size:12px; color:var(--ai-text); line-height:1.5; margin-bottom:4px; }
+.pattern-card .pattern-basis { font-size:11px; color:var(--text-muted); line-height:1.4; margin-bottom:6px; }
+.pattern-card .pattern-meta { display:flex; align-items:center; flex-wrap:wrap; gap:6px; margin-bottom:6px; }
+.friction-pill { display:inline-block; font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:.5px; padding:2px 8px; border-radius:10px; }
+.friction-low { background:#064e3b; color:#6ee7b7; }
+.friction-medium { background:#78350f; color:#fcd34d; }
+.friction-high { background:#7f1d1d; color:#fca5a5; }
+.pattern-card .side-effects { font-size:11px; color:var(--text-muted); line-height:1.4; margin-top:4px; }
+.pattern-card .side-effects li { margin-bottom:2px; }
+.role-section { margin-bottom:8px; }
+.role-label { font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:.8px; color:var(--text-muted); margin-bottom:4px; }
+.role-task { font-size:12px; color:var(--ai-text); line-height:1.5; padding-left:12px; margin-bottom:3px; }
+.ai-disclaimer { font-size:11px; color:var(--text-muted); font-style:italic; line-height:1.4; padding:8px 12px; border-top:1px solid var(--ai-border); margin-top:8px; }
 
 /* About tab */
 .metric-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:14px; }
@@ -957,6 +972,72 @@ a:hover { text-decoration:underline; }
       html += '</div>';
     } else if (!remSteps.length) {
       html += '<div class="placeholder-card"><div class="label" style="margin-bottom:4px">RECOMMENDED ACTIONS</div>No recommended actions available for this issue</div>';
+    }
+
+    // AI Recommendations (recommended_patterns, tasks_by_role, reasoning)
+    if (issue.recommended_patterns && issue.recommended_patterns.length > 0) {
+      // Reasoning
+      if (issue.reasoning) {
+        html += '<div class="dcard"><div class="label" style="margin-bottom:6px">AI REASONING</div>' +
+          '<div style="font-size:12px;color:var(--ai-text);line-height:1.5">' + escapeHtml(issue.reasoning) + '</div></div>';
+      }
+
+      // Pattern cards
+      html += '<div class="dcard" style="padding:10px 12px"><div class="label" style="margin-bottom:8px">RECOMMENDED MITIGATION PATTERNS</div>';
+      var patterns = issue.recommended_patterns.slice().sort(function(a, b) { return (a.priority_order || 99) - (b.priority_order || 99); });
+      for (var pi = 0; pi < patterns.length; pi++) {
+        var pat = patterns[pi];
+        var patName = pat.name || pat.pattern_id || 'Unknown';
+        html += '<div class="pattern-card">';
+        html += '<div class="pattern-name">' + escapeHtml(patName) + '</div>';
+        if (pat.why_selected) {
+          html += '<div class="pattern-why">' + escapeHtml(pat.why_selected) + '</div>';
+        }
+        if (pat.basis) {
+          html += '<div class="pattern-basis">' + escapeHtml(pat.basis) + '</div>';
+        }
+        html += '<div class="pattern-meta">';
+        if (pat.friction_level) {
+          var fClass = pat.friction_level === 'low' ? 'friction-low' : pat.friction_level === 'medium' ? 'friction-medium' : 'friction-high';
+          html += '<span class="friction-pill ' + fClass + '">Friction: ' + pat.friction_level + '</span>';
+        }
+        html += '</div>';
+        if (pat.side_effects && pat.side_effects.length) {
+          html += '<div class="side-effects"><ul style="margin:0;padding-left:16px">';
+          for (var se = 0; se < pat.side_effects.length; se++) {
+            html += '<li>' + escapeHtml(pat.side_effects[se]) + '</li>';
+          }
+          html += '</ul></div>';
+        }
+        html += '</div>';
+      }
+      html += '</div>';
+
+      // Tasks by role
+      if (issue.tasks_by_role) {
+        var roleOrder = ['infosec', 'netops', 'htm_ce', 'vendor', 'clinical_ops', 'it_ops'];
+        var hasAnyTasks = false;
+        for (var ri = 0; ri < roleOrder.length; ri++) {
+          if (issue.tasks_by_role[roleOrder[ri]] && issue.tasks_by_role[roleOrder[ri]].length) { hasAnyTasks = true; break; }
+        }
+        if (hasAnyTasks) {
+          html += '<div class="dcard" style="padding:10px 12px"><div class="label" style="margin-bottom:8px">TASKS BY ROLE</div>';
+          for (var ri = 0; ri < roleOrder.length; ri++) {
+            var role = roleOrder[ri];
+            var tasks = issue.tasks_by_role[role];
+            if (!tasks || !tasks.length) continue;
+            html += '<div class="role-section"><div class="role-label">' + escapeHtml(role.replace(/_/g, ' ')) + '</div>';
+            for (var ti = 0; ti < tasks.length; ti++) {
+              html += '<div class="role-task">\u2022 ' + escapeHtml(tasks[ti]) + '</div>';
+            }
+            html += '</div>';
+          }
+          html += '</div>';
+        }
+      }
+
+      // Disclaimer
+      html += '<div class="dcard ai-disclaimer">AI-assisted guidance based on approved mitigation patterns and cited standards. Verify against vendor documentation and local operational constraints before implementation.</div>';
     }
 
     // Sources
