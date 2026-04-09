@@ -130,6 +130,11 @@ def _feed_entry(issue: Dict[str, Any]) -> Dict[str, Any]:
         "fda_risk_class": issue.get("fda_risk_class") or None,
         # KEV + medical device cross-reference
         "is_kev_medical_device": bool(issue.get("is_kev_medical_device", False)),
+        # Recommendation fields (populated by _merge_trust from packet data)
+        "recommended_patterns": issue.get("recommended_patterns") or [],
+        "tasks_by_role": issue.get("tasks_by_role") or {},
+        "reasoning": issue.get("reasoning", ""),
+        "citations": issue.get("citations") or [],
     }
     return entry
 
@@ -1852,7 +1857,10 @@ def build_community_feed(
                 cached_label = " (cached)" if packet.from_cache else ""
                 print(f"    Wrote packet: {issue_id}{cached_label}")
 
-                # Collect trust fields from recommendation for merge-back
+                # Collect trust + recommendation fields for merge-back
+                # Serialize PatternRecommendation dataclasses to dicts
+                from dataclasses import asdict
+                rec_patterns = [asdict(p) for p in (packet.recommended_patterns or [])]
                 packet_trust_by_id[issue_id] = {
                     "handling_warnings": packet.handling_warnings or [],
                     "evidence_gaps": packet.evidence_gaps or [],
@@ -1862,6 +1870,9 @@ def build_community_feed(
                     "evidence_sources": packet.evidence_sources or [],
                     "reasoning": packet.reasoning or "",
                     "non_applicability": packet.non_applicability or [],
+                    "recommended_patterns": rec_patterns,
+                    "tasks_by_role": dict(packet.tasks_by_role or {}),
+                    "citations": list(packet.citations or []),
                     "generated_by": "ai",
                 }
             except Exception as exc:
@@ -1872,6 +1883,19 @@ def build_community_feed(
     # --- Merge recommendation trust data back into feed rows ---
     if packet_trust_by_id:
         def _merge_trust(rows: List[Dict[str, Any]]) -> None:
+            """Merge packet trust and recommendation fields into feed rows.
+
+            Copies from each packet into the corresponding feed row:
+              - handling_warnings, evidence_gaps, non_applicability (list merge, deduplicated)
+              - unknowns (populated from evidence_gaps)
+              - extracted_facts, inferred_facts, confidence_by_field (dict merge, packet wins)
+              - evidence_sources (list merge, deduplicated)
+              - recommended_patterns (overwrite with packet value if present)
+              - tasks_by_role (overwrite with packet value if present)
+              - reasoning (overwrite with packet value if non-empty)
+              - citations (list merge, deduplicated)
+              - generated_by = "ai"
+            """
             for row in rows:
                 iid = row.get("issue_id", "")
                 if iid not in packet_trust_by_id:
@@ -1903,6 +1927,19 @@ def build_community_feed(
                     if s not in existing_sources:
                         row.setdefault("evidence_sources", []).append(s)
                         existing_sources.add(s)
+                # Overwrite recommendation fields (packet is authoritative)
+                if pkt.get("recommended_patterns"):
+                    row["recommended_patterns"] = pkt["recommended_patterns"]
+                if pkt.get("tasks_by_role"):
+                    row["tasks_by_role"] = pkt["tasks_by_role"]
+                if pkt.get("reasoning"):
+                    row["reasoning"] = pkt["reasoning"]
+                # Merge citations (deduplicate)
+                existing_citations = set(row.get("citations") or [])
+                for c in pkt.get("citations", []):
+                    if c not in existing_citations:
+                        row.setdefault("citations", []).append(c)
+                        existing_citations.add(c)
                 row["generated_by"] = "ai"
 
         _merge_trust(feed_rows)
