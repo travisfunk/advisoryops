@@ -1212,6 +1212,7 @@ def build_community_feed(
     _extract_mitigations_call_fn: Optional[Callable] = None,
     _nvd_fetch_fn: Optional[Callable] = None,
     _backfill_fetch_fns: Optional[Dict[str, Callable]] = None,
+    repo_root: Optional[Path] = None,
 ) -> Tuple[Path, Path, Path]:
     if latest < 0:
         raise ValueError("--latest must be >= 0")
@@ -2087,7 +2088,7 @@ def build_community_feed(
     out_meta.write_text(json.dumps(meta, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
     # --- Publish dashboard + data files to docs/ for GitHub Pages ---
-    _repo_root = Path(__file__).resolve().parent.parent.parent
+    _repo_root = repo_root or Path(__file__).resolve().parent.parent.parent
     _publish_to_docs(community_root, _repo_root)
 
     print("")

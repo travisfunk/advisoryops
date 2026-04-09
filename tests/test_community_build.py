@@ -548,8 +548,12 @@ def test_docs_folder_created_by_build(tmp_path: Path, monkeypatch) -> None:
     ]
     discover_root, out_root = _setup_community_env(tmp_path, monkeypatch, signals)
 
-    # Create a fake .git directory so _deploy_docs finds the repo root
-    (tmp_path / ".git").mkdir()
+    # Create dashboard/index.html so _publish_to_docs has something to copy
+    dashboard_dir = tmp_path / "dashboard"
+    dashboard_dir.mkdir()
+    (dashboard_dir / "index.html").write_text(
+        "<html><title>AdvisoryOps Test</title></html>", encoding="utf-8"
+    )
 
     build_community_feed(
         set_id="gold_pass1",
@@ -564,6 +568,7 @@ def test_docs_folder_created_by_build(tmp_path: Path, monkeypatch) -> None:
         min_priority="P3",
         top=100,
         latest=10,
+        repo_root=tmp_path,
     )
 
     docs = tmp_path / "docs"

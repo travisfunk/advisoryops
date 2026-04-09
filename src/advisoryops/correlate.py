@@ -530,10 +530,20 @@ def correlate(
                     b.add_signal(it)
                     loaded_signals += 1
             else:
-                # No CVE found — use a SHA-256 of normalized title + published date
-                # as a stable, collision-resistant group key.  Prefix with "UNK-" so
-                # these are clearly distinguished from CVE-based issues downstream.
-                key_basis = f"{title_norm}|{pub}"
+                # No CVE found — use a SHA-256 of source + normalized title +
+                # published date as a stable, collision-resistant group key.
+                # Prefix with "UNK-" so these are clearly distinguished from
+                # CVE-based issues downstream.
+                #
+                # Triage fix for Problem 2 (see docs/session_state.md): include
+                # source_id in the key basis so signals from different sources
+                # never collide regardless of title. Without this, threat intel
+                # feeds emitting signals with empty/placeholder titles merged
+                # into giant fake issues (e.g. Impella FDA recall with hundreds
+                # of unrelated IOCs from urlhaus, feodo, ssl-blacklist).
+                # Full architectural fix (separating threatintel from advisory
+                # routing entirely) is deferred to post-grant work.
+                key_basis = f"{it['source']}|{title_norm}|{pub}"
                 issue_id = "UNK-" + _sha256_hex(key_basis)[:16]
                 b = issues.get(issue_id)
                 if not b:
