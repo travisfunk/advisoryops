@@ -19,21 +19,19 @@ The grant target is the **OpenAI Cybersecurity Grant Program** ($10M in API cred
 
 ## Section 2 — Repository layout and key locations
 
-Two repos, both in `C:\Users\travi\OneDrive\GitRepos\`:
+One consolidated repo at `C:\Users\travi\OneDrive\GitRepos\advisoryops`. GitHub: `travisfunk/advisoryops`. Currently public. The dashboard was previously in a separate `advisoryops-dashboard` repo and was consolidated on 2026-04-09 (branch `merge/consolidate-dashboard`). The old dashboard repo will be archived after merge verification.
 
-- **`advisoryops/`** — main pipeline. GitHub: `travisfunk/advisoryops`. Currently public. Branch: `feature/historical-backfill`.
-- **`advisoryops-dashboard/`** — static frontend. GitHub: `travisfunk/advisoryops-dashboard`. Public, served via GitHub Pages from `/docs` at `https://travisfunk.github.io/advisoryops-dashboard/`.
-
-Inside the main repo:
+Inside the repo:
 
 - `src/advisoryops/` — 39 Python modules. Pipeline core.
 - `src/advisoryops/enrichment/` — 6 enrichment modules (FDA classification, EPSS, vulnrichment, CWE catalog, ATT&CK ICS, cross-reference orchestrator).
 - `src/advisoryops/sources/` — 9 per-source historical backfill modules (CISA ICSMA, openFDA, FDA safety comms, MHRA UK, Health Canada, NVD, Philips PSIRT, Siemens ProductCERT, plus a backfill_registry).
-- `tests/` — 53 test files, ~1016 tests passing as of 2026-04-08.
+- `dashboard/` — production HTML dashboard (source of truth). Copied to `docs/index.html` by the pipeline's publish step.
+- `tests/` — 57 test files, ~1038 tests passing as of 2026-04-09.
 - `configs/` — `mitigation_playbook.json` (11 patterns), `source_weights.json` (5-tier authority), `community_public_sources.json` (validated source manifest), `sources.json` (full source list).
-- `docs/` — 11 numbered design docs (DOC-01 through DOC-11) plus `STATUS.md`, `playbook_governance.md`, `schema.md`, `scoring_internals.md` (current as of 2026-04-08), `grant_cost_model.md`. Read `schema.md` before touching anything that produces feed entries — it documents every field.
-- `outputs/community_public/` — pipeline output. Includes `feed_latest.json`, `feed_healthcare.json`, `feed_medical_device_kev.json`, RSS variants, Excel export, dashboard.html, and the `packets/` subdirectory containing per-issue AI remediation packets.
-- `outputs/*_cache/` — per-source caches. Persistent. NVD cache has ~340K records, openFDA recalls ~14,630, FDA safety comms ~38,510, Siemens ~779, MHRA ~1,381, etc. Reference table is in `docs/scoring_internals.md`.
+- `docs/` — 11 numbered design docs (DOC-01 through DOC-11) plus `STATUS.md`, `playbook_governance.md`, `schema.md`, `scoring_internals.md`, `feed_contract.json` (schema contract enforced by tests), `grant_cost_model.md`. GitHub Pages serves from `docs/` — the pipeline copies `dashboard/index.html` and data files here via `_publish_to_docs()`. Read `schema.md` before touching anything that produces feed entries — it documents every field.
+- `outputs/community_public/` — pipeline output. Includes `feed_latest.json`, `feed_healthcare.json`, `feed_medical_device_kev.json`, RSS variants, Excel export, `sanity_report.md`, and the `packets/` subdirectory containing per-issue AI remediation packets.
+- `outputs/*_cache/` — per-source caches. Persistent. NVD cache has ~340K records, openFDA recalls ~14,630, FDA safety comms ~38,510, Siemens ~779, MHRA ~1,381, EPSS ~325K scores. Reference table is in `docs/scoring_internals.md`.
 - `outputs/ai_cache/` — content-hash-based AI response cache. Persistent across runs. Keeps incremental costs near zero.
 
 ## Section 3 — Pipeline architecture (verified by reading code 2026-04-08)
@@ -128,59 +126,19 @@ Tests: ~1,016 passing pre-pipeline-run, no regressions.
 
 These are the issues blocking grant submission, in priority order. **Read this section every session.**
 
-### Problem 1 — Packet → feed merge gap (HIGHEST PRIORITY, EASIEST FIX)
+### Problem 1 — Packet → feed merge gap — RESOLVED
 
-**Symptom:** The dashboard shows generic deterministic remediation steps ("log", "Review vendor advisory") even though rich AI-generated packet data exists on disk.
+**Resolved:** 2026-04-09, branch `merge/consolidate-dashboard`, commits 3 and 4.
 
-**Root cause:** `community_build.py`, function `_merge_trust` at line ~1863. After the recommendation engine writes packet JSON files to `outputs/community_public/packets/`, this function copies fields from each packet back into the corresponding feed row so the dashboard can render them. It currently copies these fields:
+Fixed `_merge_trust` to copy `recommended_patterns`, `tasks_by_role`, `reasoning`, and `citations` from packet data into feed rows. Added these fields to `_feed_entry` and to `packet_trust_by_id`. Dashboard now renders pattern cards with friction levels, role-split tasks, and AI reasoning. Regression tests added to `test_remediation_trust.py`. Verified: 138/139 P0/P1 issues now have `recommended_patterns` in the feed output.
 
-- `handling_warnings`, `evidence_gaps` (also into `unknowns`), `non_applicability`
-- `extracted_facts`, `inferred_facts`, `confidence_by_field`
-- `evidence_sources`
-- `generated_by = "ai"`
+### Problem 2 — Correlation incorrectly merges unrelated signals — TRIAGE FIX RESOLVED
 
-It does NOT copy:
+**Triage fix resolved:** 2026-04-09, branch `merge/consolidate-dashboard`, commit 5.
 
-- `recommended_patterns` — the array of selected mitigation patterns with per-pattern `why_selected`, `rationale`, `basis`, `parameters`, `side_effects`, `friction_level`, `friction_reason`
-- `tasks_by_role` — the role-split tasks for netops/infosec/htm_ce/it_ops/vendor/clinical_ops
-- `reasoning` — the top-level explanation. Note: this field IS collected into `packet_trust_by_id` at line ~1852 but never copied into the row. That's the smoking-gun bug — somebody intended to merge it and didn't finish the loop.
-- `citations`
+Applied option 2: added `source_id` to the non-CVE merge key basis (`key_basis = f"{it['source']}|{title_norm}|{pub}"`). This prevents cross-source collisions regardless of title. Issue count increased 3923 → 3929 as previously-merged distinct signals became separate issues. Source-count anomalies dropped to zero: 0 issues with 10+ sources, 0 mixed-type contamination.
 
-**Verified by:** Reading `community_build.py` lines 1840–1900, then dumping `feed_healthcare.json` for issue `UNK-e3c0cfc277b79391` (Abiomed Impella) and confirming `recommended_patterns`, `tasks_by_role`, and `reasoning` are not present in the row even though the packet on disk contains all of them with full content.
-
-**Fix (estimated 2–3 hours including dashboard render side):**
-
-1. In `_merge_trust`, after the existing dict-merge block, add: copy `recommended_patterns`, `tasks_by_role`, `reasoning`, and `citations` from the packet trust dict into the row. List/dict fields should overwrite (the packet is more specific) or merge cleanly.
-2. Update `docs/index.html` (the dashboard) JavaScript to render these new fields. Per-pattern recommendations are the main payoff — they should display the pattern name, the why/basis citation, the role-split tasks, and the friction level. The top-level `reasoning` should show as a one-line explanation above the patterns.
-3. Add tests in `tests/test_community_build.py` (or `tests/test_remediation_trust.py` if that's the right home) verifying the merge copies all four new fields.
-4. Re-run the pipeline (most calls will be cache hits — should take a couple of minutes) and verify the Impella record now has the full recommended_patterns array.
-
-This is the single highest-leverage fix in the project right now and should be done first. It makes weeks of already-built AI work suddenly visible to grant reviewers.
-
-### Problem 2 — Correlation incorrectly merges unrelated signals (HIGH PRIORITY, MEDIUM EFFORT)
-
-**Symptom:** The Impella issue (`UNK-e3c0cfc277b79391`) has hundreds of unrelated SHA-1 hashes from generic threat intel feeds attached to it. The `sources` field lists `binary-defense-banlist`, `ecrimelabs-metasploit`, `feodo-tracker`, `openfda-device-recalls`, `sans-block-ips`, `ssl-blacklist`, `urlhaus-recent` — only the openFDA source actually has anything to do with Abiomed Impella. The other six are global threat intel feeds whose IOCs got incorrectly merged into this medical device record.
-
-**Root cause:** `correlate.py` lines ~518–540. For non-CVE signals, the merge key is:
-
-```python
-key_basis = f"{title_norm}|{pub}"
-issue_id = "UNK-" + _sha256_hex(key_basis)[:16]
-```
-
-That's the entire merge key — normalized title plus published date. Threat intel feeds (URLhaus, Feodo Tracker, SSL Blacklist, etc.) emit signals with no real human-readable title — they're hash dumps. The `_norm_title` function returns a placeholder (`"item"` in the Impella case) for empty titles. Result: every non-CVE signal across multiple unrelated feeds with empty titles and the same published date hashes to the same UNK-id and gets merged into one giant fake "issue." The Impella FDA recall happened to land in that bucket because openFDA returned its recall record without a clean title field either.
-
-**Verified by:** Reading `correlate.py` lines 500–560, then inspecting the live Impella record which has 7 source contributors, only one of which (openfda-device-recalls) is semantically related, and hundreds of IOCs from sources that have nothing to do with cardiac assist devices.
-
-**Why this matters for the grant:** A reviewer who opens any record like this sees a heart pump advisory with 600+ random SHA-1 hashes attached. It undermines the entire "we correlate intelligently" pitch. This needs to be fixed before submission.
-
-**Three candidate fixes, ordered by architectural quality:**
-
-1. **(Best) Filter threat intel feeds out of the correlation pass entirely.** They are not advisories — they are IOC dumps. They should be tracked separately and joined to advisory issues by IOC matching (e.g., "issue X mentions hash Y, threat intel feed Z reported hash Y"), not by title/date hashing. Requires categorizing sources in `sources.json` by `kind: advisory` vs `kind: threatintel` and routing them through different correlation logic. Probably half a day to a day of work but it's the right architecture.
-2. **(Medium) Add `source_id` to the merge key basis** so signals from different sources never merge into the same UNK-issue regardless of title collision: `key_basis = f"{source_id}|{title_norm}|{pub}"`. Quick fix (one line) but it just hides the symptom. Threat intel feeds will still produce thousands of singleton issues that bloat the corpus.
-3. **(Hack) Skip correlation entirely for signals where the title is empty or matches a known placeholder** (`""`, `"item"`, etc.) and emit them as singletons keyed by `source_id|guid`. Fast, low-risk, but doesn't address the root architectural issue.
-
-Recommendation: do option 2 or 3 immediately as a triage fix to unblock the grant demo, then do option 1 properly post-grant.
+**Architectural fix still pending (post-grant):** The full fix is to separate threatintel from advisory routing entirely — categorize sources as `kind: advisory` vs `kind: threatintel` in `sources.json` and route them through different correlation logic.
 
 ### Problem 3 — Field extraction failing for non-CVE / FDA-recall-derived issues (MEDIUM PRIORITY)
 
@@ -202,13 +160,9 @@ Recommendation: do option 2 or 3 immediately as a triage fix to unblock the gran
 
 **Action:** Investigate before grant submission. Worth understanding so the grant narrative can address it accurately rather than discovering it during a reviewer Q&A. This is also a potentially interesting finding for the grant itself ("KEV doesn't track medical device CVEs at scale, which is part of why a healthcare-focused intelligence system needs to exist").
 
-### Problem 5 — EPSS cache empty
+### Problem 5 — EPSS cache empty — RESOLVED
 
-**Symptom:** Pipeline log shows `EPSS cache is empty. Run populate_cache() first.`
-
-**Cause:** The EPSS enrichment hasn't been populated. Probably never run or the cache file got removed.
-
-**Fix:** Run the EPSS populate_cache function (it's in `enrichment/epss_enrich.py`). One-time setup. Low priority but should be done before grant submission so EPSS scores show up in the dashboard for any CVE that has them.
+**Resolved:** 2026-04-09, branch `merge/consolidate-dashboard`. Ran `populate_cache()` from `enrichment/epss_enrich.py`. Cache populated with 325,743 EPSS scores at `outputs/epss_cache/epss_scores.json` (26MB). The pipeline automatically uses this cache via `apply_enrichments(epss=True)` — no code change was needed.
 
 ### Problem 6 — Healthcare filter false positives
 
@@ -340,15 +294,38 @@ These are operational rules that should govern every session. Read them every ti
 
 To be honest about the limits of what I (Claude) verified vs. what I'm carrying forward from older context:
 
-- **The exact test count (~1,016).** Carried forward from earlier session memory. Should be re-verified by running `python -m pytest tests/ -q` in a clean session.
 - **Whether `extract.py` and `ai_correlate.py` are wired into community-build by default or only available as separate CLI commands.** Both modules exist with substantial code. I confirmed `extract.py` is exposed via the `extract` CLI command but did not verify whether community-build invokes them.
-- **The cumulative corpus growth trajectory.** Old transcripts reference 1,990 issues at one point, 2,056 at another, today's run produced 3,923. The historical backfill is real but I haven't traced the exact growth curve.
-- **Whether the dashboard repo (`advisoryops-dashboard`) is a separate codebase or just a serving wrapper around the main repo's outputs.** Earlier transcripts suggest there was a duplicate `score.py` created in the dashboard repo by accident at one point and later corrected. Worth verifying the current state.
 - **The exact list of "Features A through D"** that were shipped yesterday vs. older session work. The names overlap with earlier "Sessions B through K" naming and I may have conflated some.
 - **Whether `eval_harness.py` is currently being run as part of CI or is dormant.** It exists, has 520 lines, has tests, but I didn't verify recent execution.
 - **The current ai_cache hit rate.** I know it exists and works; I haven't measured it on the current corpus.
+- **GitHub Pages cutover hasn't happened yet.** The live URL still points at the `advisoryops-dashboard` repo. Travis needs to manually flip GitHub Pages source to the merged repo (Settings → Pages → Source → main / docs) after verifying the merge branch.
 
 Future Claude: when these uncertainties become relevant, verify against the code or ask Travis. Don't reason from this file as if it were ground truth on the items above.
+
+## Section 13 — Session log
+
+### 2026-04-09 — Dashboard merge (branch `merge/consolidate-dashboard`)
+
+9-commit merge sequence consolidating the dashboard repo into the main repo. Executed by Claude Code, planned and approved by Travis.
+
+- **Commit 1:** Migrated `dashboard/index.html` and `tests/test_dashboard_html.py` from the dashboard repo.
+- **Commit 2:** Added `_publish_to_docs()` to `community_build.py` — copies dashboard HTML and all 11 data artifacts to `docs/` for GitHub Pages serving after each build. Replaces the old `_deploy_docs()` which only handled 3 files.
+- **Commit 3:** Fixed the packet→feed merge gap (Problem 1). `_merge_trust` now copies `recommended_patterns`, `tasks_by_role`, `reasoning`, and `citations` from packets into feed rows. Added fields to `_feed_entry`. 5 regression tests added.
+- **Commit 4:** Rendered AI recommendations in `dashboard/index.html` — pattern cards with friction pills, tasks by role, AI reasoning, and the standard playbook disclaimer.
+- **Commit 5:** Triage fix for correlation key (Problem 2). Added `source_id` to non-CVE merge key. Issue count 3923 → 3929, source-count anomalies dropped to zero. Also added `repo_root` parameter to `build_community_feed` for testability.
+- **Commit 6:** Skipped (no code change). Populated EPSS cache: 325,743 scores. Pipeline uses it automatically.
+- **Commit 7:** Added `docs/feed_contract.json` and `tests/test_feed_contract.py` — schema contract enforcing that every field the dashboard reads is declared, and every required field is present in feed rows.
+- **Commit 8:** Added `_write_sanity_report()` generating `outputs/community_public/sanity_report.md` after each build. Surfaces priority distribution, field completeness, correlation health, AI coverage, healthcare classification, FDA risk class.
+- **Commit 9:** Updated README (source count 57→65, test count 696→1038, issue count 1990→3929) and this file. Marked Problems 1, 2 (triage), and 5 as resolved.
+
+**Test count:** 1016 → 1038. All passing.
+
+**Manual steps still pending for Travis:**
+1. Visually verify dashboard renders new sections by opening `docs/index.html` in a browser.
+2. Push the branch and merge to main.
+3. Flip GitHub Pages source from `advisoryops-dashboard` to `advisoryops` (Settings → Pages → Source → main / docs).
+4. Verify the live URL still works.
+5. Archive the `advisoryops-dashboard` repo on GitHub.
 
 ---
 
