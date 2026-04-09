@@ -268,6 +268,104 @@ def _generate_dashboard(path: Path) -> None:
     path.write_text(html, encoding="utf-8", newline="\n")
 
 
+def _write_sanity_report(
+    community_root: Path,
+    scored_rows: List[Dict[str, Any]],
+    packets_dir: Optional[Path],
+) -> None:
+    """Write a markdown sanity report surfacing aggregate health checks.
+
+    This is the kind of report you glance at after a pipeline run to
+    spot if something has gone weird. It is NOT a build gate — it is
+    a visibility tool. Failed sanity checks become tests later if
+    they prove worth gating on.
+    """
+    from collections import Counter
+
+    lines = [
+        "# Pipeline Sanity Report",
+        "",
+        f"**Generated:** {datetime.now(timezone.utc).isoformat()}Z",
+        f"**Total issues:** {len(scored_rows)}",
+        "",
+        "## Priority distribution",
+        "",
+    ]
+    priorities = Counter(r.get("priority", "?") for r in scored_rows)
+    for p in ("P0", "P1", "P2", "P3"):
+        lines.append(f"- {p}: {priorities.get(p, 0)}")
+    lines.append("")
+
+    lines.append("## Field completeness")
+    lines.append("")
+    empty_title = sum(1 for r in scored_rows if not r.get("title") or r.get("title") in ("", "item"))
+    empty_vendor = sum(1 for r in scored_rows if not r.get("vendor"))
+    empty_products = sum(1 for r in scored_rows if not r.get("affected_products"))
+    lines.append(f"- Empty/placeholder title: {empty_title}")
+    lines.append(f"- Empty vendor: {empty_vendor}")
+    lines.append(f"- Empty affected_products: {empty_products}")
+    lines.append("")
+
+    lines.append("## Source-count anomalies (correlation health)")
+    lines.append("")
+    high_5 = sum(1 for r in scored_rows if len(r.get("sources", [])) >= 5)
+    high_10 = sum(1 for r in scored_rows if len(r.get("sources", [])) >= 10)
+    high_20 = sum(1 for r in scored_rows if len(r.get("sources", [])) >= 20)
+    lines.append(f"- Issues with 5+ sources: {high_5}")
+    lines.append(f"- Issues with 10+ sources: {high_10}")
+    lines.append(f"- Issues with 20+ sources: {high_20}  *(if non-zero, investigate — this is the Impella collision pattern)*")
+    lines.append("")
+
+    lines.append("## Mixed-type source contamination")
+    lines.append("")
+    threatintel_keywords = ("urlhaus", "feodo", "ssl-blacklist", "binary-defense", "sans-block", "ecrimelabs")
+    advisory_keywords = ("openfda", "cisa", "fda-medwatch", "icsma", "psirt")
+    mixed = 0
+    for r in scored_rows:
+        src_str = " ".join(str(s) for s in r.get("sources", []))
+        has_ti = any(k in src_str for k in threatintel_keywords)
+        has_adv = any(k in src_str for k in advisory_keywords)
+        if has_ti and has_adv:
+            mixed += 1
+    lines.append(f"- Issues mixing threatintel + advisory sources: {mixed}  *(should be near zero after Problem 2 triage fix)*")
+    lines.append("")
+
+    lines.append("## AI enrichment coverage")
+    lines.append("")
+    has_ai = sum(1 for r in scored_rows if r.get("generated_by") == "ai")
+    has_patterns = sum(1 for r in scored_rows if r.get("recommended_patterns"))
+    has_summary = sum(1 for r in scored_rows if r.get("ai_summary"))
+    lines.append(f"- generated_by == 'ai': {has_ai}")
+    lines.append(f"- has recommended_patterns: {has_patterns}")
+    lines.append(f"- has ai_summary: {has_summary}")
+    lines.append("")
+
+    lines.append("## Healthcare classification")
+    lines.append("")
+    categories = Counter(r.get("healthcare_category", "?") for r in scored_rows)
+    for cat, count in categories.most_common():
+        lines.append(f"- {cat}: {count}")
+    lines.append("")
+
+    lines.append("## FDA risk class")
+    lines.append("")
+    risks = Counter(str(r.get("fda_risk_class") or "null") for r in scored_rows)
+    for cls in ("3", "2", "1", "null"):
+        lines.append(f"- Class {cls}: {risks.get(cls, 0)}")
+    lines.append("")
+
+    if packets_dir and packets_dir.exists():
+        packet_count = len(list(packets_dir.glob("*.json")))
+        lines.append("## Recommendation packets")
+        lines.append("")
+        lines.append(f"- Packet files in {packets_dir.name}/: {packet_count}")
+        lines.append("")
+
+    report_path = community_root / "sanity_report.md"
+    report_path.write_text("\n".join(lines), encoding="utf-8")
+    print(f"  Sanity report: {report_path}")
+
+
 def _publish_to_docs(community_root: Path, repo_root: Path) -> None:
     """Copy generated artifacts to docs/ for GitHub Pages serving.
 
@@ -2086,6 +2184,9 @@ def build_community_feed(
         },
     }
     out_meta.write_text(json.dumps(meta, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+    # --- Sanity report ---
+    _write_sanity_report(community_root, feed_rows, packets_dir)
 
     # --- Publish dashboard + data files to docs/ for GitHub Pages ---
     _repo_root = repo_root or Path(__file__).resolve().parent.parent.parent
