@@ -198,6 +198,7 @@ _HEALTHCARE_INFRA_RE: re.Pattern[str] = re.compile(
 )
 
 
+
 # ---------------------------------------------------------------------------
 # Negative patterns — exclude false positives
 # ---------------------------------------------------------------------------
@@ -249,6 +250,7 @@ def _is_false_positive(issue: Dict[str, Any], text: str) -> bool:
     return False
 
 
+
 def classify_healthcare_category(issue: Dict[str, Any]) -> str:
     """Classify a healthcare-relevant issue into a specific category.
 
@@ -271,6 +273,7 @@ def classify_healthcare_category(issue: Dict[str, Any]) -> str:
         if _HEALTHCARE_INFRA_RE.search(text):
             return "healthcare_infrastructure"
         return "healthcare_adjacent"
+
 
     # 1. Medical device sources are definitive
     if any(s in _MEDICAL_DEVICE_SOURCES for s in sources):

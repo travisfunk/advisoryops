@@ -8,6 +8,7 @@
 **Open-source healthcare medical device security intelligence pipeline.**
 AdvisoryOps continuously monitors 65 public sources — CISA ICS-Medical, the Known Exploited Vulnerabilities catalog, FDA device recalls, NVD, CERT/CC, vendor PSIRTs, and more — and produces a prioritized, healthcare-aware feed of medical device vulnerabilities. Built for hospital security teams that can't afford commercial platforms like Claroty or TRIMEDX.
 
+
 ---
 
 ## What makes this different

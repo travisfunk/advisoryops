@@ -72,6 +72,7 @@ def test_no_framework_imports():
         assert fw.lower() not in html.lower().replace("advisoryops", ""), f"Framework reference: {fw}"
 
 
+
 # ------------------------------------------------------------------
 # Search functionality
 # ------------------------------------------------------------------
