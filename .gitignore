@@ -40,6 +40,35 @@ outputs/*.json
 !outputs/community_public/feed_healthcare.json
 !outputs/community_public/validated_sources.json
 !outputs/community_public/meta.json
+# Per-source caches (regeneratable via backfill)
+outputs/cisa_icsma_cache/
+outputs/openfda_cache/
+outputs/fda_classification_cache/
+outputs/fda_safety_comms_cache/
+outputs/health_canada_cache/
+outputs/mhra_uk_cache/
+outputs/philips_psirt_cache/
+outputs/siemens_productcert_cache/
+outputs/epss_cache/
+outputs/cwe_cache/
+outputs/attack_ics_cache/
+outputs/vulnrichment_cache/
+
+# Generated per-run artifacts (not source-controlled)
+outputs/community_public/sanity_report.md
+outputs/community_public/dashboard.html
+outputs/community_public/feed_class_3.xml
+outputs/community_public/feed_healthcare.xml
+outputs/community_public/feed_kev_medical_device.xml
+outputs/community_public/feed_p0_p1.xml
+outputs/community_public/feed_medical_device_kev.json
+
+# Scratch / calibration files
+calibration_samples.txt
+
+# Claude Code local settings (user-specific)
+.claude/settings.local.json
+
 # Secrets
 .env
 .env.*

@@ -1,0 +1,199 @@
+Feature 1 Spec — FDA Risk Class Extraction and Display (v2, calibrated)
+Context and goal
+AdvisoryOps currently surfaces 873 healthcare-relevant issues but 77% of them are P3 (informational). The FDA regulatory risk classification of a medical device (Class I, II, or III) is the single most important signal for distinguishing "life-critical pacemaker vulnerability" from "disposable supply recall," and it's currently not used anywhere in the pipeline. Adding it as both a visible dashboard field and a scoring signal will elevate Class III issues out of the P3 noise into P2/P1 visibility where analysts actually see them.
+Data sources
+Primary source: The openFDA recall cache at outputs/openfda_cache/recall_*.json. Each cached recall record contains a device_class field with values "1", "2", "3", or occasionally "N" / "U" / missing. Sample analysis of 2000 records shows:
+
+Class 1: 17.6%
+Class 2: 72.0%
+Class 3: 6.5%
+Missing/invalid: ~3.7% (N, U, or absent)
+
+Both recall.device_class (top-level) and recall.openfda.device_class (nested) must be checked. 99.2% of records have a product_code, 100% have a device_name.
+Secondary source: openFDA Device Classification endpoint at https://api.fda.gov/device/classification.json. This is a separate database of ~6,000 device classification records keyed by product code. Used as a fallback when an issue mentions a medical device but isn't derived from a recall.
+Implementation
+Step 1: Add fda_risk_class to the issue schema
+Add field fda_risk_class to the issue model (wherever issues are constructed, likely in src/advisoryops/issues/ or similar). Allowed values: null, "1", "2", "3". Default null.
+Update src/advisoryops/score.py to read this field. Update any JSON serializers that produce feed_latest.json, feed_healthcare.json, and issues_public.jsonl to include the field in output.
+Step 2: Extract risk class from cached recalls
+Add a function to src/advisoryops/enrichment/ (create a new module fda_classification.py if one doesn't exist). Function signature:
+pythondef extract_risk_class_from_recall(recall: dict) -> str | None:
+    """Extract FDA risk class from a cached recall record.
+    
+    Returns '1', '2', or '3' for valid classes, None for missing or invalid.
+    Handles both top-level and openfda-nested device_class fields.
+    Rejects 'N', 'U', and other non-standard values.
+    """
+Implementation:
+
+Check recall.get("device_class") first
+Fall back to recall.get("openfda", {}).get("device_class")
+If the value is a list, take the first element
+Coerce to string
+If the result is one of "1", "2", "3": return it
+Otherwise return None (do not map "N" or "U" to anything)
+
+Step 3: Build the classification database lookup
+Same module. Add:
+pythondef fetch_classification_database(cache_dir: Path | None = None) -> dict:
+    """Fetch the full openFDA device classification database.
+    
+    Returns a dict indexed by product_code for fast lookup.
+    Caches the result to outputs/fda_classification_cache/classifications.json.
+    Refreshes automatically if cache is older than 90 days.
+    """
+
+def lookup_risk_class(
+    product_code: str | None = None,
+    device_name: str | None = None,
+    classifications: dict | None = None,
+) -> str | None:
+    """Look up FDA risk class for a device.
+    
+    Lookup order:
+    1. Exact product_code match (highest confidence)
+    2. Case-insensitive substring match on device_name (medium confidence)
+    3. Return None if no match
+    """
+The classification endpoint is well under the 25,000 skip limit, so standard pagination works. Use the same URL-construction pattern as the fixed openFDA date-range code (literal + characters, no urlencode on search params).
+Cache structure: a single JSON file at outputs/fda_classification_cache/classifications.json containing a dict {product_code: {device_class, device_name, definition, medical_specialty, ...}}. Include a "_fetched_at" timestamp for the 90-day refresh check.
+Step 4: Wire extraction and lookup into the pipeline
+Find the pipeline stage where issues are enriched after correlate but before scoring. This is likely src/advisoryops/enrichment/ or called from community_build.py.
+For each issue:
+
+If the issue has a source indicating openFDA recall origin, look up the original cached recall record and call extract_risk_class_from_recall(). If it returns a value, set issue["fda_risk_class"].
+If step 1 didn't set the field, attempt a secondary lookup via lookup_risk_class() using any product code or device name mentioned in the issue. If a match is found with reasonable confidence, set issue["fda_risk_class"].
+If neither works, leave fda_risk_class as null.
+
+The secondary lookup should be gated by device name keyword matching. Don't run it on every issue — only on issues where device-like keywords appear in the title or summary. Otherwise we'll burn cycles on CVE-2024-XXXXX Chrome browser issues that have nothing to do with medical devices.
+Step 5: Add risk class to the scoring system
+Modify src/advisoryops/score.py to add a new dimension. The bonus structure based on calibration against the real 873-issue healthcare corpus:
+pythondef _score_fda_risk_class(issue: dict) -> tuple[int, list[str]]:
+    """Calculate FDA risk class bonus.
+    
+    Calibrated against real healthcare corpus distribution:
+    - Class III: +30 (promotes critical devices from P3 to P2, P2 to P1)
+    - Class II: +10 (modest nudge, Class II is 72% of FDA recalls)
+    - Class I:  +0  (genuinely low-risk devices, no bonus)
+    - null:     +0  (don't fake certainty)
+    """
+    rc = issue.get("fda_risk_class")
+    if rc == "3":
+        return 30, ["fda-risk-class: Class III highest-risk device (+30)"]
+    if rc == "2":
+        return 10, ["fda-risk-class: Class II moderate-risk device (+10)"]
+    return 0, []
+Add the call to score_issue_v2() after the clinical signals dimension and before the final total. Append the reasoning strings to the why list. Make sure the bonus is documented in the theoretical max table in docs/scoring_internals.md.
+Step 6: Display risk class on the dashboard
+Add a visible FDA risk class badge to the issue card in the dashboard (advisoryops-dashboard repo). Positioning: near the existing CVSS / KEV badges at the top of the issue card.
+Badge styling:
+
+Class III: Red background (#c62828), white text, label "FDA Class III"
+Class II: Amber background (#f9a825), dark text, label "FDA Class II"
+Class I: Gray background (#757575), white text, label "FDA Class I"
+null: No badge displayed
+
+On hover or expanded view, the badge should include a tooltip explanation:
+
+Class III: "FDA Class III devices are highest-risk (e.g., pacemakers, implantable defibrillators). Require premarket approval."
+Class II: "FDA Class II devices are moderate-risk (e.g., infusion pumps, most diagnostic equipment). Require 510(k) clearance."
+Class I: "FDA Class I devices are low-risk (e.g., bandages, stethoscopes). Subject to general controls only."
+
+In the detailed two-column expansion panel, add a "FDA Device Classification" row that shows the class and explanation, with a link to the FDA device classification page if we have a product code:
+https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpcd/classification.cfm?ID={product_code}
+Step 7: Add filter and sort controls
+Add a filter dropdown above the issue list:
+
+Label: "FDA Risk Class"
+Options: "All" (default), "Class III only", "Class II and III", "Class I only", "Unknown only"
+
+Add a sort option to the existing sort dropdown:
+
+"FDA Risk Class (highest first)" — sorts Class III → Class II → Class I → null
+
+Tests
+Unit tests in tests/test_fda_classification.py:
+pythonclass TestExtractRiskClassFromRecall:
+    def test_extracts_top_level_device_class(self):
+        # recall with device_class: "3" → returns "3"
+    def test_extracts_nested_openfda_device_class(self):
+        # recall with openfda.device_class: "2" → returns "2"  
+    def test_rejects_invalid_N_value(self):
+        # recall with device_class: "N" → returns None
+    def test_rejects_invalid_U_value(self):
+        # recall with device_class: "U" → returns None
+    def test_handles_missing_field(self):
+        # recall without device_class → returns None
+    def test_handles_list_value(self):
+        # recall with device_class: ["3"] → returns "3"
+    def test_coerces_integer_to_string(self):
+        # recall with device_class: 3 → returns "3"
+
+class TestClassificationLookup:
+    def test_product_code_exact_match(self, tmp_path):
+        # given product code X, returns matching device_class
+    def test_device_name_substring_match(self, tmp_path):
+        # given device name containing "infusion pump", returns match
+    def test_returns_none_when_no_match(self, tmp_path):
+        # given unknown device, returns None
+
+class TestScoreRiskClassBonus:
+    def test_class_3_adds_30(self):
+        # issue with fda_risk_class: "3" → +30, why string appended
+    def test_class_2_adds_10(self):
+        # issue with fda_risk_class: "2" → +10
+    def test_class_1_adds_nothing(self):
+        # issue with fda_risk_class: "1" → +0
+    def test_null_adds_nothing(self):
+        # issue without fda_risk_class → +0
+
+@pytest.mark.integration
+class TestClassificationAPI:
+    def test_real_api_returns_classifications(self, tmp_path):
+        # Hit the real openFDA classification endpoint
+        # Confirm non-empty response and valid structure
+Pipeline integration test: run the pipeline against a small test corpus, verify that recall-derived issues get their risk class set, and verify that scoring includes the bonus.
+Edge cases
+
+"N" and "U" device_class values: Appear in ~2% of records. Reject them as invalid. Do not map to any risk class.
+Recall records with device_class as an integer: Coerce to string before comparison.
+Issues derived from a recall that's in the old cache but not in the new normalized feed: Check that the cache-to-feed mapping is traceable. If an issue's source points to a recall but we can't find the original record, leave risk class null and don't crash.
+Duplicate product codes in the classification database: Unlikely but possible. If encountered, use the first match.
+Classification database refresh: Cache is considered stale after 90 days. Refresh in the background; don't block the pipeline if refresh fails.
+Dashboard issue cards with null risk class: Do not display any badge. Do not display "Class Unknown" or "N/A." Silent omission is correct.
+
+Success criteria
+
+All unit tests pass (integration test optional but should pass when run with -m integration)
+Pipeline regenerates and feed_healthcare.json contains fda_risk_class populated on at least 40% of issues (based on 45% of healthcare issues having openFDA recall origins in the current corpus)
+Spot check: pick 10 random Class III issues from the regenerated feed and verify they look clinically significant (pacemakers, implantable defibrillators, ventricular assist devices, etc.). Pick 10 random Class I issues and verify they look low-risk.
+Score distribution shift: before/after comparison shows Class III issues have meaningfully higher scores (average +25-30 points). Class II issues shift modestly (+8-10). Total number of P0/P1/P2 healthcare issues increases by approximately 50-100 as Class III items promote up from P3.
+Dashboard visibly shows Class III badges in red on appropriate issues
+Filtering by "Class III only" returns only Class III issues
+docs/scoring_internals.md is updated to include the new risk class dimension in the theoretical max table
+
+What this feature does NOT include
+
+No LLM involvement (this is pure data extraction, lookup, and scoring)
+No citation verification framework (comes in Feature 3)
+No changes to the healthcare filter itself (separate concern — the healthcare_category field being empty is a known bug but not fixed here)
+No Excel export fix (separate low-priority bug)
+No changes to NVD historical cache integration (separate concern)
+
+Estimated effort
+Half a day to one day of Code work. Straightforward implementation, no novel architecture, clear test criteria, calibrated numbers. The longest part is likely the dashboard UI changes if CSS work is involved.
+Commit message template
+Feature 1: FDA Risk Class extraction, scoring, and display
+
+- Add fda_risk_class field to issue schema
+- Extract risk class from cached openFDA recalls
+- Add classification database lookup for non-recall issues
+- Add scoring bonus: Class III +30, Class II +10, Class I +0
+- Calibrated against real 873-issue healthcare corpus
+- Display Class III (red), Class II (amber), Class I (gray) badges
+- Add filter and sort controls for risk class
+- Update docs/scoring_internals.md with new dimension
+- 873 healthcare issues before -> expect similar count after,
+  but with meaningful score shifts for Class III items
+
+That's the complete spec. Every number is calibrated to real data. Every field name is verified. The cache path is correct (outputs/openfda_cache/ not outputs/openfda_recalls_cache/). The scoring dimension fits cleanly into the v2 framework. The bonus sizes will produce the intended behavior (Class III promotion from P3 to P2/P1) based on the actual healthcare corpus distribution.
