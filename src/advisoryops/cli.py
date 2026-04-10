@@ -270,6 +270,7 @@ def cmd_community_build(args) -> int:
         summarize=getattr(args, "summarize", False),
         extract_mitigations=getattr(args, "extract_mitigations", False),
         enrich_pages=getattr(args, "enrich_pages", False),
+        extract_fields=getattr(args, "extract_fields", False),
         backfill=not getattr(args, "skip_backfill", False),
     )
 
@@ -523,6 +524,8 @@ def build_parser() -> argparse.ArgumentParser:
                         help="Extract source-cited mitigations for P0/P1/P2 issues (requires OPENAI_API_KEY)")
     p_comm.add_argument("--enrich-pages", action="store_true", dest="enrich_pages",
                         help="Fetch advisory web pages for richer mitigation text before extraction")
+    p_comm.add_argument("--extract-fields", action="store_true", dest="extract_fields",
+                        help="Extract vendor, product, severity from summaries of issues with empty fields (requires OPENAI_API_KEY)")
     p_comm.set_defaults(fn=cmd_community_build)
 
     p_sum = sub.add_parser("summarize", help="Summarize a single issue into plain language")
