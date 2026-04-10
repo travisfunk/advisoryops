@@ -35,6 +35,8 @@
     "nvd_description":       { "type": "string",  "required": false },
     "recommended_patterns":  { "type": "array",   "required": false, "added_by": "Problem 1 fix (commit 3)" },
     "tasks_by_role":         { "type": "object",  "required": false, "added_by": "Problem 1 fix (commit 3)" },
-    "reasoning":             { "type": "string",  "required": false, "added_by": "Problem 1 fix (commit 3)" }
+    "reasoning":             { "type": "string",  "required": false, "added_by": "Problem 1 fix (commit 3)" },
+    "epss_score":            { "type": ["number","null"], "required": false, "added_by": "EPSS enrichment" },
+    "epss_percentile":       { "type": ["number","null"], "required": false, "added_by": "EPSS enrichment" }
   }
 }

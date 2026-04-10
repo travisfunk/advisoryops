@@ -130,6 +130,9 @@ def _feed_entry(issue: Dict[str, Any]) -> Dict[str, Any]:
         "fda_risk_class": issue.get("fda_risk_class") or None,
         # KEV + medical device cross-reference
         "is_kev_medical_device": bool(issue.get("is_kev_medical_device", False)),
+        # EPSS exploit probability
+        "epss_score": issue.get("epss_score") or None,
+        "epss_percentile": issue.get("epss_percentile") or None,
         # Recommendation fields (populated by _merge_trust from packet data)
         "recommended_patterns": issue.get("recommended_patterns") or [],
         "tasks_by_role": issue.get("tasks_by_role") or {},
@@ -1303,11 +1306,14 @@ def build_community_feed(
     extract_mitigations_priorities: Sequence[str] = ("P0", "P1", "P2"),
     enrich_pages: bool = False,
     enrich_pages_priorities: Sequence[str] = ("P0", "P1", "P2"),
+    extract_fields: bool = False,
+    extract_fields_model: str = "gpt-4o-mini",
     backfill: bool = True,
     _recommend_call_fn: Optional[Callable] = None,
     _ai_classify_fn: Optional[Callable] = None,
     _summarize_call_fn: Optional[Callable] = None,
     _extract_mitigations_call_fn: Optional[Callable] = None,
+    _extract_fields_call_fn: Optional[Callable] = None,
     _nvd_fetch_fn: Optional[Callable] = None,
     _backfill_fetch_fns: Optional[Dict[str, Callable]] = None,
     repo_root: Optional[Path] = None,
@@ -1528,6 +1534,74 @@ def build_community_feed(
                 print(f"    Warning: summarize failed for {issue_id}: {exc}")
 
         print(f"  Summarize: {summarize_count}/{len(targets)} issues rewritten")
+
+    # --- Optional field extraction pass (runs AFTER summarization) ---
+    extract_fields_count = 0
+    extract_fields_total = 0
+    if extract_fields:
+        from .extract_fields import extract_fields as _extract_fields_fn
+
+        _PLACEHOLDER_TITLES = {"", "item", "items", "entry", "untitled"}
+
+        def _needs_extraction(row: Dict[str, Any]) -> bool:
+            title = str(row.get("title") or "").strip().lower()
+            return (
+                title in _PLACEHOLDER_TITLES
+                or not row.get("vendor")
+                or not row.get("affected_products")
+                or not row.get("severity")
+            )
+
+        extract_targets = [r for r in scored_rows if _needs_extraction(r)]
+        print(f"\n  Extract fields: {len(extract_targets)} issues with missing fields")
+
+        scored_by_id_ef = {r["issue_id"]: r for r in scored_rows}
+        alert_by_id_ef = {r["issue_id"]: r for r in alert_rows}
+
+        for issue in extract_targets:
+            issue_id = issue.get("issue_id", "unknown")
+            try:
+                extracted = _extract_fields_fn(
+                    issue,
+                    model=extract_fields_model,
+                    _call_fn=_extract_fields_call_fn,
+                )
+                extract_fields_total += 1
+                if not extracted:
+                    continue
+
+                # Merge into scored_rows and alert_rows — only fill empty fields
+                filled = []
+                for row_dict in (scored_by_id_ef, alert_by_id_ef):
+                    row = row_dict.get(issue_id)
+                    if row is None:
+                        continue
+                    title_cur = str(row.get("title") or "").strip().lower()
+                    if extracted.get("title") and title_cur in _PLACEHOLDER_TITLES:
+                        row["title"] = extracted["title"]
+                        filled.append("title")
+                    if extracted.get("vendor") and not row.get("vendor"):
+                        row["vendor"] = extracted["vendor"]
+                        filled.append("vendor")
+                    if extracted.get("affected_products") and not row.get("affected_products"):
+                        row["affected_products"] = extracted["affected_products"]
+                        filled.append("products")
+                    if extracted.get("product_name") and not row.get("affected_products"):
+                        row["affected_products"] = [extracted["product_name"]]
+                        filled.append("product_name")
+                    if extracted.get("severity") and not row.get("severity"):
+                        row["severity"] = extracted["severity"]
+                        filled.append("severity")
+
+                if filled:
+                    extract_fields_count += 1
+                    if extract_fields_count <= 5 or extract_fields_count % 50 == 0:
+                        print(f"    Extracted: {issue_id} → {', '.join(set(filled))}")
+
+            except Exception as exc:
+                print(f"    Warning: extract_fields failed for {issue_id}: {exc}")
+
+        print(f"  Extract fields: {extract_fields_count}/{extract_fields_total} issues updated")
 
     # --- Optional page enrichment pass (fetch advisory pages for richer text) ---
     pages_fetched = 0
