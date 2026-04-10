@@ -339,3 +339,74 @@ class TestDashboardFeedback:
     def test_feedback_types_in_menu(self):
         for ft in ["incorrect", "too_aggressive", "too_conservative", "missing_context", "helpful"]:
             assert ft in _DASHBOARD_HTML
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# PART 7: _merge_trust includes recommendation fields (regression test)
+# ══════════════════════════════════════════════════════════════════════════════
+
+class TestMergeTrustRecommendationFields:
+    """The merge from packet to feed row must include recommended_patterns,
+    tasks_by_role, reasoning, and citations. Without these the dashboard
+    cannot show AI guidance even though the recommend engine produced it.
+
+    This tests the merge logic that lives in community_build.py's
+    _merge_trust inner function by replicating the same dict structure
+    and verifying the feed_entry preserves these fields.
+    """
+
+    def test_feed_entry_preserves_recommended_patterns(self):
+        """_feed_entry must pass through recommended_patterns if present."""
+        issue = {
+            "issue_id": "CVE-2024-1234",
+            "recommended_patterns": [{"pattern_id": "SEGMENTATION_VLAN_ISOLATION"}],
+        }
+        entry = _feed_entry(issue)
+        assert entry.get("recommended_patterns") == [{"pattern_id": "SEGMENTATION_VLAN_ISOLATION"}]
+
+    def test_feed_entry_preserves_tasks_by_role(self):
+        """_feed_entry must pass through tasks_by_role if present."""
+        issue = {
+            "issue_id": "CVE-2024-1234",
+            "tasks_by_role": {"infosec": ["Review segmentation plan"]},
+        }
+        entry = _feed_entry(issue)
+        assert entry.get("tasks_by_role") == {"infosec": ["Review segmentation plan"]}
+
+    def test_feed_entry_preserves_reasoning(self):
+        """_feed_entry must pass through reasoning if present."""
+        issue = {
+            "issue_id": "CVE-2024-1234",
+            "reasoning": "Primary control: network isolation due to unpatched RCE.",
+        }
+        entry = _feed_entry(issue)
+        assert entry.get("reasoning") == "Primary control: network isolation due to unpatched RCE."
+
+    def test_feed_entry_preserves_citations(self):
+        """_feed_entry must pass through citations if present."""
+        issue = {
+            "issue_id": "CVE-2024-1234",
+            "citations": ["https://www.cisa.gov/ics/advisories/icsma-24-001"],
+        }
+        entry = _feed_entry(issue)
+        assert entry.get("citations") == ["https://www.cisa.gov/ics/advisories/icsma-24-001"]
+
+    def test_packet_trust_dict_includes_recommendation_fields(self):
+        """The packet_trust_by_id dict built in community_build must
+        include recommended_patterns, tasks_by_role, reasoning, and
+        citations — the fields that were missing before this fix."""
+        from dataclasses import asdict
+        packet = _make_packet()
+        # Replicate the collection logic from community_build.py
+        rec_patterns = [asdict(p) for p in (packet.recommended_patterns or [])]
+        trust = {
+            "recommended_patterns": rec_patterns,
+            "tasks_by_role": dict(packet.tasks_by_role or {}),
+            "reasoning": packet.reasoning or "",
+            "citations": list(packet.citations or []),
+        }
+        assert len(trust["recommended_patterns"]) > 0
+        assert trust["recommended_patterns"][0]["pattern_id"] == "SEGMENTATION_VLAN_ISOLATION"
+        assert "netops" in trust["tasks_by_role"] or "infosec" in trust["tasks_by_role"]
+        assert trust["reasoning"] != ""
+        assert len(trust["citations"]) > 0

@@ -2,11 +2,11 @@
 
 ![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)
 ![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)
-![Tests: 696 passing](https://img.shields.io/badge/tests-696_passing-brightgreen.svg)
+![Tests: 1038 passing](https://img.shields.io/badge/tests-1038_passing-brightgreen.svg)
 [![Dashboard](https://img.shields.io/badge/dashboard-GitHub_Pages-blue.svg)](https://travisfunk.github.io/advisoryops-dashboard/)
 
 **Open-source healthcare medical device security intelligence pipeline.**
-AdvisoryOps continuously monitors 57 public sources — CISA ICS-Medical, the Known Exploited Vulnerabilities catalog, FDA device recalls, NVD, CERT/CC, and more — and produces a prioritized, healthcare-aware feed of medical device vulnerabilities. Built for hospital security teams that can't afford commercial platforms like Claroty or TRIMEDX.
+AdvisoryOps continuously monitors 65 public sources — CISA ICS-Medical, the Known Exploited Vulnerabilities catalog, FDA device recalls, NVD, CERT/CC, vendor PSIRTs, and more — and produces a prioritized, healthcare-aware feed of medical device vulnerabilities. Built for hospital security teams that can't afford commercial platforms like Claroty or TRIMEDX.
 
 ---
 
@@ -32,13 +32,18 @@ The "Medical devices" view shows 234 healthcare-relevant issues with CVSS scores
 
 | Metric | Value |
 |--------|-------|
-| Total sources monitored | 57 |
-| Total issues tracked | 1,990 |
-| Medical device issues | 234 |
-| Issues with NVD enrichment | 1,138 |
+| Total sources monitored | 65 |
+| Total issues tracked | 3,929 |
+| Medical device issues | 856 |
+| Issues with NVD enrichment | 2,362 |
 | Issues with KEV required actions | 203 |
-| Automated tests | 696 |
+| AI recommendation packets | 139 (P0/P1) |
+| Automated tests | 1,038 |
 | Full corpus rebuild cost | $1.40 |
+
+### Repository structure
+
+The production dashboard lives at `dashboard/index.html` in this repo. The pipeline's `community-build` command copies it to `docs/index.html` along with the generated data files so GitHub Pages can serve it. The dashboard was previously in a separate `advisoryops-dashboard` repo and was consolidated on 2026-04-09 to eliminate cross-repo drift. That repo will be archived after verification.
 
 ---
 
@@ -180,7 +185,7 @@ flowchart TD
 
 ## Source coverage
 
-**57 enabled sources across 7 categories**
+**65 enabled sources across 7 categories**
 
 | Category | Count | Examples |
 |----------|-------|---------|
@@ -204,7 +209,7 @@ python scripts/smoke_test_all_sources.py
 
 ```bash
 # Full suite — no API key required (all AI calls use injectable mocks)
-python -m pytest            # 696 tests
+python -m pytest            # 1038 tests
 
 # Specific modules
 python -m pytest tests/test_score_healthcare.py -v

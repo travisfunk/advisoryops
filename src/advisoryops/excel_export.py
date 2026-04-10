@@ -14,12 +14,23 @@ CLI::
 """
 from __future__ import annotations
 
+import re
 from pathlib import Path
 from typing import Any, Dict, List
 
 from openpyxl import Workbook
 from openpyxl.styles import Alignment, Font, PatternFill
 from openpyxl.utils import get_column_letter
+
+# Control characters that are illegal in OOXML worksheet cells.
+_ILLEGAL_CHARS_FOR_XLSX = re.compile(r'[\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\x9F]')
+
+
+def _sanitize_for_excel(value):
+    """Strip control characters that openpyxl rejects."""
+    if isinstance(value, str):
+        return _ILLEGAL_CHARS_FOR_XLSX.sub('', value)
+    return value
 
 
 # Priority → fill color mapping
@@ -112,7 +123,7 @@ def export_excel(issues: List[Dict[str, Any]], out_path: Path) -> Path:
     for row_idx, issue in enumerate(issues, start=2):
         values = _row(issue)
         for col_idx, val in enumerate(values, start=1):
-            cell = ws.cell(row=row_idx, column=col_idx, value=val)
+            cell = ws.cell(row=row_idx, column=col_idx, value=_sanitize_for_excel(val))
 
             # Wrap text for summary column (col 5)
             if col_idx == 5:

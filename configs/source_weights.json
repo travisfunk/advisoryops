@@ -9,14 +9,19 @@
       "description": "Primary authoritative sources: government advisories, regulatory agencies, and primary health/security datasets",
       "sources": [
         "cisa-icsma",
+        "cisa-icsma-historical",
         "cisa-icsa",
         "cisa-kev-json",
         "cisa-kev-csv",
         "fda-medwatch",
+        "fda-safety-comms-historical",
         "openfda-device-recalls",
+        "openfda-recalls-historical",
         "openfda-device-events",
         "certcc-vulnotes",
         "health-canada-recalls",
+        "health-canada-recalls-historical",
+        "mhra-uk-alerts",
         "bsi-news",
         "nhs-digital-cyber"
       ]
@@ -25,6 +30,8 @@
       "weight": 0.85,
       "description": "Secondary authoritative sources: vendor PSIRTs, national CERTs, standards bodies, and curated vulnerability databases",
       "sources": [
+        "philips-psirt",
+        "siemens-productcert-psirt",
         "abb-psirt",
         "abb-alerts-html",
         "se-security-notifications",
@@ -40,9 +47,13 @@
         "zdi-published",
         "zdi-upcoming",
         "nvd-cve-api",
+        "nvd-historical",
         "cis-advisories",
         "osv-dev-api",
-        "circl-misp"
+        "circl-misp",
+        "cwe-catalog",
+        "attack-ics",
+        "cisa-vulnrichment"
       ]
     },
     "tier_3": {

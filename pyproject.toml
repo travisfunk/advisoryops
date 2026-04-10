@@ -19,6 +19,12 @@ dependencies = [
 [project.scripts]
 advisoryops = "advisoryops.cli:main"
 
+[tool.pytest.ini_options]
+markers = [
+    "integration: tests that hit real APIs (deselect with -m 'not integration')",
+]
+addopts = "-m 'not integration'"
+
 [tool.setuptools]
 package-dir = {"" = "src"}
 

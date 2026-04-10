@@ -87,6 +87,7 @@ def _feed_entry(issue: Dict[str, Any]) -> Dict[str, Any]:
         "score": int(issue.get("score", 0) or 0),
         "priority": issue.get("priority", ""),
         "actions": issue.get("actions", []) or [],
+        "why": issue.get("why", []) or [],
         # Trust layer fields (gracefully default to empty when absent)
         "handling_warnings": issue.get("handling_warnings", []) or [],
         "evidence_gaps": issue.get("evidence_gaps", []) or [],
@@ -125,6 +126,15 @@ def _feed_entry(issue: Dict[str, Any]) -> Dict[str, Any]:
         "remediation_steps": issue.get("remediation_steps") or [],
         # Healthcare relevance tag
         "healthcare_relevant": bool(issue.get("healthcare_relevant", False)),
+        # FDA device risk classification
+        "fda_risk_class": issue.get("fda_risk_class") or None,
+        # KEV + medical device cross-reference
+        "is_kev_medical_device": bool(issue.get("is_kev_medical_device", False)),
+        # Recommendation fields (populated by _merge_trust from packet data)
+        "recommended_patterns": issue.get("recommended_patterns") or [],
+        "tasks_by_role": issue.get("tasks_by_role") or {},
+        "reasoning": issue.get("reasoning", ""),
+        "citations": issue.get("citations") or [],
     }
     return entry
 
@@ -153,17 +163,22 @@ def _rss_pub_date(date_str: str) -> str:
         return ""
 
 
-def _write_rss(path: Path, rows: List[Dict[str, Any]], *, top: int = 50) -> None:
+def _write_rss(
+    path: Path,
+    rows: List[Dict[str, Any]],
+    *,
+    top: int = 50,
+    title: str = "AdvisoryOps Community Feed",
+    description: str = "Top-scored healthcare cybersecurity and device-safety advisories",
+) -> None:
     """Write an RSS 2.0 feed of the top *top* scored issues and validate XML."""
     path.parent.mkdir(parents=True, exist_ok=True)
 
     channel = ET.Element("channel")
 
-    ET.SubElement(channel, "title").text = "AdvisoryOps Community Feed"
+    ET.SubElement(channel, "title").text = title
     ET.SubElement(channel, "link").text = "https://github.com/advisoryops/advisoryops"
-    ET.SubElement(channel, "description").text = (
-        "Top-scored healthcare cybersecurity and device-safety advisories"
-    )
+    ET.SubElement(channel, "description").text = description
     now_rfc = datetime.now(tz=timezone.utc).strftime("%a, %d %b %Y %H:%M:%S +0000")
     ET.SubElement(channel, "lastBuildDate").text = now_rfc
     ET.SubElement(channel, "language").text = "en-us"
@@ -253,35 +268,144 @@ def _generate_dashboard(path: Path) -> None:
     path.write_text(html, encoding="utf-8", newline="\n")
 
 
-def _deploy_docs(dashboard_path: Path, feed_path: Path, sources_path: Path) -> None:
-    """Copy dashboard and data files to ``docs/`` for GitHub Pages deployment.
+def _write_sanity_report(
+    community_root: Path,
+    scored_rows: List[Dict[str, Any]],
+    packets_dir: Optional[Path],
+) -> None:
+    """Write a markdown sanity report surfacing aggregate health checks.
 
-    Creates ``docs/index.html`` (renamed from dashboard.html),
-    ``docs/feed_latest.json``, and ``docs/validated_sources.json``.
+    This is the kind of report you glance at after a pipeline run to
+    spot if something has gone weird. It is NOT a build gate — it is
+    a visibility tool. Failed sanity checks become tests later if
+    they prove worth gating on.
     """
-    # Walk up from the dashboard to find the repo root (contains .git)
-    repo_root: Optional[Path] = None
-    candidate = dashboard_path.parent
-    for _ in range(10):
-        if (candidate / ".git").exists():
-            repo_root = candidate
-            break
-        if candidate.parent == candidate:
-            break
-        candidate = candidate.parent
+    from collections import Counter
 
-    if repo_root is None:
-        # Fallback: use cwd or skip silently (e.g. during tests in tmp_path)
-        return
+    lines = [
+        "# Pipeline Sanity Report",
+        "",
+        f"**Generated:** {datetime.now(timezone.utc).isoformat()}Z",
+        f"**Total issues:** {len(scored_rows)}",
+        "",
+        "## Priority distribution",
+        "",
+    ]
+    priorities = Counter(r.get("priority", "?") for r in scored_rows)
+    for p in ("P0", "P1", "P2", "P3"):
+        lines.append(f"- {p}: {priorities.get(p, 0)}")
+    lines.append("")
 
+    lines.append("## Field completeness")
+    lines.append("")
+    empty_title = sum(1 for r in scored_rows if not r.get("title") or r.get("title") in ("", "item"))
+    empty_vendor = sum(1 for r in scored_rows if not r.get("vendor"))
+    empty_products = sum(1 for r in scored_rows if not r.get("affected_products"))
+    lines.append(f"- Empty/placeholder title: {empty_title}")
+    lines.append(f"- Empty vendor: {empty_vendor}")
+    lines.append(f"- Empty affected_products: {empty_products}")
+    lines.append("")
+
+    lines.append("## Source-count anomalies (correlation health)")
+    lines.append("")
+    high_5 = sum(1 for r in scored_rows if len(r.get("sources", [])) >= 5)
+    high_10 = sum(1 for r in scored_rows if len(r.get("sources", [])) >= 10)
+    high_20 = sum(1 for r in scored_rows if len(r.get("sources", [])) >= 20)
+    lines.append(f"- Issues with 5+ sources: {high_5}")
+    lines.append(f"- Issues with 10+ sources: {high_10}")
+    lines.append(f"- Issues with 20+ sources: {high_20}  *(if non-zero, investigate — this is the Impella collision pattern)*")
+    lines.append("")
+
+    lines.append("## Mixed-type source contamination")
+    lines.append("")
+    threatintel_keywords = ("urlhaus", "feodo", "ssl-blacklist", "binary-defense", "sans-block", "ecrimelabs")
+    advisory_keywords = ("openfda", "cisa", "fda-medwatch", "icsma", "psirt")
+    mixed = 0
+    for r in scored_rows:
+        src_str = " ".join(str(s) for s in r.get("sources", []))
+        has_ti = any(k in src_str for k in threatintel_keywords)
+        has_adv = any(k in src_str for k in advisory_keywords)
+        if has_ti and has_adv:
+            mixed += 1
+    lines.append(f"- Issues mixing threatintel + advisory sources: {mixed}  *(should be near zero after Problem 2 triage fix)*")
+    lines.append("")
+
+    lines.append("## AI enrichment coverage")
+    lines.append("")
+    has_ai = sum(1 for r in scored_rows if r.get("generated_by") == "ai")
+    has_patterns = sum(1 for r in scored_rows if r.get("recommended_patterns"))
+    has_summary = sum(1 for r in scored_rows if r.get("ai_summary"))
+    lines.append(f"- generated_by == 'ai': {has_ai}")
+    lines.append(f"- has recommended_patterns: {has_patterns}")
+    lines.append(f"- has ai_summary: {has_summary}")
+    lines.append("")
+
+    lines.append("## Healthcare classification")
+    lines.append("")
+    categories = Counter(r.get("healthcare_category", "?") for r in scored_rows)
+    for cat, count in categories.most_common():
+        lines.append(f"- {cat}: {count}")
+    lines.append("")
+
+    lines.append("## FDA risk class")
+    lines.append("")
+    risks = Counter(str(r.get("fda_risk_class") or "null") for r in scored_rows)
+    for cls in ("3", "2", "1", "null"):
+        lines.append(f"- Class {cls}: {risks.get(cls, 0)}")
+    lines.append("")
+
+    if packets_dir and packets_dir.exists():
+        packet_count = len(list(packets_dir.glob("*.json")))
+        lines.append("## Recommendation packets")
+        lines.append("")
+        lines.append(f"- Packet files in {packets_dir.name}/: {packet_count}")
+        lines.append("")
+
+    report_path = community_root / "sanity_report.md"
+    report_path.write_text("\n".join(lines), encoding="utf-8")
+    print(f"  Sanity report: {report_path}")
+
+
+def _publish_to_docs(community_root: Path, repo_root: Path) -> None:
+    """Copy generated artifacts to docs/ for GitHub Pages serving.
+
+    The dashboard source of truth is dashboard/index.html. The data
+    files are written by the pipeline to outputs/community_public/.
+    GitHub Pages serves from docs/, so we copy both the dashboard
+    HTML and the published data files into docs/ at the end of each
+    community build.
+    """
     docs_dir = repo_root / "docs"
     docs_dir.mkdir(parents=True, exist_ok=True)
 
-    shutil.copy2(str(dashboard_path), str(docs_dir / "index.html"))
-    if feed_path.exists():
-        shutil.copy2(str(feed_path), str(docs_dir / "feed_latest.json"))
-    if sources_path.exists():
-        shutil.copy2(str(sources_path), str(docs_dir / "validated_sources.json"))
+    # Copy dashboard HTML from source-of-truth location
+    dashboard_src = repo_root / "dashboard" / "index.html"
+    if dashboard_src.exists():
+        shutil.copy2(str(dashboard_src), str(docs_dir / "index.html"))
+    else:
+        print(f"  Warning: dashboard/index.html not found, skipping HTML publish")
+
+    # Copy generated feed/data files
+    artifacts = [
+        "feed_latest.json",
+        "feed_healthcare.json",
+        "feed_medical_device_kev.json",
+        "feed.csv",
+        "feed.xml",
+        "feed_healthcare.xml",
+        "feed_kev_medical_device.xml",
+        "feed_class_3.xml",
+        "feed_p0_p1.xml",
+        "validated_sources.json",
+        "meta.json",
+    ]
+    copied = 0
+    for name in artifacts:
+        src = community_root / name
+        if src.exists():
+            shutil.copy2(str(src), str(docs_dir / name))
+            copied += 1
+    print(f"  Published to docs/: 1 dashboard + {copied} data files")
 
 
 # The dashboard template is defined as a module-level constant so tests can
@@ -1179,14 +1303,41 @@ def build_community_feed(
     extract_mitigations_priorities: Sequence[str] = ("P0", "P1", "P2"),
     enrich_pages: bool = False,
     enrich_pages_priorities: Sequence[str] = ("P0", "P1", "P2"),
+    backfill: bool = True,
     _recommend_call_fn: Optional[Callable] = None,
     _ai_classify_fn: Optional[Callable] = None,
     _summarize_call_fn: Optional[Callable] = None,
     _extract_mitigations_call_fn: Optional[Callable] = None,
     _nvd_fetch_fn: Optional[Callable] = None,
+    _backfill_fetch_fns: Optional[Dict[str, Callable]] = None,
+    repo_root: Optional[Path] = None,
 ) -> Tuple[Path, Path, Path]:
     if latest < 0:
         raise ValueError("--latest must be >= 0")
+
+    # --- Backfill incremental updates (before discover/correlate) ---
+    if backfill:
+        from .sources.backfill_registry import run_all_incremental
+
+        print("")
+        print("Running backfill incremental updates...")
+        backfill_results = run_all_incremental(
+            out_root=out_root_discover,
+            _fetch_fns=_backfill_fetch_fns,
+        )
+        print(
+            f"  Backfill: {backfill_results['modules_run']} run, "
+            f"{backfill_results['modules_skipped']} skipped, "
+            f"{backfill_results['modules_failed']} failed"
+        )
+        for src_id, detail in backfill_results.get("details", {}).items():
+            status = detail.get("status", "unknown")
+            if status == "error":
+                print(f"  WARNING: {src_id} failed: {detail.get('error', '?')}")
+            elif status == "completed":
+                new_sigs = detail.get("new_signals_published", 0)
+                total_sigs = detail.get("total_signals_published", 0)
+                print(f"  {src_id}: {total_sigs} signals ({new_sigs} new)")
 
     manifest = load_community_manifest()
     selected_set = manifest.get_set(set_id)
@@ -1281,6 +1432,17 @@ def build_community_feed(
     # --- NVD enrichment (deterministic — cached, no AI) ---
     nvd_count = nvd_enrich_issues(scored_rows, _fetch_fn=_nvd_fetch_fn)
     print(f"\n  NVD enrichment: enriched {nvd_count}/{len(scored_rows)} issues with CVSS/CWE/CPE data")
+
+    # --- Cross-reference enrichment (EPSS, CWE names) ---
+    try:
+        from .enrichment.cross_reference import apply_enrichments
+        xref_counts = apply_enrichments(scored_rows, epss=True, cwe=True, vulnrichment=False)
+        xref_parts = [f"{k}={v}" for k, v in xref_counts.items() if v]
+        if xref_parts:
+            print(f"  Cross-reference enrichment: {', '.join(xref_parts)}")
+    except Exception as exc:
+        import logging as _logging
+        _logging.getLogger(__name__).warning("Cross-reference enrichment failed: %s", exc)
 
     # Backfill severity from CVSS if the scorer left it empty
     for issue in scored_rows:
@@ -1476,18 +1638,270 @@ def build_community_feed(
             ar["remediation_steps"] = remediation_by_id[iid]
     print(f"\n  Remediation: generated human-readable steps for {remediation_count} issues")
 
-    # --- Healthcare relevance tagging ---
-    from .healthcare_filter import is_healthcare_relevant
+    # --- FDA risk class enrichment ---
+    from .enrichment.fda_classification import (
+        extract_risk_class_from_recall,
+        lookup_risk_class,
+        fetch_classification_database,
+    )
+    from .score import _score_fda_risk_class, _priority_from_score, _actions_for_priority
+
+    _OPENFDA_SOURCES = {"openfda-device-recalls", "openfda-recalls-historical"}
+    _FDA_ENFORCEMENT_SOURCES = {"fda-safety-comms-historical"}
+    _ALL_FDA_SOURCES = _OPENFDA_SOURCES | _FDA_ENFORCEMENT_SOURCES
+    openfda_cache_dir = Path("outputs/openfda_cache")
+    fda_rc_count = 0
+    fda_rc_lookup_count = 0
+
+    def _apply_fda_score_bonus(issue: Dict[str, Any]) -> None:
+        """Inline-update score/why/priority after setting fda_risk_class and enriching title.
+
+        Two responsibilities:
+        1. Apply the FDA risk class bonus (+30/+10/+0).
+        2. Re-scan the (now-enriched) title/summary for device, clinical, and
+           patch signals that the original scoring missed because the text was
+           thin at scoring time. Only adds bonuses not already present.
+        """
+        from .score import (
+            _DEVICE_SIGNALS, _CLINICAL_SIGNALS, _PATCH_SIGNALS,
+        )
+
+        issue_why = issue.get("why") or []
+        issue_why = [w for w in issue_why if not w.startswith("priority:")]
+        added_pts = 0
+
+        # 1. FDA risk class bonus
+        fda_pts, fda_why_strs = _score_fda_risk_class(issue)
+        if fda_pts:
+            added_pts += fda_pts
+            issue_why.extend(fda_why_strs)
+
+        # 2. Re-scan enriched text for device/clinical/patch signals not already awarded
+        text = f"{issue.get('issue_id', '')}\n{issue.get('title', '')}\n{issue.get('summary', '')}"
+        existing_labels = set(issue_why)
+
+        for signal_list in (_DEVICE_SIGNALS, _CLINICAL_SIGNALS, _PATCH_SIGNALS):
+            for rx, pts, label in signal_list:
+                if label in existing_labels:
+                    continue  # Already awarded in original scoring
+                if rx.search(text):
+                    added_pts += pts
+                    issue_why.append(label)
+                    existing_labels.add(label)
+
+        if added_pts == 0 and fda_pts == 0:
+            return
+
+        issue["score"] = issue.get("score", 0) + added_pts
+        new_priority = _priority_from_score(issue["score"])
+        issue_why.append(f"priority: {new_priority} (score={issue['score']})")
+        issue["why"] = issue_why
+        issue["priority"] = new_priority
+        issue["actions"] = _actions_for_priority(new_priority)
+
+    # Load classification database lazily (only if needed for secondary lookups)
+    _classifications_db: Optional[Dict[str, Any]] = None
+
+    # Device-like keywords to gate secondary lookup
+    import re as _re
+    _DEVICE_GATE_RE = _re.compile(
+        r"medical device|infusion pump|ventilator|pacemaker|defibrillator|implant"
+        r"|monitor|imaging|dicom|pacs|catheter|surgical|diagnostic|therapeutic"
+        r"|x-ray|ultrasound|mri|ct scan|insulin|oxygenator|respirator"
+        r"|fda|recall|class\s+[iI]{1,3}\b",
+        _re.IGNORECASE,
+    )
+
+    def _enrich_issue_from_recall(issue: Dict[str, Any], recall_data: dict) -> None:
+        """Enrich issue title and summary from recall record fields.
+
+        Existing issue titles from cached signals may be thin (e.g. just
+        "30666: Philips Medical Systems"). The recall record has richer
+        fields (openfda.device_name, product_description, reason_for_recall)
+        that provide clinical keywords for scoring.
+        """
+        openfda = recall_data.get("openfda") or {}
+        device_name = str(openfda.get("device_name", "") or "").strip()
+        product_desc = str(recall_data.get("product_description", "") or "").strip()
+        reason = str(recall_data.get("reason_for_recall", "") or "").strip()
+        firm = str(recall_data.get("recalling_firm", "") or "").strip()
+
+        # Enrich title if it's thin (just recall number + firm)
+        current_title = issue.get("title", "")
+        title_device = device_name or product_desc[:120]
+        if title_device and title_device not in current_title:
+            if firm:
+                issue["title"] = f"{title_device} recall ({firm})"
+            else:
+                issue["title"] = f"{title_device} recall"
+
+        # Enrich summary with device name and reason
+        current_summary = issue.get("summary", "")
+        enrichment_parts = []
+        if device_name and device_name not in current_summary:
+            enrichment_parts.append(f"Device: {device_name}.")
+        if product_desc and product_desc not in current_summary and product_desc not in (device_name or ""):
+            enrichment_parts.append(product_desc)
+        if reason and reason not in current_summary:
+            enrichment_parts.append(f"Reason: {reason}")
+        if enrichment_parts:
+            enrichment = " | ".join(enrichment_parts)
+            if current_summary:
+                issue["summary"] = f"{current_summary} | {enrichment}"
+            else:
+                issue["summary"] = enrichment
+
+    fda_titles_enriched = 0
+
+    for issue in scored_rows:
+        if issue.get("fda_risk_class"):
+            continue
+
+        sources = issue.get("sources") or []
+        signals = issue.get("signals") or []
+
+        # Primary: extract from cached recall record
+        if any(s in _OPENFDA_SOURCES for s in sources):
+            for sig in signals:
+                if sig.get("source", "") not in _OPENFDA_SOURCES:
+                    continue
+                guid = sig.get("guid", "")
+                if not guid:
+                    continue
+                recall_file = openfda_cache_dir / f"recall_{guid}.json"
+                if not recall_file.exists():
+                    continue
+                try:
+                    recall_data = json.loads(recall_file.read_text(encoding="utf-8"))
+                    rc = extract_risk_class_from_recall(recall_data)
+                    if rc:
+                        issue["fda_risk_class"] = rc
+                        _enrich_issue_from_recall(issue, recall_data)
+                        _apply_fda_score_bonus(issue)
+                        fda_rc_count += 1
+                        fda_titles_enriched += 1
+                        break
+                except Exception:
+                    continue
+
+        # Secondary: classification database lookup (only for device-like issues)
+        if not issue.get("fda_risk_class"):
+            text = f"{issue.get('title', '')} {issue.get('summary', '')}"
+            if _DEVICE_GATE_RE.search(text):
+                if _classifications_db is None:
+                    try:
+                        _classifications_db = fetch_classification_database()
+                    except Exception as exc:
+                        import logging as _log
+                        _log.getLogger(__name__).warning(
+                            "Failed to load classification database: %s", exc
+                        )
+                        _classifications_db = {}
+
+                # Try product_code from signals first
+                product_code = None
+                for sig in signals:
+                    if sig.get("source", "") in _OPENFDA_SOURCES:
+                        guid = sig.get("guid", "")
+                        recall_file = openfda_cache_dir / f"recall_{guid}.json"
+                        if recall_file.exists():
+                            try:
+                                rd = json.loads(recall_file.read_text(encoding="utf-8"))
+                                product_code = rd.get("product_code")
+                            except Exception:
+                                pass
+
+                device_name = issue.get("title", "")
+                rc = lookup_risk_class(
+                    product_code=product_code,
+                    device_name=device_name,
+                    classifications=_classifications_db,
+                )
+                if rc:
+                    issue["fda_risk_class"] = rc
+                    _apply_fda_score_bonus(issue)
+                    fda_rc_lookup_count += 1
+
+    # Propagate FDA fields + updated score/why/priority to alert_rows
+    fda_enriched_by_id = {
+        r["issue_id"]: r for r in scored_rows if r.get("fda_risk_class")
+    }
+    _FDA_PROPAGATE_FIELDS = ("fda_risk_class", "score", "priority", "actions", "why")
+    for ar in alert_rows:
+        iid = ar.get("issue_id", "")
+        src = fda_enriched_by_id.get(iid)
+        if src:
+            for fld in _FDA_PROPAGATE_FIELDS:
+                if src.get(fld) is not None:
+                    ar[fld] = src[fld]
+
+    fda_total = fda_rc_count + fda_rc_lookup_count
+    print(f"\n  FDA risk class: {fda_total} issues enriched "
+          f"({fda_rc_count} from recalls, {fda_rc_lookup_count} from classification DB)")
+
+    # --- Healthcare relevance tagging + category classification ---
+    from .healthcare_filter import is_healthcare_relevant, classify_healthcare_category
 
     hc_count = 0
+    hc_categories: Dict[str, int] = {}
     for issue in scored_rows:
         relevant = is_healthcare_relevant(issue)
         issue["healthcare_relevant"] = relevant
         if relevant:
             hc_count += 1
+            cat = classify_healthcare_category(issue)
+            issue["healthcare_category"] = cat
+            hc_categories[cat] = hc_categories.get(cat, 0) + 1
     for ar in alert_rows:
         ar["healthcare_relevant"] = is_healthcare_relevant(ar)
+        if ar["healthcare_relevant"]:
+            ar["healthcare_category"] = classify_healthcare_category(ar)
     print(f"\n  Healthcare relevance: {hc_count}/{len(scored_rows)} issues tagged as healthcare-relevant")
+    if hc_categories:
+        cats_str = ", ".join(f"{k}={v}" for k, v in sorted(hc_categories.items()))
+        print(f"  Healthcare categories: {cats_str}")
+
+    # --- KEV + medical device cross-reference ---
+    from .score import _score_kev_medical_device
+
+    _KEV_SOURCE_INDICATORS = {"cisa-kev-json", "cisa-kev-csv"}
+    kev_med_count = 0
+    for issue in scored_rows:
+        if not issue.get("healthcare_relevant"):
+            continue
+        # Check KEV indicators
+        has_kev = bool(issue.get("kev_due_date")) or bool(issue.get("kev_required_action"))
+        if not has_kev:
+            sources = issue.get("sources") or []
+            has_kev = any("kev" in s.lower() for s in sources)
+        if has_kev:
+            issue["is_kev_medical_device"] = True
+            # Inline-update score/why/priority
+            pts, why_strs = _score_kev_medical_device(issue)
+            if pts:
+                issue_why = issue.get("why") or []
+                issue_why = [w for w in issue_why if not w.startswith("priority:")]
+                issue_why.extend(why_strs)
+                issue["score"] = issue.get("score", 0) + pts
+                new_priority = _priority_from_score(issue["score"])
+                issue_why.append(f"priority: {new_priority} (score={issue['score']})")
+                issue["why"] = issue_why
+                issue["priority"] = new_priority
+                issue["actions"] = _actions_for_priority(new_priority)
+            kev_med_count += 1
+
+    # Propagate to alert_rows
+    kev_med_by_id = {r["issue_id"]: r for r in scored_rows if r.get("is_kev_medical_device")}
+    _KEV_MED_FIELDS = ("is_kev_medical_device", "score", "priority", "actions", "why")
+    for ar in alert_rows:
+        iid = ar.get("issue_id", "")
+        src = kev_med_by_id.get(iid)
+        if src:
+            for fld in _KEV_MED_FIELDS:
+                if src.get(fld) is not None:
+                    ar[fld] = src[fld]
+
+    print(f"\n  KEV medical device: {kev_med_count} issues flagged as actively exploited medical device vulnerabilities")
 
     # --- Coverage tracking ---
     p012 = [r for r in scored_rows if r.get("priority") in ("P0", "P1", "P2")]
@@ -1542,7 +1956,10 @@ def build_community_feed(
                 cached_label = " (cached)" if packet.from_cache else ""
                 print(f"    Wrote packet: {issue_id}{cached_label}")
 
-                # Collect trust fields from recommendation for merge-back
+                # Collect trust + recommendation fields for merge-back
+                # Serialize PatternRecommendation dataclasses to dicts
+                from dataclasses import asdict
+                rec_patterns = [asdict(p) for p in (packet.recommended_patterns or [])]
                 packet_trust_by_id[issue_id] = {
                     "handling_warnings": packet.handling_warnings or [],
                     "evidence_gaps": packet.evidence_gaps or [],
@@ -1552,6 +1969,9 @@ def build_community_feed(
                     "evidence_sources": packet.evidence_sources or [],
                     "reasoning": packet.reasoning or "",
                     "non_applicability": packet.non_applicability or [],
+                    "recommended_patterns": rec_patterns,
+                    "tasks_by_role": dict(packet.tasks_by_role or {}),
+                    "citations": list(packet.citations or []),
                     "generated_by": "ai",
                 }
             except Exception as exc:
@@ -1562,6 +1982,19 @@ def build_community_feed(
     # --- Merge recommendation trust data back into feed rows ---
     if packet_trust_by_id:
         def _merge_trust(rows: List[Dict[str, Any]]) -> None:
+            """Merge packet trust and recommendation fields into feed rows.
+
+            Copies from each packet into the corresponding feed row:
+              - handling_warnings, evidence_gaps, non_applicability (list merge, deduplicated)
+              - unknowns (populated from evidence_gaps)
+              - extracted_facts, inferred_facts, confidence_by_field (dict merge, packet wins)
+              - evidence_sources (list merge, deduplicated)
+              - recommended_patterns (overwrite with packet value if present)
+              - tasks_by_role (overwrite with packet value if present)
+              - reasoning (overwrite with packet value if non-empty)
+              - citations (list merge, deduplicated)
+              - generated_by = "ai"
+            """
             for row in rows:
                 iid = row.get("issue_id", "")
                 if iid not in packet_trust_by_id:
@@ -1593,6 +2026,19 @@ def build_community_feed(
                     if s not in existing_sources:
                         row.setdefault("evidence_sources", []).append(s)
                         existing_sources.add(s)
+                # Overwrite recommendation fields (packet is authoritative)
+                if pkt.get("recommended_patterns"):
+                    row["recommended_patterns"] = pkt["recommended_patterns"]
+                if pkt.get("tasks_by_role"):
+                    row["tasks_by_role"] = pkt["tasks_by_role"]
+                if pkt.get("reasoning"):
+                    row["reasoning"] = pkt["reasoning"]
+                # Merge citations (deduplicate)
+                existing_citations = set(row.get("citations") or [])
+                for c in pkt.get("citations", []):
+                    if c not in existing_citations:
+                        row.setdefault("citations", []).append(c)
+                        existing_citations.add(c)
                 row["generated_by"] = "ai"
 
         _merge_trust(feed_rows)
@@ -1618,8 +2064,45 @@ def build_community_feed(
     out_healthcare.write_text(json.dumps(healthcare_rows, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(f"  Healthcare feed:  {out_healthcare} ({len(healthcare_rows)} issues)")
 
+    # KEV medical device feed
+    out_kev_med = community_root / "feed_medical_device_kev.json"
+    kev_med_rows = [r for r in latest_rows if r.get("is_kev_medical_device") is True]
+    out_kev_med.write_text(json.dumps(kev_med_rows, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    print(f"  KEV medical feed: {out_kev_med} ({len(kev_med_rows)} issues)")
+
     _write_csv(out_csv, feed_rows)
     _write_rss(out_rss, feed_rows, top=50)
+
+    # Filtered RSS feeds
+    _write_rss(
+        community_root / "feed_healthcare.xml",
+        healthcare_rows, top=100,
+        title="AdvisoryOps \u2014 Healthcare Medical Device Advisories",
+        description="Healthcare and medical device cybersecurity advisories",
+    )
+    _write_rss(
+        community_root / "feed_kev_medical_device.xml",
+        kev_med_rows, top=100,
+        title="AdvisoryOps \u2014 Actively Exploited Medical Device Vulnerabilities",
+        description="Medical device vulnerabilities in CISA's Known Exploited Vulnerabilities catalog",
+    )
+    class_3_rows = [r for r in latest_rows if r.get("fda_risk_class") == "3"]
+    _write_rss(
+        community_root / "feed_class_3.xml",
+        class_3_rows, top=100,
+        title="AdvisoryOps \u2014 FDA Class III Medical Device Advisories",
+        description="Advisories affecting FDA Class III (highest-risk) medical devices",
+    )
+    p0_p1_rows = [r for r in latest_rows if r.get("priority") in ("P0", "P1")]
+    _write_rss(
+        community_root / "feed_p0_p1.xml",
+        p0_p1_rows, top=100,
+        title="AdvisoryOps \u2014 High Priority Advisories",
+        description="P0 and P1 priority cybersecurity advisories requiring immediate attention",
+    )
+    print(f"  RSS feeds:  feed.xml (50), feed_healthcare.xml ({len(healthcare_rows[:100])}), "
+          f"feed_kev_medical_device.xml ({len(kev_med_rows[:100])}), "
+          f"feed_class_3.xml ({len(class_3_rows[:100])}), feed_p0_p1.xml ({len(p0_p1_rows[:100])})")
 
     # Excel export (optional — only if openpyxl is available)
     try:
@@ -1702,8 +2185,12 @@ def build_community_feed(
     }
     out_meta.write_text(json.dumps(meta, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
-    # --- Deploy to docs/ for GitHub Pages ---
-    _deploy_docs(out_dashboard, out_latest, out_sources)
+    # --- Sanity report ---
+    _write_sanity_report(community_root, feed_rows, packets_dir)
+
+    # --- Publish dashboard + data files to docs/ for GitHub Pages ---
+    _repo_root = repo_root or Path(__file__).resolve().parent.parent.parent
+    _publish_to_docs(community_root, _repo_root)
 
     print("")
     print("Community build summary:")

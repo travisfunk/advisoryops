@@ -270,6 +270,7 @@ def cmd_community_build(args) -> int:
         summarize=getattr(args, "summarize", False),
         extract_mitigations=getattr(args, "extract_mitigations", False),
         enrich_pages=getattr(args, "enrich_pages", False),
+        backfill=not getattr(args, "skip_backfill", False),
     )
 
     print("")
@@ -500,6 +501,8 @@ def build_parser() -> argparse.ArgumentParser:
     p_comm = sub.add_parser("community-build", help="Build the combined community/public feed from the validated source manifest")
     p_comm.add_argument("--set-id", default="gold_pass1", help="Validated set id from configs/community_public_sources.json (default: gold_pass1)")
     p_comm.add_argument("--refresh", action="store_true", help="Refresh selected sources into discover outputs before building the community feed")
+    p_comm.add_argument("--skip-backfill", action="store_true", dest="skip_backfill",
+                        help="Skip backfill incremental updates (NVD, CISA ICSMA, etc.) — useful for quick test builds")
     p_comm.add_argument("--refresh-limit", type=int, default=10, help="Per-source discover limit when --refresh is used (default: 10)")
     p_comm.add_argument("--out-root-discover", default="outputs/discover", help="Discover root to read/write source items (default: outputs/discover)")
     p_comm.add_argument("--out-root-runs", default="outputs/source_runs", help="Source-run report root when --refresh is used (default: outputs/source_runs)")

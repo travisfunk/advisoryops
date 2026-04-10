@@ -81,6 +81,7 @@ def test_build_community_feed_from_existing_discover_outputs(tmp_path: Path, mon
     issues_public, alerts_public, meta_path = build_community_feed(
         set_id="gold_pass1",
         refresh=False,
+        backfill=False,
         out_root_discover=str(discover_root),
         out_root_runs=str(tmp_path / "source_runs"),
         out_root_community=str(out_root),
@@ -201,6 +202,7 @@ def test_build_community_feed_recommend_generates_packets(tmp_path: Path, monkey
     _, _, meta_path = build_community_feed(
         set_id="gold_pass1",
         refresh=False,
+        backfill=False,
         out_root_discover=str(discover_root),
         out_root_runs=str(tmp_path / "source_runs"),
         out_root_community=str(out_root),
@@ -256,6 +258,7 @@ def test_build_community_feed_recommend_false_no_packets(tmp_path: Path, monkeyp
     _, _, meta_path = build_community_feed(
         set_id="gold_pass1",
         refresh=False,
+        backfill=False,
         out_root_discover=str(discover_root),
         out_root_runs=str(tmp_path / "source_runs"),
         out_root_community=str(out_root),
@@ -302,6 +305,7 @@ def test_build_community_feed_rss_feed_xml(tmp_path: Path, monkeypatch) -> None:
     build_community_feed(
         set_id="gold_pass1",
         refresh=False,
+        backfill=False,
         out_root_discover=str(discover_root),
         out_root_runs=str(tmp_path / "source_runs"),
         out_root_community=str(out_root),
@@ -367,6 +371,7 @@ def test_build_community_feed_recommend_no_qualifying_alerts(tmp_path: Path, mon
     _, _, meta_path = build_community_feed(
         set_id="gold_pass1",
         refresh=False,
+        backfill=False,
         out_root_discover=str(discover_root),
         out_root_runs=str(tmp_path / "source_runs"),
         out_root_community=str(out_root),
@@ -442,6 +447,7 @@ def test_dashboard_written_by_build_community_feed(tmp_path: Path, monkeypatch) 
     build_community_feed(
         set_id="gold_pass1",
         refresh=False,
+        backfill=False,
         out_root_discover=str(discover_root),
         out_root_runs=str(tmp_path / "source_runs"),
         out_root_community=str(out_root),
@@ -542,12 +548,17 @@ def test_docs_folder_created_by_build(tmp_path: Path, monkeypatch) -> None:
     ]
     discover_root, out_root = _setup_community_env(tmp_path, monkeypatch, signals)
 
-    # Create a fake .git directory so _deploy_docs finds the repo root
-    (tmp_path / ".git").mkdir()
+    # Create dashboard/index.html so _publish_to_docs has something to copy
+    dashboard_dir = tmp_path / "dashboard"
+    dashboard_dir.mkdir()
+    (dashboard_dir / "index.html").write_text(
+        "<html><title>AdvisoryOps Test</title></html>", encoding="utf-8"
+    )
 
     build_community_feed(
         set_id="gold_pass1",
         refresh=False,
+        backfill=False,
         out_root_discover=str(discover_root),
         out_root_runs=str(tmp_path / "source_runs"),
         out_root_community=str(out_root),
@@ -557,6 +568,7 @@ def test_docs_folder_created_by_build(tmp_path: Path, monkeypatch) -> None:
         min_priority="P3",
         top=100,
         latest=10,
+        repo_root=tmp_path,
     )
 
     docs = tmp_path / "docs"
@@ -585,6 +597,7 @@ def test_dashboard_feed_entry_includes_trust_fields(tmp_path: Path, monkeypatch)
     build_community_feed(
         set_id="gold_pass1",
         refresh=False,
+        backfill=False,
         out_root_discover=str(discover_root),
         out_root_runs=str(tmp_path / "source_runs"),
         out_root_community=str(out_root),
@@ -624,6 +637,7 @@ def test_dashboard_meta_includes_dashboard_path(tmp_path: Path, monkeypatch) -> 
     _, _, meta_path = build_community_feed(
         set_id="gold_pass1",
         refresh=False,
+        backfill=False,
         out_root_discover=str(discover_root),
         out_root_runs=str(tmp_path / "source_runs"),
         out_root_community=str(out_root),
