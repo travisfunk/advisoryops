@@ -200,6 +200,7 @@ a:hover { text-decoration:underline; }
 
 /* CVSS pill */
 .cvss-pill { display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600; padding:3px 8px; border-radius:3px; line-height:1; }
+.epss-pill { display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600; padding:3px 8px; border-radius:3px; line-height:1; background:#1e1b4b; color:#a78bfa; }
 .cvss-pill-critical { background:#7f1d1d; color:#fca5a5; }
 .cvss-pill-high { background:#78350f; color:#fcd34d; }
 .cvss-pill-medium { background:#78350f; color:#fbbf24; }
@@ -852,6 +853,7 @@ a:hover { text-decoration:underline; }
       '<span class="badge badge-' + issue.priority + '">' + issue.priority + '</span>' +
       ' <span class="mono" style="font-size:11px;color:var(--text-secondary);margin-left:4px">Score: ' + (issue.score || 0) + '</span>' +
       (issue.cvss_score ? ' <span class="cvss-pill ' + cvssClass(issue.cvss_score) + '" style="margin-left:4px">' + issue.cvss_score + '</span>' : '') +
+      (issue.epss_score ? ' <span class="epss-pill" title="EPSS exploit probability" style="margin-left:4px">EPSS ' + (issue.epss_score * 100).toFixed(1) + '%</span>' : '') +
       fdaBadgeHtml(issue.fda_risk_class) +
       '<div class="dtitle">' + escapeHtml(issue.title || issue.issue_id) + '</div></div>';
 

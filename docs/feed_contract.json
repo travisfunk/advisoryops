@@ -1,7 +1,7 @@
 {
   "version": 1,
   "description": "Schema contract: every field the dashboard renders. If you add a field to either side (pipeline output or dashboard JS), add it here. tests/test_feed_contract.py enforces the contract.",
-  "last_updated": "2026-04-09",
+  "last_updated": "2026-04-10",
   "fields": {
     "issue_id":              { "type": "string",  "required": true },
     "title":                 { "type": "string",  "required": true },
@@ -35,6 +35,8 @@
     "nvd_description":       { "type": "string",  "required": false },
     "recommended_patterns":  { "type": "array",   "required": false, "added_by": "Problem 1 fix (commit 3)" },
     "tasks_by_role":         { "type": "object",  "required": false, "added_by": "Problem 1 fix (commit 3)" },
-    "reasoning":             { "type": "string",  "required": false, "added_by": "Problem 1 fix (commit 3)" }
+    "reasoning":             { "type": "string",  "required": false, "added_by": "Problem 1 fix (commit 3)" },
+    "epss_score":            { "type": ["number","null"], "required": false, "added_by": "EPSS enrichment" },
+    "epss_percentile":       { "type": ["number","null"], "required": false, "added_by": "EPSS enrichment" }
   }
 }

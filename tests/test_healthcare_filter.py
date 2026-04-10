@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import pytest
 
-from advisoryops.healthcare_filter import is_healthcare_relevant
+from advisoryops.healthcare_filter import is_healthcare_relevant, classify_healthcare_category
 
 
 # -- helpers ----------------------------------------------------------------
@@ -177,3 +177,47 @@ class TestNotRelevant:
     def test_kev_without_medical_vendor(self):
         issue = _issue(sources=["cisa-kev-csv"], vendor="Cisco")
         assert is_healthcare_relevant(issue) is False
+
+
+class TestFalsePositiveExclusion:
+    """Negative patterns should exclude cosmetics, food, and generic threat reports."""
+
+    def test_ombrelle_sunscreen_excluded(self):
+        """Ombrelle is a sunscreen product recalled by Health Canada, not a medical device."""
+        issue = _issue(
+            title="Ombrelle product recall (2021-10-13)",
+            summary="Ombrelle sunscreen recall due to labeling issue",
+            sources=["health-canada-recalls"],
+        )
+        cat = classify_healthcare_category(issue)
+        assert cat != "medical_device", f"Ombrelle sunscreen should not be medical_device, got {cat}"
+
+    def test_brickstorm_malware_excluded(self):
+        """BRICKSTORM is a backdoor malware report, not about a specific device."""
+        issue = _issue(
+            title="BRICKSTORM Backdoor",
+            summary="Malware Analysis: BRICKSTORM backdoor targets healthcare and medical device networks.",
+            sources=["cisa-ncas-analysis"],
+        )
+        cat = classify_healthcare_category(issue)
+        assert cat != "medical_device", f"BRICKSTORM backdoor should not be medical_device, got {cat}"
+
+    def test_real_medical_device_not_excluded(self):
+        """A real medical device advisory should NOT be excluded."""
+        issue = _issue(
+            title="CVE-2025-1234: Philips IntelliSpace PACS vulnerability",
+            summary="A critical vulnerability in Philips IntelliSpace PACS allows remote code execution.",
+            sources=["cisa-icsma"],
+        )
+        cat = classify_healthcare_category(issue)
+        assert cat == "medical_device"
+
+    def test_device_in_threat_report_not_excluded(self):
+        """A threat report that mentions a SPECIFIC device should not be excluded."""
+        issue = _issue(
+            title="Ransomware campaign targeting infusion pumps",
+            summary="A ransomware campaign has been observed targeting infusion pump controllers via backdoor implant.",
+            sources=["mandiant-blog"],
+        )
+        cat = classify_healthcare_category(issue)
+        assert cat == "medical_device"

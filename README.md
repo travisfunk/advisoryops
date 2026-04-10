@@ -8,6 +8,17 @@
 **Open-source healthcare medical device security intelligence pipeline.**
 AdvisoryOps continuously monitors 65 public sources — CISA ICS-Medical, the Known Exploited Vulnerabilities catalog, FDA device recalls, NVD, CERT/CC, vendor PSIRTs, and more — and produces a prioritized, healthcare-aware feed of medical device vulnerabilities. Built for hospital security teams that can't afford commercial platforms like Claroty or TRIMEDX.
 
+
+---
+
+## What makes this different
+
+1. **Healthcare-focused by design.** The default view is medical device issues, not general IT vulnerabilities. Scoring uses five healthcare-specific dimensions (source authority, device context, patch feasibility, clinical impact, FDA risk class). An FDA Class III cardiac device with no patch available gets a higher priority than a WordPress plugin bug with a patch — that's the point.
+
+2. **Fully open stack.** The data sources are public, the analysis pipeline is open source, the feed outputs are free to consume, and the dashboard is a static HTML file served from GitHub Pages. Most alternatives lock the data, the analysis, or the delivery behind enterprise pricing. AdvisoryOps is Apache 2.0 and free forever.
+
+3. **AI-assisted remediation guidance.** Each high-priority issue gets a recommendation packet: the AI selects from an 11-pattern approved mitigation playbook (VLAN isolation, ACL allowlisting, vendor case tracking, credential hardening, etc.), assigns tasks by role (infosec, netops, HTM/CE, vendor, clinical ops), and cites the underlying standards (NIST SP 800-82, IEC 62443, FDA guidance). Hallucinated patterns are silently filtered. The AI recommends from a curated list — it cannot invent guidance.
+
 ---
 
 ## Why it exists
@@ -24,7 +35,7 @@ AdvisoryOps closes that gap. The data is free, the analysis is free, the dashboa
 
 **Dashboard:** [https://travisfunk.github.io/advisoryops-dashboard/](https://travisfunk.github.io/advisoryops-dashboard/)
 
-The "Medical devices" view shows 234 healthcare-relevant issues with CVSS scores, KEV deadlines, and remediation steps. Color-coded priority badges (P0-P3), click-to-expand rows with CVE links, and a search/filter bar. No framework, no build step — single-file vanilla HTML/JS.
+The "Medical devices" view shows 856 healthcare-relevant issues with CVSS scores, EPSS exploit probabilities, KEV deadlines, FDA risk class badges, and AI-generated remediation guidance with role-split task assignments. Color-coded priority badges (P0-P3), click-to-expand detail panels, and a debounced search bar filtering by title, CVE, vendor, and product. No framework, no build step — single-file vanilla HTML/JS.
 
 ---
 
@@ -230,6 +241,18 @@ Every AI-generated output carries an evidence trail:
 - A `generated_by` label on every output (`ai`, `deterministic`, or `hybrid`) makes clear what was extracted from source text versus inferred by a model.
 
 > **Important:** The AI extracts, normalizes, compares, and recommends from approved mitigation patterns. It does not replace vendor guidance or make final operational decisions. All recommendations must be verified against vendor documentation and validated by qualified personnel before implementation in clinical environments.
+
+---
+
+## Documentation
+
+- **[Architecture diagram](docs/architecture.md)** — data flow from 65 sources through ingestion, correlation, enrichment, AI processing, and out to consumers
+- **[Scoring internals](docs/scoring_internals.md)** — how the v2 healthcare-aware scoring works (5 dimensions, score ranges, priority thresholds)
+- **[Feed schema](docs/schema.md)** — every field in the feed output with types and descriptions
+- **[Feed contract](docs/feed_contract.json)** — schema contract between the pipeline and the dashboard, enforced by tests
+- **[Playbook governance](docs/playbook_governance.md)** — how mitigation patterns are reviewed, approved, and cited
+- **[KEV analysis](docs/kev_medical_device_analysis.md)** — why CISA KEV has zero medical device overlap (and why that matters)
+- **[Session state](docs/session_state.md)** — internal project context for contributors (problems, architecture decisions, session history)
 
 ---
 

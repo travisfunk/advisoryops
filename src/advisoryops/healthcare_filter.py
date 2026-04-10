@@ -198,6 +198,59 @@ _HEALTHCARE_INFRA_RE: re.Pattern[str] = re.compile(
 )
 
 
+
+# ---------------------------------------------------------------------------
+# Negative patterns — exclude false positives
+# ---------------------------------------------------------------------------
+
+# Products/terms that are NOT medical devices but appear in healthcare sources
+# (e.g., Health Canada publishes cosmetics and food recalls alongside device recalls)
+_FALSE_POSITIVE_RE: re.Pattern[str] = re.compile(
+    r"sunscreen|sunblock|cosmetic|lipstick|mascara|fragrance|perfume"
+    r"|shampoo|conditioner|lotion|moisturizer|body wash|hair dye"
+    r"|food safety|food recall|food product"
+    r"|pet food|animal feed|veterinary",
+    re.IGNORECASE,
+)
+
+# General malware/threat actor reports that mention "medical device" as one
+# of many affected sectors — not actually about a specific device
+_GENERIC_THREAT_RE: re.Pattern[str] = re.compile(
+    r"\bbackdoor\b|\btrojan\b|\bransomware campaign\b"
+    r"|\bapt\d+\b|\bthreat actor\b|\bmalware analysis\b",
+    re.IGNORECASE,
+)
+
+
+def _is_false_positive(issue: Dict[str, Any], text: str) -> bool:
+    """Return True if the issue is a likely false positive for medical_device.
+
+    An issue is a false positive if:
+      - Its text matches a strong non-medical signal (cosmetics, food, etc.), OR
+      - It's a generic threat/malware report that mentions "medical device"
+        only as one of many sectors and has no specific device keyword.
+    """
+    # Cosmetics, food, etc. from a healthcare source
+    if _FALSE_POSITIVE_RE.search(text):
+        return True
+
+    # Generic threat reports — only exclude if the ONLY medical signal is
+    # a weak generic phrase like "medical device" (not specific device types)
+    if _GENERIC_THREAT_RE.search(text):
+        # Check if there's a strong device-specific signal
+        strong_device_re = re.compile(
+            r"infusion pump|ventilator|defibrillator|pacemaker|implantable"
+            r"|patient monitor|pulse oximeter|surgical robot|insulin pump"
+            r"|blood gas analyzer",
+            re.IGNORECASE,
+        )
+        if not strong_device_re.search(text):
+            return True
+
+    return False
+
+
+
 def classify_healthcare_category(issue: Dict[str, Any]) -> str:
     """Classify a healthcare-relevant issue into a specific category.
 
@@ -211,6 +264,16 @@ def classify_healthcare_category(issue: Dict[str, Any]) -> str:
     """
     sources = issue.get("sources") or []
     text = " ".join(str(issue.get(f, "")) for f in ("title", "summary", "vendor"))
+
+    # 0. Check for false positives before classifying as medical_device
+    if _is_false_positive(issue, text):
+        # Fall through to non-medical categories or adjacent
+        if _HEALTHCARE_IT_RE.search(text):
+            return "healthcare_it"
+        if _HEALTHCARE_INFRA_RE.search(text):
+            return "healthcare_infrastructure"
+        return "healthcare_adjacent"
+
 
     # 1. Medical device sources are definitive
     if any(s in _MEDICAL_DEVICE_SOURCES for s in sources):

@@ -70,3 +70,27 @@ def test_no_framework_imports():
     html = _read(INDEX_PATH)
     for fw in ["react", "jquery", "vue", "angular", "bootstrap"]:
         assert fw.lower() not in html.lower().replace("advisoryops", ""), f"Framework reference: {fw}"
+
+
+
+# ------------------------------------------------------------------
+# Search functionality
+# ------------------------------------------------------------------
+
+def test_search_input_exists():
+    html = _read(INDEX_PATH)
+    assert 'id="search-input"' in html, "Search input element missing"
+
+
+def test_search_has_event_handler():
+    html = _read(INDEX_PATH)
+    assert "search-input" in html and "addEventListener" in html, "Search event handler missing"
+    assert "searchQuery" in html, "searchQuery variable not found in JS"
+
+
+def test_search_filter_logic():
+    """Search filter should match against title, cves, vendor, affected_products."""
+    html = _read(INDEX_PATH)
+    assert "i.title" in html, "Search doesn't reference title"
+    assert "i.cves" in html or "cves" in html, "Search doesn't reference cves"
+    assert "i.vendor" in html, "Search doesn't reference vendor"
