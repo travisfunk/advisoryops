@@ -24,7 +24,7 @@ If you see an issue where the product or vendor name is clearly wrong — pointi
 
 ### Reporting or suggesting sources
 
-AdvisoryOps currently ingests 57 enabled sources covering medical device security, ICS/OT advisories, healthcare cybersecurity news, and threat intelligence. We want sources that publish structured, machine-readable feeds (RSS, JSON API, or structured CSV) and maintain a consistent publishing schedule.
+AdvisoryOps currently ingests 65 enabled sources covering medical device security, ICS/OT advisories, healthcare cybersecurity news, and threat intelligence. We want sources that publish structured, machine-readable feeds (RSS, JSON API, or structured CSV) and maintain a consistent publishing schedule.
 
 Use the [source correction template](.github/ISSUE_TEMPLATE/source_correction.md) to report broken or outdated source URLs, or to suggest a new source. The `source_id` field in every issue record tells you exactly which source contributed that data — check the original advisory at that source before reporting a URL issue.
 
@@ -146,6 +146,14 @@ Expected accuracies: correlation 1.0, CVE coverage 1.0, scoring 1.0, healthcare 
 - Type hints on all public functions
 - Dataclasses for structured return types
 - No external dependencies beyond what's in `pyproject.toml`
+
+### Project Documentation
+
+- [Architecture diagram](docs/architecture.md) — data flow from sources to consumers
+- [Scoring internals](docs/scoring_internals.md) — how the v2 healthcare-aware scoring works
+- [Feed schema](docs/schema.md) — every field in the feed output
+- [Feed contract](docs/feed_contract.json) — schema contract enforced by tests
+- [Playbook governance](docs/playbook_governance.md) — how mitigation patterns are reviewed and approved
 
 ## Questions
 
