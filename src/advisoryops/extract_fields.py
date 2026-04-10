@@ -20,8 +20,11 @@ Usage::
 from __future__ import annotations
 
 import json
+import logging
 import os
 from typing import Any, Callable, Dict, List, Optional
+
+logger = logging.getLogger(__name__)
 
 from .ai_cache import cached_call
 from .sanitize import sanitize_for_prompt
@@ -117,12 +120,25 @@ def extract_fields(
                 instructions=_SYSTEM_PROMPT,
                 input=user_prompt,
                 text={"format": {"type": "json_object"}},
-                max_output_tokens=150,
+                max_output_tokens=400,
             )
             json_text = (getattr(resp, "output_text", None) or "").strip()
             if not json_text:
                 raise RuntimeError("OpenAI response had empty output_text.")
-            parsed = json.loads(json_text)
+            try:
+                parsed = json.loads(json_text)
+            except json.JSONDecodeError as exc:
+                # Identify which field was being written when truncation hit
+                truncated_field = None
+                for field in ("affected_products", "title", "product_name", "vendor", "severity"):
+                    if f'"{field}"' in json_text:
+                        truncated_field = field
+                logger.warning(
+                    "extract_fields: truncated JSON from model (last field: %s): %s",
+                    truncated_field or "unknown",
+                    json_text[-120:],
+                )
+                return {"result": {}, "model": model, "tokens_used": 0}
             usage = getattr(resp, "usage", None)
             tokens = int(getattr(usage, "total_tokens", 0) or 0) if usage else 0
             return {"result": parsed, "model": model, "tokens_used": tokens}
@@ -135,6 +151,9 @@ def extract_fields(
         )
 
     result = entry.get("result") or {}
+    if not isinstance(result, dict):
+        logger.warning("extract_fields: result is not a dict (got %s), returning empty", type(result).__name__)
+        return {}
 
     # Only return fields with valid values
     extracted: Dict[str, Any] = {}

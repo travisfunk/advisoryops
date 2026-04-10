@@ -74,6 +74,18 @@ def test_extract_fields_affected_products_array():
     assert result["affected_products"] == ["Model A", "Model B"]
 
 
+def test_extract_fields_handles_truncated_json():
+    """Truncated JSON from token limit should return empty dict, not crash."""
+    issue = {"issue_id": "UNK-trunc", "summary": "Abiomed Impella Controller affected models."}
+    # Simulate a response where JSON was cut mid-string by token limit
+    truncated = '{"vendor": "Abiomed", "affected_products": ["Impella 5.5", "Impella'
+    call_fn = MagicMock(return_value={"result": truncated, "model": "test", "tokens_used": 10})
+    result = extract_fields(issue, _call_fn=call_fn)
+    # result["result"] is a raw string, not a dict — the validator should treat it as empty
+    assert isinstance(result, dict)
+    assert "vendor" not in result
+
+
 def test_extract_fields_uses_cache(tmp_path):
     """Call twice with the same input — second call should hit the cache."""
     issue = {"issue_id": "UNK-cache-test", "summary": "Test advisory for caching."}
