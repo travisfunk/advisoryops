@@ -180,3 +180,28 @@ Branch: feature/v1-readiness, commit `bcf2d46`, not pushed.
 `tests/test_healthcare_filter.py`:
 - `TestFalsePositiveExclusion.test_device_in_threat_report_not_excluded` — keyword-in-text is not a rule; demotes to healthcare_adjacent.
 - `TestKeywordMatching.test_vendor_in_text` — several parametrize entries ("Epic Systems", "Contec Health", "WHILL") are not in the prompt's curated vendor list. Since `_VENDOR_TEXT_RE` is rebuilt from the new `MEDICAL_DEVICE_VENDORS`, those parametrize entries will fail. Drop them.
+
+### Commits landed
+
+- `1d222b2` fix(healthcare_filter): tighten medical_device classification to four strict rules
+- `19b3b37` fix(corpus): re-tag medical_device with strict classifier, 1116 -> 224
+- `ab77ae8` fix(dashboard): wire header source count and updated date to live data
+- `<next>` chore(validation): add medical_device bucket validation script
+
+### Final numbers
+
+| category | before | after classifier fix |
+|---|---|---|
+| medical_device | 1,116 | **224** |
+| healthcare_infrastructure | 170 | 311 |
+| healthcare_it | 5 | 17 |
+| healthcare_adjacent | 2,638 | 3,377 |
+| total healthcare_relevant | 3,929 | 3,929 |
+
+Header: "3929 issues · 68 sources" (All) / "224 medical device issues · 68 sources" (Medical devices). "Updated 2026-04-12T19:31" (actual publish timestamp).
+
+Tests: 1,051 passing (4-test net reduction from baseline 1,055; intentional — old tests asserted wrong behavior).
+
+Validation script: `scripts/validate_medical_device_bucket.py` exits 0.
+
+Branch: feature/v1-readiness, not pushed.
