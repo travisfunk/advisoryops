@@ -92,3 +92,15 @@
 5. A known side effect of the rebuild: `feed_healthcare.json` now contains all 3,929 issues (all marked `healthcare_relevant=True`). This is the existing Problem 6 (healthcare filter false positives) manifesting, not a regression introduced by this mission. See audit/fix_mission_notes.md for background.
 6. Still open from the audit (not in scope for this mission): C-002 (feed_contract out of sync), C-003 (extract.py/ai_correlate.py orphaned), C-010 (11 untested modules), C-012 (schema.md mismatches), C-027 (silent AI exception blocks), C-031 (860 lines of dead embedded dashboard HTML in community_build.py), C-033/C-034 (cli.py cmd_correlate fragility).
 7. Branch not pushed. Travis pushes.
+
+---
+
+## 2026-04-12 — Medical Device Filter Fix
+
+**Problem:** Live dashboard "Medical devices" button shows 3,929 issues — including F5 BIG-IP, Trivy, Langflow, and other general-IT products. Highest-priority pre-grant issue. Reviewers will catch it in 30 seconds.
+
+**Phase 1 diagnosis:** See `audit/medical_device_filter_diagnosis.md`. Root cause = **Cause A (dashboard predicate bug)**. The data is tagged correctly (`healthcare_category` = `healthcare_adjacent` / `healthcare_infrastructure` / `medical_device`), but the "Medical devices" button filters on `healthcare_relevant === true`, which is set on all 3,929 issues. No classifier change needed; 1,116 `medical_device` rows are already present in the data.
+
+**Fix plan:** Swap the dashboard predicate from `healthcare_relevant === true` to `healthcare_category === 'medical_device'` at four locations in `dashboard/index.html` (lines 700, 1103, 1113, 1183). Copy to `docs/index.html`. No classifier or corpus changes.
+
+**Header strings (65 sources / Updated 2026-04-08):** Both are already computed, not hardcoded. Documented in the diagnosis doc. Holding on header changes pending Travis — the "65 vs 68" gap is validated-sources vs enabled-in-config, not a display bug.

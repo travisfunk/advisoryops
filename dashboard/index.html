@@ -697,7 +697,7 @@ a:hover { text-decoration:underline; }
   function applyFilters() {
     var list = issues.slice();
     if (healthcareMode) {
-      list = list.filter(function(i) { return i.healthcare_relevant === true; });
+      list = list.filter(function(i) { return i.healthcare_category === 'medical_device'; });
     }
     if (activePriority) {
       list = list.filter(function(i) { return i.priority === activePriority; });
@@ -1100,7 +1100,7 @@ a:hover { text-decoration:underline; }
     for (var i = 0; i < sources.length; i++) { if (sources[i].enabled) enabledSources++; }
     if (healthcareMode) {
       var hcCount = 0;
-      for (var j = 0; j < issues.length; j++) { if (issues[j].healthcare_relevant) hcCount++; }
+      for (var j = 0; j < issues.length; j++) { if (issues[j].healthcare_category === 'medical_device') hcCount++; }
       document.getElementById('meta-stats').textContent = hcCount + ' medical device issues \u00B7 ' + enabledSources + ' sources';
     } else {
       document.getElementById('meta-stats').textContent = issues.length + ' issues \u00B7 ' + enabledSources + ' sources';
@@ -1110,7 +1110,7 @@ a:hover { text-decoration:underline; }
   function updateUrgencyCounts() {
     var counts = { P0: 0, P1: 0, P2: 0, P3: 0 };
     for (var i = 0; i < issues.length; i++) {
-      if (healthcareMode && !issues[i].healthcare_relevant) continue;
+      if (healthcareMode && issues[i].healthcare_category !== 'medical_device') continue;
       if (counts[issues[i].priority] !== undefined) counts[issues[i].priority]++;
     }
     document.getElementById('count-p0').textContent = counts.P0;
@@ -1180,7 +1180,7 @@ a:hover { text-decoration:underline; }
     var remediationCount = 0, medicalCount = 0;
     for (var k = 0; k < issues.length; k++) {
       if (issues[k].remediation_steps && issues[k].remediation_steps.length > 0) remediationCount++;
-      if (issues[k].healthcare_relevant === true) medicalCount++;
+      if (issues[k].healthcare_category === 'medical_device') medicalCount++;
     }
     document.getElementById('about-remediation').textContent = remediationCount;
     document.getElementById('about-medical').textContent = medicalCount;
