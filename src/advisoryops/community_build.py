@@ -122,6 +122,9 @@ def _feed_entry(issue: Dict[str, Any]) -> Dict[str, Any]:
         # KEV-specific fields
         "kev_required_action": issue.get("kev_required_action", ""),
         "kev_due_date": issue.get("kev_due_date", ""),
+        "kev_vendor": issue.get("kev_vendor", ""),
+        "kev_product": issue.get("kev_product", ""),
+        "kev_vulnerability_name": issue.get("kev_vulnerability_name", ""),
         # Human-readable remediation
         "remediation_steps": issue.get("remediation_steps") or [],
         # Healthcare relevance tag
@@ -1416,7 +1419,7 @@ def build_community_feed(
     )
 
     _KEV_SOURCES = {"cisa-kev-json", "cisa-kev-csv"}
-    _KEV_FIELDS = ("kev_required_action", "kev_due_date", "kev_vendor", "kev_product")
+    _KEV_FIELDS = ("kev_required_action", "kev_due_date", "kev_vendor", "kev_product", "kev_vulnerability_name")
     kev_enriched = 0
     for issue in scored_rows:
         signals = issue.get("signals") or []
@@ -1469,6 +1472,7 @@ def build_community_feed(
     enriched_by_id = {r["issue_id"]: r for r in scored_rows}
     _NVD_KEV_FIELDS = (
         "kev_required_action", "kev_due_date", "kev_vendor", "kev_product",
+        "kev_vulnerability_name",
         "nvd_description", "cvss_score", "cvss_severity", "cvss_vector",
         "cwe_ids", "affected_products", "source_summary", "vendor", "severity",
     )
