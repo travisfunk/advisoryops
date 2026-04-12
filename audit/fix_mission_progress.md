@@ -205,3 +205,24 @@ Tests: 1,051 passing (4-test net reduction from baseline 1,055; intentional — 
 Validation script: `scripts/validate_medical_device_bucket.py` exits 0.
 
 Branch: feature/v1-readiness, not pushed.
+
+---
+
+## 2026-04-12 — FDA risk class auto-floor
+
+**Goal:** Apply clinical-severity floor by FDA classification so Class III defibrillator recalls (and similar) hit P0 even without cyber signals.
+
+### Phase 1 — FDA field format
+
+Confirmed from `docs/feed_latest.json`:
+
+- Field name: `fda_risk_class`.
+- Value format: string digit — `"3"`, `"2"`, `"1"`. No `"III"` / `"Class III"` / integer variants in the corpus.
+- Distribution: 8 Class III (`"3"`), 125 Class II (`"2"`), 47 Class I (`"1"`), 3749 None.
+- Example target — `UNK-42c8bda5d1c8ebae` (Philips AED recall): score=117, priority=P1, fda_risk_class=`"3"`. After Rule A it auto-floors to 150 → P0.
+
+### Phase 2 plan
+
+Add `_apply_fda_clinical_floor(issue, score, why) -> score` to `score.py` and call it at the end of `score_issue_v2` (after the existing `_score_fda_risk_class` additive contribution, before `_priority_from_score`). v1 is the keyword-only baseline and stays untouched — the floor is a v2 healthcare-aware concept.
+
+Retag script path: extend `scripts/retag_corpus.py` to also re-apply the floor against existing `score`/`priority`/`why` in the already-scored feed. We don't need to re-run the whole v2 scorer — the base score already reflects all existing dimensions (including the +30/+10 from `_score_fda_risk_class`). The floor is a pure post-processing step.

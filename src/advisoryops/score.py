@@ -319,6 +319,39 @@ def _score_fda_risk_class(issue: Dict[str, Any]) -> Tuple[int, List[str]]:
     return 0, []
 
 
+def _apply_fda_clinical_floor(issue: Dict[str, Any], score: int, why: List[str]) -> int:
+    """Apply FDA risk-class clinical-severity floor as a final scoring step.
+
+    FDA medical-device classification (21 CFR 860) is the regulatory
+    designation of clinical risk. Class III means failure can cause serious
+    injury or death; Class II is moderate risk; Class I is low risk. This
+    classification is independent of cyber severity — a Class III device
+    recall is a P0 regardless of whether the issue has CVSS / KEV / EPSS
+    signals. Rules:
+
+      A. Class III → score auto-floored to the P0 threshold (150).
+      B. Class II  → score auto-floored to the P1 threshold (100).
+      C. Class I   → small additive boost (+10). No floor.
+
+    Rules are mutually exclusive (one FDA class per issue). The floor
+    takes effect only when the base score is below the threshold — a
+    Class II item with a strong cyber signal (base >=100) is unchanged.
+    """
+    rc = issue.get("fda_risk_class")
+    if rc == "3":
+        if score < 150:
+            why.append("FDA Class III auto-floored to P0 (clinical-severity authority)")
+            score = 150
+    elif rc == "2":
+        if score < 100:
+            why.append("FDA Class II auto-floored to P1 (clinical-severity authority)")
+            score = 100
+    elif rc == "1":
+        score += 10
+        why.append("FDA Class I clinical-severity boost +10")
+    return score
+
+
 def _score_kev_medical_device(issue: Dict[str, Any]) -> Tuple[int, List[str]]:
     """Highest priority signal: actively exploited medical device vulnerability.
 
@@ -406,11 +439,14 @@ def score_issue_v2(issue: Dict[str, Any], _weights=None) -> ScoreResult:
             score += pts
             why.append(label)
 
-    # --- Dimension 5: FDA risk class ---
+    # --- Dimension 5: FDA risk class (additive contribution) ---
     fda_pts, fda_why = _score_fda_risk_class(issue)
     if fda_pts:
         score += fda_pts
         why.extend(fda_why)
+
+    # --- Final step: FDA clinical-severity floor (authoritative override) ---
+    score = _apply_fda_clinical_floor(issue, score, why)
 
     priority = _priority_from_score(score)
     actions = _actions_for_priority(priority)
