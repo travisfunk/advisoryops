@@ -104,16 +104,22 @@ Cross-cutting:
 
 The recommendation engine is constrained to select only from these approved patterns. AI-generated draft patterns are labeled `draft: true` and require human review before promotion (per `docs/playbook_governance.md`).
 
-## Section 5 — Current corpus state (verified 2026-04-12 from FIX 4.5 rebuild, commit `b0f4b5e`)
+## Section 5 — Current corpus state (verified 2026-04-12 from feature/v1-readiness, after classifier + FDA-floor + FDA-extraction missions)
 
-The most recent successful pipeline run (incremental rebuild with `--set-id full_public --skip-backfill --summarize --extract-mitigations --ai-score --recommend --min-priority P1`, no `--latest` cap) produced:
+The corpus numbers below reflect the state after three product missions landed on 2026-04-12 on top of the FIX 4.5 rebuild (`b0f4b5e`):
 
-- **3,929 total issues** correlated from **5,573 signals** across **65 sources** (the `full_public` set has 65 validated + 1 candidate).
-- **Priority distribution:** 215 P0, 200 P1, 579 P2, 2,935 P3 (from `outputs/community_public/sanity_report.md`).
+- **medical_device classifier tightening** (`1d222b2`, `19b3b37`, `ab77ae8`, `28e776f`) — strict 4-rule classifier.
+- **FDA clinical-severity floor** (`57d53f7`, `63cf110`, `3cbcb4f`) — Class III auto-floor to P0, Class II to P1.
+- **FDA risk class extraction** (`1ee3ab3`, `f888ea9`, `ef21ec0`) — enforcement-cache lookup fills previously-null classifications.
+
+Pipeline baseline (from the FIX 4.5 rebuild; the three missions above re-classified and re-scored in place, no new pipeline run):
+
+- **3,929 total issues** correlated from **5,573 signals** across **65 sources** (the `full_public` set has 65 validated + 1 candidate; `configs/sources.json` has 68 enabled — the gap is validated-and-emitting vs. configured-to-run).
+- **Priority distribution (corpus-wide):** 225 P0, 485 P1, 541 P2, 2,678 P3.
 - **100 alerts public** in `alerts_public.jsonl` (limited by default `--top 100`).
 - **2,372 issues** NVD-enriched with CVSS/CWE/CPE (minor day-to-day variance based on NVD data currency).
 - **203 issues** KEV-enriched. **Zero of those KEV issues match medical device vendors** — see Section 6 Problem 4.
-- **180 issues** with FDA risk class: 8 Class III, 125 Class II, 47 Class I, 3,749 null.
+- **380 issues** with FDA risk class: 10 Class III, 286 Class II, 84 Class I, 3,549 null. Up from 180 populated (8/125/47) before the FDA-extraction mission — 200 back-filled via enforcement-cache lookup keyed on `Z-NNNN-YYYY` recall numbers in titles.
 - **971 plain-language summaries** generated (all issues with `generated_by == 'ai'`).
 - **99 issues** with populated `recommended_patterns` in the feed (propagated from the top-100 alert packets via `_merge_trust`).
 - **6,639 IOCs** extracted (number from 2026-04-08 run; not re-measured during the 2026-04-12 rebuild).
@@ -122,11 +128,13 @@ The most recent successful pipeline run (incremental rebuild with `--set-id full
 - **2,053 issues** CWE-enriched.
 - **100 recommendation packets** newly written this rebuild (for the top-100 P0/P1 alerts). **695 total packet files** accumulated on disk from prior runs.
 
-Healthcare category breakdown: 1,116 medical_device, 170 healthcare_infrastructure, 5 healthcare_it, 2,638 healthcare_adjacent.
+Healthcare category breakdown (post-classifier-tightening): **424 medical_device**, 258 healthcare_infrastructure, 17 healthcare_it, 3,230 healthcare_adjacent. (Before the classifier tightening, medical_device was 1,116 — inflated by `philips-psirt` / `siemens-productcert` co-occurrence. The strict 4-rule classifier reduced that to 224; the FDA extraction pass then grew it to 424 by populating classifications that made previously-unclassified records match Rule 3.)
 
-**Note on `feed_healthcare.json`:** Current file contains all 3,929 issues because `healthcare_relevant=True` is applied to every row that falls into ANY of the four healthcare categories — including `healthcare_adjacent`, which covers 2,638 general-IT CVEs. This is the existing Problem 6 manifesting (healthcare filter too aggressive on "adjacent" context), not a regression. See Section 6 Problem 6.
+Medical-device bucket priority distribution: **10 P0, 291 P1, 28 P2, 95 P3.** Up from 0 P0 / 6 P1 before the clinical-severity floor; 130 Class II items moved to P1 via the floor during the FDA-extraction retag.
 
-Tests: **1,055 passing** on branch `feature/v1-readiness` as of 2026-04-12. No known failures.
+**Note on `feed_healthcare.json`:** Still contains all 3,929 issues because `is_healthcare_relevant()` treats a non-empty `healthcare_category` as sufficient (rule c), and the fallback category is `healthcare_adjacent`. The dashboard's "Medical devices" button now filters on `healthcare_category === 'medical_device'` directly, so the broad healthcare-adjacent set no longer leaks into that view — even though the underlying feed file is unchanged.
+
+Tests: **1,076 passing** on branch `feature/v1-readiness` as of 2026-04-12. No known failures.
 
 The full AI subsystem (recommend, summarize, extract-mitigations, ai-score) is operational and producing end-to-end output. All 100 packets during the latest rebuild hit the AI cache — $0 incremental API spend.
 
@@ -150,13 +158,15 @@ Applied option 2: added `source_id` to the non-CVE merge key basis (`key_basis =
 
 **Architectural fix still pending (post-grant):** The full fix is to separate threatintel from advisory routing entirely — categorize sources as `kind: advisory` vs `kind: threatintel` in `sources.json` and route them through different correlation logic.
 
-### Problem 3 — Field extraction for non-CVE / FDA-recall-derived issues — RESOLVED
+### Problem 3 — Field extraction for non-CVE / FDA-recall-derived issues — PARTIALLY RESOLVED
 
 **Resolved:** 2026-04-10 by commits `0f8785d` "Add LLM field extraction for non-CVE issues (Problem 3)" and `8840c70` "Fix extract_fields truncation: bump max_tokens, handle malformed JSON" — both on main via PR #13.
 
 The fix: new module `src/advisoryops/extract_fields.py` (176 lines) and `--extract-fields` flag on `community-build`. Wired into `community_build.py` at line 1546. Pulls vendor, product, and severity from rewritten plain-language summaries for issues where those fields were empty. Then the FDA classification lookup runs again with the extracted device name.
 
-**Residual concern:** The FIX 4.5 rebuild on 2026-04-12 showed only 180 issues with FDA risk class, unchanged from earlier runs. Either extract_fields isn't being invoked by default (check the CLI flags in the rebuild log), or the extraction success rate on the "starving" non-CVE issues is lower than expected. Worth spot-checking before grant submission.
+**Also resolved 2026-04-12 by FDA risk class extraction mission** (commits `1ee3ab3`, `f888ea9`, `ef21ec0`). `fda_classification.py` gained `extract_risk_class_from_enforcement` + `lookup_class_by_recall_number` helpers, and `scripts/retag_corpus.py` now parses `Z-NNNN-YYYY` recall numbers out of issue titles to hit the enforcement cache. This back-filled 200 additional `fda_risk_class` values (from 178 → 378 populated), closing most of the FDA-recall-derived extraction gap.
+
+**Still pending:** `vendor` and `affected_products` on FDA-recall-derived issues remain mostly empty (the 424 medical_device rows show `vendor=(none)` in the validation script). Extraction for those two fields needs its own pass, either by cross-referencing enforcement records more fully or by running `--extract-fields` against the re-tagged corpus. Lower leverage than the FDA-class gap was; kept on the list for post-grant triage.
 
 ### Problem 4 — KEV / medical device zero overlap (INVESTIGATION IN PROGRESS)
 
@@ -175,17 +185,36 @@ The fix: new module `src/advisoryops/extract_fields.py` (176 lines) and `--extra
 
 **Resolved:** 2026-04-09. Ran `populate_cache()` from `enrichment/epss_enrich.py`. Cache populated with 325,743 EPSS scores at `outputs/epss_cache/epss_scores.json` (26MB). The pipeline automatically uses this cache via `apply_enrichments(epss=True)` — no code change was needed. Most recent rebuild enriched 2,356 issues.
 
-### Problem 6 — Healthcare filter false positives — PARTIAL FIX SHIPPED
+### Problem 6 — Healthcare filter false positives — RESOLVED
 
-**Partial fix:** 2026-04-10, commit `d605b28` "Reduce healthcare filter false positives (Problem 6)" on main via PR #13.
+**Resolved:** 2026-04-12 by the medical_device classifier tightening mission (commits `1d222b2`, `19b3b37`, `ab77ae8`, `28e776f`).
 
-**Residual symptom:** Even after the partial fix, the `healthcare_relevant` flag is applied to all 3,929 issues because it covers `healthcare_adjacent` (2,638 issues = 67% of the corpus) in addition to `medical_device`, `healthcare_infrastructure`, and `healthcare_it`. The fix reduced specific false-positive matches (cosmetics marketing copy, Volt Typhoon, etc.) but the aggressive "adjacent" category behavior is still in place. Known noise sources include Vivian Spa cosmetics, Ombrelle sunscreen, BRICKSTORM general malware reports, Siemens SIPROTEC industrial power.
+The original fix (`d605b28`, 2026-04-10) was a narrow false-positive filter; the root cause was that `classify_healthcare_category` promoted to `medical_device` on source co-occurrence — any issue carrying `philips-psirt` or `siemens-productcert` in its sources was tagged, regardless of whether the affected product was a medical device. That's why Chrome / Windows / Cisco / Citrix CVEs were showing up under the "Medical devices" filter.
 
-**Remaining work:** Decide whether `healthcare_adjacent` should count as `healthcare_relevant` for the default dashboard view. Low priority (doesn't break the demo) but matters for grant-narrative precision. `feed_healthcare.json` serving all 3,929 issues undermines the "healthcare-focused" pitch.
+Replacement: strict 4-rule classifier in `src/advisoryops/healthcare_filter.py`. An issue is tagged `medical_device` iff at least one of:
+
+1. `cisa-icsma` in sources (CISA ICS-Medical authority),
+2. `vendor` field matches the curated `MEDICAL_DEVICE_VENDORS` allowlist,
+3. `fda_risk_class` is populated,
+4. `affected_products` matches the curated `MEDICAL_DEVICE_PRODUCT_KEYWORDS` list.
+
+Results: medical_device count 1,116 → 224 (after dashboard predicate fix) → 424 (after FDA-class back-fill grew Rule-3 hits). Zero general-IT vendor leaks confirmed by `scripts/validate_medical_device_bucket.py` against the curated blocklist (Microsoft, Google, Adobe, Cisco, Citrix, Oracle, IBM, VMware, Apple, Mozilla, Samsung). Dashboard "Medical devices" button now filters on `healthcare_category === 'medical_device'` exclusively. Bucket composition now dominated by `openfda-recalls-historical` / `cisa-icsma-historical` / `cisa-icsma` sources, which is the intended signal.
+
+`is_healthcare_relevant` was deliberately left unchanged — `feed_healthcare.json` still includes `healthcare_adjacent` rows. That's a separate framing question, not a filter-accuracy bug: the broad "healthcare-relevant" set is fine as a superset, and the dashboard view surfaces the strict medical_device subset by default.
 
 ### Problem 7 — Dashboard search box broken — RESOLVED
 
 **Resolved:** 2026-04-10, commit `fa5cbfd` "Verify dashboard search works (Problem 7)" on main via PR #13. Search input now filters issues by title, CVE, vendor, product, affected versions, and CWE IDs.
+
+### Problem 8 — Temporal relevance gap — DOCUMENTED, NOT YET RESOLVED
+
+**Symptom:** The dashboard P0 lane currently surfaces historical FDA Class III recalls (some from 2010-2016) alongside — and in some cases above — current advisories that hospital security teams need to act on this week. The FDA clinical-severity floor (Section 8 principle 11) is architecturally correct: Class III means "failure can cause serious injury or death," and a P0 floor reflects that. But in the current corpus the Class III set is dominated by historical recalls that long ago cycled into terminated status, so the floor-as-implemented fills the ACT NOW lane with the wrong issues.
+
+**Contradiction with vision:** `docs/advisoryops_vision.md` explicitly frames the product as advisory-to-action with "right now" as the operating cadence. A P0 lane whose top items are 10+ years old contradicts that framing, regardless of how defensible the clinical-severity reasoning is in isolation.
+
+**Shape of the fix (not yet designed):** Principle 11 stays. The floor needs a temporal modifier so that Class III items outside a recency window either don't auto-floor, or floor to a lower priority than current Class III items. Exact window (90 days? 1 year? event-status-gated?) is a product decision. This is the next high-leverage product mission.
+
+**Status:** Documented 2026-04-12. Not yet resolved. Highest-priority pending item in Section 7.
 
 ### Audit findings still open (from phase_c_code_findings.md, 2026-04-11)
 
@@ -243,18 +272,24 @@ Not elevated to numbered Problems because they're lower leverage than the pre-gr
 - Repo hygiene: gitignore expansion, script and doc commits (commit `c719b52`)
 - `scripts/republish_docs.py` reusable one-off publisher (commit `dab64b3`)
 - Test hygiene: 9 `build_community_feed()` calls in test_community_build.py fixed to pass `repo_root=tmp_path` — tests no longer silently overwrite the real `docs/` directory (commit `dab64b3`)
-- 1,055 tests passing
+- **Strict 4-rule medical_device classifier** (CISA ICS-Medical authority / vendor allowlist / FDA risk class / product keyword allowlist) — `healthcare_filter.py`, commit `1d222b2`. Dashboard "Medical devices" filter predicate corrected in commit `bcf2d46` to read `healthcare_category === 'medical_device'` exclusively.
+- **FDA clinical-severity floor** (`_apply_fda_clinical_floor` in `score.py`, commit `57d53f7`): Class III auto-floors to P0, Class II to P1, Class I receives +10 additive only. Codified as architectural principle #11 in commit `3cbcb4f`.
+- **FDA risk class extraction via enforcement cache** (`extract_risk_class_from_enforcement` + `lookup_class_by_recall_number` in `fda_classification.py`, commit `1ee3ab3`). Back-filled 200 previously-null classifications against the existing corpus via `scripts/retag_corpus.py` extension in commit `f888ea9`.
+- **Dashboard header wired to live `meta.json`** (source count from `counts.sources_enabled`, "Updated" date from `generated_at`) — `_publish_to_docs` now augments meta.json at publish time, commit `ab77ae8`.
+- **Validation script for medical_device bucket purity** (`scripts/validate_medical_device_bucket.py`, commits `28e776f` + `ef21ec0`) — blocks general-IT vendor leaks, reports FDA-coverage metric.
+- **Re-tag script `scripts/retag_corpus.py`** — one-shot deterministic re-classification + FDA risk-class re-extraction + clinical-severity floor re-application against an already-built corpus, no paid AI.
+- 1,076 tests passing
 
 ### Pending pre-grant
 
 In rough priority order:
 
-1. **Push `feature/v1-readiness` to origin and merge to main.** The 8 audit+fix commits (from `7f3b094` to `453494a`) are local-only. Travis to review and push when comfortable.
-2. **Verify live GitHub Pages site.** Either confirm the Pages source is already flipped to `advisoryops/docs` (in which case the README live-demo link needs updating to `https://travisfunk.github.io/advisoryops/`), or flip it now. The old `advisoryops-dashboard` Pages URL is still the value in README.
-3. **Archive the old `advisoryops-dashboard` repo on GitHub** after step 2 succeeds.
-4. **Footer/link audit.** README line 6 and line 36 still contain the old `advisoryops-dashboard` URL. Other repo-internal links should be spot-checked.
-5. **Problem 3 residual verification.** Confirm extract_fields is firing on FDA-recall-derived issues and that the FDA risk class count moves above 180. If not, investigate why.
-6. **Problem 6 decision.** Decide whether `healthcare_adjacent` should be excluded from `healthcare_relevant=True` for the default dashboard view.
+1. **Problem 8 — Temporal relevance gap.** The ACT NOW (P0) lane is dominated by historical FDA Class III recalls rather than current advisories. Fix shape: add a temporal modifier to the FDA clinical-severity floor so Class III items outside a recency window don't auto-floor. Highest-leverage product mission remaining. See Section 6 Problem 8.
+2. **Push `feature/v1-readiness` to origin and merge to main.** The audit+fix commits plus the 2026-04-12 classifier/floor/extraction commits are local-only. Travis to review and push when comfortable.
+3. **Verify live GitHub Pages site.** Either confirm the Pages source is already flipped to `advisoryops/docs` (in which case the README live-demo link needs updating to `https://travisfunk.github.io/advisoryops/`), or flip it now. The old `advisoryops-dashboard` Pages URL is still the value in README.
+4. **Archive the old `advisoryops-dashboard` repo on GitHub** after step 3 succeeds.
+5. **Footer/link audit.** README line 6 and line 36 still contain the old `advisoryops-dashboard` URL. Other repo-internal links should be spot-checked.
+6. **Problem 3 residual — vendor/affected_products extraction.** FDA risk class is now populated on 378 records; vendor and affected_products on FDA-derived rows are still empty. Probably worth a targeted extraction pass or cross-reference against enforcement records' `recalling_firm` / `product_description` fields.
 7. **Audit findings triage.** Decide which of C-002/C-003/C-010/C-012/C-027/C-031 to address before grant submission vs. defer.
 8. **SE enablement session + mock reviewer Q&A.** Pre-grant requirement explicitly set by Travis. Walk through the pipeline like briefing an SE before a big demo, then 20 hardest-likely reviewer questions. Happens AFTER code is final.
 9. **200-word problem statement.** Travis writes himself in his own voice. Do not draft this for him; offer feedback if asked but do not write it for him.
@@ -419,6 +454,22 @@ Key findings:
 - Section 5 corpus numbers updated to current (3,929 issues, 215 P0, 200 P1, etc.) from the FIX 4.5 rebuild sanity_report.md.
 - Section 3 removed the "EPSS currently disabled / cache empty" contradiction with Problem 5.
 - Module counts corrected: 39→38 core modules (always was 38, doc was wrong), 6→"6 enrichment plus __init__.py", 9→"8 backfill plus registry + sync + __init__" in sources/.
+
+### 2026-04-12 (continued) — Post-rewrite product missions
+
+Three product missions landed on `feature/v1-readiness` after the doc reality-check rewrite (`731643c`). Each updated `audit/fix_mission_progress.md`; this session_state entry catches up the top-level doc.
+
+**Mission 1 — medical_device classifier tightening.** Commits `1d222b2`, `19b3b37`, `ab77ae8`, `28e776f` (plus dashboard-predicate precursor `bcf2d46`, `37bdb45`). Replaced the old keyword-and-source classifier with a strict 4-rule check in `healthcare_filter.py` (CISA ICS-Medical authority / vendor allowlist / FDA risk class / product keyword allowlist), re-tagged the existing corpus via `scripts/retag_corpus.py`, wired the dashboard header source-count and "Updated" date to live `meta.json` fields, added `scripts/validate_medical_device_bucket.py` as a regression guard. Measurable result: medical_device count 1,116 → 224 with zero general-IT vendor leaks; dashboard "Medical devices" filter now surfaces actual medical devices.
+
+**Mission 2 — FDA clinical-severity floor.** Commits `57d53f7`, `63cf110`, `3cbcb4f`. Added `_apply_fda_clinical_floor` to `score.py` as a final step in `score_issue_v2`: FDA Class III auto-floors to 150 (P0), Class II to 100 (P1), Class I adds +10. Re-scored the existing corpus through `retag_corpus.py` without invoking the AI pipeline. Codified the rule as architectural principle #11 in Section 8. Measurable result: medical_device P0 count 0 → 8; the Philips AED family (Class III) moved from P1/117 to P0/150 as intended.
+
+**Mission 3 — FDA risk class extraction.** Commits `1ee3ab3`, `f888ea9`, `ef21ec0`. Extended `fda_classification.py` with `extract_risk_class_from_enforcement` + `lookup_class_by_recall_number` to recover classifications from the enforcement cache at `outputs/fda_safety_comms_cache/enf_<recall_number>.json`, extended `retag_corpus.py` with a `Z-NNNN-YYYY` recall-number parser that runs before re-classification, extended the validation script to report FDA-coverage as a soft metric. Measurable result: null `fda_risk_class` dropped 328 → 128 (61% reduction); 200 back-filled classifications; medical_device bucket grew 224 → 424 as newly-class-tagged rows matched Rule 3; P0 count grew to 10, P1 to 291. The remaining 128 nulls come from sources whose upstream payloads genuinely lack classification (MAUDE adverse events, fda-medwatch RSS).
+
+Tests: 1,055 baseline → 1,076 passing across the three missions (+21 new tests net, -4 legacy tests that asserted the pre-fix behavior).
+
+Principle #11 (FDA classification authoritative for clinical severity) was added to Section 8 during Mission 2 and is already present in the live file — no edit needed here.
+
+Surfaced by Mission 2 but not yet addressed: the ACT NOW (P0) lane is dominated by historical FDA Class III recalls rather than current advisories (temporal-relevance gap). Captured as Problem 8 in Section 6; treated as the next high-leverage product mission.
 
 ---
 
