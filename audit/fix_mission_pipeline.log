@@ -1,0 +1,229 @@
+NVD returned no vulnerabilities for CVE-2026-0667
+NVD returned no vulnerabilities for CVE-2025-65586
+NVD returned no vulnerabilities for CVE-2025-71210
+NVD returned no vulnerabilities for CVE-2025-71211
+NVD returned no vulnerabilities for CVE-2026-2046
+NVD returned no vulnerabilities for CVE-2026-2049
+NVD returned no vulnerabilities for CVE-2024-35585
+NVD returned no vulnerabilities for CVE-2025-231104
+NVD returned no vulnerabilities for CVE-2025-71205
+NVD returned no vulnerabilities for CVE-2025-71206
+NVD returned no vulnerabilities for CVE-2025-71207
+NVD returned no vulnerabilities for CVE-2025-71208
+NVD returned no vulnerabilities for CVE-2025-71209
+NVD returned no vulnerabilities for CVE-2025-71212
+NVD returned no vulnerabilities for CVE-2025-71213
+NVD returned no vulnerabilities for CVE-2025-71214
+NVD returned no vulnerabilities for CVE-2025-71215
+NVD returned no vulnerabilities for CVE-2025-71216
+NVD returned no vulnerabilities for CVE-2025-71217
+NVD returned no vulnerabilities for CVE-2025-71218
+NVD returned no vulnerabilities for CVE-2026-26364
+NVD returned no vulnerabilities for CVE-2026-1764
+NVD returned no vulnerabilities for CVE-2026-1765
+NVD returned no vulnerabilities for CVE-2026-1766
+NVD returned no vulnerabilities for CVE-2026-1767
+Correlation summary:
+  Discover root:   outputs\discover
+  Issues root:     outputs\community_public\correlate
+  Sources scanned: 65
+  Signals loaded:  5573
+  Issues built:    3929
+  Mode:            items
+
+Wrote: outputs\community_public\correlate\issues.jsonl
+Wrote: outputs\community_public\correlate\meta.json
+  AI classify: 0 issues sent to AI classifier
+Score summary:
+  Input:        outputs\community_public\correlate\issues.jsonl
+  Scored:       outputs\community_public\scored\issues_scored.jsonl
+  Alerts:       outputs\community_public\scored\alerts.jsonl
+  Meta:         outputs\community_public\scored\meta.json
+  Issues:       3929
+  Alerts:       100  (min=P1, top=100)
+
+  KEV fields: enriched 203 issues with KEV-specific data
+
+  NVD enrichment: enriched 2372/3929 issues with CVSS/CWE/CPE data
+  Cross-reference enrichment: epss=2356, cwe=1602
+  Summary dedup: 2186 issues got per-CVE descriptions
+
+  Summarize: rewriting summaries for 971 issues (priorities: P0, P1, P2)
+    Summarized: CVE-2008-0015 (cached)
+    Summarized: CVE-2020-7796 (cached)
+    Summarized: CVE-2024-7694 (cached)
+    Summarized: CVE-2026-20700 (cached)
+    Summarized: CVE-2025-20352 (cached)
+    Summarized: CVE-2021-32030 (cached)
+    Summarized: CVE-2020-14517 (cached)
+    Summarized: CVE-2022-32143 (cached)
+    Summarized: CVE-2025-6543 (cached)
+    Summarized: CVE-2025-6218 (cached)
+    Summarized: CVE-2023-41991 (cached)
+    Summarized: UNK-214bb9c37a2a6c7d (cached)
+    Summarized: UNK-37888b38e4ef0d4d (cached)
+    Summarized: UNK-a6d7e3d55cdcce3c (cached)
+    Summarized: CVE-2025-24489 (cached)
+    Summarized: CVE-2025-12816 (cached)
+    Summarized: CVE-2022-23095 (cached)
+    Summarized: CVE-2025-62575 (cached)
+    Summarized: CVE-2023-28830 (cached)
+    Summarized: CVE-2025-32469 (cached)
+    Summarized: CVE-2026-1284 (cached)
+    Summarized: CVE-2019-18630 (cached)
+  Summarize: 971/971 issues rewritten
+
+  IOCs: extracted 6639 indicators from 3929 issues
+
+  Source mitigations: extracting from 971 issues (priorities: P0, P1, P2)
+    Extracted 2 mitigations: CVE-2008-0015
+    Extracted 1 mitigations: CVE-2020-7796
+    Extracted 1 mitigations: CVE-2024-7694
+  Source mitigations: 1240 mitigations from 903 issues
+  Total issues with source mitigations: 903/971
+
+  Remediation: generated human-readable steps for 3929 issues
+
+  FDA risk class: 180 issues enriched (178 from recalls, 2 from classification DB)
+
+  Healthcare relevance: 3929/3929 issues tagged as healthcare-relevant
+  Healthcare categories: healthcare_adjacent=2638, healthcare_infrastructure=170, healthcare_it=5, medical_device=1116
+
+  KEV medical device: 203 issues flagged as actively exploited medical device vulnerabilities
+
+  --- P0-P2 guidance coverage (994 issues) ---
+    Source-cited mitigations: 903 (90%)
+    Playbook recommendations: 994 (100%)
+    ANY guidance:             994 (100%)
+    NO guidance:              0 (0%)
+
+  Recommend: generating packets for 100 alerts (priorities: P0, P1)
+    Wrote packet: CVE-2008-0015 (cached)
+    Wrote packet: CVE-2020-7796 (cached)
+    Wrote packet: CVE-2024-7694 (cached)
+    Wrote packet: CVE-2026-2441 (cached)
+    Wrote packet: CVE-2018-0171 (cached)
+    Wrote packet: CVE-2023-20198 (cached)
+    Wrote packet: CVE-2023-20273 (cached)
+    Wrote packet: CVE-2023-46805 (cached)
+    Wrote packet: CVE-2024-21887 (cached)
+    Wrote packet: CVE-2018-14634 (cached)
+    Wrote packet: CVE-2021-22054 (cached)
+    Wrote packet: CVE-2022-20775 (cached)
+    Wrote packet: CVE-2025-26399 (cached)
+    Wrote packet: CVE-2025-52691 (cached)
+    Wrote packet: CVE-2025-55182 (cached)
+    Wrote packet: CVE-2025-59718 (cached)
+    Wrote packet: CVE-2025-59719 (cached)
+    Wrote packet: CVE-2025-66478 (cached)
+    Wrote packet: CVE-2026-1603 (cached)
+    Wrote packet: CVE-2026-20127 (cached)
+    Wrote packet: CVE-2026-21509 (cached)
+    Wrote packet: CVE-2026-23760 (cached)
+    Wrote packet: CVE-2026-24061 (cached)
+    Wrote packet: CVE-2025-21042 (cached)
+    Wrote packet: CVE-2025-21043 (cached)
+    Wrote packet: CVE-2025-27038 (cached)
+    Wrote packet: CVE-2025-38352 (cached)
+    Wrote packet: CVE-2025-40602 (cached)
+    Wrote packet: CVE-2025-43300 (cached)
+    Wrote packet: CVE-2025-48543 (cached)
+    Wrote packet: CVE-2025-5419 (cached)
+    Wrote packet: CVE-2025-61884 (cached)
+    Wrote packet: CVE-2025-6558 (cached)
+    Wrote packet: CVE-2023-48788 (cached)
+    Wrote packet: CVE-2024-1709 (cached)
+    Wrote packet: CVE-2024-43468 (cached)
+    Wrote packet: CVE-2025-15556 (cached)
+    Wrote packet: CVE-2025-40536 (cached)
+    Wrote packet: CVE-2025-47813 (cached)
+    Wrote packet: CVE-2019-6693 (cached)
+    Wrote packet: CVE-2025-14174 (cached)
+    Wrote packet: CVE-2025-31277 (cached)
+    Wrote packet: CVE-2025-43510 (cached)
+    Wrote packet: CVE-2025-43520 (cached)
+    Wrote packet: CVE-2025-43529 (cached)
+    Wrote packet: CVE-2025-53770 (cached)
+    Wrote packet: CVE-2025-53771 (cached)
+    Wrote packet: CVE-2025-61882 (cached)
+    Wrote packet: CVE-2025-8088 (cached)
+    Wrote packet: CVE-2026-20700 (cached)
+    Wrote packet: CVE-2025-4427 (cached)
+    Wrote packet: CVE-2025-4428 (cached)
+    Wrote packet: CVE-2017-7921 (cached)
+    Wrote packet: CVE-2019-19006 (cached)
+    Wrote packet: CVE-2021-22175 (cached)
+    Wrote packet: CVE-2021-22681 (cached)
+    Wrote packet: CVE-2021-39935 (cached)
+    Wrote packet: CVE-2024-37079 (cached)
+    Wrote packet: CVE-2025-11953 (cached)
+    Wrote packet: CVE-2025-31125 (cached)
+    Wrote packet: CVE-2025-32432 (cached)
+    Wrote packet: CVE-2025-34026 (cached)
+    Wrote packet: CVE-2025-40551 (cached)
+    Wrote packet: CVE-2025-49113 (cached)
+    Wrote packet: CVE-2025-54068 (cached)
+    Wrote packet: CVE-2025-54313 (cached)
+    Wrote packet: CVE-2025-57819 (cached)
+    Wrote packet: CVE-2025-64328 (cached)
+    Wrote packet: CVE-2025-66376 (cached)
+    Wrote packet: CVE-2025-68461 (cached)
+    Wrote packet: CVE-2025-68613 (cached)
+    Wrote packet: CVE-2025-68645 (cached)
+    Wrote packet: CVE-2026-1281 (cached)
+    Wrote packet: CVE-2026-1731 (cached)
+    Wrote packet: CVE-2026-20045 (cached)
+    Wrote packet: CVE-2026-20131 (cached)
+    Wrote packet: CVE-2026-20963 (cached)
+    Wrote packet: CVE-2026-21385 (cached)
+    Wrote packet: CVE-2026-21510 (cached)
+    Wrote packet: CVE-2026-21513 (cached)
+    Wrote packet: CVE-2026-21514 (cached)
+    Wrote packet: CVE-2026-21519 (cached)
+    Wrote packet: CVE-2026-21525 (cached)
+    Wrote packet: CVE-2026-21533 (cached)
+    Wrote packet: CVE-2026-22719 (cached)
+    Wrote packet: CVE-2026-24423 (cached)
+    Wrote packet: CVE-2026-25108 (cached)
+    Wrote packet: CVE-2026-3909 (cached)
+    Wrote packet: CVE-2026-3910 (cached)
+    Wrote packet: CVE-2021-30952 (cached)
+    Wrote packet: CVE-2022-48503 (cached)
+    Wrote packet: CVE-2023-41974 (cached)
+    Wrote packet: CVE-2023-43000 (cached)
+    Wrote packet: CVE-2025-6554 (cached)
+    Wrote packet: CVE-2010-3962 (cached)
+    Wrote packet: CVE-2013-3893 (cached)
+    Wrote packet: CVE-2013-3918 (cached)
+    Wrote packet: CVE-2016-5195 (cached)
+    Wrote packet: CVE-2024-36401 (cached)
+    Wrote packet: CVE-2025-20352 (cached)
+  Recommend: 100/100 packets written
+  Healthcare feed:  outputs\community_public\feed_healthcare.json (3929 issues)
+  KEV medical feed: outputs\community_public\feed_medical_device_kev.json (203 issues)
+  RSS feeds:  feed.xml (50), feed_healthcare.xml (100), feed_kev_medical_device.xml (100), feed_class_3.xml (8), feed_p0_p1.xml (100)
+  Excel:      outputs\community_public\issues_public.xlsx
+  Sanity report: outputs\community_public\sanity_report.md
+  Published to docs/: 1 dashboard + 11 data files
+
+Community build summary:
+  Set:              full_public (Full Public — all enabled sources including historical backfill)
+  Validated:        65
+  Candidates:       1
+  Issues public:    3929
+  Alerts public:    100
+  Latest entries:   3929
+  Wrote:            outputs\community_public\issues_public.jsonl
+  Wrote:            outputs\community_public\alerts_public.jsonl
+  Wrote:            outputs\community_public\feed_latest.json
+  Wrote:            outputs\community_public\feed_healthcare.json
+  Wrote:            outputs\community_public\feed.csv
+  Wrote:            outputs\community_public\feed.xml
+  Wrote:            outputs\community_public\dashboard.html
+  Wrote:            outputs\community_public\validated_sources.json
+  Wrote:            outputs\community_public\meta.json
+  Packets dir:      outputs\community_public\packets (100 packets)
+
+Wrote public issues: outputs\community_public\issues_public.jsonl
+Wrote public alerts: outputs\community_public\alerts_public.jsonl
+Wrote community meta: outputs\community_public\meta.json
