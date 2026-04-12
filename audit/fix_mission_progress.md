@@ -138,3 +138,45 @@ This is a product/classification call, not a drop-in regex tightening. Per the m
 3. Whether "Updated" should track max(issue.date) (current) or rebuild/generated_at timestamp (would require adding that field to meta.json)
 
 Branch: feature/v1-readiness, commit `bcf2d46`, not pushed.
+
+---
+
+## 2026-04-12 — Medical device classifier tightening
+
+**Travis's product decision:** CISA ICS-Medical (source_id `cisa-icsma`) is authoritative. Medical_device tag requires at least one of: (1) `cisa-icsma` in sources, (2) vendor matches curated allowlist, (3) non-null `fda_risk_class`, (4) `affected_products` matches curated product-keyword list. Anything else → falls through to existing healthcare_it / healthcare_infrastructure / healthcare_adjacent logic.
+
+### Current classifier logic — baseline before change
+
+`src/advisoryops/healthcare_filter.py:254-308`:
+
+1. False-positive check (`_is_false_positive`) — cosmetics/food/generic-malware exclusion. Keeps this path.
+2. `_MEDICAL_DEVICE_SOURCES` includes `cisa-icsma`, `fda-medwatch`, openFDA device recalls/events (hist + current), `fda-safety-comms-historical`, `health-canada-recalls`, **`philips-psirt`**, **`siemens-productcert`** → medical_device. **The last two cause the Chrome-on-Philips noise — any issue co-occurring with a Philips or Siemens advisory stream gets tagged.**
+3. `_VENDOR_TEXT_RE` (text search across title/summary/vendor for any MEDICAL_DEVICE_VENDORS entry) → medical_device. **Matches marketing copy, not product attribution.**
+4. `fda_risk_class` present → medical_device.
+5. `_MEDICAL_DEVICE_RE` keyword match in text (infusion pump, ventilator, ..., `\bmri\b`, `\bct\b`, fda, iec 62443) → medical_device. **`\bct\b` is the C-035 finding; and "medical device" / "imaging" match marketing text.**
+6. Healthcare IT regex → healthcare_it.
+7. Healthcare infrastructure regex → healthcare_infrastructure.
+8. KEV + medical vendor → medical_device (kept under new Rule 2).
+9. Default → healthcare_adjacent.
+
+### Plan
+
+- Replace rules 2–5 with the four-rule strict check (`_is_medical_device`).
+- Keep rules 1 (false-positive check is harmless under stricter matching), 6, 7, 9 (healthcare_it/infra/adjacent fallback unchanged).
+- Remove the `_MEDICAL_DEVICE_SOURCES` set (strict Rule 1 replaces it).
+- `_VENDOR_TEXT_RE` stays (it's used by `is_healthcare_relevant`, which the prompt says NOT to change). It will continue to be built from `MEDICAL_DEVICE_VENDORS`.
+- `_MEDICAL_DEVICE_RE` keyword regex stays available but is no longer consulted in the medical_device decision path.
+
+### Tests likely to break (update per prompt's "tests asserting demonstrably wrong predicates" rule)
+
+`tests/test_healthcare_category.py`:
+- `test_openfda_source_is_medical_device` — openfda-recalls-historical alone no longer triggers medical_device (strict Rule 1 is cisa-icsma only). Real openFDA recall issues have `fda_risk_class` populated (Rule 3) so won't regress in practice, but this fixture has only the source set.
+- `test_philips_psirt_source_is_medical_device` — this is the exact bug. philips-psirt alone no longer triggers medical_device.
+- `test_medical_vendor_in_text_is_medical_device` — title="Medtronic pump" with empty vendor field. Under Rule 2 we check the vendor field, not text.
+- `test_device_keyword_is_medical_device` / `test_defibrillator_keyword_is_medical_device` — keyword-in-text is no longer a rule.
+- `test_epic_systems_is_medical_device` — Epic Systems is healthcare IT, not a medical-device vendor; the old-behavior assertion was wrong anyway.
+- `test_medical_device_takes_precedence_over_it` — strict rules → not medical_device; falls through to healthcare_it.
+
+`tests/test_healthcare_filter.py`:
+- `TestFalsePositiveExclusion.test_device_in_threat_report_not_excluded` — keyword-in-text is not a rule; demotes to healthcare_adjacent.
+- `TestKeywordMatching.test_vendor_in_text` — several parametrize entries ("Epic Systems", "Contec Health", "WHILL") are not in the prompt's curated vendor list. Since `_VENDOR_TEXT_RE` is rebuilt from the new `MEDICAL_DEVICE_VENDORS`, those parametrize entries will fail. Drop them.
