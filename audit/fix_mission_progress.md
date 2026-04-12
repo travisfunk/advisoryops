@@ -226,3 +226,20 @@ Confirmed from `docs/feed_latest.json`:
 Add `_apply_fda_clinical_floor(issue, score, why) -> score` to `score.py` and call it at the end of `score_issue_v2` (after the existing `_score_fda_risk_class` additive contribution, before `_priority_from_score`). v1 is the keyword-only baseline and stays untouched — the floor is a v2 healthcare-aware concept.
 
 Retag script path: extend `scripts/retag_corpus.py` to also re-apply the floor against existing `score`/`priority`/`why` in the already-scored feed. We don't need to re-run the whole v2 scorer — the base score already reflects all existing dimensions (including the +30/+10 from `_score_fda_risk_class`). The floor is a pure post-processing step.
+
+### Commits landed
+
+- `57d53f7` feat(score): auto-floor FDA Class III/II via clinical-severity authority
+- `63cf110` chore(corpus): re-score corpus with FDA clinical-severity floors applied
+- `<next>` docs(session_state): document FDA classification authority principle
+
+### Final medical_device priority distribution
+
+|                          | P0 | P1  | P2 | P3  |
+|--------------------------|---:|----:|---:|----:|
+| before (Class III +30 additive only) | 0 |  6  | 37 | 181 |
+| **after** (clinical-severity floor)  | **8** | **130** | 11 | 75  |
+
+Class III → P0 (8/8 floored to 150), Class II → P1 (125 floored to 100), Class I → +10 boost only (47 remain in P3). Two HeartStart MRx rows with `fda_risk_class=null` remain at P3 — that's an FDA-enrichment gap, not a floor gap.
+
+Tests: 1,063 passing (was 1,051; added 13 FDA-floor tests; revised 1 legacy test to the new floor-dominated behavior). Validation script still exits 0. Docs sanity: 3,929 issues.
