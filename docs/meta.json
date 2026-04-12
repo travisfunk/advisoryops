@@ -1,7 +1,7 @@
 {
   "set_id": "full_public",
-  "set_name": "Full Public — all enabled sources including historical backfill",
-  "description": "Every enabled source from sources.json including historical backfill modules. Maximizes dashboard coverage across advisories, threat intel, IOC feeds, regulatory, and industry news.",
+  "set_name": "Full Public — all 57 enabled sources",
+  "description": "Every enabled source from sources.json (2026-03-27). Maximizes dashboard coverage across advisories, threat intel, IOC feeds, regulatory, and industry news.",
   "out_root_discover": "outputs/discover",
   "out_root_runs": "outputs/source_runs",
   "out_root_community": "outputs\\community_public",
@@ -16,19 +16,17 @@
     "latest": 0
   },
   "counts": {
-    "validated_sources": 65,
+    "validated_sources": 57,
     "candidate_sources": 1,
-    "issues_public": 3923,
-    "alerts_public": 971,
-    "latest": 3923,
-    "healthcare": 896,
+    "issues_public": 1990,
+    "alerts_public": 757,
+    "latest": 1990,
     "packets": 0
   },
   "outputs": {
     "issues_public_jsonl": "outputs\\community_public\\issues_public.jsonl",
     "alerts_public_jsonl": "outputs\\community_public\\alerts_public.jsonl",
     "feed_latest_json": "outputs\\community_public\\feed_latest.json",
-    "feed_healthcare_json": "outputs\\community_public\\feed_healthcare.json",
     "feed_csv": "outputs\\community_public\\feed.csv",
     "feed_rss_xml": "outputs\\community_public\\feed.xml",
     "validated_sources_json": "outputs\\community_public\\validated_sources.json",
