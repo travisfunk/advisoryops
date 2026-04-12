@@ -104,3 +104,37 @@
 **Fix plan:** Swap the dashboard predicate from `healthcare_relevant === true` to `healthcare_category === 'medical_device'` at four locations in `dashboard/index.html` (lines 700, 1103, 1113, 1183). Copy to `docs/index.html`. No classifier or corpus changes.
 
 **Header strings (65 sources / Updated 2026-04-08):** Both are already computed, not hardcoded. Documented in the diagnosis doc. Holding on header changes pending Travis — the "65 vs 68" gap is validated-sources vs enabled-in-config, not a display bug.
+
+### Commit — `bcf2d46` fix(dashboard): correct Medical devices filter predicate
+
+**What changed:** dashboard/index.html (4 locations) + docs/index.html copy. Predicate swapped from `healthcare_relevant === true` to `healthcare_category === 'medical_device'`. Diagnosis doc added.
+
+**Tests:** 1,055 passed. Docs sanity: 3,929 issues.
+
+**Immediate effect:** "Medical devices" button count drops from 3,929 → 1,116. F5 BIG-IP, Trivy, Langflow are no longer in the bucket.
+
+### STOP — classifier noise in medical_device bucket is more complex than prompt anticipated
+
+After the dashboard fix, the `healthcare_category=medical_device` bucket contains 1,116 issues, but the composition is still suspect. Sampling the first 15 medical_device issues showed:
+
+- **Zero** have Philips / Siemens / Medtronic / Abbott / BD / Abiomed / Baxter / GE / Stryker / Zoll / Roche / Hillrom / Varian / Boston Scientific in `vendor` or `affected_products`.
+- Of 1,116, only 15 have any vendor set, and those 15 are: Microsoft (5), Google (4), Meta (2), Oracle (1), Cisco (1), D-Link (1), Citrix (1).
+- The `affected_products` arrays are almost exclusively general IT — Google Chrome, Microsoft Windows, Cisco Secure Firewall, Citrix NetScaler, Oracle Concurrent Processing, D-Link firmware, etc.
+- **Every sampled medical_device issue includes `philips-psirt` in its `sources` array.**
+
+**Hypothesis:** The healthcare_filter is promoting issues to `medical_device` when any source in the issue's source set is a medical-device-vendor PSIRT feed (Philips PSIRT, etc.), regardless of whether the affected product is itself a medical device. This is a legitimate signal — Philips PSIRT genuinely advises hospitals when upstream Chrome/Windows/Cisco CVEs affect its products — but the label "Medical devices" on the dashboard button then surfaces Chrome and Windows as "medical devices", which reviewers will read as mis-classification.
+
+**Why this needs Travis:** Two substantively different product decisions:
+1. **Keep current behavior, rename the filter.** Medical_device = "vuln relevant to a medical-device deployment per a medical-device vendor's advisory stream." Legitimate healthcare-security signal; label needs rewording so it's not read as "vuln in a medical device product".
+2. **Tighten the classifier.** Only tag `medical_device` when affected_products contains a known medical-device product keyword, independent of source provenance. Shrinks the bucket further (probably to low hundreds or less) but loses the Philips-PSIRT-curated-upstream signal.
+
+This is a product/classification call, not a drop-in regex tightening. Per the mission's "If anything is more complex than the prompt anticipates, STOP" rule, I am not touching `healthcare_filter.py`.
+
+**Not done:** header "65 sources" / "Updated 2026-04-08" rewiring. See diagnosis doc — both are already computed, and the "correct" numbers (68 vs 65, rebuild-date vs newest-issue-date) are product decisions, not bugs.
+
+**What Travis should decide:**
+1. Medical_device classifier behavior (option 1 rename vs option 2 tighten)
+2. Whether "sources" in the header should show validated (65) or enabled-in-config (68)
+3. Whether "Updated" should track max(issue.date) (current) or rebuild/generated_at timestamp (would require adding that field to meta.json)
+
+Branch: feature/v1-readiness, commit `bcf2d46`, not pushed.
