@@ -22,7 +22,8 @@
     "alerts_public": 100,
     "latest": 3929,
     "healthcare": 3929,
-    "packets": 100
+    "packets": 100,
+    "sources_enabled": 68
   },
   "outputs": {
     "issues_public_jsonl": "outputs\\community_public\\issues_public.jsonl",
@@ -35,5 +36,6 @@
     "meta_json": "outputs\\community_public\\meta.json",
     "dashboard_html": "outputs\\community_public\\dashboard.html",
     "packets_dir": "outputs\\community_public\\packets"
-  }
+  },
+  "generated_at": "2026-04-12T19:31:14+00:00"
 }

@@ -531,6 +531,7 @@ a:hover { text-decoration:underline; }
   // State
   let issues = [];
   let sources = [];
+  let meta = {};
   let selectedIdx = -1;
   let activeTab = 'issues';
   let activePriority = null;
@@ -1095,9 +1096,17 @@ a:hover { text-decoration:underline; }
     container.innerHTML = html;
   }
 
+  function getEnabledSourceCount() {
+    if (meta && meta.counts && typeof meta.counts.sources_enabled === 'number') {
+      return meta.counts.sources_enabled;
+    }
+    var n = 0;
+    for (var i = 0; i < sources.length; i++) { if (sources[i].enabled) n++; }
+    return n;
+  }
+
   function updateHeaderStats() {
-    var enabledSources = 0;
-    for (var i = 0; i < sources.length; i++) { if (sources[i].enabled) enabledSources++; }
+    var enabledSources = getEnabledSourceCount();
     if (healthcareMode) {
       var hcCount = 0;
       for (var j = 0; j < issues.length; j++) { if (issues[j].healthcare_category === 'medical_device') hcCount++; }
@@ -1152,27 +1161,33 @@ a:hover { text-decoration:underline; }
     try {
       var responses = await Promise.all([
         fetch('feed_healthcare.json').then(function(r) { return r.json(); }),
-        fetch('validated_sources.json').then(function(r) { return r.json(); })
+        fetch('validated_sources.json').then(function(r) { return r.json(); }),
+        fetch('meta.json').then(function(r) { return r.ok ? r.json() : {}; }).catch(function() { return {}; })
       ]);
       healthcareIssues = responses[0];
       issues = healthcareIssues;
       sources = responses[1];
+      meta = responses[2] || {};
     } catch (e) {
       console.error('Failed to load data:', e);
       document.getElementById('issue-list-pane').innerHTML = '<div style="text-align:center;padding:40px;color:var(--p0-text)">Failed to load data. Ensure feed_healthcare.json and validated_sources.json are accessible.</div>';
       return;
     }
 
-    var enabledSources = 0;
-    for (var i = 0; i < sources.length; i++) { if (sources[i].enabled) enabledSources++; }
+    var enabledSources = getEnabledSourceCount();
     updateHeaderStats();
 
-    var latest = null;
-    for (var j = 0; j < issues.length; j++) {
-      var d = parseDate(issues[j].last_seen_at) || parseDate(issues[j].first_seen_at);
-      if (d && (!latest || d > latest)) latest = d;
+    var updated = null;
+    if (meta && meta.generated_at) {
+      updated = parseDate(meta.generated_at);
     }
-    document.getElementById('meta-updated').textContent = latest ? 'Updated ' + formatDate(latest) : '';
+    if (!updated) {
+      for (var j = 0; j < issues.length; j++) {
+        var d = parseDate(issues[j].last_seen_at) || parseDate(issues[j].first_seen_at);
+        if (d && (!updated || d > updated)) updated = d;
+      }
+    }
+    document.getElementById('meta-updated').textContent = updated ? 'Updated ' + formatDate(updated) : '';
     document.getElementById('about-issues').textContent = issues.length;
     document.getElementById('about-sources').textContent = enabledSources;
 
