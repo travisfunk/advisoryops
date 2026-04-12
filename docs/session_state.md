@@ -1,6 +1,6 @@
 # AdvisoryOps — Session State (project context for Claude)
 
-**Last updated:** 2026-04-08 by Claude (AI assistant working with Travis Funkhouser)
+**Last updated:** 2026-04-12 by Claude (reality-check pass on branch `feature/v1-readiness`)
 **Purpose:** This file is the durable single source of truth for what AdvisoryOps is, where it currently stands, and what the open problems are. It exists because Claude's working memory does not survive context-window compaction, and project context kept getting lost between sessions. **Future Claude: read this file at the start of every working session before doing anything else.** Do not skip it. Do not trust the memory summary in your system prompt as a substitute — that summary is incomplete by design and is the reason this file exists.
 
 If something in this file looks wrong to Travis, **trust Travis over this file**, then update this file. Travis has end-to-end project memory; Claude does not.
@@ -11,7 +11,7 @@ If something in this file looks wrong to Travis, **trust Travis over this file**
 
 AdvisoryOps is an open-source healthcare medical device security intelligence platform built and maintained solo by Travis Funkhouser (CISSP, CISM, CPHIMS, HCISPP, Stanford AI in Healthcare; 20+ years healthcare security including IU Health, ForeScout, Attivo, Flashpoint).
 
-It aggregates security advisories from 60+ public sources (CISA ICS-CERT, FDA MedWatch, openFDA recalls and adverse events, NVD CVE API, vendor PSIRTs, threat intel feeds, healthcare news, and more), correlates and deduplicates them, scores them with healthcare-specific context, generates plain-language summaries and remediation guidance via LLM, and publishes everything as open data and an open-source dashboard. The whole pipeline currently costs about $1.40 per full corpus rebuild and ~$0.06 per weekly incremental run on `gpt-4o-mini`; total dev API spend across all sessions is roughly $12.70.
+It aggregates security advisories from 68 enabled public sources (CISA ICS-CERT, FDA MedWatch, openFDA recalls and adverse events, NVD CVE API, vendor PSIRTs, threat intel feeds, healthcare news, and more), correlates and deduplicates them, scores them with healthcare-specific context, generates plain-language summaries and remediation guidance via LLM, and publishes everything as open data and an open-source dashboard. The whole pipeline currently costs about $1.40 per full corpus rebuild and ~$0.06 per weekly incremental run on `gpt-4o-mini`; total dev API spend across all sessions is roughly $12.70.
 
 The strategic pitch is that hospitals (especially the thousands of small, rural, and community hospitals that can't afford Claroty, Armis, or TRIMEDX) need this exact thing and nothing comparable exists for free. Commercial vulnerability intelligence platforms in this space all start at enterprise pricing. AdvisoryOps fills the gap with a public-good open layer (free forever, free to view, free to fork). A commercial layer with facility-specific device inventory matching, watchlists, and email signup is **planned for after grant submission and is deliberately kept out of the grant proposal** — the grant framing is "everything is open."
 
@@ -19,24 +19,26 @@ The grant target is the **OpenAI Cybersecurity Grant Program** ($10M in API cred
 
 ## Section 2 — Repository layout and key locations
 
-One consolidated repo at `C:\Users\travi\OneDrive\GitRepos\advisoryops`. GitHub: `travisfunk/advisoryops`. Currently public. The dashboard was previously in a separate `advisoryops-dashboard` repo and was consolidated on 2026-04-09 (branch `merge/consolidate-dashboard`). The old dashboard repo will be archived after merge verification.
+One consolidated repo at `C:\Users\travi\OneDrive\GitRepos\advisoryops`. GitHub: `travisfunk/advisoryops`. Currently public. The dashboard was previously in a separate `advisoryops-dashboard` repo and was consolidated into this repo via PR #12 (commit `c6401ac`, merged to main 2026-04-10). The legacy branch `merge/consolidate-dashboard` still exists locally and on origin but is superseded by the squash merge on main. The old dashboard repo still exists on GitHub — its status (archived or not) is UNVERIFIABLE from code.
 
 Inside the repo:
 
-- `src/advisoryops/` — 39 Python modules. Pipeline core.
-- `src/advisoryops/enrichment/` — 6 enrichment modules (FDA classification, EPSS, vulnrichment, CWE catalog, ATT&CK ICS, cross-reference orchestrator).
-- `src/advisoryops/sources/` — 9 per-source historical backfill modules (CISA ICSMA, openFDA, FDA safety comms, MHRA UK, Health Canada, NVD, Philips PSIRT, Siemens ProductCERT, plus a backfill_registry).
+- `src/advisoryops/` — 38 Python modules (`.py` files). Pipeline core.
+- `src/advisoryops/enrichment/` — 6 enrichment modules plus `__init__.py` (FDA classification, EPSS, vulnrichment, CWE catalog, ATT&CK ICS, cross-reference orchestrator).
+- `src/advisoryops/sources/` — 8 per-source historical backfill modules plus `backfill_registry.py`, `discover_sync.py`, and `__init__.py` (11 files total). Covers CISA ICSMA, openFDA, FDA safety comms, MHRA UK, Health Canada, NVD, Philips PSIRT, Siemens ProductCERT.
 - `dashboard/` — production HTML dashboard (source of truth). Copied to `docs/index.html` by the pipeline's publish step.
-- `tests/` — 57 test files, ~1038 tests passing as of 2026-04-09.
-- `configs/` — `mitigation_playbook.json` (11 patterns), `source_weights.json` (5-tier authority), `community_public_sources.json` (validated source manifest), `sources.json` (full source list).
-- `docs/` — 11 numbered design docs (DOC-01 through DOC-11) plus `STATUS.md`, `playbook_governance.md`, `schema.md`, `scoring_internals.md`, `feed_contract.json` (schema contract enforced by tests), `grant_cost_model.md`. GitHub Pages serves from `docs/` — the pipeline copies `dashboard/index.html` and data files here via `_publish_to_docs()`. Read `schema.md` before touching anything that produces feed entries — it documents every field.
+- `tests/` — 57 test files, **1,055 tests passing** (as of 2026-04-12 on branch `feature/v1-readiness`). 1 test deselected via `@pytest.mark.integration`.
+- `configs/` — `mitigation_playbook.json` (11 patterns), `source_weights.json` (5-tier authority), `community_public_sources.json` (validated source manifest), `sources.json` (full source list — 96 total entries, 68 enabled).
+- `docs/` — 11 numbered design docs (DOC-01 through DOC-11) plus `STATUS.md`, `playbook_governance.md`, `schema.md`, `scoring_internals.md`, `feed_contract.json` (schema contract enforced by tests), `grant_cost_model.md`, `architecture.md`, `data_rights.md`, `kev_medical_device_analysis.md`. GitHub Pages serves from `/docs` on the `advisoryops` repo — the pipeline copies `dashboard/index.html` and data files here via `_publish_to_docs()`. Whether the live Pages source has been flipped from `advisoryops-dashboard` to `advisoryops` in the GitHub UI is UNVERIFIABLE from code; only Travis can confirm. The code-side prerequisites (dashboard + data files committed to docs/) are done. Read `schema.md` before touching anything that produces feed entries — it documents most fields, though it has drift with `_feed_entry` (see audit C-012).
 - `outputs/community_public/` — pipeline output. Includes `feed_latest.json`, `feed_healthcare.json`, `feed_medical_device_kev.json`, RSS variants, Excel export, `sanity_report.md`, and the `packets/` subdirectory containing per-issue AI remediation packets.
 - `outputs/*_cache/` — per-source caches. Persistent. NVD cache has ~340K records, openFDA recalls ~14,630, FDA safety comms ~38,510, Siemens ~779, MHRA ~1,381, EPSS ~325K scores. Reference table is in `docs/scoring_internals.md`.
-- `outputs/ai_cache/` — content-hash-based AI response cache. Persistent across runs. Keeps incremental costs near zero.
+- `outputs/ai_cache/` — content-hash-based AI response cache. Persistent across runs. 11,157 cached responses on disk. Keeps incremental costs near zero.
+- `audit/` — audit and reality-check artifacts (Phase A/B/C findings, fix mission progress log, pipeline log, this session's reality-check report).
+- `scripts/republish_docs.py` — reusable one-off script to re-run `_publish_to_docs()` against existing pipeline output without a full rebuild.
 
-## Section 3 — Pipeline architecture (verified by reading code 2026-04-08)
+## Section 3 — Pipeline architecture (verified by reading code 2026-04-12)
 
-The pipeline runs in stages, orchestrated by `advisoryops community-build` (CLI in `cli.py`, implementation in `community_build.py`, ~2064 lines).
+The pipeline runs in stages, orchestrated by `advisoryops community-build` (CLI in `cli.py`, implementation in `community_build.py`, 2,293 lines as of 2026-04-12 on `feature/v1-readiness`).
 
 ```
 discover → correlate → score → enrich → AI subsystem → output
@@ -44,44 +46,45 @@ discover → correlate → score → enrich → AI subsystem → output
 
 **Discover.** Per-source modules in `discover.py` and `sources/*` pull signals from 60+ sources. Each signal gets a deterministic `signal_id` (SHA-256 of `source_id|guid`). Output: `outputs/discover/<source>/items.jsonl` per source.
 
-**Correlate.** `correlate.py` groups signals into issues. CVE-bearing signals group by CVE ID. Non-CVE signals group by `UNK-<sha256(title|published_date)[:16]>`. **There's a real bug here — see Section 6 Problem 3.** Output: `outputs/community_public/correlate/issues.jsonl`.
+**Correlate.** `correlate.py` groups signals into issues. CVE-bearing signals group by CVE ID. Non-CVE signals group by `UNK-<sha256(source_id|title|published_date)[:16]>` (source_id added by Problem 2 triage fix). Output: `outputs/community_public/correlate/issues.jsonl`.
 
 **Score.** `score.py` runs v2 healthcare-aware scoring (v1 keyword baseline + 5 healthcare dimensions: source authority, device context, patch feasibility, clinical impact, FDA risk class). Thresholds are P0 ≥ 150, P1 ≥ 100, P2 ≥ 60, P3 < 60. Theoretical max ~805, observed range ~17–163, most issues 17–60. Full scoring reference is in `docs/scoring_internals.md` (current). Every scoring decision appends a human-readable string to a per-issue `why` field.
 
 **Enrich.** Multiple enrichment passes happen during community-build:
-- **NVD enrichment** (`nvd_enrich.py`, 523 lines) — queries NIST NVD 2.0 API for CVSS, CWE, CPE, descriptions. NVD API key is set as a permanent user environment variable. Most-recent run enriched 2,362 of 3,923 issues with CVSS/CWE/CPE data.
-- **KEV cross-reference** — pulls KEV-specific fields (required_action, due_date, vendor, product) from CISA KEV. Most-recent run flagged 203 issues as KEV-enriched.
-- **CISA Vulnrichment** (`enrichment/vulnrichment.py`) — per-CVE enrichment from `cisagov/vulnrichment` GitHub repo.
-- **CWE catalog** (`enrichment/cwe_catalog.py`) — CWE name resolution.
-- **ATT&CK ICS** (`enrichment/attack_ics.py`) — MITRE ATT&CK for ICS technique mapping.
-- **EPSS** (`enrichment/epss_enrich.py`) — Exploit Prediction Scoring System scores. **Currently disabled / cache empty**, see Section 6.
-- **FDA risk class** (`enrichment/fda_classification.py`) — Feature 1. Extracts class from cached recall records (primary) or via openFDA classification API substring/product-code lookup (secondary). Most-recent run enriched 180 issues (178 from recalls, 2 from classification DB). 8 Class III, 86 Class II, 42 Class I, rest unknown.
-- **Healthcare relevance + category** — `healthcare_filter.py` tags every issue. Categories: medical_device, healthcare_infrastructure, healthcare_it, healthcare_adjacent. Most-recent run: 1,125 medical_device, 169 healthcare_infrastructure, 5 healthcare_it, 2,624 healthcare_adjacent (3,923 total).
+- **NVD enrichment** (`nvd_enrich.py`, 523 lines) — queries NIST NVD 2.0 API for CVSS, CWE, CPE, descriptions. NVD API key is set as a permanent user environment variable. Most-recent run enriched 2,372 of 3,929 issues with CVSS/CWE/CPE data.
+- **KEV cross-reference** — pulls KEV-specific fields (required_action, due_date, vendor, product, vulnerability_name) from CISA KEV. Most-recent run flagged 203 issues as KEV-enriched. After FIX 3 (commit `815ee7a`), all five KEV fields including `kev_vulnerability_name` flow through to the feed.
+- **CISA Vulnrichment** (`enrichment/vulnrichment.py`) — per-CVE enrichment from `cisagov/vulnrichment` GitHub repo. Disabled by default in `apply_enrichments(vulnrichment=False)` because it requires per-CVE HTTP calls.
+- **CWE catalog** (`enrichment/cwe_catalog.py`) — CWE name resolution. Most-recent run: 2,053 issues got CWE names.
+- **ATT&CK ICS** (`enrichment/attack_ics.py`) — MITRE ATT&CK for ICS technique mapping. Available via module but not auto-applied to issues.
+- **EPSS** (`enrichment/epss_enrich.py`) — Exploit Prediction Scoring System scores. **Cache populated 2026-04-09 with 325,743 scores** at `outputs/epss_cache/epss_scores.json`. Most-recent run: 2,356 issues got EPSS scores.
+- **FDA risk class** (`enrichment/fda_classification.py`) — Feature 1. Extracts class from cached recall records (primary) or via openFDA classification API substring/product-code lookup (secondary). Most-recent run enriched 180 issues. Distribution: 8 Class III, 125 Class II, 47 Class I, 3,749 null.
+- **Healthcare relevance + category** — `healthcare_filter.py` tags every issue. Categories: medical_device, healthcare_infrastructure, healthcare_it, healthcare_adjacent. Most-recent run: 1,116 medical_device, 170 healthcare_infrastructure, 5 healthcare_it, 2,638 healthcare_adjacent (3,929 total).
 
-**AI subsystem.** Four optional AI features, all gated behind CLI flags on `community-build`. None run unless explicitly requested. **This is the part that was forgotten and rediscovered today.**
+**AI subsystem.** Four optional AI features, all gated behind CLI flags on `community-build`. None run unless explicitly requested.
 
-- **`--summarize`** (`summarize.py`, 192 lines, "Session D") — plain-language 2–3 sentence summaries for hospital security analysts. Extracts unknowns, handling_warnings, evidence_completeness. Output written into the issue's `ai_summary` and trust fields. Most-recent run: 971 of 971 issues rewritten.
-- **`--extract-mitigations`** (`source_mitigations.py`, 352 lines, "Phase 8 — source authority") — source-cited mitigation extraction. Critical prompt rule: "Extract ONLY mitigations explicitly stated in source text. Do NOT invent." Each extracted mitigation includes a `verbatim_snippet` from the source text and is attributed to its source with authority tier. Most-recent run: 1,233 mitigations extracted from 899 of 971 issues.
+- **`--summarize`** (`summarize.py`, 192 lines) — plain-language 2–3 sentence summaries for hospital security analysts. Extracts unknowns, handling_warnings, evidence_completeness. Output written into the issue's summary and trust fields. Most-recent run: 971 of 971 issues rewritten.
+- **`--extract-mitigations`** (`source_mitigations.py`, 352 lines) — source-cited mitigation extraction. Critical prompt rule: "Extract ONLY mitigations explicitly stated in source text. Do NOT invent." Each extracted mitigation includes a `verbatim_snippet` from the source text and is attributed to its source with authority tier.
+- **`--extract-fields`** (`extract_fields.py`, 176 lines) — Problem 3 fix. Pulls vendor, product, severity from rewritten summaries for non-CVE issues with empty fields. Added via commit `0f8785d` (main) and `8840c70` (follow-up fix).
 - **`--ai-score`** (`ai_score.py`, 325 lines) — AI healthcare classification backstop for issues with no deterministic healthcare signal. Boosts score if the model is ≥0.70 confident the issue is medical_device (+20), healthcare_it (+15), or healthcare_adjacent (+5).
-- **`--recommend`** (`recommend.py`, 414 lines, "Phase 4, Task 4.2") — full remediation recommendation engine. Loads the 11-pattern playbook from `configs/mitigation_playbook.json`, asks the model to select 1–4 patterns, fill parameters, role-split tasks, identify side effects and friction levels, list evidence gaps, and produce per-pattern reasoning and a top-level reasoning string. Hallucinated pattern IDs are silently filtered against the approved list. Default model is `gpt-4o-mini`. Output is a `RemediationPacket` dataclass written to `outputs/community_public/packets/<issue_id>_packet.json`. Most-recent run: 414 of 414 packets written for P0/P1 alerts.
+- **`--recommend`** (`recommend.py`, 414 lines) — full remediation recommendation engine. Loads the 11-pattern playbook from `configs/mitigation_playbook.json`, asks the model to select 1–4 patterns, fill parameters, role-split tasks, identify side effects and friction levels, list evidence gaps, and produce per-pattern reasoning and a top-level reasoning string. Hallucinated pattern IDs are silently filtered against the approved list. Default model is `gpt-4o-mini`. Output is a `RemediationPacket` dataclass written to `outputs/community_public/packets/<issue_id>_packet.json`. Most-recent incremental run: 100 packets written for top alerts (`--top 100` default). Accumulated packet files on disk: 695.
 
-Other AI/related modules that exist and are working but are not necessarily wired into community-build:
+Other AI/related modules that exist and are available but are NOT wired into community-build (confirmed by audit C-003, 2026-04-11):
 - **`extract.py`** (445 lines) — Stage 2 ingest, structured AdvisoryRecord JSON extraction from raw advisory text. Used by the `extract` CLI command, not by community-build.
-- **`ai_correlate.py`** (576 lines) — AI-assisted merge candidate detection for cross-source duplicates.
-- **`advisory_qa.py`** (294 lines, "Session G") — natural language Q&A against the corpus. Exposed as `advisoryops ask` CLI command.
-- **`contradiction_detector.py`** (342 lines, "Task 8.5") — deterministic cross-source contradiction detection. Note: most-recent runs found 0 real contradictions in the corpus, which is itself a real finding worth investigating.
-- **`change_tracker.py`** (221 lines, "Task 8.7") — deterministic what-changed tracking between pipeline runs.
+- **`ai_correlate.py`** (576 lines) — AI-assisted merge candidate detection for cross-source duplicates. Only reachable via `correlate --ai-merge` flag; community_build.py calls correlate() without it.
+- **`advisory_qa.py`** (294 lines) — natural language Q&A against the corpus. Exposed as `advisoryops ask` CLI command.
+- **`contradiction_detector.py`** (342 lines) — deterministic cross-source contradiction detection. Note: most-recent runs found 0 real contradictions in the corpus, which is itself a real finding worth investigating.
+- **`change_tracker.py`** (221 lines) — deterministic what-changed tracking between pipeline runs.
 - **`feedback.py`** (115 lines) — recommendation feedback recorder, exposed as `advisoryops feedback`.
 - **`page_enrich.py`** (201 lines) — fetches advisory web pages for richer mitigation extraction.
 
 Cross-cutting:
 - **`sanitize.py`** (110 lines) — prompt injection hardening. Strips control chars and oversized chunks before any text goes to the model. Visible in pipeline logs as `sanitize_for_prompt altered summary (len X -> Y)`.
-- **`ai_cache.py`** (194 lines) — content-hash response cache. The reason most rerun costs are near zero.
+- **`ai_cache.py`** (194 lines) — content-hash response cache. The reason most rerun costs are near zero. 11,157 cached entries on disk.
 - **`source_weights.py`** (160 lines) — loads `source_weights.json` for the 5-tier authority weighting used in v2 scoring.
-- **`product_resolver.py`** (135 lines, "Session I") — `resolve_product()` and the `advisoryops lookup` CLI command.
-- **`eval_harness.py`** (520 lines, "Phase 5, Task 5.2") — golden fixture evaluation harness.
+- **`product_resolver.py`** (135 lines) — `resolve_product()` and the `advisoryops lookup` CLI command.
+- **`eval_harness.py`** (520 lines) — golden fixture evaluation harness.
 
-**Output stage.** `community_build.py` writes all the public artifacts: `feed_latest.json`, `feed_healthcare.json`, `feed_medical_device_kev.json`, `feed.csv`, `feed.xml` plus filtered RSS variants, `issues_public.xlsx`, `dashboard.html`, `validated_sources.json`, `meta.json`, and per-issue packets in `packets/`. **There is a critical merge gap here — see Section 6 Problem 1.**
+**Output stage.** `community_build.py` writes all the public artifacts: `feed_latest.json`, `feed_healthcare.json`, `feed_medical_device_kev.json`, `feed.csv`, `feed.xml` plus filtered RSS variants, `issues_public.xlsx`, `dashboard.html`, `validated_sources.json`, `meta.json`, `sanity_report.md`, and per-issue packets in `packets/`. The `_publish_to_docs()` step then copies the dashboard HTML and 11 data artifacts to `docs/` for GitHub Pages serving.
 
 ## Section 4 — The 11-pattern mitigation playbook
 
@@ -101,28 +104,31 @@ Cross-cutting:
 
 The recommendation engine is constrained to select only from these approved patterns. AI-generated draft patterns are labeled `draft: true` and require human review before promotion (per `docs/playbook_governance.md`).
 
-## Section 5 — Current corpus state (verified from 2026-04-08 pipeline run)
+## Section 5 — Current corpus state (verified 2026-04-12 from FIX 4.5 rebuild, commit `b0f4b5e`)
 
-The most recent successful pipeline run (with `--recommend --summarize --extract-mitigations --ai-score` enabled, `--min-priority P1`) produced:
+The most recent successful pipeline run (incremental rebuild with `--set-id full_public --skip-backfill --summarize --extract-mitigations --ai-score --recommend --min-priority P1`, no `--latest` cap) produced:
 
-- **3,923 total issues** correlated from **5,573 signals** across **65 sources** (the `full_public` set).
-- **414 alerts** at P0/P1 priority (this is the threshold for `--min-priority P1`).
-- **2,362 issues** NVD-enriched with CVSS/CWE/CPE.
-- **203 issues** KEV-enriched. **Zero of those KEV issues match medical device vendors** — this is a real finding, see Section 6.
-- **180 issues** with FDA risk class (8 Class III, 86 Class II, 42 Class I, rest unknown).
-- **971 plain-language summaries** generated (covering all P0/P1/P2 issues).
-- **6,639 IOCs** extracted from 3,923 issues.
-- **1,233 source-cited mitigations** extracted from 899 of 971 issues.
-- **414 recommendation packets** written to `outputs/community_public/packets/` for all P0/P1 alerts.
-- **P0–P2 guidance coverage: 994/994 (100%)**.
+- **3,929 total issues** correlated from **5,573 signals** across **65 sources** (the `full_public` set has 65 validated + 1 candidate).
+- **Priority distribution:** 215 P0, 200 P1, 579 P2, 2,935 P3 (from `outputs/community_public/sanity_report.md`).
+- **100 alerts public** in `alerts_public.jsonl` (limited by default `--top 100`).
+- **2,372 issues** NVD-enriched with CVSS/CWE/CPE (minor day-to-day variance based on NVD data currency).
+- **203 issues** KEV-enriched. **Zero of those KEV issues match medical device vendors** — see Section 6 Problem 4.
+- **180 issues** with FDA risk class: 8 Class III, 125 Class II, 47 Class I, 3,749 null.
+- **971 plain-language summaries** generated (all issues with `generated_by == 'ai'`).
+- **99 issues** with populated `recommended_patterns` in the feed (propagated from the top-100 alert packets via `_merge_trust`).
+- **6,639 IOCs** extracted (number from 2026-04-08 run; not re-measured during the 2026-04-12 rebuild).
+- **1,233 source-cited mitigations** from 899 issues (number from 2026-04-08 run; not re-measured).
+- **2,356 issues** EPSS-enriched.
+- **2,053 issues** CWE-enriched.
+- **100 recommendation packets** newly written this rebuild (for the top-100 P0/P1 alerts). **695 total packet files** accumulated on disk from prior runs.
 
-Healthcare category breakdown: 1,125 medical_device, 169 healthcare_infrastructure, 5 healthcare_it, 2,624 healthcare_adjacent.
+Healthcare category breakdown: 1,116 medical_device, 170 healthcare_infrastructure, 5 healthcare_it, 2,638 healthcare_adjacent.
 
-Tests: ~1,016 passing pre-pipeline-run, no regressions.
+**Note on `feed_healthcare.json`:** Current file contains all 3,929 issues because `healthcare_relevant=True` is applied to every row that falls into ANY of the four healthcare categories — including `healthcare_adjacent`, which covers 2,638 general-IT CVEs. This is the existing Problem 6 manifesting (healthcare filter too aggressive on "adjacent" context), not a regression. See Section 6 Problem 6.
 
-**This run was the first time today's session saw the AI subsystem produce end-to-end output.** It validated that the entire AI subsystem (recommend, summarize, extract-mitigations, ai-score) is operational and producing rich packet output. The blocking question turned out to be not "does the AI work" but "why isn't the dashboard showing the AI work" — see Section 6.
+Tests: **1,055 passing** on branch `feature/v1-readiness` as of 2026-04-12. No known failures.
 
-**Update (2026-04-12):** A fresh incremental rebuild (commit `b0f4b5e`) at the FIX 4.5 step produced slightly different numbers. Same config (`--set-id full_public --summarize --extract-mitigations --ai-score --recommend --min-priority P1`) but `--top 100` default truncated alerts to 100, and the NVD-enrichment count was 2,372 (vs 2,362 claimed in the 2026-04-08 snapshot above). IOC/summary/mitigation tallies were not re-measured. Issue count is 3,929 (confirmed from both runs) — the 3,923 in the bullet above is stale. Healthcare category breakdown was not re-measured this session. See FIX 6 investigation in audit/fix_mission_notes.md.
+The full AI subsystem (recommend, summarize, extract-mitigations, ai-score) is operational and producing end-to-end output. All 100 packets during the latest rebuild hit the AI cache — $0 incremental API spend.
 
 ## Section 6 — Known problems, prioritized
 
@@ -130,108 +136,135 @@ These are the issues blocking grant submission, in priority order. **Read this s
 
 ### Problem 1 — Packet → feed merge gap — RESOLVED
 
-**Resolved:** 2026-04-09, branch `merge/consolidate-dashboard`, commits 3 and 4.
+**Resolved:** 2026-04-09 by commits on `merge/consolidate-dashboard` (squash-merged to main via PR #12 on 2026-04-10, commit `c6401ac`).
 
-Fixed `_merge_trust` to copy `recommended_patterns`, `tasks_by_role`, `reasoning`, and `citations` from packet data into feed rows. Added these fields to `_feed_entry` and to `packet_trust_by_id`. Dashboard now renders pattern cards with friction levels, role-split tasks, and AI reasoning. Regression tests added to `test_remediation_trust.py`. Verified: 138/139 P0/P1 issues now have `recommended_patterns` in the feed output.
+Fixed `_merge_trust` to copy `recommended_patterns`, `tasks_by_role`, `reasoning`, and `citations` from packet data into feed rows. Added these fields to `_feed_entry` and to `packet_trust_by_id`. Dashboard now renders pattern cards with friction levels, role-split tasks, and AI reasoning. Regression tests added to `test_remediation_trust.py`.
 
 **Audit follow-up (2026-04-11):** Audit finding C-001 + C-014 found that three additional KEV-related fields (`kev_vendor`, `kev_product`, `kev_vulnerability_name`) were still being dropped by `_feed_entry` even though the dashboard read them and `feed_contract.json` declared them. Resolved 2026-04-12, commit `815ee7a` — added all three to `_feed_entry`, added `kev_vulnerability_name` to `_KEV_FIELDS` (previously missing). Incremental pipeline rebuild commit `b0f4b5e` propagated the new schema to docs/ — feed_latest.json now has 203 entries with populated `kev_vendor`/`kev_product`/`kev_vulnerability_name`.
 
 ### Problem 2 — Correlation incorrectly merges unrelated signals — TRIAGE FIX RESOLVED
 
-**Triage fix resolved:** 2026-04-09, branch `merge/consolidate-dashboard`, commit 5.
+**Triage fix resolved:** 2026-04-09. Squash-merged to main via PR #12, commit `c6401ac`.
 
-Applied option 2: added `source_id` to the non-CVE merge key basis (`key_basis = f"{it['source']}|{title_norm}|{pub}"`). This prevents cross-source collisions regardless of title. Issue count increased 3923 → 3929 as previously-merged distinct signals became separate issues. Source-count anomalies dropped to zero: 0 issues with 10+ sources, 0 mixed-type contamination.
+Applied option 2: added `source_id` to the non-CVE merge key basis (`key_basis = f"{it['source']}|{title_norm}|{pub}"`). This prevents cross-source collisions regardless of title. Issue count increased 3,923 → 3,929 as previously-merged distinct signals became separate issues. Source-count anomalies dropped to zero: 0 issues with 10+ sources, 0 mixed-type contamination.
 
 **Architectural fix still pending (post-grant):** The full fix is to separate threatintel from advisory routing entirely — categorize sources as `kind: advisory` vs `kind: threatintel` in `sources.json` and route them through different correlation logic.
 
-### Problem 3 — Field extraction failing for non-CVE / FDA-recall-derived issues (MEDIUM PRIORITY)
+### Problem 3 — Field extraction for non-CVE / FDA-recall-derived issues — RESOLVED
 
-**Symptom:** The Impella record has `title="item"`, `vendor=""`, `severity=""`, `affected_products=[]`, `fda_risk_class=null`. The plain-language `summary` literally says "Abiomed's Automated Impella Controller could be susceptible to security vulnerabilities related to its operating system, with a severity rated as high. While no patch has been released yet..." — every piece of information needed to populate those fields is in the summary text. Nothing is reading the summary and extracting structured fields.
+**Resolved:** 2026-04-10 by commits `0f8785d` "Add LLM field extraction for non-CVE issues (Problem 3)" and `8840c70` "Fix extract_fields truncation: bump max_tokens, handle malformed JSON" — both on main via PR #13.
 
-**Why FDA risk class is null:** Verified by reading `enrichment/fda_classification.py`. The `lookup_risk_class` function needs either a `product_code` or a `device_name` to match against the openFDA classification database. The Impella record has neither — `vendor=""` and `affected_products=[]`. **Feature 1 isn't broken; Feature 1 is starving.** It's working correctly given empty input. The upstream extraction never populated the device name field for FDA-recall-derived issues, so the classification lookup never had anything to match against. An Abiomed Impella is unambiguously a Class III implantable cardiac device — it should be at the very top of every priority list, and instead it sits at P2 with score 82.
+The fix: new module `src/advisoryops/extract_fields.py` (176 lines) and `--extract-fields` flag on `community-build`. Wired into `community_build.py` at line 1546. Pulls vendor, product, and severity from rewritten plain-language summaries for issues where those fields were empty. Then the FDA classification lookup runs again with the extracted device name.
 
-**Fix:** Add a non-CVE field extraction pass that runs after the AI summarizer. Pull vendor name, device name, severity word, and any version strings from the rewritten plain-language summary using either targeted regex or a small extraction prompt. Then re-run the FDA classification lookup with the extracted device name. Probably half a day. Could plausibly be implemented as an extension to `extract.py` or as a new dedicated module.
+**Residual concern:** The FIX 4.5 rebuild on 2026-04-12 showed only 180 issues with FDA risk class, unchanged from earlier runs. Either extract_fields isn't being invoked by default (check the CLI flags in the rebuild log), or the extraction success rate on the "starving" non-CVE issues is lower than expected. Worth spot-checking before grant submission.
 
 ### Problem 4 — KEV / medical device zero overlap (INVESTIGATION IN PROGRESS)
 
-**Audit follow-up (2026-04-11, 2026-04-12):** Commit `86984c0` on main added `docs/kev_medical_device_analysis.md` with the investigation writeup (happened before the audit). Partial resolution — the finding is documented but the root-cause determination still needs confirmation.
+**Status:** Investigation writeup landed 2026-04-10 as commit `86984c0` on main, producing `docs/kev_medical_device_analysis.md`. Root-cause determination still needs Travis to review the writeup's conclusion.
 
-**Symptom:** All 203 KEV-enriched issues are general IT vendors (Cisco, Adobe, Apple, Microsoft, Fortinet, Ivanti, etc.). Zero of them match medical device vendors. Feature B (KEV cross-reference for medical devices) is architecturally in place but matches nothing.
+**Symptom:** All 203 KEV-enriched issues are general IT vendors (Cisco, Adobe, Apple, Microsoft, Fortinet, Ivanti, etc.). Zero match medical device vendors. Feature B (KEV cross-reference for medical devices) is architecturally in place but matches nothing. `feed_medical_device_kev.json` currently contains `[]`.
 
-**Possible causes:**
-
-1. **The KEV catalog genuinely contains no medical device CVEs** — possible. CISA's KEV is biased toward widely-deployed enterprise software because that's what gets actively exploited at scale. Medical device CVEs may simply not be in KEV in meaningful numbers.
+**Possible causes (from Problem 4 writeup):**
+1. **The KEV catalog genuinely contains no medical device CVEs** — CISA's KEV is biased toward widely-deployed enterprise software because that's what gets actively exploited at scale. Medical device CVEs may simply not be in KEV in meaningful numbers.
 2. **Vendor name mismatching** — the medical device vendor names in our healthcare filter and the vendor names in KEV use different conventions and never match even when the same product is involved.
 3. **Healthcare filter scope mismatch** — the healthcare filter may be flagging issues that KEV-enriched CVEs don't overlap with by definition.
 
-**Action:** Investigate before grant submission. Worth understanding so the grant narrative can address it accurately rather than discovering it during a reviewer Q&A. This is also a potentially interesting finding for the grant itself ("KEV doesn't track medical device CVEs at scale, which is part of why a healthcare-focused intelligence system needs to exist").
+**Action:** This is a potentially interesting finding for the grant itself ("KEV doesn't track medical device CVEs at scale, which is part of why a healthcare-focused intelligence system needs to exist"). Worth framing correctly in the grant narrative.
 
 ### Problem 5 — EPSS cache empty — RESOLVED
 
-**Resolved:** 2026-04-09, branch `merge/consolidate-dashboard`. Ran `populate_cache()` from `enrichment/epss_enrich.py`. Cache populated with 325,743 EPSS scores at `outputs/epss_cache/epss_scores.json` (26MB). The pipeline automatically uses this cache via `apply_enrichments(epss=True)` — no code change was needed.
+**Resolved:** 2026-04-09. Ran `populate_cache()` from `enrichment/epss_enrich.py`. Cache populated with 325,743 EPSS scores at `outputs/epss_cache/epss_scores.json` (26MB). The pipeline automatically uses this cache via `apply_enrichments(epss=True)` — no code change was needed. Most recent rebuild enriched 2,356 issues.
 
-### Problem 6 — Healthcare filter false positives
+### Problem 6 — Healthcare filter false positives — PARTIAL FIX SHIPPED
 
-**Symptom:** Known false positives include Vivian Spa cosmetics, Ombrelle sunscreen (filtered as medical_device because of the literal phrase "medical devices" in marketing copy), BRICKSTORM general malware reports, Volt Typhoon threat actor, Siemens SIPROTEC industrial power.
+**Partial fix:** 2026-04-10, commit `d605b28` "Reduce healthcare filter false positives (Problem 6)" on main via PR #13.
 
-**Cause:** `healthcare_filter.py` matches on the literal phrase "medical devices" too aggressively without context disambiguation.
+**Residual symptom:** Even after the partial fix, the `healthcare_relevant` flag is applied to all 3,929 issues because it covers `healthcare_adjacent` (2,638 issues = 67% of the corpus) in addition to `medical_device`, `healthcare_infrastructure`, and `healthcare_it`. The fix reduced specific false-positive matches (cosmetics marketing copy, Volt Typhoon, etc.) but the aggressive "adjacent" category behavior is still in place. Known noise sources include Vivian Spa cosmetics, Ombrelle sunscreen, BRICKSTORM general malware reports, Siemens SIPROTEC industrial power.
 
-**Fix:** Add negative-keyword exclusions and/or context-window checks. Low priority (cosmetic, doesn't break the demo) but should be cleaned up before grant submission for credibility.
+**Remaining work:** Decide whether `healthcare_adjacent` should count as `healthcare_relevant` for the default dashboard view. Low priority (doesn't break the demo) but matters for grant-narrative precision. `feed_healthcare.json` serving all 3,929 issues undermines the "healthcare-focused" pitch.
 
-### Problem 7 — Dashboard search box broken
+### Problem 7 — Dashboard search box broken — RESOLVED
 
-The search input field exists in the dashboard but doesn't actually filter. Add to the dashboard rebuild phase, low priority, won't block grant submission.
+**Resolved:** 2026-04-10, commit `fa5cbfd` "Verify dashboard search works (Problem 7)" on main via PR #13. Search input now filters issues by title, CVE, vendor, product, affected versions, and CWE IDs.
+
+### Audit findings still open (from phase_c_code_findings.md, 2026-04-11)
+
+Not elevated to numbered Problems because they're lower leverage than the pre-grant checklist in Section 7. Tracked for completeness:
+
+- **C-002:** `feed_contract.json` has 21 fields that `_feed_entry` emits but the contract doesn't declare (the inverse — 3 missing contract fields — was fixed by FIX 3). Contract is enforced by `tests/test_feed_contract.py` but the test only flags missing fields read by the dashboard, not missing declarations for emitted fields.
+- **C-003:** `extract.py` and `ai_correlate.py` are not wired into community-build (intentional for cost reasons, but worth documenting).
+- **C-010:** 11 modules (cli.py, feedback.py, ingest.py, models.py, source_run.py, util.py, and 5 enrichment modules) have no dedicated test file.
+- **C-012:** `docs/schema.md` has 7 field-name mismatches with `_feed_entry` output (36 documented fields vs 56 actual).
+- **C-027:** `community_build.py:1862` and `:1889` contain silent `except Exception:` blocks in the AI enrichment loops. Per-issue AI failures are invisible.
+- **C-031:** `_DASHBOARD_HTML` at `community_build.py:419` contains ~860 lines of dead embedded dashboard HTML (light-theme older version). `_publish_to_docs()` copies the standalone `dashboard/index.html` to `docs/` instead; the embedded version is never published.
 
 ## Section 7 — What's shipped vs. what's pending
 
-### Shipped and verified working
+### Shipped and verified working (as of 2026-04-12)
 
 - 60+ source ingestion pipeline (Section 3)
-- Historical backfill infrastructure for 9 high-value sources (`sources/*` modules)
+- Historical backfill infrastructure for 8 high-value sources (`sources/*` modules)
 - v2 healthcare-aware scoring with 5 dimensions and full per-issue `why` field (`scoring_internals.md`)
 - Source authority 5-tier weighting (`source_weights.py`, `configs/source_weights.json`)
 - NVD enrichment with CVSS/CWE/CPE (`nvd_enrich.py`)
-- KEV cross-reference (Feature B architecture)
+- KEV cross-reference with `kev_vendor`/`kev_product`/`kev_vulnerability_name` propagated end-to-end (FIX 3)
 - FDA risk class extraction from openFDA recalls (Feature 1)
 - The 11-pattern mitigation playbook with full citations (`mitigation_playbook.json`, governance in `playbook_governance.md`)
 - All four AI features: `--summarize`, `--extract-mitigations`, `--ai-score`, `--recommend`
-- The `RemediationPacket` dataclass and packet writer (414 packets generated in latest run)
+- Plus `--extract-fields` (Problem 3 fix)
+- The `RemediationPacket` dataclass and packet writer
 - Source-cited mitigation extraction with verbatim_snippet attribution
 - Plain-language summarizer with handling_warnings, unknowns, evidence_completeness
 - AI cache (`ai_cache.py`) — content-hash based, persistent, keeps incremental costs near zero
 - Prompt injection sanitization (`sanitize.py`)
-- Excel export (`excel_export.py`) — Feature A bug fix shipped
-- 4 filtered RSS feeds (Feature C): healthcare, KEV medical device, Class III, P0/P1
-- Healthcare category classification (Feature D)
+- Excel export (`excel_export.py`)
+- 4 filtered RSS feeds: healthcare, KEV medical device, Class III, P0/P1
+- Healthcare category classification
 - Cross-source contradiction detection (`contradiction_detector.py`)
 - Change tracking between pipeline runs (`change_tracker.py`)
 - Recommendation feedback recorder (`feedback.py`)
 - Advisory Q&A CLI (`advisory_qa.py`, exposed as `advisoryops ask`)
 - Product resolver (`product_resolver.py`, exposed as `advisoryops lookup`)
 - Golden fixture evaluation harness (`eval_harness.py`)
-- ~1,016 tests passing
+- Feed schema contract (`docs/feed_contract.json`) enforced by `tests/test_feed_contract.py`
+- Pipeline sanity report generated on every build (`outputs/community_public/sanity_report.md`)
+- EPSS scores rendered in the dashboard detail panel (commit `72c3fb2`)
+- AI recommendations rendered in the dashboard (commit `9cfd9fc`)
+- Dashboard priority thresholds match scoring reality (FIX 2, commit `0682073`)
+- Dashboard consolidated into main repo via PR #12 (commit `c6401ac`, 2026-04-10)
+- `_publish_to_docs()` copies dashboard HTML + 11 data files to docs/ after each build
+- Healthcare filter false-positive reduction (partial — Problem 6, commit `d605b28`)
+- Dashboard search functional (Problem 7, commit `fa5cbfd`)
+- KEV / medical device overlap investigation writeup (Problem 4, `docs/kev_medical_device_analysis.md`, commit `86984c0`)
+- Non-CVE field extraction (Problem 3, `extract_fields.py`, commits `0f8785d` + `8840c70`)
+- Architecture diagram + layer descriptions (commit `e778acc`, `docs/architecture.md`)
+- CONTRIBUTING.md refreshed for grant readiness (commit `afe40dc`)
+- README polish pass (commit `2924a54`) plus audit-driven correction pass (FIX 4, commit `68ae1f3`)
+- Repo hygiene: gitignore expansion, script and doc commits (commit `c719b52`)
+- `scripts/republish_docs.py` reusable one-off publisher (commit `dab64b3`)
+- Test hygiene: 9 `build_community_feed()` calls in test_community_build.py fixed to pass `repo_root=tmp_path` — tests no longer silently overwrite the real `docs/` directory (commit `dab64b3`)
+- 1,055 tests passing
 
 ### Pending pre-grant
 
 In rough priority order:
 
-1. **Problem 1: Packet → feed merge gap.** Highest leverage. 2–3 hours. Makes the entire AI subsystem visible.
-2. **Problem 2: Correlation correctness.** Triage fix (option 2 or 3) before grant; full fix (option 1) after grant. Half a day.
-3. **Problem 3: Non-CVE field extraction.** Half a day. Especially needed so Feature 1 actually fires for FDA-recall-derived issues.
-4. **Problem 5: EPSS cache populate.** One-time setup, ~30 min.
-5. **Problem 6: Healthcare filter false positives cleanup.** A couple of hours.
-6. **Architecture diagram.** For the grant narrative. A clean visual showing pipeline stages.
-7. **README and CONTRIBUTING.md currency check.** Both should reflect the current pipeline and source counts before submission.
-8. **Footer/link audit.** Make sure all GitHub links go to `github.com/travisfunk/...`.
-9. **SE enablement session + mock reviewer Q&A.** Pre-grant requirement explicitly set by Travis. Walk through the pipeline like briefing an SE before a big demo, then 20 hardest-likely reviewer questions. Happens AFTER code is final.
-10. **200-word problem statement.** Travis writes himself in his own voice. Do not draft this for him; offer feedback if asked but do not write it for him.
-11. **Grant proposal writing.** Travis initiates when ready. **Do not prompt about grant writing until he does.**
+1. **Push `feature/v1-readiness` to origin and merge to main.** The 8 audit+fix commits (from `7f3b094` to `453494a`) are local-only. Travis to review and push when comfortable.
+2. **Verify live GitHub Pages site.** Either confirm the Pages source is already flipped to `advisoryops/docs` (in which case the README live-demo link needs updating to `https://travisfunk.github.io/advisoryops/`), or flip it now. The old `advisoryops-dashboard` Pages URL is still the value in README.
+3. **Archive the old `advisoryops-dashboard` repo on GitHub** after step 2 succeeds.
+4. **Footer/link audit.** README line 6 and line 36 still contain the old `advisoryops-dashboard` URL. Other repo-internal links should be spot-checked.
+5. **Problem 3 residual verification.** Confirm extract_fields is firing on FDA-recall-derived issues and that the FDA risk class count moves above 180. If not, investigate why.
+6. **Problem 6 decision.** Decide whether `healthcare_adjacent` should be excluded from `healthcare_relevant=True` for the default dashboard view.
+7. **Audit findings triage.** Decide which of C-002/C-003/C-010/C-012/C-027/C-031 to address before grant submission vs. defer.
+8. **SE enablement session + mock reviewer Q&A.** Pre-grant requirement explicitly set by Travis. Walk through the pipeline like briefing an SE before a big demo, then 20 hardest-likely reviewer questions. Happens AFTER code is final.
+9. **200-word problem statement.** Travis writes himself in his own voice. Do not draft this for him; offer feedback if asked but do not write it for him.
+10. **Grant proposal writing.** Travis initiates when ready. **Do not prompt about grant writing until he does.**
 
 ### Pending post-grant (out of scope for grant submission)
 
 - Commercial layer: facility-specific device inventory matching, watchlists, work-email-only signup, email capture for sales leads. Architecturally separate from public layer. **Deliberately kept out of the grant proposal.**
 - Full architectural fix for Problem 2 (separate threatintel from advisory routing).
-- Dashboard rebuild. Phased plan: ship the merge fix on the existing dashboard first, then ship 1–2 more features, then redesign the dashboard from scratch with full requirements known, then ship remaining features into the new dashboard. Travis explicitly agreed: "I am not sure we won't have more ideas... I also think we can't really design now as we don't really know what the data will actually look like."
+- Dashboard rebuild. Phased plan: ship the next high-leverage feature on the existing dashboard first, then redesign the dashboard from scratch with full requirements known. Travis explicitly agreed: "I am not sure we won't have more ideas... I also think we can't really design now as we don't really know what the data will actually look like."
 - Ask A Nurse app — separate project, queued behind AdvisoryOps grant work.
 
 ## Section 8 — Architectural principles (locked, do not violate)
@@ -246,7 +279,7 @@ These are decisions Travis has made and re-confirmed. Treat them as constitution
 6. **Open public layer is architecturally separate from commercial layer.** Commercial features (facility-specific inventory matching, watchlists, email capture) are deliberately kept out of the grant proposal. Grant framing is "everything is open."
 7. **AI earns its place only when labor is repetitive at scale AND each instance produces different output.** Otherwise rule-based or static curated content is preferred. AI is not used for novelty; it's used because it's the only feasible way to do the work.
 8. **Sequential feature delivery.** Time is constraint, scope is variable. Whatever ships before the grant deadline is "demonstrated" in the proposal; everything else is "planned grant-funded work."
-9. **Phased dashboard rebuild.** Don't rebuild the UI yet. Phase 1: ship the next high-leverage feature (now Problem 1's merge fix) on the existing dashboard. Phase 2: ship 1–2 more features. Phase 3: redesign from scratch with full requirements known. Phase 4: ship remaining features into new dashboard.
+9. **Phased dashboard rebuild.** Don't rebuild the UI yet. Phase 1: ship high-leverage features on the existing dashboard first. Phase 2: ship 1–2 more features. Phase 3: redesign from scratch with full requirements known. Phase 4: ship remaining features into new dashboard.
 10. **Fix it right, not bandaid it.** Travis explicitly stated this as a preference. Workarounds are not acceptable; correct fixes only. (Exception: if a triage fix is needed to unblock a deadline, do it explicitly and label it as a triage fix with the real fix tracked separately.)
 
 ## Section 9 — Working agreements between Travis and Claude
@@ -275,9 +308,10 @@ These are operational rules that should govern every session. Read them every ti
 - **Python venv:** `.venv\Scripts\python.exe` in main repo
 - **NVD API key:** set as permanent User environment variable
 - **OpenAI API key:** `OPENAI_API_KEY` set as permanent User environment variable. `openai` Python package version 2.17.0 in venv. `gpt-4o-mini` is current default for AI features. `gpt-5-mini`, `gpt-5`, `gpt-5-nano` are planned per-task model selection but not yet wired in.
-- **GitHub:** `travisfunk` account. Both repos public. Dashboard served via GitHub Pages from `/docs` folder of advisoryops-dashboard repo.
+- **GitHub:** `travisfunk` account. Main repo public: `travisfunk/advisoryops`. The separate `advisoryops-dashboard` repo still exists but is superseded — its archival status is UNVERIFIABLE from code. Dashboard served via GitHub Pages; intended source is `/docs` folder of `advisoryops` repo after the 2026-04-10 consolidation; whether the Pages source has been flipped in the GitHub UI is UNVERIFIABLE from code.
 - **Claude Code:** launched with `claude --allowedTools "Bash(*)"` and `.claude/settings.json` in repo root.
-- **Caches:** `outputs/*_cache/` directories. Persistent. NVD cache is large (~340K records).
+- **Caches:** `outputs/*_cache/` directories. Persistent. NVD cache is large (~340K records). AI cache: 11,157 entries.
+- **CI:** None. No `.github/workflows/` directory exists.
 
 ## Section 11 — Grant context
 
@@ -289,7 +323,7 @@ These are operational rules that should govern every session. Read them every ti
 - **Cost framing strength:** Pipeline costs $1.40 per full rebuild, ~$0.06 weekly incremental. Total dev API spend ~$12.70. These are grant-strength numbers — they prove the approach is sustainable.
 - **Pre-grant requirements:**
   1. Code must be final and showable.
-  2. All Section 6 problems addressed (at minimum Problems 1–3).
+  2. All Section 6 problems addressed (at minimum Problems 1–3). As of 2026-04-12: Problems 1, 2 (triage), 3, 5, 7 resolved; Problem 4 investigation documented; Problem 6 partial fix shipped with residual framing question.
   3. SE enablement session: walk through the pipeline like briefing an SE before a big demo, product-level not code-level.
   4. Mock reviewer Q&A: 20 hardest likely questions.
   5. 200-word problem statement written by Travis in his own voice.
@@ -300,11 +334,13 @@ These are operational rules that should govern every session. Read them every ti
 
 To be honest about the limits of what I (Claude) verified vs. what I'm carrying forward from older context:
 
-- ~~Whether `extract.py` and `ai_correlate.py` are wired into community-build by default or only available as separate CLI commands.~~ **Resolved 2026-04-11 by audit C-003.** Neither `extract.py` nor `ai_correlate.py` is imported or called by `community_build.py`. `extract.py` is only reachable via the `extract` CLI subcommand. `ai_correlate.py` is only reachable via `correlate --ai-merge`, and `community_build.py` calls `correlate()` without `ai_merge=True`. Both modules are effectively orphaned from the main pipeline. See `audit/phase_c_code_findings.md` C-003.
-- **The exact list of "Features A through D"** that were shipped yesterday vs. older session work. The names overlap with earlier "Sessions B through K" naming and I may have conflated some.
-- **Whether `eval_harness.py` is currently being run as part of CI or is dormant.** It exists, has 520 lines, has tests, but I didn't verify recent execution.
-- **The current ai_cache hit rate.** I know it exists and works; I haven't measured it on the current corpus.
-- **GitHub Pages cutover hasn't happened yet.** The live URL still points at the `advisoryops-dashboard` repo. Travis needs to manually flip GitHub Pages source to the merged repo (Settings → Pages → Source → main / docs) after verifying the merge branch.
+- **The exact list of "Features A through D"** that were shipped in specific sessions vs. older session work. The names overlap with earlier "Sessions B through K" naming and may be conflated in places.
+- **Whether `eval_harness.py` is currently being run on any schedule.** It exists, has 520 lines, has tests, but there's no CI. Only runs on-demand via `advisoryops evaluate`.
+- **The current ai_cache hit rate.** 11,157 cached entries on disk. FIX 4.5 rebuild observed 100% cache hit rate on recommend packets. Full-corpus hit rate not measured.
+- **Whether the GitHub Pages source has been flipped from `advisoryops-dashboard` to `advisoryops`.** The code-side prerequisites are done (dashboard + data files on main in `docs/`). README badge and live-demo link still point at `advisoryops-dashboard`. Only Travis can confirm the GitHub UI state.
+- **Whether the old `advisoryops-dashboard` GitHub repo has been archived.** Only Travis can confirm.
+- **Whether Problem 3's extract_fields is firing on FDA-recall-derived issues in practice.** Recent rebuild still showed 180 FDA-risk-class issues (same as pre-fix runs). Could mean the fix is working but the openFDA matching is limited, or that extract_fields wasn't passed `--extract-fields` in the rebuild. Needs Travis to spot-check.
+- **Whether the healthcare_adjacent category aggression in `feed_healthcare.json` (3,929/3,929) is intended.** Section 6 Problem 6 treats it as residual; Travis should confirm whether to exclude adjacent from the default "healthcare" view.
 
 Future Claude: when these uncertainties become relevant, verify against the code or ask Travis. Don't reason from this file as if it were ground truth on the items above.
 
@@ -324,16 +360,37 @@ Future Claude: when these uncertainties become relevant, verify against the code
 - **Commit 8:** Added `_write_sanity_report()` generating `outputs/community_public/sanity_report.md` after each build. Surfaces priority distribution, field completeness, correlation health, AI coverage, healthcare classification, FDA risk class.
 - **Commit 9:** Updated README (source count 57→65, test count 696→1038, issue count 1990→3929) and this file. Marked Problems 1, 2 (triage), and 5 as resolved.
 
-**Test count:** 1016 → 1038. All passing.
+**Test count at end of session:** 1,038. All passing.
 
-**Manual steps still pending for Travis:**
-1. Visually verify dashboard renders new sections by opening `docs/index.html` in a browser.
-2. Push the branch and merge to main.
-3. Flip GitHub Pages source from `advisoryops-dashboard` to `advisoryops` (Settings → Pages → Source → main / docs).
-4. Verify the live URL still works.
-5. Archive the `advisoryops-dashboard` repo on GitHub.
+### 2026-04-10 — Pre-grant polish and two-PR merge
 
-### 2026-04-11 — Audit + fix mission
+Active day. 15 commits reaching main via two pull requests merged within 90 minutes of each other.
+
+**PR #12 (squash merge `c6401ac` at 2026-04-10 00:06):** Consolidated dashboard repo into main. Squashed the entire `merge/consolidate-dashboard` branch plus follow-on work. Message body enumerates Phase 1A NVD historical backfill, Phase 1B CISA ICSMA backfill, incremental discovery for both, and the dashboard-merge commits.
+
+**PR #13 (merge commit `f189ea1` at 2026-04-10 01:37):** "Field extraction, search, false positive cleanup, and polish." Merged `feature/v1-readiness@32810ec` into main. Contained commits:
+- `fa5cbfd` Verify dashboard search works (Problem 7)
+- `afe40dc` Update CONTRIBUTING.md for grant readiness
+- `e778acc` Add architecture diagram and layer descriptions
+- `72c3fb2` Render EPSS scores in dashboard detail panel
+- `d605b28` Reduce healthcare filter false positives (Problem 6)
+- `86984c0` KEV / medical device overlap investigation (Problem 4)
+- `2924a54` README polish pass for grant readiness
+- `c719b52` Repo hygiene: gitignore caches, commit scripts and docs
+- `0f8785d` Add LLM field extraction for non-CVE issues (Problem 3)
+- `8840c70` Fix extract_fields truncation: bump max_tokens, handle malformed JSON
+- `32810ec` Merge main into v1-readiness branch
+
+After PR #13, origin/main = `f189ea1`. This state contains everything the fix mission later audited against. No session log entry was written at the time. This entry is reconstructed from git history on 2026-04-12.
+
+**Manual steps from 2026-04-09 revisited:**
+1. ~~Visually verify dashboard renders new sections.~~ Not tracked in commits; presumed done.
+2. ~~Push the branch and merge to main.~~ DONE via PR #12 + PR #13 on 2026-04-10.
+3. Flip GitHub Pages source from `advisoryops-dashboard` to `advisoryops`. UNVERIFIABLE from code.
+4. Verify the live URL still works. UNVERIFIABLE from code.
+5. Archive the `advisoryops-dashboard` repo on GitHub. UNVERIFIABLE from code.
+
+### 2026-04-11 — Audit + fix mission (branch `feature/v1-readiness`, not pushed)
 
 Multi-stage audit of the project followed by a targeted fix mission addressing the HIGH-severity findings. All work on branch `feature/v1-readiness`. Not pushed — Travis will review and push.
 
@@ -343,20 +400,24 @@ Multi-stage audit of the project followed by a targeted fix mission addressing t
 - **`815ee7a` — fix(C-001,C-014): emit kev_vendor/kev_product/kev_vulnerability_name in _feed_entry.** `_feed_entry` in `community_build.py` was dropping three KEV fields that the dashboard reads and `feed_contract.json` declares. Additionally `_KEV_FIELDS` was missing `kev_vulnerability_name` so it was never even propagated from signals to the issue dict. Fix adds all three to `_feed_entry` and adds `kev_vulnerability_name` to `_KEV_FIELDS` and `_NVD_KEV_FIELDS`.
 - **`68ae1f3` — fix(C-004,C-005): correct source counts and remove phantom sources from README.** README source coverage table listed 10+ source names that did not exist in `configs/sources.json` (H-ISAC, AHA, HSCC, BleepingComputer, SecurityWeek, Medtronic, Abbott, BD, GitHub Security, etc.). README used three different source counts (57, 57, 65). Actual is 68. Rebuilt table using the 4 real scope values. Also updated test count 1038→1055, issue count 3929→1990, medical device count 856→234, NVD count 1138→1091.
 - **`b0f4b5e` — chore(pipeline): incremental rebuild to regenerate feed with FIX 3 schema.** Ran `community-build --set-id full_public --skip-backfill --summarize --extract-mitigations --ai-score --recommend --min-priority P1` against existing discover/ data. All 100 recommend packets hit the AI cache — effectively $0 API spend. Produced 3,929 issues, 100 alerts, 203 KEV-enriched with `kev_vendor`/`kev_product` populated end-to-end. Runtime ~6 min.
+- **`957d09b` — docs(session_state): record audit and fix mission outcomes.** First session_state edit pass after the fix mission.
+- **`453494a` — docs(audit): investigate corpus count discrepancy.** FIX 6 writeup confirming the 1,990 vs 3,929 gap was a `--latest N` truncation artifact, not a filtering bug.
 
 Tests: 1,055 passing on every commit. No regressions.
 
-Open items from the audit remaining for Travis to triage:
-- C-002: feed_contract.json is missing 21 fields that `_feed_entry` emits.
-- C-003: `extract.py` and `ai_correlate.py` are not wired into community-build (documented in Section 12).
-- C-010: 11 modules (2,279 lines) have no dedicated test file.
-- C-012: `docs/schema.md` has 7 field-name mismatches with `_feed_entry`.
-- C-031: ~860 lines of dead embedded dashboard HTML in `community_build.py` (`_DASHBOARD_HTML`).
-- C-033/C-034: `cmd_correlate` uses fragile `inspect.signature()` parameter probing and duplicates a module-level import.
-- C-027: community_build.py AI subsystem has silent exception blocks that hide per-issue AI failures.
-- Problem 6 (healthcare filter false positives): still flagged. The 3,929/3,929 healthcare_relevant=True count in the latest rebuild reflects the aggressive "adjacent" category, not a new regression.
+### 2026-04-12 — Documentation reality-check pass (this session)
 
-See `audit/fix_mission_progress.md` for the step-by-step fix log and `audit/fix_mission_pipeline.log` for the full pipeline rebuild log.
+Read-only audit of how well the documentation reflects the current state of main + feature/v1-readiness. Output: `audit/doc_reality_check.md` report and `audit/proposed_session_state.md` proposed rewrite (this file is the proposed version — Travis reviews before it replaces the live session_state.md).
+
+Key findings:
+- The 2026-04-10 work day (15 commits across two PRs) was never logged in Section 13. Added above.
+- Problems 3, 7 had been resolved on main before the audit/fix mission but were still marked open. Now marked RESOLVED with commit references.
+- Problem 6 had a partial fix on main but session_state still described it as open. Updated to "PARTIAL FIX SHIPPED".
+- Section 2 and Section 12 contradicted each other on GitHub Pages cutover state. Section 12 narrowed to "UNVERIFIABLE from code — only Travis can confirm the UI flip."
+- Section 7 "Shipped" list was missing ~15 entries; "Pending pre-grant" list had items 1-7 stale/resolved. Rewrote both halves.
+- Section 5 corpus numbers updated to current (3,929 issues, 215 P0, 200 P1, etc.) from the FIX 4.5 rebuild sanity_report.md.
+- Section 3 removed the "EPSS currently disabled / cache empty" contradiction with Problem 5.
+- Module counts corrected: 39→38 core modules (always was 38, doc was wrong), 6→"6 enrichment plus __init__.py", 9→"8 backfill plus registry + sync + __init__" in sources/.
 
 ---
 
