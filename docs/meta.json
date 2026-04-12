@@ -11,18 +11,18 @@
     "only_new": false,
     "limit_per_source": 200,
     "limit_issues": 0,
-    "min_priority": "P2",
-    "top": 0,
+    "min_priority": "P1",
+    "top": 100,
     "latest": 0
   },
   "counts": {
     "validated_sources": 65,
     "candidate_sources": 1,
-    "issues_public": 3923,
-    "alerts_public": 971,
-    "latest": 3923,
-    "healthcare": 896,
-    "packets": 0
+    "issues_public": 3929,
+    "alerts_public": 100,
+    "latest": 3929,
+    "healthcare": 3929,
+    "packets": 100
   },
   "outputs": {
     "issues_public_jsonl": "outputs\\community_public\\issues_public.jsonl",
@@ -34,6 +34,6 @@
     "validated_sources_json": "outputs\\community_public\\validated_sources.json",
     "meta_json": "outputs\\community_public\\meta.json",
     "dashboard_html": "outputs\\community_public\\dashboard.html",
-    "packets_dir": null
+    "packets_dir": "outputs\\community_public\\packets"
   }
 }

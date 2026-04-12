@@ -2,11 +2,11 @@
 
 ![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)
 ![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)
-![Tests: 1038 passing](https://img.shields.io/badge/tests-1038_passing-brightgreen.svg)
+![Tests: 1055 passing](https://img.shields.io/badge/tests-1055_passing-brightgreen.svg)
 [![Dashboard](https://img.shields.io/badge/dashboard-GitHub_Pages-blue.svg)](https://travisfunk.github.io/advisoryops-dashboard/)
 
 **Open-source healthcare medical device security intelligence pipeline.**
-AdvisoryOps continuously monitors 65 public sources — CISA ICS-Medical, the Known Exploited Vulnerabilities catalog, FDA device recalls, NVD, CERT/CC, vendor PSIRTs, and more — and produces a prioritized, healthcare-aware feed of medical device vulnerabilities. Built for hospital security teams that can't afford commercial platforms like Claroty or TRIMEDX.
+AdvisoryOps continuously monitors 68 public sources — CISA ICS-Medical, the Known Exploited Vulnerabilities catalog, FDA device recalls, NVD, CERT/CC, vendor PSIRTs, and more — and produces a prioritized, healthcare-aware feed of medical device vulnerabilities. Built for hospital security teams that can't afford commercial platforms like Claroty or TRIMEDX.
 
 
 ---
@@ -35,7 +35,7 @@ AdvisoryOps closes that gap. The data is free, the analysis is free, the dashboa
 
 **Dashboard:** [https://travisfunk.github.io/advisoryops-dashboard/](https://travisfunk.github.io/advisoryops-dashboard/)
 
-The "Medical devices" view shows 856 healthcare-relevant issues with CVSS scores, EPSS exploit probabilities, KEV deadlines, FDA risk class badges, and AI-generated remediation guidance with role-split task assignments. Color-coded priority badges (P0-P3), click-to-expand detail panels, and a debounced search bar filtering by title, CVE, vendor, and product. No framework, no build step — single-file vanilla HTML/JS.
+The "Medical devices" view shows 234 healthcare-relevant issues with CVSS scores, EPSS exploit probabilities, KEV deadlines, FDA risk class badges, and AI-generated remediation guidance with role-split task assignments. Color-coded priority badges (P0-P3), click-to-expand detail panels, and a debounced search bar filtering by title, CVE, vendor, and product. No framework, no build step — single-file vanilla HTML/JS.
 
 ---
 
@@ -43,13 +43,13 @@ The "Medical devices" view shows 856 healthcare-relevant issues with CVSS scores
 
 | Metric | Value |
 |--------|-------|
-| Total sources monitored | 65 |
-| Total issues tracked | 3,929 |
-| Medical device issues | 856 |
-| Issues with NVD enrichment | 2,362 |
+| Total sources monitored | 68 |
+| Total issues tracked | 1,990 |
+| Medical device issues | 234 |
+| Issues with NVD enrichment | 1,091 |
 | Issues with KEV required actions | 203 |
 | AI recommendation packets | 139 (P0/P1) |
-| Automated tests | 1,038 |
+| Automated tests | 1,055 |
 | Full corpus rebuild cost | $1.40 |
 
 ### Repository structure
@@ -104,7 +104,7 @@ advisoryops evaluate --fixtures tests/fixtures/golden --out outputs/eval
 ## Pipeline architecture
 ```mermaid
 flowchart TD
-    A[57 Public Sources<br/>CISA · FDA · NVD · Vendor PSIRTs · Threat Intel] --> B[Discover<br/>Fetch & normalize feeds]
+    A[68 Public Sources<br/>CISA · FDA · NVD · Vendor PSIRTs · Threat Intel] --> B[Discover<br/>Fetch & normalize feeds]
     B --> C[Correlate<br/>Dedupe by CVE / signal hash]
     C --> D[NVD Enrich<br/>CVSS · CWE · CPE · KEV]
     D --> E[Score<br/>Healthcare-aware priority P0-P3]
@@ -119,9 +119,9 @@ flowchart TD
 ```
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                        DATA SOURCES (57 enabled)                │
+│                        DATA SOURCES (68 enabled)                │
 │  CISA ICS-Medical · CISA KEV · FDA Recalls · CERT/CC · NVD     │
-│  MS MSRC · Cisco · Siemens · Philips · GitHub Security · more  │
+│  MS MSRC · Siemens · Philips · ABB · ZDI · more                │
 └─────────────────────┬───────────────────────────────────────────┘
                       │ RSS/Atom · JSON feeds · CSV feeds
                       ▼
@@ -146,7 +146,7 @@ flowchart TD
 │  3. NVD ENRICH  (nvd_enrich.py)                                 │
 │  CVE → CVSS base score, vector, CWE, affected products (CPE)   │
 │  KEV cross-reference → required action, due date, ransomware    │
-│  1,138 issues enriched in current corpus                        │
+│  1,091 issues enriched in current corpus                        │
 │  Output: NVD fields merged into issues.jsonl                    │
 └─────────────────────┬───────────────────────────────────────────┘
                       │
@@ -196,17 +196,14 @@ flowchart TD
 
 ## Source coverage
 
-**65 enabled sources across 7 categories**
+**68 enabled sources across 4 scopes** (see `configs/sources.json` for the full list)
 
-| Category | Count | Examples |
+| Scope | Count | Examples |
 |----------|-------|---------|
-| CISA / US-CERT | 8 | ICS-Medical, ICS advisories, KEV (JSON + CSV), AA alerts, CERT/CC |
-| FDA | 3 | MAUDE device events, device recalls, MedWatch |
-| NVD / NIST | 2 | NVD recent CVEs, NVD modified CVEs feed |
-| Vendor PSIRTs | 10 | Microsoft MSRC, Cisco PSIRT, Siemens ProductCERT, Philips, BD, Medtronic, Abbott |
-| Threat Intelligence | 8 | AlienVault OTX, GitHub Security Advisories, EPSS, abuse.ch |
-| Security News | 14 | Krebs on Security, BleepingComputer, Dark Reading, SANS ISC, SecurityWeek |
-| Healthcare Orgs | 6 | H-ISAC, HHS 405(d), AHA, HSCC, FDA Safety Communications |
+| advisory | 18 | CISA ICS-Medical, CISA ICS, CERT/CC, FDA MedWatch, Health Canada recalls, ABB PSIRT, ZDI Published, MHRA UK alerts, Philips PSIRT, Siemens ProductCERT |
+| dataset | 12 | CISA KEV (JSON + CSV), NVD CVE API, openFDA device recalls, openFDA device events, EPSS API, Tenable plugins, CWE catalog, MITRE ATT&CK ICS, CISA Vulnrichment |
+| news | 29 | CISA NCAS alerts/analysis/current activity, CyberScoop Healthcare, Fortified Health Security, HIPAA Guide Cyber, MedTech Intelligence, Microsoft MSRC blog, NCSC UK, NIST Cybersecurity Insights, Krebs on Security, Dark Reading |
+| threatintel | 9 | Cisco Talos, Google/Mandiant, Check Point Research, CrowdStrike, Abuse.ch URLhaus, Abuse.ch Feodo Tracker, Abuse.ch SSL Blacklist, SANS ISC Blocklist IPs, Binary Defense Banlist |
 
 To add a new source, add a record to `configs/sources.json` (page_type must be `rss_atom`, `json_feed`, or `csv_feed`) and run:
 

@@ -91,6 +91,7 @@ def test_build_community_feed_from_existing_discover_outputs(tmp_path: Path, mon
         min_priority="P3",
         top=100,
         latest=10,
+        repo_root=tmp_path,
     )
 
     assert issues_public.exists()
@@ -215,6 +216,7 @@ def test_build_community_feed_recommend_generates_packets(tmp_path: Path, monkey
         recommend=True,
         recommend_priorities=("P0", "P1", "P2", "P3"),  # accept all priorities
         _recommend_call_fn=_mock_recommend_call_fn,
+        repo_root=tmp_path,
     )
 
     packets_dir = out_root / "packets"
@@ -269,6 +271,7 @@ def test_build_community_feed_recommend_false_no_packets(tmp_path: Path, monkeyp
         top=100,
         latest=10,
         recommend=False,
+        repo_root=tmp_path,
     )
 
     meta = json.loads(meta_path.read_text(encoding="utf-8"))
@@ -315,6 +318,7 @@ def test_build_community_feed_rss_feed_xml(tmp_path: Path, monkeypatch) -> None:
         min_priority="P3",
         top=100,
         latest=10,
+        repo_root=tmp_path,
     )
 
     feed_xml = out_root / "feed.xml"
@@ -384,6 +388,7 @@ def test_build_community_feed_recommend_no_qualifying_alerts(tmp_path: Path, mon
         recommend=True,
         recommend_priorities=(),  # no priorities match → 0 packets
         _recommend_call_fn=_mock_recommend_call_fn,
+        repo_root=tmp_path,
     )
 
     meta = json.loads(meta_path.read_text(encoding="utf-8"))
@@ -457,6 +462,7 @@ def test_dashboard_written_by_build_community_feed(tmp_path: Path, monkeypatch) 
         min_priority="P3",
         top=100,
         latest=10,
+        repo_root=tmp_path,
     )
 
     dashboard = out_root / "dashboard.html"
@@ -607,6 +613,7 @@ def test_dashboard_feed_entry_includes_trust_fields(tmp_path: Path, monkeypatch)
         min_priority="P3",
         top=100,
         latest=10,
+        repo_root=tmp_path,
     )
 
     latest = json.loads((out_root / "feed_latest.json").read_text(encoding="utf-8"))
@@ -647,6 +654,7 @@ def test_dashboard_meta_includes_dashboard_path(tmp_path: Path, monkeypatch) -> 
         min_priority="P3",
         top=100,
         latest=10,
+        repo_root=tmp_path,
     )
 
     meta = json.loads(meta_path.read_text(encoding="utf-8"))
