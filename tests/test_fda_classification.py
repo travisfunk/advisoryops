@@ -188,7 +188,12 @@ class TestScoreV2FdaIntegration:
         result = score_issue_v2(base_issue)
         assert not any("fda-risk-class" in w for w in result.why)
 
-    def test_class2_vs_class3_score_difference(self):
+    def test_class2_vs_class3_hit_their_respective_floors(self):
+        """With the clinical-severity floor, low-base-score Class III items
+        land at the P0 threshold (150) and Class II items at P1 (100).
+        The additive +30/+10 contribution is dominated by the floor when
+        the cyber-signal base score is low.
+        """
         base = {
             "issue_id": "CVE-2024-TEST",
             "issue_type": "cve",
@@ -200,7 +205,8 @@ class TestScoreV2FdaIntegration:
         issue_c3 = {**base, "fda_risk_class": "3"}
         score_c2 = score_issue_v2(issue_c2).score
         score_c3 = score_issue_v2(issue_c3).score
-        assert score_c3 - score_c2 == 20  # 30 - 10 = 20 point difference
+        assert score_c2 == 100  # Class II floor
+        assert score_c3 == 150  # Class III floor
 
 
 # ═══════════════════════════════════════════════════════════════════════════
