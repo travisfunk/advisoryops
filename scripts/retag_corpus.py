@@ -21,10 +21,52 @@ from typing import Any, Dict, List
 
 from advisoryops.community_build import _publish_to_docs
 from advisoryops.healthcare_filter import classify_healthcare_category
+from advisoryops.score import (
+    _apply_fda_clinical_floor,
+    _actions_for_priority,
+    _priority_from_score,
+)
 
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 COMMUNITY_ROOT = REPO_ROOT / "outputs" / "community_public"
+
+_FDA_FLOOR_MARKERS = (
+    "FDA Class III auto-floored",
+    "FDA Class II auto-floored",
+    "FDA Class I clinical-severity boost",
+)
+
+
+def _rescore_fda_floor(issue: Dict[str, Any]) -> None:
+    """Re-apply the FDA clinical-severity floor to an already-scored issue.
+
+    Idempotent: if the issue's ``why`` already records an FDA-floor entry,
+    skip to avoid double-boosting Class I on repeated runs.
+    """
+    if issue.get("fda_risk_class") not in ("1", "2", "3"):
+        return
+    why = issue.get("why") or []
+    if any(any(m in w for m in _FDA_FLOOR_MARKERS) for w in why):
+        return
+
+    score = issue.get("score")
+    if not isinstance(score, int):
+        return
+
+    new_score = _apply_fda_clinical_floor(issue, score, why)
+    if new_score == score:
+        return
+
+    # Strip stale "priority: ..." trailing entry and append fresh one.
+    why = [w for w in why if not (isinstance(w, str) and w.startswith("priority:"))]
+    priority = _priority_from_score(new_score)
+    why.append(f"priority: {priority} (score={new_score})")
+
+    issue["score"] = new_score
+    issue["priority"] = priority
+    issue["actions"] = _actions_for_priority(priority)
+    issue["why"] = why
 
 
 def _retag_issue_list(issues: List[Dict[str, Any]]) -> Counter:
@@ -36,6 +78,7 @@ def _retag_issue_list(issues: List[Dict[str, Any]]) -> Counter:
             counts[issue["healthcare_category"]] += 1
         else:
             counts["not_healthcare"] += 1
+        _rescore_fda_floor(issue)
     return counts
 
 
