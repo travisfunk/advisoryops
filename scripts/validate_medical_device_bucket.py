@@ -37,6 +37,16 @@ GENERAL_IT_VENDORS = {
     "Samsung",
 }
 
+# Sources whose issues should, in principle, carry an FDA risk class. Used
+# for the soft "FDA coverage" metric below — not a hard failure condition.
+FDA_DERIVED_SOURCES = {
+    "openfda-recalls-historical",
+    "openfda-device-recalls",
+    "openfda-device-events",
+    "fda-medwatch",
+    "fda-safety-comms-historical",
+}
+
 
 def main() -> int:
     if not FEED_PATH.exists():
@@ -67,6 +77,26 @@ def main() -> int:
         for issue in leaks[:10]:
             print(f"  {issue.get('issue_id')} vendor={issue.get('vendor')!r}")
         return 1
+
+    # Soft metric — flag (not fail) regressions in FDA coverage. A rising
+    # null count would suggest the enforcement-cache lookup is losing hits,
+    # either because cache files went stale or the recall-number parser
+    # drifted. Printed prominently so CI / eyeballing surfaces it.
+    fda_derived = [
+        i for i in medical
+        if any(s in FDA_DERIVED_SOURCES for s in (i.get("sources") or []))
+    ]
+    fda_null = [i for i in fda_derived if not i.get("fda_risk_class")]
+    print()
+    print(
+        f"METRIC: FDA-derived medical_device issues with null fda_risk_class: "
+        f"{len(fda_null)} / {len(fda_derived)}"
+    )
+    if fda_null:
+        print(
+            "        (these are expected for MAUDE / RSS-only sources; "
+            "watch the ratio for regressions)"
+        )
 
     print()
     print("PASS: no general-IT vendor leaks in medical_device bucket")
