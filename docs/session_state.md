@@ -122,6 +122,8 @@ Tests: ~1,016 passing pre-pipeline-run, no regressions.
 
 **This run was the first time today's session saw the AI subsystem produce end-to-end output.** It validated that the entire AI subsystem (recommend, summarize, extract-mitigations, ai-score) is operational and producing rich packet output. The blocking question turned out to be not "does the AI work" but "why isn't the dashboard showing the AI work" — see Section 6.
 
+**Update (2026-04-12):** A fresh incremental rebuild (commit `b0f4b5e`) at the FIX 4.5 step produced slightly different numbers. Same config (`--set-id full_public --summarize --extract-mitigations --ai-score --recommend --min-priority P1`) but `--top 100` default truncated alerts to 100, and the NVD-enrichment count was 2,372 (vs 2,362 claimed in the 2026-04-08 snapshot above). IOC/summary/mitigation tallies were not re-measured. Issue count is 3,929 (confirmed from both runs) — the 3,923 in the bullet above is stale. Healthcare category breakdown was not re-measured this session. See FIX 6 investigation in audit/fix_mission_notes.md.
+
 ## Section 6 — Known problems, prioritized
 
 These are the issues blocking grant submission, in priority order. **Read this section every session.**
@@ -131,6 +133,8 @@ These are the issues blocking grant submission, in priority order. **Read this s
 **Resolved:** 2026-04-09, branch `merge/consolidate-dashboard`, commits 3 and 4.
 
 Fixed `_merge_trust` to copy `recommended_patterns`, `tasks_by_role`, `reasoning`, and `citations` from packet data into feed rows. Added these fields to `_feed_entry` and to `packet_trust_by_id`. Dashboard now renders pattern cards with friction levels, role-split tasks, and AI reasoning. Regression tests added to `test_remediation_trust.py`. Verified: 138/139 P0/P1 issues now have `recommended_patterns` in the feed output.
+
+**Audit follow-up (2026-04-11):** Audit finding C-001 + C-014 found that three additional KEV-related fields (`kev_vendor`, `kev_product`, `kev_vulnerability_name`) were still being dropped by `_feed_entry` even though the dashboard read them and `feed_contract.json` declared them. Resolved 2026-04-12, commit `815ee7a` — added all three to `_feed_entry`, added `kev_vulnerability_name` to `_KEV_FIELDS` (previously missing). Incremental pipeline rebuild commit `b0f4b5e` propagated the new schema to docs/ — feed_latest.json now has 203 entries with populated `kev_vendor`/`kev_product`/`kev_vulnerability_name`.
 
 ### Problem 2 — Correlation incorrectly merges unrelated signals — TRIAGE FIX RESOLVED
 
@@ -148,7 +152,9 @@ Applied option 2: added `source_id` to the non-CVE merge key basis (`key_basis =
 
 **Fix:** Add a non-CVE field extraction pass that runs after the AI summarizer. Pull vendor name, device name, severity word, and any version strings from the rewritten plain-language summary using either targeted regex or a small extraction prompt. Then re-run the FDA classification lookup with the extracted device name. Probably half a day. Could plausibly be implemented as an extension to `extract.py` or as a new dedicated module.
 
-### Problem 4 — KEV / medical device zero overlap (REAL FINDING, NOT NECESSARILY A BUG)
+### Problem 4 — KEV / medical device zero overlap (INVESTIGATION IN PROGRESS)
+
+**Audit follow-up (2026-04-11, 2026-04-12):** Commit `86984c0` on main added `docs/kev_medical_device_analysis.md` with the investigation writeup (happened before the audit). Partial resolution — the finding is documented but the root-cause determination still needs confirmation.
 
 **Symptom:** All 203 KEV-enriched issues are general IT vendors (Cisco, Adobe, Apple, Microsoft, Fortinet, Ivanti, etc.). Zero of them match medical device vendors. Feature B (KEV cross-reference for medical devices) is architecturally in place but matches nothing.
 
@@ -294,7 +300,7 @@ These are operational rules that should govern every session. Read them every ti
 
 To be honest about the limits of what I (Claude) verified vs. what I'm carrying forward from older context:
 
-- **Whether `extract.py` and `ai_correlate.py` are wired into community-build by default or only available as separate CLI commands.** Both modules exist with substantial code. I confirmed `extract.py` is exposed via the `extract` CLI command but did not verify whether community-build invokes them.
+- ~~Whether `extract.py` and `ai_correlate.py` are wired into community-build by default or only available as separate CLI commands.~~ **Resolved 2026-04-11 by audit C-003.** Neither `extract.py` nor `ai_correlate.py` is imported or called by `community_build.py`. `extract.py` is only reachable via the `extract` CLI subcommand. `ai_correlate.py` is only reachable via `correlate --ai-merge`, and `community_build.py` calls `correlate()` without `ai_merge=True`. Both modules are effectively orphaned from the main pipeline. See `audit/phase_c_code_findings.md` C-003.
 - **The exact list of "Features A through D"** that were shipped yesterday vs. older session work. The names overlap with earlier "Sessions B through K" naming and I may have conflated some.
 - **Whether `eval_harness.py` is currently being run as part of CI or is dormant.** It exists, has 520 lines, has tests, but I didn't verify recent execution.
 - **The current ai_cache hit rate.** I know it exists and works; I haven't measured it on the current corpus.
@@ -326,6 +332,31 @@ Future Claude: when these uncertainties become relevant, verify against the code
 3. Flip GitHub Pages source from `advisoryops-dashboard` to `advisoryops` (Settings → Pages → Source → main / docs).
 4. Verify the live URL still works.
 5. Archive the `advisoryops-dashboard` repo on GitHub.
+
+### 2026-04-11 — Audit + fix mission
+
+Multi-stage audit of the project followed by a targeted fix mission addressing the HIGH-severity findings. All work on branch `feature/v1-readiness`. Not pushed — Travis will review and push.
+
+- **`7f3b094` — audit: phase A+B+C unattended audit (read-only, findings only).** Full inventory of 56 Python modules / 57 test files / 96 sources / 15 CLI subcommands / 11 playbook patterns. 22+ stale doc claims flagged. 35 findings filed (5 HIGH, 10 MEDIUM, 11 LOW, 9 INFO). Writeups at `audit/phase_a_inventory.md`, `audit/phase_b_doc_reality.md`, `audit/phase_c_code_findings.md`, `audit/continuity.md`.
+- **`dab64b3` — fix(C-018): republish docs/ from existing corpus via scripts/republish_docs.py.** Added `scripts/republish_docs.py` to re-run `_publish_to_docs()` against existing outputs/community_public. Also found and fixed 9 calls to `build_community_feed()` in `tests/test_community_build.py` that were missing `repo_root=tmp_path` — tests had been silently overwriting the real `docs/` directory on every run, causing the live GitHub Pages dashboard to show test data (1 issue instead of thousands).
+- **`0682073` — fix(C-030): correct priority thresholds in dashboard Methodology tab.** Dashboard showed P0>=190/P1>=150/P2>=100/P3<100; actual thresholds in `score.py:103-108` are P0>=150/P1>=100/P2>=60/P3<60. Every displayed number was wrong.
+- **`815ee7a` — fix(C-001,C-014): emit kev_vendor/kev_product/kev_vulnerability_name in _feed_entry.** `_feed_entry` in `community_build.py` was dropping three KEV fields that the dashboard reads and `feed_contract.json` declares. Additionally `_KEV_FIELDS` was missing `kev_vulnerability_name` so it was never even propagated from signals to the issue dict. Fix adds all three to `_feed_entry` and adds `kev_vulnerability_name` to `_KEV_FIELDS` and `_NVD_KEV_FIELDS`.
+- **`68ae1f3` — fix(C-004,C-005): correct source counts and remove phantom sources from README.** README source coverage table listed 10+ source names that did not exist in `configs/sources.json` (H-ISAC, AHA, HSCC, BleepingComputer, SecurityWeek, Medtronic, Abbott, BD, GitHub Security, etc.). README used three different source counts (57, 57, 65). Actual is 68. Rebuilt table using the 4 real scope values. Also updated test count 1038→1055, issue count 3929→1990, medical device count 856→234, NVD count 1138→1091.
+- **`b0f4b5e` — chore(pipeline): incremental rebuild to regenerate feed with FIX 3 schema.** Ran `community-build --set-id full_public --skip-backfill --summarize --extract-mitigations --ai-score --recommend --min-priority P1` against existing discover/ data. All 100 recommend packets hit the AI cache — effectively $0 API spend. Produced 3,929 issues, 100 alerts, 203 KEV-enriched with `kev_vendor`/`kev_product` populated end-to-end. Runtime ~6 min.
+
+Tests: 1,055 passing on every commit. No regressions.
+
+Open items from the audit remaining for Travis to triage:
+- C-002: feed_contract.json is missing 21 fields that `_feed_entry` emits.
+- C-003: `extract.py` and `ai_correlate.py` are not wired into community-build (documented in Section 12).
+- C-010: 11 modules (2,279 lines) have no dedicated test file.
+- C-012: `docs/schema.md` has 7 field-name mismatches with `_feed_entry`.
+- C-031: ~860 lines of dead embedded dashboard HTML in `community_build.py` (`_DASHBOARD_HTML`).
+- C-033/C-034: `cmd_correlate` uses fragile `inspect.signature()` parameter probing and duplicates a module-level import.
+- C-027: community_build.py AI subsystem has silent exception blocks that hide per-issue AI failures.
+- Problem 6 (healthcare filter false positives): still flagged. The 3,929/3,929 healthcare_relevant=True count in the latest rebuild reflects the aggressive "adjacent" category, not a new regression.
+
+See `audit/fix_mission_progress.md` for the step-by-step fix log and `audit/fix_mission_pipeline.log` for the full pipeline rebuild log.
 
 ---
 
