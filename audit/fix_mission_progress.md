@@ -261,3 +261,29 @@ See `audit/fda_extraction_diagnosis.md`. Summary:
 ### Phase 2 plan
 
 Add `extract_risk_class_from_enforcement` + `lookup_class_by_recall_number` helpers to `fda_classification.py`. Extend `retag_corpus.py` with a recall-number-parsing pass that hits the enforcement cache. Purely additive; does not change the existing `extract_risk_class_from_recall` path.
+
+### Commits landed
+
+- `1ee3ab3` feat(fda_classification): tighten risk class extraction via enforcement cache
+- `f888ea9` chore(corpus): re-extract FDA risk class and re-apply clinical-severity floor
+- `<next>` chore(validation): track null fda_risk_class count in medical_device bucket
+
+### Final numbers
+
+| | before mission | after mission |
+|---|---:|---:|
+| FDA-derived null fda_risk_class | 328 | **128** |
+| medical_device bucket size | 224 | 424 |
+| medical_device P0 | 8 | 10 |
+| medical_device P1 | 130 | 291 |
+| medical_device P2 | 11 | 28 |
+| medical_device P3 | 75 | 95 |
+| Validation METRIC: FDA-derived null in medical_device | N/A | 0 / 378 |
+
+Remaining null fda_risk_class breakdown (not recoverable without new data source):
+- 100 openfda-device-events (MAUDE adverse-event feed, no class in source)
+- 22 openfda-recalls-historical (pre-2013 recalls, no enforcement-cache match)
+- 5 fda-medwatch (RSS feed, no class in source)
+- 1 openfda-device-recalls (edge case)
+
+Tests: 1076 passing (was 1063 baseline; +13 FDA-extraction tests). Branch clean, not pushed.
