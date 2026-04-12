@@ -243,3 +243,21 @@ Retag script path: extend `scripts/retag_corpus.py` to also re-apply the floor a
 Class III → P0 (8/8 floored to 150), Class II → P1 (125 floored to 100), Class I → +10 boost only (47 remain in P3). Two HeartStart MRx rows with `fda_risk_class=null` remain at P3 — that's an FDA-enrichment gap, not a floor gap.
 
 Tests: 1,063 passing (was 1,051; added 13 FDA-floor tests; revised 1 legacy test to the new floor-dominated behavior). Validation script still exits 0. Docs sanity: 3,929 issues.
+
+---
+
+## 2026-04-12 — FDA risk class extraction
+
+**Goal:** Populate `fda_risk_class` on FDA-derived issues currently null so the clinical-severity floor fires on them.
+
+### Phase 1 findings
+
+See `audit/fda_extraction_diagnosis.md`. Summary:
+
+- 328 FDA-derived issues have `fda_risk_class=null`.
+- Recoverable: 200 `fda-safety-comms-historical` + ~22 `openfda-recalls-historical` edge cases. The enforcement cache at `outputs/fda_safety_comms_cache/enf_<recall_number>.json` has `classification: "Class I/II/III"` in string form, keyed by recall_number that's parseable from issue titles (`Z-NNNN-YYYY: <firm>`).
+- Not recoverable without external lookup: 100 `openfda-device-events` (MAUDE feed lacks the field) + 5 `fda-medwatch` (RSS items).
+
+### Phase 2 plan
+
+Add `extract_risk_class_from_enforcement` + `lookup_class_by_recall_number` helpers to `fda_classification.py`. Extend `retag_corpus.py` with a recall-number-parsing pass that hits the enforcement cache. Purely additive; does not change the existing `extract_risk_class_from_recall` path.

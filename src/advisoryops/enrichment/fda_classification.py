@@ -28,8 +28,16 @@ _VALID_CLASSES = frozenset({"1", "2", "3"})
 _CACHE_MAX_AGE_SECONDS = 90 * 24 * 60 * 60
 
 _DEFAULT_CACHE_DIR = Path("outputs/fda_classification_cache")
+_ENFORCEMENT_CACHE_DIR = Path("outputs/fda_safety_comms_cache")
 _CLASSIFICATION_API = "https://api.fda.gov/device/classification.json"
 _PAGE_SIZE = 1000
+
+# Maps the enforcement-record string format to the canonical digit string.
+_ENFORCEMENT_CLASS_MAP = {
+    "class i":   "1",
+    "class ii":  "2",
+    "class iii": "3",
+}
 
 
 def extract_risk_class_from_recall(recall: dict) -> str | None:
@@ -59,6 +67,44 @@ def extract_risk_class_from_recall(recall: dict) -> str | None:
         return val
 
     return None
+
+
+def extract_risk_class_from_enforcement(record: dict) -> str | None:
+    """Extract FDA risk class from an enforcement-cache record.
+
+    Enforcement records (``outputs/fda_safety_comms_cache/enf_*.json``) carry
+    the class in a string ``classification`` field like ``"Class II"``. This
+    parser maps ``"Class I/II/III"`` (case-insensitive) onto the canonical
+    digit string ``"1"``/``"2"``/``"3"``. Any other value returns None.
+    """
+    raw = record.get("classification")
+    if not raw:
+        return None
+    return _ENFORCEMENT_CLASS_MAP.get(str(raw).strip().lower())
+
+
+def lookup_class_by_recall_number(
+    recall_number: str,
+    cache_dir: Path | None = None,
+) -> str | None:
+    """Look up FDA risk class for a given recall number via the enforcement cache.
+
+    Returns the canonical ``"1"``/``"2"``/``"3"`` string, or None if the
+    cache file does not exist, cannot be read, or lacks a recognized
+    ``classification`` value. Silent on failure — this is a best-effort
+    enrichment, not a correctness-critical path.
+    """
+    if not recall_number:
+        return None
+    cache_dir = cache_dir or _ENFORCEMENT_CACHE_DIR
+    path = cache_dir / f"enf_{recall_number}.json"
+    if not path.exists():
+        return None
+    try:
+        record = json.loads(path.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
+        return None
+    return extract_risk_class_from_enforcement(record)
 
 
 def fetch_classification_database(
