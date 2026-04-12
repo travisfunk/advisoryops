@@ -380,6 +380,11 @@ def _publish_to_docs(community_root: Path, repo_root: Path) -> None:
     GitHub Pages serves from docs/, so we copy both the dashboard
     HTML and the published data files into docs/ at the end of each
     community build.
+
+    Augments meta.json with ``generated_at`` (current UTC timestamp)
+    and ``counts.sources_enabled`` (from configs/sources.json) so the
+    dashboard header can display live publish state without hardcoded
+    values.
     """
     docs_dir = repo_root / "docs"
     docs_dir.mkdir(parents=True, exist_ok=True)
@@ -390,6 +395,9 @@ def _publish_to_docs(community_root: Path, repo_root: Path) -> None:
         shutil.copy2(str(dashboard_src), str(docs_dir / "index.html"))
     else:
         print(f"  Warning: dashboard/index.html not found, skipping HTML publish")
+
+    # Augment meta.json with publish metadata the dashboard header reads.
+    _augment_meta_json(community_root, repo_root)
 
     # Copy generated feed/data files
     artifacts = [
@@ -412,6 +420,37 @@ def _publish_to_docs(community_root: Path, repo_root: Path) -> None:
             shutil.copy2(str(src), str(docs_dir / name))
             copied += 1
     print(f"  Published to docs/: 1 dashboard + {copied} data files")
+
+
+def _augment_meta_json(community_root: Path, repo_root: Path) -> None:
+    """Add ``generated_at`` and ``counts.sources_enabled`` to meta.json.
+
+    Silently no-ops if meta.json is missing or unreadable — this is a
+    publish-time convenience, not a correctness-critical step.
+    """
+    meta_path = community_root / "meta.json"
+    if not meta_path.exists():
+        return
+    try:
+        meta = json.loads(meta_path.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
+        return
+
+    from datetime import datetime, timezone
+    meta["generated_at"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
+
+    sources_cfg = repo_root / "configs" / "sources.json"
+    if sources_cfg.exists():
+        try:
+            cfg = json.loads(sources_cfg.read_text(encoding="utf-8"))
+            src_list = cfg.get("sources", cfg) if isinstance(cfg, dict) else cfg
+            enabled = sum(1 for s in src_list if s.get("enabled"))
+            counts = meta.setdefault("counts", {})
+            counts["sources_enabled"] = enabled
+        except (json.JSONDecodeError, OSError):
+            pass
+
+    meta_path.write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
 # The dashboard template is defined as a module-level constant so tests can

@@ -531,6 +531,7 @@ a:hover { text-decoration:underline; }
   // State
   let issues = [];
   let sources = [];
+  let meta = {};
   let selectedIdx = -1;
   let activeTab = 'issues';
   let activePriority = null;
@@ -697,7 +698,7 @@ a:hover { text-decoration:underline; }
   function applyFilters() {
     var list = issues.slice();
     if (healthcareMode) {
-      list = list.filter(function(i) { return i.healthcare_relevant === true; });
+      list = list.filter(function(i) { return i.healthcare_category === 'medical_device'; });
     }
     if (activePriority) {
       list = list.filter(function(i) { return i.priority === activePriority; });
@@ -1095,12 +1096,20 @@ a:hover { text-decoration:underline; }
     container.innerHTML = html;
   }
 
+  function getEnabledSourceCount() {
+    if (meta && meta.counts && typeof meta.counts.sources_enabled === 'number') {
+      return meta.counts.sources_enabled;
+    }
+    var n = 0;
+    for (var i = 0; i < sources.length; i++) { if (sources[i].enabled) n++; }
+    return n;
+  }
+
   function updateHeaderStats() {
-    var enabledSources = 0;
-    for (var i = 0; i < sources.length; i++) { if (sources[i].enabled) enabledSources++; }
+    var enabledSources = getEnabledSourceCount();
     if (healthcareMode) {
       var hcCount = 0;
-      for (var j = 0; j < issues.length; j++) { if (issues[j].healthcare_relevant) hcCount++; }
+      for (var j = 0; j < issues.length; j++) { if (issues[j].healthcare_category === 'medical_device') hcCount++; }
       document.getElementById('meta-stats').textContent = hcCount + ' medical device issues \u00B7 ' + enabledSources + ' sources';
     } else {
       document.getElementById('meta-stats').textContent = issues.length + ' issues \u00B7 ' + enabledSources + ' sources';
@@ -1110,7 +1119,7 @@ a:hover { text-decoration:underline; }
   function updateUrgencyCounts() {
     var counts = { P0: 0, P1: 0, P2: 0, P3: 0 };
     for (var i = 0; i < issues.length; i++) {
-      if (healthcareMode && !issues[i].healthcare_relevant) continue;
+      if (healthcareMode && issues[i].healthcare_category !== 'medical_device') continue;
       if (counts[issues[i].priority] !== undefined) counts[issues[i].priority]++;
     }
     document.getElementById('count-p0').textContent = counts.P0;
@@ -1152,27 +1161,33 @@ a:hover { text-decoration:underline; }
     try {
       var responses = await Promise.all([
         fetch('feed_healthcare.json').then(function(r) { return r.json(); }),
-        fetch('validated_sources.json').then(function(r) { return r.json(); })
+        fetch('validated_sources.json').then(function(r) { return r.json(); }),
+        fetch('meta.json').then(function(r) { return r.ok ? r.json() : {}; }).catch(function() { return {}; })
       ]);
       healthcareIssues = responses[0];
       issues = healthcareIssues;
       sources = responses[1];
+      meta = responses[2] || {};
     } catch (e) {
       console.error('Failed to load data:', e);
       document.getElementById('issue-list-pane').innerHTML = '<div style="text-align:center;padding:40px;color:var(--p0-text)">Failed to load data. Ensure feed_healthcare.json and validated_sources.json are accessible.</div>';
       return;
     }
 
-    var enabledSources = 0;
-    for (var i = 0; i < sources.length; i++) { if (sources[i].enabled) enabledSources++; }
+    var enabledSources = getEnabledSourceCount();
     updateHeaderStats();
 
-    var latest = null;
-    for (var j = 0; j < issues.length; j++) {
-      var d = parseDate(issues[j].last_seen_at) || parseDate(issues[j].first_seen_at);
-      if (d && (!latest || d > latest)) latest = d;
+    var updated = null;
+    if (meta && meta.generated_at) {
+      updated = parseDate(meta.generated_at);
     }
-    document.getElementById('meta-updated').textContent = latest ? 'Updated ' + formatDate(latest) : '';
+    if (!updated) {
+      for (var j = 0; j < issues.length; j++) {
+        var d = parseDate(issues[j].last_seen_at) || parseDate(issues[j].first_seen_at);
+        if (d && (!updated || d > updated)) updated = d;
+      }
+    }
+    document.getElementById('meta-updated').textContent = updated ? 'Updated ' + formatDate(updated) : '';
     document.getElementById('about-issues').textContent = issues.length;
     document.getElementById('about-sources').textContent = enabledSources;
 
@@ -1180,7 +1195,7 @@ a:hover { text-decoration:underline; }
     var remediationCount = 0, medicalCount = 0;
     for (var k = 0; k < issues.length; k++) {
       if (issues[k].remediation_steps && issues[k].remediation_steps.length > 0) remediationCount++;
-      if (issues[k].healthcare_relevant === true) medicalCount++;
+      if (issues[k].healthcare_category === 'medical_device') medicalCount++;
     }
     document.getElementById('about-remediation').textContent = remediationCount;
     document.getElementById('about-medical').textContent = medicalCount;

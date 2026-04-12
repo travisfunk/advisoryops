@@ -21,41 +21,99 @@ HEALTHCARE_SOURCES: frozenset[str] = frozenset({
 })
 
 # ---------------------------------------------------------------------------
-# Medical device vendors (lowercase for matching)
+# Medical device vendors (lowercase for case-insensitive substring matching)
+# Curated allowlist — extend as real vendors are observed in the corpus.
 # ---------------------------------------------------------------------------
 MEDICAL_DEVICE_VENDORS: tuple[str, ...] = (
-    "ge healthcare",
-    "philips",
-    "siemens healthineers",
-    "bd",
-    "baxter",
-    "medtronic",
-    "stryker",
     "abbott",
-    "boston scientific",
-    "draeger",
-    "hillrom",
-    "welch allyn",
-    "zoll",
-    "mindray",
-    "nihon kohden",
+    "abiomed",
+    "alivecor",
     "b. braun",
-    "spacelabs",
-    "masimo",
-    "natus",
-    "getinge",
-    "olympus medical",
-    "fujifilm medical",
-    "carestream",
-    "hologic",
+    "baxter",
+    "bd",  # Becton Dickinson
     "beckman coulter",
-    "biomerieux",
-    "biomérieux",
+    "biotronik",
+    "boston scientific",
+    "cochlear",
+    "dexcom",
+    "drager",
+    "draeger",  # German umlaut spelling variant
+    "edwards lifesciences",
+    "fresenius",
+    "ge healthcare",
+    "getinge",
+    "hillrom",
+    "hologic",
+    "insulet",
+    "intuitive surgical",
+    "johnson & johnson medtech",
+    "karl storz",
+    "livanova",
+    "masimo",
+    "medcrypt",
+    "medtronic",
+    "mindray",
+    "natus",
+    "nihon kohden",
+    "olympus medical",
+    "penumbra",
+    "philips healthcare",
+    "resmed",
     "roche diagnostics",
-    "cerner",
-    "epic systems",
-    "contec health",
-    "whill",
+    "siemens healthineers",
+    "smith & nephew",
+    "smiths medical",
+    "spacelabs",
+    "steris",
+    "stryker",
+    "teleflex",
+    "terumo",
+    "varian",
+    "vyaire",
+    "welch allyn",
+    "zimmer biomet",
+    "zoll",
+)
+
+# ---------------------------------------------------------------------------
+# Medical device product keywords (lowercase for case-insensitive substring
+# matching against entries in an issue's ``affected_products`` field).
+# Curated seed list — extend as needed.
+# ---------------------------------------------------------------------------
+MEDICAL_DEVICE_PRODUCT_KEYWORDS: tuple[str, ...] = (
+    "infusion pump",
+    "insulin pump",
+    "pacemaker",
+    "defibrillator",
+    "icd",
+    "crt-d",
+    "ventilator",
+    "anesthesia",
+    "patient monitor",
+    "mri",
+    "ct scanner",
+    "ultrasound",
+    "mammography",
+    "fluoroscopy",
+    "angiography",
+    "intellivue",
+    "ivenix",
+    "impella",
+    "dialysis",
+    "heartmate",
+    "glucose monitor",
+    "cgm",
+    "continuous glucose",
+    "ekg",
+    "ecg",
+    "electrocardiograph",
+    "hearing aid",
+    "cochlear implant",
+    "surgical robot",
+    "da vinci",
+    "endoscope",
+    "bronchoscope",
+    "blood gas analyzer",
 )
 
 # ---------------------------------------------------------------------------
@@ -156,31 +214,6 @@ def is_healthcare_relevant(issue: Dict[str, Any]) -> bool:
 # Healthcare category classification
 # ---------------------------------------------------------------------------
 
-# Sources that are definitively medical-device-specific
-_MEDICAL_DEVICE_SOURCES: frozenset[str] = frozenset({
-    "cisa-icsma",
-    "fda-medwatch",
-    "openfda-device-recalls",
-    "openfda-device-events",
-    "openfda-recalls-historical",
-    "fda-safety-comms-historical",
-    "health-canada-recalls",
-    "philips-psirt",
-    "siemens-productcert",
-})
-
-# Device-type keywords → medical_device
-_MEDICAL_DEVICE_RE: re.Pattern[str] = re.compile(
-    r"infusion pump|ventilator|defibrillator|pacemaker|implantable"
-    r"|patient monitor|pulse oximeter|surgical robot|insulin pump"
-    r"|blood gas analyzer|x-ray|ultrasound|\bmri\b|\bct\b"
-    r"|medical device|biomedical|imaging|pacs|dicom"
-    r"|catheter|oxygenator|respirator|wearable medical"
-    r"|510\(k\)|premarket|postmarket|medical device regulation"
-    r"|\bfda\b|iec 62443",
-    re.IGNORECASE,
-)
-
 # Healthcare IT keywords → healthcare_it
 _HEALTHCARE_IT_RE: re.Pattern[str] = re.compile(
     r"\behr\b|\bemr\b|electronic health record|electronic medical record"
@@ -199,110 +232,55 @@ _HEALTHCARE_INFRA_RE: re.Pattern[str] = re.compile(
 
 
 
-# ---------------------------------------------------------------------------
-# Negative patterns — exclude false positives
-# ---------------------------------------------------------------------------
+def _is_medical_device(issue: Dict[str, Any]) -> bool:
+    """Strict medical-device determination. True iff at least one rule fires.
 
-# Products/terms that are NOT medical devices but appear in healthcare sources
-# (e.g., Health Canada publishes cosmetics and food recalls alongside device recalls)
-_FALSE_POSITIVE_RE: re.Pattern[str] = re.compile(
-    r"sunscreen|sunblock|cosmetic|lipstick|mascara|fragrance|perfume"
-    r"|shampoo|conditioner|lotion|moisturizer|body wash|hair dye"
-    r"|food safety|food recall|food product"
-    r"|pet food|animal feed|veterinary",
-    re.IGNORECASE,
-)
-
-# General malware/threat actor reports that mention "medical device" as one
-# of many affected sectors — not actually about a specific device
-_GENERIC_THREAT_RE: re.Pattern[str] = re.compile(
-    r"\bbackdoor\b|\btrojan\b|\bransomware campaign\b"
-    r"|\bapt\d+\b|\bthreat actor\b|\bmalware analysis\b",
-    re.IGNORECASE,
-)
-
-
-def _is_false_positive(issue: Dict[str, Any], text: str) -> bool:
-    """Return True if the issue is a likely false positive for medical_device.
-
-    An issue is a false positive if:
-      - Its text matches a strong non-medical signal (cosmetics, food, etc.), OR
-      - It's a generic threat/malware report that mentions "medical device"
-        only as one of many sectors and has no specific device keyword.
+    RULE 1 — CISA ICS-Medical authority: ``cisa-icsma`` in sources.
+    RULE 2 — Vendor allowlist: ``vendor`` field contains (case-insensitive
+             substring) any entry from ``MEDICAL_DEVICE_VENDORS``.
+    RULE 3 — FDA risk class populated (non-null ``fda_risk_class``).
+    RULE 4 — Affected-product allowlist: any entry in ``affected_products``
+             contains (case-insensitive substring) any keyword from
+             ``MEDICAL_DEVICE_PRODUCT_KEYWORDS``.
     """
-    # Cosmetics, food, etc. from a healthcare source
-    if _FALSE_POSITIVE_RE.search(text):
+    sources = issue.get("sources") or []
+    if "cisa-icsma" in sources:
         return True
 
-    # Generic threat reports — only exclude if the ONLY medical signal is
-    # a weak generic phrase like "medical device" (not specific device types)
-    if _GENERIC_THREAT_RE.search(text):
-        # Check if there's a strong device-specific signal
-        strong_device_re = re.compile(
-            r"infusion pump|ventilator|defibrillator|pacemaker|implantable"
-            r"|patient monitor|pulse oximeter|surgical robot|insulin pump"
-            r"|blood gas analyzer",
-            re.IGNORECASE,
-        )
-        if not strong_device_re.search(text):
+    vendor_lower = (issue.get("vendor") or "").lower()
+    if vendor_lower and any(v in vendor_lower for v in MEDICAL_DEVICE_VENDORS):
+        return True
+
+    if issue.get("fda_risk_class"):
+        return True
+
+    affected_products = issue.get("affected_products") or []
+    if affected_products:
+        products_text = " ".join(str(p) for p in affected_products).lower()
+        if any(k in products_text for k in MEDICAL_DEVICE_PRODUCT_KEYWORDS):
             return True
 
     return False
-
 
 
 def classify_healthcare_category(issue: Dict[str, Any]) -> str:
     """Classify a healthcare-relevant issue into a specific category.
 
     Returns one of:
-      - "medical_device"
+      - "medical_device"           (strict 4-rule check via _is_medical_device)
       - "healthcare_it"
       - "healthcare_infrastructure"
       - "healthcare_adjacent"
 
     Only call this on issues where is_healthcare_relevant() == True.
     """
-    sources = issue.get("sources") or []
+    if _is_medical_device(issue):
+        return "medical_device"
+
     text = " ".join(str(issue.get(f, "")) for f in ("title", "summary", "vendor"))
 
-    # 0. Check for false positives before classifying as medical_device
-    if _is_false_positive(issue, text):
-        # Fall through to non-medical categories or adjacent
-        if _HEALTHCARE_IT_RE.search(text):
-            return "healthcare_it"
-        if _HEALTHCARE_INFRA_RE.search(text):
-            return "healthcare_infrastructure"
-        return "healthcare_adjacent"
-
-
-    # 1. Medical device sources are definitive
-    if any(s in _MEDICAL_DEVICE_SOURCES for s in sources):
-        return "medical_device"
-
-    # 2. Medical device vendor in text
-    if _VENDOR_TEXT_RE.search(text):
-        return "medical_device"
-
-    # 3. FDA risk class present → medical_device
-    if issue.get("fda_risk_class"):
-        return "medical_device"
-
-    # 4. Device keywords in text
-    if _MEDICAL_DEVICE_RE.search(text):
-        return "medical_device"
-
-    # 5. Healthcare IT keywords
     if _HEALTHCARE_IT_RE.search(text):
         return "healthcare_it"
-
-    # 6. Healthcare infrastructure keywords
     if _HEALTHCARE_INFRA_RE.search(text):
         return "healthcare_infrastructure"
-
-    # 7. KEV + medical vendor (condition d from is_healthcare_relevant)
-    if any(s in _KEV_SOURCES for s in sources):
-        vendor_lower = (issue.get("vendor") or "").lower()
-        if any(v in vendor_lower for v in MEDICAL_DEVICE_VENDORS):
-            return "medical_device"
-
     return "healthcare_adjacent"

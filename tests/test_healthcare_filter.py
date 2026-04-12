@@ -96,16 +96,13 @@ class TestKeywordMatching:
 
     @pytest.mark.parametrize("vendor_name", [
         "GE Healthcare",
-        "Philips",
+        "Philips Healthcare",
         "Siemens Healthineers",
         "Medtronic",
         "Baxter",
         "BD",
         "B. Braun",
-        "Epic Systems",
         "Roche Diagnostics",
-        "Contec Health",
-        "WHILL",
     ])
     def test_vendor_in_text(self, vendor_name):
         assert is_healthcare_relevant(_issue(title=f"{vendor_name} advisory")) is True
@@ -131,7 +128,7 @@ class TestHealthcareCategory:
 
 class TestKevVendor:
     def test_kev_with_medical_vendor(self):
-        issue = _issue(sources=["cisa-kev-csv"], vendor="Philips")
+        issue = _issue(sources=["cisa-kev-csv"], vendor="Philips Healthcare")
         assert is_healthcare_relevant(issue) is True
 
     def test_kev_with_generic_vendor(self):
@@ -212,12 +209,17 @@ class TestFalsePositiveExclusion:
         cat = classify_healthcare_category(issue)
         assert cat == "medical_device"
 
-    def test_device_in_threat_report_not_excluded(self):
-        """A threat report that mentions a SPECIFIC device should not be excluded."""
+    def test_device_keyword_in_text_is_not_medical_device(self):
+        """Strict 4-rule: keyword-in-text is no longer a medical_device signal.
+
+        The issue has no cisa-icsma source, no vendor field, no fda_risk_class,
+        and no affected_products match — so it must not classify as medical_device
+        just because the title/summary mentions 'infusion pump'.
+        """
         issue = _issue(
             title="Ransomware campaign targeting infusion pumps",
             summary="A ransomware campaign has been observed targeting infusion pump controllers via backdoor implant.",
             sources=["mandiant-blog"],
         )
         cat = classify_healthcare_category(issue)
-        assert cat == "medical_device"
+        assert cat != "medical_device"
