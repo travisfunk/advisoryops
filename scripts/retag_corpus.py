@@ -19,7 +19,10 @@ from collections import Counter
 from pathlib import Path
 from typing import Any, Dict, List
 
+import re
+
 from advisoryops.community_build import _publish_to_docs
+from advisoryops.enrichment.fda_classification import lookup_class_by_recall_number
 from advisoryops.healthcare_filter import classify_healthcare_category
 from advisoryops.score import (
     _apply_fda_clinical_floor,
@@ -30,12 +33,48 @@ from advisoryops.score import (
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 COMMUNITY_ROOT = REPO_ROOT / "outputs" / "community_public"
+ENFORCEMENT_CACHE = REPO_ROOT / "outputs" / "fda_safety_comms_cache"
 
 _FDA_FLOOR_MARKERS = (
     "FDA Class III auto-floored",
     "FDA Class II auto-floored",
     "FDA Class I clinical-severity boost",
 )
+
+_FDA_SOURCES = frozenset({
+    "openfda-recalls-historical",
+    "openfda-device-recalls",
+    "openfda-device-events",
+    "fda-medwatch",
+    "fda-safety-comms-historical",
+})
+
+_RECALL_NUMBER_RE = re.compile(r"\bZ-\d{4}-\d{2,4}\b")
+
+
+def _extract_fda_risk_class(issue: Dict[str, Any]) -> bool:
+    """Fill missing ``fda_risk_class`` from the enforcement cache.
+
+    Returns True iff the issue was updated. Looks for a recall number of the
+    form ``Z-NNNN-YYYY`` in the title (and, as a fallback, the summary) and
+    queries the enforcement cache keyed by that recall number.
+    """
+    if issue.get("fda_risk_class"):
+        return False
+    sources = issue.get("sources") or []
+    if not any(s in _FDA_SOURCES for s in sources):
+        return False
+
+    for field in ("title", "summary"):
+        text = str(issue.get(field) or "")
+        m = _RECALL_NUMBER_RE.search(text)
+        if not m:
+            continue
+        rc = lookup_class_by_recall_number(m.group(), cache_dir=ENFORCEMENT_CACHE)
+        if rc:
+            issue["fda_risk_class"] = rc
+            return True
+    return False
 
 
 def _rescore_fda_floor(issue: Dict[str, Any]) -> None:
@@ -70,9 +109,17 @@ def _rescore_fda_floor(issue: Dict[str, Any]) -> None:
 
 
 def _retag_issue_list(issues: List[Dict[str, Any]]) -> Counter:
-    """Reclassify every healthcare_relevant issue in place. Return counts."""
+    """Reclassify every healthcare_relevant issue in place. Return counts.
+
+    Order matters:
+      1. Back-fill ``fda_risk_class`` from the enforcement cache (so the floor
+         below has a class to act on).
+      2. Reclassify healthcare_category (Rule 3 now sees the filled class).
+      3. Re-apply the FDA clinical-severity floor to score/priority/why.
+    """
     counts: Counter = Counter()
     for issue in issues:
+        _extract_fda_risk_class(issue)
         if issue.get("healthcare_relevant"):
             issue["healthcare_category"] = classify_healthcare_category(issue)
             counts[issue["healthcare_category"]] += 1
