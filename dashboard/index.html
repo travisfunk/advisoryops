@@ -91,6 +91,7 @@ a:hover { text-decoration:underline; }
 .pill { font-size:10px; padding:3px 8px; border-radius:3px; border:1px solid transparent; background:transparent; color:var(--text-secondary); cursor:pointer; transition:all .15s; font-family:inherit; }
 .pill:hover { color:var(--text-body); }
 .pill.active { background:var(--card-border); color:var(--text-primary); border-color:#2a2d40; }
+.filter-select { font-size:10px; padding:3px 20px 3px 8px; border-radius:3px; border:1px solid #2a2d40; background:var(--card-border); color:var(--text-primary); cursor:pointer; font-family:inherit; -webkit-appearance:none; -moz-appearance:none; appearance:none; background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath fill='%2388a' d='M2 4l3 3 3-3z'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 6px center; }
 
 /* Content area */
 #content { flex:1; overflow:hidden; position:relative; }
@@ -336,6 +337,14 @@ a:hover { text-decoration:underline; }
     <button class="pill" data-fda-filter="3">III only</button>
     <button class="pill" data-fda-filter="23">II &amp; III</button>
     <button class="pill" data-fda-filter="1">I only</button>
+    <div class="filter-sep"></div>
+    <span class="filter-label">LATEST</span>
+    <select class="filter-select" id="latest-limit-select">
+      <option value="25" selected>25</option>
+      <option value="50">50</option>
+      <option value="100">100</option>
+      <option value="all">All</option>
+    </select>
     <div class="scope-toggle">
       <button class="toggle-btn active" data-scope-mode="healthcare">Medical devices</button>
       <button class="toggle-btn" data-scope-mode="all">All vulnerabilities</button>
@@ -542,6 +551,7 @@ a:hover { text-decoration:underline; }
   let filteredIssues = [];
   let activeFdaFilter = 'all';
   let activeKevFilter = false;
+  let activeLatestLimit = 25;
   let healthcareMode = true;
   let allIssuesCache = null;
   let healthcareIssues = null;
@@ -636,6 +646,13 @@ a:hover { text-decoration:underline; }
     return parseDate(issue.first_seen_at) || new Date(0);
   }
 
+  function getPublishedDate(issue) {
+    if (issue.published_dates && issue.published_dates.length) {
+      return parseDate(issue.published_dates[0]);
+    }
+    return null;
+  }
+
   function formatDate(d) {
     if (!d || isNaN(d.getTime())) return '';
     return d.toISOString().slice(0, 10);
@@ -728,11 +745,21 @@ a:hover { text-decoration:underline; }
       list = list.filter(function(i) { return i.fda_risk_class === '1'; });
     }
     list.sort(function(a, b) {
+      var da = getPublishedDate(a);
+      var db = getPublishedDate(b);
+      if (da === null && db !== null) return 1;
+      if (db === null && da !== null) return -1;
+      if (da !== null && db !== null && da.getTime() !== db.getTime()) {
+        return db.getTime() - da.getTime();
+      }
       var pa = PRIORITY_ORDER[a.priority] !== undefined ? PRIORITY_ORDER[a.priority] : 9;
       var pb = PRIORITY_ORDER[b.priority] !== undefined ? PRIORITY_ORDER[b.priority] : 9;
       if (pa !== pb) return pa - pb;
       return getIssueDate(b) - getIssueDate(a);
     });
+    if (activeLatestLimit !== null && list.length > activeLatestLimit) {
+      list = list.slice(0, activeLatestLimit);
+    }
     filteredIssues = list;
     selectedIdx = -1;
     renderIssueList();
@@ -1290,6 +1317,16 @@ a:hover { text-decoration:underline; }
         applyFilters();
       });
     })(fdaPills[fdi]);
+  }
+
+  // Latest-limit dropdown (top-N pagination)
+  var latestSelect = document.getElementById('latest-limit-select');
+  if (latestSelect) {
+    latestSelect.addEventListener('change', function() {
+      var v = latestSelect.value;
+      activeLatestLimit = v === 'all' ? null : parseInt(v, 10);
+      applyFilters();
+    });
   }
 
   // Scope toggle (healthcare / all) with lazy loading
