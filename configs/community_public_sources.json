@@ -1,5 +1,15 @@
 {
   "schema_version": 1,
+  "excluded_sources": [
+    {
+      "source_id": "fda-medwatch",
+      "reason": "pharmaceutical recalls - handled by pharmacy / EMR, not medical device security. FDA MedWatch is a mixed drug + device + biologics + food feed; device-specific content is already covered by openfda-device-recalls and fda-safety-comms-historical. See audit/pharmaceutical_exclusion_diagnosis.md."
+    },
+    {
+      "source_id": "mhra-uk-alerts",
+      "reason": "pharmaceutical recalls - handled by pharmacy / EMR, not medical device security. Upstream GOV.UK search returns mixed device + medicines content; 79.5% (159/200) of ingested records were UK medicines recalls. See audit/pharmaceutical_exclusion_diagnosis.md."
+    }
+  ],
   "validated_sets": [
     {
       "set_id": "gold_pass1",
@@ -11,7 +21,6 @@
         "cisa-kev-json",
         "cisa-kev-csv",
         "certcc-vulnotes",
-        "fda-medwatch",
         "openfda-device-recalls",
         "ncsc-uk",
         "claroty-team82",
@@ -47,7 +56,6 @@
         "ellio-ip-feed",
         "epss-api",
         "epss-data",
-        "fda-medwatch",
         "feodo-tracker",
         "fierce-healthcare",
         "fortified-health-security",
@@ -111,7 +119,6 @@
         "ecrimelabs-metasploit",
         "epss-api",
         "epss-data",
-        "fda-medwatch",
         "feodo-tracker",
         "fierce-healthcare",
         "fortified-health-security",
@@ -156,7 +163,6 @@
         "cisa-icsma-historical",
         "openfda-recalls-historical",
         "fda-safety-comms-historical",
-        "mhra-uk-alerts",
         "health-canada-recalls-historical",
         "philips-psirt",
         "siemens-productcert-psirt",
@@ -183,7 +189,6 @@
         "ecrimelabs-metasploit",
         "epss-api",
         "epss-data",
-        "fda-medwatch",
         "feodo-tracker",
         "fierce-healthcare",
         "fortified-health-security",

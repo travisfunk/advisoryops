@@ -18,10 +18,10 @@
   "counts": {
     "validated_sources": 65,
     "candidate_sources": 1,
-    "issues_public": 3929,
+    "issues_public": 3724,
     "alerts_public": 100,
-    "latest": 3929,
-    "healthcare": 3929,
+    "latest": 3724,
+    "healthcare": 3724,
     "packets": 100,
     "sources_enabled": 68
   },

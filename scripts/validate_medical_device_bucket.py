@@ -14,6 +14,7 @@ Usage:
 from __future__ import annotations
 
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -47,6 +48,25 @@ FDA_DERIVED_SOURCES = {
     "fda-safety-comms-historical",
 }
 
+# Pharmaceutical source IDs that must never contribute to this bucket.
+# Mirrors tests/test_no_pharmaceutical_sources.py. See Problem 9 diagnosis.
+PHARMA_SOURCE_IDS = {
+    "fda-medwatch",
+    "mhra-uk-alerts",
+}
+
+# Title-level pharmaceutical keyword patterns — belt-and-suspenders for
+# records that might slip in from a new mixed-content source.
+PHARMA_TITLE_RE = re.compile(
+    r"(medicines?\s+recall|drug\s+recall|pharmaceutical\s+recall"
+    r"|solution\s+for\s+injection|oral\s+tablet|oral\s+solution"
+    r"|\bampoule\b|hydrochloride|prolonged-release"
+    r"|\bmg/ml\b|\bi\.u\./ml\b|injection\s+bp|\bsyrup\b"
+    r"|film-coated\s+tablets?|\binhaler\b"
+    r"|class\s+[1-4]\s+medicines)",
+    re.IGNORECASE,
+)
+
 
 def main() -> int:
     if not FEED_PATH.exists():
@@ -78,6 +98,26 @@ def main() -> int:
             print(f"  {issue.get('issue_id')} vendor={issue.get('vendor')!r}")
         return 1
 
+    # Pharmaceutical leak check — records from known pharma sources or with
+    # pharma-flavored titles must never appear in the medical_device bucket.
+    pharma_src_leaks = [
+        i for i in medical
+        if set(i.get("sources") or []) & PHARMA_SOURCE_IDS
+    ]
+    pharma_title_leaks = [
+        i for i in medical
+        if PHARMA_TITLE_RE.search(str(i.get("title") or ""))
+    ]
+    if pharma_src_leaks or pharma_title_leaks:
+        print()
+        print(
+            f"FAIL: pharmaceutical content found in medical_device bucket "
+            f"({len(pharma_src_leaks)} by source, {len(pharma_title_leaks)} by title):"
+        )
+        for issue in (pharma_src_leaks + pharma_title_leaks)[:10]:
+            print(f"  {issue.get('issue_id')} title={(issue.get('title') or '')[:80]!r}")
+        return 1
+
     # Soft metric — flag (not fail) regressions in FDA coverage. A rising
     # null count would suggest the enforcement-cache lookup is losing hits,
     # either because cache files went stale or the recall-number parser
@@ -100,6 +140,7 @@ def main() -> int:
 
     print()
     print("PASS: no general-IT vendor leaks in medical_device bucket")
+    print("PASS: no pharmaceutical records in medical_device bucket")
     return 0
 
 
