@@ -206,15 +206,15 @@ Results: medical_device count 1,116 → 224 (after dashboard predicate fix) → 
 
 **Resolved:** 2026-04-10, commit `fa5cbfd` "Verify dashboard search works (Problem 7)" on main via PR #13. Search input now filters issues by title, CVE, vendor, product, affected versions, and CWE IDs.
 
-### Problem 8 — Temporal relevance gap — DOCUMENTED, NOT YET RESOLVED
+### Problem 8 — Temporal relevance gap — RESOLVED 2026-04-12 via dashboard top-N latest pagination
 
 **Symptom:** The dashboard P0 lane currently surfaces historical FDA Class III recalls (some from 2010-2016) alongside — and in some cases above — current advisories that hospital security teams need to act on this week. The FDA clinical-severity floor (Section 8 principle 11) is architecturally correct: Class III means "failure can cause serious injury or death," and a P0 floor reflects that. But in the current corpus the Class III set is dominated by historical recalls that long ago cycled into terminated status, so the floor-as-implemented fills the ACT NOW lane with the wrong issues.
 
 **Contradiction with vision:** `docs/advisoryops_vision.md` explicitly frames the product as advisory-to-action with "right now" as the operating cadence. A P0 lane whose top items are 10+ years old contradicts that framing, regardless of how defensible the clinical-severity reasoning is in isolation.
 
-**Shape of the fix (not yet designed):** Principle 11 stays. The floor needs a temporal modifier so that Class III items outside a recency window either don't auto-floor, or floor to a lower priority than current Class III items. Exact window (90 days? 1 year? event-status-gated?) is a product decision. This is the next high-leverage product mission.
+**Fix shape:** presentation-layer pagination only. Issues are sorted by `published_date` descending after all other filters apply, then sliced to top-N (default 25). The FDA clinical-severity floor (principle 11) still fires; historical Class III items remain P0 in the underlying feed and are still visible via the "All" option, but they no longer dominate the default view because more recent items naturally sort above them. Date windows were considered first but rejected because the medical_device bucket has uneven temporal distribution and a fixed window risked an empty default view. Top-N is stable regardless of data distribution. Dropdown options: 25 / 50 / 100 / All. Priority tiles and header counts continue to reflect the full filtered set, not the paginated view.
 
-**Status:** Documented 2026-04-12. Not yet resolved. Highest-priority pending item in Section 7.
+**Status:** RESOLVED 2026-04-12 by dashboard top-N latest pagination.
 
 ### Audit findings still open (from phase_c_code_findings.md, 2026-04-11)
 
@@ -284,13 +284,12 @@ Not elevated to numbered Problems because they're lower leverage than the pre-gr
 
 In rough priority order:
 
-1. **Problem 8 — Temporal relevance gap.** The ACT NOW (P0) lane is dominated by historical FDA Class III recalls rather than current advisories. Fix shape: add a temporal modifier to the FDA clinical-severity floor so Class III items outside a recency window don't auto-floor. Highest-leverage product mission remaining. See Section 6 Problem 8.
-2. **Push `feature/v1-readiness` to origin and merge to main.** The audit+fix commits plus the 2026-04-12 classifier/floor/extraction commits are local-only. Travis to review and push when comfortable.
-3. **Verify live GitHub Pages site.** Either confirm the Pages source is already flipped to `advisoryops/docs` (in which case the README live-demo link needs updating to `https://travisfunk.github.io/advisoryops/`), or flip it now. The old `advisoryops-dashboard` Pages URL is still the value in README.
-4. **Archive the old `advisoryops-dashboard` repo on GitHub** after step 3 succeeds.
-5. **Footer/link audit.** README line 6 and line 36 still contain the old `advisoryops-dashboard` URL. Other repo-internal links should be spot-checked.
-6. **Problem 3 residual — vendor/affected_products extraction.** FDA risk class is now populated on 378 records; vendor and affected_products on FDA-derived rows are still empty. Probably worth a targeted extraction pass or cross-reference against enforcement records' `recalling_firm` / `product_description` fields.
-7. **Audit findings triage.** Decide which of C-002/C-003/C-010/C-012/C-027/C-031 to address before grant submission vs. defer.
+1. **Push `feature/v1-readiness` to origin and merge to main.** The audit+fix commits plus the 2026-04-12 classifier/floor/extraction commits are local-only. Travis to review and push when comfortable.
+2. **Verify live GitHub Pages site.** Either confirm the Pages source is already flipped to `advisoryops/docs` (in which case the README live-demo link needs updating to `https://travisfunk.github.io/advisoryops/`), or flip it now. The old `advisoryops-dashboard` Pages URL is still the value in README.
+3. **Archive the old `advisoryops-dashboard` repo on GitHub** after step 2 succeeds.
+4. **Footer/link audit.** README line 6 and line 36 still contain the old `advisoryops-dashboard` URL. Other repo-internal links should be spot-checked.
+5. **Problem 3 residual — vendor/affected_products extraction.** FDA risk class is now populated on 378 records; vendor and affected_products on FDA-derived rows are still empty. Probably worth a targeted extraction pass or cross-reference against enforcement records' `recalling_firm` / `product_description` fields.
+6. **Audit findings triage.** Decide which of C-002/C-003/C-010/C-012/C-027/C-031 to address before grant submission vs. defer.
 8. **SE enablement session + mock reviewer Q&A.** Pre-grant requirement explicitly set by Travis. Walk through the pipeline like briefing an SE before a big demo, then 20 hardest-likely reviewer questions. Happens AFTER code is final.
 9. **200-word problem statement.** Travis writes himself in his own voice. Do not draft this for him; offer feedback if asked but do not write it for him.
 10. **Grant proposal writing.** Travis initiates when ready. **Do not prompt about grant writing until he does.**
@@ -469,7 +468,11 @@ Tests: 1,055 baseline → 1,076 passing across the three missions (+21 new tests
 
 Principle #11 (FDA classification authoritative for clinical severity) was added to Section 8 during Mission 2 and is already present in the live file — no edit needed here.
 
-Surfaced by Mission 2 but not yet addressed: the ACT NOW (P0) lane is dominated by historical FDA Class III recalls rather than current advisories (temporal-relevance gap). Captured as Problem 8 in Section 6; treated as the next high-leverage product mission.
+Surfaced by Mission 2 but not yet addressed: the ACT NOW (P0) lane is dominated by historical FDA Class III recalls rather than current advisories (temporal-relevance gap). Captured as Problem 8 in Section 6; resolved same day via dashboard top-N pagination — see next entry.
+
+### 2026-04-12 (continued) — Problem 8 dashboard top-N pagination
+
+Resolved Problem 8 (temporal-relevance gap) via presentation-layer pagination in `dashboard/index.html`. Added a "LATEST" dropdown (25 / 50 / 100 / All, default 25) in the filter row. After all existing filters apply, the issue list is sorted by `published_date` descending (items with no published_date sort to the bottom so they remain reachable via "All" but don't pollute the latest view) and sliced to the top N. Priority tiles and header counts continue to reflect the full filtered set, not the paginated view. Replaces an earlier date-window approach that was rejected after the data check showed uneven temporal distribution in the medical_device bucket would have risked an empty default view. Python code (scoring, healthcare_filter, FDA floor) unchanged. Tests: 1,076 passing.
 
 ---
 

@@ -287,3 +287,24 @@ Remaining null fda_risk_class breakdown (not recoverable without new data source
 - 1 openfda-device-recalls (edge case)
 
 Tests: 1076 passing (was 1063 baseline; +13 FDA-extraction tests). Branch clean, not pushed.
+
+---
+
+## 2026-04-12 — Problem 8: dashboard date-range filter
+
+**Goal:** Add a presentation-layer date-range dropdown to the dashboard filter row so the ACT NOW lane is dominated by current advisories, not decade-old FDA Class III recalls. No scoring / classifier changes.
+
+### Phase 1 — date field verification
+
+Inspected `docs/feed_latest.json` (3,929 issues):
+
+| field | populated | format | notes |
+|---|---:|---|---|
+| `published_date` / `published_at` / `date` / `published` | 0 | — | don't exist on the issue schema |
+| `first_seen_at` | 3,929 | ISO timestamp | AdvisoryOps ingest time, NOT upstream publish |
+| `last_seen_at` | 3,929 | ISO timestamp | AdvisoryOps last-seen time |
+| `published_dates` (plural, list) | 3,629 (92%) | `["2026-02-17", "Tue, 17 Feb 26 12:00:00 +0000"]` | upstream-reported publish date(s), list form |
+
+The existing `getIssueDate(issue)` helper (dashboard/index.html:631) already prefers `published_dates[0]` with `first_seen_at` as fallback. For the temporal filter we specifically want upstream publish time (not ingest time) — a 2014 Bio-Rad recall backfilled in 2026 has `first_seen_at=2026` but `published_dates=[2014]`. Falling back to `first_seen_at` would defeat the filter.
+
+Fix: the filter must read `published_dates[0]` only. Per prompt spec, issues without a parseable `published_dates` entry are excluded from all windowed views — they only appear under "All time."
