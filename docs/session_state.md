@@ -112,14 +112,14 @@ The corpus numbers below reflect the state after three product missions landed o
 - **FDA clinical-severity floor** (`57d53f7`, `63cf110`, `3cbcb4f`) — Class III auto-floor to P0, Class II to P1.
 - **FDA risk class extraction** (`1ee3ab3`, `f888ea9`, `ef21ec0`) — enforcement-cache lookup fills previously-null classifications.
 
-Pipeline baseline (from the FIX 4.5 rebuild; the three missions above re-classified and re-scored in place, no new pipeline run):
+Pipeline baseline (from the FIX 4.5 rebuild; the three missions above re-classified and re-scored in place, no new pipeline run). Counts refreshed 2026-04-12 after the Problem 9 pharmaceutical-exclusion cleanup (`fda-medwatch` and `mhra-uk-alerts` disabled, 205 records dropped):
 
-- **3,929 total issues** correlated from **5,573 signals** across **65 sources** (the `full_public` set has 65 validated + 1 candidate; `configs/sources.json` has 68 enabled — the gap is validated-and-emitting vs. configured-to-run).
-- **Priority distribution (corpus-wide):** 225 P0, 485 P1, 541 P2, 2,678 P3.
+- **3,724 total issues** (was 3,929 before the pharmaceutical cleanup) correlated across **63 enabled sources** (was 65; `fda-medwatch` and `mhra-uk-alerts` excluded — see Problem 9).
+- **Priority distribution (corpus-wide):** 225 P0, 483 P1, 536 P2, 2,480 P3.
 - **100 alerts public** in `alerts_public.jsonl` (limited by default `--top 100`).
 - **2,372 issues** NVD-enriched with CVSS/CWE/CPE (minor day-to-day variance based on NVD data currency).
 - **203 issues** KEV-enriched. **Zero of those KEV issues match medical device vendors** — see Section 6 Problem 4.
-- **380 issues** with FDA risk class: 10 Class III, 286 Class II, 84 Class I, 3,549 null. Up from 180 populated (8/125/47) before the FDA-extraction mission — 200 back-filled via enforcement-cache lookup keyed on `Z-NNNN-YYYY` recall numbers in titles.
+- **378 issues** with FDA risk class: 10 Class III, 285 Class II, 83 Class I, 3,346 null. Down 2 from the pre-cleanup 380 populated (both removed records were the pharmaceutical leaks from `mhra-uk-alerts`).
 - **971 plain-language summaries** generated (all issues with `generated_by == 'ai'`).
 - **99 issues** with populated `recommended_patterns` in the feed (propagated from the top-100 alert packets via `_merge_trust`).
 - **6,639 IOCs** extracted (number from 2026-04-08 run; not re-measured during the 2026-04-12 rebuild).
@@ -128,9 +128,9 @@ Pipeline baseline (from the FIX 4.5 rebuild; the three missions above re-classif
 - **2,053 issues** CWE-enriched.
 - **100 recommendation packets** newly written this rebuild (for the top-100 P0/P1 alerts). **695 total packet files** accumulated on disk from prior runs.
 
-Healthcare category breakdown (post-classifier-tightening): **424 medical_device**, 258 healthcare_infrastructure, 17 healthcare_it, 3,230 healthcare_adjacent. (Before the classifier tightening, medical_device was 1,116 — inflated by `philips-psirt` / `siemens-productcert` co-occurrence. The strict 4-rule classifier reduced that to 224; the FDA extraction pass then grew it to 424 by populating classifications that made previously-unclassified records match Rule 3.)
+Healthcare category breakdown (post-pharmaceutical-cleanup): **422 medical_device**, 241 healthcare_infrastructure, 17 healthcare_it, 3,044 healthcare_adjacent. (Pre-pharmaceutical-cleanup: 424 / 258 / 17 / 3,230. The 2 medical_device removals came from `mhra-uk-alerts` "Class 2 Medicines Recall" records whose misparsed `fda_risk_class` triggered Rule 3; the larger drop in `healthcare_adjacent` absorbed the remaining 203 pharmaceutical records. Before the classifier tightening, medical_device was 1,116 — inflated by `philips-psirt` / `siemens-productcert` co-occurrence.)
 
-Medical-device bucket priority distribution: **10 P0, 291 P1, 28 P2, 95 P3.** Up from 0 P0 / 6 P1 before the clinical-severity floor; 130 Class II items moved to P1 via the floor during the FDA-extraction retag.
+Medical-device bucket priority distribution: **10 P0, 290 P1, 28 P2, 94 P3.** Down 1 each at P1/P3 from the pre-cleanup distribution as the two MHRA medicines recalls dropped.
 
 **Note on `feed_healthcare.json`:** Still contains all 3,929 issues because `is_healthcare_relevant()` treats a non-empty `healthcare_category` as sufficient (rule c), and the fallback category is `healthcare_adjacent`. The dashboard's "Medical devices" button now filters on `healthcare_category === 'medical_device'` directly, so the broad healthcare-adjacent set no longer leaks into that view — even though the underlying feed file is unchanged.
 
@@ -216,6 +216,20 @@ Results: medical_device count 1,116 → 224 (after dashboard predicate fix) → 
 
 **Status:** RESOLVED 2026-04-12 by dashboard top-N latest pagination (commit `5052347`).
 
+### Problem 9 — Pharmaceutical record leakage — RESOLVED 2026-04-12 via source exclusion + corpus cleanup
+
+**Symptom:** Live dashboard screenshot revealed records like "Class 2 Medicines Recall: Wockhardt UK Ltd, Heparin sodium 1,000 I.U./ml solution for injection" appearing in the medical_device bucket. Heparin is a drug, not a medical device. AdvisoryOps is a medical device security platform targeted at hospital InfoSec / Clinical Engineering teams; pharmaceutical recalls belong to pharmacy teams integrated with EMR drug-recall workflows (Epic, Cerner, Meditech) and are explicitly out of scope.
+
+**Root cause:** MHRA's "Class 2 Medicines Recall" naming scale collides with FDA's Class I/II/III device classification scale. The upstream backfill parser populated `fda_risk_class` from the MHRA urgency tier, and Rule 3 of the strict 4-rule medical_device classifier (`healthcare_filter.py::_is_medical_device`) then correctly fired on the populated field and promoted pharmaceutical recalls into the medical_device bucket. The rule was right; the upstream data was lying about what was in the field.
+
+**Fix shape:** source-level exclusion rather than classifier modification. `fda-medwatch` and `mhra-uk-alerts` set to `enabled: false` in `configs/sources.json` with an `excluded_reason` field preserving the rationale inline. Same two IDs removed from all validated sets in `configs/community_public_sources.json` and added to a new top-level `excluded_sources` list. Existing corpus records from those sources deleted from the six feed artifacts under `docs/` and `outputs/community_public/`. Regression test (`tests/test_no_pharmaceutical_sources.py`) asserts both sources stay disabled, stay out of validated sets, and carry an exclusion rationale. Validation script (`scripts/validate_medical_device_bucket.py`) extended to fail on pharmaceutical keyword leaks (title regex) or pharmaceutical-source membership in the medical_device bucket.
+
+**Measurable result:** total corpus 3,929 → 3,724 (−205 records). medical_device bucket 424 → 422 (−2; both MHRA medicines recalls). Pharmaceutical-titled records corpus-wide 159 → 0. Source count 65 → 63. Rule 3 of the classifier is unchanged — the principle is correct; only the upstream inputs changed.
+
+**Scope note:** `mhra-uk-alerts` is a genuinely mixed source (79.5% medicines, 20.5% medical devices). Disabling it dropped 41 legitimate UK medical device alerts (e.g., Sprint Fidelis ICD, Accu-Chek Insight insulin pump, HeartStart MRx defibrillator) along with the 159 medicines recalls. Impact is zero on the Medical devices dashboard view because none of those 41 records were in the medical_device bucket anyway — they were classified as `healthcare_adjacent`. Future follow-up: re-enable `mhra-uk-alerts` with a tightened upstream GOV.UK query that filters out medicines alerts at ingest, recovering the 41 legitimate device records.
+
+**Status:** RESOLVED 2026-04-12 by source exclusion + corpus cleanup (commit pending this session; see Section 13).
+
 ### Audit findings still open (from phase_c_code_findings.md, 2026-04-11)
 
 Not elevated to numbered Problems because they're lower leverage than the pre-grant checklist in Section 7. Tracked for completeness:
@@ -278,7 +292,9 @@ Not elevated to numbered Problems because they're lower leverage than the pre-gr
 - **Dashboard header wired to live `meta.json`** (source count from `counts.sources_enabled`, "Updated" date from `generated_at`) — `_publish_to_docs` now augments meta.json at publish time, commit `ab77ae8`.
 - **Validation script for medical_device bucket purity** (`scripts/validate_medical_device_bucket.py`, commits `28e776f` + `ef21ec0`) — blocks general-IT vendor leaks, reports FDA-coverage metric.
 - **Re-tag script `scripts/retag_corpus.py`** — one-shot deterministic re-classification + FDA risk-class re-extraction + clinical-severity floor re-application against an already-built corpus, no paid AI.
-- 1,076 tests passing
+- **Dashboard top-N latest pagination** (Problem 8, commit `5052347`) — "LATEST" dropdown (25/50/100/All, default 25) sorts the filtered issue list by `published_date` desc then slices; priority tiles and header counts reflect the full filtered set, not the paginated view.
+- **Pharmaceutical source exclusion + corpus cleanup** (Problem 9, 2026-04-12) — `fda-medwatch` and `mhra-uk-alerts` disabled in `configs/sources.json` with inline `excluded_reason`; removed from every validated set in `configs/community_public_sources.json` and added to a new `excluded_sources` list; 205 corpus records cleaned across `docs/` and `outputs/community_public/` feed artifacts via `scripts/clean_pharmaceutical_records.py`; regression test `tests/test_no_pharmaceutical_sources.py`; validation script extended to fail on pharmaceutical title keywords or source membership in the medical_device bucket.
+- 1,079 tests passing (1,076 baseline + 3 from `test_no_pharmaceutical_sources.py`)
 
 ### Pending pre-grant
 
@@ -316,6 +332,7 @@ These are decisions Travis has made and re-confirmed. Treat them as constitution
 9. **Phased dashboard rebuild.** Don't rebuild the UI yet. Phase 1: ship high-leverage features on the existing dashboard first. Phase 2: ship 1–2 more features. Phase 3: redesign from scratch with full requirements known. Phase 4: ship remaining features into new dashboard.
 10. **Fix it right, not bandaid it.** Travis explicitly stated this as a preference. Workarounds are not acceptable; correct fixes only. (Exception: if a triage fix is needed to unblock a deadline, do it explicitly and label it as a triage fix with the real fix tracked separately.)
 11. **FDA classification is authoritative for clinical severity.** AdvisoryOps inherits FDA's medical device risk classification (Class I/II/III, codified in 21 CFR 860) as authoritative input to severity scoring. FDA Class III auto-floors to P0 because Class III is FDA's regulatory designation for devices whose failure can cause serious injury or death — clinical severity is independent of cyber severity, and we do not second-guess regulators on safety classification. Class II auto-floors to P1 (moderate risk). Class I receives a small additive boost only. This rule is portable to a future two-axis scoring architecture where it becomes the clinical-severity-axis floor.
+12. **AdvisoryOps is a medical device security platform. Pharmaceutical / medicines recalls are explicitly out of scope and are filtered at the source ingest layer.** This distinction follows operational reality: medicines recalls are handled by pharmacy teams integrated with modern EMRs (Epic, Cerner, Meditech), and clinical engineering / InfoSec teams (the AdvisoryOps target audience) do not act on drug alerts. Sources producing pharmaceutical content are disabled in `configs/sources.json` rather than routed to a different category, because routing would still consume ingest / storage / AI cost for content that has no user. Enforced by `tests/test_no_pharmaceutical_sources.py` and `scripts/validate_medical_device_bucket.py`. Mixed-content sources (e.g., MHRA) that produce both device and medicines alerts must be re-enabled only with an upstream query filter that excludes medicines before ingest, never with a post-hoc classifier workaround.
 
 ## Section 9 — Working agreements between Travis and Claude
 
@@ -473,6 +490,30 @@ Surfaced by Mission 2 but not yet addressed: the ACT NOW (P0) lane is dominated 
 ### 2026-04-12 (continued) — Problem 8 dashboard top-N pagination (commit `5052347`)
 
 Resolved Problem 8 (temporal-relevance gap) via presentation-layer pagination in `dashboard/index.html`. Added a "LATEST" dropdown (25 / 50 / 100 / All, default 25) in the filter row. After all existing filters apply, the issue list is sorted by `published_date` descending (items with no published_date sort to the bottom so they remain reachable via "All" but don't pollute the latest view) and sliced to the top N. Priority tiles and header counts continue to reflect the full filtered set, not the paginated view. Replaces an earlier date-window approach that was rejected after the data check showed uneven temporal distribution in the medical_device bucket would have risked an empty default view. Python code (scoring, healthcare_filter, FDA floor) unchanged. Tests: 1,076 passing.
+
+### 2026-04-12 (continued) — Problem 9 pharmaceutical exclusion
+
+Resolved Problem 9 (pharmaceutical record leakage). Surfaced by a live-dashboard screenshot showing "Class 2 Medicines Recall: Wockhardt UK Ltd, Heparin sodium 1,000 I.U./ml solution for injection" in the medical_device bucket. Root cause: MHRA's "Class 2 Medicines Recall" string was parsed into `fda_risk_class=2` by the upstream backfill, and Rule 3 of the strict 4-rule classifier then correctly promoted the record into the medical_device bucket. The rule was right; the upstream data was lying about what was in the field.
+
+**Sources disabled** in `configs/sources.json` (with `enabled: false` and an inline `excluded_reason`):
+- `fda-medwatch` (mixed drug + device + biologics + food RSS; 5 corpus records currently all devices but source is fundamentally unsuitable for a device-only platform — device content overlaps with openfda-device-recalls and fda-safety-comms-historical)
+- `mhra-uk-alerts` (79.5% medicines recalls; 41 legitimate device alerts lost in the exclusion but none of them were in the medical_device bucket to begin with; future follow-up can re-enable with a tighter upstream query)
+
+Also removed both IDs from every validated set in `configs/community_public_sources.json` and added to a new top-level `excluded_sources` list.
+
+**Corpus cleanup** via `scripts/clean_pharmaceutical_records.py`:
+- Total corpus: 3,929 → 3,724 (−205 records)
+- medical_device bucket: 424 → 422 (−2)
+- Pharmaceutical-titled records corpus-wide: 159 → 0
+- Cleaned files: `docs/feed_latest.json`, `docs/feed_healthcare.json`, `docs/feed_medical_device_kev.json`, `docs/meta.json`, and the `outputs/community_public/` equivalents plus `issues_public.jsonl` and `alerts_public.jsonl`
+
+**Regression guards:**
+- `tests/test_no_pharmaceutical_sources.py` (3 tests) — asserts both source IDs stay disabled with rationale, absent from validated sets, and declared in `excluded_sources`.
+- `scripts/validate_medical_device_bucket.py` extended with a pharmaceutical keyword title regex and pharmaceutical-source-membership check; exits 1 on any leak.
+
+**Architectural principle #12 added** to Section 8: pharmaceutical content is explicitly out of scope; filter at the source ingest layer, not at the classifier. Mixed-content sources (like MHRA) must be re-enabled only with an upstream query filter.
+
+`healthcare_filter.py` Rule 3 unchanged. No classifier code modified. Section 5 corpus counts refreshed. Commit hash and tests-passing count will be recorded by the commit that publishes this change.
 
 ---
 
