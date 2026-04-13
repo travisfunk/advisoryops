@@ -228,7 +228,7 @@ Results: medical_device count 1,116 → 224 (after dashboard predicate fix) → 
 
 **Scope note:** `mhra-uk-alerts` is a genuinely mixed source (79.5% medicines, 20.5% medical devices). Disabling it dropped 41 legitimate UK medical device alerts (e.g., Sprint Fidelis ICD, Accu-Chek Insight insulin pump, HeartStart MRx defibrillator) along with the 159 medicines recalls. Impact is zero on the Medical devices dashboard view because none of those 41 records were in the medical_device bucket anyway — they were classified as `healthcare_adjacent`. Future follow-up: re-enable `mhra-uk-alerts` with a tightened upstream GOV.UK query that filters out medicines alerts at ingest, recovering the 41 legitimate device records.
 
-**Status:** RESOLVED 2026-04-12 by source exclusion + corpus cleanup (commit pending this session; see Section 13).
+**Status:** RESOLVED 2026-04-12 by source exclusion + corpus cleanup (commit `ccff0ac`).
 
 ### Audit findings still open (from phase_c_code_findings.md, 2026-04-11)
 
@@ -513,7 +513,7 @@ Also removed both IDs from every validated set in `configs/community_public_sour
 
 **Architectural principle #12 added** to Section 8: pharmaceutical content is explicitly out of scope; filter at the source ingest layer, not at the classifier. Mixed-content sources (like MHRA) must be re-enabled only with an upstream query filter.
 
-`healthcare_filter.py` Rule 3 unchanged. No classifier code modified. Section 5 corpus counts refreshed. Commit hash and tests-passing count will be recorded by the commit that publishes this change.
+`healthcare_filter.py` Rule 3 unchanged. No classifier code modified. Section 5 corpus counts refreshed. Landed as commit `ccff0ac` on `feature/v1-readiness`. Tests: 1,079 passing (1,076 baseline + 3 from `test_no_pharmaceutical_sources.py`).
 
 ---
 
