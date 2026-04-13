@@ -214,7 +214,7 @@ Results: medical_device count 1,116 → 224 (after dashboard predicate fix) → 
 
 **Fix shape:** presentation-layer pagination only. Issues are sorted by `published_date` descending after all other filters apply, then sliced to top-N (default 25). The FDA clinical-severity floor (principle 11) still fires; historical Class III items remain P0 in the underlying feed and are still visible via the "All" option, but they no longer dominate the default view because more recent items naturally sort above them. Date windows were considered first but rejected because the medical_device bucket has uneven temporal distribution and a fixed window risked an empty default view. Top-N is stable regardless of data distribution. Dropdown options: 25 / 50 / 100 / All. Priority tiles and header counts continue to reflect the full filtered set, not the paginated view.
 
-**Status:** RESOLVED 2026-04-12 by dashboard top-N latest pagination.
+**Status:** RESOLVED 2026-04-12 by dashboard top-N latest pagination (commit `5052347`).
 
 ### Audit findings still open (from phase_c_code_findings.md, 2026-04-11)
 
@@ -470,7 +470,7 @@ Principle #11 (FDA classification authoritative for clinical severity) was added
 
 Surfaced by Mission 2 but not yet addressed: the ACT NOW (P0) lane is dominated by historical FDA Class III recalls rather than current advisories (temporal-relevance gap). Captured as Problem 8 in Section 6; resolved same day via dashboard top-N pagination — see next entry.
 
-### 2026-04-12 (continued) — Problem 8 dashboard top-N pagination
+### 2026-04-12 (continued) — Problem 8 dashboard top-N pagination (commit `5052347`)
 
 Resolved Problem 8 (temporal-relevance gap) via presentation-layer pagination in `dashboard/index.html`. Added a "LATEST" dropdown (25 / 50 / 100 / All, default 25) in the filter row. After all existing filters apply, the issue list is sorted by `published_date` descending (items with no published_date sort to the bottom so they remain reachable via "All" but don't pollute the latest view) and sliced to the top N. Priority tiles and header counts continue to reflect the full filtered set, not the paginated view. Replaces an earlier date-window approach that was rejected after the data check showed uneven temporal distribution in the medical_device bucket would have risked an empty default view. Python code (scoring, healthcare_filter, FDA floor) unchanged. Tests: 1,076 passing.
 
