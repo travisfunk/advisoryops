@@ -232,14 +232,11 @@ Results: medical_device count 1,116 → 224 (after dashboard predicate fix) → 
 
 ### Audit findings still open (from phase_c_code_findings.md, 2026-04-11)
 
-Not elevated to numbered Problems because they're lower leverage than the pre-grant checklist in Section 7. Tracked for completeness:
+Tracked for completeness. The 2026-04-13 Tier 1 cleanup mission closed C-002, C-011, C-012, C-015, C-017, C-027, C-029, C-033, C-034, and evaluated C-035.
 
-- **C-002:** `feed_contract.json` has 21 fields that `_feed_entry` emits but the contract doesn't declare (the inverse — 3 missing contract fields — was fixed by FIX 3). Contract is enforced by `tests/test_feed_contract.py` but the test only flags missing fields read by the dashboard, not missing declarations for emitted fields.
 - **C-003:** `extract.py` and `ai_correlate.py` are not wired into community-build (intentional for cost reasons, but worth documenting).
 - **C-010:** 11 modules (cli.py, feedback.py, ingest.py, models.py, source_run.py, util.py, and 5 enrichment modules) have no dedicated test file.
-- **C-012:** `docs/schema.md` has 7 field-name mismatches with `_feed_entry` output (36 documented fields vs 56 actual).
-- **C-027:** `community_build.py:1862` and `:1889` contain silent `except Exception:` blocks in the AI enrichment loops. Per-issue AI failures are invisible.
-- **C-031:** `_DASHBOARD_HTML` at `community_build.py:419` contains ~860 lines of dead embedded dashboard HTML (light-theme older version). `_publish_to_docs()` copies the standalone `dashboard/index.html` to `docs/` instead; the embedded version is never published.
+- **C-031:** `_DASHBOARD_HTML` at `community_build.py:473` contains ~860 lines of embedded dashboard HTML. The audit originally described this as dead code, but investigation during the 2026-04-13 cleanup mission found it is still referenced by `_generate_dashboard()` (writes to `outputs/community_public/dashboard.html`, never published to GitHub Pages) and by 16 test assertions across `tests/test_community_build.py` and `tests/test_remediation_trust.py` that check for feature markers ("feedback-btn", "disclaimer-bar", etc.). Removing requires rewriting or deleting those tests. Deferred to a dedicated follow-up mission — the file is bloated but not incorrect.
 
 ## Section 7 — What's shipped vs. what's pending
 
@@ -295,17 +292,16 @@ Not elevated to numbered Problems because they're lower leverage than the pre-gr
 - **Dashboard top-N latest pagination** (Problem 8, commit `5052347`) — "LATEST" dropdown (25/50/100/All, default 25) sorts the filtered issue list by `published_date` desc then slices; priority tiles and header counts reflect the full filtered set, not the paginated view.
 - **Pharmaceutical source exclusion + corpus cleanup** (Problem 9, 2026-04-12) — `fda-medwatch` and `mhra-uk-alerts` disabled in `configs/sources.json` with inline `excluded_reason`; removed from every validated set in `configs/community_public_sources.json` and added to a new `excluded_sources` list; 205 corpus records cleaned across `docs/` and `outputs/community_public/` feed artifacts via `scripts/clean_pharmaceutical_records.py`; regression test `tests/test_no_pharmaceutical_sources.py`; validation script extended to fail on pharmaceutical title keywords or source membership in the medical_device bucket.
 - 1,079 tests passing (1,076 baseline + 3 from `test_no_pharmaceutical_sources.py`)
+- **Tier 1 cleanup mission** (2026-04-13) — STATUS.md redirect + DOC-01 index update (commit `03cdac3`); README source-count / test-count / dashboard-link reconciliation (commit `cfed1a8`) including `_augment_meta_json` bucketed-config fix so future publishes recompute `sources_enabled` correctly; audit sweep closing C-002 (`feed_contract.json` now covers every `_feed_entry` field), C-011 (STATUS.md redirect), C-012 (`docs/schema.md` field-name reconciliation), C-015 (Python version 3.10 everywhere), C-017 (meta.json path separator normalization), C-027 (two silent FDA-enrichment exception handlers now log warnings), C-029 (`github.com/advisoryops` → `github.com/travisfunk/advisoryops` in README + dashboard), C-033 (cli.py `cmd_correlate` now uses explicit keyword passing instead of `inspect.signature()` probe), C-034 (duplicate correlate import removed). C-035 evaluated (`\bct\b` regex FP rate ~0% in current corpus) and documented. C-031 deferred after investigation showed 16 tests reference `_DASHBOARD_HTML`.
 
 ### Pending pre-grant
 
 In rough priority order:
 
-1. **Push `feature/v1-readiness` to origin and merge to main.** The audit+fix commits plus the 2026-04-12 classifier/floor/extraction commits are local-only. Travis to review and push when comfortable.
-2. **Verify live GitHub Pages site.** Either confirm the Pages source is already flipped to `advisoryops/docs` (in which case the README live-demo link needs updating to `https://travisfunk.github.io/advisoryops/`), or flip it now. The old `advisoryops-dashboard` Pages URL is still the value in README.
-3. **Archive the old `advisoryops-dashboard` repo on GitHub** after step 2 succeeds.
-4. **Footer/link audit.** README line 6 and line 36 still contain the old `advisoryops-dashboard` URL. Other repo-internal links should be spot-checked.
-5. **Problem 3 residual — vendor/affected_products extraction.** FDA risk class is now populated on 378 records; vendor and affected_products on FDA-derived rows are still empty. Probably worth a targeted extraction pass or cross-reference against enforcement records' `recalling_firm` / `product_description` fields.
-6. **Audit findings triage.** Decide which of C-002/C-003/C-010/C-012/C-027/C-031 to address before grant submission vs. defer.
+1. **Verify live GitHub Pages site.** Confirm the Pages source is flipped to `advisoryops/docs`. The 2026-04-13 Tier 1 cleanup updated the README live-demo link to `https://travisfunk.github.io/advisoryops/` on the assumption that the flip has happened or is about to.
+2. **Archive the old `advisoryops-dashboard` repo on GitHub** after step 1 succeeds.
+3. **Problem 3 residual — vendor/affected_products extraction.** FDA risk class is now populated on 378 records; vendor and affected_products on FDA-derived rows are still empty. Probably worth a targeted extraction pass or cross-reference against enforcement records' `recalling_firm` / `product_description` fields.
+4. **Audit findings C-003, C-010, C-031 triage.** The 2026-04-13 Tier 1 cleanup closed nine findings. Remaining: C-003 (orphaned extract.py / ai_correlate.py — likely document-only), C-010 (11 untested modules — triage per-module), C-031 (deferred — `_DASHBOARD_HTML` cleanup requires rewriting 16 test assertions).
 8. **SE enablement session + mock reviewer Q&A.** Pre-grant requirement explicitly set by Travis. Walk through the pipeline like briefing an SE before a big demo, then 20 hardest-likely reviewer questions. Happens AFTER code is final.
 9. **200-word problem statement.** Travis writes himself in his own voice. Do not draft this for him; offer feedback if asked but do not write it for him.
 10. **Grant proposal writing.** Travis initiates when ready. **Do not prompt about grant writing until he does.**
@@ -514,6 +510,32 @@ Also removed both IDs from every validated set in `configs/community_public_sour
 **Architectural principle #12 added** to Section 8: pharmaceutical content is explicitly out of scope; filter at the source ingest layer, not at the classifier. Mixed-content sources (like MHRA) must be re-enabled only with an upstream query filter.
 
 `healthcare_filter.py` Rule 3 unchanged. No classifier code modified. Section 5 corpus counts refreshed. Landed as commit `ccff0ac` on `feature/v1-readiness`. Tests: 1,079 passing (1,076 baseline + 3 from `test_no_pharmaceutical_sources.py`).
+
+### 2026-04-13 — Tier 1 cleanup (stale docs + audit sweep + meta.json sync)
+
+Three-phase cleanup mission following the five product missions that landed 2026-04-12. Closed nine audit findings and reconciled stale surface-area documentation.
+
+**Phase 1 — STATUS.md redirect + DOC-01 index (commit `03cdac3`).** Replaced the 2026-03-17 STATUS.md (which listed shipped milestones as "next") with a one-paragraph redirect to `session_state.md`. DOC-01 master index now points at `session_state.md` with a note that STATUS.md is a redirect for external-link continuity. Closes C-011.
+
+**Phase 2 — README + meta.json reconciliation (commit `cfed1a8`).** Six files touched:
+- `README.md` — source count 68 → 66 in prose, Mermaid diagram, ASCII diagram, Current-scope table, Source-coverage header (advisory sub-count 18 → 16 with the pharmaceutical sources removed from the example list); tests 1,055 → 1,079; corpus metrics refreshed to the post-pharma-cleanup values (total 3,724, medical_device 422, NVD-enriched 2,372, packets 100); Python 3.11+ → 3.10+ badge to match `pyproject.toml`; live-demo URL `advisoryops-dashboard/` → `advisoryops/`.
+- `dashboard/index.html` + `docs/index.html` — `github.com/advisoryops` (wrong org) → `github.com/travisfunk/advisoryops` (3 occurrences each); Python 3.11+ → 3.10+ in the About panel.
+- `docs/meta.json` + `outputs/community_public/meta.json` — `sources_enabled` 68 → 66, `validated_sources` 65 → 63, `out_root_*` paths normalized from Windows backslashes to forward slashes.
+- `src/advisoryops/community_build.py` `_augment_meta_json` — fixed the root cause of the meta.json sources_enabled drift. The function assumed `sources.json` was a flat list or `{"sources": [...]}` wrapper, but our config is scope-bucketed (`{"advisory": [...], "dataset": [...], ...}`), so the enabled count was silently failing to recompute on every publish. Now flattens all list-valued buckets. Closes C-004, C-005, C-006, C-015, C-029 and resolves the live-dashboard "68 sources" display drift surfaced by Travis's screenshot.
+
+**Phase 3 — audit findings sweep (commit below).**
+- **C-002 (feed_contract.json incomplete)** — added 21 missing `_feed_entry` fields: `severity`, `issue_type`, `classification`, `cvss_vector`, `why`, `source_authority_weight`, `highest_authority_source`, `source_summary`, `source_consensus`, `citations`, `evidence_sources`, `generated_by`, `extracted_facts`, `inferred_facts`, `confidence_by_field`, `insufficient_evidence`, `non_applicability`, `source_mitigations`, `iocs`, `evidence_gaps`, `unknowns`. `last_updated` bumped to 2026-04-13.
+- **C-012 (schema.md field-name mismatches)** — `link` → `canonical_link`; removed phantom rows (`scope`, `ai_summary`, `source_count`, `evidence_completeness`, `recommendation_disclaimer`) that were never in `_feed_entry`; `published_date` → `published_dates` (list, index 0 is primary); added rows for `nvd_description`, `affected_products`, `affected_versions`, `classification`, `fda_risk_class`, `confidence_by_field`, `evidence_sources`, `citations`, `tasks_by_role`, `source_mitigations`, `remediation_steps`, `iocs`. `summary` row clarified to note AI rewrites in place when `generated_by == "ai"`.
+- **C-017 (meta.json test paths)** — handled in Phase 2 alongside the source-count fix.
+- **C-027 (silent AI subsystem exceptions)** — the four high-leverage AI handlers (summarize, extract_fields, page_enrich, extract_source_mitigations) already logged warnings. Two genuinely silent handlers remained in the FDA enrichment path at community_build.py:1916 (`except Exception: continue`) and :1943 (`except Exception: pass`); both now log via `logging.getLogger(__name__).warning(...)` with issue_id / recall_file context. Behaviour unchanged — still swallow to keep the pipeline running — but failures are now visible.
+- **C-031 (dead embedded dashboard HTML)** — deferred after investigation. See Section 6 notes — 16 test assertions still reference `_DASHBOARD_HTML`; cleanup is a dedicated mission, not a drive-by.
+- **C-033 (cli.py inspect.signature fragility)** — replaced the runtime signature probe in `cmd_correlate` with explicit keyword passing. The probe existed because `correlate()`'s signature had drifted historically; the current `out_root_issues` parameter is now a committed contract.
+- **C-034 (cli.py duplicate correlate import)** — function-local `from .correlate import correlate` removed; the top-of-module import covers it.
+- **C-035 (`\bct\b` regex false-positive rate)** — measured. 30 total matches in the current 3,724-issue corpus. Manual inspection of every "non-imaging" hit confirmed they are all genuine CT-imaging references (Philips Brilliance CT, Revolution CT, Gemini PET/CT, "Perfusion CT", "Product Code: 0042-0040-CT", etc.). Actual FP rate ~0%. Left unchanged with the evaluation documented in `audit/fix_mission_progress.md`.
+
+**Tests:** 1,079 passing across the full suite after all three phases. Per-phase commits: `03cdac3`, `cfed1a8`, `d409df1`.
+
+**Not touched:** `healthcare_filter.py`, `score.py`, `correlate.py`, feed JSON content, classifier rules, scoring logic. This mission was cleanup-only.
 
 ---
 
