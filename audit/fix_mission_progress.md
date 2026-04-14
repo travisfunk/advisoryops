@@ -308,3 +308,53 @@ Inspected `docs/feed_latest.json` (3,929 issues):
 The existing `getIssueDate(issue)` helper (dashboard/index.html:631) already prefers `published_dates[0]` with `first_seen_at` as fallback. For the temporal filter we specifically want upstream publish time (not ingest time) — a 2014 Bio-Rad recall backfilled in 2026 has `first_seen_at=2026` but `published_dates=[2014]`. Falling back to `first_seen_at` would defeat the filter.
 
 Fix: the filter must read `published_dates[0]` only. Per prompt spec, issues without a parseable `published_dates` entry are excluded from all windowed views — they only appear under "All time."
+
+---
+
+## 2026-04-13 — Tier 1 cleanup mission
+
+**Goal:** STATUS.md redirect, README/meta.json reconciliation, audit findings sweep.
+
+### Phase 1 — STATUS.md + DOC-01 (commit `03cdac3`)
+Replaced stale STATUS.md (dated 2026-03-17, listing shipped milestones as "next") with a one-paragraph redirect pointing at session_state.md. DOC-01 master index's "Quick links" section now points at session_state.md with a note that STATUS.md is a redirect. Closes C-011.
+
+### Phase 2 — README + meta.json reconciliation (commit `cfed1a8`)
+- Source count reconciled to 66 (was 68) across README prose, Python badge, Mermaid + ASCII diagrams, Current-scope table, Source-coverage section header. Advisory scope example count 18 → 16 with `fda-medwatch` and `mhra-uk-alerts` removed from the example list.
+- Test count 1,055 → 1,079 verified via `pytest --collect-only -q` ("1079/1080 tests collected (1 deselected)").
+- Corpus metrics refreshed: total issues 1,990 → 3,724, medical_device 234 → 422, NVD-enriched 1,091 → 2,372, recommendation packets 139 → 100.
+- Live-demo link + dashboard Repository link: `travisfunk.github.io/advisoryops-dashboard/` → `travisfunk.github.io/advisoryops/`; `github.com/advisoryops` (wrong org) → `github.com/travisfunk/advisoryops`.
+- Python version reconciled to 3.10 in README badge and dashboard About panel (pyproject.toml already requires >=3.10).
+- `docs/meta.json` + `outputs/community_public/meta.json`: `sources_enabled` 68 → 66, `validated_sources` 65 → 63, `out_root_*` paths normalized to forward slashes. Underlying bug in `_augment_meta_json` (community_build.py:442) — the function assumed `sources.json` was a flat list or `{"sources": [...]}` wrapper, but the repo uses a scope-bucketed `{"advisory": [...], "dataset": [...], ...}` shape. Fixed to flatten all list-valued buckets before counting enabled entries, so future publishes recompute correctly rather than silently leaving the stale `68`. Closes C-004, C-005, C-006, C-015, C-029 and resolves the live-dashboard "68 sources" display drift.
+
+### Phase 3 — audit findings sweep
+
+**C-002 (feed_contract.json missing fields) — DONE.** Added 21 missing fields to `docs/feed_contract.json`: `severity`, `issue_type`, `classification`, `cvss_vector`, `why`, `source_authority_weight`, `highest_authority_source`, `source_summary`, `source_consensus`, `citations`, `evidence_sources`, `generated_by`, `extracted_facts`, `inferred_facts`, `confidence_by_field`, `insufficient_evidence`, `non_applicability`, `source_mitigations`, `iocs`, `evidence_gaps`, `unknowns`. `last_updated` bumped to 2026-04-13. `tests/test_feed_contract.py` still green.
+
+**C-012 (schema.md field name mismatches) — DONE.** Fixes applied:
+- `link` → `canonical_link`.
+- Removed `scope`, `ai_summary`, `source_count`, `evidence_completeness`, `recommendation_disclaimer` rows (none of these fields exist on `_feed_entry`; `summary` is AI-rewritten in place when `generated_by == "ai"` with no separate field; the clarifying note added to the `summary` row).
+- `published_date` (singular string) → `published_dates` (plural list) with a clarifying note on index-0 semantics.
+- Added rows for `nvd_description`, `affected_products`, `affected_versions`, `classification`, `fda_risk_class`, `confidence_by_field`, `evidence_sources`, `citations`, `tasks_by_role`, `source_mitigations`, `remediation_steps`, `iocs` that were in `_feed_entry` but missing from schema.md.
+
+**C-017 (meta.json contained test paths) — DONE.** docs/meta.json and outputs/community_public/meta.json path fields (`out_root_discover`, `out_root_runs`, `out_root_community`) normalized from Windows backslashes to forward slashes in Phase 2.
+
+**C-027 (silent AI subsystem exception blocks) — DONE.** `community_build.py` audit: the 4 high-leverage AI exception handlers (summarize, extract_fields, page_enrich, extract_source_mitigations) already log warnings to stdout. Two genuinely silent handlers remained in the FDA enrichment path — community_build.py:1916 (`except Exception: continue` in FDA recall enrichment) and :1943 (`except Exception: pass` in product_code lookup). Both now log via `logging.getLogger(__name__).warning(...)` with the issue_id / recall_file context. Behaviour unchanged (still swallow to keep the pipeline running), but failures are now visible.
+
+**C-031 (860-line dead embedded dashboard HTML in community_build.py) — DEFERRED (documented).** The constant `_DASHBOARD_HTML` at community_build.py:473 is not dead — `_generate_dashboard()` at :272 writes it to `outputs/community_public/dashboard.html` on every build, and 10 test assertions in `tests/test_community_build.py` (lines 477, 489, 508, 515, 523, 532, 537) plus 6 in `tests/test_remediation_trust.py` (lines 319-337) check its content for feature presence ("feedback-btn", "disclaimer-bar", "submitFeedback", etc.). The published dashboard is the standalone `dashboard/index.html`, so the embedded version never reaches GitHub Pages — but removing it requires either (a) rewriting all 16 test assertions to read `dashboard/index.html`, or (b) deleting the tests. Per mission spec ("If the embedded HTML turns out to still be referenced by some fallback path, document the finding and skip"), deferred to a separate mission. Leaves the file bloated but not incorrect.
+
+**C-033 (cli.py cmd_correlate inspect.signature fragility) — DONE.** Replaced the runtime signature probe with direct explicit keyword passing (`correlate(out_root_discover=..., out_root_issues=..., sources=..., ai_merge=...)`). The probe existed because the function signature had drifted historically; the current signature uses `out_root_issues` which is now the committed contract. Fewer runtime dependencies, cleaner stack traces on argument errors.
+
+**C-034 (cli.py duplicate correlate import) — DONE.** The function-local `from .correlate import correlate` at line 125 was a duplicate of the top-of-module import at line 33. Removed. No behaviour change.
+
+**C-035 (`\bct\b` regex false-positive rate) — EVALUATED, NOT FIXED.** Ran the regex against all 3,724 current-corpus issues. 30 total matches. Manual inspection of every non-imaging hit: all 14 "non-imaging" matches are genuine CT-imaging references that my initial naive categorizer missed (Philips Brilliance CT, Revolution CT, PET/CT, Gemini PET/CT, CT kiosk environment, Perfusion CT, "Product Code: 0042-0040-CT", etc. — all device-relevant). Actual false-positive rate: ~0% in the current corpus. The `\b` word boundary is doing its job — there are no "Act/fact/contract" matches because word-boundary followed by exactly "ct" followed by word-boundary is uncommon outside medical contexts. Leaving the regex as-is; documenting the evaluation rather than making a speculative tightening change.
+
+### Tests
+- After Phase 1: targeted run (test_dashboard_html, test_docs, test_publish_step, test_community_build, test_community_manifest, test_no_pharmaceutical_sources) → 45 / 45 passing.
+- After Phase 2 (same targeted set plus test_feed_contract, test_correlate_ai_merge, test_correlate_hardening): all passing.
+- After Phase 3: full pytest run pending at commit time; final numbers captured in session_state.md Section 13.
+
+### Still open from audit (carry forward)
+- **C-003:** extract.py and ai_correlate.py orphaned (intentional cost-management; documenting is the fix).
+- **C-010:** 11 modules lack dedicated test files (scope question — some are trivial, some aren't; triage per-module).
+- **C-031:** see above — dead-HTML cleanup deferred.
+

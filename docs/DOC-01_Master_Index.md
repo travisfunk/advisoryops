@@ -1,13 +1,13 @@
 # Master Documentation Index (DOC-01)
 
-**Last updated:** 2026-03-17
+**Last updated:** 2026-04-12
 
 This index is the starting point for navigating AdvisoryOps documentation.
 
 ---
 
 ## Quick links
-- **Project status:** [STATUS.md](STATUS.md)
+- **Project status / single source of truth:** [session_state.md](session_state.md) *(STATUS.md is kept as a redirect pointing here)*
 - **MVP guide:** (repo root) `README_MVP.md`
 - **Data contracts:** [DOC-02_Data_Contracts.md](DOC-02_Data_Contracts.md)
 - **Community public-side plan:** [DOC-11_Community_Public_v0.md](DOC-11_Community_Public_v0.md)
