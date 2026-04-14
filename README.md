@@ -221,6 +221,8 @@ flowchart TD
 
 Pharmaceutical sources (`fda-medwatch`, `mhra-uk-alerts`) are explicitly disabled — see `audit/pharmaceutical_exclusion_diagnosis.md` and Section 8 principle #12 of `docs/session_state.md`. Medicines recalls belong to pharmacy workflows, not medical device security.
 
+For a live ranked breakdown of which sources actually produce medical device signal (with cumulative coverage so the curation quality is measurable, not asserted), see the **Sources** tab on the [live dashboard](https://travisfunk.github.io/advisoryops/#sources).
+
 To add a new source, add a record to `configs/sources.json` (page_type must be `rss_atom`, `json_feed`, or `csv_feed`) and run:
 
 ```bash

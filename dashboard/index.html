@@ -161,6 +161,23 @@ a:hover { text-decoration:underline; }
 #source-search:focus { border-color:var(--blue-border); }
 #sources-count { margin-left:auto; font-size:11px; color:var(--text-secondary); }
 #source-list { flex:1; overflow-y:auto; padding:8px 12px; }
+#source-contribution { padding:12px 12px 0 12px; border-bottom:1px solid var(--card-border); }
+.sc-header { display:flex; align-items:baseline; gap:12px; margin-bottom:10px; }
+.sc-title { font-size:11px; font-weight:600; letter-spacing:.8px; text-transform:uppercase; color:var(--text-secondary); }
+.sc-summary { font-size:12px; color:var(--text-body); }
+.sc-summary .sc-num { color:var(--text-primary); font-weight:600; }
+.sc-table { width:100%; font-size:12px; border-collapse:collapse; margin-bottom:14px; }
+.sc-table th { text-align:left; font-weight:500; color:var(--text-secondary); padding:6px 8px; border-bottom:1px solid var(--card-border); font-size:10px; text-transform:uppercase; letter-spacing:.6px; }
+.sc-table td { padding:5px 8px; border-bottom:1px solid rgba(255,255,255,.04); color:var(--text-body); }
+.sc-table td.sc-rank { color:var(--text-secondary); font-family:"SF Mono","Roboto Mono",monospace; width:36px; text-align:right; }
+.sc-table td.sc-name { color:var(--text-primary); }
+.sc-table td.sc-id { color:var(--text-secondary); font-family:"SF Mono","Roboto Mono",monospace; font-size:11px; }
+.sc-table td.sc-num { text-align:right; font-family:"SF Mono","Roboto Mono",monospace; }
+.sc-table td.sc-cum { text-align:right; font-family:"SF Mono","Roboto Mono",monospace; color:var(--text-secondary); }
+.sc-table tr.sc-row-top80 { background:rgba(94,234,212,.04); }
+.sc-table tr.sc-row-top80 td.sc-cum { color:#5eead4; font-weight:600; }
+.sc-foot { font-size:11px; color:var(--text-secondary); margin:-6px 0 14px 0; padding-left:2px; }
+.sc-foot .sc-top80 { color:#5eead4; }
 .source-row { display:flex; align-items:center; background:var(--card-bg); border:1px solid var(--card-border); border-radius:6px; padding:10px 14px; margin-bottom:6px; gap:16px; transition:border-color .12s; }
 .source-row:hover { border-color:var(--card-hover-border); }
 .source-row .sr-name { font-size:13px; color:var(--text-body); font-weight:500; }
@@ -384,6 +401,7 @@ a:hover { text-decoration:underline; }
 
     <!-- Sources tab -->
     <div id="sources-section" class="tab-content">
+      <div id="source-contribution"></div>
       <div id="sources-filter-bar">
         <input type="text" id="source-search" placeholder="Search sources...">
         <div class="filter-sep"></div>
@@ -1135,7 +1153,89 @@ a:hover { text-decoration:underline; }
     content.innerHTML = html;
   }
 
+  function renderSourceContribution() {
+    var container = document.getElementById('source-contribution');
+    if (!container) return;
+    // Build: for each source_id, count medical_device + total issues.
+    var mdCounts = {}, totalCounts = {}, mdTotal = 0;
+    for (var i = 0; i < issues.length; i++) {
+      var srcs = issues[i].sources || [];
+      var isMd = issues[i].healthcare_category === 'medical_device';
+      if (isMd) mdTotal++;
+      for (var j = 0; j < srcs.length; j++) {
+        var sid = srcs[j];
+        totalCounts[sid] = (totalCounts[sid] || 0) + 1;
+        if (isMd) mdCounts[sid] = (mdCounts[sid] || 0) + 1;
+      }
+    }
+    // Join to enabled sources catalog
+    var rows = [];
+    for (var s = 0; s < sources.length; s++) {
+      var src = sources[s];
+      if (!src.enabled) continue;
+      var mdc = mdCounts[src.source_id] || 0;
+      var tot = totalCounts[src.source_id] || 0;
+      rows.push({
+        source_id: src.source_id,
+        name: src.name || src.source_id,
+        md: mdc,
+        total: tot,
+      });
+    }
+    // Sort by md contribution desc, then total desc, then name
+    rows.sort(function(a, b) {
+      if (b.md !== a.md) return b.md - a.md;
+      if (b.total !== a.total) return b.total - a.total;
+      return a.name.localeCompare(b.name);
+    });
+    // Find top-N for 80% cumulative
+    var cum = 0, top80 = 0;
+    var mdSum = 0;
+    for (var r = 0; r < rows.length; r++) mdSum += rows[r].md;
+    var target = mdSum * 0.8;
+    for (var r2 = 0; r2 < rows.length; r2++) {
+      cum += rows[r2].md;
+      if (top80 === 0 && cum >= target && rows[r2].md > 0) {
+        top80 = r2 + 1;
+      }
+    }
+    // Render table — top 15 rows (readable view). Full list stays in the
+    // existing renderSources() source-list below.
+    var displayRows = rows.slice(0, 15);
+    var enabledCount = 0;
+    for (var e = 0; e < sources.length; e++) if (sources[e].enabled) enabledCount++;
+    var summary = '<div class="sc-header">' +
+      '<span class="sc-title">Source contribution — medical device signal</span>' +
+      '<span class="sc-summary">Of <span class="sc-num">' + enabledCount + '</span> enabled sources, the top <span class="sc-num">' + (top80 || '—') + '</span> produce 80% of medical device signal.</span>' +
+      '</div>';
+    var table = '<table class="sc-table"><thead><tr>' +
+      '<th>#</th><th>Source</th><th>ID</th>' +
+      '<th style="text-align:right">MD issues</th>' +
+      '<th style="text-align:right">Total</th>' +
+      '<th style="text-align:right">Cum %</th>' +
+      '</tr></thead><tbody>';
+    var running = 0;
+    for (var k = 0; k < displayRows.length; k++) {
+      var row = displayRows[k];
+      running += row.md;
+      var pct = mdSum > 0 ? Math.round((running / mdSum) * 100) : 0;
+      var topClass = (k + 1) <= top80 ? ' class="sc-row-top80"' : '';
+      table += '<tr' + topClass + '>' +
+        '<td class="sc-rank">' + (k + 1) + '</td>' +
+        '<td class="sc-name">' + escapeHtml(row.name) + '</td>' +
+        '<td class="sc-id">' + row.source_id + '</td>' +
+        '<td class="sc-num">' + row.md + '</td>' +
+        '<td class="sc-num">' + row.total + '</td>' +
+        '<td class="sc-cum">' + pct + '%</td>' +
+        '</tr>';
+    }
+    table += '</tbody></table>';
+    var foot = '<div class="sc-foot"><span class="sc-top80">■</span> rows 1–' + (top80 || '—') + ' carry 80% of medical device signal. Full source list below.</div>';
+    container.innerHTML = summary + table + foot;
+  }
+
   function renderSources() {
+    renderSourceContribution();
     var list = sources.slice();
     if (activeSourceScope !== 'all') {
       list = list.filter(function(s) { return s.scope === activeSourceScope; });
