@@ -13,10 +13,15 @@ import json
 import pytest
 
 from advisoryops.enrichment.fda_classification import (
+    extract_product_from_summary,
     extract_risk_class_from_enforcement,
     extract_risk_class_from_recall,
+    extract_vendor_from_title,
+    extract_vendor_products_for_issue,
+    extract_vendor_products_from_enforcement,
     lookup_class_by_recall_number,
     lookup_risk_class,
+    lookup_vendor_products_by_recall_number,
 )
 from advisoryops.score import score_issue_v2, _score_fda_risk_class
 
@@ -369,3 +374,206 @@ class TestOpenFdaSignalEnrichment:
         # Title should fall back to product_description
         assert "Oxygenator" in sig["title"]
         assert "Jostra-Bentley" in sig["title"]
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Problem 3 residual — vendor + affected_products extraction (2026-04-13)
+# ═══════════════════════════════════════════════════════════════════════════
+
+class TestExtractVendorProductsFromEnforcement:
+    def test_happy_path_both_fields(self):
+        record = {
+            "recalling_firm": "GE Healthcare Finland Oy",
+            "product_description": (
+                "GE Healthcare CARESCAPE Monitor B850    Product Usage:    "
+                "Intended uses of CARESCAPE B850..."
+            ),
+        }
+        vendor, products = extract_vendor_products_from_enforcement(record)
+        assert vendor == "GE Healthcare Finland Oy"
+        assert products == ["GE Healthcare CARESCAPE Monitor B850"]
+
+    def test_product_description_with_sentence_split(self):
+        record = {
+            "recalling_firm": "St Jude Medical Inc.",
+            "product_description": (
+                "PM1226 ACCENT ST MRI SR RF and PM2222 ACCENT ST. These low "
+                "voltage (LV) devices are implantable pacemaker pulse generators..."
+            ),
+        }
+        vendor, products = extract_vendor_products_from_enforcement(record)
+        assert vendor == "St Jude Medical Inc."
+        # First sentence should be the product list
+        assert "PM1226" in products[0]
+        assert "PM2222" in products[0]
+
+    def test_empty_record(self):
+        vendor, products = extract_vendor_products_from_enforcement({})
+        assert vendor is None
+        assert products == []
+
+    def test_firm_only(self):
+        vendor, products = extract_vendor_products_from_enforcement({
+            "recalling_firm": "Acme Medical",
+        })
+        assert vendor == "Acme Medical"
+        assert products == []
+
+    def test_non_dict_returns_empty(self):
+        vendor, products = extract_vendor_products_from_enforcement(None)  # type: ignore[arg-type]
+        assert vendor is None
+        assert products == []
+
+
+class TestLookupVendorProductsByRecallNumber:
+    def test_happy_path(self, tmp_path):
+        (tmp_path / "enf_Z-0001-2014.json").write_text(
+            json.dumps({
+                "recalling_firm": "Maquet Cardiovascular, LLC",
+                "product_description": "Ultima OPCAB System, Sterile, Rx Only.",
+            }),
+            encoding="utf-8",
+        )
+        vendor, products = lookup_vendor_products_by_recall_number(
+            "Z-0001-2014", cache_dir=tmp_path,
+        )
+        assert vendor == "Maquet Cardiovascular, LLC"
+        assert products == ["Ultima OPCAB System, Sterile, Rx Only."]
+
+    def test_missing_file_returns_empty(self, tmp_path):
+        vendor, products = lookup_vendor_products_by_recall_number(
+            "Z-9999-9999", cache_dir=tmp_path,
+        )
+        assert vendor is None
+        assert products == []
+
+    def test_empty_recall_number(self, tmp_path):
+        vendor, products = lookup_vendor_products_by_recall_number(
+            "", cache_dir=tmp_path,
+        )
+        assert vendor is None
+        assert products == []
+
+    def test_corrupt_json(self, tmp_path):
+        (tmp_path / "enf_Z-0002-2014.json").write_text("not json", encoding="utf-8")
+        vendor, products = lookup_vendor_products_by_recall_number(
+            "Z-0002-2014", cache_dir=tmp_path,
+        )
+        assert vendor is None
+        assert products == []
+
+
+class TestExtractVendorFromTitle:
+    def test_happy_path(self):
+        title = "Automated External Defibrillators (Non-Wearable) recall (Philips Medical Systems)"
+        assert extract_vendor_from_title(title) == "Philips Medical Systems"
+
+    def test_vendor_with_punctuation(self):
+        assert extract_vendor_from_title(
+            "Pump, Infusion recall (Deltec, Inc)"
+        ) == "Deltec, Inc"
+
+    def test_no_parentheses(self):
+        assert extract_vendor_from_title("CVE-2024-1234") is None
+
+    def test_empty_title(self):
+        assert extract_vendor_from_title("") is None
+
+    def test_z_recall_format_returns_none(self):
+        # Titles like "Z-0096-2019: GE Healthcare Finland Oy" use a different
+        # format; extractor should return None (caller falls back to cache).
+        assert extract_vendor_from_title("Z-0096-2019: GE Healthcare Finland Oy") is None
+
+
+class TestExtractProductFromSummary:
+    def test_pipe_delimited_tail(self):
+        summary = (
+            "The device may disarm... | Philips Medical HeartStart MRx "
+            "Monitor/Defibrillator Model: M3535A, M3536A | Philips Medical "
+            "Systems | Device: Automated External Defibrillators."
+        )
+        products = extract_product_from_summary(summary)
+        assert products
+        assert "HeartStart" in products[0] or "M3535A" in products[0]
+
+    def test_narrative_only_extracts_model_codes(self):
+        summary = (
+            "Philips Heartstart MRx Monitor/Defibrillator models M3535A "
+            "and M3536A may experience a critical delay in energy delivery "
+            "when switching from manual to AED mode if using software "
+            "versions below A.02.00."
+        )
+        products = extract_product_from_summary(summary)
+        assert "M3535A" in products
+        assert "M3536A" in products
+
+    def test_empty_summary(self):
+        assert extract_product_from_summary("") == []
+
+    def test_ignores_common_acronyms(self):
+        # CVE, AED, MRI, ICD, etc. should not be treated as model codes
+        summary = "CVE-2024-1234 affects AED devices using MRI and ICD."
+        products = extract_product_from_summary(summary)
+        # CVE-2024-1234 contains digits+letters but is filtered by the CVE
+        # check; acronyms alone would not qualify anyway (no digit).
+        assert "CVE" not in products
+        assert "AED" not in products
+        assert "MRI" not in products
+
+
+class TestExtractVendorProductsForIssue:
+    def test_z_recall_uses_enforcement_cache(self, tmp_path):
+        (tmp_path / "enf_Z-0001-2014.json").write_text(
+            json.dumps({
+                "recalling_firm": "Maquet Cardiovascular, LLC",
+                "product_description": "Ultima OPCAB System.",
+            }),
+            encoding="utf-8",
+        )
+        issue = {
+            "title": "Z-0001-2014: Maquet Cardiovascular",
+            "summary": "",
+        }
+        vendor, products = extract_vendor_products_for_issue(issue, cache_dir=tmp_path)
+        assert vendor == "Maquet Cardiovascular, LLC"
+        assert products == ["Ultima OPCAB System."]
+
+    def test_falls_back_to_title_when_no_recall_number(self, tmp_path):
+        issue = {
+            "title": "Automated External Defibrillators (Non-Wearable) recall (Philips Medical Systems)",
+            "summary": "Philips Heartstart MRx models M3535A and M3536A...",
+        }
+        vendor, products = extract_vendor_products_for_issue(issue, cache_dir=tmp_path)
+        assert vendor == "Philips Medical Systems"
+        assert "M3535A" in products
+        assert "M3536A" in products
+
+    def test_merges_when_enforcement_partial(self, tmp_path):
+        # Enforcement record has vendor but empty product_description;
+        # extractor should fall back to summary for product
+        (tmp_path / "enf_Z-0050-2019.json").write_text(
+            json.dumps({
+                "recalling_firm": "St Jude Medical Inc.",
+                "product_description": "",
+            }),
+            encoding="utf-8",
+        )
+        issue = {
+            "title": "Z-0050-2019: St Jude Medical",
+            "summary": (
+                "Firmware update for models PM1272 and PM2272. | "
+                "Assurity MRI Model Numbers: PM1272, PM2272 | "
+                "St Jude Medical | Device: Pacemaker."
+            ),
+        }
+        vendor, products = extract_vendor_products_for_issue(issue, cache_dir=tmp_path)
+        assert vendor == "St Jude Medical Inc."
+        # Path B should have filled the product gap
+        assert products
+        assert "PM1272" in products[0] or "Assurity" in products[0]
+
+    def test_neither_path_returns_empties(self, tmp_path):
+        issue = {"title": "unrelated", "summary": ""}
+        vendor, products = extract_vendor_products_for_issue(issue, cache_dir=tmp_path)
+        assert vendor is None
+        assert products == []

@@ -120,6 +120,7 @@ Pipeline baseline (from the FIX 4.5 rebuild; the three missions above re-classif
 - **2,372 issues** NVD-enriched with CVSS/CWE/CPE (minor day-to-day variance based on NVD data currency).
 - **203 issues** KEV-enriched. **Zero of those KEV issues match medical device vendors** — see Section 6 Problem 4.
 - **378 issues** with FDA risk class: 10 Class III, 285 Class II, 83 Class I, 3,346 null. Down 2 from the pre-cleanup 380 populated (both removed records were the pharmaceutical leaks from `mhra-uk-alerts`).
+- **376 / 378 FDA-derived medical_device records now have `vendor` populated; 376 / 378 have `affected_products` populated** (2026-04-13 Problem 3 residual extraction). The 2 misses are title-format edge cases documented in `audit/problem3_extraction_diagnosis.md`.
 - **971 plain-language summaries** generated (all issues with `generated_by == 'ai'`).
 - **99 issues** with populated `recommended_patterns` in the feed (propagated from the top-100 alert packets via `_merge_trust`).
 - **6,639 IOCs** extracted (number from 2026-04-08 run; not re-measured during the 2026-04-12 rebuild).
@@ -158,15 +159,23 @@ Applied option 2: added `source_id` to the non-CVE merge key basis (`key_basis =
 
 **Architectural fix still pending (post-grant):** The full fix is to separate threatintel from advisory routing entirely — categorize sources as `kind: advisory` vs `kind: threatintel` in `sources.json` and route them through different correlation logic.
 
-### Problem 3 — Field extraction for non-CVE / FDA-recall-derived issues — PARTIALLY RESOLVED
+### Problem 3 — Field extraction for non-CVE / FDA-recall-derived issues — RESOLVED
 
-**Resolved:** 2026-04-10 by commits `0f8785d` "Add LLM field extraction for non-CVE issues (Problem 3)" and `8840c70` "Fix extract_fields truncation: bump max_tokens, handle malformed JSON" — both on main via PR #13.
+**Resolved in three passes:**
+1. **2026-04-10** (commits `0f8785d` + `8840c70`, PR #13) — `src/advisoryops/extract_fields.py` + `--extract-fields` flag on `community-build`. LLM-based extraction pulls vendor / product / severity from the AI-rewritten summary for any issue with empty structured fields.
+2. **2026-04-12** (commits `1ee3ab3`, `f888ea9`, `ef21ec0`) — FDA risk class extraction via enforcement-cache lookup keyed on `Z-NNNN-YYYY` recall numbers. Back-filled 200 `fda_risk_class` values (178 → 378 populated).
+3. **2026-04-13** — vendor + affected_products extraction for FDA-recall-derived medical_device rows. No AI spend. `fda_classification.py` gained `extract_vendor_products_from_enforcement`, `lookup_vendor_products_by_recall_number`, `extract_vendor_from_title`, `extract_product_from_summary`, and the orchestrator `extract_vendor_products_for_issue`. `scripts/retag_corpus.py` calls the orchestrator before classification so Rule 2 / Rule 4 matches can fire on newly-filled data. `scripts/validate_medical_device_bucket.py` reports vendor / affected_products coverage as soft metrics.
 
-The fix: new module `src/advisoryops/extract_fields.py` (176 lines) and `--extract-fields` flag on `community-build`. Wired into `community_build.py` at line 1546. Pulls vendor, product, and severity from rewritten plain-language summaries for issues where those fields were empty. Then the FDA classification lookup runs again with the extracted device name.
+**Coverage after pass 3:**
 
-**Also resolved 2026-04-12 by FDA risk class extraction mission** (commits `1ee3ab3`, `f888ea9`, `ef21ec0`). `fda_classification.py` gained `extract_risk_class_from_enforcement` + `lookup_class_by_recall_number` helpers, and `scripts/retag_corpus.py` now parses `Z-NNNN-YYYY` recall numbers out of issue titles to hit the enforcement cache. This back-filled 200 additional `fda_risk_class` values (from 178 → 378 populated), closing most of the FDA-recall-derived extraction gap.
+| Metric | Before | After |
+| --- | ---: | ---: |
+| FDA-derived MD records with empty vendor | 378 / 378 (100%) | 2 / 378 (0.5%) |
+| FDA-derived MD records with empty affected_products | 378 / 378 (100%) | 2 / 378 (0.5%) |
 
-**Still pending:** `vendor` and `affected_products` on FDA-recall-derived issues remain mostly empty (the 424 medical_device rows show `vendor=(none)` in the validation script). Extraction for those two fields needs its own pass, either by cross-referencing enforcement records more fully or by running `--extract-fields` against the re-tagged corpus. Lower leverage than the FDA-class gap was; kept on the list for post-grant triage.
+The 2 remaining misses are edge cases: a title with embedded newlines in the vendor parentheses (Varian Medical Systems address embedded inline), and a title whose parenthesized tail contains a device type abbreviation `(Crt-D)` instead of a vendor. Documented in `audit/problem3_extraction_diagnosis.md`.
+
+Verified spot-check: `UNK-42c8bda5d1c8ebae` (the Philips Heartstart MRx defibrillator record from Travis's dashboard screenshot) now reports `vendor="Philips Medical Systems"` and `affected_products=["M3535A", "M3536A"]` — exactly the target values.
 
 ### Problem 4 — KEV / medical device zero overlap (INVESTIGATION IN PROGRESS)
 
@@ -292,6 +301,7 @@ Tracked for completeness. The 2026-04-13 Tier 1 cleanup mission closed C-002, C-
 - **Dashboard top-N latest pagination** (Problem 8, commit `5052347`) — "LATEST" dropdown (25/50/100/All, default 25) sorts the filtered issue list by `published_date` desc then slices; priority tiles and header counts reflect the full filtered set, not the paginated view.
 - **Pharmaceutical source exclusion + corpus cleanup** (Problem 9, 2026-04-12) — `fda-medwatch` and `mhra-uk-alerts` disabled in `configs/sources.json` with inline `excluded_reason`; removed from every validated set in `configs/community_public_sources.json` and added to a new `excluded_sources` list; 205 corpus records cleaned across `docs/` and `outputs/community_public/` feed artifacts via `scripts/clean_pharmaceutical_records.py`; regression test `tests/test_no_pharmaceutical_sources.py`; validation script extended to fail on pharmaceutical title keywords or source membership in the medical_device bucket.
 - 1,079 tests passing (1,076 baseline + 3 from `test_no_pharmaceutical_sources.py`)
+- **Problem 3 residual — vendor + affected_products extraction** (2026-04-13) — `src/advisoryops/enrichment/fda_classification.py` extended with `extract_vendor_products_from_enforcement`, `lookup_vendor_products_by_recall_number`, `extract_vendor_from_title`, `extract_product_from_summary`, and the orchestrator `extract_vendor_products_for_issue`. `scripts/retag_corpus.py` calls the orchestrator before classification. `scripts/validate_medical_device_bucket.py` reports coverage. Deterministic, no AI spend. Coverage: 376 / 378 (99.5%) on both fields. Test suite +24 cases in `tests/test_fda_classification.py`.
 - **Tier 1 cleanup mission** (2026-04-13) — STATUS.md redirect + DOC-01 index update (commit `03cdac3`); README source-count / test-count / dashboard-link reconciliation (commit `cfed1a8`) including `_augment_meta_json` bucketed-config fix so future publishes recompute `sources_enabled` correctly; audit sweep closing C-002 (`feed_contract.json` now covers every `_feed_entry` field), C-011 (STATUS.md redirect), C-012 (`docs/schema.md` field-name reconciliation), C-015 (Python version 3.10 everywhere), C-017 (meta.json path separator normalization), C-027 (two silent FDA-enrichment exception handlers now log warnings), C-029 (`github.com/advisoryops` → `github.com/travisfunk/advisoryops` in README + dashboard), C-033 (cli.py `cmd_correlate` now uses explicit keyword passing instead of `inspect.signature()` probe), C-034 (duplicate correlate import removed). C-035 evaluated (`\bct\b` regex FP rate ~0% in current corpus) and documented. C-031 deferred after investigation showed 16 tests reference `_DASHBOARD_HTML`.
 
 ### Pending pre-grant
@@ -300,8 +310,7 @@ In rough priority order:
 
 1. **Verify live GitHub Pages site.** Confirm the Pages source is flipped to `advisoryops/docs`. The 2026-04-13 Tier 1 cleanup updated the README live-demo link to `https://travisfunk.github.io/advisoryops/` on the assumption that the flip has happened or is about to.
 2. **Archive the old `advisoryops-dashboard` repo on GitHub** after step 1 succeeds.
-3. **Problem 3 residual — vendor/affected_products extraction.** FDA risk class is now populated on 378 records; vendor and affected_products on FDA-derived rows are still empty. Probably worth a targeted extraction pass or cross-reference against enforcement records' `recalling_firm` / `product_description` fields.
-4. **Audit findings C-003, C-010, C-031 triage.** The 2026-04-13 Tier 1 cleanup closed nine findings. Remaining: C-003 (orphaned extract.py / ai_correlate.py — likely document-only), C-010 (11 untested modules — triage per-module), C-031 (deferred — `_DASHBOARD_HTML` cleanup requires rewriting 16 test assertions).
+3. **Audit findings C-003, C-010, C-031 triage.** The 2026-04-13 Tier 1 cleanup closed nine findings. Remaining: C-003 (orphaned extract.py / ai_correlate.py — likely document-only), C-010 (11 untested modules — triage per-module), C-031 (deferred — `_DASHBOARD_HTML` cleanup requires rewriting 16 test assertions).
 8. **SE enablement session + mock reviewer Q&A.** Pre-grant requirement explicitly set by Travis. Walk through the pipeline like briefing an SE before a big demo, then 20 hardest-likely reviewer questions. Happens AFTER code is final.
 9. **200-word problem statement.** Travis writes himself in his own voice. Do not draft this for him; offer feedback if asked but do not write it for him.
 10. **Grant proposal writing.** Travis initiates when ready. **Do not prompt about grant writing until he does.**
@@ -536,6 +545,29 @@ Three-phase cleanup mission following the five product missions that landed 2026
 **Tests:** 1,079 passing across the full suite after all three phases. Per-phase commits: `03cdac3`, `cfed1a8`, `d409df1`.
 
 **Not touched:** `healthcare_filter.py`, `score.py`, `correlate.py`, feed JSON content, classifier rules, scoring logic. This mission was cleanup-only.
+
+### 2026-04-13 (continued) — Problem 3 residual: vendor + affected_products extraction
+
+Closed the last open piece of Problem 3. The 2026-04-12 FDA risk class mission populated `fda_risk_class` on 200 previously-null records, but `vendor` and `affected_products` were empty on **all 378** FDA-derived medical_device rows. Travis saw this in a dashboard screenshot — the Philips Heartstart MRx defibrillator detail panel said "No affected products identified" even though the AI summary named the vendor and the M3535A / M3536A model numbers.
+
+**Phase 1 diagnosis** (`audit/problem3_extraction_diagnosis.md`): confirmed the data is durably present upstream. 200 / 378 records have a `Z-NNNN-YYYY` recall number in their title and a matching enforcement-cache record with `recalling_firm` (100%) and `product_description` (100%) populated. The other 178 come from `openfda-recalls-historical` with title format `"<device_type> recall (<vendor>)"` and summaries ending in a pipe-delimited tail `"... | <product> | <vendor> | Device: ..."`. Deterministic extraction viable, no AI needed.
+
+**Phase 2 implementation.** Extended `src/advisoryops/enrichment/fda_classification.py` with `extract_vendor_products_from_enforcement`, `lookup_vendor_products_by_recall_number`, `extract_vendor_from_title`, `extract_product_from_summary`, and the orchestrator `extract_vendor_products_for_issue`. Orchestrator tries enforcement cache when a recall number is in the title, falls back to title + summary parsing, and merges partial results from either path. The summary parser has a narrative-only fallback scanning for alphanumeric model codes (e.g. `M3535A`, `PM1226`, `V1000`) filtered against common acronyms (CVE, AED, MRI, ICD, etc.). Added 24 unit tests in `tests/test_fda_classification.py`.
+
+**Phase 3 re-tag.** Extended `scripts/retag_corpus.py` with `_extract_vendor_and_products` running BEFORE `classify_healthcare_category`, so Rule 2 / Rule 4 matches can fire on newly-filled data. Ran against the live corpus:
+
+| Metric | Before | After |
+| --- | ---: | ---: |
+| FDA-derived MD records — vendor empty | 378 / 378 | **2 / 378** |
+| FDA-derived MD records — affected_products empty | 378 / 378 | **2 / 378** |
+
+**Coverage: 99.5%** on both fields. Philips Heartstart MRx record verified: `vendor="Philips Medical Systems"`, `affected_products=["M3535A", "M3536A"]`. Medical_device bucket size unchanged at 422.
+
+**Phase 4.** `scripts/validate_medical_device_bucket.py` reports `vendor empty` and `affected_products empty` counts for FDA-derived rows as soft metrics.
+
+**Tests:** 1,103 passing (1,079 → +24 new extraction unit tests). No regressions.
+
+Problem 3 is now RESOLVED — all three passes have landed.
 
 ---
 
