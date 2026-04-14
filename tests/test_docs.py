@@ -17,7 +17,10 @@ def test_schema_md_has_field_table():
     text = (DOCS_ROOT / "schema.md").read_text(encoding="utf-8")
     assert "issue_id" in text
     assert "priority" in text
-    assert "evidence_completeness" in text
+    # `evidence_completeness` was removed 2026-04-13 per audit finding C-012 —
+    # it was documented but never actually emitted by _feed_entry. Assert on
+    # `generated_by` instead, which is both in the schema and in _feed_entry.
+    assert "generated_by" in text
 
 
 def test_data_rights_md_exists():

@@ -122,32 +122,16 @@ def cmd_correlate(args) -> int:
     """
     Correlate discovered items across sources into Issues.
     """
-    from .correlate import correlate
-    import inspect
-
     sources = []
     if getattr(args, "sources", ""):
         sources = [s.strip() for s in args.sources.split(",") if s.strip()]
 
-    kwargs = {
-        "out_root_discover": args.out_root_discover,
-        "sources": sources or None,
-        "ai_merge": args.ai_merge,
-    }
-
-    sig = inspect.signature(correlate)
-
-    # CLI flag is named --out-root-correlate; correlate() may use a different kwarg name.
-    if "out_root_correlate" in sig.parameters:
-        kwargs["out_root_correlate"] = args.out_root_correlate
-    elif "out_root_issues" in sig.parameters:
-        kwargs["out_root_issues"] = args.out_root_correlate
-    elif "out_root" in sig.parameters:
-        kwargs["out_root"] = args.out_root_correlate
-    else:
-        raise TypeError("correlate() signature missing expected output-root parameter")
-
-    result = correlate(**kwargs)
+    result = correlate(
+        out_root_discover=args.out_root_discover,
+        out_root_issues=args.out_root_correlate,
+        sources=sources or None,
+        ai_merge=args.ai_merge,
+    )
 
     print("")
     print(f"Correlate result: {result}")

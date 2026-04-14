@@ -1913,7 +1913,12 @@ def build_community_feed(
                         fda_rc_count += 1
                         fda_titles_enriched += 1
                         break
-                except Exception:
+                except Exception as exc:
+                    import logging as _log
+                    _log.getLogger(__name__).warning(
+                        "FDA recall enrichment failed for %s from %s: %s",
+                        issue.get("issue_id", "?"), recall_file.name, exc,
+                    )
                     continue
 
         # Secondary: classification database lookup (only for device-like issues)
@@ -1940,8 +1945,12 @@ def build_community_feed(
                             try:
                                 rd = json.loads(recall_file.read_text(encoding="utf-8"))
                                 product_code = rd.get("product_code")
-                            except Exception:
-                                pass
+                            except Exception as exc:
+                                import logging as _log
+                                _log.getLogger(__name__).warning(
+                                    "FDA recall product_code lookup failed for %s: %s",
+                                    recall_file.name, exc,
+                                )
 
                 device_name = issue.get("title", "")
                 rc = lookup_risk_class(
