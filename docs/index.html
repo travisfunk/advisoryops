@@ -82,6 +82,13 @@ a:hover { text-decoration:underline; }
 
 /* Filter bar */
 #filter-bar { display:flex; align-items:center; gap:10px; padding:6px 12px; flex-shrink:0; border-bottom:1px solid var(--card-border); }
+#digest-banner { padding:12px 16px; background:rgba(94,234,212,.04); border-bottom:1px solid #2a3f4f; font-size:12px; color:var(--text-body); display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+#digest-banner.hidden { display:none; }
+#digest-banner .db-label { font-size:10px; font-weight:600; letter-spacing:.8px; text-transform:uppercase; color:#5eead4; }
+#digest-banner .db-headline { color:var(--text-primary); font-weight:600; }
+#digest-banner .db-stat { color:var(--text-secondary); }
+#digest-banner .db-stat strong { color:var(--text-primary); font-family:"SF Mono","Roboto Mono",monospace; }
+#digest-banner .db-empty { color:var(--text-secondary); font-style:italic; }
 #filter-bar.hidden { display:none; }
 #search-input { width:240px; background:var(--card-bg); border:1px solid var(--card-border); border-radius:4px; padding:5px 10px; font-size:12px; color:var(--text-primary); outline:none; font-family:inherit; }
 #search-input::placeholder { color:var(--text-muted); }
@@ -372,6 +379,7 @@ a:hover { text-decoration:underline; }
       <option value="100">100</option>
       <option value="all">All</option>
     </select>
+    <button class="pill" id="weekly-digest-btn" title="Show only advisories from the last 7 days">This week</button>
     <div class="scope-toggle">
       <button class="toggle-btn active" data-scope-mode="healthcare">Medical devices</button>
       <button class="toggle-btn" data-scope-mode="all">All vulnerabilities</button>
@@ -382,6 +390,7 @@ a:hover { text-decoration:underline; }
   <div id="content">
     <!-- Issues tab -->
     <div id="issues-section" class="tab-content visible">
+      <div id="digest-banner" class="hidden"></div>
       <div id="issue-list-pane"></div>
       <div id="detail-pane">
         <div id="detail-empty">
@@ -574,6 +583,13 @@ a:hover { text-decoration:underline; }
         </div>
 
         <div class="prose-card">
+          <div class="label" style="margin-bottom:10px">OPERATIONAL VIEWS</div>
+          <p style="font-size:12px;color:var(--text-secondary);margin-bottom:8px">The Issues tab supports two presentation modes on top of the standard filter pipeline (Medical devices / FDA CLASS / KEV / search):</p>
+          <div class="detail-row"><span class="dk">LATEST dropdown</span><span class="dv">Top N most recent (25 / 50 / 100 / All) by published date</span></div>
+          <div class="detail-row"><span class="dk">This week</span><span class="dv">Last 7 days only, with priority summary banner (quiet-week reassurance when empty)</span></div>
+        </div>
+
+        <div class="prose-card">
           <div class="label" style="margin-bottom:10px">RSS FEEDS</div>
           <p style="margin-bottom:8px;color:var(--text-secondary);font-size:12px">Subscribe to filtered feeds in your RSS reader:</p>
           <div class="detail-row"><span class="dk">All issues (top 50)</span><span class="dv"><a href="feed.xml" target="_blank">feed.xml</a></span></div>
@@ -616,6 +632,7 @@ a:hover { text-decoration:underline; }
   let activeFdaFilter = 'all';
   let activeKevFilter = false;
   let activeLatestLimit = 25;
+  let weeklyDigest = false;
   let healthcareMode = true;
   let allIssuesCache = null;
   let healthcareIssues = null;
@@ -821,13 +838,61 @@ a:hover { text-decoration:underline; }
       if (pa !== pb) return pa - pb;
       return getIssueDate(b) - getIssueDate(a);
     });
-    if (activeLatestLimit !== null && list.length > activeLatestLimit) {
+
+    // Weekly digest filter — overrides LATEST pagination when active. Items
+    // without a parseable published_date are excluded from the digest view
+    // (we don't know when they're from). When digest is active, LATEST is
+    // ignored so the full last-7-day window renders.
+    if (weeklyDigest) {
+      var cutoff = Date.now() - 7 * 24 * 60 * 60 * 1000;
+      list = list.filter(function(i) {
+        var d = getPublishedDate(i);
+        return d !== null && d.getTime() >= cutoff;
+      });
+    } else if (activeLatestLimit !== null && list.length > activeLatestLimit) {
       list = list.slice(0, activeLatestLimit);
     }
     filteredIssues = list;
     selectedIdx = -1;
+    renderDigestBanner(list);
     renderIssueList();
     renderDetail();
+  }
+
+  function renderDigestBanner(list) {
+    var banner = document.getElementById('digest-banner');
+    if (!banner) return;
+    if (!weeklyDigest) {
+      banner.className = 'hidden';
+      banner.innerHTML = '';
+      return;
+    }
+    banner.className = '';
+    if (list.length === 0) {
+      // Quiet week — look up the most recent item's date across the full
+      // filtered set (without the 7-day window) so we can reassure the
+      // reader rather than show a broken-looking empty state.
+      var latest = null;
+      for (var i = 0; i < issues.length; i++) {
+        if (healthcareMode && issues[i].healthcare_category !== 'medical_device') continue;
+        var d = getPublishedDate(issues[i]);
+        if (d !== null && (latest === null || d.getTime() > latest.getTime())) latest = d;
+      }
+      var latestLabel = latest ? formatDate(latest) : '—';
+      banner.innerHTML = '<span class="db-label">This week</span>' +
+        '<span class="db-empty">No new medical device advisories this week. Most recent item: ' + escapeHtml(latestLabel) + '.</span>';
+      return;
+    }
+    var counts = { P0: 0, P1: 0, P2: 0, P3: 0 };
+    for (var j = 0; j < list.length; j++) {
+      if (counts[list[j].priority] !== undefined) counts[list[j].priority]++;
+    }
+    banner.innerHTML = '<span class="db-label">This week</span>' +
+      '<span class="db-headline">' + list.length + ' new ' + (healthcareMode ? 'medical device ' : '') + (list.length === 1 ? 'advisory' : 'advisories') + '</span>' +
+      '<span class="db-stat"><strong>' + counts.P0 + '</strong> P0</span>' +
+      '<span class="db-stat"><strong>' + counts.P1 + '</strong> P1</span>' +
+      '<span class="db-stat"><strong>' + counts.P2 + '</strong> P2</span>' +
+      '<span class="db-stat"><strong>' + counts.P3 + '</strong> P3</span>';
   }
 
   var FDA_TOOLTIPS = {
@@ -1514,6 +1579,29 @@ a:hover { text-decoration:underline; }
     latestSelect.addEventListener('change', function() {
       var v = latestSelect.value;
       activeLatestLimit = v === 'all' ? null : parseInt(v, 10);
+      // If user picks a LATEST value while digest is active, exit digest.
+      if (weeklyDigest) {
+        weeklyDigest = false;
+        var wd = document.getElementById('weekly-digest-btn');
+        if (wd) wd.classList.remove('active');
+        if (latestSelect) latestSelect.disabled = false;
+      }
+      applyFilters();
+    });
+  }
+
+  // Weekly digest toggle — mutually exclusive with LATEST pagination.
+  var digestBtn = document.getElementById('weekly-digest-btn');
+  if (digestBtn) {
+    digestBtn.addEventListener('click', function() {
+      weeklyDigest = !weeklyDigest;
+      if (weeklyDigest) {
+        digestBtn.classList.add('active');
+        if (latestSelect) latestSelect.disabled = true;
+      } else {
+        digestBtn.classList.remove('active');
+        if (latestSelect) latestSelect.disabled = false;
+      }
       applyFilters();
     });
   }
