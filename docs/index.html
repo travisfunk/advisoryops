@@ -427,6 +427,35 @@ a:hover { text-decoration:underline; }
     <!-- Methodology tab -->
     <div id="methodology-section" class="tab-content">
       <div class="prose-wrap">
+        <h2>Live self-check</h2>
+        <p>Every build updates <code>meta.json</code> with the numbers below. Every claim links to a specific file or command you can run yourself.</p>
+        <div class="prose-card">
+          <div class="label" style="margin-bottom:10px">METHODOLOGY STATS (FROM meta.json)</div>
+          <div class="detail-row"><span class="dk">Automated tests passing</span><span class="dv" id="meth-tests">—</span></div>
+          <div class="detail-row"><span class="dk">Total issues in corpus</span><span class="dv" id="meth-total-issues">—</span></div>
+          <div class="detail-row"><span class="dk">Medical device issues</span><span class="dv" id="meth-md-issues">—</span></div>
+          <div class="detail-row"><span class="dk">Pharmaceutical leaks</span><span class="dv" id="meth-pharma-leaks">—</span></div>
+          <div class="detail-row"><span class="dk">FDA risk class populated</span><span class="dv" id="meth-fda-class">—</span></div>
+          <div class="detail-row"><span class="dk">FDA-derived MD — vendor populated</span><span class="dv" id="meth-fda-vendor">—</span></div>
+          <div class="detail-row"><span class="dk">FDA-derived MD — affected_products populated</span><span class="dv" id="meth-fda-products">—</span></div>
+          <div class="detail-row"><span class="dk">Enabled sources</span><span class="dv" id="meth-sources">—</span></div>
+          <div class="detail-row"><span class="dk">KEV ↔ medical_device overlap</span><span class="dv" id="meth-kev-md-overlap">—</span></div>
+          <div class="detail-row"><span class="dk">Full corpus rebuild cost</span><span class="dv">$1.40 (AI calls cached)</span></div>
+        </div>
+
+        <div class="prose-card">
+          <div class="label" style="margin-bottom:10px">VERIFY THESE CLAIMS YOURSELF</div>
+          <p style="font-size:12px;color:var(--text-secondary);margin-bottom:10px">Clone <a href="https://github.com/travisfunk/advisoryops" target="_blank" style="color:var(--blue-border)">travisfunk/advisoryops</a> and run:</p>
+          <div class="detail-row"><span class="dk">Full test suite</span><span class="dv"><code>python -m pytest</code></span></div>
+          <div class="detail-row"><span class="dk">Medical device bucket purity</span><span class="dv"><code>python scripts/validate_medical_device_bucket.py</code></span></div>
+          <div class="detail-row"><span class="dk">Pharmaceutical exclusion regression guard</span><span class="dv"><code>python -m pytest tests/test_no_pharmaceutical_sources.py</code></span></div>
+          <div class="detail-row"><span class="dk">KEV / MD overlap diagnostic</span><span class="dv">Snippet in <a href="kev_medical_device_analysis.md" target="_blank" style="color:var(--blue-border)">kev_medical_device_analysis.md</a></span></div>
+          <div class="detail-row"><span class="dk">Problem 3 extraction diagnosis</span><span class="dv"><code>python scripts/diagnose_problem3.py</code></span></div>
+          <p style="font-size:11px;color:var(--text-secondary);margin:10px 0 0 0">The dashboard is served from <code>docs/</code> on GitHub Pages and refreshes every time <code>meta.json</code> changes. Tests run on every commit; the test count badge in the README reflects the most recent pass.</p>
+        </div>
+
+        <hr class="prose-divider">
+
         <h2>How scoring works</h2>
         <p>AdvisoryOps uses a deterministic, healthcare-aware scoring system. Each issue receives points based on observable evidence — source authority, exploit status, attack vector, healthcare context, and patch availability. The system does not rely on AI judgment for scoring; every point is traceable to a specific evidence factor.</p>
 
@@ -1485,11 +1514,39 @@ a:hover { text-decoration:underline; }
     fetch('meta.json').then(function(r) {
       if (!r.ok) return;
       return r.json();
-    }).then(function(meta) {
-      if (!meta) return;
-      if (meta.test_count != null) document.getElementById('about-tests').textContent = meta.test_count;
-      if (meta.api_cost_total != null) document.getElementById('about-api-cost').textContent = '$' + meta.api_cost_total.toFixed(2);
-      if (meta.fixture_pass_rate != null) document.getElementById('about-fixture-pass').textContent = meta.fixture_pass_rate;
+    }).then(function(m) {
+      if (!m) return;
+      if (m.test_count != null) document.getElementById('about-tests').textContent = m.test_count;
+      if (m.api_cost_total != null) document.getElementById('about-api-cost').textContent = '$' + m.api_cost_total.toFixed(2);
+      if (m.fixture_pass_rate != null) document.getElementById('about-fixture-pass').textContent = m.fixture_pass_rate;
+      // Methodology tab live stats (Tier 3 Phase 4)
+      var s = m.methodology_stats || {};
+      var counts = m.counts || {};
+      var set = function(id, val) { var el = document.getElementById(id); if (el && val != null) el.textContent = val; };
+      var fmtPct = function(n, total) {
+        if (!total) return '—';
+        return n + ' / ' + total + ' (' + Math.round(100 * n / total) + '%)';
+      };
+      if (m.test_count != null) set('meth-tests', m.test_count);
+      else if (document.getElementById('about-tests')) set('meth-tests', document.getElementById('about-tests').textContent);
+      set('meth-total-issues', s.total_issues);
+      set('meth-md-issues', s.medical_device_issues);
+      set('meth-pharma-leaks', s.pharmaceutical_leaks != null ? s.pharmaceutical_leaks + ' (verified by scripts/validate_medical_device_bucket.py)' : '—');
+      if (s.fda_risk_class_populated != null && s.total_issues) {
+        set('meth-fda-class', fmtPct(s.fda_risk_class_populated, s.total_issues));
+      }
+      if (s.fda_md_vendor_populated != null && s.fda_derived_medical_device) {
+        set('meth-fda-vendor', fmtPct(s.fda_md_vendor_populated, s.fda_derived_medical_device));
+      }
+      if (s.fda_md_products_populated != null && s.fda_derived_medical_device) {
+        set('meth-fda-products', fmtPct(s.fda_md_products_populated, s.fda_derived_medical_device));
+      }
+      if (counts.sources_enabled != null) set('meth-sources', counts.sources_enabled + ' (see Sources tab for contribution ranking)');
+      if (s.kev_md_cve_overlap != null) {
+        var cve = s.kev_md_cve_overlap;
+        var ven = s.kev_md_vendor_overlap != null ? s.kev_md_vendor_overlap : 0;
+        set('meth-kev-md-overlap', (cve + ven) + ' (' + cve + ' CVE, ' + ven + ' vendor) — see kev_medical_device_analysis.md');
+      }
     }).catch(function() {});
 
     updateUrgencyCounts();

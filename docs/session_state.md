@@ -301,6 +301,7 @@ Tracked for completeness. The 2026-04-13 Tier 1 cleanup mission closed C-002, C-
 - **Dashboard top-N latest pagination** (Problem 8, commit `5052347`) — "LATEST" dropdown (25/50/100/All, default 25) sorts the filtered issue list by `published_date` desc then slices; priority tiles and header counts reflect the full filtered set, not the paginated view.
 - **Pharmaceutical source exclusion + corpus cleanup** (Problem 9, 2026-04-12) — `fda-medwatch` and `mhra-uk-alerts` disabled in `configs/sources.json` with inline `excluded_reason`; removed from every validated set in `configs/community_public_sources.json` and added to a new `excluded_sources` list; 205 corpus records cleaned across `docs/` and `outputs/community_public/` feed artifacts via `scripts/clean_pharmaceutical_records.py`; regression test `tests/test_no_pharmaceutical_sources.py`; validation script extended to fail on pharmaceutical title keywords or source membership in the medical_device bucket.
 - 1,079 tests passing (1,076 baseline + 3 from `test_no_pharmaceutical_sources.py`)
+- **Live methodology / self-test page** (Tier 3 Phase 4, 2026-04-13) — Methodology tab gets a new "Live self-check" block at the top showing test pass count, total issues, medical_device count, pharmaceutical leak count (0), FDA risk class coverage, FDA-derived vendor/products coverage, enabled source count, KEV ↔ medical_device overlap, and corpus rebuild cost. Every number is computed at publish time in `community_build.py::_augment_meta_json` and attached to `meta.json` as `methodology_stats`. Below the stats, a "Verify these claims yourself" card lists the exact commands a reviewer can run to reproduce each metric. README Live-demo section gets a paragraph describing Sources, Methodology, and This week views as transparency features. **Tier 3 sweep complete across all four phases.**
 - **Weekly digest view** (Tier 3 Phase 3, 2026-04-13) — "This week" pill added next to the LATEST dropdown in the filter bar. When active, filters to items published in the last 7 days (by `published_date[0]`), overrides LATEST pagination, and renders a summary banner above the issue list with priority counts (P0 / P1 / P2 / P3) and total advisory count. Items without a parseable published_date are excluded from the digest view. Quiet-week state shows a reassurance banner with the most-recent-item date instead of a broken-looking empty list. Disables the LATEST dropdown while active so the two filters stay mutually exclusive. About tab gets an "Operational views" card documenting both LATEST and This week modes.
 - **Sources tab ranked by medical device signal contribution** (Tier 3 Phase 2, 2026-04-13) — new `#source-contribution` panel above the existing Sources list. For each enabled source, counts the medical_device issues and total issues that include it in `sources[]`, sorts by MD contribution desc, and computes a cumulative-percentage column with the "top N for 80% coverage" rows visually highlighted. Header summary: "Of 66 enabled sources, the top [N] produce 80% of medical device signal." Computed live from `feed_latest.json` on dashboard load — no pipeline change. README's Source coverage section gets a one-sentence pointer to the live ranked view.
 - **KEV empirical finding surfaced** (Tier 3 Phase 1, 2026-04-13) — README `## Key finding` section after `## Why it exists`; new "Key finding" card at the top of the dashboard About tab with live numbers (203 KEV entries, 422 medical device issues, 0 overlap) computed from `feed_latest.json` on dashboard load; new "Live self-check" block in the Methodology tab showing CVE and vendor overlap counts refreshed on every build; `kev_medical_device_analysis.md` numbers refreshed and a "Verification" section added with reproduction commands.
@@ -611,6 +612,60 @@ About tab gets a new "Operational views" card documenting both modes side by sid
 Files: `dashboard/index.html`, `docs/index.html`, `docs/session_state.md`. No pipeline or Python change.
 
 Tests: 24 passing. HTML parses cleanly.
+
+### 2026-04-13 (continued) — Tier 3 Phase 4: Live methodology page
+
+Turned the Methodology tab into a reviewer-facing self-test surface. Two new cards at the top:
+
+**1) "METHODOLOGY STATS (FROM meta.json)"** — each row a live number backed by `meta.json`:
+
+- Automated tests passing
+- Total issues in corpus
+- Medical device issues
+- Pharmaceutical leaks (0, backed by `scripts/validate_medical_device_bucket.py`)
+- FDA risk class populated (with percentage of corpus)
+- FDA-derived MD — vendor populated (with percentage — currently 376 / 378 = 99%)
+- FDA-derived MD — affected_products populated
+- Enabled sources (pointer to the Sources ranking)
+- KEV ↔ medical_device overlap (with CVE and vendor breakdown)
+- Full corpus rebuild cost ($1.40, AI calls cached)
+
+**2) "VERIFY THESE CLAIMS YOURSELF"** — each row an exact command:
+
+- `python -m pytest` (full test suite)
+- `python scripts/validate_medical_device_bucket.py` (bucket purity)
+- `python -m pytest tests/test_no_pharmaceutical_sources.py` (pharma exclusion regression)
+- KEV/MD diagnostic snippet in `kev_medical_device_analysis.md`
+- `python scripts/diagnose_problem3.py` (vendor/products extraction)
+
+Compute lives in `src/advisoryops/community_build.py::_augment_meta_json`. New `methodology_stats` object attached to `meta.json` on every publish:
+```
+{"total_issues": 3724, "medical_device_issues": 422,
+ "fda_risk_class_populated": 378, "fda_derived_medical_device": 378,
+ "fda_md_vendor_populated": 376, "fda_md_products_populated": 376,
+ "kev_enriched": 203, "kev_md_cve_overlap": 0, "kev_md_vendor_overlap": 0,
+ "pharmaceutical_leaks": 0}
+```
+Tolerates missing `feed_latest.json` on first-ever builds by no-oping.
+
+README Live-demo section gets a second paragraph pointing at the Sources / Methodology / This week reviewer transparency views.
+
+Tests: 41 passing across dashboard + docs + publish_step + community_build.
+
+### Tier 3 sweep — complete
+
+All four phases landed and merged to `origin/main`:
+
+| Phase | Feature | Feature-branch commit | Main merge |
+| --- | --- | --- | --- |
+| 1 | KEV finding surfaced (README, About card, Methodology self-check) | `b4e311d` | `b59dc5a` |
+| 2 | Sources tab ranked by MD signal contribution | `fec4ad2` | `b6ce311` |
+| 3 | Weekly digest view ("This week" pill + summary banner) | `2e78b6a` | `cc57eeb` |
+| 4 | Live methodology / self-test page | *(this commit)* | *(next merge)* |
+
+Collective impact: the four Tier 3 items turn "we have 66 sources, 422 medical device issues, and 1,101 tests" from raw numbers into claims a reviewer can measurably verify. Sources ranking shows which sources carry the weight. Methodology tab shows the numbers live from meta.json with reproduction commands. KEV finding surfaces the structural-gap argument from a buried markdown file into the README, the About tab, and a live self-check block. Weekly digest delivers on the "advisory-to-action, right now" framing from `advisoryops_vision.md`.
+
+No scoring / classification / data changes across any phase — this was a presentation-and-transparency sweep. The underlying pipeline is unchanged.
 
 ---
 

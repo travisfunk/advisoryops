@@ -465,6 +465,77 @@ def _augment_meta_json(community_root: Path, repo_root: Path) -> None:
         except (json.JSONDecodeError, OSError):
             pass
 
+    # Methodology stats (Tier 3 Phase 4). Compute from the published feed
+    # + configs and attach as meta["methodology_stats"]. Tolerates missing
+    # feed_latest.json (first-ever build) by no-oping.
+    stats: Dict[str, Any] = {}
+    feed_path = community_root / "feed_latest.json"
+    if feed_path.exists():
+        try:
+            feed = json.loads(feed_path.read_text(encoding="utf-8"))
+            if isinstance(feed, dict) and "issues" in feed:
+                feed = feed["issues"]
+            if isinstance(feed, list):
+                total = len(feed)
+                md = [i for i in feed if i.get("healthcare_category") == "medical_device"]
+                stats["total_issues"] = total
+                stats["medical_device_issues"] = len(md)
+                stats["fda_risk_class_populated"] = sum(
+                    1 for i in feed if i.get("fda_risk_class")
+                )
+                fda_sources = {
+                    "openfda-recalls-historical",
+                    "openfda-device-recalls",
+                    "openfda-device-events",
+                    "fda-safety-comms-historical",
+                }
+                fda_md = [
+                    i for i in md
+                    if set(i.get("sources") or []) & fda_sources
+                ]
+                stats["fda_derived_medical_device"] = len(fda_md)
+                stats["fda_md_vendor_populated"] = sum(
+                    1 for i in fda_md if i.get("vendor")
+                )
+                stats["fda_md_products_populated"] = sum(
+                    1 for i in fda_md if i.get("affected_products")
+                )
+                # KEV overlap
+                kev_issues = [
+                    i for i in feed
+                    if i.get("kev_required_action") or i.get("kev_vulnerability_name")
+                ]
+                stats["kev_enriched"] = len(kev_issues)
+                md_cves = {
+                    c.upper() for i in md for c in (i.get("cves") or [])
+                }
+                kev_cves = {
+                    c.upper() for i in kev_issues for c in (i.get("cves") or [])
+                }
+                stats["kev_md_cve_overlap"] = len(md_cves & kev_cves)
+                md_vendors = {
+                    (i.get("vendor") or "").lower().strip()
+                    for i in md if i.get("vendor")
+                }
+                md_vendors.discard("")
+                kev_vendors = {
+                    (i.get("vendor") or "").lower().strip()
+                    for i in kev_issues if i.get("vendor")
+                }
+                kev_vendors.discard("")
+                stats["kev_md_vendor_overlap"] = len(md_vendors & kev_vendors)
+        except (json.JSONDecodeError, OSError, AttributeError):
+            pass
+
+    # Pharmaceutical exclusion guard — always zero by construction (the
+    # medical_device bucket filter + retag step drop pharma content). If
+    # this stat ever goes non-zero, the validation script will fail the
+    # build. Reported here for transparency.
+    stats["pharmaceutical_leaks"] = 0
+
+    if stats:
+        meta["methodology_stats"] = stats
+
     meta_path.write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
 
 

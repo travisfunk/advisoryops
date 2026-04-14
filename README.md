@@ -51,6 +51,8 @@ The methodology, numbers, and reproduction steps are documented in [docs/kev_med
 
 The "Medical devices" view shows 422 healthcare-relevant issues with CVSS scores, EPSS exploit probabilities, KEV deadlines, FDA risk class badges, and AI-generated remediation guidance with role-split task assignments. Color-coded priority badges (P0-P3), click-to-expand detail panels, and a debounced search bar filtering by title, CVE, vendor, and product. No framework, no build step — single-file vanilla HTML/JS.
 
+The dashboard also exposes two reviewer-facing transparency views: a **Sources** tab ranking every enabled source by medical-device-signal contribution (so "66 sources" becomes a measurable curation claim), and a **Methodology** tab with live self-check counts refreshed from `meta.json` on every build (test pass rate, FDA coverage, vendor extraction coverage, KEV overlap, pharmaceutical-leak guard) plus the exact commands any reviewer can run to reproduce each number. There's also a "This week" toggle on the Issues tab that filters to advisories from the last 7 days with a priority summary banner, for the operational "what changed this week" use case.
+
 ---
 
 ## Current scope
