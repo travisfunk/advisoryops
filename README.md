@@ -31,6 +31,20 @@ AdvisoryOps closes that gap. The data is free, the analysis is free, the dashboa
 
 ---
 
+## Key finding: CISA KEV has zero medical device coverage
+
+CISA's [Known Exploited Vulnerabilities](https://www.cisa.gov/known-exploited-vulnerabilities-catalog) catalog is the federal authoritative source for "vulnerabilities that are being exploited right now." Federal agencies have binding deadlines to patch anything on the KEV list. Hospital security teams watch it too — it's treated as the canonical signal for "drop everything and fix this."
+
+**As of 2026-04-13, zero of the 203 entries in CISA KEV overlap with any medical device in the AdvisoryOps corpus.** Zero on CVE ID, zero on vendor name (exact or partial substring). The 203 KEV entries span 88 vendors — all enterprise IT (Cisco, Microsoft, Apple, Adobe, Fortinet, Ivanti, Citrix, F5, etc.). None of the 151 medical device vendors in the corpus (Philips Medical Systems, Medtronic, GE Healthcare, St Jude Medical, Siemens Healthineers, and 146 others) appear in KEV.
+
+This is not a bug in AdvisoryOps. It's a structural gap in the federal authoritative source. A hospital security team watching only KEV for patching deadlines would see nothing about their medical devices. Medical device exploitation at scale either isn't happening often enough to meet KEV inclusion criteria, or it's happening but isn't being reported to CISA in a form that triggers KEV listing. Either way, the teams operating those devices need a different signal.
+
+AdvisoryOps aggregates from the specialized sources where medical device advisories actually exist — CISA ICS-Medical (ICSMA), FDA device recalls, FDA safety communications, vendor PSIRTs (Philips, Siemens, Abbott, Medtronic), and Health Canada recalls. It auto-promotes FDA Class III devices via a clinical-severity floor (21 CFR 860: devices whose failure can cause serious injury or death) regardless of cyber score. And it exposes the KEV cross-reference live on every build, so if/when CISA starts adding medical device CVEs to KEV, the overlap badge fires automatically.
+
+The methodology, numbers, and reproduction steps are documented in [docs/kev_medical_device_analysis.md](docs/kev_medical_device_analysis.md).
+
+---
+
 ## Live demo
 
 **Dashboard:** [https://travisfunk.github.io/advisoryops/](https://travisfunk.github.io/advisoryops/)
