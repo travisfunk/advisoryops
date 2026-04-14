@@ -301,6 +301,7 @@ Tracked for completeness. The 2026-04-13 Tier 1 cleanup mission closed C-002, C-
 - **Dashboard top-N latest pagination** (Problem 8, commit `5052347`) — "LATEST" dropdown (25/50/100/All, default 25) sorts the filtered issue list by `published_date` desc then slices; priority tiles and header counts reflect the full filtered set, not the paginated view.
 - **Pharmaceutical source exclusion + corpus cleanup** (Problem 9, 2026-04-12) — `fda-medwatch` and `mhra-uk-alerts` disabled in `configs/sources.json` with inline `excluded_reason`; removed from every validated set in `configs/community_public_sources.json` and added to a new `excluded_sources` list; 205 corpus records cleaned across `docs/` and `outputs/community_public/` feed artifacts via `scripts/clean_pharmaceutical_records.py`; regression test `tests/test_no_pharmaceutical_sources.py`; validation script extended to fail on pharmaceutical title keywords or source membership in the medical_device bucket.
 - 1,079 tests passing (1,076 baseline + 3 from `test_no_pharmaceutical_sources.py`)
+- **KEV empirical finding surfaced** (Tier 3 Phase 1, 2026-04-13) — README `## Key finding` section after `## Why it exists`; new "Key finding" card at the top of the dashboard About tab with live numbers (203 KEV entries, 422 medical device issues, 0 overlap) computed from `feed_latest.json` on dashboard load; new "Live self-check" block in the Methodology tab showing CVE and vendor overlap counts refreshed on every build; `kev_medical_device_analysis.md` numbers refreshed and a "Verification" section added with reproduction commands.
 - **Problem 3 residual — vendor + affected_products extraction** (2026-04-13) — `src/advisoryops/enrichment/fda_classification.py` extended with `extract_vendor_products_from_enforcement`, `lookup_vendor_products_by_recall_number`, `extract_vendor_from_title`, `extract_product_from_summary`, and the orchestrator `extract_vendor_products_for_issue`. `scripts/retag_corpus.py` calls the orchestrator before classification. `scripts/validate_medical_device_bucket.py` reports coverage. Deterministic, no AI spend. Coverage: 376 / 378 (99.5%) on both fields. Test suite +22 cases in `tests/test_fda_classification.py`.
 - **Tier 1 cleanup mission** (2026-04-13) — STATUS.md redirect + DOC-01 index update (commit `03cdac3`); README source-count / test-count / dashboard-link reconciliation (commit `cfed1a8`) including `_augment_meta_json` bucketed-config fix so future publishes recompute `sources_enabled` correctly; audit sweep closing C-002 (`feed_contract.json` now covers every `_feed_entry` field), C-011 (STATUS.md redirect), C-012 (`docs/schema.md` field-name reconciliation), C-015 (Python version 3.10 everywhere), C-017 (meta.json path separator normalization), C-027 (two silent FDA-enrichment exception handlers now log warnings), C-029 (`github.com/advisoryops` → `github.com/travisfunk/advisoryops` in README + dashboard), C-033 (cli.py `cmd_correlate` now uses explicit keyword passing instead of `inspect.signature()` probe), C-034 (duplicate correlate import removed). C-035 evaluated (`\bct\b` regex FP rate ~0% in current corpus) and documented. C-031 deferred after investigation showed 16 tests reference `_DASHBOARD_HTML`.
 
@@ -568,6 +569,18 @@ Closed the last open piece of Problem 3. The 2026-04-12 FDA risk class mission p
 **Tests:** 1,101 passing (1,079 baseline + 22 new extraction unit tests, 1 deselected). Full run completed in ~20 minutes, no regressions.
 
 Problem 3 is now RESOLVED — all three passes have landed.
+
+### 2026-04-13 (continued) — Tier 3 Phase 1: KEV finding surfacing
+
+Surfaced the KEV / medical-device zero-overlap empirical finding from the buried `docs/kev_medical_device_analysis.md` into three visible places:
+
+- **README.md** — new `## Key finding: CISA KEV has zero medical device coverage` section after `## Why it exists`, before `## Live demo`. Four paragraphs covering the measurable claim, why it matters (federal authoritative source has a structural gap for medical devices), what AdvisoryOps does about it (specialized sources + FDA clinical-severity floor), and a link to the full analysis.
+- **Dashboard About tab** — new "Key finding" card with teal accent border at the top of the tab, showing live numbers (KEV entries / medical_device count / overlap) computed from `feed_latest.json` at render time. Not hardcoded — a future build producing overlap will surface it without code changes.
+- **Dashboard Methodology tab** — new "Live self-check: KEV coverage of medical devices" block showing both CVE overlap and vendor overlap computed on every load. Describes the auto-activation behavior for the `is_kev_medical_device` badge if the upstream data starts producing matches.
+
+Also updated `docs/kev_medical_device_analysis.md` with the 2026-04-13 re-verification numbers (422 medical_device, 44 unique MD CVEs, 203 KEV entries, 0 CVE overlap, 0 exact-vendor overlap, 0 partial-substring-vendor overlap) and added a "Verification" section with the Python snippet anyone can run against the corpus to reproduce the numbers. Post-Problem-3 re-run confirmed zero overlap holds even after the vendor field got populated on 376 FDA-derived records.
+
+Tests: 24 passing (test_dashboard_html + test_docs + test_publish_step). HTML sanity check — no parse errors.
 
 ---
 

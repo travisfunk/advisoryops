@@ -178,6 +178,16 @@ a:hover { text-decoration:underline; }
 .prose-wrap h3 { font-size:14px; color:var(--text-primary); font-weight:600; margin-bottom:8px; margin-top:20px; }
 .prose-wrap p { color:var(--text-body); line-height:1.7; margin-bottom:14px; }
 .prose-card { background:var(--card-bg); border:1px solid var(--card-border); border-radius:6px; padding:16px; margin-bottom:14px; }
+.finding-card { background:var(--card-bg); border:1px solid #5eead4; border-left:3px solid #5eead4; border-radius:6px; padding:16px 18px; margin-bottom:14px; }
+.finding-card .fc-label { font-size:10px; font-weight:600; letter-spacing:.8px; text-transform:uppercase; color:#5eead4; margin-bottom:8px; }
+.finding-card .fc-headline { font-size:15px; font-weight:600; color:var(--text-primary); margin-bottom:10px; line-height:1.4; }
+.finding-card .fc-numbers { display:flex; gap:24px; margin:10px 0 12px 0; flex-wrap:wrap; }
+.finding-card .fc-num { font-size:24px; font-weight:700; color:var(--text-primary); font-family:"SF Mono","Roboto Mono",monospace; }
+.finding-card .fc-num-label { font-size:10px; color:var(--text-secondary); text-transform:uppercase; letter-spacing:.6px; display:block; margin-top:2px; }
+.finding-card .fc-body { font-size:12px; color:var(--text-body); line-height:1.55; }
+.finding-card .fc-body p { margin-bottom:8px; }
+.finding-card .fc-body a { color:#5eead4; text-decoration:none; border-bottom:1px solid transparent; }
+.finding-card .fc-body a:hover { border-bottom-color:#5eead4; }
 .prose-divider { border:none; border-top:1px solid var(--card-border); margin:24px 0; }
 
 /* Scoring factors grid */
@@ -465,12 +475,48 @@ a:hover { text-decoration:underline; }
           <div class="label" style="margin-bottom:10px">EVIDENCE COMPLETENESS</div>
           <p style="font-size:12px;color:var(--text-secondary);margin:0">Each issue is evaluated across 8 evidence fields: CVEs, summary, affected products, severity, vendor, patch status, mitigations, and source consensus. The evidence completeness score reflects how many of these fields contain meaningful data from authoritative sources.</p>
         </div>
+
+        <hr class="prose-divider">
+
+        <h3>Live self-check: KEV coverage of medical devices</h3>
+        <div class="prose-card">
+          <p style="font-size:12px;color:var(--text-body);margin:0 0 10px 0">Every build cross-references the medical_device bucket against CISA KEV by CVE ID and by vendor name (exact and partial substring, ≥4 characters). The overlap count is computed live from <code>feed_latest.json</code> on dashboard load — not hardcoded. As of the last build:</p>
+          <div class="detail-row"><span class="dk">KEV entries in corpus</span><span class="dv" id="meth-kev-count">—</span></div>
+          <div class="detail-row"><span class="dk">Medical device issues</span><span class="dv" id="meth-md-count">—</span></div>
+          <div class="detail-row"><span class="dk">CVE overlap</span><span class="dv" id="meth-cve-overlap">—</span></div>
+          <div class="detail-row"><span class="dk">Vendor overlap (exact)</span><span class="dv" id="meth-vendor-overlap">—</span></div>
+          <p style="font-size:11px;color:var(--text-secondary);margin:10px 0 0 0">If any of these numbers becomes non-zero on a future build, the <code>is_kev_medical_device</code> badge activates automatically and <code>feed_medical_device_kev.json</code> becomes non-empty. See <a href="kev_medical_device_analysis.md" target="_blank" style="color:var(--blue-border)">kev_medical_device_analysis.md</a> for the full methodology.</p>
+        </div>
       </div>
     </div>
 
     <!-- About tab -->
     <div id="about-section" class="tab-content">
       <div class="prose-wrap">
+        <div class="finding-card">
+          <div class="fc-label">Key finding</div>
+          <div class="fc-headline">CISA KEV has zero medical device coverage.</div>
+          <div class="fc-numbers">
+            <div>
+              <span class="fc-num" id="kev-finding-kev">203</span>
+              <span class="fc-num-label">KEV entries</span>
+            </div>
+            <div>
+              <span class="fc-num" id="kev-finding-md">422</span>
+              <span class="fc-num-label">Medical device issues</span>
+            </div>
+            <div>
+              <span class="fc-num" id="kev-finding-overlap">0</span>
+              <span class="fc-num-label">Overlap (CVE or vendor)</span>
+            </div>
+          </div>
+          <div class="fc-body">
+            <p>Federal agencies treat CISA's Known Exploited Vulnerabilities catalog as the canonical "drop everything" signal. A hospital security team watching only KEV for patching deadlines would see nothing about their medical devices — zero of the 203 KEV entries overlap with any medical device vendor or CVE in the AdvisoryOps corpus.</p>
+            <p>This is why the project exists. AdvisoryOps aggregates from specialized sources where medical device advisories actually live (CISA ICS-Medical, FDA recalls, FDA safety communications, vendor PSIRTs, Health Canada recalls) and applies an FDA clinical-severity floor so Class III devices surface even without a KEV listing. The KEV cross-reference is exposed live on every build — if/when CISA starts adding medical device CVEs, the overlap badge fires automatically.</p>
+            <p>Full methodology and reproduction commands: <a href="kev_medical_device_analysis.md" target="_blank">kev_medical_device_analysis.md</a></p>
+          </div>
+        </div>
+
         <h2>What is AdvisoryOps?</h2>
         <p>AdvisoryOps is a deterministic, healthcare-focused vulnerability intelligence pipeline. It continuously ingests advisories from government, vendor, and research sources — scores them for healthcare relevance and urgency — and produces structured, actionable issue records for security teams at hospitals and health systems.</p>
 
@@ -1226,6 +1272,49 @@ a:hover { text-decoration:underline; }
     }
     document.getElementById('about-remediation').textContent = remediationCount;
     document.getElementById('about-medical').textContent = medicalCount;
+
+    // Live KEV / medical_device overlap check (Tier 3 Phase 1).
+    // Computed from feed_latest.json at render time — not hardcoded, so a
+    // future build that produces overlap will show it without code changes.
+    (function computeKevFinding() {
+      var mdList = [], kevList = [];
+      for (var i = 0; i < issues.length; i++) {
+        var it = issues[i];
+        if (it.healthcare_category === 'medical_device') mdList.push(it);
+        if (it.kev_required_action || it.kev_vulnerability_name) kevList.push(it);
+      }
+      var mdCves = {}, kevCves = {};
+      for (var a = 0; a < mdList.length; a++) {
+        var cv = mdList[a].cves || [];
+        for (var b = 0; b < cv.length; b++) mdCves[String(cv[b]).toUpperCase()] = true;
+      }
+      for (var c = 0; c < kevList.length; c++) {
+        var kv = kevList[c].cves || [];
+        for (var d = 0; d < kv.length; d++) kevCves[String(kv[d]).toUpperCase()] = true;
+      }
+      var cveOverlap = 0;
+      for (var k in mdCves) { if (Object.prototype.hasOwnProperty.call(kevCves, k)) cveOverlap++; }
+      var mdVendors = {}, kevVendors = {};
+      for (var e = 0; e < mdList.length; e++) {
+        var mv = String(mdList[e].vendor || '').toLowerCase().trim();
+        if (mv) mdVendors[mv] = true;
+      }
+      for (var f = 0; f < kevList.length; f++) {
+        var kvendor = String(kevList[f].vendor || '').toLowerCase().trim();
+        if (kvendor) kevVendors[kvendor] = true;
+      }
+      var vendorOverlap = 0;
+      for (var vk in mdVendors) { if (Object.prototype.hasOwnProperty.call(kevVendors, vk)) vendorOverlap++; }
+      var totalOverlap = cveOverlap + vendorOverlap;
+      var set = function(id, val) { var el = document.getElementById(id); if (el) el.textContent = val; };
+      set('kev-finding-kev', kevList.length);
+      set('kev-finding-md', mdList.length);
+      set('kev-finding-overlap', totalOverlap);
+      set('meth-kev-count', kevList.length);
+      set('meth-md-count', mdList.length);
+      set('meth-cve-overlap', cveOverlap);
+      set('meth-vendor-overlap', vendorOverlap);
+    })();
 
     // Load pipeline metrics from meta.json if available
     fetch('meta.json').then(function(r) {
