@@ -1,12 +1,12 @@
 # AdvisoryOps
 
-![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)
+![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)
 ![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)
-![Tests: 1055 passing](https://img.shields.io/badge/tests-1055_passing-brightgreen.svg)
-[![Dashboard](https://img.shields.io/badge/dashboard-GitHub_Pages-blue.svg)](https://travisfunk.github.io/advisoryops-dashboard/)
+![Tests: 1079 passing](https://img.shields.io/badge/tests-1079_passing-brightgreen.svg)
+[![Dashboard](https://img.shields.io/badge/dashboard-GitHub_Pages-blue.svg)](https://travisfunk.github.io/advisoryops/)
 
 **Open-source healthcare medical device security intelligence pipeline.**
-AdvisoryOps continuously monitors 68 public sources — CISA ICS-Medical, the Known Exploited Vulnerabilities catalog, FDA device recalls, NVD, CERT/CC, vendor PSIRTs, and more — and produces a prioritized, healthcare-aware feed of medical device vulnerabilities. Built for hospital security teams that can't afford commercial platforms like Claroty or TRIMEDX.
+AdvisoryOps continuously monitors 66 public sources — CISA ICS-Medical, the Known Exploited Vulnerabilities catalog, FDA device recalls, NVD, CERT/CC, vendor PSIRTs, and more — and produces a prioritized, healthcare-aware feed of medical device vulnerabilities. Built for hospital security teams that can't afford commercial platforms like Claroty or TRIMEDX.
 
 
 ---
@@ -33,9 +33,9 @@ AdvisoryOps closes that gap. The data is free, the analysis is free, the dashboa
 
 ## Live demo
 
-**Dashboard:** [https://travisfunk.github.io/advisoryops-dashboard/](https://travisfunk.github.io/advisoryops-dashboard/)
+**Dashboard:** [https://travisfunk.github.io/advisoryops/](https://travisfunk.github.io/advisoryops/)
 
-The "Medical devices" view shows 234 healthcare-relevant issues with CVSS scores, EPSS exploit probabilities, KEV deadlines, FDA risk class badges, and AI-generated remediation guidance with role-split task assignments. Color-coded priority badges (P0-P3), click-to-expand detail panels, and a debounced search bar filtering by title, CVE, vendor, and product. No framework, no build step — single-file vanilla HTML/JS.
+The "Medical devices" view shows 422 healthcare-relevant issues with CVSS scores, EPSS exploit probabilities, KEV deadlines, FDA risk class badges, and AI-generated remediation guidance with role-split task assignments. Color-coded priority badges (P0-P3), click-to-expand detail panels, and a debounced search bar filtering by title, CVE, vendor, and product. No framework, no build step — single-file vanilla HTML/JS.
 
 ---
 
@@ -43,13 +43,13 @@ The "Medical devices" view shows 234 healthcare-relevant issues with CVSS scores
 
 | Metric | Value |
 |--------|-------|
-| Total sources monitored | 68 |
-| Total issues tracked | 1,990 |
-| Medical device issues | 234 |
-| Issues with NVD enrichment | 1,091 |
+| Total sources monitored | 66 |
+| Total issues tracked | 3,724 |
+| Medical device issues | 422 |
+| Issues with NVD enrichment | 2,372 |
 | Issues with KEV required actions | 203 |
-| AI recommendation packets | 139 (P0/P1) |
-| Automated tests | 1,055 |
+| AI recommendation packets | 100 (P0/P1) |
+| Automated tests | 1,079 |
 | Full corpus rebuild cost | $1.40 |
 
 ### Repository structure
@@ -104,7 +104,7 @@ advisoryops evaluate --fixtures tests/fixtures/golden --out outputs/eval
 ## Pipeline architecture
 ```mermaid
 flowchart TD
-    A[68 Public Sources<br/>CISA · FDA · NVD · Vendor PSIRTs · Threat Intel] --> B[Discover<br/>Fetch & normalize feeds]
+    A[66 Public Sources<br/>CISA · FDA · NVD · Vendor PSIRTs · Threat Intel] --> B[Discover<br/>Fetch & normalize feeds]
     B --> C[Correlate<br/>Dedupe by CVE / signal hash]
     C --> D[NVD Enrich<br/>CVSS · CWE · CPE · KEV]
     D --> E[Score<br/>Healthcare-aware priority P0-P3]
@@ -119,7 +119,7 @@ flowchart TD
 ```
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                        DATA SOURCES (68 enabled)                │
+│                        DATA SOURCES (66 enabled)                │
 │  CISA ICS-Medical · CISA KEV · FDA Recalls · CERT/CC · NVD     │
 │  MS MSRC · Siemens · Philips · ABB · ZDI · more                │
 └─────────────────────┬───────────────────────────────────────────┘
@@ -146,7 +146,7 @@ flowchart TD
 │  3. NVD ENRICH  (nvd_enrich.py)                                 │
 │  CVE → CVSS base score, vector, CWE, affected products (CPE)   │
 │  KEV cross-reference → required action, due date, ransomware    │
-│  1,091 issues enriched in current corpus                        │
+│  2,372 issues enriched in current corpus                        │
 │  Output: NVD fields merged into issues.jsonl                    │
 └─────────────────────┬───────────────────────────────────────────┘
                       │
@@ -166,7 +166,7 @@ flowchart TD
 │  5. HEALTHCARE FILTER  (healthcare_filter.py)                   │
 │  Tags issues as healthcare-relevant using device keywords,      │
 │  ICS-Medical source, FDA recalls, clinical context signals      │
-│  234 / 1,990 issues tagged in current corpus                    │
+│  422 / 3,724 issues tagged as medical_device in current corpus  │
 │  Output: feed_healthcare.json                                   │
 └─────────────────────┬───────────────────────────────────────────┘
                       │
@@ -196,14 +196,16 @@ flowchart TD
 
 ## Source coverage
 
-**68 enabled sources across 4 scopes** (see `configs/sources.json` for the full list)
+**66 enabled sources across 4 scopes** (see `configs/sources.json` for the authoritative, up-to-date list)
 
 | Scope | Count | Examples |
 |----------|-------|---------|
-| advisory | 18 | CISA ICS-Medical, CISA ICS, CERT/CC, FDA MedWatch, Health Canada recalls, ABB PSIRT, ZDI Published, MHRA UK alerts, Philips PSIRT, Siemens ProductCERT |
+| advisory | 16 | CISA ICS-Medical, CISA ICS, CERT/CC, Health Canada recalls, ABB PSIRT, ZDI Published / Upcoming, Philips PSIRT, Siemens ProductCERT |
 | dataset | 12 | CISA KEV (JSON + CSV), NVD CVE API, openFDA device recalls, openFDA device events, EPSS API, Tenable plugins, CWE catalog, MITRE ATT&CK ICS, CISA Vulnrichment |
 | news | 29 | CISA NCAS alerts/analysis/current activity, CyberScoop Healthcare, Fortified Health Security, HIPAA Guide Cyber, MedTech Intelligence, Microsoft MSRC blog, NCSC UK, NIST Cybersecurity Insights, Krebs on Security, Dark Reading |
 | threatintel | 9 | Cisco Talos, Google/Mandiant, Check Point Research, CrowdStrike, Abuse.ch URLhaus, Abuse.ch Feodo Tracker, Abuse.ch SSL Blacklist, SANS ISC Blocklist IPs, Binary Defense Banlist |
+
+Pharmaceutical sources (`fda-medwatch`, `mhra-uk-alerts`) are explicitly disabled — see `audit/pharmaceutical_exclusion_diagnosis.md` and Section 8 principle #12 of `docs/session_state.md`. Medicines recalls belong to pharmacy workflows, not medical device security.
 
 To add a new source, add a record to `configs/sources.json` (page_type must be `rss_atom`, `json_feed`, or `csv_feed`) and run:
 
@@ -217,7 +219,7 @@ python scripts/smoke_test_all_sources.py
 
 ```bash
 # Full suite — no API key required (all AI calls use injectable mocks)
-python -m pytest            # 1038 tests
+python -m pytest            # 1079 tests
 
 # Specific modules
 python -m pytest tests/test_score_healthcare.py -v
@@ -243,7 +245,7 @@ Every AI-generated output carries an evidence trail:
 
 ## Documentation
 
-- **[Architecture diagram](docs/architecture.md)** — data flow from 65 sources through ingestion, correlation, enrichment, AI processing, and out to consumers
+- **[Architecture diagram](docs/architecture.md)** — data flow from 66 sources through ingestion, correlation, enrichment, AI processing, and out to consumers
 - **[Scoring internals](docs/scoring_internals.md)** — how the v2 healthcare-aware scoring works (5 dimensions, score ranges, priority thresholds)
 - **[Feed schema](docs/schema.md)** — every field in the feed output with types and descriptions
 - **[Feed contract](docs/feed_contract.json)** — schema contract between the pipeline and the dashboard, enforced by tests

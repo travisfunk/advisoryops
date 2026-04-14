@@ -443,8 +443,23 @@ def _augment_meta_json(community_root: Path, repo_root: Path) -> None:
     if sources_cfg.exists():
         try:
             cfg = json.loads(sources_cfg.read_text(encoding="utf-8"))
-            src_list = cfg.get("sources", cfg) if isinstance(cfg, dict) else cfg
-            enabled = sum(1 for s in src_list if s.get("enabled"))
+            enabled = 0
+            if isinstance(cfg, list):
+                entries = cfg
+            elif isinstance(cfg, dict):
+                # sources.json uses scope-bucketed shape
+                # ({"advisory": [...], "dataset": [...], ...}) rather than a
+                # flat list or a {"sources": [...]} wrapper. Flatten every
+                # list-valued bucket.
+                entries = []
+                for bucket in cfg.values():
+                    if isinstance(bucket, list):
+                        entries.extend(bucket)
+            else:
+                entries = []
+            for entry in entries:
+                if isinstance(entry, dict) and entry.get("enabled"):
+                    enabled += 1
             counts = meta.setdefault("counts", {})
             counts["sources_enabled"] = enabled
         except (json.JSONDecodeError, OSError):

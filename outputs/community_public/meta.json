@@ -4,7 +4,7 @@
   "description": "Every enabled source from sources.json including historical backfill modules. Maximizes dashboard coverage across advisories, threat intel, IOC feeds, regulatory, and industry news.",
   "out_root_discover": "outputs/discover",
   "out_root_runs": "outputs/source_runs",
-  "out_root_community": "outputs\\community_public",
+  "out_root_community": "outputs/community_public",
   "params": {
     "refresh": false,
     "refresh_limit": 10,
@@ -16,14 +16,14 @@
     "latest": 0
   },
   "counts": {
-    "validated_sources": 65,
+    "validated_sources": 63,
     "candidate_sources": 1,
     "issues_public": 3724,
     "alerts_public": 100,
     "latest": 3724,
     "healthcare": 3724,
     "packets": 100,
-    "sources_enabled": 68
+    "sources_enabled": 66
   },
   "outputs": {
     "issues_public_jsonl": "outputs\\community_public\\issues_public.jsonl",
