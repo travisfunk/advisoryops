@@ -22,7 +22,10 @@ from typing import Any, Dict, List
 import re
 
 from advisoryops.community_build import _publish_to_docs
-from advisoryops.enrichment.fda_classification import lookup_class_by_recall_number
+from advisoryops.enrichment.fda_classification import (
+    extract_vendor_products_for_issue,
+    lookup_class_by_recall_number,
+)
 from advisoryops.healthcare_filter import classify_healthcare_category
 from advisoryops.score import (
     _apply_fda_clinical_floor,
@@ -50,6 +53,36 @@ _FDA_SOURCES = frozenset({
 })
 
 _RECALL_NUMBER_RE = re.compile(r"\bZ-\d{4}-\d{2,4}\b")
+
+
+def _extract_vendor_and_products(issue: Dict[str, Any]) -> Dict[str, int]:
+    """Fill missing ``vendor`` and ``affected_products`` on FDA-derived rows.
+
+    Returns a dict with integer flags indicating which fields were just
+    populated (``{"vendor": 1, "products": 1}``). Silent on rows whose
+    classifier has not yet concluded medical_device — the caller runs this
+    before classification so the pre-medical_device rows get filled too.
+    """
+    sources = issue.get("sources") or []
+    if not any(s in _FDA_SOURCES for s in sources):
+        return {"vendor": 0, "products": 0}
+
+    has_vendor = bool(issue.get("vendor"))
+    has_products = bool(issue.get("affected_products"))
+    if has_vendor and has_products:
+        return {"vendor": 0, "products": 0}
+
+    vendor, products = extract_vendor_products_for_issue(
+        issue, cache_dir=ENFORCEMENT_CACHE,
+    )
+    out = {"vendor": 0, "products": 0}
+    if not has_vendor and vendor:
+        issue["vendor"] = vendor
+        out["vendor"] = 1
+    if not has_products and products:
+        issue["affected_products"] = products
+        out["products"] = 1
+    return out
 
 
 def _extract_fda_risk_class(issue: Dict[str, Any]) -> bool:
@@ -114,18 +147,28 @@ def _retag_issue_list(issues: List[Dict[str, Any]]) -> Counter:
     Order matters:
       1. Back-fill ``fda_risk_class`` from the enforcement cache (so the floor
          below has a class to act on).
-      2. Reclassify healthcare_category (Rule 3 now sees the filled class).
-      3. Re-apply the FDA clinical-severity floor to score/priority/why.
+      2. Back-fill ``vendor`` + ``affected_products`` on FDA-derived rows
+         (so Rule 2 vendor-allowlist and Rule 4 product-keyword matches can
+         fire correctly in step 3).
+      3. Reclassify healthcare_category (Rule 3 now sees the filled class).
+      4. Re-apply the FDA clinical-severity floor to score/priority/why.
     """
     counts: Counter = Counter()
+    vendor_filled = 0
+    products_filled = 0
     for issue in issues:
         _extract_fda_risk_class(issue)
+        fill = _extract_vendor_and_products(issue)
+        vendor_filled += fill["vendor"]
+        products_filled += fill["products"]
         if issue.get("healthcare_relevant"):
             issue["healthcare_category"] = classify_healthcare_category(issue)
             counts[issue["healthcare_category"]] += 1
         else:
             counts["not_healthcare"] += 1
         _rescore_fda_floor(issue)
+    counts["_vendor_filled"] = vendor_filled
+    counts["_products_filled"] = products_filled
     return counts
 
 

@@ -138,6 +138,22 @@ def main() -> int:
             "watch the ratio for regressions)"
         )
 
+    # Soft metric — vendor + affected_products coverage on FDA-derived rows.
+    # Problem 3 residual extraction (2026-04-13) filled these from the
+    # enforcement cache + title/summary parsers. A rising empty count means
+    # the extractors are losing hits; a ratio that holds steady across
+    # rebuilds means the extraction is durable.
+    fda_no_vendor = [i for i in fda_derived if not i.get("vendor")]
+    fda_no_products = [i for i in fda_derived if not i.get("affected_products")]
+    print(
+        f"METRIC: FDA-derived medical_device issues with empty vendor: "
+        f"{len(fda_no_vendor)} / {len(fda_derived)}"
+    )
+    print(
+        f"METRIC: FDA-derived medical_device issues with empty affected_products: "
+        f"{len(fda_no_products)} / {len(fda_derived)}"
+    )
+
     print()
     print("PASS: no general-IT vendor leaks in medical_device bucket")
     print("PASS: no pharmaceutical records in medical_device bucket")
