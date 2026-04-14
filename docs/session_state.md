@@ -301,6 +301,7 @@ Tracked for completeness. The 2026-04-13 Tier 1 cleanup mission closed C-002, C-
 - **Dashboard top-N latest pagination** (Problem 8, commit `5052347`) — "LATEST" dropdown (25/50/100/All, default 25) sorts the filtered issue list by `published_date` desc then slices; priority tiles and header counts reflect the full filtered set, not the paginated view.
 - **Pharmaceutical source exclusion + corpus cleanup** (Problem 9, 2026-04-12) — `fda-medwatch` and `mhra-uk-alerts` disabled in `configs/sources.json` with inline `excluded_reason`; removed from every validated set in `configs/community_public_sources.json` and added to a new `excluded_sources` list; 205 corpus records cleaned across `docs/` and `outputs/community_public/` feed artifacts via `scripts/clean_pharmaceutical_records.py`; regression test `tests/test_no_pharmaceutical_sources.py`; validation script extended to fail on pharmaceutical title keywords or source membership in the medical_device bucket.
 - 1,079 tests passing (1,076 baseline + 3 from `test_no_pharmaceutical_sources.py`)
+- **Weekly digest view** (Tier 3 Phase 3, 2026-04-13) — "This week" pill added next to the LATEST dropdown in the filter bar. When active, filters to items published in the last 7 days (by `published_date[0]`), overrides LATEST pagination, and renders a summary banner above the issue list with priority counts (P0 / P1 / P2 / P3) and total advisory count. Items without a parseable published_date are excluded from the digest view. Quiet-week state shows a reassurance banner with the most-recent-item date instead of a broken-looking empty list. Disables the LATEST dropdown while active so the two filters stay mutually exclusive. About tab gets an "Operational views" card documenting both LATEST and This week modes.
 - **Sources tab ranked by medical device signal contribution** (Tier 3 Phase 2, 2026-04-13) — new `#source-contribution` panel above the existing Sources list. For each enabled source, counts the medical_device issues and total issues that include it in `sources[]`, sorts by MD contribution desc, and computes a cumulative-percentage column with the "top N for 80% coverage" rows visually highlighted. Header summary: "Of 66 enabled sources, the top [N] produce 80% of medical device signal." Computed live from `feed_latest.json` on dashboard load — no pipeline change. README's Source coverage section gets a one-sentence pointer to the live ranked view.
 - **KEV empirical finding surfaced** (Tier 3 Phase 1, 2026-04-13) — README `## Key finding` section after `## Why it exists`; new "Key finding" card at the top of the dashboard About tab with live numbers (203 KEV entries, 422 medical device issues, 0 overlap) computed from `feed_latest.json` on dashboard load; new "Live self-check" block in the Methodology tab showing CVE and vendor overlap counts refreshed on every build; `kev_medical_device_analysis.md` numbers refreshed and a "Verification" section added with reproduction commands.
 - **Problem 3 residual — vendor + affected_products extraction** (2026-04-13) — `src/advisoryops/enrichment/fda_classification.py` extended with `extract_vendor_products_from_enforcement`, `lookup_vendor_products_by_recall_number`, `extract_vendor_from_title`, `extract_product_from_summary`, and the orchestrator `extract_vendor_products_for_issue`. `scripts/retag_corpus.py` calls the orchestrator before classification. `scripts/validate_medical_device_bucket.py` reports coverage. Deterministic, no AI spend. Coverage: 376 / 378 (99.5%) on both fields. Test suite +22 cases in `tests/test_fda_classification.py`.
@@ -594,6 +595,22 @@ Turned the Sources tab from a flat list into a ranked view so "66 sources" stops
 **README:** new sentence in Source coverage section pointing at the live dashboard Sources tab.
 
 Tests: 24 passing. HTML still parses cleanly.
+
+### 2026-04-13 (continued) — Tier 3 Phase 3: Weekly digest view
+
+Added a "This week" pill next to the LATEST dropdown in the filter bar. When active it filters to items whose `published_date[0]` falls within the last 7 days (same date-parsing path the LATEST pagination uses), overrides the LATEST limit, and renders a summary banner above the issue list: "N new medical device advisories / X P0 / Y P1 / Z P2 / W P3."
+
+**Empty-state handling:** a quiet week with zero new items shows a reassurance banner — "No new medical device advisories this week. Most recent item: 2026-04-09." — rather than a broken-looking empty list.
+
+**Mutual exclusivity with LATEST:** turning on This week disables the LATEST `<select>`. Picking a LATEST value while This week is active auto-exits the digest.
+
+**Items without a parseable `published_date`:** excluded from the digest (we don't know when they're from), consistent with how the LATEST pagination treats them (sorted to the bottom).
+
+About tab gets a new "Operational views" card documenting both modes side by side.
+
+Files: `dashboard/index.html`, `docs/index.html`, `docs/session_state.md`. No pipeline or Python change.
+
+Tests: 24 passing. HTML parses cleanly.
 
 ---
 
