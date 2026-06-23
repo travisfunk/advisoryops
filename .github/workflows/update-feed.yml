@@ -38,11 +38,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add \
-            outputs/community_public/feed_latest.json \
-            outputs/community_public/feed_healthcare.json \
-            outputs/community_public/validated_sources.json \
-            outputs/community_public/meta.json
+          git add docs/
           git diff --cached --quiet \
             || git commit -m "chore(feed): daily pipeline run $(date -u +%Y-%m-%d)" \
             && git push
