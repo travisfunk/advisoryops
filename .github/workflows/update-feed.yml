@@ -26,6 +26,18 @@ jobs:
       - name: Install dependencies
         run: pip install -e .
 
+      - name: Get date
+        id: date
+        run: echo "date=$(date -u +%Y-%m-%d)" >> $GITHUB_OUTPUT
+
+      - name: Restore discover cache
+        uses: actions/cache/restore@v4
+        with:
+          path: outputs/discover/
+          key: discover-${{ runner.os }}-${{ steps.date.outputs.date }}
+          restore-keys: |
+            discover-${{ runner.os }}-
+
       - name: Run pipeline
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
@@ -33,6 +45,12 @@ jobs:
           advisoryops community-build \
             --set-id gold_pass2 \
             --out-root-community outputs/community_public
+
+      - name: Save discover cache
+        uses: actions/cache/save@v4
+        with:
+          path: outputs/discover/
+          key: discover-${{ runner.os }}-${{ steps.date.outputs.date }}
 
       - name: Commit updated feed files
         run: |
