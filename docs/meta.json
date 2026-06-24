@@ -1,7 +1,7 @@
 {
-  "set_id": "full_public",
-  "set_name": "Full Public — all enabled sources including historical backfill",
-  "description": "Every enabled source from sources.json including historical backfill modules. Maximizes dashboard coverage across advisories, threat intel, IOC feeds, regulatory, and industry news.",
+  "set_id": "gold_pass2",
+  "set_name": "Gold Pass 2 — all sources with verified discover data",
+  "description": "57 sources with confirmed discovery output (2026-03-24). Recovered 6 previously disabled sources: healthcare-it-news-security, msrc-blog, cshub-attacks, threatpost, nvd-cve-api, epss-api. All 57 fetch+parse successfully; 55 have filtered signals, 2 parse but have no current keyword matches.",
   "out_root_discover": "outputs/discover",
   "out_root_runs": "outputs/source_runs",
   "out_root_community": "outputs/community_public",
@@ -11,31 +11,43 @@
     "only_new": false,
     "limit_per_source": 200,
     "limit_issues": 0,
-    "min_priority": "P1",
+    "min_priority": "P2",
     "top": 100,
     "latest": 0
   },
   "counts": {
-    "validated_sources": 63,
+    "validated_sources": 56,
     "candidate_sources": 1,
-    "issues_public": 3724,
-    "alerts_public": 100,
-    "latest": 3724,
-    "healthcare": 3724,
-    "packets": 100,
+    "issues_public": 0,
+    "alerts_public": 0,
+    "latest": 0,
+    "healthcare": 0,
+    "packets": 0,
     "sources_enabled": 66
   },
   "outputs": {
-    "issues_public_jsonl": "outputs\\community_public\\issues_public.jsonl",
-    "alerts_public_jsonl": "outputs\\community_public\\alerts_public.jsonl",
-    "feed_latest_json": "outputs\\community_public\\feed_latest.json",
-    "feed_healthcare_json": "outputs\\community_public\\feed_healthcare.json",
-    "feed_csv": "outputs\\community_public\\feed.csv",
-    "feed_rss_xml": "outputs\\community_public\\feed.xml",
-    "validated_sources_json": "outputs\\community_public\\validated_sources.json",
-    "meta_json": "outputs\\community_public\\meta.json",
-    "dashboard_html": "outputs\\community_public\\dashboard.html",
-    "packets_dir": "outputs\\community_public\\packets"
+    "issues_public_jsonl": "outputs/community_public/issues_public.jsonl",
+    "alerts_public_jsonl": "outputs/community_public/alerts_public.jsonl",
+    "feed_latest_json": "outputs/community_public/feed_latest.json",
+    "feed_healthcare_json": "outputs/community_public/feed_healthcare.json",
+    "feed_csv": "outputs/community_public/feed.csv",
+    "feed_rss_xml": "outputs/community_public/feed.xml",
+    "validated_sources_json": "outputs/community_public/validated_sources.json",
+    "meta_json": "outputs/community_public/meta.json",
+    "dashboard_html": "outputs/community_public/dashboard.html",
+    "packets_dir": null
   },
-  "generated_at": "2026-04-14T02:36:53+00:00"
+  "generated_at": "2026-06-24T09:32:18+00:00",
+  "methodology_stats": {
+    "total_issues": 0,
+    "medical_device_issues": 0,
+    "fda_risk_class_populated": 0,
+    "fda_derived_medical_device": 0,
+    "fda_md_vendor_populated": 0,
+    "fda_md_products_populated": 0,
+    "kev_enriched": 0,
+    "kev_md_cve_overlap": 0,
+    "kev_md_vendor_overlap": 0,
+    "pharmaceutical_leaks": 0
+  }
 }
