@@ -38,6 +38,7 @@ from __future__ import annotations
 
 import csv
 import json
+import re
 import shutil
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
@@ -331,6 +332,27 @@ def _sort_feed_entries(rows: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     )
 
 
+# XML 1.0 forbids all control characters except tab (0x09), LF (0x0A), CR (0x0D),
+# and also forbids surrogates (0xD800-0xDFFF) and 0xFFFE/0xFFFF.
+# Strip them rather than replace so we never produce ?-spam in titles.
+# Valid: #x9 | #xA | #xD | [#x20-#xD7FF] | [#xE000-#xFFFD] | [#x10000-#x10FFFF]
+_XML_INVALID_CHARS = re.compile(
+    "[^"
+    + chr(0x09) + chr(0x0A) + chr(0x0D)
+    + chr(0x20) + "-" + chr(0xD7FF)
+    + chr(0xE000) + "-" + chr(0xFFFD)
+    + chr(0x10000) + "-" + chr(0x10FFFF)
+    + "]"
+)
+
+
+def _xml_safe(text: str) -> str:
+    """Return *text* with all XML 1.0-invalid characters removed."""
+    if not text:
+        return ""
+    return _XML_INVALID_CHARS.sub("", text)
+
+
 def _rss_pub_date(date_str: str) -> str:
     """Convert YYYY-MM-DD (or ISO 8601) to RFC 2822 for RSS pubDate."""
     if not date_str:
@@ -367,11 +389,11 @@ def _write_rss(
     for issue in rows[:top]:
         item = ET.SubElement(channel, "item")
 
-        ET.SubElement(item, "title").text = issue.get("title") or ""
+        ET.SubElement(item, "title").text = _xml_safe(issue.get("title") or "")
 
-        link = issue.get("canonical_link") or ""
+        link = _xml_safe(issue.get("canonical_link") or "")
         ET.SubElement(item, "link").text = link
-        ET.SubElement(item, "guid").text = link or issue.get("issue_id", "")
+        ET.SubElement(item, "guid").text = link or _xml_safe(issue.get("issue_id", ""))
 
         published_dates = issue.get("published_dates") or []
         first_date = published_dates[0] if published_dates else ""
@@ -379,12 +401,12 @@ def _write_rss(
         if pub_date:
             ET.SubElement(item, "pubDate").text = pub_date
 
-        summary = (issue.get("summary") or "")[:500]
+        summary = _xml_safe((issue.get("summary") or "")[:500])
         ET.SubElement(item, "description").text = summary
 
         priority = issue.get("priority") or ""
         if priority:
-            ET.SubElement(item, "category").text = priority
+            ET.SubElement(item, "category").text = _xml_safe(priority)
 
     rss_root = ET.Element("rss", version="2.0")
     rss_root.append(channel)
@@ -393,8 +415,12 @@ def _write_rss(
         rss_root, encoding="unicode"
     ).encode("utf-8")
 
-    # Validate before writing
-    ET.fromstring(xml_bytes)
+    # Validate; log on failure rather than crashing the whole pipeline.
+    try:
+        ET.fromstring(xml_bytes)
+    except ET.ParseError as _rss_err:
+        import warnings
+        warnings.warn(f"RSS XML validation failed (file still written): {_rss_err}")
 
     path.write_bytes(xml_bytes)
 
