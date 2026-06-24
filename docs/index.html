@@ -73,6 +73,9 @@ a:hover { text-decoration:underline; }
 .urgency-card.active { border-color:var(--blue-border); }
 .urgency-card .num { font-size:20px; font-weight:500; font-family:'IBM Plex Mono',monospace; }
 .urgency-card .lbl { font-size:10px; text-transform:uppercase; color:var(--text-secondary); letter-spacing:.5px; margin-top:2px; }
+.urgency-card .lbl-sub { font-size:9px; color:var(--text-muted); margin-top:1px; }
+#urgency-legend { font-size:10px; color:var(--text-muted); padding:2px 12px 6px; text-align:center; }
+#urgency-legend a { color:var(--text-muted); text-decoration:underline; }
 
 /* Tabs */
 #tab-bar { display:flex; align-items:center; gap:0; background:var(--surface); border-bottom:1px solid var(--card-border); flex-shrink:0; padding:0 12px; }
@@ -126,6 +129,7 @@ a:hover { text-decoration:underline; }
 .fda-badge .fda-tooltip { display:none; position:absolute; bottom:calc(100% + 6px); left:50%; transform:translateX(-50%); background:#1e2030; color:var(--text-body); border:1px solid var(--card-border); border-radius:4px; padding:6px 10px; font-size:11px; font-weight:400; letter-spacing:0; white-space:normal; width:260px; z-index:100; line-height:1.4; text-transform:none; pointer-events:none; box-shadow:0 4px 12px rgba(0,0,0,.4); }
 .fda-badge:hover .fda-tooltip { display:block; }
 .kev-med-badge { display:inline-block; font-size:9px; font-weight:700; padding:2px 6px; border-radius:3px; background:#dc2626; color:#ffffff; line-height:1; letter-spacing:.5px; flex-shrink:0; cursor:default; position:relative; text-transform:uppercase; }
+.new-badge { display:inline-block; font-size:9px; font-weight:700; padding:2px 6px; border-radius:3px; background:#064e3b; color:#6ee7b7; line-height:1; letter-spacing:.5px; flex-shrink:0; text-transform:uppercase; border:1px solid #065f46; }
 .kev-med-badge .kev-med-tooltip { display:none; position:absolute; bottom:calc(100% + 6px); left:50%; transform:translateX(-50%); background:#1e2030; color:var(--text-body); border:1px solid var(--card-border); border-radius:4px; padding:6px 10px; font-size:11px; font-weight:400; letter-spacing:0; white-space:normal; width:280px; z-index:100; line-height:1.4; text-transform:none; pointer-events:none; box-shadow:0 4px 12px rgba(0,0,0,.4); }
 .kev-med-badge:hover .kev-med-tooltip { display:block; }
 
@@ -295,6 +299,11 @@ a:hover { text-decoration:underline; }
 #footer a { color:var(--text-muted); }
 #footer a:hover { color:var(--accent-blue); }
 
+/* Read state — dimmed issues */
+.issue-card.read { opacity:.45; }
+.issue-card.read:hover { opacity:.7; }
+.issue-card.read .ic-title { color:var(--text-muted); }
+
 /* Source row badges */
 .source-row .badge { font-size:9px; padding:2px 7px; }
 .source-row .status-badge { font-size:9px; padding:2px 7px; border-radius:3px; }
@@ -330,20 +339,25 @@ a:hover { text-decoration:underline; }
     <div class="urgency-card" data-priority="P0">
       <div class="num" style="color:#fca5a5" id="count-p0">0</div>
       <div class="lbl">P0 — ACT NOW</div>
+      <div class="lbl-sub">Patch immediately</div>
     </div>
     <div class="urgency-card" data-priority="P1">
       <div class="num" style="color:#fcd34d" id="count-p1">0</div>
-      <div class="lbl">P1 — THIS WEEK</div>
+      <div class="lbl">P1 — 7-DAY SLA</div>
+      <div class="lbl-sub">Remediate within a week</div>
     </div>
     <div class="urgency-card" data-priority="P2">
       <div class="num" style="color:#93c5fd" id="count-p2">0</div>
       <div class="lbl">P2 — SCHEDULED</div>
+      <div class="lbl-sub">Next patch cycle</div>
     </div>
     <div class="urgency-card" data-priority="P3">
       <div class="num" style="color:#9ca3af" id="count-p3">0</div>
       <div class="lbl">P3 — MONITOR</div>
+      <div class="lbl-sub">Track; no action yet</div>
     </div>
   </div>
+  <div id="urgency-legend">Priority buckets are <strong>remediation response SLAs</strong> — not date filters. Click a bucket to filter issues. <a href="#methodology" onclick="window._ao_switchTab('methodology');return false;">How scoring works</a></div>
 
   <!-- Tab bar -->
   <nav id="tab-bar">
@@ -380,6 +394,7 @@ a:hover { text-decoration:underline; }
       <option value="all">All</option>
     </select>
     <button class="pill" id="weekly-digest-btn" title="Show only advisories from the last 7 days">This week</button>
+    <button class="pill" id="reset-read-btn" title="Restore all dimmed (read) issues to full visibility" onclick="window._ao_clearRead()">Reset read</button>
     <div class="scope-toggle">
       <button class="toggle-btn active" data-scope-mode="healthcare">Medical devices</button>
       <button class="toggle-btn" data-scope-mode="all">All vulnerabilities</button>
@@ -821,6 +836,26 @@ a:hover { text-decoration:underline; }
     return d.innerHTML;
   }
 
+  // Read-state helpers (per-device, localStorage)
+  var READ_KEY = 'ao_read_v1';
+  function getReadSet() {
+    try { return new Set(JSON.parse(localStorage.getItem(READ_KEY) || '[]')); }
+    catch (e) { return new Set(); }
+  }
+  function saveReadSet(s) {
+    try { localStorage.setItem(READ_KEY, JSON.stringify(Array.from(s))); } catch(e) {}
+  }
+  function isRead(id) { return getReadSet().has(id); }
+  function markRead(id) {
+    var s = getReadSet(); s.add(id); saveReadSet(s);
+  }
+  function unmarkRead(id) {
+    var s = getReadSet(); s.delete(id); saveReadSet(s);
+  }
+  function clearAllRead() {
+    try { localStorage.removeItem(READ_KEY); } catch(e) {}
+  }
+
   // Filter logic
   function applyFilters() {
     var list = issues.slice();
@@ -968,9 +1003,12 @@ a:hover { text-decoration:underline; }
       var hcBadge = issue.healthcare_relevant ? '<span class="hc-badge">HC</span>' : '';
       var fdaBadge = fdaBadgeHtml(issue.fda_risk_class);
       var kevMedBadge = kevMedBadgeHtml(issue);
-      html += '<div class="issue-card' + sel + '" data-idx="' + idx + '">' +
+      var newBadge = issue.first_published_to_feed ? '<span class="new-badge">NEW</span>' : '';
+      var readCls = isRead(issue.issue_id) ? ' read' : '';
+      html += '<div class="issue-card' + sel + readCls + '" data-idx="' + idx + '">' +
         '<div class="ic-top">' +
         kevMedBadge +
+        newBadge +
         '<span class="badge badge-' + issue.priority + '">' + issue.priority + '</span>' +
         hcBadge +
         fdaBadge +
@@ -1243,6 +1281,15 @@ a:hover { text-decoration:underline; }
       }
       html += '</div>';
     }
+
+    // Mark-as-read controls
+    var alreadyRead = isRead(issue.issue_id);
+    html += '<div class="dcard" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">' +
+      '<button id="mark-read-btn" onclick="window._ao_toggleRead(\'' + escapeHtml(issue.issue_id) + '\')" ' +
+      'style="font-size:11px;padding:4px 10px;border-radius:4px;border:1px solid var(--card-border);background:var(--card-bg);color:var(--text-secondary);cursor:pointer;font-family:inherit">' +
+      (alreadyRead ? 'Mark as unread' : 'Mark as read') + '</button>' +
+      '<span style="font-size:10px;color:var(--text-muted)">Read state is stored per-device (this browser only)</span>' +
+      '</div>';
 
     content.innerHTML = html;
   }
@@ -1764,6 +1811,20 @@ a:hover { text-decoration:underline; }
     var h = window.location.hash.slice(1);
     if (['issues', 'sources', 'methodology', 'about'].indexOf(h) !== -1) switchTab(h);
   });
+
+  // Expose for inline event handlers (urgency legend link, mark-read button)
+  window._ao_switchTab = switchTab;
+  window._ao_toggleRead = function(id) {
+    if (isRead(id)) unmarkRead(id); else markRead(id);
+    // Re-render the list (updates dim state) and the detail panel (updates button label)
+    renderIssueList();
+    renderDetail();
+  };
+  window._ao_clearRead = function() {
+    clearAllRead();
+    renderIssueList();
+    renderDetail();
+  };
 
   init();
 })();

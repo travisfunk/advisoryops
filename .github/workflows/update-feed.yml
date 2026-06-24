@@ -44,7 +44,8 @@ jobs:
         run: |
           advisoryops community-build \
             --set-id gold_pass2 \
-            --out-root-community outputs/community_public
+            --out-root-community outputs/community_public \
+            --baseline-feed docs/feed_latest.json
 
       - name: Save discover cache
         uses: actions/cache/save@v4
