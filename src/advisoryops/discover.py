@@ -331,6 +331,9 @@ def discover(
     started_at = utc_now_iso()
     fetched_at = utc_now_iso()
 
+    # Use per-source item cap when configured (overrides CLI --limit for full-catalog datasets)
+    effective_limit = src.limit if (src.limit and src.limit > 0) else limit
+
     meta = {
         "source_id": source_id,
         "source_name": src.name,
@@ -340,7 +343,7 @@ def discover(
         "started_at": started_at,
         "fetched_at": fetched_at,
         "finished_at": None,
-        "limit": limit,
+        "limit": effective_limit,
         "counts": {},
         "outputs": {},
         "errors": [],
@@ -357,8 +360,10 @@ def discover(
     items_jsonl_path = None
     new_items_jsonl_path = None
 
-    # Build optional API key header from source config + environment
+    # Build optional extra headers: static overrides from config, then API key
     extra_headers: Dict[str, str] = {}
+    if src.extra_headers:
+        extra_headers.update(src.extra_headers)
     if src.api_key_env and src.api_key_header:
         key_value = os.environ.get(src.api_key_env, "")
         if key_value:
@@ -402,7 +407,7 @@ def discover(
         parsed_count = len(items)
 
         # Enforce limit early (pre-filter still writes raw feed)
-        items = items[:limit]
+        items = items[:effective_limit]
         limited_count = len(items)
 
         # Apply cheap filters
@@ -410,7 +415,7 @@ def discover(
         for it in items:
             if _apply_filters(it, src=src):
                 filtered.append(it)
-        items = filtered[:limit]
+        items = filtered[:effective_limit]
         filtered_count = len(items)
 
         # Ensure stable signal_id (later correlation/dedup)

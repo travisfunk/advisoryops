@@ -120,7 +120,9 @@ def parse_json_feed(obj: Any, *, source_id: str, fetched_at: str) -> List[Dict[s
             if not isinstance(cve_obj, dict):
                 continue
             cve_id = str(cve_obj.get("id", "") or "").strip()
-            published = str(cve_obj.get("published", "") or cve_obj.get("lastModified", "") or "").strip()
+            # Prefer lastModified over published: old CVEs (pre-NVD era) carry wrong
+            # published dates (1980s) but always have a correct lastModified timestamp.
+            published = str(cve_obj.get("lastModified", "") or cve_obj.get("published", "") or "").strip()
             descs = cve_obj.get("descriptions") or []
             summary = ""
             for d in descs:
