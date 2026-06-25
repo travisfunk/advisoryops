@@ -1202,25 +1202,25 @@
     "citations": []
   },
   {
-    "issue_id": "CVE-2026-3650",
+    "issue_id": "CVE-2021-26248",
     "issue_type": "cve",
-    "title": "CVE-2026-3650",
-    "summary": "The Grassroots DICOM library has a critical vulnerability that can cause a denial-of-service if it encounters certain malformed DICOM files. A patch is currently unavailable. To protect hospital systems, it's crucial to monitor and restrict the use of potentially harmful DICOM files until a fix is provided.",
-    "canonical_link": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-26-083-01",
+    "title": "CVE-2021-26248",
+    "summary": "Philips MRI 1.5T and MRI 3T Version 5.3 through 5.8.1 does not restrict or incorrectly restricts access to a resource from an unauthorized actor.",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2021/icsma-21-313-01.json",
     "cves": [
-      "CVE-2026-3650"
+      "CVE-2021-26248"
     ],
     "sources": [
       "cisa-icsma",
       "cisa-icsma-historical"
     ],
     "published_dates": [
-      "3/24/2026",
-      "Mon, 23 Mar 2026 15:46:15 EDT"
+      "11/9/2021",
+      "2021-11-24T07:00:00.000000Z"
     ],
-    "first_seen_at": "2026-03-25T23:08:40.677883+00:00",
-    "last_seen_at": "2026-04-08T01:52:18.554963+00:00",
-    "score": 115,
+    "first_seen_at": "2026-04-08T01:52:18.554963+00:00",
+    "last_seen_at": "2026-06-25T19:57:39.965108+00:00",
+    "score": 105,
     "priority": "P1",
     "actions": [
       "ingest",
@@ -1230,24 +1230,14 @@
       "base: issue_type=cve (+10)",
       "source-authority: tier-1 weight=1.0 (+30)",
       "healthcare-source: tier-1 medical source (+50)",
-      "device: medical imaging/PACS (+15)",
-      "device: healthcare context (+10)",
-      "priority: P1 (score=115)"
+      "clinical: PHI/patient data (+15)",
+      "priority: P1 (score=105)"
     ],
-    "handling_warnings": [
-      "Be cautious when processing DICOM files from untrusted sources."
-    ],
+    "handling_warnings": [],
     "evidence_gaps": [],
-    "unknowns": [
-      "Patch timeline",
-      "Affected version details"
-    ],
+    "unknowns": [],
     "source_consensus": {
-      "agreed": [
-        "CVEs: CVE-2026-3650",
-        "patch status: workaround",
-        "severity: critical, high"
-      ],
+      "agreed": [],
       "contradicted": [],
       "unique_contributions": {}
     },
@@ -1255,80 +1245,77 @@
     "highest_authority_source": "cisa-icsma",
     "healthcare_category": "medical_device",
     "classification": {},
-    "severity": "high",
+    "severity": "medium",
     "affected_versions": [],
     "vendor": "",
-    "generated_by": "ai",
+    "generated_by": "deterministic",
     "extracted_facts": {},
     "inferred_facts": {},
     "confidence_by_field": {},
     "evidence_sources": [],
     "insufficient_evidence": false,
     "non_applicability": [],
-    "source_mitigations": [
-      {
-        "source": "cisa-icsma",
-        "source_tier": 1,
-        "action": "monitor and restrict the use of potentially harmful DICOM files",
-        "citation": "/node/24681",
-        "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-26-083-01",
-        "mitigation_type": "process"
-      }
-    ],
+    "source_mitigations": [],
     "iocs": [
       {
         "type": "cve",
-        "value": "CVE-2026-3650",
+        "value": "CVE-2021-26248",
         "source": "cisa-icsma"
       }
     ],
-    "cvss_score": 7.5,
-    "cvss_severity": "HIGH",
-    "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+    "cvss_score": 5.5,
+    "cvss_severity": "MEDIUM",
+    "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N",
     "cwe_ids": [
-      "CWE-401"
+      "CWE-708"
     ],
-    "affected_products": [],
-    "nvd_description": "A memory leak exists in the Grassroots DICOM library (GDCM). The bug occurs when parsing malformed DICOM files with non-standard VR types in file meta information. The vulnerability leads to vast memory allocations and resource depletion, triggering a denial-of-service condition. A maliciously crafted file can fill the heap in a single read operation without properly releasing it.",
-    "source_summary": "View CSAF Summary Successful exploitation of this vulnerability could allow an attacker to send a specially crafted file, and when parsed, could result in a denial-of-service condition. The following versions of Grassroots DICOM (GDCM) are affected: Grassroots DICOM (GDCM) 3.2.2 (CVE-2026-3650) CVSS Vendor Equipment Vulnerabilities v3 7.5 Grassroots Grassroots DICOM (GDCM) Missing Release of Memory after Effective Lifetime Background Critical Infrastructure Sectors: Healthcare and Public Health Countries/Areas Deployed: Worldwide Company Headquarters Location: United States Vulnerabilities Expand All + CVE-2026-3650 A memory leak exists in the Grassroots DICOM library (GDCM). The bug occurs when parsing malformed DICOM files with non-standard VR types in file meta information. The vulnerability leads to vast memory allocations and resource depletion, triggering a denial-of-service condition. A maliciously crafted file can fill the heap in a single read operation without properly releasing it. View CVE Details Affected Products Grassroots DICOM (GDCM) Vendor: Grassroots Product Version: Grassroots Grassroots DICOM (GDCM): 3.2.2 Product Status: known_affected Remediations Mitigation The maintainer of Grassroots DICOM (GDCM) has not responded to requests to work with CISA to mitigate this vulnerability. For update information refer to the software page on SourceForge. Mitigation https://sourceforge.net/projects/gdcm/. https://sourceforge.net/projects/gdcm/ Relevant CWE: CWE-401 Missing Release of Memory after Effective Lifetime Metrics CVSS Version Base Score Base Severity Vector String 3.1 7.5 HIGH CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H Acknowledgments Volodymyr Bihunenko, Mykyta Mudryi, and Markiian Chaklosh of ARIMLABS reported this vulnerability to CISA Legal Notice and Terms of Use This product is provided subject to this Notification (https://www.cisa.gov/notification) and this Privacy & Use policy (https://www.cisa.gov/privacy-policy). Recommended Practices CISA recommends users take defensive measures to minimize the risk of exploitation of this vulnerability. Minimize network exposure for all control system devices and/or systems, ensuring they are not accessible from the internet. Locate control system networks and remote devices behind firewalls and isolating them from business networks. When remote access is required, use more secure methods, such as Virtual Private Networks (VPNs), recognizing VPNs may have vulnerabilities and should be updated to the most current version available. Also recognize VPN is only as secure as the connected devices. CISA reminds organizations to perform proper impact analysis and risk assessment prior to deploying defensive measures. CISA also provides a section for control systems security recommended practices on the ICS webpage on cisa.gov/ics. Several CISA products detailing cyber defense best practices are available for reading and download, including Improving Industrial Control Systems Cybersecurity with Defense-in-Depth Strategies. CISA encourages organizations to implement recommended cybersecurity strategies for proactive defense of ICS assets. Additional mitigation guidance and recommended practices are publicly available on the ICS webpage at cisa.gov/ics in the technical information paper, ICS-TIP-12-146-01B--Targeted Cyber Intrusion Detection and Mitigation Strategies. Organizations observing suspected malicious activity should follow established internal procedures and report findings to CISA for tracking and correlation against other incidents. CISA also recommends users take the following measures to protect themselves from social engineering attacks: Do not click web links or open attachments in unsolicited email messages. Refer to Recognizing and Avoiding Email Scams for more information on avoiding email scams. Refer to Avoiding Social Engineering and Phishing Attacks for more information on social engineering attacks. No known public exploitation specifically targeting this vulnerability has been reported to CISA at this time. Revision History Initial Release Date: 2026-03-24 Date Revision Summary 2026-03-24 1 Initial Publication. Legal Notice and Terms of Use",
+    "affected_products": [
+      "Philips Mri 3T Firmware",
+      "Philips Mri 3T",
+      "Philips Mri 1.5T Firmware",
+      "Philips Mri 1.5T"
+    ],
+    "nvd_description": "Philips MRI 1.5T and MRI 3T Version 5.3 through 5.8.1 does not restrict or incorrectly restricts access to a resource from an unauthorized actor.",
+    "source_summary": "Successful exploitation of these vulnerabilities may allow an attacker with operator level access to view system configuration, view system files, and export data (including patient data) to an untrusted environment.",
     "kev_required_action": "",
     "kev_due_date": "",
     "kev_vendor": "",
     "kev_product": "",
     "kev_vulnerability_name": "",
     "remediation_steps": [
-      "monitor and restrict the use of potentially harmful DICOM files"
+      "Isolate affected systems. Block untrusted inbound connections.",
+      "Apply vendor patch when available."
     ],
     "healthcare_relevant": true,
     "fda_risk_class": null,
     "is_kev_medical_device": false,
-    "epss_score": 0.00064,
-    "epss_percentile": 0.19936,
+    "epss_score": 0.0005,
+    "epss_percentile": 0.15424,
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
     "citations": []
   },
   {
-    "issue_id": "CVE-2025-14346",
+    "issue_id": "CVE-2021-26262",
     "issue_type": "cve",
-    "title": "CVE-2025-14346",
-    "summary": "WHILL Model C2 Electric Wheelchairs and Model F Power Chairs have a critical vulnerability that allows an attacker nearby to connect via Bluetooth without needing a password. This could let them control the chair's movement and settings without authorization. It is recommended to secure or limit Bluetooth access on these devices until a patch is available.",
-    "canonical_link": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-364-01",
+    "title": "CVE-2021-26262",
+    "summary": "Philips MRI 1.5T and MRI 3T Version 5.3 through 5.8.1 does not restrict or incorrectly restricts access to a resource from an unauthorized actor.",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2021/icsma-21-313-01.json",
     "cves": [
-      "CVE-2025-14346"
+      "CVE-2021-26262"
     ],
     "sources": [
       "cisa-icsma",
       "cisa-icsma-historical"
     ],
     "published_dates": [
-      "12/30/2025",
-      "Tue, 30 Dec 2025 09:24:07 EST"
+      "11/9/2021",
+      "2021-11-24T07:00:00.000000Z"
     ],
-    "first_seen_at": "2026-03-25T23:08:40.677883+00:00",
-    "last_seen_at": "2026-04-08T01:52:18.554963+00:00",
-    "score": 110,
+    "first_seen_at": "2026-04-08T01:52:18.554963+00:00",
+    "last_seen_at": "2026-06-25T19:57:39.965108+00:00",
+    "score": 105,
     "priority": "P1",
     "actions": [
       "ingest",
@@ -1338,25 +1325,14 @@
       "base: issue_type=cve (+10)",
       "source-authority: tier-1 weight=1.0 (+30)",
       "healthcare-source: tier-1 medical source (+50)",
-      "device: healthcare context (+10)",
-      "patch: firmware update required (+10)",
-      "priority: P1 (score=110)"
+      "clinical: PHI/patient data (+15)",
+      "priority: P1 (score=105)"
     ],
-    "handling_warnings": [
-      "Ensure Bluetooth functionality is disabled when not in use",
-      "Monitor for unauthorized Bluetooth connections"
-    ],
+    "handling_warnings": [],
     "evidence_gaps": [],
-    "unknowns": [
-      "Patch timeline unknown",
-      "Exact affected versions not specified"
-    ],
+    "unknowns": [],
     "source_consensus": {
-      "agreed": [
-        "CVEs: CVE-2025-14346",
-        "patch status: workaround",
-        "severity: critical"
-      ],
+      "agreed": [],
       "contradicted": [],
       "unique_contributions": {}
     },
@@ -1364,55 +1340,147 @@
     "highest_authority_source": "cisa-icsma",
     "healthcare_category": "medical_device",
     "classification": {},
-    "severity": "critical",
+    "severity": "medium",
     "affected_versions": [],
     "vendor": "",
-    "generated_by": "ai",
+    "generated_by": "deterministic",
     "extracted_facts": {},
     "inferred_facts": {},
     "confidence_by_field": {},
     "evidence_sources": [],
     "insufficient_evidence": false,
     "non_applicability": [],
-    "source_mitigations": [
-      {
-        "source": "cisa-icsma",
-        "source_tier": 1,
-        "action": "secure or limit Bluetooth access on these devices until a patch is available",
-        "citation": "/node/24363",
-        "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-364-01",
-        "mitigation_type": "network"
-      }
-    ],
+    "source_mitigations": [],
     "iocs": [
       {
         "type": "cve",
-        "value": "CVE-2025-14346",
+        "value": "CVE-2021-26262",
         "source": "cisa-icsma"
       }
     ],
-    "cvss_score": 9.8,
-    "cvss_severity": "CRITICAL",
-    "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+    "cvss_score": 5.5,
+    "cvss_severity": "MEDIUM",
+    "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N",
     "cwe_ids": [
-      "CWE-306"
+      "CWE-286"
     ],
-    "affected_products": [],
-    "nvd_description": "WHILL Model C2 Electric Wheelchairs and Model F Power Chairs do not enforce authentication for Bluetooth connections. An attacker within range can pair with the device and issue movement commands, override speed restrictions, and manipulate configuration profiles without any credentials or user interaction.",
-    "source_summary": "View CSAF Summary Successful exploitation of this vulnerability could allow an attacker within Bluetooth range to take control over the product. The following versions of WHILL Model C2 Electric Wheelchairs and Model F Power Chairs are affected: Model C2 Electric WheelChair Model F Power Chair CVSS Vendor Equipment Vulnerabilities v3 9.8 WHILL Inc. WHILL Model C2 Electric Wheelchairs and Model F Power Chairs Missing Authentication for Critical Function Background Critical Infrastructure Sectors: Healthcare and Public Health Countries/Areas Deployed: Worldwide Company Headquarters Location: Japan Vulnerabilities Expand All + CVE-2025-14346 WHILL Model C2 Electric Wheelchairs and Model F Power Chairs do not enforce authentication for Bluetooth connections. An attacker within range can pair with the device and issue movement commands, override speed restrictions, and manipulate configuration profiles without any credentials or user interaction. View CVE Details Affected Products WHILL Model C2 Electric Wheelchairs and Model F Power Chairs Vendor: WHILL Inc. Product Version: WHILL Inc. Model C2 Electric WheelChair: vers:all/*, WHILL Inc. Model F Power Chair: vers:all/* Product Status: known_affected Remediations Mitigation WHILL has released Model C2: HMI v2.24. This firmware includes a modification to disable the BLE interface after installation. Mitigation WHILL has released Model F: HMI v2.25. This firmware includes a modification to disable the BLE interface after installation. Mitigation For more information, contact WHILL Inc. (https://whill.inc/us/contact/) https://whill.inc/us/contact/ Relevant CWE: CWE-306 Missing Authentication for Critical Function Metrics CVSS Version Base Score Base Severity Vector String 3.1 9.8 CRITICAL CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H Acknowledgments Billy Rios, Jesse Young, Brandon Rothel, Jonathan Butts, Henri Hein, Justin Boling, Nick Kulesza, Ken Natividad, and Carl Schuettthe of the Exploit Development Team - QED Secure Solutions reported this vulnerability to CISA Legal Notice and Terms of Use This product is provided subject to this Notification (https://www.cisa.gov/notification) and this Privacy & Use policy (https://www.cisa.gov/privacy-policy). Recommended Practices CISA recommends users take defensive measures to minimize the risk of exploitation of this vulnerability, such as: Minimize network exposure for all control system devices and/or systems, ensuring they are not accessible from the Internet. Locate control system networks and remote devices behind firewalls and isolating them from business networks. When remote access is required, use more secure methods, such as Virtual Private Networks (VPNs), recognizing VPNs may have vulnerabilities and should be updated to the most current version available. Also recognize VPN is only as secure as the connected devices. For more information, contact WHILL Inc. CISA reminds organizations to perform proper impact analysis and risk assessment prior to deploying defensive measures. CISA also provides a section for control systems security recommended practices on the ICS webpage on cisa.gov/ics. Several CISA products detailing cyber defense best practices are available for reading and download, including Improving Industrial Control Systems Cybersecurity with Defense-in-Depth Strategies. CISA encourages organizations to implement recommended cybersecurity strategies for proactive defense of ICS assets. Additional mitigation guidance and recommended practices are publicly available on the ICS webpage at cisa.gov/ics in the technical information paper, ICS-TIP-12-146-01B--Targeted Cyber Intrusion Detection and Mitigation Strategies. Organizations observing suspected malicious activity should follow established internal procedures and report findings to CISA for tracking and correlation against other incidents. CISA also recommends users take the following measures to protect themselves from social engineering attacks: Do not click web links or open attachments in unsolicited email messages. Refer to Recognizing and Avoiding Email Scams for more information on avoiding email scams. Refer to Avoiding Social Engineering and Phishing Attacks for more information on social engineering attacks. No known public exploitation specifically targeting this vulnerability has been reported to CISA at this time. Revision History Initial Release Date: 2025-12-30 Date Revision Summary 2025-12-30 1 Initial Publication 2026-03-24 2 Update A - Revision to mitigation section Legal Notice and Terms of Use",
+    "affected_products": [
+      "Philips Mri 3T Firmware",
+      "Philips Mri 3T",
+      "Philips Mri 1.5T Firmware",
+      "Philips Mri 1.5T"
+    ],
+    "nvd_description": "Philips MRI 1.5T and MRI 3T Version 5.3 through 5.8.1 does not restrict or incorrectly restricts access to a resource from an unauthorized actor.",
+    "source_summary": "Successful exploitation of these vulnerabilities may allow an attacker with operator level access to view system configuration, view system files, and export data (including patient data) to an untrusted environment.",
     "kev_required_action": "",
     "kev_due_date": "",
     "kev_vendor": "",
     "kev_product": "",
     "kev_vulnerability_name": "",
     "remediation_steps": [
-      "secure or limit Bluetooth access on these devices until a patch is available"
+      "Isolate affected systems. Block untrusted inbound connections.",
+      "Apply vendor patch when available."
     ],
     "healthcare_relevant": true,
     "fda_risk_class": null,
     "is_kev_medical_device": false,
-    "epss_score": 0.00125,
-    "epss_percentile": 0.31815,
+    "epss_score": 0.00108,
+    "epss_percentile": 0.29137,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": []
+  },
+  {
+    "issue_id": "CVE-2021-42744",
+    "issue_type": "cve",
+    "title": "CVE-2021-42744",
+    "summary": "Philips MRI 1.5T and MRI 3T Version 5.3 through 5.8.1 does not restrict or incorrectly restricts access to a resource from an unauthorized actor.",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2021/icsma-21-313-01.json",
+    "cves": [
+      "CVE-2021-42744"
+    ],
+    "sources": [
+      "cisa-icsma",
+      "cisa-icsma-historical"
+    ],
+    "published_dates": [
+      "11/9/2021",
+      "2021-11-24T07:00:00.000000Z"
+    ],
+    "first_seen_at": "2026-04-08T01:52:18.554963+00:00",
+    "last_seen_at": "2026-06-25T19:57:39.965108+00:00",
+    "score": 105,
+    "priority": "P1",
+    "actions": [
+      "ingest",
+      "track"
+    ],
+    "why": [
+      "base: issue_type=cve (+10)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "clinical: PHI/patient data (+15)",
+      "priority: P1 (score=105)"
+    ],
+    "handling_warnings": [],
+    "evidence_gaps": [],
+    "unknowns": [],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "medium",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2021-42744",
+        "source": "cisa-icsma"
+      }
+    ],
+    "cvss_score": 5.5,
+    "cvss_severity": "MEDIUM",
+    "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N",
+    "cwe_ids": [
+      "CWE-552"
+    ],
+    "affected_products": [
+      "Philips Mri 1.5T Firmware",
+      "Philips Mri 1.5T",
+      "Philips Mri 3T Firmware",
+      "Philips Mri 3T"
+    ],
+    "nvd_description": "Philips MRI 1.5T and MRI 3T Version 5.3 through 5.8.1 does not restrict or incorrectly restricts access to a resource from an unauthorized actor.",
+    "source_summary": "Successful exploitation of these vulnerabilities may allow an attacker with operator level access to view system configuration, view system files, and export data (including patient data) to an untrusted environment.",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Isolate affected systems. Block untrusted inbound connections.",
+      "Apply vendor patch when available."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": 0.00042,
+    "epss_percentile": 0.12982,
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
@@ -24738,6 +24806,1188 @@
     "citations": []
   },
   {
+    "issue_id": "CVE-2026-5768",
+    "issue_type": "cve",
+    "title": "CVE-2026-5768",
+    "summary": "The Frontier X2 device allows unauthenticated BLE read/write access to critical GATT characteristics without enforcing pairing authentication or authorization. This allows attackers within BLE range to perform unauthorized control of device functions, including starting/stopping activities, triggering vibrations, causing denial-of-service conditions, and fuzzing characteristic values to induce unexpected behavior. Additionally, the Frontier X mobile application lacks proper BLE device authentication, allowing attackers to impersonate a legitimate Frontier X2 device and connect to the application. By cloning BLE advertisements and exposing expected GATT characteristics, attackers can manipulate activity states and inject fabricated health telemetry such as breathing rate, heart rate, strain, and other health-related data into the mobile application.",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-148-01.json",
+    "cves": [
+      "CVE-2026-5768"
+    ],
+    "sources": [
+      "cisa-icsma"
+    ],
+    "published_dates": [
+      "2026-05-28T06:00:00.000000Z"
+    ],
+    "first_seen_at": "2026-06-25T19:57:39.965108+00:00",
+    "last_seen_at": "2026-06-25T19:57:39.965108+00:00",
+    "score": 95,
+    "priority": "P2",
+    "actions": [
+      "track"
+    ],
+    "why": [
+      "base: issue_type=cve (+10)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "clinical: clinical context (+5)",
+      "priority: P2 (score=95)"
+    ],
+    "handling_warnings": [],
+    "evidence_gaps": [],
+    "unknowns": [],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "high",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2026-5768",
+        "source": "cisa-icsma"
+      }
+    ],
+    "cvss_score": 8.8,
+    "cvss_severity": "HIGH",
+    "cvss_vector": "CVSS:3.1/AV:A/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+    "cwe_ids": [
+      "CWE-306"
+    ],
+    "affected_products": [],
+    "nvd_description": "The Frontier X2 device allows unauthenticated BLE read/write access to critical GATT characteristics without enforcing pairing authentication or authorization. This allows attackers within BLE range to perform unauthorized control of device functions, including starting/stopping activities, triggering vibrations, causing denial-of-service conditions, and fuzzing characteristic values to induce unexpected behavior. Additionally, the Frontier X mobile application lacks proper BLE device authentication, allowing attackers to impersonate a legitimate Frontier X2 device and connect to the application. By cloning BLE advertisements and exposing expected GATT characteristics, attackers can manipulate activity states and inject fabricated health telemetry such as breathing rate, heart rate, strain, and other health-related data into the mobile application.",
+    "source_summary": "Successful exploitation of this vulnerability could allow an attacker to read and write arbitrary handle values and change clinical readings, which could result in taking control of the device and lead to patient harm.",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Review vendor advisory for mitigation guidance.",
+      "Monitor for exploitation indicators."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": null,
+    "epss_percentile": null,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": [],
+    "first_published_to_feed": "2026-06-25T20:41:42.302809+00:00"
+  },
+  {
+    "issue_id": "CVE-2018-10622",
+    "issue_type": "cve",
+    "title": "CVE-2018-10622",
+    "summary": "Medtronic MyCareLink Patient Monitor uses per-product credentials that are stored in a recoverable format. An attacker can use these credentials for network authentication and encryption of local data at rest.",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2018/icsma-18-219-01.json",
+    "cves": [
+      "CVE-2018-10622"
+    ],
+    "sources": [
+      "cisa-icsma",
+      "cisa-icsma-historical"
+    ],
+    "published_dates": [
+      "2018-08-07T06:00:00.000000Z",
+      "2025-07-24T06:00:00.000000Z",
+      "8/7/2018"
+    ],
+    "first_seen_at": "2026-04-08T01:52:18.554963+00:00",
+    "last_seen_at": "2026-06-25T19:57:39.965108+00:00",
+    "score": 90,
+    "priority": "P2",
+    "actions": [
+      "track"
+    ],
+    "why": [
+      "base: issue_type=cve (+10)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "priority: P2 (score=90)"
+    ],
+    "handling_warnings": [],
+    "evidence_gaps": [],
+    "unknowns": [],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "medium",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2018-10622",
+        "source": "cisa-icsma"
+      }
+    ],
+    "cvss_score": 5.2,
+    "cvss_severity": "MEDIUM",
+    "cvss_vector": "CVSS:3.1/AV:P/AC:L/PR:N/UI:N/S:U/C:L/I:H/A:N",
+    "cwe_ids": [
+      "CWE-313",
+      "CWE-522"
+    ],
+    "affected_products": [
+      "Medtronic Mycarelink 24952 Patient Monitor Firmware",
+      "Medtronic Mycarelink 24952 Patient Monitor",
+      "Medtronic Mycarelink 24950 Patient Monitor Firmware",
+      "Medtronic Mycarelink 24950 Patient Monitor"
+    ],
+    "nvd_description": "Medtronic MyCareLink Patient Monitor uses per-product credentials that are stored in a recoverable format. An attacker can use these credentials for network authentication and encryption of local data at rest.",
+    "source_summary": "Successful exploitation of these vulnerabilities may allow an attacker with physical access to obtain per-product credentials that are utilized to authenticate data uploads and encrypt data at rest. Additionally, an attacker with access to a set of these credentials and additional identifiers can upload invalid data to the Medtronic CareLink network.",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Review vendor advisory for mitigation guidance.",
+      "Monitor for exploitation indicators."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": 0.0006,
+    "epss_percentile": 0.18668,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": []
+  },
+  {
+    "issue_id": "CVE-2018-10626",
+    "issue_type": "cve",
+    "title": "CVE-2018-10626",
+    "summary": "Medtronic MyCareLink Patient Monitor’s update service does not sufficiently verify the authenticity of the data uploaded. An \nattacker who obtains per-product credentials from the monitor and paired\n implantable cardiac device information can potentially upload invalid \ndata to the Medtronic CareLink network.",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2018/icsma-18-219-01.json",
+    "cves": [
+      "CVE-2018-10626"
+    ],
+    "sources": [
+      "cisa-icsma",
+      "cisa-icsma-historical"
+    ],
+    "published_dates": [
+      "2018-08-07T06:00:00.000000Z",
+      "8/7/2018"
+    ],
+    "first_seen_at": "2026-04-08T01:52:18.554963+00:00",
+    "last_seen_at": "2026-06-25T19:57:39.965108+00:00",
+    "score": 90,
+    "priority": "P2",
+    "actions": [
+      "track"
+    ],
+    "why": [
+      "base: issue_type=cve (+10)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "priority: P2 (score=90)"
+    ],
+    "handling_warnings": [],
+    "evidence_gaps": [],
+    "unknowns": [],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "medium",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2018-10626",
+        "source": "cisa-icsma"
+      }
+    ],
+    "cvss_score": 4.4,
+    "cvss_severity": "MEDIUM",
+    "cvss_vector": "CVSS:3.1/AV:A/AC:H/PR:L/UI:N/S:C/C:L/I:L/A:N",
+    "cwe_ids": [
+      "CWE-345"
+    ],
+    "affected_products": [
+      "Medtronic Mycarelink 24952 Patient Monitor Firmware",
+      "Medtronic Mycarelink 24952 Patient Monitor",
+      "Medtronic Mycarelink 24950 Patient Monitor Firmware",
+      "Medtronic Mycarelink 24950 Patient Monitor"
+    ],
+    "nvd_description": "Medtronic MyCareLink Patient Monitor’s update service does not sufficiently verify the authenticity of the data uploaded. An \nattacker who obtains per-product credentials from the monitor and paired\n implantable cardiac device information can potentially upload invalid \ndata to the Medtronic CareLink network.",
+    "source_summary": "Successful exploitation of these vulnerabilities may allow an attacker with physical access to obtain per-product credentials that are utilized to authenticate data uploads and encrypt data at rest. Additionally, an attacker with access to a set of these credentials and additional identifiers can upload invalid data to the Medtronic CareLink network.",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Review vendor advisory for mitigation guidance.",
+      "Monitor for exploitation indicators."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": 0.00036,
+    "epss_percentile": 0.10625,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": []
+  },
+  {
+    "issue_id": "CVE-2025-14346",
+    "issue_type": "cve",
+    "title": "CVE-2025-14346",
+    "summary": "WHILL Model C2 Electric Wheelchairs and Model F Power Chairs have a critical vulnerability that allows an attacker nearby to connect via Bluetooth without needing a password. This could let them control the chair's movement and settings without authorization. It is recommended to secure or limit Bluetooth access on these devices until a patch is available.",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2025/icsma-25-364-01.json",
+    "cves": [
+      "CVE-2025-14346"
+    ],
+    "sources": [
+      "cisa-icsma",
+      "cisa-icsma-historical"
+    ],
+    "published_dates": [
+      "12/30/2025",
+      "2025-12-30T07:00:00.000000Z",
+      "Tue, 30 Dec 2025 09:24:07 EST"
+    ],
+    "first_seen_at": "2026-03-25T23:08:40.677883+00:00",
+    "last_seen_at": "2026-06-25T19:57:39.965108+00:00",
+    "score": 90,
+    "priority": "P2",
+    "actions": [
+      "track"
+    ],
+    "why": [
+      "base: issue_type=cve (+10)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "priority: P2 (score=90)"
+    ],
+    "handling_warnings": [
+      "Ensure Bluetooth functionality is disabled when not in use",
+      "Monitor for unauthorized Bluetooth connections"
+    ],
+    "evidence_gaps": [],
+    "unknowns": [
+      "Patch timeline unknown",
+      "Exact affected versions not specified"
+    ],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "critical",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [
+      {
+        "source": "cisa-icsma",
+        "source_tier": 1,
+        "action": "secure or limit Bluetooth access on these devices until a patch is available",
+        "citation": "/node/24363",
+        "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-364-01",
+        "mitigation_type": "network"
+      }
+    ],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2025-14346",
+        "source": "cisa-icsma"
+      }
+    ],
+    "cvss_score": 9.8,
+    "cvss_severity": "CRITICAL",
+    "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+    "cwe_ids": [
+      "CWE-306"
+    ],
+    "affected_products": [],
+    "nvd_description": "WHILL Model C2 Electric Wheelchairs and Model F Power Chairs do not enforce authentication for Bluetooth connections. An attacker within range can pair with the device and issue movement commands, override speed restrictions, and manipulate configuration profiles without any credentials or user interaction.",
+    "source_summary": "Successful exploitation of this vulnerability could allow an attacker within Bluetooth range to take control over the product.",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Isolate affected systems. Block untrusted inbound connections.",
+      "Apply vendor patch when available."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": 0.00125,
+    "epss_percentile": 0.31815,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": []
+  },
+  {
+    "issue_id": "CVE-2025-4386",
+    "issue_type": "cve",
+    "title": "CVE-2025-4386",
+    "summary": "Medtronic MyCareLink Patient Monitor has an internal serial interface, which allows an attacker with physical access to access a login prompt via a UART terminal.​",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2025/icsma-25-205-01.json",
+    "cves": [
+      "CVE-2025-4386"
+    ],
+    "sources": [
+      "cisa-icsma"
+    ],
+    "published_dates": [
+      "2025-07-24T06:00:00.000000Z"
+    ],
+    "first_seen_at": "2026-06-25T19:57:39.965108+00:00",
+    "last_seen_at": "2026-06-25T19:57:39.965108+00:00",
+    "score": 90,
+    "priority": "P2",
+    "actions": [
+      "track"
+    ],
+    "why": [
+      "base: issue_type=cve (+10)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "priority: P2 (score=90)"
+    ],
+    "handling_warnings": [],
+    "evidence_gaps": [],
+    "unknowns": [],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "medium",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2025-4386",
+        "source": "cisa-icsma"
+      }
+    ],
+    "cvss_score": 6.8,
+    "cvss_severity": "MEDIUM",
+    "cvss_vector": "CVSS:3.1/AV:P/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+    "cwe_ids": [
+      "CWE-1263"
+    ],
+    "affected_products": [],
+    "nvd_description": "Medtronic MyCareLink Patient Monitor has an internal serial interface, which allows an attacker with physical access to access a login prompt via a UART terminal.​",
+    "source_summary": "Successful exploitation of these vulnerabilities could lead to system compromise, unauthorized access to sensitive data, and manipulation of the monitor's functionality.",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Review vendor advisory for mitigation guidance.",
+      "Monitor for exploitation indicators."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": null,
+    "epss_percentile": null,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": [],
+    "first_published_to_feed": "2026-06-25T20:41:42.302809+00:00"
+  },
+  {
+    "issue_id": "CVE-2025-4393",
+    "issue_type": "cve",
+    "title": "CVE-2025-4393",
+    "summary": "Medtronic MyCareLink Patient Monitor has an internal service that deserializes data, which allows a local attacker to interact with the service by crafting a binary payload to crash the service or elevate privileges. \n\nThis issue affects MyCareLink Patient Monitor models 24950 and 24952: before June 25, 2025",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2025/icsma-25-205-01.json",
+    "cves": [
+      "CVE-2025-4393"
+    ],
+    "sources": [
+      "cisa-icsma",
+      "cisa-icsma-historical"
+    ],
+    "published_dates": [
+      "2025-07-24T06:00:00.000000Z",
+      "7/24/2025"
+    ],
+    "first_seen_at": "2026-04-08T01:52:18.554963+00:00",
+    "last_seen_at": "2026-06-25T19:57:39.965108+00:00",
+    "score": 90,
+    "priority": "P2",
+    "actions": [
+      "track"
+    ],
+    "why": [
+      "base: issue_type=cve (+10)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "priority: P2 (score=90)"
+    ],
+    "handling_warnings": [],
+    "evidence_gaps": [],
+    "unknowns": [],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "medium",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2025-4393",
+        "source": "cisa-icsma"
+      }
+    ],
+    "cvss_score": 6.5,
+    "cvss_severity": "MEDIUM",
+    "cvss_vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:L/I:H/A:H",
+    "cwe_ids": [
+      "CWE-502"
+    ],
+    "affected_products": [],
+    "nvd_description": "Medtronic MyCareLink Patient Monitor has an internal service that deserializes data, which allows a local attacker to interact with the service by crafting a binary payload to crash the service or elevate privileges. \n\nThis issue affects MyCareLink Patient Monitor models 24950 and 24952: before June 25, 2025",
+    "source_summary": "Successful exploitation of these vulnerabilities could lead to system compromise, unauthorized access to sensitive data, and manipulation of the monitor's functionality.",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Review vendor advisory for mitigation guidance.",
+      "Monitor for exploitation indicators."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": 0.00034,
+    "epss_percentile": 0.09868,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": []
+  },
+  {
+    "issue_id": "CVE-2025-4394",
+    "issue_type": "cve",
+    "title": "CVE-2025-4394",
+    "summary": "Medtronic MyCareLink Patient Monitor uses an unencrypted filesystem on internal storage, which allows an attacker with physical access to read and modify files. \n\nThis issue affects MyCareLink Patient Monitor models 24950 and 24952: before June 25, 2025",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2025/icsma-25-205-01.json",
+    "cves": [
+      "CVE-2025-4394"
+    ],
+    "sources": [
+      "cisa-icsma",
+      "cisa-icsma-historical"
+    ],
+    "published_dates": [
+      "2025-07-24T06:00:00.000000Z",
+      "7/24/2025"
+    ],
+    "first_seen_at": "2026-04-08T01:52:18.554963+00:00",
+    "last_seen_at": "2026-06-25T19:57:39.965108+00:00",
+    "score": 90,
+    "priority": "P2",
+    "actions": [
+      "track"
+    ],
+    "why": [
+      "base: issue_type=cve (+10)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "priority: P2 (score=90)"
+    ],
+    "handling_warnings": [],
+    "evidence_gaps": [],
+    "unknowns": [],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "medium",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2025-4394",
+        "source": "cisa-icsma"
+      }
+    ],
+    "cvss_score": 6.8,
+    "cvss_severity": "MEDIUM",
+    "cvss_vector": "CVSS:3.1/AV:P/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+    "cwe_ids": [
+      "CWE-312"
+    ],
+    "affected_products": [],
+    "nvd_description": "Medtronic MyCareLink Patient Monitor uses an unencrypted filesystem on internal storage, which allows an attacker with physical access to read and modify files. \n\nThis issue affects MyCareLink Patient Monitor models 24950 and 24952: before June 25, 2025",
+    "source_summary": "Successful exploitation of these vulnerabilities could lead to system compromise, unauthorized access to sensitive data, and manipulation of the monitor's functionality.",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Review vendor advisory for mitigation guidance.",
+      "Monitor for exploitation indicators."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": 0.00017,
+    "epss_percentile": 0.04204,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": []
+  },
+  {
+    "issue_id": "CVE-2025-4395",
+    "issue_type": "cve",
+    "title": "CVE-2025-4395",
+    "summary": "Medtronic MyCareLink Patient Monitor has a built-in user account with an empty password, which allows an attacker with physical access to log in with no password and access modify system functionality. \n\nThis issue affects MyCareLink Patient Monitor models 24950 and 24952: before June 25, 2025",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2025/icsma-25-205-01.json",
+    "cves": [
+      "CVE-2025-4395"
+    ],
+    "sources": [
+      "cisa-icsma",
+      "cisa-icsma-historical"
+    ],
+    "published_dates": [
+      "2025-07-24T06:00:00.000000Z",
+      "7/24/2025"
+    ],
+    "first_seen_at": "2026-04-08T01:52:18.554963+00:00",
+    "last_seen_at": "2026-06-25T19:57:39.965108+00:00",
+    "score": 90,
+    "priority": "P2",
+    "actions": [
+      "track"
+    ],
+    "why": [
+      "base: issue_type=cve (+10)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "priority: P2 (score=90)"
+    ],
+    "handling_warnings": [],
+    "evidence_gaps": [],
+    "unknowns": [],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "medium",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2025-4395",
+        "source": "cisa-icsma"
+      }
+    ],
+    "cvss_score": 6.8,
+    "cvss_severity": "MEDIUM",
+    "cvss_vector": "CVSS:3.1/AV:P/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+    "cwe_ids": [
+      "CWE-258"
+    ],
+    "affected_products": [],
+    "nvd_description": "Medtronic MyCareLink Patient Monitor has a built-in user account with an empty password, which allows an attacker with physical access to log in with no password and access modify system functionality. \n\nThis issue affects MyCareLink Patient Monitor models 24950 and 24952: before June 25, 2025",
+    "source_summary": "Successful exploitation of these vulnerabilities could lead to system compromise, unauthorized access to sensitive data, and manipulation of the monitor's functionality.",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Review vendor advisory for mitigation guidance.",
+      "Monitor for exploitation indicators."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": 0.0003,
+    "epss_percentile": 0.08668,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": []
+  },
+  {
+    "issue_id": "CVE-2025-4397",
+    "issue_type": "cve",
+    "title": "CVE-2025-4397",
+    "summary": "Medtronic MyCareLink Patient Monitor uses per-product credentials that are stored in a recoverable format. An attacker can use these credentials to modify encrypted drive data.",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2025/icsma-25-205-01.json",
+    "cves": [
+      "CVE-2025-4397"
+    ],
+    "sources": [
+      "cisa-icsma"
+    ],
+    "published_dates": [
+      "2025-07-24T06:00:00.000000Z"
+    ],
+    "first_seen_at": "2026-06-25T19:57:39.965108+00:00",
+    "last_seen_at": "2026-06-25T19:57:39.965108+00:00",
+    "score": 90,
+    "priority": "P2",
+    "actions": [
+      "track"
+    ],
+    "why": [
+      "base: issue_type=cve (+10)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "priority: P2 (score=90)"
+    ],
+    "handling_warnings": [],
+    "evidence_gaps": [],
+    "unknowns": [],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "medium",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2025-4397",
+        "source": "cisa-icsma"
+      }
+    ],
+    "cvss_score": 6.8,
+    "cvss_severity": "MEDIUM",
+    "cvss_vector": "CVSS:3.1/AV:P/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+    "cwe_ids": [
+      "CWE-313"
+    ],
+    "affected_products": [],
+    "nvd_description": "Medtronic MyCareLink Patient Monitor uses per-product credentials that are stored in a recoverable format. An attacker can use these credentials to modify encrypted drive data.",
+    "source_summary": "Successful exploitation of these vulnerabilities could lead to system compromise, unauthorized access to sensitive data, and manipulation of the monitor's functionality.",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Review vendor advisory for mitigation guidance.",
+      "Monitor for exploitation indicators."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": null,
+    "epss_percentile": null,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": [],
+    "first_published_to_feed": "2026-06-25T20:41:42.302809+00:00"
+  },
+  {
+    "issue_id": "CVE-2026-3650",
+    "issue_type": "cve",
+    "title": "CVE-2026-3650",
+    "summary": "A memory leak exists in the Grassroots DICOM library (GDCM). The bug occurs when parsing malformed DICOM files with non-standard VR types in file meta information. The vulnerability leads to vast memory allocations and resource depletion, triggering a denial-of-service condition. A maliciously crafted file can fill the heap in a single read operation without properly releasing it.",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-083-01.json",
+    "cves": [
+      "CVE-2026-3650"
+    ],
+    "sources": [
+      "cisa-icsma",
+      "cisa-icsma-historical"
+    ],
+    "published_dates": [
+      "2026-03-24T06:00:00.000000Z",
+      "3/24/2026",
+      "Mon, 23 Mar 2026 15:46:15 EDT"
+    ],
+    "first_seen_at": "2026-03-25T23:08:40.677883+00:00",
+    "last_seen_at": "2026-06-25T19:57:39.965108+00:00",
+    "score": 90,
+    "priority": "P2",
+    "actions": [
+      "track"
+    ],
+    "why": [
+      "base: issue_type=cve (+10)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "priority: P2 (score=90)"
+    ],
+    "handling_warnings": [
+      "Be cautious when processing DICOM files from untrusted sources."
+    ],
+    "evidence_gaps": [],
+    "unknowns": [
+      "Patch timeline",
+      "Affected version details"
+    ],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "high",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [
+      {
+        "source": "cisa-icsma",
+        "source_tier": 1,
+        "action": "monitor and restrict the use of potentially harmful DICOM files",
+        "citation": "/node/24681",
+        "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-26-083-01",
+        "mitigation_type": "process"
+      }
+    ],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2026-3650",
+        "source": "cisa-icsma"
+      }
+    ],
+    "cvss_score": 7.5,
+    "cvss_severity": "HIGH",
+    "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+    "cwe_ids": [
+      "CWE-401"
+    ],
+    "affected_products": [],
+    "nvd_description": "A memory leak exists in the Grassroots DICOM library (GDCM). The bug occurs when parsing malformed DICOM files with non-standard VR types in file meta information. The vulnerability leads to vast memory allocations and resource depletion, triggering a denial-of-service condition. A maliciously crafted file can fill the heap in a single read operation without properly releasing it.",
+    "source_summary": "Successful exploitation of this vulnerability could allow an attacker to send a specially crafted file, and when parsed, could result in a denial-of-service condition.",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Isolate affected systems. Block untrusted inbound connections.",
+      "Apply vendor patch when available."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": 0.00064,
+    "epss_percentile": 0.19936,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": []
+  },
+  {
+    "issue_id": "CVE-2026-50034",
+    "issue_type": "cve",
+    "title": "CVE-2026-50034",
+    "summary": "An attacker within BLE communication range can passively intercept \nwireless traffic and obtain sensitive health-related information, \nincluding glucose measurement values.",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-169-01.json",
+    "cves": [
+      "CVE-2026-50034"
+    ],
+    "sources": [
+      "cisa-icsma"
+    ],
+    "published_dates": [
+      "2026-06-18T06:00:00.000000Z"
+    ],
+    "first_seen_at": "2026-06-25T19:57:39.965108+00:00",
+    "last_seen_at": "2026-06-25T19:57:39.965108+00:00",
+    "score": 90,
+    "priority": "P2",
+    "actions": [
+      "track"
+    ],
+    "why": [
+      "base: issue_type=cve (+10)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "priority: P2 (score=90)"
+    ],
+    "handling_warnings": [],
+    "evidence_gaps": [],
+    "unknowns": [],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "medium",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2026-50034",
+        "source": "cisa-icsma"
+      }
+    ],
+    "cvss_score": 6.5,
+    "cvss_severity": "MEDIUM",
+    "cvss_vector": "CVSS:3.1/AV:A/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+    "cwe_ids": [
+      "CWE-319"
+    ],
+    "affected_products": [],
+    "nvd_description": "An attacker within BLE communication range can passively intercept \nwireless traffic and obtain sensitive health-related information, \nincluding glucose measurement values.",
+    "source_summary": "Successful exploitation of these vulnerabilities could allow an attacker to obtain sensitive health-related information and prevent legitimate users from establishing a connection with the device.",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Isolate affected systems. Block untrusted inbound connections.",
+      "Apply vendor patch when available."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": null,
+    "epss_percentile": null,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": [],
+    "first_published_to_feed": "2026-06-25T20:41:42.302809+00:00"
+  },
+  {
+    "issue_id": "CVE-2026-52866",
+    "issue_type": "cve",
+    "title": "CVE-2026-52866",
+    "summary": "An attacker within BLE communication range can monopolize the device's \nonly available BLE connection slot, preventing legitimate users or \napplications from establishing a connection.",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-169-01.json",
+    "cves": [
+      "CVE-2026-52866"
+    ],
+    "sources": [
+      "cisa-icsma"
+    ],
+    "published_dates": [
+      "2026-06-18T06:00:00.000000Z"
+    ],
+    "first_seen_at": "2026-06-25T19:57:39.965108+00:00",
+    "last_seen_at": "2026-06-25T19:57:39.965108+00:00",
+    "score": 90,
+    "priority": "P2",
+    "actions": [
+      "track"
+    ],
+    "why": [
+      "base: issue_type=cve (+10)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "priority: P2 (score=90)"
+    ],
+    "handling_warnings": [],
+    "evidence_gaps": [],
+    "unknowns": [],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "medium",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2026-52866",
+        "source": "cisa-icsma"
+      }
+    ],
+    "cvss_score": 6.5,
+    "cvss_severity": "MEDIUM",
+    "cvss_vector": "CVSS:3.1/AV:A/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+    "cwe_ids": [
+      "CWE-862"
+    ],
+    "affected_products": [],
+    "nvd_description": "An attacker within BLE communication range can monopolize the device's \nonly available BLE connection slot, preventing legitimate users or \napplications from establishing a connection.",
+    "source_summary": "Successful exploitation of these vulnerabilities could allow an attacker to obtain sensitive health-related information and prevent legitimate users from establishing a connection with the device.",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Review vendor advisory for mitigation guidance.",
+      "Monitor for exploitation indicators."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": null,
+    "epss_percentile": null,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": [],
+    "first_published_to_feed": "2026-06-25T20:41:42.302809+00:00"
+  },
+  {
+    "issue_id": "CVE-2026-7251",
+    "issue_type": "cve",
+    "title": "CVE-2026-7251",
+    "summary": "Eppendorf BioFlo 320 is vulnerable due to VNC server using a hard-coded password. If a remote attacker knows the network address of any BioFlo 320 model with remote access enabled, they can gain full control of the user interface by using this password. Once connected, the attacker would have full access to all control panel features for the BioFlo 320. VNC traffic is not encrypted.",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-146-01.json",
+    "cves": [
+      "CVE-2026-7251"
+    ],
+    "sources": [
+      "cisa-icsma"
+    ],
+    "published_dates": [
+      "2026-05-26T06:00:00.000000Z"
+    ],
+    "first_seen_at": "2026-06-25T19:57:39.965108+00:00",
+    "last_seen_at": "2026-06-25T19:57:39.965108+00:00",
+    "score": 90,
+    "priority": "P2",
+    "actions": [
+      "track"
+    ],
+    "why": [
+      "base: issue_type=cve (+10)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "priority: P2 (score=90)"
+    ],
+    "handling_warnings": [],
+    "evidence_gaps": [],
+    "unknowns": [],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "critical",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2026-7251",
+        "source": "cisa-icsma"
+      }
+    ],
+    "cvss_score": 9.8,
+    "cvss_severity": "CRITICAL",
+    "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+    "cwe_ids": [
+      "CWE-259"
+    ],
+    "affected_products": [],
+    "nvd_description": "Eppendorf BioFlo 320 is vulnerable due to VNC server using a hard-coded password. If a remote attacker knows the network address of any BioFlo 320 model with remote access enabled, they can gain full control of the user interface by using this password. Once connected, the attacker would have full access to all control panel features for the BioFlo 320. VNC traffic is not encrypted.",
+    "source_summary": "Successful exploitation of this vulnerability could allow an attacker to gain full access to functionality and data with the bioreactor.",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Review vendor advisory for mitigation guidance.",
+      "Monitor for exploitation indicators."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": null,
+    "epss_percentile": null,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": [],
+    "first_published_to_feed": "2026-06-25T20:41:42.302809+00:00"
+  },
+  {
     "issue_id": "UNK-02fdb6ff2608f2b5",
     "issue_type": "unknown",
     "title": "Z-0091-2026: Boston Scientific Corporation",
@@ -28976,279 +30226,6 @@
     "is_kev_medical_device": false,
     "epss_score": null,
     "epss_percentile": null,
-    "recommended_patterns": [],
-    "tasks_by_role": {},
-    "reasoning": "",
-    "citations": []
-  },
-  {
-    "issue_id": "CVE-2021-26248",
-    "issue_type": "cve",
-    "title": "CVE-2021-26248",
-    "summary": "Philips MRI 1.5T and MRI 3T Version 5.3 through 5.8.1 does not restrict or incorrectly restricts access to a resource from an unauthorized actor.",
-    "canonical_link": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-21-313-01",
-    "cves": [
-      "CVE-2021-26248"
-    ],
-    "sources": [
-      "cisa-icsma-historical"
-    ],
-    "published_dates": [
-      "11/9/2021"
-    ],
-    "first_seen_at": "2026-04-08T01:52:18.554963+00:00",
-    "last_seen_at": "2026-04-08T01:52:18.554963+00:00",
-    "score": 55,
-    "priority": "P3",
-    "actions": [
-      "log"
-    ],
-    "why": [
-      "base: issue_type=cve (+10)",
-      "source-authority: tier-1 weight=1.0 (+30)",
-      "clinical: PHI/patient data (+15)",
-      "priority: P3 (score=55)"
-    ],
-    "handling_warnings": [],
-    "evidence_gaps": [],
-    "unknowns": [],
-    "source_consensus": {
-      "agreed": [],
-      "contradicted": [],
-      "unique_contributions": {}
-    },
-    "source_authority_weight": 1.0,
-    "highest_authority_source": "cisa-icsma-historical",
-    "healthcare_category": "medical_device",
-    "classification": {},
-    "severity": "medium",
-    "affected_versions": [],
-    "vendor": "",
-    "generated_by": "deterministic",
-    "extracted_facts": {},
-    "inferred_facts": {},
-    "confidence_by_field": {},
-    "evidence_sources": [],
-    "insufficient_evidence": false,
-    "non_applicability": [],
-    "source_mitigations": [],
-    "iocs": [
-      {
-        "type": "cve",
-        "value": "CVE-2021-26248",
-        "source": "cisa-icsma-historical"
-      }
-    ],
-    "cvss_score": 5.5,
-    "cvss_severity": "MEDIUM",
-    "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N",
-    "cwe_ids": [
-      "CWE-708"
-    ],
-    "affected_products": [
-      "Philips Mri 3T Firmware",
-      "Philips Mri 3T",
-      "Philips Mri 1.5T Firmware",
-      "Philips Mri 1.5T"
-    ],
-    "nvd_description": "Philips MRI 1.5T and MRI 3T Version 5.3 through 5.8.1 does not restrict or incorrectly restricts access to a resource from an unauthorized actor.",
-    "source_summary": "Successful exploitation of these vulnerabilities may allow an attacker with operator level access to view system configuration, view system files, and export data (including patient data) to an untrusted environment. | CVEs: CVE-2021-26248, CVE-2021-26262, CVE-2021-42744",
-    "kev_required_action": "",
-    "kev_due_date": "",
-    "kev_vendor": "",
-    "kev_product": "",
-    "kev_vulnerability_name": "",
-    "remediation_steps": [
-      "Isolate affected systems. Block untrusted inbound connections.",
-      "Apply vendor patch when available."
-    ],
-    "healthcare_relevant": true,
-    "fda_risk_class": null,
-    "is_kev_medical_device": false,
-    "epss_score": 0.0005,
-    "epss_percentile": 0.15424,
-    "recommended_patterns": [],
-    "tasks_by_role": {},
-    "reasoning": "",
-    "citations": []
-  },
-  {
-    "issue_id": "CVE-2021-26262",
-    "issue_type": "cve",
-    "title": "CVE-2021-26262",
-    "summary": "Philips MRI 1.5T and MRI 3T Version 5.3 through 5.8.1 does not restrict or incorrectly restricts access to a resource from an unauthorized actor.",
-    "canonical_link": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-21-313-01",
-    "cves": [
-      "CVE-2021-26262"
-    ],
-    "sources": [
-      "cisa-icsma-historical"
-    ],
-    "published_dates": [
-      "11/9/2021"
-    ],
-    "first_seen_at": "2026-04-08T01:52:18.554963+00:00",
-    "last_seen_at": "2026-04-08T01:52:18.554963+00:00",
-    "score": 55,
-    "priority": "P3",
-    "actions": [
-      "log"
-    ],
-    "why": [
-      "base: issue_type=cve (+10)",
-      "source-authority: tier-1 weight=1.0 (+30)",
-      "clinical: PHI/patient data (+15)",
-      "priority: P3 (score=55)"
-    ],
-    "handling_warnings": [],
-    "evidence_gaps": [],
-    "unknowns": [],
-    "source_consensus": {
-      "agreed": [],
-      "contradicted": [],
-      "unique_contributions": {}
-    },
-    "source_authority_weight": 1.0,
-    "highest_authority_source": "cisa-icsma-historical",
-    "healthcare_category": "medical_device",
-    "classification": {},
-    "severity": "medium",
-    "affected_versions": [],
-    "vendor": "",
-    "generated_by": "deterministic",
-    "extracted_facts": {},
-    "inferred_facts": {},
-    "confidence_by_field": {},
-    "evidence_sources": [],
-    "insufficient_evidence": false,
-    "non_applicability": [],
-    "source_mitigations": [],
-    "iocs": [
-      {
-        "type": "cve",
-        "value": "CVE-2021-26262",
-        "source": "cisa-icsma-historical"
-      }
-    ],
-    "cvss_score": 5.5,
-    "cvss_severity": "MEDIUM",
-    "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N",
-    "cwe_ids": [
-      "CWE-286"
-    ],
-    "affected_products": [
-      "Philips Mri 3T Firmware",
-      "Philips Mri 3T",
-      "Philips Mri 1.5T Firmware",
-      "Philips Mri 1.5T"
-    ],
-    "nvd_description": "Philips MRI 1.5T and MRI 3T Version 5.3 through 5.8.1 does not restrict or incorrectly restricts access to a resource from an unauthorized actor.",
-    "source_summary": "Successful exploitation of these vulnerabilities may allow an attacker with operator level access to view system configuration, view system files, and export data (including patient data) to an untrusted environment. | CVEs: CVE-2021-26248, CVE-2021-26262, CVE-2021-42744",
-    "kev_required_action": "",
-    "kev_due_date": "",
-    "kev_vendor": "",
-    "kev_product": "",
-    "kev_vulnerability_name": "",
-    "remediation_steps": [
-      "Isolate affected systems. Block untrusted inbound connections.",
-      "Apply vendor patch when available."
-    ],
-    "healthcare_relevant": true,
-    "fda_risk_class": null,
-    "is_kev_medical_device": false,
-    "epss_score": 0.00108,
-    "epss_percentile": 0.29137,
-    "recommended_patterns": [],
-    "tasks_by_role": {},
-    "reasoning": "",
-    "citations": []
-  },
-  {
-    "issue_id": "CVE-2021-42744",
-    "issue_type": "cve",
-    "title": "CVE-2021-42744",
-    "summary": "Philips MRI 1.5T and MRI 3T Version 5.3 through 5.8.1 does not restrict or incorrectly restricts access to a resource from an unauthorized actor.",
-    "canonical_link": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-21-313-01",
-    "cves": [
-      "CVE-2021-42744"
-    ],
-    "sources": [
-      "cisa-icsma-historical"
-    ],
-    "published_dates": [
-      "11/9/2021"
-    ],
-    "first_seen_at": "2026-04-08T01:52:18.554963+00:00",
-    "last_seen_at": "2026-04-08T01:52:18.554963+00:00",
-    "score": 55,
-    "priority": "P3",
-    "actions": [
-      "log"
-    ],
-    "why": [
-      "base: issue_type=cve (+10)",
-      "source-authority: tier-1 weight=1.0 (+30)",
-      "clinical: PHI/patient data (+15)",
-      "priority: P3 (score=55)"
-    ],
-    "handling_warnings": [],
-    "evidence_gaps": [],
-    "unknowns": [],
-    "source_consensus": {
-      "agreed": [],
-      "contradicted": [],
-      "unique_contributions": {}
-    },
-    "source_authority_weight": 1.0,
-    "highest_authority_source": "cisa-icsma-historical",
-    "healthcare_category": "medical_device",
-    "classification": {},
-    "severity": "medium",
-    "affected_versions": [],
-    "vendor": "",
-    "generated_by": "deterministic",
-    "extracted_facts": {},
-    "inferred_facts": {},
-    "confidence_by_field": {},
-    "evidence_sources": [],
-    "insufficient_evidence": false,
-    "non_applicability": [],
-    "source_mitigations": [],
-    "iocs": [
-      {
-        "type": "cve",
-        "value": "CVE-2021-42744",
-        "source": "cisa-icsma-historical"
-      }
-    ],
-    "cvss_score": 5.5,
-    "cvss_severity": "MEDIUM",
-    "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N",
-    "cwe_ids": [
-      "CWE-552"
-    ],
-    "affected_products": [
-      "Philips Mri 1.5T Firmware",
-      "Philips Mri 1.5T",
-      "Philips Mri 3T Firmware",
-      "Philips Mri 3T"
-    ],
-    "nvd_description": "Philips MRI 1.5T and MRI 3T Version 5.3 through 5.8.1 does not restrict or incorrectly restricts access to a resource from an unauthorized actor.",
-    "source_summary": "Successful exploitation of these vulnerabilities may allow an attacker with operator level access to view system configuration, view system files, and export data (including patient data) to an untrusted environment. | CVEs: CVE-2021-26248, CVE-2021-26262, CVE-2021-42744",
-    "kev_required_action": "",
-    "kev_due_date": "",
-    "kev_vendor": "",
-    "kev_product": "",
-    "kev_vulnerability_name": "",
-    "remediation_steps": [
-      "Isolate affected systems. Block untrusted inbound connections.",
-      "Apply vendor patch when available."
-    ],
-    "healthcare_relevant": true,
-    "fda_risk_class": null,
-    "is_kev_medical_device": false,
-    "epss_score": 0.00042,
-    "epss_percentile": 0.12982,
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
@@ -33786,187 +34763,6 @@
     "is_kev_medical_device": false,
     "epss_score": 0.00117,
     "epss_percentile": 0.30405,
-    "recommended_patterns": [],
-    "tasks_by_role": {},
-    "reasoning": "",
-    "citations": []
-  },
-  {
-    "issue_id": "CVE-2018-10622",
-    "issue_type": "cve",
-    "title": "CVE-2018-10622",
-    "summary": "Medtronic MyCareLink Patient Monitor uses per-product credentials that are stored in a recoverable format. An attacker can use these credentials for network authentication and encryption of local data at rest.",
-    "canonical_link": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-18-219-01",
-    "cves": [
-      "CVE-2018-10622"
-    ],
-    "sources": [
-      "cisa-icsma-historical"
-    ],
-    "published_dates": [
-      "8/7/2018"
-    ],
-    "first_seen_at": "2026-04-08T01:52:18.554963+00:00",
-    "last_seen_at": "2026-04-08T01:52:18.554963+00:00",
-    "score": 40,
-    "priority": "P3",
-    "actions": [
-      "log"
-    ],
-    "why": [
-      "base: issue_type=cve (+10)",
-      "source-authority: tier-1 weight=1.0 (+30)",
-      "priority: P3 (score=40)"
-    ],
-    "handling_warnings": [],
-    "evidence_gaps": [],
-    "unknowns": [],
-    "source_consensus": {
-      "agreed": [],
-      "contradicted": [],
-      "unique_contributions": {}
-    },
-    "source_authority_weight": 1.0,
-    "highest_authority_source": "cisa-icsma-historical",
-    "healthcare_category": "medical_device",
-    "classification": {},
-    "severity": "medium",
-    "affected_versions": [],
-    "vendor": "",
-    "generated_by": "deterministic",
-    "extracted_facts": {},
-    "inferred_facts": {},
-    "confidence_by_field": {},
-    "evidence_sources": [],
-    "insufficient_evidence": false,
-    "non_applicability": [],
-    "source_mitigations": [],
-    "iocs": [
-      {
-        "type": "cve",
-        "value": "CVE-2018-10622",
-        "source": "cisa-icsma-historical"
-      }
-    ],
-    "cvss_score": 4.9,
-    "cvss_severity": "MEDIUM",
-    "cvss_vector": "CVSS:3.1/AV:P/AC:H/PR:N/UI:N/S:C/C:H/I:N/A:N",
-    "cwe_ids": [
-      "CWE-257",
-      "CWE-522"
-    ],
-    "affected_products": [
-      "Medtronic Mycarelink 24952 Patient Monitor Firmware",
-      "Medtronic Mycarelink 24952 Patient Monitor",
-      "Medtronic Mycarelink 24950 Patient Monitor Firmware",
-      "Medtronic Mycarelink 24950 Patient Monitor"
-    ],
-    "nvd_description": "Medtronic MyCareLink Patient Monitor uses per-product credentials that are stored in a recoverable format. An attacker can use these credentials for network authentication and encryption of local data at rest.",
-    "source_summary": "This CSAF advisory was extracted from unstructured data and may contain inaccuracies. If you notice any errors, please reach out to the designated contact at CISA CSAF: central@cisa.dhs.gov | CVEs: CVE-2018-10622, CVE-2018-10626",
-    "kev_required_action": "",
-    "kev_due_date": "",
-    "kev_vendor": "",
-    "kev_product": "",
-    "kev_vulnerability_name": "",
-    "remediation_steps": [
-      "Review vendor advisory for mitigation guidance.",
-      "Monitor for exploitation indicators."
-    ],
-    "healthcare_relevant": true,
-    "fda_risk_class": null,
-    "is_kev_medical_device": false,
-    "epss_score": 0.0006,
-    "epss_percentile": 0.18668,
-    "recommended_patterns": [],
-    "tasks_by_role": {},
-    "reasoning": "",
-    "citations": []
-  },
-  {
-    "issue_id": "CVE-2018-10626",
-    "issue_type": "cve",
-    "title": "CVE-2018-10626",
-    "summary": "Medtronic MyCareLink Patient Monitor’s update service does not sufficiently verify the authenticity of the data uploaded. An attacker who obtains per-product credentials from the monitor and paired implantable cardiac device information can potentially upload invalid data to the Medtronic CareLink network.",
-    "canonical_link": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-18-219-01",
-    "cves": [
-      "CVE-2018-10626"
-    ],
-    "sources": [
-      "cisa-icsma-historical"
-    ],
-    "published_dates": [
-      "8/7/2018"
-    ],
-    "first_seen_at": "2026-04-08T01:52:18.554963+00:00",
-    "last_seen_at": "2026-04-08T01:52:18.554963+00:00",
-    "score": 40,
-    "priority": "P3",
-    "actions": [
-      "log"
-    ],
-    "why": [
-      "base: issue_type=cve (+10)",
-      "source-authority: tier-1 weight=1.0 (+30)",
-      "priority: P3 (score=40)"
-    ],
-    "handling_warnings": [],
-    "evidence_gaps": [],
-    "unknowns": [],
-    "source_consensus": {
-      "agreed": [],
-      "contradicted": [],
-      "unique_contributions": {}
-    },
-    "source_authority_weight": 1.0,
-    "highest_authority_source": "cisa-icsma-historical",
-    "healthcare_category": "medical_device",
-    "classification": {},
-    "severity": "medium",
-    "affected_versions": [],
-    "vendor": "",
-    "generated_by": "deterministic",
-    "extracted_facts": {},
-    "inferred_facts": {},
-    "confidence_by_field": {},
-    "evidence_sources": [],
-    "insufficient_evidence": false,
-    "non_applicability": [],
-    "source_mitigations": [],
-    "iocs": [
-      {
-        "type": "cve",
-        "value": "CVE-2018-10626",
-        "source": "cisa-icsma-historical"
-      }
-    ],
-    "cvss_score": 4.4,
-    "cvss_severity": "MEDIUM",
-    "cvss_vector": "CVSS:3.1/AV:A/AC:H/PR:L/UI:N/S:C/C:L/I:L/A:N",
-    "cwe_ids": [
-      "CWE-345"
-    ],
-    "affected_products": [
-      "Medtronic Mycarelink 24952 Patient Monitor Firmware",
-      "Medtronic Mycarelink 24952 Patient Monitor",
-      "Medtronic Mycarelink 24950 Patient Monitor Firmware",
-      "Medtronic Mycarelink 24950 Patient Monitor"
-    ],
-    "nvd_description": "Medtronic MyCareLink Patient Monitor’s update service does not sufficiently verify the authenticity of the data uploaded. An attacker who obtains per-product credentials from the monitor and paired implantable cardiac device information can potentially upload invalid data to the Medtronic CareLink network.",
-    "source_summary": "This CSAF advisory was extracted from unstructured data and may contain inaccuracies. If you notice any errors, please reach out to the designated contact at CISA CSAF: central@cisa.dhs.gov | CVEs: CVE-2018-10622, CVE-2018-10626",
-    "kev_required_action": "",
-    "kev_due_date": "",
-    "kev_vendor": "",
-    "kev_product": "",
-    "kev_vulnerability_name": "",
-    "remediation_steps": [
-      "Review vendor advisory for mitigation guidance.",
-      "Monitor for exploitation indicators."
-    ],
-    "healthcare_relevant": true,
-    "fda_risk_class": null,
-    "is_kev_medical_device": false,
-    "epss_score": 0.00036,
-    "epss_percentile": 0.10625,
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
