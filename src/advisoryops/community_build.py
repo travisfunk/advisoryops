@@ -586,9 +586,59 @@ def _publish_to_docs(community_root: Path, repo_root: Path) -> None:
     and ``counts.sources_enabled`` (from configs/sources.json) so the
     dashboard header can display live publish state without hardcoded
     values.
+
+    Atomic health guard
+    -------------------
+    Before any docs/ file is written, the new feed is validated against
+    the committed baseline (docs/feed_latest.json).  The rule:
+
+        len(new_feed) >= len(baseline_feed)
+
+    Equal is explicitly allowed — a quiet day with zero new issues still
+    produces a merged feed equal in size to the baseline.  Strictly less
+    means the run was empty or degraded, and we abort the entire publish
+    so meta.json, feed.xml, and every other file are protected, not just
+    feed_latest.json.
+
+    On abort the function raises RuntimeError.  The caller (community_build)
+    propagates the exception, the CLI exits non-zero, and GitHub Actions
+    skips the subsequent commit step entirely.
     """
     docs_dir = repo_root / "docs"
     docs_dir.mkdir(parents=True, exist_ok=True)
+
+    # --- Atomic health guard ---
+    new_feed_path = community_root / "feed_latest.json"
+    baseline_docs_path = docs_dir / "feed_latest.json"
+
+    if baseline_docs_path.exists():
+        try:
+            baseline_data = json.loads(baseline_docs_path.read_text(encoding="utf-8"))
+            baseline_count = len(baseline_data) if isinstance(baseline_data, list) else 0
+        except (json.JSONDecodeError, OSError):
+            baseline_count = 0
+    else:
+        baseline_count = 0  # no committed baseline yet (first-ever build) — allow
+
+    if new_feed_path.exists():
+        try:
+            new_data = json.loads(new_feed_path.read_text(encoding="utf-8"))
+            new_count = len(new_data) if isinstance(new_data, list) else 0
+        except (json.JSONDecodeError, OSError):
+            new_count = 0
+    else:
+        new_count = 0
+
+    if new_count < baseline_count:
+        raise RuntimeError(
+            f"Publish aborted — degraded run detected: "
+            f"new feed has {new_count} issues, committed baseline has {baseline_count}. "
+            f"Floor rule: new count must be >= baseline count "
+            f"(additive build; equal = quiet day, less = degraded). "
+            f"No docs/ file was updated."
+        )
+
+    print(f"  Health guard passed: {new_count} issues >= {baseline_count} baseline")
 
     # Copy dashboard HTML from source-of-truth location
     dashboard_src = repo_root / "dashboard" / "index.html"
