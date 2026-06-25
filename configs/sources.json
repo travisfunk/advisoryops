@@ -84,33 +84,34 @@
     },
     {
       "source_id": "cisa-icsa",
-      "name": "CISA ICS Advisories",
+      "name": "CISA ICS Advisories (via cisagov/CSAF GitHub)",
       "enabled": true,
       "scope": "advisory",
-      "page_type": "rss_atom",
-      "entry_url": "https://www.cisa.gov/cybersecurity-advisories/ics-advisories.xml",
-      "extra_headers": {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-US,en;q=0.5"
+      "page_type": "json_feed",
+      "entry_url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/cisa-csaf-ot-feed-tlp-white.json",
+      "filters": {
+        "url_allow_regex": "icsa-",
+        "url_deny_regex": "icsma-"
       },
-      "filters": {},
-      "notes": "CISA WAF blocks non-browser UAs — browser headers required; verified 403 with pipeline UA on 2026-06-24"
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0,
+      "notes": "Rerouted 2026-06-25 from cisa.gov (Cloudflare 403 from GHA IPs) to cisagov/CSAF GitHub repo. Uses ROLIE JSON feed index; url_allow_regex/url_deny_regex filters to non-medical ICSA advisories only. 3598 ICSA entries, backfill to 2017."
     },
     {
       "source_id": "cisa-icsma",
-      "name": "CISA ICS Medical Advisories",
+      "name": "CISA ICS Medical Advisories (via cisagov/CSAF GitHub)",
       "enabled": true,
       "scope": "advisory",
-      "page_type": "rss_atom",
-      "entry_url": "https://www.cisa.gov/cybersecurity-advisories/ics-medical-advisories.xml",
-      "extra_headers": {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-US,en;q=0.5"
+      "page_type": "json_feed",
+      "entry_url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/cisa-csaf-ot-feed-tlp-white.json",
+      "filters": {
+        "url_allow_regex": "icsma-"
       },
-      "filters": {},
-      "notes": "CISA WAF blocks non-browser UAs — browser headers required; verified 403 with pipeline UA on 2026-06-24"
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0,
+      "notes": "Rerouted 2026-06-25 from cisa.gov (Cloudflare 403 from GHA IPs) to cisagov/CSAF GitHub repo. Uses ROLIE JSON feed index; url_allow_regex filters to ICSMA (medical) advisories only. 178 ICSMA entries, backfill to 2016."
     },
     {
       "entry_url": "https://www.cisa.gov/sites/default/files/csv/known_exploited_vulnerabilities.csv",

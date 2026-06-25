@@ -221,6 +221,36 @@ def parse_json_feed(obj: Any, *, source_id: str, fetched_at: str) -> List[Dict[s
             })
         return items
 
+    # ROLIE (Resource Oriented Lightweight Information Exchange) feed — used by
+    # cisagov/CSAF GitHub repo for ICS and ICS-Medical (ICSMA) advisories.
+    # Shape: {"feed": {"entry": [{"id", "title", "published", "content": {"src"}}]}}
+    if (isinstance(obj, dict) and isinstance(obj.get("feed"), dict)
+            and isinstance(obj["feed"].get("entry"), list)):
+        for entry in obj["feed"]["entry"]:
+            if not isinstance(entry, dict):
+                continue
+            advisory_id = str(entry.get("id", "") or "").strip()
+            title = str(entry.get("title", "") or advisory_id or "CISA Advisory").strip()
+            published = str(entry.get("published", "") or entry.get("updated", "") or "").strip()
+            # Prefer content.src; fall back to first link with rel="self"
+            content = entry.get("content") or {}
+            link = str(content.get("src", "") or "").strip()
+            if not link:
+                for lnk in (entry.get("link") or []):
+                    if isinstance(lnk, dict) and lnk.get("rel") == "self":
+                        link = str(lnk.get("href", "") or "").strip()
+                        break
+            items.append({
+                "source": source_id,
+                "guid": advisory_id or _sha1(json.dumps(entry, sort_keys=True)),
+                "title": title,
+                "link": link,
+                "published_date": published,
+                "summary": title,
+                "fetched_at": fetched_at,
+            })
+        return items
+
     # Generic JSON feed shapes
     if isinstance(obj, dict) and isinstance(obj.get("results"), list):
         raw_list = obj["results"]
