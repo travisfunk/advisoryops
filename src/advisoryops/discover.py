@@ -310,6 +310,71 @@ def _parse_rss_atom(xml_bytes: bytes, *, source_id: str, fetched_at: str) -> Lis
     return items
 
 
+# Sources that emit ROLIE feeds where each entry's link is a direct CSAF JSON URL.
+# For new items from these sources we follow the link and enrich with real CVE IDs.
+_CSAF_ROLIE_SOURCES = frozenset({"cisa-icsma", "cisa-icsa"})
+
+
+def _enrich_csaf_new_items(
+    new_items: List[Dict[str, Any]],
+    *,
+    timeout_s: int = 30,
+    retries: int = 2,
+) -> int:
+    """Follow each new ROLIE item's link, fetch the CSAF JSON, and enrich in-place.
+
+    Populates cves, cwes, cvss_score/vector/severity, remediations, and summary
+    so that new advisories are CVE-keyed rather than UNK-.  Each item is mutated
+    directly (new_items shares dict references with items, so the enrichment is
+    visible in all output artifacts).
+
+    A per-item exception causes a warning print and continues — one bad file will
+    not abort the run or affect other items.  Returns the count of items enriched.
+    """
+    try:
+        from .sources.cisa_icsma_backfill import parse_csaf_advisory
+    except Exception as exc:
+        print(f"[warn] CSAF enrichment: could not import parse_csaf_advisory — {exc}", flush=True)
+        return 0
+
+    enriched = 0
+    for idx, item in enumerate(new_items):
+        link = _text(item.get("link"))
+        if not link or not link.endswith(".json"):
+            continue
+        # Rate-limit: 1-second gap between consecutive fetches to be polite to
+        # GitHub raw content servers (the source config also sets rate_limit_rps=1).
+        if idx > 0:
+            time.sleep(1.0)
+        try:
+            csaf_bytes = _http_get_bytes(link, timeout_s=timeout_s, retries=retries)
+            csaf_json = json.loads(csaf_bytes.decode("utf-8"))
+            csaf_data = parse_csaf_advisory(csaf_json)
+            if csaf_data.get("cves"):
+                item["cves"] = csaf_data["cves"]
+            if csaf_data.get("cwes"):
+                item["cwes"] = csaf_data["cwes"]
+            if csaf_data.get("cvss_score") is not None:
+                item["cvss_score"] = csaf_data["cvss_score"]
+            if csaf_data.get("cvss_vector"):
+                item["cvss_vector"] = csaf_data["cvss_vector"]
+            if csaf_data.get("cvss_severity"):
+                item["cvss_severity"] = csaf_data["cvss_severity"]
+            if csaf_data.get("remediations"):
+                item["remediations"] = csaf_data["remediations"]
+            if csaf_data.get("description"):
+                item["summary"] = csaf_data["description"]
+            enriched += 1
+        except Exception as exc:
+            guid = _text(item.get("guid"))
+            print(
+                f"[warn] CSAF enrichment failed for {guid} ({link}): {exc} — using UNK- fallback",
+                flush=True,
+            )
+
+    return enriched
+
+
 def discover(
     source_id: str,
     *,
@@ -331,6 +396,9 @@ def discover(
     started_at = utc_now_iso()
     fetched_at = utc_now_iso()
 
+    # Use per-source item cap when configured (overrides CLI --limit for full-catalog datasets)
+    effective_limit = src.limit if (src.limit and src.limit > 0) else limit
+
     meta = {
         "source_id": source_id,
         "source_name": src.name,
@@ -340,7 +408,7 @@ def discover(
         "started_at": started_at,
         "fetched_at": fetched_at,
         "finished_at": None,
-        "limit": limit,
+        "limit": effective_limit,
         "counts": {},
         "outputs": {},
         "errors": [],
@@ -357,8 +425,10 @@ def discover(
     items_jsonl_path = None
     new_items_jsonl_path = None
 
-    # Build optional API key header from source config + environment
+    # Build optional extra headers: static overrides from config, then API key
     extra_headers: Dict[str, str] = {}
+    if src.extra_headers:
+        extra_headers.update(src.extra_headers)
     if src.api_key_env and src.api_key_header:
         key_value = os.environ.get(src.api_key_env, "")
         if key_value:
@@ -402,7 +472,7 @@ def discover(
         parsed_count = len(items)
 
         # Enforce limit early (pre-filter still writes raw feed)
-        items = items[:limit]
+        items = items[:effective_limit]
         limited_count = len(items)
 
         # Apply cheap filters
@@ -410,7 +480,7 @@ def discover(
         for it in items:
             if _apply_filters(it, src=src):
                 filtered.append(it)
-        items = filtered[:limit]
+        items = filtered[:effective_limit]
         filtered_count = len(items)
 
         # Ensure stable signal_id (later correlation/dedup)
@@ -449,6 +519,19 @@ def discover(
                 seen[sid] = fetched_at
 
         state["seen"] = seen
+
+        # CSAF enrichment: for ROLIE-based CISA sources, follow each new item's
+        # link (a direct CSAF JSON URL) to populate real CVE IDs before writing
+        # any artifacts.  Only new items are fetched — existing seen items are
+        # already keyed by CVE from a prior run or from the historical backfill.
+        if source_id in _CSAF_ROLIE_SOURCES and new_items:
+            _enriched = _enrich_csaf_new_items(
+                new_items,
+                timeout_s=src.timeout_s,
+                retries=src.retries,
+            )
+            if _enriched:
+                print(f"  CSAF enriched: {_enriched}/{len(new_items)} new items", flush=True)
 
         # Existing JSON artifacts
         raw_path = out_dir / f"raw_feed.{raw_ext}"

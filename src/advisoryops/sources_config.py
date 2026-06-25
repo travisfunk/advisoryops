@@ -65,6 +65,8 @@ class SourceDef:
     rate_limit_rps: float = 1.0
     api_key_env: Optional[str] = None     # name of env var holding the API key
     api_key_header: Optional[str] = None  # HTTP header name to send the key in (e.g. "x-apikey")
+    extra_headers: Optional[Dict[str, str]] = None  # static extra HTTP headers (e.g. browser UA for WAF bypass)
+    limit: Optional[int] = None           # per-source item cap; overrides CLI --limit when set (for full-catalog datasets)
     notes: Optional[str] = None           # human-readable note (e.g. "charges beyond 100 calls")
 
 
@@ -164,6 +166,12 @@ def load_sources_config(path: Path = CONFIG_PATH) -> SourcesConfig:
         rate_limit_rps = float(s.get("rate_limit_rps", 1.0))
         api_key_env = s.get("api_key_env") or None
         api_key_header = s.get("api_key_header") or None
+        raw_extra = s.get("extra_headers")
+        extra_headers: Optional[Dict[str, str]] = (
+            {str(k): str(v) for k, v in raw_extra.items()} if isinstance(raw_extra, dict) else None
+        )
+        raw_limit = s.get("limit")
+        src_limit: Optional[int] = int(raw_limit) if raw_limit is not None else None
         notes = s.get("notes") or None
 
         out.append(
@@ -180,6 +188,8 @@ def load_sources_config(path: Path = CONFIG_PATH) -> SourcesConfig:
                 rate_limit_rps=rate_limit_rps,
                 api_key_env=api_key_env,
                 api_key_header=api_key_header,
+                extra_headers=extra_headers,
+                limit=src_limit,
                 notes=notes,
             )
         )

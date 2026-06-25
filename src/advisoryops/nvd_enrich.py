@@ -36,6 +36,12 @@ _USER_AGENT = "AdvisoryOps/1.0 (security advisory aggregator)"
 _TIMEOUT = 30
 _429_CONSECUTIVE_ABORT = 3  # Abort NVD fetching after this many consecutive 429s
 
+# Issues whose only signal sources are KEV catalog entries skip NVD enrichment:
+# KEV items already carry vendor/product/required-action metadata, and enriching
+# 1600+ KEV CVEs at NVD's per-CVE endpoint would consume the entire timeout budget.
+# Issues corroborated by KEV AND another source (advisory, blog, etc.) still enrich.
+_KEV_SOURCE_IDS = frozenset({"cisa-kev-csv", "cisa-kev-json"})
+
 # CVE pattern
 _CVE_RE = re.compile(r"CVE-\d{4}-\d{4,}")
 
@@ -358,6 +364,13 @@ def enrich_issues(
         cves = issue.get("cves") or []
         if not cves:
             continue
+
+        # Skip issues whose only signal is the KEV catalog — enriching 1600+ KEV
+        # CVEs individually exhausts the rate budget; they already carry KEV metadata.
+        sources = issue.get("sources") or []
+        if sources and all(s in _KEV_SOURCE_IDS for s in sources):
+            continue
+
         before_keys = set(issue.keys())
         enrich_issue(
             issue,

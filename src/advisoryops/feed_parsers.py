@@ -120,7 +120,9 @@ def parse_json_feed(obj: Any, *, source_id: str, fetched_at: str) -> List[Dict[s
             if not isinstance(cve_obj, dict):
                 continue
             cve_id = str(cve_obj.get("id", "") or "").strip()
-            published = str(cve_obj.get("published", "") or cve_obj.get("lastModified", "") or "").strip()
+            # Prefer lastModified over published: old CVEs (pre-NVD era) carry wrong
+            # published dates (1980s) but always have a correct lastModified timestamp.
+            published = str(cve_obj.get("lastModified", "") or cve_obj.get("published", "") or "").strip()
             descs = cve_obj.get("descriptions") or []
             summary = ""
             for d in descs:
@@ -219,6 +221,36 @@ def parse_json_feed(obj: Any, *, source_id: str, fetched_at: str) -> List[Dict[s
             })
         return items
 
+    # ROLIE (Resource Oriented Lightweight Information Exchange) feed — used by
+    # cisagov/CSAF GitHub repo for ICS and ICS-Medical (ICSMA) advisories.
+    # Shape: {"feed": {"entry": [{"id", "title", "published", "content": {"src"}}]}}
+    if (isinstance(obj, dict) and isinstance(obj.get("feed"), dict)
+            and isinstance(obj["feed"].get("entry"), list)):
+        for entry in obj["feed"]["entry"]:
+            if not isinstance(entry, dict):
+                continue
+            advisory_id = str(entry.get("id", "") or "").strip()
+            title = str(entry.get("title", "") or advisory_id or "CISA Advisory").strip()
+            published = str(entry.get("published", "") or entry.get("updated", "") or "").strip()
+            # Prefer content.src; fall back to first link with rel="self"
+            content = entry.get("content") or {}
+            link = str(content.get("src", "") or "").strip()
+            if not link:
+                for lnk in (entry.get("link") or []):
+                    if isinstance(lnk, dict) and lnk.get("rel") == "self":
+                        link = str(lnk.get("href", "") or "").strip()
+                        break
+            items.append({
+                "source": source_id,
+                "guid": advisory_id or _sha1(json.dumps(entry, sort_keys=True)),
+                "title": title,
+                "link": link,
+                "published_date": published,
+                "summary": title,
+                "fetched_at": fetched_at,
+            })
+        return items
+
     # Generic JSON feed shapes
     if isinstance(obj, dict) and isinstance(obj.get("results"), list):
         raw_list = obj["results"]
@@ -241,15 +273,42 @@ def parse_json_feed(obj: Any, *, source_id: str, fetched_at: str) -> List[Dict[s
             "title",
             "name",
             "event_id",
+            "res_event_number",
             "recall_number",
             "report_number",
             "mdr_report_key",
             "id",
         ) or (cve or "item")
+        # openFDA device-recalls: build a meaningful title from firm + product snippet.
+        # FDA recall records have no "title" field; res_event_number alone is opaque.
+        if source_id == "openfda-device-recalls":
+            firm = _pick_str(row, "recalling_firm")
+            product = _pick_str(row, "product_description")
+            product = product[:80] if product else ""
+            if firm or product:
+                title = " — ".join(p for p in [firm, product] if p) or title
+        # openFDA device-events: build a meaningful title from device name + problem
+        # instead of exposing the raw MDR report key (e.g. "0001831750-2020-00357").
+        # Device brand name lives in the nested device[] array, not at the top level.
+        if source_id == "openfda-device-events":
+            device_list = row.get("device") or []
+            device_name = ""
+            if device_list and isinstance(device_list[0], dict):
+                device_name = (
+                    device_list[0].get("brand_name", "")
+                    or device_list[0].get("generic_name", "")
+                )
+            problems = row.get("product_problems") or []
+            problem_str = problems[0] if problems else ""
+            if device_name or problem_str:
+                title = " — ".join(p for p in [device_name, problem_str] if p) or title
         link = _pick_str(row, "link", "url")
         if not link and source_id.startswith("openfda-device-recalls"):
             link = _openfda_device_recall_link(row)
-        guid = _pick_str(row, "guid", "id", "event_id", "recall_number", "report_number", "mdr_report_key")
+        # cfres_id is the per-product unique key in FDA recall records; res_event_number
+        # is per-recall-event and may cover multiple products (duplicate guids without cfres_id).
+        guid = _pick_str(row, "guid", "id", "cfres_id", "product_res_number", "event_id",
+                         "res_event_number", "recall_number", "report_number", "mdr_report_key")
         if not guid:
             guid = cve or link or _sha1(json.dumps(row, sort_keys=True))
         published = _pick_str(
@@ -259,6 +318,8 @@ def parse_json_feed(obj: Any, *, source_id: str, fetched_at: str) -> List[Dict[s
             "date",
             "report_date",
             "event_date",
+            "date_received",
+            "event_date_initiated",
             "recall_initiation_date",
             "date_created",
         )

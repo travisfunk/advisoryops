@@ -256,6 +256,8 @@ def cmd_community_build(args) -> int:
         enrich_pages=getattr(args, "enrich_pages", False),
         extract_fields=getattr(args, "extract_fields", False),
         backfill=not getattr(args, "skip_backfill", False),
+        baseline_feed=getattr(args, "baseline_feed", None),
+        publish=not getattr(args, "no_publish", False),
     )
 
     print("")
@@ -510,6 +512,10 @@ def build_parser() -> argparse.ArgumentParser:
                         help="Fetch advisory web pages for richer mitigation text before extraction")
     p_comm.add_argument("--extract-fields", action="store_true", dest="extract_fields",
                         help="Extract vendor, product, severity from summaries of issues with empty fields (requires OPENAI_API_KEY)")
+    p_comm.add_argument("--baseline-feed", default=None, dest="baseline_feed",
+                        help="Path to an existing feed_latest.json to use as baseline for additive merge (e.g. docs/feed_latest.json)")
+    p_comm.add_argument("--no-publish", action="store_true", dest="no_publish",
+                        help="Skip copying artifacts to docs/ (for scratch/test builds that must not touch the live feed)")
     p_comm.set_defaults(fn=cmd_community_build)
 
     p_sum = sub.add_parser("summarize", help="Summarize a single issue into plain language")

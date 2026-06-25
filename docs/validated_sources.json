@@ -64,19 +64,19 @@
   },
   {
     "source_id": "cisa-icsa",
-    "name": "CISA ICS Advisories",
+    "name": "CISA ICS Advisories (via cisagov/CSAF GitHub)",
     "scope": "advisory",
-    "page_type": "rss_atom",
-    "entry_url": "https://www.cisa.gov/cybersecurity-advisories/ics-advisories.xml",
+    "page_type": "json_feed",
+    "entry_url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/cisa-csaf-ot-feed-tlp-white.json",
     "enabled": true,
     "status": "validated"
   },
   {
     "source_id": "cisa-icsma",
-    "name": "CISA ICS Medical Advisories",
+    "name": "CISA ICS Medical Advisories (via cisagov/CSAF GitHub)",
     "scope": "advisory",
-    "page_type": "rss_atom",
-    "entry_url": "https://www.cisa.gov/cybersecurity-advisories/ics-medical-advisories.xml",
+    "page_type": "json_feed",
+    "entry_url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/cisa-csaf-ot-feed-tlp-white.json",
     "enabled": true,
     "status": "validated"
   },
@@ -100,28 +100,10 @@
   },
   {
     "source_id": "cisa-ncas-alerts",
-    "name": "CISA NCAS Alerts RSS",
+    "name": "CISA Cybersecurity Advisories (All)",
     "scope": "news",
     "page_type": "rss_atom",
-    "entry_url": "https://us-cert.cisa.gov/ncas/alerts.xml",
-    "enabled": true,
-    "status": "validated"
-  },
-  {
-    "source_id": "cisa-ncas-analysis",
-    "name": "CISA NCAS Analysis Reports RSS",
-    "scope": "news",
-    "page_type": "rss_atom",
-    "entry_url": "https://us-cert.cisa.gov/ncas/analysis-reports.xml",
-    "enabled": true,
-    "status": "validated"
-  },
-  {
-    "source_id": "cisa-ncas-current-activity",
-    "name": "CISA NCAS Current Activity RSS",
-    "scope": "news",
-    "page_type": "rss_atom",
-    "entry_url": "https://us-cert.cisa.gov/ncas/current-activity.xml",
+    "entry_url": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
     "enabled": true,
     "status": "validated"
   },
@@ -343,10 +325,10 @@
   },
   {
     "source_id": "msrc-blog",
-    "name": "Microsoft MSRC Blog RSS",
+    "name": "Microsoft MSRC Update Guide RSS",
     "scope": "news",
     "page_type": "rss_atom",
-    "entry_url": "https://msrc.microsoft.com/feed",
+    "entry_url": "https://api.msrc.microsoft.com/update-guide/rss",
     "enabled": true,
     "status": "validated"
   },
@@ -382,7 +364,7 @@
     "name": "openFDA Device Adverse Events API",
     "scope": "advisory",
     "page_type": "json_feed",
-    "entry_url": "https://api.fda.gov/device/event.json?search=product_problems:Software+Issue&limit=100",
+    "entry_url": "https://api.fda.gov/device/event.json?search=product_problems:Software+Issue&limit=100&sort=date_received:desc",
     "enabled": true,
     "status": "validated"
   },

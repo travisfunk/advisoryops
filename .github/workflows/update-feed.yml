@@ -41,10 +41,14 @@ jobs:
       - name: Run pipeline
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
         run: |
           advisoryops community-build \
             --set-id gold_pass2 \
-            --out-root-community outputs/community_public
+            --out-root-community outputs/community_public \
+            --baseline-feed docs/feed_latest.json \
+            --refresh \
+            --refresh-limit 50
 
       - name: Save discover cache
         uses: actions/cache/save@v4

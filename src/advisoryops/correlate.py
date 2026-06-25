@@ -514,6 +514,16 @@ def correlate(
                 _text(it.get("summary")),
                 _text(it.get("link")),
             )
+            # Also honour a structured "cves" list written by CSAF enrichment.
+            # _extract_cves only runs regex over text fields; signals enriched by
+            # _enrich_csaf_new_items in discover.py carry CVE IDs here directly.
+            _structured = [
+                _cv.strip().upper()
+                for _cv in (it.get("cves") or [])
+                if isinstance(_cv, str) and _CVE_RE.search(_cv.strip())
+            ]
+            if _structured:
+                cves = sorted(set(cves) | set(_structured))
 
             pub = _text(it.get("published_date"))
             title_norm = _norm_title(_text(it.get("title")))

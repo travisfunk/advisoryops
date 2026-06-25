@@ -84,21 +84,34 @@
     },
     {
       "source_id": "cisa-icsa",
-      "name": "CISA ICS Advisories",
+      "name": "CISA ICS Advisories (via cisagov/CSAF GitHub)",
       "enabled": true,
       "scope": "advisory",
-      "page_type": "rss_atom",
-      "entry_url": "https://www.cisa.gov/cybersecurity-advisories/ics-advisories.xml",
-      "filters": {}
+      "page_type": "json_feed",
+      "entry_url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/cisa-csaf-ot-feed-tlp-white.json",
+      "filters": {
+        "url_allow_regex": "icsa-",
+        "url_deny_regex": "icsma-"
+      },
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0,
+      "notes": "Rerouted 2026-06-25 from cisa.gov (Cloudflare 403 from GHA IPs) to cisagov/CSAF GitHub repo. Uses ROLIE JSON feed index; url_allow_regex/url_deny_regex filters to non-medical ICSA advisories only. 3598 ICSA entries, backfill to 2017."
     },
     {
       "source_id": "cisa-icsma",
-      "name": "CISA ICS Medical Advisories",
+      "name": "CISA ICS Medical Advisories (via cisagov/CSAF GitHub)",
       "enabled": true,
       "scope": "advisory",
-      "page_type": "rss_atom",
-      "entry_url": "https://www.cisa.gov/cybersecurity-advisories/ics-medical-advisories.xml",
-      "filters": {}
+      "page_type": "json_feed",
+      "entry_url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/cisa-csaf-ot-feed-tlp-white.json",
+      "filters": {
+        "url_allow_regex": "icsma-"
+      },
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0,
+      "notes": "Rerouted 2026-06-25 from cisa.gov (Cloudflare 403 from GHA IPs) to cisagov/CSAF GitHub repo. Uses ROLIE JSON feed index; url_allow_regex filters to ICSMA (medical) advisories only. 178 ICSMA entries, backfill to 2016."
     },
     {
       "entry_url": "https://www.cisa.gov/sites/default/files/csv/known_exploited_vulnerabilities.csv",
@@ -110,7 +123,8 @@
       "source_id": "cisa-kev-csv",
       "scope": "dataset",
       "timeout_s": 30,
-      "rate_limit_rps": 1
+      "rate_limit_rps": 1,
+      "limit": 9999
     },
     {
       "entry_url": "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json",
@@ -122,7 +136,8 @@
       "source_id": "cisa-kev-json",
       "scope": "dataset",
       "timeout_s": 30,
-      "rate_limit_rps": 1
+      "rate_limit_rps": 1,
+      "limit": 9999
     },
     {
       "source_id": "fda-medwatch",
@@ -337,11 +352,16 @@
     },
     {
       "source_id": "cisa-ncas-alerts",
-      "name": "CISA NCAS Alerts RSS",
+      "name": "CISA Cybersecurity Advisories (All)",
       "enabled": true,
       "scope": "news",
       "page_type": "rss_atom",
-      "entry_url": "https://us-cert.cisa.gov/ncas/alerts.xml",
+      "entry_url": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
+      "extra_headers": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-US,en;q=0.5"
+      },
       "filters": {
         "apply_to": [
           "title",
@@ -373,87 +393,28 @@
       },
       "timeout_s": 30,
       "retries": 2,
-      "rate_limit_rps": 1.0
+      "rate_limit_rps": 1.0,
+      "notes": "Consolidated from cisa-ncas-alerts/analysis/current-activity (us-cert.cisa.gov deprecated 2024). CISA WAF blocks non-browser UAs — browser headers required; verified 403 with pipeline UA on 2026-06-24."
     },
     {
       "source_id": "cisa-ncas-analysis",
-      "name": "CISA NCAS Analysis Reports RSS",
-      "enabled": true,
+      "name": "CISA NCAS Analysis Reports RSS (disabled — consolidated into cisa-ncas-alerts)",
+      "enabled": false,
       "scope": "news",
       "page_type": "rss_atom",
       "entry_url": "https://us-cert.cisa.gov/ncas/analysis-reports.xml",
-      "filters": {
-        "apply_to": [
-          "title",
-          "summary",
-          "description"
-        ],
-        "keywords_any": [
-          "medical",
-          "health",
-          "healthcare",
-          "hospital",
-          "device",
-          "iomt",
-          "patient",
-          "clinical",
-          "cyber",
-          "security",
-          "vulnerability",
-          "advisory",
-          "recall",
-          "infusion",
-          "imaging",
-          "monitor",
-          "dicom",
-          "hl7",
-          "radiology",
-          "firmware"
-        ]
-      },
-      "timeout_s": 30,
-      "retries": 2,
-      "rate_limit_rps": 1.0
+      "filters": {},
+      "notes": "Disabled 2026-06-24: us-cert.cisa.gov domain deprecated, content consolidated into cisa-ncas-alerts (www.cisa.gov/cybersecurity-advisories/all.xml)"
     },
     {
       "source_id": "cisa-ncas-current-activity",
-      "name": "CISA NCAS Current Activity RSS",
-      "enabled": true,
+      "name": "CISA NCAS Current Activity RSS (disabled — consolidated into cisa-ncas-alerts)",
+      "enabled": false,
       "scope": "news",
       "page_type": "rss_atom",
       "entry_url": "https://us-cert.cisa.gov/ncas/current-activity.xml",
-      "filters": {
-        "apply_to": [
-          "title",
-          "summary",
-          "description"
-        ],
-        "keywords_any": [
-          "medical",
-          "health",
-          "healthcare",
-          "hospital",
-          "device",
-          "iomt",
-          "patient",
-          "clinical",
-          "cyber",
-          "security",
-          "vulnerability",
-          "advisory",
-          "recall",
-          "infusion",
-          "imaging",
-          "monitor",
-          "dicom",
-          "hl7",
-          "radiology",
-          "firmware"
-        ]
-      },
-      "timeout_s": 30,
-      "retries": 2,
-      "rate_limit_rps": 1.0
+      "filters": {},
+      "notes": "Disabled 2026-06-24: us-cert.cisa.gov domain deprecated, content consolidated into cisa-ncas-alerts (www.cisa.gov/cybersecurity-advisories/all.xml)"
     },
     {
       "source_id": "cyberscoop-healthcare",
@@ -855,11 +816,11 @@
     },
     {
       "source_id": "msrc-blog",
-      "name": "Microsoft MSRC Blog RSS",
+      "name": "Microsoft MSRC Update Guide RSS",
       "enabled": true,
       "scope": "news",
       "page_type": "rss_atom",
-      "entry_url": "https://msrc.microsoft.com/feed",
+      "entry_url": "https://api.msrc.microsoft.com/update-guide/rss",
       "filters": {
         "apply_to": [
           "title",
@@ -1121,7 +1082,7 @@
       "enabled": true,
       "scope": "advisory",
       "page_type": "json_feed",
-      "entry_url": "https://api.fda.gov/device/event.json?search=product_problems:Software+Issue&limit=100",
+      "entry_url": "https://api.fda.gov/device/event.json?search=product_problems:Software+Issue&limit=100&sort=date_received:desc",
       "filters": {},
       "timeout_s": 30,
       "retries": 2,
@@ -2118,7 +2079,7 @@
       "page_type": "json_feed",
       "entry_url": "https://services.nvd.nist.gov/rest/json/cves/2.0?resultsPerPage=20",
       "filters": {},
-      "notes": "Recovered 2026-03-23 — works unauthenticated at 5 req/30s; set NVD_API_KEY env + api_key_env/api_key_header fields to use higher rate",
+      "notes": "Recovered 2026-03-23 — works unauthenticated at 5 req/30s; set NVD_API_KEY env + api_key_env/api_key_header fields to use higher rate. NVD API date params (lastModStartDate etc.) return 404 — date field fixed in parser to prefer lastModified over published (2026-06-24).",
       "timeout_s": 45,
       "retries": 3,
       "rate_limit_rps": 0.15

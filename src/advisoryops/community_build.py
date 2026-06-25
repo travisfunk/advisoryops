@@ -38,6 +38,7 @@ from __future__ import annotations
 
 import csv
 import json
+import re
 import shutil
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
@@ -70,6 +71,181 @@ def _write_jsonl(path: Path, rows: Iterable[Dict[str, Any]]) -> None:
     with path.open("w", encoding="utf-8", newline="\n") as f:
         for row in rows:
             f.write(json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n")
+
+
+def merge_baseline_feed(
+    new_rows: List[Dict[str, Any]],
+    baseline_rows: List[Dict[str, Any]],
+    run_timestamp: str = "",
+) -> List[Dict[str, Any]]:
+    """Merge new feed rows into a baseline feed so the feed only ever grows.
+
+    Rules (keyed on issue_id):
+    - issue_id NOT in baseline → new issue; stamp first_published_to_feed and add.
+    - issue_id in BOTH → carried issue; apply enrichment-preservation rules (see below).
+    - issue_id in baseline ONLY → preserve exactly as-is.
+
+    Enrichment-preservation rules for carried issues
+    -------------------------------------------------
+    The incoming row starts as a shallow copy of new (fresher scoring/tags win by
+    default), then the following guards restore baseline data where incoming is thin:
+
+    A. Text richness — take the LONGER of baseline vs incoming (never shorten):
+         summary, nvd_description
+
+    B. Scalar enrichment — if incoming is falsy, keep baseline value:
+         title, canonical_link
+         cvss_score, cvss_vector, cvss_severity
+         epss_score, epss_percentile
+         score, priority          (protect against silent drop to 0/""; fresh
+                                   scoring wins when it actually produced a value)
+         vendor, severity
+         kev_required_action, kev_due_date, kev_vendor,
+         kev_product, kev_vulnerability_name
+         fda_risk_class
+         source_authority_weight, highest_authority_source
+         reasoning
+
+    C. Collection enrichment — if incoming is empty, keep baseline value:
+         cwe_ids, affected_products, actions
+         remediation_steps, source_mitigations
+         recommended_patterns, tasks_by_role
+         evidence_sources
+         handling_warnings, evidence_gaps, unknowns, non_applicability
+         extracted_facts, inferred_facts, confidence_by_field
+         citations
+
+    D. Temporal — always:
+         first_seen_at: keep the OLDER (baseline never loses its age)
+         last_seen_at:  keep the NEWER
+
+    E. List unions — always:
+         sources, cves, published_dates
+
+    Fields left to incoming (always overwritten):
+        healthcare_relevant, healthcare_category, is_kev_medical_device — deterministic
+          re-tags; always correct from the current run.
+        why — re-computed score explanation; reflects current scoring context.
+        source_consensus — re-computed from the current multi-source picture.
+        iocs — re-extracted from current text; complete given current issue text.
+        classification, affected_versions, generated_by, insufficient_evidence,
+          source_summary — all deterministically re-derived; no richer baseline value.
+    """
+    _run_ts: str = run_timestamp or datetime.now(timezone.utc).isoformat()
+
+    # Scalars: if incoming is falsy, keep baseline value.
+    _GUARD_SCALAR: tuple = (
+        "title",
+        "canonical_link",
+        "cvss_score",
+        "cvss_vector",
+        "cvss_severity",
+        "epss_score",
+        "epss_percentile",
+        "score",
+        "priority",
+        "vendor",
+        "severity",
+        "kev_required_action",
+        "kev_due_date",
+        "kev_vendor",
+        "kev_product",
+        "kev_vulnerability_name",
+        "fda_risk_class",
+        "source_authority_weight",
+        "highest_authority_source",
+        "reasoning",
+        "first_published_to_feed",  # never overwrite once stamped
+    )
+
+    # Collections (list or dict): if incoming is empty/falsy, keep baseline value.
+    _GUARD_COLLECTION: tuple = (
+        "cwe_ids",
+        "affected_products",
+        "actions",
+        "remediation_steps",
+        "source_mitigations",
+        "recommended_patterns",
+        "tasks_by_role",
+        "evidence_sources",
+        "handling_warnings",
+        "evidence_gaps",
+        "unknowns",
+        "non_applicability",
+        "extracted_facts",
+        "inferred_facts",
+        "confidence_by_field",
+        "citations",
+    )
+
+    baseline_by_id: Dict[str, Dict[str, Any]] = {
+        r["issue_id"]: r for r in baseline_rows if r.get("issue_id")
+    }
+    new_by_id: Dict[str, Dict[str, Any]] = {
+        r["issue_id"]: r for r in new_rows if r.get("issue_id")
+    }
+
+    merged: List[Dict[str, Any]] = []
+
+    # Pass 1: walk new_rows — fresh scoring/tags win by default; guards restore
+    # baseline enrichment where incoming is absent or thinner.
+    for new in new_rows:
+        iid = new.get("issue_id", "")
+        base = baseline_by_id.get(iid)
+
+        if base is None:
+            # Brand-new issue: stamp first_published_to_feed.
+            row = dict(new)
+            if not row.get("first_published_to_feed"):
+                row["first_published_to_feed"] = _run_ts
+            merged.append(row)
+            continue
+
+        row = dict(new)  # shallow copy — incoming wins unless a guard fires
+
+        # E. List unions
+        for list_field in ("sources", "cves", "published_dates"):
+            combined = sorted(set(
+                list(base.get(list_field) or []) + list(new.get(list_field) or [])
+            ))
+            row[list_field] = combined
+
+        # D. Temporal
+        base_first = base.get("first_seen_at") or ""
+        new_first = new.get("first_seen_at") or ""
+        if base_first and (not new_first or base_first < new_first):
+            row["first_seen_at"] = base_first
+
+        base_last = base.get("last_seen_at") or ""
+        new_last = new.get("last_seen_at") or ""
+        if base_last and (not new_last or base_last > new_last):
+            row["last_seen_at"] = base_last
+
+        # A. Text richness — take the longer value
+        for text_field in ("summary", "nvd_description"):
+            base_val = base.get(text_field) or ""
+            new_val = new.get(text_field) or ""
+            if base_val and (not new_val or len(base_val) > len(new_val)):
+                row[text_field] = base_val
+
+        # B. Scalar enrichment guard
+        for field in _GUARD_SCALAR:
+            if not row.get(field) and base.get(field):
+                row[field] = base[field]
+
+        # C. Collection enrichment guard
+        for field in _GUARD_COLLECTION:
+            if not row.get(field) and base.get(field):
+                row[field] = base[field]
+
+        merged.append(row)
+
+    # Pass 2: append baseline-only issues (not seen in new run at all).
+    for iid, base in baseline_by_id.items():
+        if iid not in new_by_id:
+            merged.append(base)
+
+    return merged
 
 
 def _feed_entry(issue: Dict[str, Any]) -> Dict[str, Any]:
@@ -156,6 +332,27 @@ def _sort_feed_entries(rows: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     )
 
 
+# XML 1.0 forbids all control characters except tab (0x09), LF (0x0A), CR (0x0D),
+# and also forbids surrogates (0xD800-0xDFFF) and 0xFFFE/0xFFFF.
+# Strip them rather than replace so we never produce ?-spam in titles.
+# Valid: #x9 | #xA | #xD | [#x20-#xD7FF] | [#xE000-#xFFFD] | [#x10000-#x10FFFF]
+_XML_INVALID_CHARS = re.compile(
+    "[^"
+    + chr(0x09) + chr(0x0A) + chr(0x0D)
+    + chr(0x20) + "-" + chr(0xD7FF)
+    + chr(0xE000) + "-" + chr(0xFFFD)
+    + chr(0x10000) + "-" + chr(0x10FFFF)
+    + "]"
+)
+
+
+def _xml_safe(text: str) -> str:
+    """Return *text* with all XML 1.0-invalid characters removed."""
+    if not text:
+        return ""
+    return _XML_INVALID_CHARS.sub("", text)
+
+
 def _rss_pub_date(date_str: str) -> str:
     """Convert YYYY-MM-DD (or ISO 8601) to RFC 2822 for RSS pubDate."""
     if not date_str:
@@ -192,11 +389,11 @@ def _write_rss(
     for issue in rows[:top]:
         item = ET.SubElement(channel, "item")
 
-        ET.SubElement(item, "title").text = issue.get("title") or ""
+        ET.SubElement(item, "title").text = _xml_safe(issue.get("title") or "")
 
-        link = issue.get("canonical_link") or ""
+        link = _xml_safe(issue.get("canonical_link") or "")
         ET.SubElement(item, "link").text = link
-        ET.SubElement(item, "guid").text = link or issue.get("issue_id", "")
+        ET.SubElement(item, "guid").text = link or _xml_safe(issue.get("issue_id", ""))
 
         published_dates = issue.get("published_dates") or []
         first_date = published_dates[0] if published_dates else ""
@@ -204,12 +401,12 @@ def _write_rss(
         if pub_date:
             ET.SubElement(item, "pubDate").text = pub_date
 
-        summary = (issue.get("summary") or "")[:500]
+        summary = _xml_safe((issue.get("summary") or "")[:500])
         ET.SubElement(item, "description").text = summary
 
         priority = issue.get("priority") or ""
         if priority:
-            ET.SubElement(item, "category").text = priority
+            ET.SubElement(item, "category").text = _xml_safe(priority)
 
     rss_root = ET.Element("rss", version="2.0")
     rss_root.append(channel)
@@ -218,8 +415,12 @@ def _write_rss(
         rss_root, encoding="unicode"
     ).encode("utf-8")
 
-    # Validate before writing
-    ET.fromstring(xml_bytes)
+    # Validate; log on failure rather than crashing the whole pipeline.
+    try:
+        ET.fromstring(xml_bytes)
+    except ET.ParseError as _rss_err:
+        import warnings
+        warnings.warn(f"RSS XML validation failed (file still written): {_rss_err}")
 
     path.write_bytes(xml_bytes)
 
@@ -1437,6 +1638,8 @@ def build_community_feed(
     extract_fields: bool = False,
     extract_fields_model: str = "gpt-4o-mini",
     backfill: bool = True,
+    baseline_feed: Optional[str] = None,
+    publish: bool = True,
     _recommend_call_fn: Optional[Callable] = None,
     _ai_classify_fn: Optional[Callable] = None,
     _summarize_call_fn: Optional[Callable] = None,
@@ -1478,21 +1681,29 @@ def build_community_feed(
     cfg = load_sources_config()
     cfg_by_id = {s.source_id: s for s in cfg.sources}
 
+    refresh_failures: List[str] = []
     if refresh:
         for source_id in selected_set.source_ids:
             print("")
             print(f"Refreshing source: {source_id}")
-            source_run(
-                source_id,
-                limit=refresh_limit,
-                ingest=False,
-                dry_run=False,
-                ingest_mode="new",
-                out_root_discover=out_root_discover,
-                out_root_runs=out_root_runs,
-                show_links=False,
-                reset_state=False,
-            )
+            try:
+                source_run(
+                    source_id,
+                    limit=refresh_limit,
+                    ingest=False,
+                    dry_run=False,
+                    ingest_mode="new",
+                    out_root_discover=out_root_discover,
+                    out_root_runs=out_root_runs,
+                    show_links=False,
+                    reset_state=False,
+                )
+            except Exception as _refresh_exc:
+                print(f"  WARNING: {source_id} refresh failed (skipping): {_refresh_exc}")
+                refresh_failures.append(source_id)
+        if refresh_failures:
+            print(f"\n  Refresh: {len(refresh_failures)} source(s) failed and were skipped: "
+                  f"{', '.join(refresh_failures)}")
 
     community_root = Path(out_root_community)
     community_root.mkdir(parents=True, exist_ok=True)
@@ -2257,6 +2468,25 @@ def build_community_feed(
         _merge_trust(alert_feed_rows)
         _merge_trust(latest_rows)
 
+    # --- Baseline feed merge (additive build) ---
+    if baseline_feed:
+        baseline_path = Path(baseline_feed)
+        if not baseline_path.exists():
+            raise FileNotFoundError(f"--baseline-feed path not found: {baseline_path}")
+        baseline_rows: List[Dict[str, Any]] = json.loads(
+            baseline_path.read_text(encoding="utf-8")
+        )
+        _merge_ts = datetime.now(timezone.utc).isoformat()
+        print(f"\n  Baseline merge: {len(baseline_rows)} baseline issues + "
+              f"{len(feed_rows)} new issues")
+        feed_rows = _sort_feed_entries(
+            merge_baseline_feed(feed_rows, baseline_rows, run_timestamp=_merge_ts)
+        )
+        latest_rows = feed_rows[:latest] if latest > 0 else feed_rows
+        new_count = sum(1 for r in feed_rows if r.get("first_published_to_feed"))
+        print(f"  Baseline merge: {len(feed_rows)} issues after merge "
+              f"({new_count} new, {len(feed_rows) - new_count} carried)")
+
     out_issues_public = community_root / "issues_public.jsonl"
     out_alerts_public = community_root / "alerts_public.jsonl"
     out_latest = community_root / "feed_latest.json"
@@ -2270,9 +2500,12 @@ def build_community_feed(
     _write_jsonl(out_alerts_public, alert_feed_rows)
     out_latest.write_text(json.dumps(latest_rows, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
-    # Healthcare-relevant feed
+    # Healthcare-relevant feed — strict medical device subset only.
+    # Using healthcare_category == "medical_device" rather than the broader
+    # healthcare_relevant flag (which catches virtually everything in this corpus
+    # and would produce a feed identical to feed_latest.json).
     out_healthcare = community_root / "feed_healthcare.json"
-    healthcare_rows = [r for r in latest_rows if r.get("healthcare_relevant") is True]
+    healthcare_rows = [r for r in latest_rows if r.get("healthcare_category") == "medical_device"]
     out_healthcare.write_text(json.dumps(healthcare_rows, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(f"  Healthcare feed:  {out_healthcare} ({len(healthcare_rows)} issues)")
 
@@ -2401,8 +2634,11 @@ def build_community_feed(
     _write_sanity_report(community_root, feed_rows, packets_dir)
 
     # --- Publish dashboard + data files to docs/ for GitHub Pages ---
-    _repo_root = repo_root or Path(__file__).resolve().parent.parent.parent
-    _publish_to_docs(community_root, _repo_root)
+    if publish:
+        _repo_root = repo_root or Path(__file__).resolve().parent.parent.parent
+        _publish_to_docs(community_root, _repo_root)
+    else:
+        print("  Skipping docs/ publish (--no-publish)")
 
     print("")
     print("Community build summary:")
