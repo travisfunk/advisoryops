@@ -52,7 +52,8 @@ def test_parse_openfda_results_minimal():
     assert len(items) == 1
     it = items[0]
     assert it["guid"] == "Z-1234-2026"
-    assert it["title"] == "Z-1234-2026"
+    # Title is now built from recalling_firm + product_description instead of the raw recall_number
+    assert it["title"] == "Acme Medical — Acme Bedside Monitor"
     assert "Acme Medical" in it["summary"]
     assert "Acme Bedside Monitor" in it["summary"]
 

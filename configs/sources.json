@@ -1081,7 +1081,7 @@
       "enabled": true,
       "scope": "advisory",
       "page_type": "json_feed",
-      "entry_url": "https://api.fda.gov/device/event.json?search=product_problems:Software+Issue&limit=100",
+      "entry_url": "https://api.fda.gov/device/event.json?search=product_problems:Software+Issue&limit=100&sort=date_received:desc",
       "filters": {},
       "timeout_s": 30,
       "retries": 2,

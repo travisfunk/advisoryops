@@ -243,15 +243,42 @@ def parse_json_feed(obj: Any, *, source_id: str, fetched_at: str) -> List[Dict[s
             "title",
             "name",
             "event_id",
+            "res_event_number",
             "recall_number",
             "report_number",
             "mdr_report_key",
             "id",
         ) or (cve or "item")
+        # openFDA device-recalls: build a meaningful title from firm + product snippet.
+        # FDA recall records have no "title" field; res_event_number alone is opaque.
+        if source_id == "openfda-device-recalls":
+            firm = _pick_str(row, "recalling_firm")
+            product = _pick_str(row, "product_description")
+            product = product[:80] if product else ""
+            if firm or product:
+                title = " — ".join(p for p in [firm, product] if p) or title
+        # openFDA device-events: build a meaningful title from device name + problem
+        # instead of exposing the raw MDR report key (e.g. "0001831750-2020-00357").
+        # Device brand name lives in the nested device[] array, not at the top level.
+        if source_id == "openfda-device-events":
+            device_list = row.get("device") or []
+            device_name = ""
+            if device_list and isinstance(device_list[0], dict):
+                device_name = (
+                    device_list[0].get("brand_name", "")
+                    or device_list[0].get("generic_name", "")
+                )
+            problems = row.get("product_problems") or []
+            problem_str = problems[0] if problems else ""
+            if device_name or problem_str:
+                title = " — ".join(p for p in [device_name, problem_str] if p) or title
         link = _pick_str(row, "link", "url")
         if not link and source_id.startswith("openfda-device-recalls"):
             link = _openfda_device_recall_link(row)
-        guid = _pick_str(row, "guid", "id", "event_id", "recall_number", "report_number", "mdr_report_key")
+        # cfres_id is the per-product unique key in FDA recall records; res_event_number
+        # is per-recall-event and may cover multiple products (duplicate guids without cfres_id).
+        guid = _pick_str(row, "guid", "id", "cfres_id", "product_res_number", "event_id",
+                         "res_event_number", "recall_number", "report_number", "mdr_report_key")
         if not guid:
             guid = cve or link or _sha1(json.dumps(row, sort_keys=True))
         published = _pick_str(
@@ -261,6 +288,8 @@ def parse_json_feed(obj: Any, *, source_id: str, fetched_at: str) -> List[Dict[s
             "date",
             "report_date",
             "event_date",
+            "date_received",
+            "event_date_initiated",
             "recall_initiation_date",
             "date_created",
         )

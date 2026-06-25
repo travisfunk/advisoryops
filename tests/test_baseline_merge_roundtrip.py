@@ -77,8 +77,8 @@ def _make_duplicate_issue(baseline_item: dict) -> dict:
 
 def test_baseline_merge_roundtrip(baseline):
     baseline_count = len(baseline)
-    assert baseline_count == 3724, (
-        f"Expected 3724 baseline issues, got {baseline_count}. "
+    assert baseline_count == 4279, (
+        f"Expected 4279 baseline issues, got {baseline_count}. "
         "Feed may have been updated since this test was written."
     )
 
@@ -102,8 +102,8 @@ def test_baseline_merge_roundtrip(baseline):
     # --- 2. Merged count ---
     merged_count = len(merged)
     print(f"Merged issue count:    {merged_count}")
-    assert merged_count == 3725, (
-        f"Expected 3725 merged issues, got {merged_count}. "
+    assert merged_count == 4280, (
+        f"Expected 4280 merged issues, got {merged_count}. "
         "The duplicate should be merged (not appended) and the new item added."
     )
 
