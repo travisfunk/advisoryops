@@ -7,12 +7,13 @@ Or via pytest:
     pytest tests/test_baseline_merge_roundtrip.py -v
 
 Verifies:
-  1. baseline issue count == 3724
-  2. merged issue count == 3725 (one new added, one duplicate merged not appended)
+  1. baseline issue count > 0 (feed is non-empty; exact count grows daily)
+  2. merged issue count == baseline_count + 1 (one new added, one duplicate
+     merged not appended — count is relative to whatever baseline is today)
   3. The duplicate's first_seen_at is preserved from baseline (not overwritten)
   4. The new fake issue is present
-  5. Total issues with remediation_steps populated >= 3724 (nothing blanked)
-  6. Zero issues dropped (baseline_count + 1 == merged_count)
+  5. Total issues with remediation_steps populated >= baseline count (nothing blanked)
+  6. Zero issues dropped (every baseline issue_id present in merged result)
 """
 import json
 from pathlib import Path
@@ -77,9 +78,9 @@ def _make_duplicate_issue(baseline_item: dict) -> dict:
 
 def test_baseline_merge_roundtrip(baseline):
     baseline_count = len(baseline)
-    assert baseline_count == 4279, (
-        f"Expected 4279 baseline issues, got {baseline_count}. "
-        "Feed may have been updated since this test was written."
+    assert baseline_count > 0, (
+        f"Baseline feed is empty — cannot exercise merge roundtrip. "
+        f"Check that docs/feed_latest.json exists and is non-empty."
     )
 
     # Pick the first baseline item as our "already known" duplicate target
@@ -102,8 +103,9 @@ def test_baseline_merge_roundtrip(baseline):
     # --- 2. Merged count ---
     merged_count = len(merged)
     print(f"Merged issue count:    {merged_count}")
-    assert merged_count == 4280, (
-        f"Expected 4280 merged issues, got {merged_count}. "
+    assert merged_count == baseline_count + 1, (
+        f"Expected {baseline_count + 1} merged issues (baseline {baseline_count} + 1 new), "
+        f"got {merged_count}. "
         "The duplicate should be merged (not appended) and the new item added."
     )
 
