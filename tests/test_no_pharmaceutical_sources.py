@@ -49,8 +49,7 @@ def test_pharmaceutical_sources_disabled():
         )
         entry = sources[src_id]
         assert entry.get("enabled") is False, (
-            f"{src_id} must stay disabled (pharmaceutical content out of scope - "
-            "see audit/pharmaceutical_exclusion_diagnosis.md). Got enabled="
+            f"{src_id} must stay disabled (pharmaceutical content out of scope). Got enabled="
             f"{entry.get('enabled')!r}"
         )
         assert "excluded_reason" in entry, (

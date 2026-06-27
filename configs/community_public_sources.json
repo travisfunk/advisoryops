@@ -3,11 +3,11 @@
   "excluded_sources": [
     {
       "source_id": "fda-medwatch",
-      "reason": "pharmaceutical recalls - handled by pharmacy / EMR, not medical device security. FDA MedWatch is a mixed drug + device + biologics + food feed; device-specific content is already covered by openfda-device-recalls and fda-safety-comms-historical. See audit/pharmaceutical_exclusion_diagnosis.md."
+      "reason": "pharmaceutical recalls - handled by pharmacy / EMR, not medical device security. FDA MedWatch is a mixed drug + device + biologics + food feed; device-specific content is already covered by openfda-device-recalls and fda-safety-comms-historical.."
     },
     {
       "source_id": "mhra-uk-alerts",
-      "reason": "pharmaceutical recalls - handled by pharmacy / EMR, not medical device security. Upstream GOV.UK search returns mixed device + medicines content; 79.5% (159/200) of ingested records were UK medicines recalls. See audit/pharmaceutical_exclusion_diagnosis.md."
+      "reason": "pharmaceutical recalls - handled by pharmacy / EMR, not medical device security. Upstream GOV.UK search returns mixed device + medicines content; 79.5% (159/200) of ingested records were UK medicines recalls.."
     }
   ],
   "validated_sets": [

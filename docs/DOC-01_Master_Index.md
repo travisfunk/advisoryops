@@ -7,7 +7,7 @@ This index is the starting point for navigating AdvisoryOps documentation.
 ---
 
 ## Quick links
-- **Project status / single source of truth:** [session_state.md](session_state.md) *(STATUS.md is kept as a redirect pointing here)*
+- **Project status:** [STATUS.md](STATUS.md)
 - **MVP guide:** (repo root) `README_MVP.md`
 - **Data contracts:** [DOC-02_Data_Contracts.md](DOC-02_Data_Contracts.md)
 - **Community public-side plan:** [DOC-11_Community_Public_v0.md](DOC-11_Community_Public_v0.md)
@@ -30,8 +30,6 @@ This index is the starting point for navigating AdvisoryOps documentation.
 ### Supporting
 7. [DOC-03_Mitigation_Playbook.md](DOC-03_Mitigation_Playbook.md) — response guidance patterns (human-facing)
 8. [DOC-04_Integrations.md](DOC-04_Integrations.md) — integration targets (n8n, SIEM, ticketing) and assumptions
-9. [DOC-08_Grant_Draft.md](DOC-08_Grant_Draft.md) — draft notes for grant narrative
-10. [DOC-09_Prototype_Plan.md](DOC-09_Prototype_Plan.md) — prototype roadmap and demo scenarios
 
 ---
 

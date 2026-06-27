@@ -157,8 +157,8 @@ Pipeline stages:
 5) score outputs vs rubric
 
 Inputs:
-- `samples/advisories/*.txt` or `.json`
-- optional: `samples/expected/*.json` (golden outputs)
+- `tests/fixtures/golden/fixture-*/input.json`
+- `tests/fixtures/golden/fixture-*/expected.json` (golden outputs)
 
 Outputs:
 - per-sample JSON outputs (AdvisoryRecord, IssueCluster, Packet)

@@ -545,7 +545,7 @@ def correlate(
                 # Prefix with "UNK-" so these are clearly distinguished from
                 # CVE-based issues downstream.
                 #
-                # Triage fix for Problem 2 (see docs/session_state.md): include
+                # Triage fix: include
                 # source_id in the key basis so signals from different sources
                 # never collide regardless of title. Without this, threat intel
                 # feeds emitting signals with empty/placeholder titles merged

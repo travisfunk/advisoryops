@@ -221,7 +221,7 @@ flowchart TD
 | news | 29 | CISA NCAS alerts/analysis/current activity, CyberScoop Healthcare, Fortified Health Security, HIPAA Guide Cyber, MedTech Intelligence, Microsoft MSRC blog, NCSC UK, NIST Cybersecurity Insights, Krebs on Security, Dark Reading |
 | threatintel | 9 | Cisco Talos, Google/Mandiant, Check Point Research, CrowdStrike, Abuse.ch URLhaus, Abuse.ch Feodo Tracker, Abuse.ch SSL Blacklist, SANS ISC Blocklist IPs, Binary Defense Banlist |
 
-Pharmaceutical sources (`fda-medwatch`, `mhra-uk-alerts`) are explicitly disabled — see `audit/pharmaceutical_exclusion_diagnosis.md` and Section 8 principle #12 of `docs/session_state.md`. Medicines recalls belong to pharmacy workflows, not medical device security.
+Pharmaceutical sources (`fda-medwatch`, `mhra-uk-alerts`) are explicitly disabled — medicines recalls belong to pharmacy workflows, not medical device security.
 
 For a live ranked breakdown of which sources actually produce medical device signal (with cumulative coverage so the curation quality is measurable, not asserted), see the **Sources** tab on the [live dashboard](https://travisfunk.github.io/advisoryops/#sources).
 
@@ -269,7 +269,6 @@ Every AI-generated output carries an evidence trail:
 - **[Feed contract](docs/feed_contract.json)** — schema contract between the pipeline and the dashboard, enforced by tests
 - **[Playbook governance](docs/playbook_governance.md)** — how mitigation patterns are reviewed, approved, and cited
 - **[KEV analysis](docs/kev_medical_device_analysis.md)** — why CISA KEV has zero medical device overlap (and why that matters)
-- **[Session state](docs/session_state.md)** — internal project context for contributors (problems, architecture decisions, session history)
 
 ---
 
