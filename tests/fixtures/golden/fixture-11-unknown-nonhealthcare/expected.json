@@ -1,0 +1,9 @@
+{
+  "expected_issue_count": 1,
+  "expected_cves": [],
+  "expected_priority_range": [
+    "P3"
+  ],
+  "expected_healthcare_category": "not_healthcare",
+  "description": "Synthetic vendor advisory with no CVE ID in any field. Correlate assigns issue_type='unknown' and UNK- prefix ID (SHA-256 of normalized title+date). Score = 2 (non-CVE base) -> P3. Tests the unknown-type code path and UNK- id generation."
+}

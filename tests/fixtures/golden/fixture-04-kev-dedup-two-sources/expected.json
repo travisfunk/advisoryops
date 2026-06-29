@@ -1,0 +1,12 @@
+{
+  "expected_issue_count": 1,
+  "expected_cves": [
+    "CVE-2008-0015"
+  ],
+  "expected_priority_range": [
+    "P0"
+  ],
+  "expected_source_count": 2,
+  "expected_healthcare_category": "not_healthcare",
+  "description": "MS Windows Video ActiveX RCE (CVE-2008-0015). Appears in both cisa-kev-csv and cisa-kev-json. Correlate must deduplicate into exactly 1 issue with 2 sources. Score = 95 -> P1."
+}

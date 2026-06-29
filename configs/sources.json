@@ -1,0 +1,2267 @@
+{
+  "schema_version": 1,
+  "defaults": {
+    "timeout_s": 30,
+    "retries": 3,
+    "rate_limit_rps": 1.0
+  },
+  "sources": [
+    {
+      "source_id": "abb-alerts-html",
+      "name": "ABB Cyber security alerts and notifications (HTML table)",
+      "enabled": false,
+      "scope": "advisory",
+      "page_type": "html_table",
+      "entry_url": "https://www.abb.com/global/en/company/about/cybersecurity/alerts-and-notifications",
+      "filters": {}
+    },
+    {
+      "entry_url": "https://www.bsi.bund.de/SiteGlobals/Functions/RSSFeed/RSSNewsfeed/RSSNewsfeed.xml",
+      "enabled": false,
+      "filters": {
+        "apply_to": [
+          "title",
+          "summary",
+          "description"
+        ],
+        "keywords_any": [
+          "medical",
+          "health",
+          "hospital",
+          "device",
+          "iot",
+          "iomt",
+          "ransomware",
+          "vulnerability",
+          "security",
+          "critical"
+        ]
+      },
+      "retries": 2,
+      "page_type": "rss_atom",
+      "name": "BSI (Germany) RSS Newsfeed",
+      "source_id": "bsi-news",
+      "scope": "advisory",
+      "timeout_s": 30,
+      "rate_limit_rps": 1,
+      "notes": "DNS/SSL failure — bsi.bund.de unreachable from this network context (SSL CERTIFICATE_VERIFY_FAILED or getaddrinfo failed)"
+    },
+    {
+      "entry_url": "https://kb.cert.org/vulfeed",
+      "enabled": true,
+      "filters": {
+        "apply_to": [
+          "title",
+          "summary",
+          "description"
+        ],
+        "keywords_any": [
+          "medical",
+          "health",
+          "hospital",
+          "device",
+          "iot",
+          "iomt",
+          "patient",
+          "infusion",
+          "monitor",
+          "imaging",
+          "dicom",
+          "hl7",
+          "radiology",
+          "cyber",
+          "vulnerability",
+          "security"
+        ]
+      },
+      "retries": 2,
+      "page_type": "rss_atom",
+      "name": "CERT/CC Vulnerability Notes",
+      "source_id": "certcc-vulnotes",
+      "scope": "advisory",
+      "timeout_s": 30,
+      "rate_limit_rps": 1
+    },
+    {
+      "source_id": "cisa-icsa",
+      "name": "CISA ICS Advisories (via cisagov/CSAF GitHub)",
+      "enabled": true,
+      "scope": "advisory",
+      "page_type": "json_feed",
+      "entry_url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/cisa-csaf-ot-feed-tlp-white.json",
+      "filters": {
+        "url_allow_regex": "icsa-",
+        "url_deny_regex": "icsma-"
+      },
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0,
+      "notes": "Rerouted 2026-06-25 from cisa.gov (Cloudflare 403 from GHA IPs) to cisagov/CSAF GitHub repo. Uses ROLIE JSON feed index; url_allow_regex/url_deny_regex filters to non-medical ICSA advisories only. 3598 ICSA entries, backfill to 2017."
+    },
+    {
+      "source_id": "cisa-icsma",
+      "name": "CISA ICS Medical Advisories (via cisagov/CSAF GitHub)",
+      "enabled": true,
+      "scope": "advisory",
+      "page_type": "json_feed",
+      "entry_url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/cisa-csaf-ot-feed-tlp-white.json",
+      "filters": {
+        "url_allow_regex": "icsma-"
+      },
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0,
+      "notes": "Rerouted 2026-06-25 from cisa.gov (Cloudflare 403 from GHA IPs) to cisagov/CSAF GitHub repo. Uses ROLIE JSON feed index; url_allow_regex filters to ICSMA (medical) advisories only. 178 ICSMA entries, backfill to 2016."
+    },
+    {
+      "entry_url": "https://www.cisa.gov/sites/default/files/csv/known_exploited_vulnerabilities.csv",
+      "enabled": true,
+      "filters": {},
+      "retries": 2,
+      "page_type": "csv_feed",
+      "name": "CISA Known Exploited Vulnerabilities (CSV)",
+      "source_id": "cisa-kev-csv",
+      "scope": "dataset",
+      "timeout_s": 30,
+      "rate_limit_rps": 1,
+      "limit": 9999
+    },
+    {
+      "entry_url": "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json",
+      "enabled": true,
+      "filters": {},
+      "retries": 2,
+      "page_type": "json_feed",
+      "name": "CISA Known Exploited Vulnerabilities (JSON)",
+      "source_id": "cisa-kev-json",
+      "scope": "dataset",
+      "timeout_s": 30,
+      "rate_limit_rps": 1,
+      "limit": 9999
+    },
+    {
+      "source_id": "fda-medwatch",
+      "name": "FDA MedWatch RSS",
+      "enabled": false,
+      "excluded_reason": "pharmaceutical recalls - handled by pharmacy / EMR, not medical device security. FDA MedWatch is a mixed drug + device + biologics + food feed; device-specific content is already covered by openfda-device-recalls and fda-safety-comms-historical..",
+      "scope": "advisory",
+      "page_type": "rss_atom",
+      "entry_url": "https://www.fda.gov/about-fda/contact-fda/stay-informed/rss-feeds/medwatch/rss.xml",
+      "filters": {
+        "keywords_any": [
+          "cyber",
+          "cybersecurity",
+          "vulnerability",
+          "vulnerabilities",
+          "cve",
+          "ransomware",
+          "exploit",
+          "unauthorized",
+          "malware",
+          "remote",
+          "software",
+          "firmware",
+          "network",
+          "wireless",
+          "hardcoded",
+          "hard-coded",
+          "update",
+          "patch"
+        ],
+        "apply_to": [
+          "title",
+          "summary",
+          "description"
+        ]
+      }
+    },
+    {
+      "source_id": "se-security-notifications",
+      "name": "Schneider Electric Security notifications (HTML table)",
+      "enabled": false,
+      "scope": "advisory",
+      "page_type": "html_table",
+      "entry_url": "https://www.se.com/ww/en/work/support/cybersecurity/security-notifications.jsp",
+      "filters": {}
+    },
+    {
+      "source_id": "armis-labs",
+      "name": "Armis Labs Threat Research RSS",
+      "enabled": false,
+      "scope": "news",
+      "page_type": "rss_atom",
+      "entry_url": "https://www.armis.com/blog/feed/",
+      "filters": {
+        "apply_to": [
+          "title",
+          "summary",
+          "description"
+        ],
+        "keywords_any": [
+          "medical",
+          "health",
+          "healthcare",
+          "hospital",
+          "device",
+          "iomt",
+          "patient",
+          "clinical",
+          "cyber",
+          "security",
+          "vulnerability",
+          "advisory",
+          "recall",
+          "infusion",
+          "imaging",
+          "monitor",
+          "dicom",
+          "hl7",
+          "radiology",
+          "firmware",
+          "ot",
+          "cps",
+          "ics",
+          "industrial",
+          "manufacturing",
+          "critical infrastructure",
+          "exposure"
+        ]
+      },
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0,
+      "notes": "403 Forbidden — bot protection blocks automated fetching"
+    },
+    {
+      "source_id": "asimily-blog",
+      "name": "Asimily Blog RSS",
+      "enabled": true,
+      "scope": "news",
+      "page_type": "rss_atom",
+      "entry_url": "https://asimily.com/blog/feed/",
+      "filters": {
+        "apply_to": [
+          "title",
+          "summary",
+          "description"
+        ],
+        "keywords_any": [
+          "medical",
+          "health",
+          "healthcare",
+          "hospital",
+          "device",
+          "iomt",
+          "patient",
+          "clinical",
+          "cyber",
+          "security",
+          "vulnerability",
+          "advisory",
+          "recall",
+          "infusion",
+          "imaging",
+          "monitor",
+          "dicom",
+          "hl7",
+          "radiology",
+          "firmware"
+        ]
+      },
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "beckers-hospital-cyber",
+      "name": "Becker's Hospital Review Cybersecurity RSS",
+      "enabled": false,
+      "scope": "news",
+      "page_type": "rss_atom",
+      "entry_url": "https://www.beckershospitalreview.com/healthcare-information-technology/cybersecurity/feed/",
+      "filters": {
+        "apply_to": [
+          "title",
+          "summary",
+          "description"
+        ],
+        "keywords_any": [
+          "medical",
+          "health",
+          "healthcare",
+          "hospital",
+          "patient",
+          "device",
+          "iomt",
+          "cyber",
+          "security",
+          "vulnerability",
+          "ransomware",
+          "privacy",
+          "breach"
+        ]
+      },
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0,
+      "notes": "403 Forbidden — bot protection blocks automated fetching"
+    },
+    {
+      "source_id": "claroty-team82",
+      "name": "Claroty Team82 Disclosure Dashboard RSS",
+      "enabled": false,
+      "scope": "news",
+      "page_type": "rss_atom",
+      "entry_url": "https://claroty.com/team82/feed/",
+      "notes": "No public RSS feed available — team82/feed/ and all claroty.com/*/feed paths return 404; site redesign removed RSS",
+      "filters": {
+        "apply_to": [
+          "title",
+          "summary",
+          "description"
+        ],
+        "keywords_any": [
+          "medical",
+          "health",
+          "healthcare",
+          "hospital",
+          "device",
+          "iomt",
+          "patient",
+          "clinical",
+          "cyber",
+          "security",
+          "vulnerability",
+          "advisory",
+          "recall",
+          "infusion",
+          "imaging",
+          "monitor",
+          "dicom",
+          "hl7",
+          "radiology",
+          "firmware",
+          "ics",
+          "ot",
+          "cps"
+        ]
+      },
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "cisa-ncas-alerts",
+      "name": "CISA Cybersecurity Advisories (All)",
+      "enabled": true,
+      "scope": "news",
+      "page_type": "rss_atom",
+      "entry_url": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
+      "extra_headers": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-US,en;q=0.5"
+      },
+      "filters": {
+        "apply_to": [
+          "title",
+          "summary",
+          "description"
+        ],
+        "keywords_any": [
+          "medical",
+          "health",
+          "healthcare",
+          "hospital",
+          "device",
+          "iomt",
+          "patient",
+          "clinical",
+          "cyber",
+          "security",
+          "vulnerability",
+          "advisory",
+          "recall",
+          "infusion",
+          "imaging",
+          "monitor",
+          "dicom",
+          "hl7",
+          "radiology",
+          "firmware"
+        ]
+      },
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0,
+      "notes": "Consolidated from cisa-ncas-alerts/analysis/current-activity (us-cert.cisa.gov deprecated 2024). CISA WAF blocks non-browser UAs — browser headers required; verified 403 with pipeline UA on 2026-06-24."
+    },
+    {
+      "source_id": "cisa-ncas-analysis",
+      "name": "CISA NCAS Analysis Reports RSS (disabled — consolidated into cisa-ncas-alerts)",
+      "enabled": false,
+      "scope": "news",
+      "page_type": "rss_atom",
+      "entry_url": "https://us-cert.cisa.gov/ncas/analysis-reports.xml",
+      "filters": {},
+      "notes": "Disabled 2026-06-24: us-cert.cisa.gov domain deprecated, content consolidated into cisa-ncas-alerts (www.cisa.gov/cybersecurity-advisories/all.xml)"
+    },
+    {
+      "source_id": "cisa-ncas-current-activity",
+      "name": "CISA NCAS Current Activity RSS (disabled — consolidated into cisa-ncas-alerts)",
+      "enabled": false,
+      "scope": "news",
+      "page_type": "rss_atom",
+      "entry_url": "https://us-cert.cisa.gov/ncas/current-activity.xml",
+      "filters": {},
+      "notes": "Disabled 2026-06-24: us-cert.cisa.gov domain deprecated, content consolidated into cisa-ncas-alerts (www.cisa.gov/cybersecurity-advisories/all.xml)"
+    },
+    {
+      "source_id": "cyberscoop-healthcare",
+      "name": "CyberScoop Healthcare RSS",
+      "enabled": true,
+      "scope": "news",
+      "page_type": "rss_atom",
+      "entry_url": "https://cyberscoop.com/news/healthcare/feed/",
+      "filters": {
+        "apply_to": [
+          "title",
+          "summary",
+          "description"
+        ],
+        "keywords_any": [
+          "medical",
+          "health",
+          "healthcare",
+          "hospital",
+          "patient",
+          "device",
+          "iomt",
+          "cyber",
+          "security",
+          "vulnerability",
+          "ransomware",
+          "privacy",
+          "breach"
+        ]
+      },
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "fortified-health-security",
+      "name": "Fortified Health Security Blog RSS",
+      "enabled": true,
+      "scope": "news",
+      "page_type": "rss_atom",
+      "entry_url": "https://fortifiedhealthsecurity.com/feed/",
+      "filters": {
+        "apply_to": [
+          "title",
+          "summary",
+          "description"
+        ],
+        "keywords_any": [
+          "medical",
+          "health",
+          "healthcare",
+          "hospital",
+          "patient",
+          "device",
+          "iomt",
+          "cyber",
+          "security",
+          "vulnerability",
+          "ransomware",
+          "privacy",
+          "breach"
+        ]
+      },
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "google-project-zero",
+      "name": "Google Project Zero RSS",
+      "enabled": true,
+      "scope": "news",
+      "page_type": "rss_atom",
+      "entry_url": "https://googleprojectzero.blogspot.com/feeds/posts/default",
+      "filters": {
+        "apply_to": [
+          "title",
+          "summary",
+          "description"
+        ],
+        "keywords_any": [
+          "medical",
+          "health",
+          "healthcare",
+          "hospital",
+          "device",
+          "iomt",
+          "patient",
+          "clinical",
+          "cyber",
+          "security",
+          "vulnerability",
+          "advisory",
+          "recall",
+          "infusion",
+          "imaging",
+          "monitor",
+          "dicom",
+          "hl7",
+          "radiology",
+          "firmware"
+        ]
+      },
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "health-canada-recalls",
+      "name": "Health Canada Recalls and Safety Alerts RSS",
+      "enabled": true,
+      "scope": "advisory",
+      "page_type": "rss_atom",
+      "entry_url": "https://www.healthycanadians.gc.ca/recall-alert-rappel-avis/rss/feed-31-eng.xml",
+      "filters": {
+        "apply_to": [
+          "title",
+          "summary",
+          "description"
+        ],
+        "keywords_any": [
+          "medical",
+          "device",
+          "software",
+          "cyber",
+          "security",
+          "vulnerability",
+          "risk",
+          "recall"
+        ]
+      },
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "healthcare-it-news-security",
+      "name": "Healthcare IT News Privacy & Security RSS",
+      "enabled": true,
+      "scope": "news",
+      "page_type": "rss_atom",
+      "entry_url": "https://www.healthcareitnews.com/feed",
+      "filters": {
+        "apply_to": [
+          "title",
+          "summary",
+          "description"
+        ],
+        "keywords_any": [
+          "medical",
+          "health",
+          "healthcare",
+          "hospital",
+          "patient",
+          "device",
+          "iomt",
+          "cyber",
+          "security",
+          "vulnerability",
+          "ransomware",
+          "privacy",
+          "breach"
+        ]
+      },
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0,
+      "notes": "Recovered 2026-03-23 — feed now serves valid Atom XML (was broken XML previously)"
+    },
+    {
+      "source_id": "hipaa-guide-cyber",
+      "name": "HIPAA Guide Healthcare Cybersecurity RSS",
+      "enabled": true,
+      "scope": "news",
+      "page_type": "rss_atom",
+      "entry_url": "https://www.hipaaguide.net/healthcare-cybersecurity/feed/",
+      "filters": {
+        "apply_to": [
+          "title",
+          "summary",
+          "description"
+        ],
+        "keywords_any": [
+          "medical",
+          "health",
+          "healthcare",
+          "hospital",
+          "patient",
+          "device",
+          "iomt",
+          "cyber",
+          "security",
+          "vulnerability",
+          "ransomware",
+          "privacy",
+          "breach"
+        ]
+      },
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "hit-consultant-cyber",
+      "name": "HIT Consultant Cybersecurity RSS",
+      "enabled": true,
+      "scope": "news",
+      "page_type": "rss_atom",
+      "entry_url": "https://hitconsultant.net/tag/cybersecurity/feed/",
+      "filters": {
+        "apply_to": [
+          "title",
+          "summary",
+          "description"
+        ],
+        "keywords_any": [
+          "medical",
+          "health",
+          "healthcare",
+          "hospital",
+          "patient",
+          "device",
+          "iomt",
+          "cyber",
+          "security",
+          "vulnerability",
+          "ransomware",
+          "privacy",
+          "breach"
+        ]
+      },
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "imdrf-consultations",
+      "name": "IMDRF Consultations RSS",
+      "enabled": true,
+      "scope": "news",
+      "page_type": "rss_atom",
+      "entry_url": "https://www.imdrf.org/consultations.xml",
+      "filters": {
+        "apply_to": [
+          "title",
+          "summary",
+          "description"
+        ],
+        "keywords_any": [
+          "medical",
+          "device",
+          "software",
+          "cyber",
+          "security",
+          "vulnerability",
+          "risk",
+          "recall"
+        ]
+      },
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "imdrf-documents",
+      "name": "IMDRF Documents RSS",
+      "enabled": true,
+      "scope": "news",
+      "page_type": "rss_atom",
+      "entry_url": "https://www.imdrf.org/documents.xml",
+      "filters": {
+        "apply_to": [
+          "title",
+          "summary",
+          "description"
+        ],
+        "keywords_any": [
+          "medical",
+          "device",
+          "software",
+          "cyber",
+          "security",
+          "vulnerability",
+          "risk",
+          "recall"
+        ]
+      },
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "imdrf-news",
+      "name": "IMDRF News RSS",
+      "enabled": true,
+      "scope": "news",
+      "page_type": "rss_atom",
+      "entry_url": "https://www.imdrf.org/news-events/news.xml",
+      "filters": {
+        "apply_to": [
+          "title",
+          "summary",
+          "description"
+        ],
+        "keywords_any": [
+          "medical",
+          "device",
+          "software",
+          "cyber",
+          "security",
+          "vulnerability",
+          "risk",
+          "recall"
+        ]
+      },
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "medtech-intelligence",
+      "name": "MedTech Intelligence RSS",
+      "enabled": true,
+      "scope": "news",
+      "page_type": "rss_atom",
+      "entry_url": "https://medtechintelligence.com/feed/",
+      "filters": {
+        "apply_to": [
+          "title",
+          "summary",
+          "description"
+        ],
+        "keywords_any": [
+          "medical",
+          "health",
+          "healthcare",
+          "hospital",
+          "device",
+          "iomt",
+          "patient",
+          "clinical",
+          "cyber",
+          "security",
+          "vulnerability",
+          "advisory",
+          "recall",
+          "infusion",
+          "imaging",
+          "monitor",
+          "dicom",
+          "hl7",
+          "radiology",
+          "firmware"
+        ]
+      },
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "microsoft-security-blog",
+      "name": "Microsoft Security Blog RSS",
+      "enabled": true,
+      "scope": "news",
+      "page_type": "rss_atom",
+      "entry_url": "https://www.microsoft.com/security/blog/feed/",
+      "filters": {
+        "apply_to": [
+          "title",
+          "summary",
+          "description"
+        ],
+        "keywords_any": [
+          "medical",
+          "health",
+          "healthcare",
+          "hospital",
+          "device",
+          "iomt",
+          "patient",
+          "clinical",
+          "cyber",
+          "security",
+          "vulnerability",
+          "advisory",
+          "recall",
+          "infusion",
+          "imaging",
+          "monitor",
+          "dicom",
+          "hl7",
+          "radiology",
+          "firmware"
+        ]
+      },
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "msrc-blog",
+      "name": "Microsoft MSRC Update Guide RSS",
+      "enabled": true,
+      "scope": "news",
+      "page_type": "rss_atom",
+      "entry_url": "https://api.msrc.microsoft.com/update-guide/rss",
+      "filters": {
+        "apply_to": [
+          "title",
+          "summary",
+          "description"
+        ],
+        "keywords_any": [
+          "medical",
+          "health",
+          "healthcare",
+          "hospital",
+          "device",
+          "iomt",
+          "patient",
+          "clinical",
+          "cyber",
+          "security",
+          "vulnerability",
+          "advisory",
+          "recall",
+          "infusion",
+          "imaging",
+          "monitor",
+          "dicom",
+          "hl7",
+          "radiology",
+          "firmware"
+        ]
+      },
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0,
+      "notes": "Recovered 2026-03-23 — msrc.microsoft.com/feed now serves valid XML (was 404 previously)"
+    },
+    {
+      "source_id": "ncsc-uk",
+      "name": "NCSC (UK) RSS",
+      "enabled": true,
+      "scope": "news",
+      "page_type": "rss_atom",
+      "entry_url": "https://www.ncsc.gov.uk/api/1/services/v1/all-rss-feed.xml",
+      "filters": {
+        "apply_to": [
+          "title",
+          "summary",
+          "description"
+        ],
+        "keywords_any": [
+          "medical",
+          "health",
+          "healthcare",
+          "hospital",
+          "device",
+          "iomt",
+          "patient",
+          "clinical",
+          "cyber",
+          "security",
+          "vulnerability",
+          "advisory",
+          "recall",
+          "infusion",
+          "imaging",
+          "monitor",
+          "dicom",
+          "hl7",
+          "radiology",
+          "firmware",
+          "critical infrastructure",
+          "ot",
+          "cps"
+        ]
+      },
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "openfda-device-recalls",
+      "name": "openFDA Device Recalls API (cybersecurity search)",
+      "enabled": true,
+      "scope": "dataset",
+      "page_type": "json_feed",
+      "entry_url": "https://api.fda.gov/device/recall.json?search=reason_for_recall:cybersecurity&limit=100",
+      "filters": {
+        "apply_to": [
+          "title",
+          "summary",
+          "description"
+        ]
+      },
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "sans-isc",
+      "name": "SANS ISC RSS",
+      "enabled": true,
+      "scope": "news",
+      "page_type": "rss_atom",
+      "entry_url": "https://isc.sans.edu/rssfeed_full.xml",
+      "filters": {
+        "apply_to": [
+          "title",
+          "summary",
+          "description"
+        ],
+        "keywords_any": [
+          "medical",
+          "health",
+          "healthcare",
+          "hospital",
+          "device",
+          "iomt",
+          "patient",
+          "clinical",
+          "cyber",
+          "security",
+          "vulnerability",
+          "advisory",
+          "recall",
+          "infusion",
+          "imaging",
+          "monitor",
+          "dicom",
+          "hl7",
+          "radiology",
+          "firmware"
+        ]
+      },
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "security-magazine-cyber",
+      "name": "Security Magazine Cybersecurity RSS",
+      "enabled": true,
+      "scope": "news",
+      "page_type": "rss_atom",
+      "entry_url": "https://www.securitymagazine.com/rss/topic/2666-cybersecurity",
+      "filters": {
+        "apply_to": [
+          "title",
+          "summary",
+          "description"
+        ],
+        "keywords_any": [
+          "medical",
+          "health",
+          "healthcare",
+          "hospital",
+          "device",
+          "iomt",
+          "patient",
+          "clinical",
+          "cyber",
+          "security",
+          "vulnerability",
+          "advisory",
+          "recall",
+          "infusion",
+          "imaging",
+          "monitor",
+          "dicom",
+          "hl7",
+          "radiology",
+          "firmware"
+        ]
+      },
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "zdi-published",
+      "name": "Zero Day Initiative Published RSS",
+      "enabled": true,
+      "scope": "advisory",
+      "page_type": "rss_atom",
+      "entry_url": "https://www.zerodayinitiative.com/rss/published/",
+      "filters": {
+        "apply_to": [
+          "title",
+          "summary",
+          "description"
+        ],
+        "keywords_any": [
+          "medical",
+          "health",
+          "healthcare",
+          "hospital",
+          "device",
+          "iomt",
+          "patient",
+          "clinical",
+          "cyber",
+          "security",
+          "vulnerability",
+          "advisory",
+          "recall",
+          "infusion",
+          "imaging",
+          "monitor",
+          "dicom",
+          "hl7",
+          "radiology",
+          "firmware"
+        ]
+      },
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "zdi-upcoming",
+      "name": "Zero Day Initiative Upcoming RSS",
+      "enabled": true,
+      "scope": "advisory",
+      "page_type": "rss_atom",
+      "entry_url": "https://www.zerodayinitiative.com/rss/upcoming/",
+      "filters": {
+        "apply_to": [
+          "title",
+          "summary",
+          "description"
+        ],
+        "keywords_any": [
+          "medical",
+          "health",
+          "healthcare",
+          "hospital",
+          "device",
+          "iomt",
+          "patient",
+          "clinical",
+          "cyber",
+          "security",
+          "vulnerability",
+          "advisory",
+          "recall",
+          "infusion",
+          "imaging",
+          "monitor",
+          "dicom",
+          "hl7",
+          "radiology",
+          "firmware"
+        ]
+      },
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "openfda-device-events",
+      "name": "openFDA Device Adverse Events API",
+      "enabled": true,
+      "scope": "advisory",
+      "page_type": "json_feed",
+      "entry_url": "https://api.fda.gov/device/event.json?search=product_problems:Software+Issue&limit=100&sort=date_received:desc",
+      "filters": {},
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "epss-data",
+      "name": "EPSS Exploit Prediction Scoring System Daily CSV",
+      "enabled": true,
+      "scope": "dataset",
+      "page_type": "csv_feed",
+      "entry_url": "https://epss.empiricalsecurity.com/epss_scores-current.csv.gz",
+      "filters": {},
+      "timeout_s": 60,
+      "retries": 2,
+      "rate_limit_rps": 0.5
+    },
+    {
+      "source_id": "nist-cyber-insights",
+      "name": "NIST Cybersecurity Insights RSS",
+      "enabled": true,
+      "scope": "advisory",
+      "page_type": "rss_atom",
+      "entry_url": "https://www.nist.gov/blogs/cybersecurity-insights/rss.xml",
+      "filters": {},
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "osv-dev-api",
+      "name": "OSV.dev Open Source Vulnerabilities API",
+      "enabled": false,
+      "scope": "dataset",
+      "page_type": "json_feed",
+      "entry_url": "https://api.osv.dev/v1/query",
+      "filters": {},
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "abb-psirt",
+      "name": "ABB PSIRT RSS",
+      "enabled": true,
+      "scope": "advisory",
+      "page_type": "rss_atom",
+      "entry_url": "https://psirt.abb.com/rss/abbrssfeed.xml",
+      "filters": {},
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "forescout-vedere",
+      "name": "Forescout Vedere Labs Dashboard",
+      "enabled": false,
+      "scope": "threatintel",
+      "page_type": "json_feed",
+      "entry_url": "https://forescout.vederelabs.com/threat-actors-dashboard",
+      "filters": {},
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "deepstrike-blog",
+      "name": "DeepStrike IoMT Blog RSS",
+      "enabled": false,
+      "scope": "news",
+      "page_type": "rss_atom",
+      "entry_url": "https://deepstrike.io/blog/feed",
+      "filters": {},
+      "notes": "Next.js site — /blog/feed serves HTML page not RSS; no RSS endpoint exposed",
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "talos-intelligence",
+      "name": "Cisco Talos Intelligence RSS",
+      "enabled": true,
+      "scope": "threatintel",
+      "page_type": "rss_atom",
+      "entry_url": "http://feeds.feedburner.com/feedburner/Talos",
+      "filters": {
+        "apply_to": [
+          "title",
+          "summary"
+        ],
+        "keywords_any": [
+          "medical",
+          "healthcare",
+          "hospital",
+          "clinical",
+          "patient",
+          "fda",
+          "device",
+          "iomt",
+          "pacs",
+          "infusion",
+          "ventilator",
+          "imaging",
+          "biomedical",
+          "pharma",
+          "hipaa",
+          "hhs",
+          "health system",
+          "ransomware",
+          "vulnerability",
+          "exploit",
+          "ics",
+          "ot",
+          "firmware"
+        ]
+      },
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "mandiant-blog",
+      "name": "Google/Mandiant Threat Intelligence Blog RSS",
+      "enabled": true,
+      "scope": "threatintel",
+      "page_type": "rss_atom",
+      "entry_url": "https://cloudblog.withgoogle.com/topics/threat-intelligence/rss/",
+      "filters": {
+        "apply_to": [
+          "title",
+          "summary"
+        ],
+        "keywords_any": [
+          "medical",
+          "healthcare",
+          "hospital",
+          "clinical",
+          "patient",
+          "fda",
+          "device",
+          "iomt",
+          "pacs",
+          "infusion",
+          "ventilator",
+          "imaging",
+          "biomedical",
+          "pharma",
+          "hipaa",
+          "hhs",
+          "health system",
+          "ransomware",
+          "vulnerability",
+          "exploit",
+          "ics",
+          "ot",
+          "firmware"
+        ]
+      },
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0,
+      "notes": "HTTP 530 — fireeye.com domain defunct post-Mandiant/Google acquisition"
+    },
+    {
+      "source_id": "checkpoint-research",
+      "name": "Check Point Research RSS",
+      "enabled": true,
+      "scope": "threatintel",
+      "page_type": "rss_atom",
+      "entry_url": "https://research.checkpoint.com/feed/",
+      "filters": {
+        "apply_to": [
+          "title",
+          "summary"
+        ],
+        "keywords_any": [
+          "medical",
+          "healthcare",
+          "hospital",
+          "clinical",
+          "patient",
+          "fda",
+          "device",
+          "iomt",
+          "pacs",
+          "infusion",
+          "ventilator",
+          "imaging",
+          "biomedical",
+          "pharma",
+          "hipaa",
+          "hhs",
+          "health system",
+          "ransomware",
+          "vulnerability",
+          "exploit",
+          "ics",
+          "ot",
+          "firmware"
+        ]
+      },
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "tenable-newest",
+      "name": "Tenable Newest Plugins RSS",
+      "enabled": true,
+      "scope": "dataset",
+      "page_type": "rss_atom",
+      "entry_url": "https://www.tenable.com/plugins/feeds?sort=newest",
+      "filters": {
+        "apply_to": [
+          "title",
+          "summary"
+        ],
+        "keywords_any": [
+          "medical",
+          "healthcare",
+          "hospital",
+          "device",
+          "iomt",
+          "infusion",
+          "imaging",
+          "biomedical",
+          "firmware",
+          "ics",
+          "ot"
+        ]
+      },
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "crowdstrike-blog",
+      "name": "CrowdStrike Blog RSS",
+      "enabled": true,
+      "scope": "threatintel",
+      "page_type": "rss_atom",
+      "entry_url": "https://www.crowdstrike.com/blog/feed/",
+      "filters": {
+        "apply_to": [
+          "title",
+          "summary"
+        ],
+        "keywords_any": [
+          "medical",
+          "healthcare",
+          "hospital",
+          "clinical",
+          "patient",
+          "fda",
+          "device",
+          "iomt",
+          "pacs",
+          "infusion",
+          "ventilator",
+          "imaging",
+          "biomedical",
+          "pharma",
+          "hipaa",
+          "hhs",
+          "health system",
+          "ransomware",
+          "vulnerability",
+          "exploit",
+          "ics",
+          "ot",
+          "firmware"
+        ]
+      },
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0,
+      "notes": "Category page returns HTML not RSS; no parseable feed found"
+    },
+    {
+      "source_id": "compliance-junction-cyber",
+      "name": "Compliance Junction Cybersecurity RSS",
+      "enabled": true,
+      "scope": "news",
+      "page_type": "rss_atom",
+      "entry_url": "https://www.compliancejunction.com/category/cybersecurity/feed/",
+      "filters": {},
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "bioworld-digital-health",
+      "name": "BioWorld Digital Health RSS",
+      "enabled": true,
+      "scope": "news",
+      "page_type": "rss_atom",
+      "entry_url": "https://www.bioworld.com/rss/21",
+      "filters": {},
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "fierce-healthcare",
+      "name": "Fierce Healthcare RSS",
+      "enabled": true,
+      "scope": "news",
+      "page_type": "rss_atom",
+      "entry_url": "https://www.fiercehealthcare.com/rss.xml",
+      "filters": {
+        "apply_to": [
+          "title",
+          "summary"
+        ],
+        "keywords_any": [
+          "medical",
+          "healthcare",
+          "hospital",
+          "clinical",
+          "patient",
+          "fda",
+          "device",
+          "iomt",
+          "pacs",
+          "infusion",
+          "ventilator",
+          "imaging",
+          "biomedical",
+          "pharma",
+          "hipaa",
+          "hhs",
+          "health system",
+          "cyber",
+          "security",
+          "vulnerability",
+          "breach",
+          "ransomware"
+        ]
+      },
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "dark-reading",
+      "name": "Dark Reading All RSS",
+      "enabled": true,
+      "scope": "news",
+      "page_type": "rss_atom",
+      "entry_url": "https://www.darkreading.com/rss.xml",
+      "filters": {
+        "apply_to": [
+          "title",
+          "summary"
+        ],
+        "keywords_any": [
+          "medical",
+          "healthcare",
+          "hospital",
+          "clinical",
+          "patient",
+          "fda",
+          "device",
+          "iomt",
+          "pacs",
+          "infusion",
+          "ventilator",
+          "imaging",
+          "biomedical",
+          "pharma",
+          "hipaa",
+          "hhs",
+          "health system"
+        ]
+      },
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "krebs-on-security",
+      "name": "Krebs on Security RSS",
+      "enabled": true,
+      "scope": "news",
+      "page_type": "rss_atom",
+      "entry_url": "http://krebsonsecurity.com/feed/",
+      "filters": {
+        "apply_to": [
+          "title",
+          "summary"
+        ],
+        "keywords_any": [
+          "medical",
+          "healthcare",
+          "hospital",
+          "clinical",
+          "patient",
+          "fda",
+          "device",
+          "iomt",
+          "pacs",
+          "infusion",
+          "ventilator",
+          "imaging",
+          "biomedical",
+          "pharma",
+          "hipaa",
+          "hhs",
+          "health system"
+        ]
+      },
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "wired-security",
+      "name": "WIRED Security RSS",
+      "enabled": true,
+      "scope": "news",
+      "page_type": "rss_atom",
+      "entry_url": "https://www.wired.com/feed/category/security/latest/rss",
+      "filters": {
+        "apply_to": [
+          "title",
+          "summary"
+        ],
+        "keywords_any": [
+          "medical",
+          "healthcare",
+          "hospital",
+          "clinical",
+          "patient",
+          "fda",
+          "device",
+          "iomt",
+          "pacs",
+          "infusion",
+          "ventilator",
+          "imaging",
+          "biomedical",
+          "pharma",
+          "hipaa",
+          "hhs",
+          "health system"
+        ]
+      },
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "seclists-rss",
+      "name": "SecLists.org RSS",
+      "enabled": false,
+      "scope": "threatintel",
+      "page_type": "rss_atom",
+      "entry_url": "https://seclists.org/rss/",
+      "filters": {
+        "apply_to": [
+          "title",
+          "summary"
+        ],
+        "keywords_any": [
+          "medical",
+          "healthcare",
+          "hospital",
+          "clinical",
+          "patient",
+          "fda",
+          "device",
+          "iomt",
+          "pacs",
+          "infusion",
+          "ventilator",
+          "imaging",
+          "biomedical",
+          "pharma",
+          "hipaa",
+          "hhs",
+          "health system"
+        ]
+      },
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0,
+      "notes": "seclists.org/rss/ returns HTML directory listing, not a valid RSS feed"
+    },
+    {
+      "source_id": "cshub-attacks",
+      "name": "Cyber Security Hub Attacks RSS",
+      "enabled": true,
+      "scope": "news",
+      "page_type": "rss_atom",
+      "entry_url": "https://www.cshub.com/rss/categories/attacks",
+      "filters": {
+        "apply_to": [
+          "title",
+          "summary"
+        ],
+        "keywords_any": [
+          "medical",
+          "healthcare",
+          "hospital",
+          "clinical",
+          "patient",
+          "fda",
+          "device",
+          "iomt",
+          "pacs",
+          "infusion",
+          "ventilator",
+          "imaging",
+          "biomedical",
+          "pharma",
+          "hipaa",
+          "hhs",
+          "health system"
+        ]
+      },
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "cshub-malware",
+      "name": "Cyber Security Hub Malware RSS",
+      "enabled": true,
+      "scope": "news",
+      "page_type": "rss_atom",
+      "entry_url": "https://www.cshub.com/rss/categories/malware",
+      "filters": {
+        "apply_to": [
+          "title",
+          "summary"
+        ],
+        "keywords_any": [
+          "medical",
+          "healthcare",
+          "hospital",
+          "clinical",
+          "patient",
+          "fda",
+          "device",
+          "iomt",
+          "pacs",
+          "infusion",
+          "ventilator",
+          "imaging",
+          "biomedical",
+          "pharma",
+          "hipaa",
+          "hhs",
+          "health system"
+        ]
+      },
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "infosec-malware-analysis",
+      "name": "Infosec Institute Malware Analysis RSS",
+      "enabled": false,
+      "scope": "news",
+      "page_type": "rss_atom",
+      "entry_url": "https://www.infosecinstitute.com/topics/malware-analysis/feed/",
+      "filters": {
+        "apply_to": [
+          "title",
+          "summary"
+        ],
+        "keywords_any": [
+          "medical",
+          "healthcare",
+          "hospital",
+          "clinical",
+          "patient",
+          "fda",
+          "device",
+          "iomt",
+          "pacs",
+          "infusion",
+          "ventilator",
+          "imaging",
+          "biomedical",
+          "pharma",
+          "hipaa",
+          "hhs",
+          "health system"
+        ]
+      },
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0,
+      "notes": "HTTP 403 Forbidden — infosecinstitute.com blocks automated fetching"
+    },
+    {
+      "source_id": "infosec-threat-intel",
+      "name": "Infosec Institute Threat Intelligence RSS",
+      "enabled": false,
+      "scope": "news",
+      "page_type": "rss_atom",
+      "entry_url": "https://www.infosecinstitute.com/topics/threat-intelligence/feed/",
+      "filters": {
+        "apply_to": [
+          "title",
+          "summary"
+        ],
+        "keywords_any": [
+          "medical",
+          "healthcare",
+          "hospital",
+          "clinical",
+          "patient",
+          "fda",
+          "device",
+          "iomt",
+          "pacs",
+          "infusion",
+          "ventilator",
+          "imaging",
+          "biomedical",
+          "pharma",
+          "hipaa",
+          "hhs",
+          "health system"
+        ]
+      },
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0,
+      "notes": "HTTP 403 Forbidden — infosecinstitute.com blocks automated fetching"
+    },
+    {
+      "source_id": "cvefeed-rss",
+      "name": "CVEfeed RSS",
+      "enabled": false,
+      "scope": "dataset",
+      "page_type": "rss_atom",
+      "entry_url": "https://cvefeed.io/rssfeed",
+      "filters": {
+        "apply_to": [
+          "title",
+          "summary"
+        ],
+        "keywords_any": [
+          "medical",
+          "healthcare",
+          "hospital",
+          "device",
+          "iomt",
+          "infusion",
+          "imaging",
+          "biomedical",
+          "pharma",
+          "firmware",
+          "ics",
+          "ot"
+        ]
+      },
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0,
+      "notes": "URL serves HTML dashboard page, not RSS; no public RSS endpoint found at cvefeed.io"
+    },
+    {
+      "source_id": "threatpost",
+      "name": "Threatpost RSS",
+      "enabled": true,
+      "scope": "news",
+      "page_type": "rss_atom",
+      "entry_url": "https://threatpost.com/feed/",
+      "filters": {
+        "apply_to": [
+          "title",
+          "summary"
+        ],
+        "keywords_any": [
+          "medical",
+          "healthcare",
+          "hospital",
+          "clinical",
+          "patient",
+          "fda",
+          "device",
+          "iomt",
+          "pacs",
+          "infusion",
+          "ventilator",
+          "imaging",
+          "biomedical",
+          "pharma",
+          "hipaa",
+          "hhs",
+          "health system"
+        ]
+      },
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "urlhaus-recent",
+      "name": "Abuse.ch URLhaus Recent URLs (CSV)",
+      "enabled": true,
+      "scope": "threatintel",
+      "page_type": "csv_feed",
+      "entry_url": "https://urlhaus.abuse.ch/downloads/csv_recent/",
+      "filters": {},
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "malwarebazaar-recent",
+      "name": "Abuse.ch MalwareBazaar Recent Samples",
+      "enabled": false,
+      "scope": "threatintel",
+      "page_type": "json_feed",
+      "entry_url": "https://bazaar.abuse.ch/api/",
+      "filters": {},
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 0.5
+    },
+    {
+      "source_id": "threatfox-iocs",
+      "name": "ThreatFox IOCs",
+      "enabled": false,
+      "scope": "threatintel",
+      "page_type": "json_feed",
+      "entry_url": "https://threatfox.abuse.ch/api/v1/",
+      "filters": {},
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0,
+      "notes": "HTTP 401 Unauthorized — API endpoint requires authentication"
+    },
+    {
+      "source_id": "cyber-cure-ips",
+      "name": "Cyber Cure Infected IPs",
+      "enabled": false,
+      "scope": "threatintel",
+      "page_type": "csv_feed",
+      "entry_url": "https://feeds.cybercure.ai/infected_ips",
+      "filters": {},
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0,
+      "notes": "DNS resolution failure — domain feeds.cybercure.ai unreachable"
+    },
+    {
+      "source_id": "bambenek-c2",
+      "name": "Bambenek C2 IP Masterlist",
+      "enabled": false,
+      "scope": "threatintel",
+      "page_type": "csv_feed",
+      "entry_url": "http://osint.bambenekconsulting.com/feeds/c2-ipmasterlist.txt",
+      "filters": {},
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0,
+      "notes": "403 Forbidden — access restricted"
+    },
+    {
+      "source_id": "sans-block-ips",
+      "name": "SANS ISC Blocklist IPs",
+      "enabled": true,
+      "scope": "threatintel",
+      "page_type": "csv_feed",
+      "entry_url": "https://isc.sans.edu/block.txt",
+      "filters": {},
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "ellio-ip-feed",
+      "name": "ELLIO Community IP Feed",
+      "enabled": false,
+      "scope": "threatintel",
+      "page_type": "csv_feed",
+      "entry_url": "https://feed.ellio.tech",
+      "filters": {},
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "binary-defense-banlist",
+      "name": "Binary Defense Banlist",
+      "enabled": true,
+      "scope": "threatintel",
+      "page_type": "csv_feed",
+      "entry_url": "https://www.binarydefense.com/banlist.txt",
+      "filters": {},
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "ecrimelabs-metasploit",
+      "name": "eCrimeLabs Metasploit CVE Feed",
+      "enabled": true,
+      "scope": "dataset",
+      "page_type": "csv_feed",
+      "entry_url": "https://feeds.ecrimelabs.net/data/metasploit-cve",
+      "filters": {},
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "epss-api",
+      "name": "EPSS API (Exploit Prediction Scoring System)",
+      "enabled": true,
+      "scope": "dataset",
+      "page_type": "json_feed",
+      "entry_url": "https://api.first.org/data/v1/epss",
+      "filters": {},
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "cis-advisories",
+      "name": "Center for Internet Security Advisories RSS",
+      "enabled": true,
+      "scope": "advisory",
+      "page_type": "rss_atom",
+      "entry_url": "https://www.cisecurity.org/feed/advisories",
+      "filters": {},
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "zdnet-security",
+      "name": "ZDNet Security RSS",
+      "enabled": true,
+      "scope": "news",
+      "page_type": "rss_atom",
+      "entry_url": "https://www.zdnet.com/topic/security/rss.xml",
+      "filters": {
+        "apply_to": [
+          "title",
+          "summary"
+        ],
+        "keywords_any": [
+          "medical",
+          "healthcare",
+          "hospital",
+          "clinical",
+          "patient",
+          "fda",
+          "device",
+          "iomt",
+          "pacs",
+          "infusion",
+          "ventilator",
+          "imaging",
+          "biomedical",
+          "pharma",
+          "hipaa",
+          "hhs",
+          "health system"
+        ]
+      },
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "ssl-blacklist",
+      "name": "Abuse.ch SSL Certificate Blacklist",
+      "enabled": true,
+      "scope": "threatintel",
+      "page_type": "csv_feed",
+      "entry_url": "https://sslbl.abuse.ch/blacklist/sslblacklist.csv",
+      "filters": {},
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "feodo-tracker",
+      "name": "Abuse.ch Feodo Tracker IP Blocklist",
+      "enabled": true,
+      "scope": "threatintel",
+      "page_type": "csv_feed",
+      "entry_url": "https://feodotracker.abuse.ch/downloads/ipblocklist.csv",
+      "filters": {},
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "emerging-threats",
+      "name": "Emerging Threats Rulesets",
+      "enabled": false,
+      "scope": "threatintel",
+      "page_type": "csv_feed",
+      "entry_url": "https://rules.emergingthreats.net/",
+      "filters": {},
+      "notes": "Needs specific file path under rules.emergingthreats.net (e.g. /open/suricata/rules/emerging-malware.rules)",
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "alienvault-otx",
+      "name": "AlienVault OTX Pulse Feed",
+      "enabled": false,
+      "scope": "threatintel",
+      "page_type": "json_feed",
+      "entry_url": "https://otx.alienvault.com/api/v1/pulses/subscribed",
+      "filters": {},
+      "notes": "Needs free OTX account API key — register at otx.alienvault.com",
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "shadowserver-reports",
+      "name": "Shadowserver Foundation Reports",
+      "enabled": false,
+      "scope": "threatintel",
+      "page_type": "json_feed",
+      "entry_url": "https://www.shadowserver.org/",
+      "filters": {},
+      "notes": "Needs registration at shadowserver.org for report access",
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "circl-misp",
+      "name": "CIRCL MISP Feeds",
+      "enabled": false,
+      "scope": "threatintel",
+      "page_type": "json_feed",
+      "entry_url": "https://www.circl.lu/doc/misp/",
+      "filters": {},
+      "notes": "Needs local MISP instance or MISP API setup to consume feeds",
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "nhs-digital-cyber",
+      "name": "NHS Digital Cyber Alerts",
+      "enabled": false,
+      "scope": "advisory",
+      "page_type": "json_feed",
+      "entry_url": "https://digital.nhs.uk/",
+      "filters": {},
+      "notes": "REST API endpoint requires access request from NHS Digital; URL TBD",
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "levelblue-labs",
+      "name": "LevelBlue Labs Open Threat Data",
+      "enabled": false,
+      "scope": "threatintel",
+      "page_type": "json_feed",
+      "entry_url": "https://levelblue.com/",
+      "filters": {},
+      "notes": "Needs verification of feed endpoint URL",
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "wiz-threat-landscape",
+      "name": "Wiz Cloud Threat Landscape",
+      "enabled": false,
+      "scope": "threatintel",
+      "page_type": "json_feed",
+      "entry_url": "https://threats.wiz.io/",
+      "filters": {},
+      "notes": "Cloud-specific threat data; feed endpoint needs verification",
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "nvd-cve-api",
+      "name": "NVD CVE API",
+      "enabled": true,
+      "scope": "dataset",
+      "page_type": "json_feed",
+      "entry_url": "https://services.nvd.nist.gov/rest/json/cves/2.0?resultsPerPage=20",
+      "filters": {},
+      "notes": "Recovered 2026-03-23 — works unauthenticated at 5 req/30s; set NVD_API_KEY env + api_key_env/api_key_header fields to use higher rate. NVD API date params (lastModStartDate etc.) return 404 — date field fixed in parser to prefer lastModified over published (2026-06-24).",
+      "timeout_s": 45,
+      "retries": 3,
+      "rate_limit_rps": 0.15
+    },
+    {
+      "source_id": "virustotal-api",
+      "name": "VirusTotal Intelligence API",
+      "enabled": false,
+      "scope": "threatintel",
+      "page_type": "json_feed",
+      "entry_url": "https://www.virustotal.com/api/v3/intelligence/search?query=medical+device+vulnerability&limit=20",
+      "filters": {},
+      "api_key_env": "VIRUSTOTAL_API_KEY",
+      "api_key_header": "x-apikey",
+      "notes": "HTTP 401 — intelligence search requires premium account; free API keys do not have access to /api/v3/intelligence/search",
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 0.07
+    },
+    {
+      "source_id": "vulners-api",
+      "name": "Vulners.com Vulnerability API",
+      "enabled": false,
+      "scope": "dataset",
+      "page_type": "json_feed",
+      "entry_url": "https://vulners.com/api/v3/search/lucene/",
+      "filters": {},
+      "notes": "charges beyond 100 calls — free tier limited; key at vulners.com/api",
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 0.5
+    },
+    {
+      "source_id": "vuldb-cti-api",
+      "name": "VulDB CTI API",
+      "enabled": false,
+      "scope": "dataset",
+      "page_type": "json_feed",
+      "entry_url": "https://vuldb.com/?api&id.recent&type.json",
+      "filters": {},
+      "api_key_env": "VULDB_API_KEY",
+      "api_key_header": "X-VulDB-ApiKey",
+      "notes": "Free limited key at vuldb.com/?api — requires authentication; will fail without valid key",
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 0.5
+    },
+    {
+      "source_id": "cwe-catalog",
+      "name": "MITRE CWE Catalog (Enrichment)",
+      "enabled": true,
+      "scope": "dataset",
+      "page_type": "json_feed",
+      "entry_url": "https://cwe.mitre.org/data/downloads.html",
+      "filters": {},
+      "notes": "CWE ID to name/description lookup. Built-in catalog of ~60 common medical device CWEs. Full MITRE XML parse available for expansion."
+    },
+    {
+      "source_id": "attack-ics",
+      "name": "MITRE ATT&CK for ICS (Enrichment)",
+      "enabled": true,
+      "scope": "dataset",
+      "page_type": "json_feed",
+      "entry_url": "https://raw.githubusercontent.com/mitre/cti/master/ics-attack/ics-attack.json",
+      "filters": {},
+      "notes": "STIX 2.0 JSON bundle with ICS attack techniques and tactics. Single-file download from GitHub."
+    },
+    {
+      "source_id": "cisa-vulnrichment",
+      "name": "CISA Vulnrichment (Enrichment)",
+      "enabled": true,
+      "scope": "dataset",
+      "page_type": "json_feed",
+      "entry_url": "https://github.com/cisagov/vulnrichment",
+      "filters": {},
+      "notes": "Per-CVE enrichment from CISA: ADP CVSS scores, SSVC decision points, CWE mappings. 80K+ CVE records on GitHub. On-demand per-CVE fetch."
+    },
+    {
+      "source_id": "mhra-uk-alerts",
+      "name": "MHRA UK Medical Device Alerts (Historical Backfill)",
+      "enabled": false,
+      "excluded_reason": "pharmaceutical recalls - handled by pharmacy / EMR, not medical device security. Upstream GOV.UK search returns mixed device + medicines content; 79.5% (159/200) of ingested records were UK medicines recalls whose 'Class 2 Medicines Recall' titles collide with the FDA Class I/II/III device scale and populated fda_risk_class incorrectly.. Can be re-enabled with a tightened upstream query to recover device-only alerts.",
+      "scope": "advisory",
+      "page_type": "json_feed",
+      "entry_url": "https://www.gov.uk/api/search.json?filter_document_type=medical_safety_alert",
+      "filters": {},
+      "notes": "Full MHRA medical safety alert archive via GOV.UK search API. 1,381 alerts with JSON pagination. All healthcare-relevant.",
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 4.0
+    },
+    {
+      "source_id": "health-canada-recalls-historical",
+      "name": "Health Canada Medical Device Recalls (Historical Backfill)",
+      "enabled": true,
+      "scope": "advisory",
+      "page_type": "json_feed",
+      "entry_url": "https://healthycanadians.gc.ca/recall-alert-rappel-avis/api/recent/en",
+      "filters": {},
+      "notes": "Health Canada recalls JSON API filtered for health products (cat=3). ~6,030 records. Detail pages at /api/{recallId}/en.",
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 3.0
+    },
+    {
+      "source_id": "philips-psirt",
+      "name": "Philips Product Security Advisories (Historical Backfill)",
+      "enabled": true,
+      "scope": "advisory",
+      "page_type": "json_feed",
+      "entry_url": "https://www.philips.com/a-w/security/security-advisories.html",
+      "filters": {},
+      "notes": "Full Philips PSIRT archive via HTML scraping of yearly pages (2017-present). ~200 advisories. All healthcare-relevant.",
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 2.0
+    },
+    {
+      "source_id": "siemens-productcert-psirt",
+      "name": "Siemens ProductCERT Advisories (CSAF Feed)",
+      "enabled": true,
+      "scope": "advisory",
+      "page_type": "json_feed",
+      "entry_url": "https://cert-portal.siemens.com/productcert/csaf/ssa-feed-tlp-white.json",
+      "filters": {},
+      "notes": "Siemens ProductCERT CSAF v2.0 advisories. Covers Siemens industrial products (SIMATIC, SCALANCE, etc.) widely deployed in healthcare infrastructure. Siemens Healthineers operates separately (~4 public advisories).",
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 5.0
+    },
+    {
+      "source_id": "fda-safety-comms-historical",
+      "name": "FDA Device Enforcement / Safety Communications (Historical Backfill)",
+      "enabled": true,
+      "scope": "advisory",
+      "page_type": "json_feed",
+      "entry_url": "https://api.fda.gov/device/enforcement.json",
+      "filters": {},
+      "notes": "Full openFDA device enforcement archive via paginated API. 38K+ records (formal actions behind FDA safety communications). Filtered for cybersecurity relevance. Use fda_safety_comms_backfill.py to populate cache.",
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 4.0
+    },
+    {
+      "source_id": "openfda-recalls-historical",
+      "name": "openFDA Device Recalls (Historical Backfill)",
+      "enabled": true,
+      "scope": "advisory",
+      "page_type": "json_feed",
+      "entry_url": "https://api.fda.gov/device/recall.json",
+      "filters": {},
+      "notes": "Full openFDA device recall archive via paginated API. 60K+ recalls, filtered for cybersecurity relevance. Use openfda_backfill.py to populate cache.",
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 4.0
+    },
+    {
+      "source_id": "cisa-icsma-historical",
+      "name": "CISA ICS Medical Advisories (Historical Backfill)",
+      "enabled": true,
+      "scope": "advisory",
+      "page_type": "json_feed",
+      "entry_url": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/",
+      "filters": {},
+      "notes": "Full ICSMA archive via ICS Advisory Project CSV + cisagov/CSAF JSON. ~182 advisories back to 2016. Use cisa_icsma_backfill.py to populate cache.",
+      "timeout_s": 30,
+      "retries": 2,
+      "rate_limit_rps": 1.0
+    },
+    {
+      "source_id": "nvd-historical",
+      "name": "NVD CVE Database (Historical Backfill)",
+      "enabled": true,
+      "scope": "dataset",
+      "page_type": "json_feed",
+      "entry_url": "https://services.nvd.nist.gov/rest/json/cves/2.0",
+      "filters": {},
+      "api_key_env": "NVD_API_KEY",
+      "notes": "Full NVD backfill via paginated API. Use nvd_backfill.py to populate cache, then discover reads from cache. 240K+ CVEs.",
+      "timeout_s": 60,
+      "retries": 3,
+      "rate_limit_rps": 1.5
+    }
+  ]
+}

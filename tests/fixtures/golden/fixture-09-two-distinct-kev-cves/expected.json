@@ -1,0 +1,13 @@
+{
+  "expected_issue_count": 2,
+  "expected_cves": [
+    "CVE-2025-49113",
+    "CVE-2025-68461"
+  ],
+  "expected_priority_range": [
+    "P0",
+    "P1"
+  ],
+  "expected_healthcare_category": "not_healthcare",
+  "description": "Two RoundCube Webmail CVEs from same KEV batch (CVE-2025-49113 RCE + CVE-2025-68461 XSS). Same vendor/product but different CVE IDs must produce 2 separate issues (not merged). Both P1 via KEV source."
+}

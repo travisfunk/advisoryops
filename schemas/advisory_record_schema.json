@@ -1,0 +1,472 @@
+﻿{
+  "$defs": {
+    "AffectedProductDefinitionModel": {
+      "properties": {
+        "vendor": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Vendor"
+        },
+        "product_family": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Product Family"
+        },
+        "products": {
+          "items": {
+            "$ref": "#/$defs/ProductModel"
+          },
+          "title": "Products",
+          "type": "array"
+        },
+        "affected_versions": {
+          "items": {
+            "$ref": "#/$defs/VersionRangeModel"
+          },
+          "title": "Affected Versions",
+          "type": "array"
+        },
+        "fixed_versions": {
+          "items": {
+            "$ref": "#/$defs/VersionRangeModel"
+          },
+          "title": "Fixed Versions",
+          "type": "array"
+        },
+        "conditions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Conditions",
+          "type": "array"
+        }
+      },
+      "title": "AffectedProductDefinitionModel",
+      "type": "object"
+    },
+    "ComponentModel": {
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "type": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Type"
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Notes"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "title": "ComponentModel",
+      "type": "object"
+    },
+    "ContentModel": {
+      "properties": {
+        "content_type": {
+          "default": "text",
+          "enum": [
+            "html",
+            "pdf",
+            "text"
+          ],
+          "title": "Content Type",
+          "type": "string"
+        },
+        "raw_text": {
+          "title": "Raw Text",
+          "type": "string"
+        },
+        "content_hash": {
+          "title": "Content Hash",
+          "type": "string"
+        },
+        "language": {
+          "default": "en",
+          "title": "Language",
+          "type": "string"
+        }
+      },
+      "required": [
+        "raw_text",
+        "content_hash"
+      ],
+      "title": "ContentModel",
+      "type": "object"
+    },
+    "IdentifiersModel": {
+      "properties": {
+        "cves": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Cves",
+          "type": "array"
+        }
+      },
+      "title": "IdentifiersModel",
+      "type": "object"
+    },
+    "ProductModel": {
+      "properties": {
+        "product_name": {
+          "title": "Product Name",
+          "type": "string"
+        },
+        "models": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Models",
+          "type": "array"
+        },
+        "device_type": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Device Type"
+        },
+        "udi_di": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Udi Di",
+          "type": "array"
+        },
+        "part_numbers": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Part Numbers",
+          "type": "array"
+        },
+        "components": {
+          "items": {
+            "$ref": "#/$defs/ComponentModel"
+          },
+          "title": "Components",
+          "type": "array"
+        }
+      },
+      "required": [
+        "product_name"
+      ],
+      "title": "ProductModel",
+      "type": "object"
+    },
+    "RecommendedActionModel": {
+      "properties": {
+        "action_id": {
+          "title": "Action Id",
+          "type": "string"
+        },
+        "action_type": {
+          "title": "Action Type",
+          "type": "string"
+        },
+        "summary": {
+          "title": "Summary",
+          "type": "string"
+        },
+        "details": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Details"
+        },
+        "role_hints": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Role Hints",
+          "type": "array"
+        },
+        "priority": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Priority"
+        },
+        "citations": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Citations",
+          "type": "array"
+        }
+      },
+      "required": [
+        "action_id",
+        "action_type",
+        "summary"
+      ],
+      "title": "RecommendedActionModel",
+      "type": "object"
+    },
+    "SourceExtractionModel": {
+      "properties": {
+        "model": {
+          "title": "Model",
+          "type": "string"
+        },
+        "run_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Run Id"
+        },
+        "confidence": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Confidence"
+        },
+        "warnings": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Warnings",
+          "type": "array"
+        }
+      },
+      "required": [
+        "model"
+      ],
+      "title": "SourceExtractionModel",
+      "type": "object"
+    },
+    "VersionRangeModel": {
+      "properties": {
+        "raw": {
+          "title": "Raw",
+          "type": "string"
+        },
+        "normalized": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Normalized"
+        },
+        "applies_to": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Applies To"
+        },
+        "confidence": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Confidence"
+        }
+      },
+      "required": [
+        "raw"
+      ],
+      "title": "VersionRangeModel",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "advisory_id": {
+      "title": "Advisory Id",
+      "type": "string"
+    },
+    "record_version": {
+      "default": "1.0",
+      "title": "Record Version",
+      "type": "string"
+    },
+    "publisher": {
+      "title": "Publisher",
+      "type": "string"
+    },
+    "publisher_org": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Publisher Org"
+    },
+    "vendor": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Vendor"
+    },
+    "title": {
+      "title": "Title",
+      "type": "string"
+    },
+    "summary": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Summary"
+    },
+    "published_date": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Published Date"
+    },
+    "retrieved_at": {
+      "title": "Retrieved At",
+      "type": "string"
+    },
+    "source_url": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Source Url"
+    },
+    "content": {
+      "$ref": "#/$defs/ContentModel"
+    },
+    "identifiers": {
+      "$ref": "#/$defs/IdentifiersModel"
+    },
+    "affected_product_definition": {
+      "$ref": "#/$defs/AffectedProductDefinitionModel"
+    },
+    "recommended_actions": {
+      "items": {
+        "$ref": "#/$defs/RecommendedActionModel"
+      },
+      "title": "Recommended Actions",
+      "type": "array"
+    },
+    "source_extraction": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/SourceExtractionModel"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "advisory_id",
+    "publisher",
+    "title",
+    "retrieved_at",
+    "content"
+  ],
+  "title": "AdvisoryRecordMVP",
+  "type": "object"
+}

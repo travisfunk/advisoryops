@@ -1,0 +1,12 @@
+[
+  {
+    "fetched_at": "2026-02-21T10:59:38.000000+00:00",
+    "guid": "VENDOR-2026-DELL-001",
+    "link": "https://example.com/vendor/advisory/2026/001",
+    "published_date": "2026-02-18",
+    "signal_id": "aabbccddeeff00112233445566778899aabbccddeeff00112233445566778899",
+    "source": "vendor-generic",
+    "summary": "A vendor security advisory about hard-coded credentials in a storage appliance. No CVE assigned.",
+    "title": "Dell Storage Advisory 2026-001"
+  }
+]

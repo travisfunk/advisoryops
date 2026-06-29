@@ -1,0 +1,41 @@
+# Runtime outputs — never commit any of these
+outputs/
+logs/
+
+# Secrets
+.env
+.env.*
+secrets.*
+*.key
+*.pem
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+node_modules/
+.pytest_cache/
+*.egg-info/
+src/*.egg-info/
+
+# Scratch / local artifacts
+calibration_samples.txt
+tmp/
+*.log
+*.tmp
+*.zip
+*.7z
+*.rar
+*.tar
+*.tgz
+*.tar.gz
+_repo_export/
+token.txt
+vuln_sources.txt

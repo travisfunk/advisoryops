@@ -1,0 +1,66 @@
+name: Update Advisory Feed
+
+on:
+  schedule:
+    - cron: '0 6 * * *'  # 06:00 UTC daily
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-feed:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -e .
+
+      - name: Get date
+        id: date
+        run: echo "date=$(date -u +%Y-%m-%d)" >> $GITHUB_OUTPUT
+
+      - name: Restore discover cache
+        uses: actions/cache/restore@v4
+        with:
+          path: outputs/discover/
+          key: discover-${{ runner.os }}-${{ steps.date.outputs.date }}
+          restore-keys: |
+            discover-${{ runner.os }}-
+
+      - name: Run pipeline
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
+        run: |
+          advisoryops community-build \
+            --set-id gold_pass2 \
+            --out-root-community outputs/community_public \
+            --baseline-feed docs/feed_latest.json \
+            --refresh \
+            --refresh-limit 50
+
+      - name: Save discover cache
+        uses: actions/cache/save@v4
+        with:
+          path: outputs/discover/
+          key: discover-${{ runner.os }}-${{ steps.date.outputs.date }}
+
+      - name: Commit updated feed files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/
+          git diff --cached --quiet \
+            || git commit -m "chore(feed): daily pipeline run $(date -u +%Y-%m-%d)" \
+            && git push

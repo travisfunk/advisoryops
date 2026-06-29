@@ -1,0 +1,421 @@
+"""FDA device risk classification extraction and lookup.
+
+Extracts FDA risk class (1, 2, or 3) from cached openFDA recall records
+and provides a fallback lookup via the openFDA device classification
+database.
+
+Data sources:
+  - Primary: outputs/openfda_cache/recall_*.json (device_class field)
+  - Secondary: openFDA Device Classification API, cached locally at
+    outputs/fda_classification_cache/classifications.json
+"""
+from __future__ import annotations
+
+import json
+import logging
+import re
+import time
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any, Callable, Dict, Optional
+
+import httpx
+
+logger = logging.getLogger(__name__)
+
+_VALID_CLASSES = frozenset({"1", "2", "3"})
+
+# 90 days in seconds for cache staleness check
+_CACHE_MAX_AGE_SECONDS = 90 * 24 * 60 * 60
+
+_DEFAULT_CACHE_DIR = Path("outputs/fda_classification_cache")
+_ENFORCEMENT_CACHE_DIR = Path("outputs/fda_safety_comms_cache")
+_CLASSIFICATION_API = "https://api.fda.gov/device/classification.json"
+_PAGE_SIZE = 1000
+
+# Maps the enforcement-record string format to the canonical digit string.
+_ENFORCEMENT_CLASS_MAP = {
+    "class i":   "1",
+    "class ii":  "2",
+    "class iii": "3",
+}
+
+
+def extract_risk_class_from_recall(recall: dict) -> str | None:
+    """Extract FDA risk class from a cached recall record.
+
+    Returns '1', '2', or '3' for valid classes, None for missing or invalid.
+    Handles both top-level and openfda-nested device_class fields.
+    Rejects 'N', 'U', and other non-standard values.
+    """
+    raw = recall.get("device_class")
+    if raw is None:
+        raw = recall.get("openfda", {}).get("device_class")
+
+    if raw is None:
+        return None
+
+    # If the value is a list, take the first element
+    if isinstance(raw, list):
+        if not raw:
+            return None
+        raw = raw[0]
+
+    # Coerce to string
+    val = str(raw).strip()
+
+    if val in _VALID_CLASSES:
+        return val
+
+    return None
+
+
+def extract_risk_class_from_enforcement(record: dict) -> str | None:
+    """Extract FDA risk class from an enforcement-cache record.
+
+    Enforcement records (``outputs/fda_safety_comms_cache/enf_*.json``) carry
+    the class in a string ``classification`` field like ``"Class II"``. This
+    parser maps ``"Class I/II/III"`` (case-insensitive) onto the canonical
+    digit string ``"1"``/``"2"``/``"3"``. Any other value returns None.
+    """
+    raw = record.get("classification")
+    if not raw:
+        return None
+    return _ENFORCEMENT_CLASS_MAP.get(str(raw).strip().lower())
+
+
+def lookup_class_by_recall_number(
+    recall_number: str,
+    cache_dir: Path | None = None,
+) -> str | None:
+    """Look up FDA risk class for a given recall number via the enforcement cache.
+
+    Returns the canonical ``"1"``/``"2"``/``"3"`` string, or None if the
+    cache file does not exist, cannot be read, or lacks a recognized
+    ``classification`` value. Silent on failure — this is a best-effort
+    enrichment, not a correctness-critical path.
+    """
+    if not recall_number:
+        return None
+    cache_dir = cache_dir or _ENFORCEMENT_CACHE_DIR
+    path = cache_dir / f"enf_{recall_number}.json"
+    if not path.exists():
+        return None
+    try:
+        record = json.loads(path.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
+        return None
+    return extract_risk_class_from_enforcement(record)
+
+
+# ---------------------------------------------------------------------------
+# Vendor + affected_products extraction (Problem 3 residual, 2026-04-13)
+# ---------------------------------------------------------------------------
+
+# Title format from openfda-recalls-historical:
+#   "<device_type> recall (<vendor>)"
+# e.g. "Automated External Defibrillators (Non-Wearable) recall (Philips Medical Systems)"
+_TITLE_VENDOR_RE = re.compile(r" recall \((.+?)\)\s*$")
+
+# Summary format from openfda-recalls-historical (after AI rewrite of narrative):
+#   "<narrative> | <product/models> | <vendor> | Device: <device_type>."
+_DEVICE_TAIL_RE = re.compile(r"^\s*device\s*:", re.IGNORECASE)
+
+# Compact alphanumeric model codes that appear in narrative-only summaries
+# (e.g. "M3535A", "PM1226", "V1000", "LIFEPAK 12"). Keep it conservative —
+# require at least one letter AND one digit and at least 3 characters total.
+_MODEL_CODE_RE = re.compile(
+    r"\b(?:[A-Z][A-Z0-9-]{2,}[0-9][A-Z0-9-]*|[A-Z]+\s+[0-9]{2,}[A-Z]*)\b"
+)
+
+
+def extract_vendor_products_from_enforcement(record: dict) -> tuple[str | None, list[str]]:
+    """Extract (vendor, affected_products) from an enforcement-cache record.
+
+    ``recalling_firm`` maps to vendor; the first sentence of
+    ``product_description`` maps to a single-entry affected_products list.
+    The product_description field typically begins with the device name and
+    model numbers before diverging into indications-for-use boilerplate, so
+    trimming to the first sentence gives a usable product string without
+    pulling in the clinical context.
+    """
+    if not isinstance(record, dict):
+        return None, []
+    vendor = (record.get("recalling_firm") or "").strip() or None
+    desc = (record.get("product_description") or "").strip()
+    products: list[str] = []
+    if desc:
+        # First logical clause: split on "  " (double space, common in openFDA
+        # flatten), "Product Usage:", or the first "."
+        head = desc
+        for sep in ("  Product Usage:", "    Product Usage:", "\n\n"):
+            idx = head.find(sep)
+            if idx > 0:
+                head = head[:idx]
+                break
+        # Trim to first period if it's reasonably early — "Device X, Model Y.
+        # Intended for..." splits cleanly that way.
+        dot = head.find(". ")
+        if 0 < dot < 240:
+            head = head[:dot + 1]
+        head = " ".join(head.split())  # collapse internal whitespace
+        if head:
+            products = [head[:240].rstrip()]
+    return vendor, products
+
+
+def lookup_vendor_products_by_recall_number(
+    recall_number: str,
+    cache_dir: Path | None = None,
+) -> tuple[str | None, list[str]]:
+    """Read vendor and affected_products from the enforcement cache."""
+    if not recall_number:
+        return None, []
+    cache_dir = cache_dir or _ENFORCEMENT_CACHE_DIR
+    path = cache_dir / f"enf_{recall_number}.json"
+    if not path.exists():
+        return None, []
+    try:
+        record = json.loads(path.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
+        return None, []
+    return extract_vendor_products_from_enforcement(record)
+
+
+def extract_vendor_from_title(title: str) -> str | None:
+    """Pull vendor from an openFDA recall title.
+
+    Expected format: ``"<device_type> recall (<vendor>)"``. Returns None if
+    the parenthesized vendor tail is missing.
+    """
+    if not title:
+        return None
+    m = _TITLE_VENDOR_RE.search(title)
+    if not m:
+        return None
+    vendor = m.group(1).strip()
+    return vendor or None
+
+
+def extract_product_from_summary(summary: str) -> list[str]:
+    """Pull product / model strings from an openFDA recall summary.
+
+    Preferred path: the summary carries a pipe-delimited tail of the shape
+    ``"... | <product/models> | <vendor> | Device: <device_type>."``. When
+    present, the slice two positions before ``"Device:"`` is the product
+    string (one element). When the tail is missing, fall back to a
+    conservative alphanumeric-model-code scan of the narrative.
+    """
+    if not summary:
+        return []
+    if "|" in summary:
+        parts = [p.strip() for p in summary.split("|")]
+        for i, p in enumerate(parts):
+            if _DEVICE_TAIL_RE.match(p) and i >= 2:
+                product = parts[i - 2].strip()
+                if product:
+                    return [product[:240]]
+    # Narrative-only fallback: scan for model codes like "M3535A", "PM1226",
+    # "V1000", "LIFEPAK 12". Keep the list small and deduplicated.
+    codes = []
+    seen = set()
+    for m in _MODEL_CODE_RE.finditer(summary):
+        code = m.group(0).strip()
+        # Skip obvious noise
+        if len(code) < 3:
+            continue
+        if code.upper() in {"CVE", "CVSS", "FDA", "AED", "MRI", "ICD", "EMR",
+                            "EHR", "HIPAA", "CISA", "ICS", "NVD", "USA", "KEV",
+                            "CWE", "IOC"}:
+            continue
+        key = code.upper()
+        if key in seen:
+            continue
+        seen.add(key)
+        codes.append(code)
+        if len(codes) >= 8:
+            break
+    return codes
+
+
+def extract_vendor_products_for_issue(
+    issue: dict,
+    cache_dir: Path | None = None,
+) -> tuple[str | None, list[str]]:
+    """Best-effort vendor + affected_products extraction for an FDA-derived issue.
+
+    Pathway:
+    1. If the title carries a ``Z-NNNN-YYYY`` recall number, read the
+       enforcement cache (Path A, highest confidence).
+    2. Otherwise fall back to title-regex + summary-pipe-parse (Path B).
+    3. If enforcement returned only one but the fallback fills the other,
+       merge the results.
+    """
+    title = str(issue.get("title") or "")
+    summary = str(issue.get("summary") or "")
+
+    # Path A: enforcement cache via recall number in title
+    recall_match = re.search(r"\bZ-\d{4}-\d{4}\b", title, re.IGNORECASE)
+    vendor: str | None = None
+    products: list[str] = []
+    if recall_match:
+        vendor, products = lookup_vendor_products_by_recall_number(
+            recall_match.group(0).upper(),
+            cache_dir=cache_dir,
+        )
+
+    # Path B: title / summary parse, fills gaps Path A left
+    if not vendor:
+        vendor = extract_vendor_from_title(title)
+    if not products:
+        products = extract_product_from_summary(summary)
+
+    return vendor, products
+
+
+def fetch_classification_database(
+    cache_dir: Path | None = None,
+    *,
+    _fetch_fn: Callable | None = None,
+) -> dict:
+    """Fetch the full openFDA device classification database.
+
+    Returns a dict indexed by product_code for fast lookup.
+    Caches the result to outputs/fda_classification_cache/classifications.json.
+    Refreshes automatically if cache is older than 90 days.
+    """
+    cache_dir = cache_dir or _DEFAULT_CACHE_DIR
+    cache_file = cache_dir / "classifications.json"
+
+    # Check existing cache
+    if cache_file.exists():
+        try:
+            data = json.loads(cache_file.read_text(encoding="utf-8"))
+            fetched_at = data.get("_fetched_at", "")
+            if fetched_at:
+                fetched_dt = datetime.fromisoformat(fetched_at)
+                age = (datetime.now(timezone.utc) - fetched_dt).total_seconds()
+                if age < _CACHE_MAX_AGE_SECONDS:
+                    logger.info("Using cached classification database (%d entries).", len(data) - 1)
+                    return data
+                logger.info("Classification cache is %.1f days old, refreshing.", age / 86400)
+        except Exception as exc:
+            logger.warning("Failed to read classification cache: %s", exc)
+
+    # Fetch from API
+    classifications: Dict[str, Any] = {}
+    skip = 0
+
+    fetch = _fetch_fn or _default_fetch
+
+    while True:
+        try:
+            url = f"{_CLASSIFICATION_API}?search=_exists_:product_code&limit={_PAGE_SIZE}&skip={skip}"
+            result = fetch(url)
+            if result is None:
+                break
+
+            results_list = result.get("results", [])
+            if not results_list:
+                break
+
+            for rec in results_list:
+                pc = rec.get("product_code", "").strip()
+                if not pc:
+                    continue
+                # Keep first occurrence if duplicate product codes
+                if pc not in classifications:
+                    classifications[pc] = {
+                        "device_class": rec.get("device_class", ""),
+                        "device_name": rec.get("device_name", ""),
+                        "definition": rec.get("definition", ""),
+                        "medical_specialty": rec.get("medical_specialty_description", ""),
+                        "regulation_number": rec.get("regulation_number", ""),
+                        "product_code": pc,
+                    }
+
+            logger.info("Fetched %d classifications (skip=%d).", len(results_list), skip)
+
+            total = result.get("meta", {}).get("results", {}).get("total", 0)
+            skip += _PAGE_SIZE
+            if skip >= total or skip >= 25000:
+                break
+
+            # Be polite to the API
+            time.sleep(0.3)
+
+        except Exception as exc:
+            logger.warning("Classification fetch failed at skip=%d: %s", skip, exc)
+            break
+
+    if not classifications:
+        logger.warning("No classifications fetched; returning empty database.")
+        return {"_fetched_at": datetime.now(timezone.utc).isoformat()}
+
+    classifications["_fetched_at"] = datetime.now(timezone.utc).isoformat()
+
+    # Write cache
+    try:
+        cache_dir.mkdir(parents=True, exist_ok=True)
+        cache_file.write_text(
+            json.dumps(classifications, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+        )
+        logger.info("Cached %d classifications to %s.", len(classifications) - 1, cache_file)
+    except Exception as exc:
+        logger.warning("Failed to write classification cache: %s", exc)
+
+    return classifications
+
+
+def _default_fetch(url: str) -> dict | None:
+    """Fetch a URL and return parsed JSON, or None on failure."""
+    try:
+        resp = httpx.get(url, timeout=30.0, follow_redirects=True)
+        resp.raise_for_status()
+        return resp.json()
+    except Exception as exc:
+        logger.warning("HTTP fetch failed for %s: %s", url, exc)
+        return None
+
+
+def lookup_risk_class(
+    product_code: str | None = None,
+    device_name: str | None = None,
+    classifications: dict | None = None,
+) -> str | None:
+    """Look up FDA risk class for a device.
+
+    Lookup order:
+    1. Exact product_code match (highest confidence)
+    2. Case-insensitive substring match on device_name (medium confidence)
+    3. Return None if no match
+    """
+    if classifications is None:
+        return None
+
+    # 1. Exact product_code match
+    if product_code:
+        pc = product_code.strip()
+        rec = classifications.get(pc)
+        if rec and isinstance(rec, dict):
+            dc = str(rec.get("device_class", "")).strip()
+            if dc in _VALID_CLASSES:
+                return dc
+
+    # 2. Case-insensitive substring match on device_name
+    if device_name:
+        name_lower = device_name.strip().lower()
+        if len(name_lower) >= 4:  # Avoid matching very short strings
+            for key, rec in classifications.items():
+                if key.startswith("_"):
+                    continue
+                if not isinstance(rec, dict):
+                    continue
+                rec_name = (rec.get("device_name") or "").lower()
+                if name_lower in rec_name or rec_name in name_lower:
+                    dc = str(rec.get("device_class", "")).strip()
+                    if dc in _VALID_CLASSES:
+                        return dc
+
+    return None

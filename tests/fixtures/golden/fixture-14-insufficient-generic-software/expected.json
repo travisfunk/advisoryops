@@ -1,0 +1,8 @@
+{
+  "expected_issue_count": 1,
+  "expected_cves": [],
+  "expected_priority_range": ["P3"],
+  "expected_healthcare_category": "not_healthcare",
+  "insufficient_evidence": true,
+  "description": "Generic software advisory with no CVE, unknown severity, and unclear healthcare relevance. The AI should return insufficient_evidence=true because the advisory does not specify which product or industry is affected. Evidence gaps should include 'no CVE assigned', 'severity under assessment', 'affected product not named'."
+}
