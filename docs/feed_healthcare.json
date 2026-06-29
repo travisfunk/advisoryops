@@ -1099,109 +1099,6 @@
     "citations": []
   },
   {
-    "issue_id": "CVE-2025-11266",
-    "issue_type": "cve",
-    "title": "CVE-2025-11266",
-    "summary": "Grassroots DICOM library has a critical out-of-bounds write vulnerability that can be triggered by opening a specially crafted DICOM file, causing the system to crash and deny service. A patch is available to fix this issue. It is highly recommended to apply the patch immediately to protect hospital systems from denial-of-service attacks.",
-    "canonical_link": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-345-01",
-    "cves": [
-      "CVE-2025-11266"
-    ],
-    "sources": [
-      "cisa-icsma",
-      "cisa-icsma-historical"
-    ],
-    "published_dates": [
-      "12/11/2025",
-      "Thu, 11 Dec 2025 10:27:53 EST"
-    ],
-    "first_seen_at": "2026-03-25T23:08:40.677883+00:00",
-    "last_seen_at": "2026-04-08T01:52:18.554963+00:00",
-    "score": 115,
-    "priority": "P1",
-    "actions": [
-      "ingest",
-      "track"
-    ],
-    "why": [
-      "base: issue_type=cve (+10)",
-      "source-authority: tier-1 weight=1.0 (+30)",
-      "healthcare-source: tier-1 medical source (+50)",
-      "device: medical imaging/PACS (+15)",
-      "device: healthcare context (+10)",
-      "priority: P1 (score=115)"
-    ],
-    "handling_warnings": [],
-    "evidence_gaps": [],
-    "unknowns": [],
-    "source_consensus": {
-      "agreed": [
-        "CVEs: CVE-2025-11266",
-        "patch status: workaround",
-        "severity: critical, low"
-      ],
-      "contradicted": [],
-      "unique_contributions": {}
-    },
-    "source_authority_weight": 1.0,
-    "highest_authority_source": "cisa-icsma",
-    "healthcare_category": "medical_device",
-    "classification": {},
-    "severity": "medium",
-    "affected_versions": [],
-    "vendor": "",
-    "generated_by": "ai",
-    "extracted_facts": {},
-    "inferred_facts": {},
-    "confidence_by_field": {},
-    "evidence_sources": [],
-    "insufficient_evidence": false,
-    "non_applicability": [],
-    "source_mitigations": [
-      {
-        "source": "cisa-icsma",
-        "source_tier": 1,
-        "action": "apply the patch immediately",
-        "citation": "/node/24309",
-        "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-345-01",
-        "mitigation_type": "patch"
-      }
-    ],
-    "iocs": [
-      {
-        "type": "cve",
-        "value": "CVE-2025-11266",
-        "source": "cisa-icsma"
-      }
-    ],
-    "cvss_score": 6.6,
-    "cvss_severity": "MEDIUM",
-    "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:H",
-    "cwe_ids": [
-      "CWE-787"
-    ],
-    "affected_products": [],
-    "nvd_description": "An out-of-bounds write vulnerability exists in the Grassroots DICOM library (GDCM). The issue is triggered during parsing of a malformed DICOM file containing encapsulated PixelData fragments (compressed image data stored as multiple fragments). This vulnerability leads to a segmentation fault caused by an out-of-bounds memory access due to unsigned integer underflow in buffer indexing. It is exploitable via file input, simply opening a crafted malicious DICOM file is sufficient to trigger the crash, resulting in a denial-of-service condition.",
-    "source_summary": "View CSAF 1. EXECUTIVE SUMMARY CVSS v4 6.8 ATTENTION : Low attack complexity Vendor : Grassroots Equipment : DICOM (GDCM) Vulnerability : Out-of-bounds Write 2. RISK EVALUATION Successful exploitation of this vulnerability could allow an attacker to craft a malicious DICOM file and, if opened, could crash the application resulting in a denial-of-service condition. 3. TECHNICAL DETAILS 3.1 AFFECTED PRODUCTS The following open source products and specified components are affected: Grassroots DICOM (GDCM): Versions 3.0.24 and prior SimpleITK: Versions 2.5.2 and prior medInria: Versions 4.0 and prior 3.2 VULNERABILITY OVERVIEW 3.2.1 OUT-OF-BOUNDS WRITE CWE-787 An out-of-bounds write vulnerability exists in the Grassroots DICOM library (GDCM). The issue is triggered during parsing of a malformed DICOM file containing encapsulated PixelData fragments (compressed image data stored as multiple fragments). This vulnerability leads to a segmentation fault caused by an out-of-bounds memory access due to unsigned integer underflow in buffer indexing. It is exploitable via file input, simply opening a crafted malicious DICOM file is sufficient to trigger the crash, resulting in a denial-of-service condition. CVE-2025-11266 has been assigned to this vulnerability. A CVSS v3.1 base score of 6.6 has been calculated; the CVSS vector string is ( AV:L/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:H ). A CVSS v4 score has also been calculated for  CVE-2025-11266 . A base score of 6.8 has been calculated; the CVSS vector string is ( AV:L/AC:L/AT:N/PR:N/UI:A/VC:L/VI:L/VA:H/SC:N/SI:N/SA:N ). 3.3 BACKGROUND CRITICAL INFRASTRUCTURE SECTORS: Healthcare and Public Health COUNTRIES/AREAS DEPLOYED: Worldwide COMPANY HEADQUARTERS LOCATION: United States 3.4 RESEARCHER Morgen Malinoski reported this vulnerability to CISA. 4. MITIGATIONS The maintainer of the software recommends users update Grassroots DICOM (GDCM) to v3.2.2 or later from the main GitHub repository. SimpleITK and medInria have both released fixes for the vulnerability. CISA recommends users take defensive measures to minimize the risk of exploitation of this vulnerability, such as: Minimize network exposure for all control system devices and/or systems, ensuring they are not accessible from the internet . Locate control system networks and remote devices behind firewalls and isolating them from business networks. When remote access is required, use more secure methods, such as Virtual Private Networks (VPNs), recognizing VPNs may have vulnerabilities and should be updated to the most current version available. Also recognize VPN is only as secure as the connected devices. CISA reminds organizations to perform proper impact analysis and risk assessment prior to deploying defensive measures. CISA also provides a section for control systems security recommended practices on the ICS webpage on cisa.gov/ics . Several CISA products detailing cyber defense best practices are available for reading and download, including Improving Industrial Control Systems Cybersecurity with Defense-in-Depth Strategies . CISA encourages organizations to implement recommended cybersecurity strategies for proactive defense of ICS assets . Additional mitigation guidance and recommended practices are publicly available on the ICS webpage at cisa.gov/ics in the technical information paper, ICS-TIP-12-146-01B--Targeted Cyber Intrusion Detection and Mitigation Strategies . Organizations observing suspected malicious activity should follow established internal procedures and report findings to CISA for tracking and correlation against other incidents. CISA also recommends users take the following measures to protect themselves from social engineering attacks: Do not click web links or open attachments in unsolicited email messages. Refer to Recognizing and Avoiding Email Scams for more information on avoiding email scams. Refer to Avoiding Social Engineering and Phishing Attacks for more information on social engineering attacks. No known public exploitation specifically targeting this vulnerability has been reported to CISA at this time. This vulnerability is not exploitable remotely. 5. UPDATE HISTORY December 11, 2025: Initial Publication",
-    "kev_required_action": "",
-    "kev_due_date": "",
-    "kev_vendor": "",
-    "kev_product": "",
-    "kev_vulnerability_name": "",
-    "remediation_steps": [
-      "apply the patch immediately"
-    ],
-    "healthcare_relevant": true,
-    "fda_risk_class": null,
-    "is_kev_medical_device": false,
-    "epss_score": 0.0002,
-    "epss_percentile": 0.05353,
-    "recommended_patterns": [],
-    "tasks_by_role": {},
-    "reasoning": "",
-    "citations": []
-  },
-  {
     "issue_id": "CVE-2021-26248",
     "issue_type": "cve",
     "title": "CVE-2021-26248",
@@ -24806,6 +24703,84 @@
     "citations": []
   },
   {
+    "issue_id": "UNK-10127effd1ba464d",
+    "issue_type": "unknown",
+    "title": "OHIF Viewers DICOM",
+    "summary": "OHIF Viewers DICOM",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-176-02.json",
+    "cves": [],
+    "sources": [
+      "cisa-icsma"
+    ],
+    "published_dates": [
+      "2026-06-25T06:00:00.000000Z"
+    ],
+    "first_seen_at": "2026-06-27T08:59:58.900765+00:00",
+    "last_seen_at": "2026-06-28T09:12:25.141570+00:00",
+    "score": 97,
+    "priority": "P2",
+    "actions": [
+      "track"
+    ],
+    "why": [
+      "base: issue_type!=cve (+2)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "device: medical imaging/PACS (+15)",
+      "priority: P2 (score=97)"
+    ],
+    "handling_warnings": [],
+    "evidence_gaps": [],
+    "unknowns": [],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [],
+    "cvss_score": 0,
+    "cvss_severity": "",
+    "cvss_vector": "",
+    "cwe_ids": [],
+    "affected_products": [],
+    "nvd_description": "",
+    "source_summary": "",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Review vendor advisory for mitigation guidance.",
+      "Monitor for exploitation indicators."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": null,
+    "epss_percentile": null,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": [],
+    "first_published_to_feed": "2026-06-27T09:05:59.350962+00:00"
+  },
+  {
     "issue_id": "CVE-2026-5768",
     "issue_type": "cve",
     "title": "CVE-2026-5768",
@@ -25624,24 +25599,21 @@
     "first_published_to_feed": "2026-06-25T20:41:42.302809+00:00"
   },
   {
-    "issue_id": "CVE-2026-3650",
+    "issue_id": "CVE-2026-7251",
     "issue_type": "cve",
-    "title": "CVE-2026-3650",
-    "summary": "A memory leak exists in the Grassroots DICOM library (GDCM). The bug occurs when parsing malformed DICOM files with non-standard VR types in file meta information. The vulnerability leads to vast memory allocations and resource depletion, triggering a denial-of-service condition. A maliciously crafted file can fill the heap in a single read operation without properly releasing it.",
-    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-083-01.json",
+    "title": "CVE-2026-7251",
+    "summary": "Eppendorf BioFlo 320 is vulnerable due to VNC server using a hard-coded password. If a remote attacker knows the network address of any BioFlo 320 model with remote access enabled, they can gain full control of the user interface by using this password. Once connected, the attacker would have full access to all control panel features for the BioFlo 320. VNC traffic is not encrypted.",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-146-01.json",
     "cves": [
-      "CVE-2026-3650"
+      "CVE-2026-7251"
     ],
     "sources": [
-      "cisa-icsma",
-      "cisa-icsma-historical"
+      "cisa-icsma"
     ],
     "published_dates": [
-      "2026-03-24T06:00:00.000000Z",
-      "3/24/2026",
-      "Mon, 23 Mar 2026 15:46:15 EDT"
+      "2026-05-26T06:00:00.000000Z"
     ],
-    "first_seen_at": "2026-03-25T23:08:40.677883+00:00",
+    "first_seen_at": "2026-06-25T19:57:39.965108+00:00",
     "last_seen_at": "2026-06-25T19:57:39.965108+00:00",
     "score": 90,
     "priority": "P2",
@@ -25654,14 +25626,96 @@
       "healthcare-source: tier-1 medical source (+50)",
       "priority: P2 (score=90)"
     ],
-    "handling_warnings": [
-      "Be cautious when processing DICOM files from untrusted sources."
-    ],
+    "handling_warnings": [],
     "evidence_gaps": [],
-    "unknowns": [
-      "Patch timeline",
-      "Affected version details"
+    "unknowns": [],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "critical",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2026-7251",
+        "source": "cisa-icsma"
+      }
     ],
+    "cvss_score": 9.8,
+    "cvss_severity": "CRITICAL",
+    "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+    "cwe_ids": [
+      "CWE-259"
+    ],
+    "affected_products": [],
+    "nvd_description": "Eppendorf BioFlo 320 is vulnerable due to VNC server using a hard-coded password. If a remote attacker knows the network address of any BioFlo 320 model with remote access enabled, they can gain full control of the user interface by using this password. Once connected, the attacker would have full access to all control panel features for the BioFlo 320. VNC traffic is not encrypted.",
+    "source_summary": "Successful exploitation of this vulnerability could allow an attacker to gain full access to functionality and data with the bioreactor.",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Review vendor advisory for mitigation guidance.",
+      "Monitor for exploitation indicators."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": null,
+    "epss_percentile": null,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": [],
+    "first_published_to_feed": "2026-06-25T20:41:42.302809+00:00"
+  },
+  {
+    "issue_id": "CVE-2026-12473",
+    "issue_type": "cve",
+    "title": "CVE-2026-12473",
+    "summary": "Two data sources (DICOMWebProxy and DICOMJSON) shipped in the default configuration fetch an arbitrary URL parameter without validation. A global authentication service in OHIF automatically injects the authenticated user's OIDC Bearer token into the resulting requests, sending it to the attacker-controlled server. DICOMweb data sources are not impacted.",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-176-02.json",
+    "cves": [
+      "CVE-2026-12473"
+    ],
+    "sources": [
+      "cisa-icsma"
+    ],
+    "published_dates": [
+      "2026-06-25T06:00:00.000000Z"
+    ],
+    "first_seen_at": "2026-06-26T09:26:13.523105+00:00",
+    "last_seen_at": "2026-06-26T09:26:13.523105+00:00",
+    "score": 90,
+    "priority": "P2",
+    "actions": [
+      "track"
+    ],
+    "why": [
+      "base: issue_type=cve (+10)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "priority: P2 (score=90)"
+    ],
+    "handling_warnings": [],
+    "evidence_gaps": [],
+    "unknowns": [],
     "source_consensus": {
       "agreed": [],
       "contradicted": [],
@@ -25681,32 +25735,23 @@
     "evidence_sources": [],
     "insufficient_evidence": false,
     "non_applicability": [],
-    "source_mitigations": [
-      {
-        "source": "cisa-icsma",
-        "source_tier": 1,
-        "action": "monitor and restrict the use of potentially harmful DICOM files",
-        "citation": "/node/24681",
-        "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-26-083-01",
-        "mitigation_type": "process"
-      }
-    ],
+    "source_mitigations": [],
     "iocs": [
       {
         "type": "cve",
-        "value": "CVE-2026-3650",
+        "value": "CVE-2026-12473",
         "source": "cisa-icsma"
       }
     ],
-    "cvss_score": 7.5,
+    "cvss_score": 8.2,
     "cvss_severity": "HIGH",
-    "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+    "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:H/I:L/A:N",
     "cwe_ids": [
-      "CWE-401"
+      "CWE-918"
     ],
     "affected_products": [],
-    "nvd_description": "A memory leak exists in the Grassroots DICOM library (GDCM). The bug occurs when parsing malformed DICOM files with non-standard VR types in file meta information. The vulnerability leads to vast memory allocations and resource depletion, triggering a denial-of-service condition. A maliciously crafted file can fill the heap in a single read operation without properly releasing it.",
-    "source_summary": "Successful exploitation of this vulnerability could allow an attacker to send a specially crafted file, and when parsed, could result in a denial-of-service condition.",
+    "nvd_description": "Two data sources (DICOMWebProxy and DICOMJSON) shipped in the default configuration fetch an arbitrary URL parameter without validation. A global authentication service in OHIF automatically injects the authenticated user's OIDC Bearer token into the resulting requests, sending it to the attacker-controlled server. DICOMweb data sources are not impacted.",
+    "source_summary": "Successful exploitation of this vulnerability in a custom integration version could allow an attacker to steal an authenticated clinician's token via a crafted link.",
     "kev_required_action": "",
     "kev_due_date": "",
     "kev_vendor": "",
@@ -25719,12 +25764,13 @@
     "healthcare_relevant": true,
     "fda_risk_class": null,
     "is_kev_medical_device": false,
-    "epss_score": 0.00064,
-    "epss_percentile": 0.19936,
+    "epss_score": null,
+    "epss_percentile": null,
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "first_published_to_feed": "2026-06-26T09:57:30.069838+00:00"
   },
   {
     "issue_id": "CVE-2026-50034",
@@ -25742,7 +25788,7 @@
       "2026-06-18T06:00:00.000000Z"
     ],
     "first_seen_at": "2026-06-25T19:57:39.965108+00:00",
-    "last_seen_at": "2026-06-25T19:57:39.965108+00:00",
+    "last_seen_at": "2026-06-26T09:26:13.523105+00:00",
     "score": 90,
     "priority": "P2",
     "actions": [
@@ -25829,7 +25875,7 @@
       "2026-06-18T06:00:00.000000Z"
     ],
     "first_seen_at": "2026-06-25T19:57:39.965108+00:00",
-    "last_seen_at": "2026-06-25T19:57:39.965108+00:00",
+    "last_seen_at": "2026-06-26T09:26:13.523105+00:00",
     "score": 90,
     "priority": "P2",
     "actions": [
@@ -25901,22 +25947,22 @@
     "first_published_to_feed": "2026-06-25T20:41:42.302809+00:00"
   },
   {
-    "issue_id": "CVE-2026-7251",
+    "issue_id": "CVE-2026-56445",
     "issue_type": "cve",
-    "title": "CVE-2026-7251",
-    "summary": "Eppendorf BioFlo 320 is vulnerable due to VNC server using a hard-coded password. If a remote attacker knows the network address of any BioFlo 320 model with remote access enabled, they can gain full control of the user interface by using this password. Once connected, the attacker would have full access to all control panel features for the BioFlo 320. VNC traffic is not encrypted.",
-    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-146-01.json",
+    "title": "CVE-2026-56445",
+    "summary": "The qrscp application's C-STORE handler uses a specific instance from attacker-supplied DICOM datasets directly in os.path.join() without sanitization, allowing file writes to arbitrary paths.",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-176-01.json",
     "cves": [
-      "CVE-2026-7251"
+      "CVE-2026-56445"
     ],
     "sources": [
       "cisa-icsma"
     ],
     "published_dates": [
-      "2026-05-26T06:00:00.000000Z"
+      "2026-06-25T06:00:00.000000Z"
     ],
-    "first_seen_at": "2026-06-25T19:57:39.965108+00:00",
-    "last_seen_at": "2026-06-25T19:57:39.965108+00:00",
+    "first_seen_at": "2026-06-26T09:26:13.523105+00:00",
+    "last_seen_at": "2026-06-26T09:26:13.523105+00:00",
     "score": 90,
     "priority": "P2",
     "actions": [
@@ -25954,19 +26000,24 @@
     "iocs": [
       {
         "type": "cve",
-        "value": "CVE-2026-7251",
+        "value": "CVE-2026-56445",
+        "source": "cisa-icsma"
+      },
+      {
+        "type": "domain",
+        "value": "os.path.join",
         "source": "cisa-icsma"
       }
     ],
-    "cvss_score": 9.8,
+    "cvss_score": 9.1,
     "cvss_severity": "CRITICAL",
-    "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+    "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:H",
     "cwe_ids": [
-      "CWE-259"
+      "CWE-22"
     ],
     "affected_products": [],
-    "nvd_description": "Eppendorf BioFlo 320 is vulnerable due to VNC server using a hard-coded password. If a remote attacker knows the network address of any BioFlo 320 model with remote access enabled, they can gain full control of the user interface by using this password. Once connected, the attacker would have full access to all control panel features for the BioFlo 320. VNC traffic is not encrypted.",
-    "source_summary": "Successful exploitation of this vulnerability could allow an attacker to gain full access to functionality and data with the bioreactor.",
+    "nvd_description": "The qrscp application's C-STORE handler uses a specific instance from attacker-supplied DICOM datasets directly in os.path.join() without sanitization, allowing file writes to arbitrary paths.",
+    "source_summary": "Successful exploitation of this vulnerability could allow an unauthenticated attacker to write to arbitrary file paths.",
     "kev_required_action": "",
     "kev_due_date": "",
     "kev_vendor": "",
@@ -25985,7 +26036,7 @@
     "tasks_by_role": {},
     "reasoning": "",
     "citations": [],
-    "first_published_to_feed": "2026-06-25T20:41:42.302809+00:00"
+    "first_published_to_feed": "2026-06-26T09:57:30.069838+00:00"
   },
   {
     "issue_id": "UNK-02fdb6ff2608f2b5",
@@ -26454,6 +26505,83 @@
     "citations": []
   },
   {
+    "issue_id": "UNK-77c9795b25ca2ab9",
+    "issue_type": "unknown",
+    "title": "pydicom pynetdicom Library",
+    "summary": "pydicom pynetdicom Library",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-176-01.json",
+    "cves": [],
+    "sources": [
+      "cisa-icsma"
+    ],
+    "published_dates": [
+      "2026-06-25T06:00:00.000000Z"
+    ],
+    "first_seen_at": "2026-06-27T08:59:58.900765+00:00",
+    "last_seen_at": "2026-06-28T09:12:25.141570+00:00",
+    "score": 82,
+    "priority": "P2",
+    "actions": [
+      "track"
+    ],
+    "why": [
+      "base: issue_type!=cve (+2)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "priority: P2 (score=82)"
+    ],
+    "handling_warnings": [],
+    "evidence_gaps": [],
+    "unknowns": [],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [],
+    "cvss_score": 0,
+    "cvss_severity": "",
+    "cvss_vector": "",
+    "cwe_ids": [],
+    "affected_products": [],
+    "nvd_description": "",
+    "source_summary": "",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Review vendor advisory for mitigation guidance.",
+      "Monitor for exploitation indicators."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": null,
+    "epss_percentile": null,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": [],
+    "first_published_to_feed": "2026-06-27T09:05:59.350962+00:00"
+  },
+  {
     "issue_id": "UNK-c15fc4d817d73dcd",
     "issue_type": "unknown",
     "title": "Apollo Pharmacy Blood Glucose Monitoring System APG-01 BT",
@@ -26466,8 +26594,8 @@
     "published_dates": [
       "2026-06-18T06:00:00.000000Z"
     ],
-    "first_seen_at": "2026-06-25T05:41:44.665018+00:00",
-    "last_seen_at": "2026-06-25T05:41:44.665018+00:00",
+    "first_seen_at": "2026-06-27T08:59:58.900765+00:00",
+    "last_seen_at": "2026-06-28T09:12:25.141570+00:00",
     "score": 82,
     "priority": "P2",
     "actions": [
@@ -26528,84 +26656,7 @@
     "tasks_by_role": {},
     "reasoning": "",
     "citations": [],
-    "first_published_to_feed": "2026-06-25T05:58:09.480768+00:00"
-  },
-  {
-    "issue_id": "UNK-e919e44e701f248d",
-    "issue_type": "unknown",
-    "title": "Fourth Frontier Frontier X Mobile Application, Frontier X2",
-    "summary": "Fourth Frontier Frontier X Mobile Application, Frontier X2",
-    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-148-01.json",
-    "cves": [],
-    "sources": [
-      "cisa-icsma"
-    ],
-    "published_dates": [
-      "2026-05-28T06:00:00.000000Z"
-    ],
-    "first_seen_at": "2026-06-25T05:41:44.665018+00:00",
-    "last_seen_at": "2026-06-25T05:41:44.665018+00:00",
-    "score": 82,
-    "priority": "P2",
-    "actions": [
-      "track"
-    ],
-    "why": [
-      "base: issue_type!=cve (+2)",
-      "source-authority: tier-1 weight=1.0 (+30)",
-      "healthcare-source: tier-1 medical source (+50)",
-      "priority: P2 (score=82)"
-    ],
-    "handling_warnings": [],
-    "evidence_gaps": [],
-    "unknowns": [],
-    "source_consensus": {
-      "agreed": [],
-      "contradicted": [],
-      "unique_contributions": {}
-    },
-    "source_authority_weight": 1.0,
-    "highest_authority_source": "cisa-icsma",
-    "healthcare_category": "medical_device",
-    "classification": {},
-    "severity": "",
-    "affected_versions": [],
-    "vendor": "",
-    "generated_by": "deterministic",
-    "extracted_facts": {},
-    "inferred_facts": {},
-    "confidence_by_field": {},
-    "evidence_sources": [],
-    "insufficient_evidence": false,
-    "non_applicability": [],
-    "source_mitigations": [],
-    "iocs": [],
-    "cvss_score": 0,
-    "cvss_severity": "",
-    "cvss_vector": "",
-    "cwe_ids": [],
-    "affected_products": [],
-    "nvd_description": "",
-    "source_summary": "",
-    "kev_required_action": "",
-    "kev_due_date": "",
-    "kev_vendor": "",
-    "kev_product": "",
-    "kev_vulnerability_name": "",
-    "remediation_steps": [
-      "Review vendor advisory for mitigation guidance.",
-      "Monitor for exploitation indicators."
-    ],
-    "healthcare_relevant": true,
-    "fda_risk_class": null,
-    "is_kev_medical_device": false,
-    "epss_score": null,
-    "epss_percentile": null,
-    "recommended_patterns": [],
-    "tasks_by_role": {},
-    "reasoning": "",
-    "citations": [],
-    "first_published_to_feed": "2026-06-25T05:58:09.480768+00:00"
+    "first_published_to_feed": "2026-06-27T09:05:59.350962+00:00"
   },
   {
     "issue_id": "UNK-a1c8160ceac31dbe",
@@ -36329,7 +36380,7 @@
       "Fri, 15 May 2026 14:00:00 +0000"
     ],
     "first_seen_at": "2026-06-24T23:45:01.416683+00:00",
-    "last_seen_at": "2026-06-25T05:42:19.784040+00:00",
+    "last_seen_at": "2026-06-28T09:12:44.722114+00:00",
     "score": 38,
     "priority": "P3",
     "actions": [
