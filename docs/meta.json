@@ -18,10 +18,10 @@
   "counts": {
     "validated_sources": 54,
     "candidate_sources": 1,
-    "issues_public": 5278,
+    "issues_public": 5309,
     "alerts_public": 100,
-    "latest": 5278,
-    "healthcare": 434,
+    "latest": 5309,
+    "healthcare": 439,
     "packets": 0,
     "sources_enabled": 64
   },
@@ -37,15 +37,15 @@
     "dashboard_html": "outputs/community_public/dashboard.html",
     "packets_dir": null
   },
-  "generated_at": "2026-07-01T10:07:45+00:00",
+  "generated_at": "2026-07-02T09:41:02+00:00",
   "methodology_stats": {
-    "total_issues": 5278,
-    "medical_device_issues": 434,
+    "total_issues": 5309,
+    "medical_device_issues": 439,
     "fda_risk_class_populated": 379,
     "fda_derived_medical_device": 378,
     "fda_md_vendor_populated": 376,
     "fda_md_products_populated": 376,
-    "kev_enriched": 279,
+    "kev_enriched": 280,
     "kev_md_cve_overlap": 0,
     "kev_md_vendor_overlap": 0,
     "pharmaceutical_leaks": 0

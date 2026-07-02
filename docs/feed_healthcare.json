@@ -24716,7 +24716,7 @@
       "2026-06-25T06:00:00.000000Z"
     ],
     "first_seen_at": "2026-06-27T08:59:58.900765+00:00",
-    "last_seen_at": "2026-07-01T10:02:11.316787+00:00",
+    "last_seen_at": "2026-07-02T09:18:53.033693+00:00",
     "score": 97,
     "priority": "P2",
     "actions": [
@@ -26039,6 +26039,441 @@
     "first_published_to_feed": "2026-06-26T09:57:30.069838+00:00"
   },
   {
+    "issue_id": "CVE-2026-35505",
+    "issue_type": "cve",
+    "title": "CVE-2026-35505",
+    "summary": "An unauthenticated remote attacker can repeatedly send crafted connection requests to leak memory. In single-process deployments the memory grows until the service is killed and the port stops responding until restart.",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-181-01.json",
+    "cves": [
+      "CVE-2026-35505"
+    ],
+    "sources": [
+      "cisa-icsma"
+    ],
+    "published_dates": [
+      "2026-06-30T06:00:00.000000Z"
+    ],
+    "first_seen_at": "2026-07-02T09:18:53.033693+00:00",
+    "last_seen_at": "2026-07-02T09:18:53.033693+00:00",
+    "score": 90,
+    "priority": "P2",
+    "actions": [
+      "track"
+    ],
+    "why": [
+      "base: issue_type=cve (+10)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "priority: P2 (score=90)"
+    ],
+    "handling_warnings": [],
+    "evidence_gaps": [],
+    "unknowns": [],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "high",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2026-35505",
+        "source": "cisa-icsma"
+      }
+    ],
+    "cvss_score": 7.5,
+    "cvss_severity": "HIGH",
+    "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+    "cwe_ids": [
+      "CWE-401"
+    ],
+    "affected_products": [],
+    "nvd_description": "An unauthenticated remote attacker can repeatedly send crafted connection requests to leak memory. In single-process deployments the memory grows until the service is killed and the port stops responding until restart.",
+    "source_summary": "Successful exploitation of these vulnerabilities could allow an attacker to write files, access unauthorized information, exhaust memory, or crash affected DCMTK client or server processes.",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Review vendor advisory for mitigation guidance.",
+      "Monitor for exploitation indicators."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": null,
+    "epss_percentile": null,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": [],
+    "first_published_to_feed": "2026-07-02T09:40:59.763815+00:00"
+  },
+  {
+    "issue_id": "CVE-2026-44628",
+    "issue_type": "cve",
+    "title": "CVE-2026-44628",
+    "summary": "An unauthenticated attacker can crash the worklist server with a single crafted query when the server has a valid Called AE Title / storage directory, the expected lockfile, and at least one matching worklist record.",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-181-01.json",
+    "cves": [
+      "CVE-2026-44628"
+    ],
+    "sources": [
+      "cisa-icsma"
+    ],
+    "published_dates": [
+      "2026-06-30T06:00:00.000000Z"
+    ],
+    "first_seen_at": "2026-07-02T09:18:53.033693+00:00",
+    "last_seen_at": "2026-07-02T09:18:53.033693+00:00",
+    "score": 90,
+    "priority": "P2",
+    "actions": [
+      "track"
+    ],
+    "why": [
+      "base: issue_type=cve (+10)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "priority: P2 (score=90)"
+    ],
+    "handling_warnings": [],
+    "evidence_gaps": [],
+    "unknowns": [],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "high",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2026-44628",
+        "source": "cisa-icsma"
+      }
+    ],
+    "cvss_score": 7.5,
+    "cvss_severity": "HIGH",
+    "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+    "cwe_ids": [
+      "CWE-843"
+    ],
+    "affected_products": [],
+    "nvd_description": "An unauthenticated attacker can crash the worklist server with a single crafted query when the server has a valid Called AE Title / storage directory, the expected lockfile, and at least one matching worklist record.",
+    "source_summary": "Successful exploitation of these vulnerabilities could allow an attacker to write files, access unauthorized information, exhaust memory, or crash affected DCMTK client or server processes.",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Review vendor advisory for mitigation guidance.",
+      "Monitor for exploitation indicators."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": null,
+    "epss_percentile": null,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": [],
+    "first_published_to_feed": "2026-07-02T09:40:59.763815+00:00"
+  },
+  {
+    "issue_id": "CVE-2026-50003",
+    "issue_type": "cve",
+    "title": "CVE-2026-50003",
+    "summary": "A malicious or compromised server can make a DCMTK client using bit-preserving C-GET storage mode write files outside the chosen output directory, using both relative (../) paths and absolute paths.",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-181-01.json",
+    "cves": [
+      "CVE-2026-50003"
+    ],
+    "sources": [
+      "cisa-icsma"
+    ],
+    "published_dates": [
+      "2026-06-30T06:00:00.000000Z"
+    ],
+    "first_seen_at": "2026-07-02T09:18:53.033693+00:00",
+    "last_seen_at": "2026-07-02T09:18:53.033693+00:00",
+    "score": 90,
+    "priority": "P2",
+    "actions": [
+      "track"
+    ],
+    "why": [
+      "base: issue_type=cve (+10)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "priority: P2 (score=90)"
+    ],
+    "handling_warnings": [],
+    "evidence_gaps": [],
+    "unknowns": [],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "critical",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2026-50003",
+        "source": "cisa-icsma"
+      }
+    ],
+    "cvss_score": 9.8,
+    "cvss_severity": "CRITICAL",
+    "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+    "cwe_ids": [
+      "CWE-22"
+    ],
+    "affected_products": [],
+    "nvd_description": "A malicious or compromised server can make a DCMTK client using bit-preserving C-GET storage mode write files outside the chosen output directory, using both relative (../) paths and absolute paths.",
+    "source_summary": "Successful exploitation of these vulnerabilities could allow an attacker to write files, access unauthorized information, exhaust memory, or crash affected DCMTK client or server processes.",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Review vendor advisory for mitigation guidance.",
+      "Monitor for exploitation indicators."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": null,
+    "epss_percentile": null,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": [],
+    "first_published_to_feed": "2026-07-02T09:40:59.763815+00:00"
+  },
+  {
+    "issue_id": "CVE-2026-50254",
+    "issue_type": "cve",
+    "title": "CVE-2026-50254",
+    "summary": "An unauthenticated remote attacker can repeatedly send a single crafted connection request to leak memory. Against storescp in its default single-process mode, memory grows quickly and the service is eventually killed, after which it stops accepting connections until an operator restarts it.",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-181-01.json",
+    "cves": [
+      "CVE-2026-50254"
+    ],
+    "sources": [
+      "cisa-icsma"
+    ],
+    "published_dates": [
+      "2026-06-30T06:00:00.000000Z"
+    ],
+    "first_seen_at": "2026-07-02T09:18:53.033693+00:00",
+    "last_seen_at": "2026-07-02T09:18:53.033693+00:00",
+    "score": 90,
+    "priority": "P2",
+    "actions": [
+      "track"
+    ],
+    "why": [
+      "base: issue_type=cve (+10)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "priority: P2 (score=90)"
+    ],
+    "handling_warnings": [],
+    "evidence_gaps": [],
+    "unknowns": [],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "high",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2026-50254",
+        "source": "cisa-icsma"
+      }
+    ],
+    "cvss_score": 7.5,
+    "cvss_severity": "HIGH",
+    "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+    "cwe_ids": [
+      "CWE-401"
+    ],
+    "affected_products": [],
+    "nvd_description": "An unauthenticated remote attacker can repeatedly send a single crafted connection request to leak memory. Against storescp in its default single-process mode, memory grows quickly and the service is eventually killed, after which it stops accepting connections until an operator restarts it.",
+    "source_summary": "Successful exploitation of these vulnerabilities could allow an attacker to write files, access unauthorized information, exhaust memory, or crash affected DCMTK client or server processes.",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Review vendor advisory for mitigation guidance.",
+      "Monitor for exploitation indicators."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": null,
+    "epss_percentile": null,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": [],
+    "first_published_to_feed": "2026-07-02T09:40:59.763815+00:00"
+  },
+  {
+    "issue_id": "CVE-2026-52868",
+    "issue_type": "cve",
+    "title": "CVE-2026-52868",
+    "summary": "An unauthenticated attacker can read worklist records from a directory outside the intended per-AE worklist storage area. In a multi-area deployment, this can cross departmental or clinic data separation.",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-181-01.json",
+    "cves": [
+      "CVE-2026-52868"
+    ],
+    "sources": [
+      "cisa-icsma"
+    ],
+    "published_dates": [
+      "2026-06-30T06:00:00.000000Z"
+    ],
+    "first_seen_at": "2026-07-02T09:18:53.033693+00:00",
+    "last_seen_at": "2026-07-02T09:18:53.033693+00:00",
+    "score": 90,
+    "priority": "P2",
+    "actions": [
+      "track"
+    ],
+    "why": [
+      "base: issue_type=cve (+10)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "priority: P2 (score=90)"
+    ],
+    "handling_warnings": [],
+    "evidence_gaps": [],
+    "unknowns": [],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "high",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2026-52868",
+        "source": "cisa-icsma"
+      }
+    ],
+    "cvss_score": 8.2,
+    "cvss_severity": "HIGH",
+    "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:L/A:N",
+    "cwe_ids": [
+      "CWE-22"
+    ],
+    "affected_products": [],
+    "nvd_description": "An unauthenticated attacker can read worklist records from a directory outside the intended per-AE worklist storage area. In a multi-area deployment, this can cross departmental or clinic data separation.",
+    "source_summary": "Successful exploitation of these vulnerabilities could allow an attacker to write files, access unauthorized information, exhaust memory, or crash affected DCMTK client or server processes.",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Review vendor advisory for mitigation guidance.",
+      "Monitor for exploitation indicators."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": null,
+    "epss_percentile": null,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": [],
+    "first_published_to_feed": "2026-07-02T09:40:59.763815+00:00"
+  },
+  {
     "issue_id": "UNK-02fdb6ff2608f2b5",
     "issue_type": "unknown",
     "title": "Z-0091-2026: Boston Scientific Corporation",
@@ -26518,7 +26953,7 @@
       "2026-06-25T06:00:00.000000Z"
     ],
     "first_seen_at": "2026-06-27T08:59:58.900765+00:00",
-    "last_seen_at": "2026-07-01T10:02:11.316787+00:00",
+    "last_seen_at": "2026-07-02T09:18:53.033693+00:00",
     "score": 82,
     "priority": "P2",
     "actions": [
@@ -26595,7 +27030,7 @@
       "2026-06-18T06:00:00.000000Z"
     ],
     "first_seen_at": "2026-06-27T08:59:58.900765+00:00",
-    "last_seen_at": "2026-07-01T10:02:11.316787+00:00",
+    "last_seen_at": "2026-07-02T09:18:53.033693+00:00",
     "score": 82,
     "priority": "P2",
     "actions": [
@@ -36380,7 +36815,7 @@
       "Fri, 15 May 2026 14:00:00 +0000"
     ],
     "first_seen_at": "2026-06-24T23:45:01.416683+00:00",
-    "last_seen_at": "2026-07-01T10:02:49.582042+00:00",
+    "last_seen_at": "2026-07-02T09:19:15.578388+00:00",
     "score": 38,
     "priority": "P3",
     "actions": [
