@@ -24716,7 +24716,7 @@
       "2026-06-25T06:00:00.000000Z"
     ],
     "first_seen_at": "2026-06-27T08:59:58.900765+00:00",
-    "last_seen_at": "2026-07-02T09:18:53.033693+00:00",
+    "last_seen_at": "2026-07-03T09:23:07.482685+00:00",
     "score": 97,
     "priority": "P2",
     "actions": [
@@ -25051,110 +25051,6 @@
     "is_kev_medical_device": false,
     "epss_score": 0.00036,
     "epss_percentile": 0.10625,
-    "recommended_patterns": [],
-    "tasks_by_role": {},
-    "reasoning": "",
-    "citations": []
-  },
-  {
-    "issue_id": "CVE-2025-14346",
-    "issue_type": "cve",
-    "title": "CVE-2025-14346",
-    "summary": "WHILL Model C2 Electric Wheelchairs and Model F Power Chairs have a critical vulnerability that allows an attacker nearby to connect via Bluetooth without needing a password. This could let them control the chair's movement and settings without authorization. It is recommended to secure or limit Bluetooth access on these devices until a patch is available.",
-    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2025/icsma-25-364-01.json",
-    "cves": [
-      "CVE-2025-14346"
-    ],
-    "sources": [
-      "cisa-icsma",
-      "cisa-icsma-historical"
-    ],
-    "published_dates": [
-      "12/30/2025",
-      "2025-12-30T07:00:00.000000Z",
-      "Tue, 30 Dec 2025 09:24:07 EST"
-    ],
-    "first_seen_at": "2026-03-25T23:08:40.677883+00:00",
-    "last_seen_at": "2026-06-25T19:57:39.965108+00:00",
-    "score": 90,
-    "priority": "P2",
-    "actions": [
-      "track"
-    ],
-    "why": [
-      "base: issue_type=cve (+10)",
-      "source-authority: tier-1 weight=1.0 (+30)",
-      "healthcare-source: tier-1 medical source (+50)",
-      "priority: P2 (score=90)"
-    ],
-    "handling_warnings": [
-      "Ensure Bluetooth functionality is disabled when not in use",
-      "Monitor for unauthorized Bluetooth connections"
-    ],
-    "evidence_gaps": [],
-    "unknowns": [
-      "Patch timeline unknown",
-      "Exact affected versions not specified"
-    ],
-    "source_consensus": {
-      "agreed": [],
-      "contradicted": [],
-      "unique_contributions": {}
-    },
-    "source_authority_weight": 1.0,
-    "highest_authority_source": "cisa-icsma",
-    "healthcare_category": "medical_device",
-    "classification": {},
-    "severity": "critical",
-    "affected_versions": [],
-    "vendor": "",
-    "generated_by": "deterministic",
-    "extracted_facts": {},
-    "inferred_facts": {},
-    "confidence_by_field": {},
-    "evidence_sources": [],
-    "insufficient_evidence": false,
-    "non_applicability": [],
-    "source_mitigations": [
-      {
-        "source": "cisa-icsma",
-        "source_tier": 1,
-        "action": "secure or limit Bluetooth access on these devices until a patch is available",
-        "citation": "/node/24363",
-        "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-364-01",
-        "mitigation_type": "network"
-      }
-    ],
-    "iocs": [
-      {
-        "type": "cve",
-        "value": "CVE-2025-14346",
-        "source": "cisa-icsma"
-      }
-    ],
-    "cvss_score": 9.8,
-    "cvss_severity": "CRITICAL",
-    "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
-    "cwe_ids": [
-      "CWE-306"
-    ],
-    "affected_products": [],
-    "nvd_description": "WHILL Model C2 Electric Wheelchairs and Model F Power Chairs do not enforce authentication for Bluetooth connections. An attacker within range can pair with the device and issue movement commands, override speed restrictions, and manipulate configuration profiles without any credentials or user interaction.",
-    "source_summary": "Successful exploitation of this vulnerability could allow an attacker within Bluetooth range to take control over the product.",
-    "kev_required_action": "",
-    "kev_due_date": "",
-    "kev_vendor": "",
-    "kev_product": "",
-    "kev_vulnerability_name": "",
-    "remediation_steps": [
-      "Isolate affected systems. Block untrusted inbound connections.",
-      "Apply vendor patch when available."
-    ],
-    "healthcare_relevant": true,
-    "fda_risk_class": null,
-    "is_kev_medical_device": false,
-    "epss_score": 0.00125,
-    "epss_percentile": 0.31815,
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
@@ -26474,6 +26370,110 @@
     "first_published_to_feed": "2026-07-02T09:40:59.763815+00:00"
   },
   {
+    "issue_id": "CVE-2025-14346",
+    "issue_type": "cve",
+    "title": "CVE-2025-14346",
+    "summary": "WHILL Model C2 Electric Wheelchairs and Model F Power Chairs have a critical vulnerability that allows an attacker nearby to connect via Bluetooth without needing a password. This could let them control the chair's movement and settings without authorization. It is recommended to secure or limit Bluetooth access on these devices until a patch is available.",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2025/icsma-25-364-01.json",
+    "cves": [
+      "CVE-2025-14346"
+    ],
+    "sources": [
+      "cisa-icsma",
+      "cisa-icsma-historical"
+    ],
+    "published_dates": [
+      "12/30/2025",
+      "2025-12-30T07:00:00.000000Z",
+      "Tue, 30 Dec 2025 09:24:07 EST"
+    ],
+    "first_seen_at": "2026-03-25T23:08:40.677883+00:00",
+    "last_seen_at": "2026-07-03T09:23:07.482685+00:00",
+    "score": 90,
+    "priority": "P2",
+    "actions": [
+      "track"
+    ],
+    "why": [
+      "base: issue_type=cve (+10)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "priority: P2 (score=90)"
+    ],
+    "handling_warnings": [
+      "Ensure Bluetooth functionality is disabled when not in use",
+      "Monitor for unauthorized Bluetooth connections"
+    ],
+    "evidence_gaps": [],
+    "unknowns": [
+      "Patch timeline unknown",
+      "Exact affected versions not specified"
+    ],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "critical",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [
+      {
+        "source": "cisa-icsma",
+        "source_tier": 1,
+        "action": "secure or limit Bluetooth access on these devices until a patch is available",
+        "citation": "/node/24363",
+        "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-364-01",
+        "mitigation_type": "network"
+      }
+    ],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2025-14346",
+        "source": "cisa-icsma"
+      }
+    ],
+    "cvss_score": 9.8,
+    "cvss_severity": "CRITICAL",
+    "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+    "cwe_ids": [
+      "CWE-306"
+    ],
+    "affected_products": [],
+    "nvd_description": "WHILL Model C2 Electric Wheelchairs and Model F Power Chairs do not enforce authentication for Bluetooth connections. An attacker within range can pair with the device and issue movement commands, override speed restrictions, and manipulate configuration profiles without any credentials or user interaction.",
+    "source_summary": "Successful exploitation of this vulnerability could allow an attacker within Bluetooth range to take control over the product.",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Isolate affected systems. Block untrusted inbound connections.",
+      "Apply vendor patch when available."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": 0.00125,
+    "epss_percentile": 0.31815,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": []
+  },
+  {
     "issue_id": "UNK-02fdb6ff2608f2b5",
     "issue_type": "unknown",
     "title": "Z-0091-2026: Boston Scientific Corporation",
@@ -26940,6 +26940,83 @@
     "citations": []
   },
   {
+    "issue_id": "UNK-43b73e6c6a249d23",
+    "issue_type": "unknown",
+    "title": "OFFIS DCMTK Toolkit",
+    "summary": "OFFIS DCMTK Toolkit",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-181-01.json",
+    "cves": [],
+    "sources": [
+      "cisa-icsma"
+    ],
+    "published_dates": [
+      "2026-06-30T06:00:00.000000Z"
+    ],
+    "first_seen_at": "2026-07-03T09:23:07.482685+00:00",
+    "last_seen_at": "2026-07-03T09:23:07.482685+00:00",
+    "score": 82,
+    "priority": "P2",
+    "actions": [
+      "track"
+    ],
+    "why": [
+      "base: issue_type!=cve (+2)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "priority: P2 (score=82)"
+    ],
+    "handling_warnings": [],
+    "evidence_gaps": [],
+    "unknowns": [],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [],
+    "cvss_score": 0,
+    "cvss_severity": "",
+    "cvss_vector": "",
+    "cwe_ids": [],
+    "affected_products": [],
+    "nvd_description": "",
+    "source_summary": "",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Review vendor advisory for mitigation guidance.",
+      "Monitor for exploitation indicators."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": null,
+    "epss_percentile": null,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": [],
+    "first_published_to_feed": "2026-07-03T09:27:17.820342+00:00"
+  },
+  {
     "issue_id": "UNK-77c9795b25ca2ab9",
     "issue_type": "unknown",
     "title": "pydicom pynetdicom Library",
@@ -26953,7 +27030,7 @@
       "2026-06-25T06:00:00.000000Z"
     ],
     "first_seen_at": "2026-06-27T08:59:58.900765+00:00",
-    "last_seen_at": "2026-07-02T09:18:53.033693+00:00",
+    "last_seen_at": "2026-07-03T09:23:07.482685+00:00",
     "score": 82,
     "priority": "P2",
     "actions": [
@@ -27030,7 +27107,7 @@
       "2026-06-18T06:00:00.000000Z"
     ],
     "first_seen_at": "2026-06-27T08:59:58.900765+00:00",
-    "last_seen_at": "2026-07-02T09:18:53.033693+00:00",
+    "last_seen_at": "2026-07-03T09:23:07.482685+00:00",
     "score": 82,
     "priority": "P2",
     "actions": [
@@ -36815,7 +36892,7 @@
       "Fri, 15 May 2026 14:00:00 +0000"
     ],
     "first_seen_at": "2026-06-24T23:45:01.416683+00:00",
-    "last_seen_at": "2026-07-02T09:19:15.578388+00:00",
+    "last_seen_at": "2026-07-03T09:23:38.532537+00:00",
     "score": 38,
     "priority": "P3",
     "actions": [
