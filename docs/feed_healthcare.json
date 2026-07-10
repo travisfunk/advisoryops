@@ -24716,7 +24716,7 @@
       "2026-06-25T06:00:00.000000Z"
     ],
     "first_seen_at": "2026-06-27T08:59:58.900765+00:00",
-    "last_seen_at": "2026-07-09T09:55:34.291911+00:00",
+    "last_seen_at": "2026-07-10T09:51:42.937301+00:00",
     "score": 97,
     "priority": "P2",
     "actions": [
@@ -26940,160 +26940,6 @@
     "citations": []
   },
   {
-    "issue_id": "UNK-43b73e6c6a249d23",
-    "issue_type": "unknown",
-    "title": "OFFIS DCMTK Toolkit",
-    "summary": "OFFIS DCMTK Toolkit",
-    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-181-01.json",
-    "cves": [],
-    "sources": [
-      "cisa-icsma"
-    ],
-    "published_dates": [
-      "2026-06-30T06:00:00.000000Z"
-    ],
-    "first_seen_at": "2026-07-03T09:23:07.482685+00:00",
-    "last_seen_at": "2026-07-09T09:55:34.291911+00:00",
-    "score": 82,
-    "priority": "P2",
-    "actions": [
-      "track"
-    ],
-    "why": [
-      "base: issue_type!=cve (+2)",
-      "source-authority: tier-1 weight=1.0 (+30)",
-      "healthcare-source: tier-1 medical source (+50)",
-      "priority: P2 (score=82)"
-    ],
-    "handling_warnings": [],
-    "evidence_gaps": [],
-    "unknowns": [],
-    "source_consensus": {
-      "agreed": [],
-      "contradicted": [],
-      "unique_contributions": {}
-    },
-    "source_authority_weight": 1.0,
-    "highest_authority_source": "cisa-icsma",
-    "healthcare_category": "medical_device",
-    "classification": {},
-    "severity": "",
-    "affected_versions": [],
-    "vendor": "",
-    "generated_by": "deterministic",
-    "extracted_facts": {},
-    "inferred_facts": {},
-    "confidence_by_field": {},
-    "evidence_sources": [],
-    "insufficient_evidence": false,
-    "non_applicability": [],
-    "source_mitigations": [],
-    "iocs": [],
-    "cvss_score": 0,
-    "cvss_severity": "",
-    "cvss_vector": "",
-    "cwe_ids": [],
-    "affected_products": [],
-    "nvd_description": "",
-    "source_summary": "",
-    "kev_required_action": "",
-    "kev_due_date": "",
-    "kev_vendor": "",
-    "kev_product": "",
-    "kev_vulnerability_name": "",
-    "remediation_steps": [
-      "Review vendor advisory for mitigation guidance.",
-      "Monitor for exploitation indicators."
-    ],
-    "healthcare_relevant": true,
-    "fda_risk_class": null,
-    "is_kev_medical_device": false,
-    "epss_score": null,
-    "epss_percentile": null,
-    "recommended_patterns": [],
-    "tasks_by_role": {},
-    "reasoning": "",
-    "citations": [],
-    "first_published_to_feed": "2026-07-03T09:27:17.820342+00:00"
-  },
-  {
-    "issue_id": "UNK-77c9795b25ca2ab9",
-    "issue_type": "unknown",
-    "title": "pydicom pynetdicom Library",
-    "summary": "pydicom pynetdicom Library",
-    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-176-01.json",
-    "cves": [],
-    "sources": [
-      "cisa-icsma"
-    ],
-    "published_dates": [
-      "2026-06-25T06:00:00.000000Z"
-    ],
-    "first_seen_at": "2026-06-27T08:59:58.900765+00:00",
-    "last_seen_at": "2026-07-09T09:55:34.291911+00:00",
-    "score": 82,
-    "priority": "P2",
-    "actions": [
-      "track"
-    ],
-    "why": [
-      "base: issue_type!=cve (+2)",
-      "source-authority: tier-1 weight=1.0 (+30)",
-      "healthcare-source: tier-1 medical source (+50)",
-      "priority: P2 (score=82)"
-    ],
-    "handling_warnings": [],
-    "evidence_gaps": [],
-    "unknowns": [],
-    "source_consensus": {
-      "agreed": [],
-      "contradicted": [],
-      "unique_contributions": {}
-    },
-    "source_authority_weight": 1.0,
-    "highest_authority_source": "cisa-icsma",
-    "healthcare_category": "medical_device",
-    "classification": {},
-    "severity": "",
-    "affected_versions": [],
-    "vendor": "",
-    "generated_by": "deterministic",
-    "extracted_facts": {},
-    "inferred_facts": {},
-    "confidence_by_field": {},
-    "evidence_sources": [],
-    "insufficient_evidence": false,
-    "non_applicability": [],
-    "source_mitigations": [],
-    "iocs": [],
-    "cvss_score": 0,
-    "cvss_severity": "",
-    "cvss_vector": "",
-    "cwe_ids": [],
-    "affected_products": [],
-    "nvd_description": "",
-    "source_summary": "",
-    "kev_required_action": "",
-    "kev_due_date": "",
-    "kev_vendor": "",
-    "kev_product": "",
-    "kev_vulnerability_name": "",
-    "remediation_steps": [
-      "Review vendor advisory for mitigation guidance.",
-      "Monitor for exploitation indicators."
-    ],
-    "healthcare_relevant": true,
-    "fda_risk_class": null,
-    "is_kev_medical_device": false,
-    "epss_score": null,
-    "epss_percentile": null,
-    "recommended_patterns": [],
-    "tasks_by_role": {},
-    "reasoning": "",
-    "citations": [],
-    "first_published_to_feed": "2026-06-27T09:05:59.350962+00:00"
-  },
-  {
     "issue_id": "UNK-c15fc4d817d73dcd",
     "issue_type": "unknown",
     "title": "Apollo Pharmacy Blood Glucose Monitoring System APG-01 BT",
@@ -27171,6 +27017,160 @@
     "first_published_to_feed": "2026-06-27T09:05:59.350962+00:00"
   },
   {
+    "issue_id": "UNK-43b73e6c6a249d23",
+    "issue_type": "unknown",
+    "title": "OFFIS DCMTK Toolkit",
+    "summary": "OFFIS DCMTK Toolkit",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-181-01.json",
+    "cves": [],
+    "sources": [
+      "cisa-icsma"
+    ],
+    "published_dates": [
+      "2026-06-30T06:00:00.000000Z"
+    ],
+    "first_seen_at": "2026-07-03T09:23:07.482685+00:00",
+    "last_seen_at": "2026-07-10T09:51:42.937301+00:00",
+    "score": 82,
+    "priority": "P2",
+    "actions": [
+      "track"
+    ],
+    "why": [
+      "base: issue_type!=cve (+2)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "priority: P2 (score=82)"
+    ],
+    "handling_warnings": [],
+    "evidence_gaps": [],
+    "unknowns": [],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [],
+    "cvss_score": 0,
+    "cvss_severity": "",
+    "cvss_vector": "",
+    "cwe_ids": [],
+    "affected_products": [],
+    "nvd_description": "",
+    "source_summary": "",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Review vendor advisory for mitigation guidance.",
+      "Monitor for exploitation indicators."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": null,
+    "epss_percentile": null,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": [],
+    "first_published_to_feed": "2026-07-03T09:27:17.820342+00:00"
+  },
+  {
+    "issue_id": "UNK-77c9795b25ca2ab9",
+    "issue_type": "unknown",
+    "title": "pydicom pynetdicom Library",
+    "summary": "pydicom pynetdicom Library",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-176-01.json",
+    "cves": [],
+    "sources": [
+      "cisa-icsma"
+    ],
+    "published_dates": [
+      "2026-06-25T06:00:00.000000Z"
+    ],
+    "first_seen_at": "2026-06-27T08:59:58.900765+00:00",
+    "last_seen_at": "2026-07-10T09:51:42.937301+00:00",
+    "score": 82,
+    "priority": "P2",
+    "actions": [
+      "track"
+    ],
+    "why": [
+      "base: issue_type!=cve (+2)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "priority: P2 (score=82)"
+    ],
+    "handling_warnings": [],
+    "evidence_gaps": [],
+    "unknowns": [],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [],
+    "cvss_score": 0,
+    "cvss_severity": "",
+    "cvss_vector": "",
+    "cwe_ids": [],
+    "affected_products": [],
+    "nvd_description": "",
+    "source_summary": "",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Review vendor advisory for mitigation guidance.",
+      "Monitor for exploitation indicators."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": null,
+    "epss_percentile": null,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": [],
+    "first_published_to_feed": "2026-06-27T09:05:59.350962+00:00"
+  },
+  {
     "issue_id": "UNK-feadbe0cf2be2433",
     "issue_type": "unknown",
     "title": "WHILL Model C2 Electric Wheelchairs and Model F Power Chairs (Update B)",
@@ -27184,7 +27184,7 @@
       "2025-12-30T07:00:00.000000Z"
     ],
     "first_seen_at": "2026-07-04T09:01:22.120265+00:00",
-    "last_seen_at": "2026-07-09T09:55:34.291911+00:00",
+    "last_seen_at": "2026-07-10T09:51:42.937301+00:00",
     "score": 82,
     "priority": "P2",
     "actions": [
@@ -36969,7 +36969,7 @@
       "Fri, 15 May 2026 14:00:00 +0000"
     ],
     "first_seen_at": "2026-06-24T23:45:01.416683+00:00",
-    "last_seen_at": "2026-07-09T10:00:48.413981+00:00",
+    "last_seen_at": "2026-07-10T09:56:55.032778+00:00",
     "score": 38,
     "priority": "P3",
     "actions": [
