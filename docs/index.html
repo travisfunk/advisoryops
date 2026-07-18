@@ -132,6 +132,9 @@ a:hover { text-decoration:underline; }
 .new-badge { display:inline-block; font-size:9px; font-weight:700; padding:2px 6px; border-radius:3px; background:#064e3b; color:#6ee7b7; line-height:1; letter-spacing:.5px; flex-shrink:0; text-transform:uppercase; border:1px solid #065f46; }
 .kev-med-badge .kev-med-tooltip { display:none; position:absolute; bottom:calc(100% + 6px); left:50%; transform:translateX(-50%); background:#1e2030; color:var(--text-body); border:1px solid var(--card-border); border-radius:4px; padding:6px 10px; font-size:11px; font-weight:400; letter-spacing:0; white-space:normal; width:280px; z-index:100; line-height:1.4; text-transform:none; pointer-events:none; box-shadow:0 4px 12px rgba(0,0,0,.4); }
 .kev-med-badge:hover .kev-med-tooltip { display:block; }
+.exp-badge { display:inline-block; font-size:9px; font-weight:700; padding:2px 6px; border-radius:3px; background:#4c1d95; color:#c4b5fd; line-height:1; letter-spacing:.5px; flex-shrink:0; cursor:default; position:relative; text-transform:uppercase; }
+.exp-badge .exp-tooltip { display:none; position:absolute; bottom:calc(100% + 6px); left:50%; transform:translateX(-50%); background:#1e2030; color:var(--text-body); border:1px solid var(--card-border); border-radius:4px; padding:6px 10px; font-size:11px; font-weight:400; letter-spacing:0; white-space:normal; width:260px; z-index:100; line-height:1.4; text-transform:none; pointer-events:none; box-shadow:0 4px 12px rgba(0,0,0,.4); }
+.exp-badge:hover .exp-tooltip { display:block; }
 
 /* Scope toggle */
 .scope-toggle { display:inline-flex; border-radius:4px; overflow:hidden; border:1px solid var(--card-border); margin-left:auto; }
@@ -379,6 +382,9 @@ a:hover { text-decoration:underline; }
     <div class="filter-sep"></div>
     <span class="filter-label">KEV</span>
     <button class="pill" data-kev-filter="exploited">Actively exploited</button>
+    <div class="filter-sep"></div>
+    <span class="filter-label">EXPOSURE</span>
+    <button class="pill" data-exposure-filter="remote-no-auth">Remote, no auth</button>
     <div class="filter-sep"></div>
     <span class="filter-label">FDA CLASS</span>
     <button class="pill active" data-fda-filter="all">All</button>
@@ -674,6 +680,7 @@ a:hover { text-decoration:underline; }
   let filteredIssues = [];
   let activeFdaFilter = 'all';
   let activeKevFilter = false;
+  let activeExposureFilter = false;
   let activeLatestLimit = 25;
   let weeklyDigest = false;
   let healthcareMode = true;
@@ -881,6 +888,9 @@ a:hover { text-decoration:underline; }
     if (activeKevFilter) {
       list = list.filter(function(i) { return i.is_kev_medical_device === true; });
     }
+    if (activeExposureFilter) {
+      list = list.filter(function(i) { return i.remotely_exploitable_no_auth === true; });
+    }
     if (activeFdaFilter === '3') {
       list = list.filter(function(i) { return i.fda_risk_class === '3'; });
     } else if (activeFdaFilter === '23') {
@@ -984,6 +994,12 @@ a:hover { text-decoration:underline; }
       '<span class="kev-med-tooltip">This vulnerability is in CISA\'s Known Exploited Vulnerabilities catalog AND affects a medical device. Immediate review required.</span></span>';
   }
 
+  function exposureBadgeHtml(issue) {
+    if (issue.remotely_exploitable_no_auth !== true) return '';
+    return '<span class="exp-badge">REMOTE/NO-AUTH' +
+      '<span class="exp-tooltip">CVSS vector indicates a network attack vector with no authentication required — exploitable directly over the network with no credentials.</span></span>';
+  }
+
   function renderIssueList() {
     var pane = document.getElementById('issue-list-pane');
     if (!filteredIssues.length) {
@@ -1003,12 +1019,14 @@ a:hover { text-decoration:underline; }
       var fdaBadge = fdaBadgeHtml(issue.fda_risk_class);
       var kevMedBadge = kevMedBadgeHtml(issue);
       var newBadge = issue.first_published_to_feed ? '<span class="new-badge">NEW</span>' : '';
+      var exposureBadge = exposureBadgeHtml(issue);
       var readCls = isRead(issue.issue_id) ? ' read' : '';
       html += '<div class="issue-card' + sel + readCls + '" data-idx="' + idx + '">' +
         '<div class="ic-top">' +
         kevMedBadge +
         newBadge +
         '<span class="badge badge-' + issue.priority + '">' + issue.priority + '</span>' +
+        exposureBadge +
         hcBadge +
         fdaBadge +
         cvssPill +
@@ -1657,6 +1675,17 @@ a:hover { text-decoration:underline; }
       activeKevFilter = !activeKevFilter;
       if (activeKevFilter) kevPill.classList.add('active');
       else kevPill.classList.remove('active');
+      applyFilters();
+    });
+  }
+
+  // Exposure filter pill (toggle)
+  var exposurePill = document.querySelector('#filter-bar [data-exposure-filter]');
+  if (exposurePill) {
+    exposurePill.addEventListener('click', function() {
+      activeExposureFilter = !activeExposureFilter;
+      if (activeExposureFilter) exposurePill.classList.add('active');
+      else exposurePill.classList.remove('active');
       applyFilters();
     });
   }

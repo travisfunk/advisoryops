@@ -77,7 +77,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-bb42d639c954adb2",
@@ -157,7 +159,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-42c8bda5d1c8ebae",
@@ -264,7 +268,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-6d2423151dfbdc5a",
@@ -346,7 +352,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-997344b1c53f1cea",
@@ -428,7 +436,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-d4ea5711439ee32f",
@@ -510,7 +520,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-d740b01f7f680fcb",
@@ -592,7 +604,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-dad54a8176fe9125",
@@ -674,7 +688,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-e30570c93d19ba1e",
@@ -756,7 +772,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-fb5c69c197b9d55d",
@@ -861,7 +879,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "CVE-2025-12699",
@@ -982,7 +1002,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "local",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2024-22774",
@@ -1096,7 +1118,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "local",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2021-26248",
@@ -1191,7 +1215,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "local",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2021-26262",
@@ -1286,7 +1312,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "local",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2021-42744",
@@ -1381,7 +1409,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "local",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "UNK-006e21c3dc2847c0",
@@ -1460,7 +1490,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-0133b2d8e663c561",
@@ -1555,7 +1587,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-0136902d55f31e5c",
@@ -1669,7 +1703,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-01a34d74be2341e4",
@@ -1765,7 +1801,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-025843202d354582",
@@ -1870,7 +1908,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-0487993e46900982",
@@ -1949,7 +1989,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-056209e122b74e4c",
@@ -2029,7 +2071,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-05f9902354ecea12",
@@ -2109,7 +2153,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-06add2dd9676df5f",
@@ -2189,7 +2235,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-080a810d077c8316",
@@ -2270,7 +2318,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-0c54c66b1483fe7b",
@@ -2351,7 +2401,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-0ea911ffeb65bdb4",
@@ -2431,7 +2483,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-108cd8efa31aa9e6",
@@ -2511,7 +2565,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-12a1f6564a911171",
@@ -2592,7 +2648,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-138bfd0377b3236a",
@@ -2672,7 +2730,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-13ab46694d6a9cea",
@@ -2753,7 +2813,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-1441ebfe07006613",
@@ -2849,7 +2911,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-1756265048fa0738",
@@ -2928,7 +2992,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-176c7c93f09488b4",
@@ -3007,7 +3073,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-188aafe516b133ed",
@@ -3087,7 +3155,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-18b8644018a3c194",
@@ -3182,7 +3252,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-1b2bad543def03f6",
@@ -3262,7 +3334,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-1c9e2d703137f3c9",
@@ -3342,7 +3416,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-1d5992f5247ca512",
@@ -3422,7 +3498,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-1e16e917ac5bb754",
@@ -3503,7 +3581,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-1ec66da45a392636",
@@ -3584,7 +3664,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-231b427141e526b7",
@@ -3664,7 +3746,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-23ed2e43d78fe2fa",
@@ -3743,7 +3827,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-24bf06a0af7c46dd",
@@ -3823,7 +3909,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-28158763f38c4601",
@@ -3902,7 +3990,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-28ec9f8d2ff8dce5",
@@ -3998,7 +4088,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-2c5bed4a351bbfd3",
@@ -4077,7 +4169,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-2c7338796774773a",
@@ -4156,7 +4250,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-2df695cb0c325928",
@@ -4235,7 +4331,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-2eab48375a431de3",
@@ -4314,7 +4412,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-300ff661bd774934",
@@ -4394,7 +4494,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-304eea66d5e39f58",
@@ -4498,7 +4600,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-307c61cc8cf94594",
@@ -4577,7 +4681,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-30b60546aa2912b6",
@@ -4657,7 +4763,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-3a578508d643f675",
@@ -4744,7 +4852,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-3aec629be31cbb3a",
@@ -4824,7 +4934,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-3cb42e4561e6b23c",
@@ -4903,7 +5015,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-3d05f36acaddca6f",
@@ -4983,7 +5097,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-407d520411240067",
@@ -5077,7 +5193,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-4648614e52d36685",
@@ -5156,7 +5274,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-489581b35a242438",
@@ -5236,7 +5356,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-49a3f87ad0d9253a",
@@ -5316,7 +5438,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-49f89354816c493a",
@@ -5395,7 +5519,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-4c43818f28b69c7c",
@@ -5475,7 +5601,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-4ceb9e2d67f00825",
@@ -5555,7 +5683,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-4ed29b67e3fa31d1",
@@ -5636,7 +5766,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-50a69a1189ca1559",
@@ -5715,7 +5847,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-51413c06f3670d25",
@@ -5794,7 +5928,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-540f54b49f97504e",
@@ -5873,7 +6009,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-54bd60555aaefc1d",
@@ -5953,7 +6091,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-55ca83f98b9f45f5",
@@ -6032,7 +6172,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-5651c2e1d95e8ef6",
@@ -6111,7 +6253,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-5a7d1b506fc1e706",
@@ -6191,7 +6335,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-5aef5524e56b2276",
@@ -6285,7 +6431,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-5b9fc641d66bef18",
@@ -6364,7 +6512,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-5fa88757ee7667ac",
@@ -6443,7 +6593,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-61969688e1359f45",
@@ -6523,7 +6675,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-6271e4e564e2ec1c",
@@ -6603,7 +6757,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-62a8f53644d7f3eb",
@@ -6683,7 +6839,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-638873eba0338b62",
@@ -6764,7 +6922,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-685a276c5b3e8c27",
@@ -6844,7 +7004,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-6944d23c91b64bc5",
@@ -6924,7 +7086,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-6978d6cda8bfa92c",
@@ -7004,7 +7168,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-6c2cc24d6dcc14f3",
@@ -7083,7 +7249,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-70e72ee7eac7b0c3",
@@ -7163,7 +7331,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-71481319f03a4379",
@@ -7242,7 +7412,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-7155db378f91828a",
@@ -7322,7 +7494,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-7372c5348f8fabda",
@@ -7403,7 +7577,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-73a715d905e9247d",
@@ -7483,7 +7659,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-789109469e82bb01",
@@ -7563,7 +7741,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-7a1b4c3e52a81add",
@@ -7650,7 +7830,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-7b1a34f0ae858925",
@@ -7730,7 +7912,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-7bb70e9a4577d92f",
@@ -7810,7 +7994,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-7beb32f6993629e8",
@@ -7889,7 +8075,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-7d09ecc611d0068f",
@@ -7969,7 +8157,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-7e07dc41221cb4bc",
@@ -8048,7 +8238,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-7e8ec96f129bdf2b",
@@ -8128,7 +8320,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-7eda15bc775fbad6",
@@ -8232,7 +8426,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-8a7849d70c33be8e",
@@ -8312,7 +8508,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-8ac211bae32576f1",
@@ -8392,7 +8590,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-8be12ccde42d1aab",
@@ -8472,7 +8672,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-8d253bf9cb481430",
@@ -8553,7 +8755,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-8e316c0c26673af6",
@@ -8634,7 +8838,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-904452de03b1e4e5",
@@ -8714,7 +8920,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-918cc2bc96576820",
@@ -8794,7 +9002,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-9325bfe970656689",
@@ -8873,7 +9083,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-9645d4c074530f1b",
@@ -8952,7 +9164,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-9a5bd287626e0442",
@@ -9032,7 +9246,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-9c44a1b09fd0a286",
@@ -9128,7 +9344,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-9cf6f6664e9e50ee",
@@ -9209,7 +9427,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-9fc3c7dcda57eb6e",
@@ -9289,7 +9509,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-a0bd2f872af89503",
@@ -9368,7 +9590,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-a6270b89a42a2d4e",
@@ -9448,7 +9672,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-a6499c8621856901",
@@ -9528,7 +9754,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-a70abfe2b82195f1",
@@ -9607,7 +9835,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-a838291057ff3742",
@@ -9687,7 +9917,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-a8d8de48a05ad315",
@@ -9768,7 +10000,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-a8ff8497ee33993f",
@@ -9848,7 +10082,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-aa56a58919cff76a",
@@ -9927,7 +10163,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-aabed7692daa8851",
@@ -10007,7 +10245,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-ab3fda0728bb7392",
@@ -10087,7 +10327,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-ac69981368e1291e",
@@ -10182,7 +10424,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-acfd9d36c6024600",
@@ -10261,7 +10505,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-b0557eb167d22f3b",
@@ -10342,7 +10588,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-b08f65d286ad3d17",
@@ -10422,7 +10670,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-beba09d4c9818c6a",
@@ -10502,7 +10752,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-bf85212057bc66f8",
@@ -10581,7 +10833,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-c147590167e911a8",
@@ -10661,7 +10915,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-c23551b47b6220c8",
@@ -10741,7 +10997,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-c31aa1b4a39334e1",
@@ -10836,7 +11094,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-c55df14a1f67cd1b",
@@ -10916,7 +11176,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-c59eeb491e3ad64a",
@@ -10996,7 +11258,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-c5ae9c8292941e18",
@@ -11081,7 +11345,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-c5e3cca2183287f4",
@@ -11160,7 +11426,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-c622d9b6e67e9e22",
@@ -11240,7 +11508,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-c66386bb7765ec9f",
@@ -11335,7 +11605,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-ca88a30920a55df0",
@@ -11415,7 +11687,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-d10801a2e154952a",
@@ -11496,7 +11770,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-d28950d2b43c405f",
@@ -11577,7 +11853,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-d5ce01014446c817",
@@ -11657,7 +11935,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-d6acef0dadc73908",
@@ -11736,7 +12016,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-d94ec51c9b68af96",
@@ -11816,7 +12098,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-d9999bba3db4c449",
@@ -11911,7 +12195,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-da4c68a4c4197821",
@@ -12005,7 +12291,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-dc067d416b71399f",
@@ -12085,7 +12373,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-dc45cae5cf95ea0d",
@@ -12165,7 +12455,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-dd91ed52386a2493",
@@ -12244,7 +12536,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-de1a0cc4167f6d78",
@@ -12324,7 +12618,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-e2f766b0f53f1a2c",
@@ -12429,7 +12725,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-e4e7a2dd781f4811",
@@ -12508,7 +12806,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-e58b8f83f1a8a98b",
@@ -12589,7 +12889,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-e636e39ddbdf4168",
@@ -12669,7 +12971,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-e749b1c9425f64ff",
@@ -12749,7 +13053,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-e85e756eeaab8be5",
@@ -12828,7 +13134,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-ec0d28d916f96254",
@@ -12908,7 +13216,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-ec2fe25e4ba5532b",
@@ -12988,7 +13298,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-ec5bacea80c96081",
@@ -13082,7 +13394,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-eccaab913b8b9412",
@@ -13167,7 +13481,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-edbe545439048274",
@@ -13247,7 +13563,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-efd2483f4f597b8f",
@@ -13326,7 +13644,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-f13c1033fc6a8d9c",
@@ -13406,7 +13726,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-f30d78b794e2a747",
@@ -13486,7 +13808,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-f58cd8e8855b69f0",
@@ -13565,7 +13889,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-f6942e9e34bb0076",
@@ -13644,7 +13970,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-f71f202ed503cc7d",
@@ -13724,7 +14052,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-f798d6e20412f767",
@@ -13805,7 +14135,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-f7a32cb95b15d967",
@@ -13885,7 +14217,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-f8c03f288fcdd0f4",
@@ -13965,7 +14299,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-f970fce8d819a096",
@@ -14052,7 +14388,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-fab51bf1db1ce08b",
@@ -14132,7 +14470,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-fab7cc7ba766f434",
@@ -14212,7 +14552,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-fb612c607170b248",
@@ -14316,7 +14658,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-fc37ee8db8bc08e9",
@@ -14396,7 +14740,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-fc8dce2e75623f06",
@@ -14475,7 +14821,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-fe1af5e85a7240bb",
@@ -14556,7 +14904,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-ff40c386f30cc7cb",
@@ -14661,7 +15011,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-01d7554e6564592b",
@@ -14741,7 +15093,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-02379ddc53e45a98",
@@ -14821,7 +15175,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-02f3656d3c672414",
@@ -14901,7 +15257,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-046b01bd2c0d935b",
@@ -14981,7 +15339,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-075ca542e35e1890",
@@ -15062,7 +15422,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-07fadecc0d762782",
@@ -15144,7 +15506,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-0b2b4872a055afab",
@@ -15225,7 +15589,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-0e0a6a908ed6d6c9",
@@ -15306,7 +15672,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-111007afa5444b8c",
@@ -15387,7 +15755,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-12ac7d39b12d4118",
@@ -15467,7 +15837,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-14e4575699f48d01",
@@ -15547,7 +15919,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-189572526d8e61d7",
@@ -15628,7 +16002,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-1963b73ac53f7bd9",
@@ -15709,7 +16085,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-1dbb584c9b46565c",
@@ -15789,7 +16167,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-1f4914e7651cca29",
@@ -15870,7 +16250,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-223dd60c78698a11",
@@ -15950,7 +16332,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-2303f4412789f056",
@@ -16031,7 +16415,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-233b9ae066b89f5f",
@@ -16117,7 +16503,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-26e638967656433b",
@@ -16197,7 +16585,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-2740264146ffc732",
@@ -16277,7 +16667,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-28b92e8f5a7b68d6",
@@ -16358,7 +16750,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-2afb91bf80ccbcfb",
@@ -16440,7 +16834,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-2f2e2ee5bde01682",
@@ -16520,7 +16916,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-3080958ddf706eb9",
@@ -16601,7 +16999,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-3214a51e0ad797c6",
@@ -16682,7 +17082,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-32f73aafaa617cdc",
@@ -16762,7 +17164,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-3a9c0e33c93e3a0c",
@@ -16842,7 +17246,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-41396c449c25e8eb",
@@ -16923,7 +17329,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-41be31677d76dd6d",
@@ -17004,7 +17412,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-44729554c64c58a5",
@@ -17085,7 +17495,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-45179d7c343a18d5",
@@ -17166,7 +17578,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-45316cdb6f730daf",
@@ -17253,7 +17667,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-46593360537a86e9",
@@ -17333,7 +17749,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-47b32ea83c5466d4",
@@ -17413,7 +17831,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-49a89b5de3169174",
@@ -17493,7 +17913,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-4a7abf0f15041ace",
@@ -17574,7 +17996,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-4d372cfdc0bb8697",
@@ -17655,7 +18079,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-4e12d19428de4555",
@@ -17736,7 +18162,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-51c27281b4ff46ed",
@@ -17817,7 +18245,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-52d6a6fa539edc73",
@@ -17897,7 +18327,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-539e679e46318e35",
@@ -17978,7 +18410,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-5624438055535d18",
@@ -18058,7 +18492,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-57c8b3d599e53118",
@@ -18138,7 +18574,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-58d448f531ff8189",
@@ -18218,7 +18656,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-5b18157a89132724",
@@ -18299,7 +18739,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-5c25862ed79d5d8f",
@@ -18393,7 +18835,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-5c4a3a9ef67fcbee",
@@ -18474,7 +18918,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-5dbd09508755503d",
@@ -18555,7 +19001,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-5e0cc665f73390c4",
@@ -18636,7 +19084,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-6317fe1b5a49e28c",
@@ -18717,7 +19167,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-643c7515d6687976",
@@ -18797,7 +19249,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-717089d142797b7b",
@@ -18877,7 +19331,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-73990e6e011a2d04",
@@ -18958,7 +19414,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-73f5ed835ed5f7cb",
@@ -19040,7 +19498,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-745a8f760261a9e6",
@@ -19121,7 +19581,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-7c02666b25f72333",
@@ -19202,7 +19664,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-7c33270cfba4ccba",
@@ -19283,7 +19747,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-7d728b1d2e3ba3a2",
@@ -19364,7 +19830,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-7f222f1016c22bca",
@@ -19445,7 +19913,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-7fcb8d35b9bbe023",
@@ -19525,7 +19995,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-800ee6357db1a856",
@@ -19603,7 +20075,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-80a652ca5dd14bc2",
@@ -19684,7 +20158,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-84bf8d9087b0989e",
@@ -19764,7 +20240,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-8762fd6f09331b2a",
@@ -19845,7 +20323,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-87bc1c8648104bb7",
@@ -19925,7 +20405,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-89ebf0de38514adb",
@@ -20006,7 +20488,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-8ad1cd3db234a056",
@@ -20087,7 +20571,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-8b1ea51f041aa500",
@@ -20168,7 +20654,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-8c3e6416172c33a3",
@@ -20249,7 +20737,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-8f8f1123a9568410",
@@ -20330,7 +20820,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-917df41b2a82d449",
@@ -20410,7 +20902,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-953e56bd22fb0b65",
@@ -20491,7 +20985,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-96f9a15e64ff84f9",
@@ -20572,7 +21068,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-9acfb45676347a7a",
@@ -20652,7 +21150,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-9afc05edf5d24864",
@@ -20733,7 +21233,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-9b2b4ed24bd01bf6",
@@ -20814,7 +21316,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-9b84a27ed4b4e6c8",
@@ -20894,7 +21398,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-9d2051a6735a3028",
@@ -20974,7 +21480,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-9e9f622b7d75e701",
@@ -21054,7 +21562,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-9ebd99b0823d4368",
@@ -21134,7 +21644,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-a0c85dc9be812819",
@@ -21215,7 +21727,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-a1501335b28a0823",
@@ -21318,7 +21832,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-a2db5018518f0684",
@@ -21399,7 +21915,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-a432dc25c3cbce40",
@@ -21479,7 +21997,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-a5dd249020ad0459",
@@ -21559,7 +22079,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-a8ab96f5da5db062",
@@ -21640,7 +22162,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-ae7f599d90c945c7",
@@ -21722,7 +22246,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-aee2e4e322d3b8fd",
@@ -21802,7 +22328,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-afd33ead7bc129ec",
@@ -21883,7 +22411,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-b01a17c81ddb0fa9",
@@ -21964,7 +22494,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-b02f67ad317fff63",
@@ -22045,7 +22577,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-b0fc9378bfb30c34",
@@ -22125,7 +22659,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-b1fb42bbbd265a3e",
@@ -22206,7 +22742,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-b4dc065c1b2d6b88",
@@ -22287,7 +22825,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-b67c8cbf89ce32ba",
@@ -22367,7 +22907,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-b9472dcef38e2bbf",
@@ -22448,7 +22990,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-bc2e0d63f0552e08",
@@ -22528,7 +23072,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-be86c0c93c02bd78",
@@ -22608,7 +23154,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-c548358d903a3970",
@@ -22689,7 +23237,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-c730d488692d1ebd",
@@ -22770,7 +23320,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-cb302e467cc5afab",
@@ -22850,7 +23402,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-cc732b1822e57845",
@@ -22931,7 +23485,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-cf9460f33725fc36",
@@ -23012,7 +23568,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-d0574507a7ad195d",
@@ -23093,7 +23651,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-d7340ddabb5c253c",
@@ -23174,7 +23734,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-da298dbc57f17611",
@@ -23254,7 +23816,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-de8b8d9f113a3aec",
@@ -23334,7 +23898,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-dfddc323b4014786",
@@ -23415,7 +23981,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-e09d80c1074e4cbe",
@@ -23495,7 +24063,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-e5f7204afa42f16a",
@@ -23575,7 +24145,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-e6c6efd17c09beba",
@@ -23656,7 +24228,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-e941fc0bf8775002",
@@ -23737,7 +24311,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-e9d7014556720415",
@@ -23817,7 +24393,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-ea0c8afd3579fdbd",
@@ -23897,7 +24475,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-eb1f0a88e01b3d0f",
@@ -23978,7 +24558,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-eb8f14ffc38d9a87",
@@ -24058,7 +24640,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-ebadeb242dddb63e",
@@ -24139,7 +24723,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-ec405ddf9c71ffbd",
@@ -24219,7 +24805,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-eca99ce2ca25cd94",
@@ -24299,7 +24887,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-ed2f3993e7822a3b",
@@ -24379,7 +24969,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-f9df1fcced52cf3b",
@@ -24460,7 +25052,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-fc661bc521caf30b",
@@ -24540,7 +25134,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-fdbebb3686e24a45",
@@ -24620,7 +25216,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-fe89bafd67b78b17",
@@ -24700,7 +25298,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-10127effd1ba464d",
@@ -24716,7 +25316,7 @@
       "2026-06-25T06:00:00.000000Z"
     ],
     "first_seen_at": "2026-06-27T08:59:58.900765+00:00",
-    "last_seen_at": "2026-07-17T08:27:09.504345+00:00",
+    "last_seen_at": "2026-07-18T08:01:28.012175+00:00",
     "score": 97,
     "priority": "P2",
     "actions": [
@@ -24756,6 +25356,8 @@
     "cvss_score": 0,
     "cvss_severity": "",
     "cvss_vector": "",
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null,
     "cwe_ids": [],
     "affected_products": [],
     "nvd_description": "",
@@ -24866,7 +25468,9 @@
     "tasks_by_role": {},
     "reasoning": "",
     "citations": [],
-    "first_published_to_feed": "2026-06-25T20:41:42.302809+00:00"
+    "first_published_to_feed": "2026-06-25T20:41:42.302809+00:00",
+    "cvss_attack_vector": "adjacent",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2018-10622",
@@ -24961,7 +25565,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "physical",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2018-10626",
@@ -25054,7 +25660,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "adjacent",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2025-4386",
@@ -25141,7 +25749,9 @@
     "tasks_by_role": {},
     "reasoning": "",
     "citations": [],
-    "first_published_to_feed": "2026-06-25T20:41:42.302809+00:00"
+    "first_published_to_feed": "2026-06-25T20:41:42.302809+00:00",
+    "cvss_attack_vector": "physical",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2025-4393",
@@ -25229,7 +25839,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "local",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2025-4394",
@@ -25317,7 +25929,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "physical",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2025-4395",
@@ -25405,7 +26019,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "physical",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2025-4397",
@@ -25492,7 +26108,9 @@
     "tasks_by_role": {},
     "reasoning": "",
     "citations": [],
-    "first_published_to_feed": "2026-06-25T20:41:42.302809+00:00"
+    "first_published_to_feed": "2026-06-25T20:41:42.302809+00:00",
+    "cvss_attack_vector": "physical",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2026-7251",
@@ -25579,7 +26197,9 @@
     "tasks_by_role": {},
     "reasoning": "",
     "citations": [],
-    "first_published_to_feed": "2026-06-25T20:41:42.302809+00:00"
+    "first_published_to_feed": "2026-06-25T20:41:42.302809+00:00",
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2026-12473",
@@ -25666,7 +26286,9 @@
     "tasks_by_role": {},
     "reasoning": "",
     "citations": [],
-    "first_published_to_feed": "2026-06-26T09:57:30.069838+00:00"
+    "first_published_to_feed": "2026-06-26T09:57:30.069838+00:00",
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2026-50034",
@@ -25753,7 +26375,9 @@
     "tasks_by_role": {},
     "reasoning": "",
     "citations": [],
-    "first_published_to_feed": "2026-06-25T20:41:42.302809+00:00"
+    "first_published_to_feed": "2026-06-25T20:41:42.302809+00:00",
+    "cvss_attack_vector": "adjacent",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2026-52866",
@@ -25840,7 +26464,9 @@
     "tasks_by_role": {},
     "reasoning": "",
     "citations": [],
-    "first_published_to_feed": "2026-06-25T20:41:42.302809+00:00"
+    "first_published_to_feed": "2026-06-25T20:41:42.302809+00:00",
+    "cvss_attack_vector": "adjacent",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2026-56445",
@@ -25932,7 +26558,9 @@
     "tasks_by_role": {},
     "reasoning": "",
     "citations": [],
-    "first_published_to_feed": "2026-06-26T09:57:30.069838+00:00"
+    "first_published_to_feed": "2026-06-26T09:57:30.069838+00:00",
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2026-35505",
@@ -26019,7 +26647,9 @@
     "tasks_by_role": {},
     "reasoning": "",
     "citations": [],
-    "first_published_to_feed": "2026-07-02T09:40:59.763815+00:00"
+    "first_published_to_feed": "2026-07-02T09:40:59.763815+00:00",
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2026-44628",
@@ -26106,7 +26736,9 @@
     "tasks_by_role": {},
     "reasoning": "",
     "citations": [],
-    "first_published_to_feed": "2026-07-02T09:40:59.763815+00:00"
+    "first_published_to_feed": "2026-07-02T09:40:59.763815+00:00",
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2026-50003",
@@ -26193,7 +26825,9 @@
     "tasks_by_role": {},
     "reasoning": "",
     "citations": [],
-    "first_published_to_feed": "2026-07-02T09:40:59.763815+00:00"
+    "first_published_to_feed": "2026-07-02T09:40:59.763815+00:00",
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2026-50254",
@@ -26280,7 +26914,9 @@
     "tasks_by_role": {},
     "reasoning": "",
     "citations": [],
-    "first_published_to_feed": "2026-07-02T09:40:59.763815+00:00"
+    "first_published_to_feed": "2026-07-02T09:40:59.763815+00:00",
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2026-52868",
@@ -26367,7 +27003,9 @@
     "tasks_by_role": {},
     "reasoning": "",
     "citations": [],
-    "first_published_to_feed": "2026-07-02T09:40:59.763815+00:00"
+    "first_published_to_feed": "2026-07-02T09:40:59.763815+00:00",
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2025-14346",
@@ -26471,7 +27109,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "UNK-02fdb6ff2608f2b5",
@@ -26565,7 +27205,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-bfc6ca74ce11a7e4",
@@ -26658,7 +27300,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-c96a733a10e192b1",
@@ -26751,7 +27395,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-ec33a7048ada73c7",
@@ -26844,7 +27490,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-f9b5ea77591c3bae",
@@ -26937,7 +27585,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-c15fc4d817d73dcd",
@@ -27014,7 +27664,9 @@
     "tasks_by_role": {},
     "reasoning": "",
     "citations": [],
-    "first_published_to_feed": "2026-06-27T09:05:59.350962+00:00"
+    "first_published_to_feed": "2026-06-27T09:05:59.350962+00:00",
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-43b73e6c6a249d23",
@@ -27030,7 +27682,7 @@
       "2026-06-30T06:00:00.000000Z"
     ],
     "first_seen_at": "2026-07-03T09:23:07.482685+00:00",
-    "last_seen_at": "2026-07-17T08:27:09.504345+00:00",
+    "last_seen_at": "2026-07-18T08:01:28.012175+00:00",
     "score": 82,
     "priority": "P2",
     "actions": [
@@ -27069,6 +27721,8 @@
     "cvss_score": 0,
     "cvss_severity": "",
     "cvss_vector": "",
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null,
     "cwe_ids": [],
     "affected_products": [],
     "nvd_description": "",
@@ -27107,7 +27761,7 @@
       "2026-06-25T06:00:00.000000Z"
     ],
     "first_seen_at": "2026-06-27T08:59:58.900765+00:00",
-    "last_seen_at": "2026-07-17T08:27:09.504345+00:00",
+    "last_seen_at": "2026-07-18T08:01:28.012175+00:00",
     "score": 82,
     "priority": "P2",
     "actions": [
@@ -27146,6 +27800,8 @@
     "cvss_score": 0,
     "cvss_severity": "",
     "cvss_vector": "",
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null,
     "cwe_ids": [],
     "affected_products": [],
     "nvd_description": "",
@@ -27184,7 +27840,7 @@
       "2025-12-30T07:00:00.000000Z"
     ],
     "first_seen_at": "2026-07-04T09:01:22.120265+00:00",
-    "last_seen_at": "2026-07-17T08:27:09.504345+00:00",
+    "last_seen_at": "2026-07-18T08:01:28.012175+00:00",
     "score": 82,
     "priority": "P2",
     "actions": [
@@ -27223,6 +27879,8 @@
     "cvss_score": 0,
     "cvss_severity": "",
     "cvss_vector": "",
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null,
     "cwe_ids": [],
     "affected_products": [],
     "nvd_description": "",
@@ -27348,7 +28006,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-c95746973baddf6b",
@@ -27441,7 +28101,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-ce1995726f40e22a",
@@ -27545,7 +28207,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-520510d5fd6e5c7b",
@@ -27624,7 +28288,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-74ad7b8614b2e0d4",
@@ -27703,7 +28369,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-8199b6141a359e21",
@@ -27782,7 +28450,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-855913347f907328",
@@ -27861,7 +28531,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-988549a1608b53f0",
@@ -27940,7 +28612,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-afd25cc2a8c66b07",
@@ -28019,7 +28693,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-ef9de85513c84a55",
@@ -28098,7 +28774,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-f0830324126441bb",
@@ -28177,7 +28855,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-f2146dee215afbe5",
@@ -28256,7 +28936,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "CVE-2017-12718",
@@ -28359,7 +29041,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2017-12720",
@@ -28468,7 +29152,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2017-12721",
@@ -28570,7 +29256,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2017-12722",
@@ -28672,7 +29360,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2017-12723",
@@ -28773,7 +29463,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2017-12724",
@@ -28883,7 +29575,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2017-12725",
@@ -28994,7 +29688,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2017-12726",
@@ -29095,7 +29791,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2020-16216",
@@ -29230,7 +29928,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "adjacent",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2020-16228",
@@ -29356,7 +30056,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "adjacent",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "UNK-182c1677787947af",
@@ -29435,7 +30137,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-21f371eb3fc2ade1",
@@ -29514,7 +30218,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-6aef780aaafe08f3",
@@ -29593,7 +30299,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-afe71a22a14d970a",
@@ -29672,7 +30380,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-f18b17d279c9c98e",
@@ -29751,7 +30461,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-04e33ba13b8a9053",
@@ -29831,7 +30543,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-0dcd104fcd1ec01e",
@@ -29911,7 +30625,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-18ff0918750aa168",
@@ -29991,7 +30707,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-4b20de4f9a36df36",
@@ -30071,7 +30789,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-58853229dba2e357",
@@ -30151,7 +30871,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-607a17bd07c4bfe7",
@@ -30231,7 +30953,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-74687b437ce11f83",
@@ -30311,7 +31035,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-861c1b0144458b24",
@@ -30391,7 +31117,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-8724bfa580e47f00",
@@ -30470,7 +31198,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-a203c6fc23175066",
@@ -30550,7 +31280,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-c48d1a40e9373b2d",
@@ -30630,7 +31362,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-d4ef323c57029e45",
@@ -30709,7 +31443,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-e946f5fb58a1ed85",
@@ -30789,7 +31525,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-fe653a79e74f396b",
@@ -30869,7 +31607,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-40c2bc0c8769a66e",
@@ -30948,7 +31688,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-1220722722f89a07",
@@ -31027,7 +31769,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-22eab37e032f35a7",
@@ -31106,7 +31850,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-29592b11d6d6a2c5",
@@ -31185,7 +31931,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-2ec97e3e311c0cb7",
@@ -31264,7 +32012,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-310681362cb9a732",
@@ -31343,7 +32093,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-3be9f80543dfad07",
@@ -31422,7 +32174,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-476732c6491d82a0",
@@ -31501,7 +32255,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-4f75543a407049a5",
@@ -31580,7 +32336,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-516ba83010d4f896",
@@ -31659,7 +32417,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-58b0fe8dca6b928b",
@@ -31738,7 +32498,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-6fd4c7007caf13aa",
@@ -31817,7 +32579,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-714037cee4f3aef0",
@@ -31896,7 +32660,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-752233e9d8c4c396",
@@ -31975,7 +32741,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-752f35644b7ab9e2",
@@ -32054,7 +32822,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-7c43258e5a5c62a3",
@@ -32133,7 +32903,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-83725c0b74e8a3f6",
@@ -32212,7 +32984,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-9261cc35d9cbe5f0",
@@ -32291,7 +33065,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-97c5a6cafc41606d",
@@ -32370,7 +33146,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-990fc3e357c4245d",
@@ -32449,7 +33227,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-9d08b6fdc93c9383",
@@ -32528,7 +33308,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-aefbd43f07eb4b70",
@@ -32607,7 +33389,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-b5a3070b537d6abf",
@@ -32686,7 +33470,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-c1f6bd201bea3da9",
@@ -32765,7 +33551,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-df10f3ba331abf6e",
@@ -32844,7 +33632,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-e03553a67367c783",
@@ -32923,7 +33713,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-e1c189b7f76dbbd7",
@@ -33002,7 +33794,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-e32bc0df2a577c76",
@@ -33081,7 +33875,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-fb1059040a5b5bb0",
@@ -33160,7 +33956,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-0137613f4403995e",
@@ -33238,7 +34036,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-389c072fc7a0d799",
@@ -33316,7 +34116,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-4f787982403aa6a3",
@@ -33394,7 +34196,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-6365549082afe803",
@@ -33472,7 +34276,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-796faedeb07ae87f",
@@ -33550,7 +34356,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-7e0da21fa77628ff",
@@ -33628,7 +34436,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-abe08a5081e1e1da",
@@ -33706,7 +34516,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-ade3a50c295573d4",
@@ -33784,7 +34596,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-b6acc7be03e4bb7c",
@@ -33862,7 +34676,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-c03a24653dc4964c",
@@ -33940,7 +34756,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-c9cc7eb46a744e96",
@@ -34018,7 +34836,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-e0d35e8e7cb369d1",
@@ -34096,7 +34916,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-f0147400d52f6a79",
@@ -34174,7 +34996,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-f8faedcc7fefa52a",
@@ -34252,7 +35076,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-62877173dd12ba1b",
@@ -34330,7 +35156,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-76cfaca86a762f7a",
@@ -34408,7 +35236,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-e6cb8851e00409cc",
@@ -34486,7 +35316,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "UNK-fcc240c3e16d3502",
@@ -34564,7 +35396,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null
   },
   {
     "issue_id": "CVE-2017-12712",
@@ -34665,7 +35499,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "adjacent",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2017-12714",
@@ -34766,7 +35602,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "adjacent",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2017-12716",
@@ -34861,7 +35699,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "adjacent",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2017-9657",
@@ -34950,7 +35790,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "adjacent",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2017-9658",
@@ -35038,7 +35880,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "adjacent",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2018-10597",
@@ -35161,7 +36005,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "adjacent",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2018-10599",
@@ -35283,7 +36129,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "adjacent",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2018-10601",
@@ -35406,7 +36254,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "adjacent",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2018-10634",
@@ -35510,7 +36360,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "adjacent",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2018-14781",
@@ -35615,7 +36467,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "adjacent",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2019-13530",
@@ -35721,7 +36575,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2019-13534",
@@ -35826,7 +36682,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2019-6538",
@@ -35954,7 +36812,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "adjacent",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2019-6540",
@@ -36086,7 +36946,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "adjacent",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2020-10598",
@@ -36176,7 +37038,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "physical",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2021-27479",
@@ -36263,7 +37127,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2021-27481",
@@ -36351,7 +37217,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "local",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2021-27483",
@@ -36439,7 +37307,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "local",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2021-27485",
@@ -36526,7 +37396,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2021-27487",
@@ -36613,7 +37485,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "local",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2021-27489",
@@ -36700,7 +37574,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2022-22766",
@@ -36834,7 +37710,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "local",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2022-22767",
@@ -36953,7 +37831,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "adjacent",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "UNK-476984298ccf6f7d",
@@ -36969,7 +37849,7 @@
       "Fri, 15 May 2026 14:00:00 +0000"
     ],
     "first_seen_at": "2026-06-24T23:45:01.416683+00:00",
-    "last_seen_at": "2026-07-17T08:32:33.211450+00:00",
+    "last_seen_at": "2026-07-18T08:06:54.329095+00:00",
     "score": 38,
     "priority": "P3",
     "actions": [
@@ -37079,6 +37959,8 @@
     "cvss_score": 0,
     "cvss_severity": "",
     "cvss_vector": "",
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null,
     "cwe_ids": [],
     "affected_products": [],
     "nvd_description": "",

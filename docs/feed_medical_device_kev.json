@@ -160,7 +160,9 @@
     "reasoning": "Given that there is a critical network-accessible vulnerability with available patches, the priority is to apply those patches to mitigate the risk of unauthorized access and potential remote control of the FreePBX system. As such, the patching pattern was chosen.",
     "citations": [
       "https://nvd.nist.gov/vuln/detail/CVE-2025-57819"
-    ]
+    ],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2025-6554",
@@ -347,7 +349,9 @@
       "https://cloud.google.com/blog/topics/threat-intelligence/intellexa-zero-day-exploits-continue/",
       "https://nvd.nist.gov/vuln/detail/CVE-2025-6554",
       "https://www.philips.com/a-w/security/security-advisories/product-security-2025.html"
-    ]
+    ],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2013-3893",
@@ -512,7 +516,9 @@
     "reasoning": "The issue presents a critical vulnerability in Internet Explorer, which is network-accessible and exploitative via malicious JavaScript. Since a vendor patch is available, applying the patch is prioritized to ensure the security of the network.",
     "citations": [
       "https://nvd.nist.gov/vuln/detail/CVE-2013-3893"
-    ]
+    ],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2025-20352",
@@ -673,7 +679,9 @@
     "reasoning": "The only appropriate pattern to address the critical vulnerability (CVE-2025-20352) identified in the advisory is to apply the available vendor patch as it directly addresses the issue. The high score signifies the urgency of the situation.",
     "citations": [
       "https://nvd.nist.gov/vuln/detail/CVE-2025-20352"
-    ]
+    ],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2025-7775",
@@ -796,7 +804,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2007-0671",
@@ -927,7 +937,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2017-1000353",
@@ -1041,7 +1053,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2024-8069",
@@ -1152,7 +1166,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "adjacent",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2025-20281",
@@ -1265,7 +1281,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2025-20333",
@@ -1392,7 +1410,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2025-20337",
@@ -1505,7 +1525,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2025-20362",
@@ -1622,7 +1644,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2025-24016",
@@ -1734,7 +1758,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2025-32433",
@@ -1900,7 +1926,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2025-3935",
@@ -2012,7 +2040,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2025-49704",
@@ -2136,7 +2166,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2025-49706",
@@ -2260,7 +2292,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2025-5086",
@@ -2371,7 +2405,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2025-53690",
@@ -2485,7 +2521,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2023-50224",
@@ -2592,7 +2630,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "adjacent",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2024-0769",
@@ -2705,7 +2745,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2016-10033",
@@ -2827,7 +2869,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2023-2533",
@@ -2935,7 +2979,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2024-54085",
@@ -3053,7 +3099,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2024-8068",
@@ -3160,7 +3208,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "adjacent",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2020-24363",
@@ -3280,7 +3330,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "adjacent",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2020-25078",
@@ -3406,7 +3458,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2020-25079",
@@ -3535,7 +3589,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2021-32030",
@@ -3659,7 +3715,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2022-40799",
@@ -3770,7 +3828,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2023-33538",
@@ -3886,7 +3946,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2025-25257",
@@ -3991,7 +4053,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2025-9377",
@@ -4116,7 +4180,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2025-6543",
@@ -4243,7 +4309,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2014-3931",
@@ -4351,7 +4419,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2014-6278",
@@ -4470,7 +4540,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2015-7755",
@@ -4580,7 +4652,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2019-5418",
@@ -4694,7 +4768,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2019-9621",
@@ -4802,7 +4878,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2021-21311",
@@ -4913,7 +4991,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2023-0386",
@@ -5034,7 +5114,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "local",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2024-42009",
@@ -5144,7 +5226,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2025-10035",
@@ -5254,7 +5338,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2025-10585",
@@ -5367,7 +5453,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2025-21479",
@@ -5625,7 +5713,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "local",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2025-21480",
@@ -5875,7 +5965,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "local",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2025-2775",
@@ -5983,7 +6075,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2025-2776",
@@ -6102,7 +6196,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2025-32463",
@@ -6216,7 +6312,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "local",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2025-33053",
@@ -6347,7 +6445,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2025-4008",
@@ -6459,7 +6559,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "adjacent",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2025-43200",
@@ -6580,7 +6682,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2025-47812",
@@ -6688,7 +6792,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2025-48384",
@@ -6801,7 +6907,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2025-48927",
@@ -6910,7 +7018,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2025-48928",
@@ -7029,7 +7139,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "local",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2025-54309",
@@ -7139,7 +7251,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2025-54948",
@@ -7248,7 +7362,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2025-55177",
@@ -7358,7 +7474,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2025-5777",
@@ -7471,7 +7589,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2025-59689",
@@ -7581,7 +7701,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true
   },
   {
     "issue_id": "CVE-2025-8875",
@@ -7689,7 +7811,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "local",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2025-8876",
@@ -7799,7 +7923,9 @@
     "recommended_patterns": [],
     "tasks_by_role": {},
     "reasoning": "",
-    "citations": []
+    "citations": [],
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": false
   },
   {
     "issue_id": "CVE-2025-64328",
@@ -7820,7 +7946,7 @@
       "Tue, 03 Feb 26 12:00:00 +0000"
     ],
     "first_seen_at": "2026-03-24T02:56:12.060923+00:00",
-    "last_seen_at": "2026-07-17T08:27:09.707606+00:00",
+    "last_seen_at": "2026-07-18T08:01:28.637055+00:00",
     "score": 165,
     "priority": "P0",
     "actions": [
@@ -7903,6 +8029,8 @@
     "cvss_score": 7.2,
     "cvss_severity": "HIGH",
     "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:H/I:H/A:H",
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": false,
     "cwe_ids": [
       "CWE-78"
     ],
