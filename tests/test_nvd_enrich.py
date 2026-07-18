@@ -663,6 +663,98 @@ class TestFeedEntryExposureFields:
         assert entry["healthcare_category"] == "medical_device"
 
 
+class TestNormalizeExposureFields:
+    """_normalize_exposure_fields() is the post-merge-baseline authoritative
+    derivation point (community_build.py) — fixes the gap where
+    merge_baseline_feed()'s Pass 2 appends baseline-only carried-forward rows
+    verbatim, without ever running them through _feed_entry(). A stale
+    baseline row emitted before cvss_attack_vector/remotely_exploitable_no_auth
+    existed carries a cvss_vector but is missing both keys entirely (not
+    present as None — absent) until this normalization runs."""
+
+    def test_stale_rows_missing_keys_get_derived_from_own_vector(self):
+        from advisoryops.community_build import _normalize_exposure_fields
+
+        rows = [
+            {
+                # Stale baseline row: has a vector, predates the new fields.
+                "issue_id": "CVE-2024-0001",
+                "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+            },
+            {
+                # Stale baseline row with a prefix-less CVSS v2 vector.
+                "issue_id": "CVE-2010-0001",
+                "cvss_vector": "AV:N/AC:L/Au:N/C:C/I:C/A:C",
+            },
+        ]
+        assert "cvss_attack_vector" not in rows[0]
+        assert "remotely_exploitable_no_auth" not in rows[0]
+
+        _normalize_exposure_fields(rows)
+
+        assert rows[0]["cvss_attack_vector"] == "network"
+        assert rows[0]["remotely_exploitable_no_auth"] is True
+        assert rows[1]["cvss_attack_vector"] == "network"
+        assert rows[1]["remotely_exploitable_no_auth"] is True
+
+    def test_vectorless_baseline_row_gets_both_null(self):
+        from advisoryops.community_build import _normalize_exposure_fields
+
+        rows = [{"issue_id": "UNK-nvvector"}]
+        _normalize_exposure_fields(rows)
+
+        assert rows[0]["cvss_attack_vector"] is None
+        assert rows[0]["remotely_exploitable_no_auth"] is None
+
+    def test_overwrites_stale_or_incorrect_existing_values(self):
+        """Whatever is already present (from an older schema, a bug, or a
+        Pass-1 row _feed_entry() already derived) is overwritten, not
+        merely filled in when absent."""
+        from advisoryops.community_build import _normalize_exposure_fields
+
+        rows = [{
+            "issue_id": "CVE-2024-0002",
+            "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+            "cvss_attack_vector": "network",  # wrong — should be recomputed to "local"
+            "remotely_exploitable_no_auth": True,  # wrong — should be recomputed to False
+        }]
+        _normalize_exposure_fields(rows)
+
+        assert rows[0]["cvss_attack_vector"] == "local"
+        assert rows[0]["remotely_exploitable_no_auth"] is False
+
+    def test_post_merge_pipeline_fixes_pass2_gap(self):
+        """End-to-end simulation of the exact production gap: a
+        merge_baseline_feed() Pass-2 baseline-only row (unmodified,
+        pre-dates the new fields) followed by _normalize_exposure_fields()
+        — the same order community_build() applies them in."""
+        from advisoryops.community_build import merge_baseline_feed, _normalize_exposure_fields
+
+        baseline_rows = [
+            {
+                "issue_id": "CVE-2019-0001",
+                "cvss_vector": "CVSS:3.0/AV:A/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+                "first_seen_at": "2019-01-01T00:00:00+00:00",
+                "last_seen_at": "2019-01-01T00:00:00+00:00",
+                "sources": ["old-source"],
+                "cves": ["CVE-2019-0001"],
+                "published_dates": [],
+                # No cvss_attack_vector / remotely_exploitable_no_auth — this
+                # row predates the feature.
+            }
+        ]
+        new_rows = []  # nothing rediscovered this run — forces Pass 2
+
+        merged = merge_baseline_feed(new_rows, baseline_rows)
+        assert "cvss_attack_vector" not in merged[0]  # confirms Pass 2 passthrough, pre-fix
+
+        _normalize_exposure_fields(merged)
+
+        assert merged[0]["cvss_attack_vector"] == "adjacent"
+        # Adjacent, not network — condition fails even though PR:N (no auth required).
+        assert merged[0]["remotely_exploitable_no_auth"] is False
+
+
 # ---------------------------------------------------------------------------
 # Rate limiter
 # ---------------------------------------------------------------------------

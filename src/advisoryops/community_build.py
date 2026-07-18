@@ -274,6 +274,26 @@ def _cvss_exposure_fields(cvss_vector: str) -> Dict[str, Any]:
     }
 
 
+def _normalize_exposure_fields(rows: List[Dict[str, Any]]) -> None:
+    """Re-derive cvss_attack_vector/remotely_exploitable_no_auth for every row
+    from its own cvss_vector, overwriting whatever is already present.
+
+    This is the single authoritative derivation point once baseline merging
+    is in play. merge_baseline_feed()'s Pass 2 (baseline-only carried-forward
+    rows, see its docstring) appends previously-published rows verbatim
+    without re-running _feed_entry() — so rows emitted before these two
+    fields existed would otherwise be permanently missing both keys, no
+    matter how many later runs merge them forward. Mutates *rows* in place.
+
+    _feed_entry()'s own derivation is left in place — harmless here (Pass 1
+    rows get overwritten with an identical value) and still the only
+    derivation point for alert_feed_rows and for first-ever builds with no
+    --baseline-feed, neither of which goes through this function.
+    """
+    for row in rows:
+        row.update(_cvss_exposure_fields(row.get("cvss_vector", "")))
+
+
 def _feed_entry(issue: Dict[str, Any]) -> Dict[str, Any]:
     entry: Dict[str, Any] = {
         "issue_id": issue.get("issue_id", ""),
@@ -2566,6 +2586,7 @@ def build_community_feed(
         feed_rows = _sort_feed_entries(
             merge_baseline_feed(feed_rows, baseline_rows, run_timestamp=_merge_ts)
         )
+        _normalize_exposure_fields(feed_rows)
         latest_rows = feed_rows[:latest] if latest > 0 else feed_rows
         new_count = sum(1 for r in feed_rows if r.get("first_published_to_feed"))
         print(f"  Baseline merge: {len(feed_rows)} issues after merge "
