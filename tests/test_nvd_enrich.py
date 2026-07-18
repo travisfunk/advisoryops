@@ -12,12 +12,21 @@ from advisoryops.nvd_enrich import (
     enrich_issue,
     enrich_issues,
     generate_remediation_steps,
+    parse_cvss_vector,
 )
 
 
 # ---------------------------------------------------------------------------
 # Fixtures: realistic NVD API response fragments
 # ---------------------------------------------------------------------------
+
+_NVD_METRIC_KEYS = {
+    "3.1": "cvssMetricV31",
+    "3.0": "cvssMetricV30",
+    "4.0": "cvssMetricV40",
+    "2.0": "cvssMetricV2",
+}
+
 
 def _nvd_cve_item(
     *,
@@ -29,24 +38,34 @@ def _nvd_cve_item(
     cwe: str = "CWE-119",
     cpe: str = "cpe:2.3:a:microsoft:video_activex_control:*:*:*:*:*:*:*:*",
     use_v31: bool = True,
+    version: str = None,
+    extra_metrics: dict = None,
 ) -> dict:
-    """Build a realistic NVD CVE 2.0 item."""
+    """Build a realistic NVD CVE 2.0 item.
+
+    ``version`` selects which cvssMetricV* block is populated ("3.1"
+    (default), "3.0", "4.0", or "2.0"). ``use_v31=False`` is kept as a
+    backward-compatible shorthand for ``version="2.0"``. ``extra_metrics``
+    lets a test add additional metric blocks alongside the primary one (e.g.
+    to prove preference ordering between v3.1 and v4.0).
+    """
+    if version is None:
+        version = "3.1" if use_v31 else "2.0"
+
     metrics = {}
-    if use_v31:
-        metrics["cvssMetricV31"] = [{
+    metric_key = _NVD_METRIC_KEYS[version]
+    if version == "2.0":
+        metrics[metric_key] = [{"cvssData": {"baseScore": base_score, "vectorString": vector}}]
+    else:
+        metrics[metric_key] = [{
             "cvssData": {
                 "baseScore": base_score,
                 "baseSeverity": severity,
                 "vectorString": vector,
             }
         }]
-    else:
-        metrics["cvssMetricV2"] = [{
-            "cvssData": {
-                "baseScore": base_score,
-                "vectorString": vector,
-            }
-        }]
+    if extra_metrics:
+        metrics.update(extra_metrics)
 
     return {
         "id": cve_id,
@@ -119,6 +138,91 @@ class TestExtractNvdFields:
         fields = _extract_nvd_fields({})
         assert fields.get("cwe_ids") == []
         assert fields.get("affected_products") == []
+
+    def test_extracts_cvss_v40_when_only_metric_present(self):
+        item = _nvd_cve_item(
+            base_score=8.2, severity="HIGH", vector="CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N",
+            version="4.0",
+        )
+        fields = _extract_nvd_fields(item)
+        assert fields["cvss_score"] == 8.2
+        assert fields["cvss_vector"] == "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N"
+        assert fields["cvss_severity"] == "HIGH"
+
+    def test_v31_still_wins_over_v40_when_both_present(self):
+        """Additive-only guarantee: adding v4.0 support must not change the
+        resolution for CVEs that already had a v3.1 metric (recon finding #4
+        / spec section 5 — v4.0 is deliberately last in preference order)."""
+        item = _nvd_cve_item(
+            base_score=9.3, severity="CRITICAL", vector="CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+            version="3.1",
+            extra_metrics={
+                "cvssMetricV40": [{
+                    "cvssData": {
+                        "baseScore": 5.0,
+                        "baseSeverity": "MEDIUM",
+                        "vectorString": "CVSS:4.0/AV:A/AC:L/AT:N/PR:N/UI:N",
+                    }
+                }]
+            },
+        )
+        fields = _extract_nvd_fields(item)
+        assert fields["cvss_vector"] == "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+        assert fields["cvss_score"] == 9.3
+
+
+class TestParseCvssVector:
+
+    def test_v31_network_no_auth_is_remotely_exploitable(self):
+        result = parse_cvss_vector("CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H")
+        assert result["version"] == "3.1"
+        assert result["attack_vector"] == "network"
+        assert result["no_auth_required"] is True
+
+    def test_v31_network_requires_privileges_not_no_auth(self):
+        result = parse_cvss_vector("CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H")
+        assert result["attack_vector"] == "network"
+        assert result["no_auth_required"] is False
+
+    def test_v30_local_attack_vector(self):
+        result = parse_cvss_vector("CVSS:3.0/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H")
+        assert result["version"] == "3.0"
+        assert result["attack_vector"] == "local"
+
+    def test_v2_prefixless_vector_network_no_auth(self):
+        result = parse_cvss_vector("AV:N/AC:L/Au:N/C:C/I:C/A:C")
+        assert result["version"] == "2.0"
+        assert result["attack_vector"] == "network"
+        assert result["no_auth_required"] is True
+
+    def test_v2_prefixless_vector_requires_auth(self):
+        result = parse_cvss_vector("AV:N/AC:L/Au:S/C:P/I:P/A:P")
+        assert result["version"] == "2.0"
+        assert result["attack_vector"] == "network"
+        assert result["no_auth_required"] is False
+
+    def test_v40_physical_attack_vector(self):
+        result = parse_cvss_vector("CVSS:4.0/AV:P/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N")
+        assert result["version"] == "4.0"
+        assert result["attack_vector"] == "physical"
+        assert result["no_auth_required"] is True
+
+    def test_empty_string_returns_all_none(self):
+        result = parse_cvss_vector("")
+        assert result == {"version": None, "attack_vector": None, "no_auth_required": None}
+
+    def test_none_returns_all_none(self):
+        result = parse_cvss_vector(None)
+        assert result == {"version": None, "attack_vector": None, "no_auth_required": None}
+
+    def test_garbage_string_returns_all_none(self):
+        result = parse_cvss_vector("not-a-vector")
+        assert result == {"version": None, "attack_vector": None, "no_auth_required": None}
+
+    def test_never_raises_on_malformed_tokens(self):
+        # Missing values, stray separators — must degrade gracefully, not raise.
+        result = parse_cvss_vector("CVSS:3.1/AV/AC:L//PR:N")
+        assert result["version"] == "3.1"
 
 
 class TestParseCpeProduct:
@@ -486,6 +590,77 @@ class TestFeedEntrySchema:
         assert entry["kev_due_date"] == ""
         assert entry["remediation_steps"] == []
         assert entry["source_summary"] == ""
+
+
+class TestFeedEntryExposureFields:
+    """cvss_attack_vector / remotely_exploitable_no_auth are derived at feed
+    emission time from cvss_vector — a pure function, not persisted upstream
+    (scoring and the post-hoc KEV block never read/write them)."""
+
+    def test_network_no_auth_vector_yields_true(self):
+        from advisoryops.community_build import _feed_entry
+
+        issue = {
+            "issue_id": "CVE-2024-0001",
+            "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+        }
+        entry = _feed_entry(issue)
+
+        assert entry["cvss_attack_vector"] == "network"
+        assert entry["remotely_exploitable_no_auth"] is True
+
+    def test_local_vector_yields_false_not_null(self):
+        from advisoryops.community_build import _feed_entry
+
+        issue = {
+            "issue_id": "CVE-2024-0002",
+            "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+        }
+        entry = _feed_entry(issue)
+
+        assert entry["cvss_attack_vector"] == "local"
+        assert entry["remotely_exploitable_no_auth"] is False
+
+    def test_prefixless_v2_vector_supported(self):
+        from advisoryops.community_build import _feed_entry
+
+        issue = {
+            "issue_id": "CVE-2010-0001",
+            "cvss_vector": "AV:N/AC:L/Au:N/C:C/I:C/A:C",
+        }
+        entry = _feed_entry(issue)
+
+        assert entry["cvss_attack_vector"] == "network"
+        assert entry["remotely_exploitable_no_auth"] is True
+
+    def test_no_vector_yields_null_for_both_fields(self):
+        from advisoryops.community_build import _feed_entry
+
+        issue = {"issue_id": "UNK-nvvector"}
+        entry = _feed_entry(issue)
+
+        assert entry["cvss_attack_vector"] is None
+        assert entry["remotely_exploitable_no_auth"] is None
+
+    def test_both_feeds_and_alerts_inherit_via_shared_feed_entry_path(self):
+        """feed_latest.json, feed_healthcare.json, and alerts_public.jsonl
+        are all built by calling _feed_entry() on rows (community_build.py:
+        2392-2394, 2549-2559) — proving the field on _feed_entry's output is
+        sufficient proof all three inherit it, since none of them re-derive
+        or filter the dict's keys afterward."""
+        from advisoryops.community_build import _feed_entry
+
+        issue = {
+            "issue_id": "CVE-2024-0003",
+            "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+            "healthcare_category": "medical_device",
+        }
+        entry = _feed_entry(issue)
+        assert "cvss_attack_vector" in entry
+        assert "remotely_exploitable_no_auth" in entry
+        # feed_healthcare.json is `[r for r in latest_rows if r["healthcare_category"] == "medical_device"]`
+        # over these same _feed_entry() outputs — no separate construction path.
+        assert entry["healthcare_category"] == "medical_device"
 
 
 # ---------------------------------------------------------------------------

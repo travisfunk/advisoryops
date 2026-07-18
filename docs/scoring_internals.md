@@ -1,6 +1,6 @@
 # Scoring Internals Reference
 
-Technical reference for the AdvisoryOps scoring system. Last updated 2026-04-08.
+Technical reference for the AdvisoryOps scoring system. Last updated 2026-07-17.
 
 ## Scoring Module
 
@@ -184,6 +184,14 @@ When `--ai-score` is set, issues with NO deterministic healthcare signals get an
 - medical_device (confidence >= 0.70): +20
 - healthcare_it (confidence >= 0.70): +15
 - healthcare_adjacent (confidence >= 0.70): +5
+
+---
+
+## CVSS Exposure Tagging (`cvss_attack_vector`, `remotely_exploitable_no_auth`)
+
+Two fields, derived at feed-emission time in `_feed_entry()` (`community_build.py`) by parsing `cvss_vector` with `parse_cvss_vector()` (`nvd_enrich.py`). They are **not** scoring inputs — `score.py` and the post-hoc KEV scoring block in `community_build.py` do not read or write them, and they do not affect `score`/`priority`.
+
+**Precedence**: these deterministic, CVSS-derived fields are authoritative for exposure/exploitability where a `cvss_vector` exists. The AI classifier's free-form `extracted_facts`/`inferred_facts` keys (e.g. `exploitability`, `is_network_accessible`, `attack_vector`) are supplementary, unschematized, LLM-generated per-issue text and are **not reconciled** against these fields — the two may disagree for the same issue, and no automated reconciliation is planned.
 
 ---
 

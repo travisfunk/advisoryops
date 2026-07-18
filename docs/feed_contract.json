@@ -59,6 +59,8 @@
     "reasoning":             { "type": "string",  "required": false, "added_by": "Problem 1 fix (commit 3)" },
     "epss_score":            { "type": ["number","null"], "required": false, "added_by": "EPSS enrichment" },
     "epss_percentile":       { "type": ["number","null"], "required": false, "added_by": "EPSS enrichment" },
-    "first_published_to_feed": { "type": "boolean", "required": false, "added_by": "additive-build baseline merge — set on issues appearing in the feed for the first time; absent on carried-forward issues" }
+    "first_published_to_feed": { "type": "boolean", "required": false, "added_by": "additive-build baseline merge — set on issues appearing in the feed for the first time; absent on carried-forward issues" },
+    "cvss_attack_vector":     { "type": ["string","null"], "required": false, "enum": ["network","adjacent","local","physical",null], "added_by": "CVSS exposure tagging — derived from cvss_vector at feed emission; null when cvss_vector is absent or unparseable" },
+    "remotely_exploitable_no_auth": { "type": ["boolean","null"], "required": false, "added_by": "CVSS exposure tagging — true iff cvss_attack_vector==network and no authentication is required (PR:N for v3.x/v4.0, Au:N for v2); false when a vector exists but the condition fails; null when cvss_vector is absent or unparseable" }
   }
 }
