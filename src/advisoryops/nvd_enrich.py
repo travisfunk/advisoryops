@@ -112,11 +112,19 @@ def _extract_nvd_fields(cve_item: Dict[str, Any]) -> Dict[str, Any]:
     if "nvd_description" not in result and descriptions:
         result["nvd_description"] = descriptions[0].get("value", "")
 
-    # CVSS — prefer v3.1, fall back to v3.0, then v2
+    # CVSS — prefer v3.1, fall back to v3.0, then v4.0, then v2.
+    #
+    # v4.0 is deliberately last among v3+/v4.0 rather than first (NVD's own
+    # convention favors newest-first). Reordering to prefer v4.0 would
+    # silently rewrite cvss_vector for CVEs that previously resolved to a
+    # published v3.1/v3.0 value once NVD backfills v4.0 metrics for them —
+    # this addition must be purely additive (new CVEs that only ever had a
+    # v4.0 metric gain a vector; existing v3.1/v3.0 resolutions are
+    # unchanged).
     metrics = cve_item.get("metrics") or {}
     cvss_data = None
 
-    for key in ("cvssMetricV31", "cvssMetricV30"):
+    for key in ("cvssMetricV31", "cvssMetricV30", "cvssMetricV40"):
         metric_list = metrics.get(key) or []
         if metric_list:
             cvss_data = metric_list[0].get("cvssData") or {}
@@ -169,6 +177,67 @@ def _extract_nvd_fields(cve_item: Dict[str, Any]) -> Dict[str, Any]:
                         seen_products.add(readable)
                         products.append(readable)
     result["affected_products"] = products
+
+    return result
+
+
+_CVSS_AV_MAP = {"N": "network", "A": "adjacent", "L": "local", "P": "physical"}
+
+
+def parse_cvss_vector(vector: Optional[str]) -> Dict[str, Any]:
+    """Parse a CVSS vector string into exposure-relevant fields.
+
+    Handles CVSS v3.0/v3.1/v4.0 (``CVSS:<version>/AV:.../PR:.../...``) and
+    CVSS v2 (``AV:.../AC:.../Au:.../...`` — v2 has no ``CVSS:`` prefix
+    convention, unlike v3+). Pure function: never raises, never logs.
+
+    Returns a dict with:
+      version           — "2.0" | "3.0" | "3.1" | "4.0" | None
+      attack_vector     — "network" | "adjacent" | "local" | "physical" | None
+      no_auth_required  — True/False (from PR:N for v3+/v4, Au:N for v2), or
+                           None if the vector is absent/unparseable
+    """
+    result: Dict[str, Any] = {
+        "version": None,
+        "attack_vector": None,
+        "no_auth_required": None,
+    }
+    if not vector or not isinstance(vector, str):
+        return result
+
+    v = vector.strip()
+    if not v:
+        return result
+
+    parts = v.split("/")
+    if parts[0].startswith("CVSS:"):
+        version = parts[0][len("CVSS:"):].strip()
+        metric_tokens = parts[1:]
+    elif v.startswith("AV:"):
+        # CVSS v2 vectors carry no version prefix — the presence of AV: at
+        # the start of the string is itself the v2 signal.
+        version = "2.0"
+        metric_tokens = parts
+    else:
+        return result  # unparseable / not a CVSS vector
+
+    metrics: Dict[str, str] = {}
+    for token in metric_tokens:
+        key, sep, val = token.partition(":")
+        if sep and key:
+            metrics[key] = val
+
+    result["version"] = version or None
+
+    av = metrics.get("AV")
+    if av in _CVSS_AV_MAP:
+        result["attack_vector"] = _CVSS_AV_MAP[av]
+
+    # v2 authentication is Au:N; v3.x/v4.0 use privileges-required PR:N.
+    auth_key = "Au" if version.startswith("2") else "PR"
+    auth_val = metrics.get(auth_key)
+    if auth_val is not None:
+        result["no_auth_required"] = auth_val == "N"
 
     return result
 

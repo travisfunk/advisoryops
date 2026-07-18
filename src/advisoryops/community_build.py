@@ -47,6 +47,7 @@ from typing import Any, Callable, Dict, Iterable, List, Optional, Sequence, Tupl
 
 from .community_manifest import load_community_manifest
 from .correlate import correlate
+from .nvd_enrich import parse_cvss_vector
 from .score import score_issues
 from .source_run import source_run
 from .sources_config import load_sources_config
@@ -248,6 +249,51 @@ def merge_baseline_feed(
     return merged
 
 
+def _cvss_exposure_fields(cvss_vector: str) -> Dict[str, Any]:
+    """Derive exposure-tagging fields from a CVSS vector string.
+
+    Deterministic, CVSS-derived, and authoritative for exposure where a
+    vector exists. This is intentionally *not* reconciled with the AI
+    classifier's free-form ``extracted_facts``/``inferred_facts`` keys
+    (e.g. ``exploitability``, ``is_network_accessible``) — those are
+    supplementary and left untouched; see docs/DOC-07_Evaluation.md for the
+    stated precedence.
+    """
+    parsed = parse_cvss_vector(cvss_vector)
+    attack_vector = parsed["attack_vector"]
+    no_auth = parsed["no_auth_required"]
+
+    if attack_vector is None and no_auth is None:
+        remotely_exploitable_no_auth = None
+    else:
+        remotely_exploitable_no_auth = attack_vector == "network" and no_auth is True
+
+    return {
+        "cvss_attack_vector": attack_vector,
+        "remotely_exploitable_no_auth": remotely_exploitable_no_auth,
+    }
+
+
+def _normalize_exposure_fields(rows: List[Dict[str, Any]]) -> None:
+    """Re-derive cvss_attack_vector/remotely_exploitable_no_auth for every row
+    from its own cvss_vector, overwriting whatever is already present.
+
+    This is the single authoritative derivation point once baseline merging
+    is in play. merge_baseline_feed()'s Pass 2 (baseline-only carried-forward
+    rows, see its docstring) appends previously-published rows verbatim
+    without re-running _feed_entry() — so rows emitted before these two
+    fields existed would otherwise be permanently missing both keys, no
+    matter how many later runs merge them forward. Mutates *rows* in place.
+
+    _feed_entry()'s own derivation is left in place — harmless here (Pass 1
+    rows get overwritten with an identical value) and still the only
+    derivation point for alert_feed_rows and for first-ever builds with no
+    --baseline-feed, neither of which goes through this function.
+    """
+    for row in rows:
+        row.update(_cvss_exposure_fields(row.get("cvss_vector", "")))
+
+
 def _feed_entry(issue: Dict[str, Any]) -> Dict[str, Any]:
     entry: Dict[str, Any] = {
         "issue_id": issue.get("issue_id", ""),
@@ -291,6 +337,14 @@ def _feed_entry(issue: Dict[str, Any]) -> Dict[str, Any]:
         "cvss_score": issue.get("cvss_score", 0),
         "cvss_severity": issue.get("cvss_severity", ""),
         "cvss_vector": issue.get("cvss_vector", ""),
+        # Exposure fields — derived at emission time from cvss_vector, not
+        # persisted upstream (score.py and the post-hoc KEV scoring block do
+        # not read or write these; see recon_exposure_tagging.md #1/#5).
+        # Deterministic and derive-at-emission by design: a pure function of
+        # cvss_vector, so they stay in sync automatically and need no
+        # baseline-merge guard entry (cvss_vector's own _GUARD_SCALAR entry
+        # already protects the input they're derived from).
+        **_cvss_exposure_fields(issue.get("cvss_vector", "")),
         "cwe_ids": issue.get("cwe_ids") or [],
         "affected_products": issue.get("affected_products") or [],
         "nvd_description": issue.get("nvd_description", ""),
@@ -2532,6 +2586,7 @@ def build_community_feed(
         feed_rows = _sort_feed_entries(
             merge_baseline_feed(feed_rows, baseline_rows, run_timestamp=_merge_ts)
         )
+        _normalize_exposure_fields(feed_rows)
         latest_rows = feed_rows[:latest] if latest > 0 else feed_rows
         new_count = sum(1 for r in feed_rows if r.get("first_published_to_feed"))
         print(f"  Baseline merge: {len(feed_rows)} issues after merge "
