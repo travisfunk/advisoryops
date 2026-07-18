@@ -2,6 +2,10 @@
 outputs/
 logs/
 
+# Internal working docs — session state, recon, backlog. Never public.
+# Home for this content is the private `internal` remote (advisoryops-internal).
+internal/
+
 # Secrets
 .env
 .env.*
