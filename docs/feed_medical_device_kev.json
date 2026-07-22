@@ -5343,121 +5343,6 @@
     "remotely_exploitable_no_auth": true
   },
   {
-    "issue_id": "CVE-2025-10585",
-    "issue_type": "cve",
-    "title": "CVE-2025-10585",
-    "summary": "Google Chrome versions before 140.0.7339.185 have a High-severity vulnerability that could allow attackers to exploit users by sending them a malicious HTML page. It is critical to update to the latest version of Chrome as a patch is available. Please ensure all browsers are updated promptly to enhance security.",
-    "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2025-10585",
-    "cves": [
-      "CVE-2025-10585"
-    ],
-    "sources": [
-      "cisa-kev-csv",
-      "cisa-kev-json"
-    ],
-    "published_dates": [
-      "2025-09-23"
-    ],
-    "first_seen_at": "2026-03-29T05:35:35.736761+00:00",
-    "last_seen_at": "2026-03-29T05:35:46.839564+00:00",
-    "score": 165,
-    "priority": "P0",
-    "actions": [
-      "notify",
-      "ingest",
-      "track"
-    ],
-    "why": [
-      "base: issue_type=cve (+10)",
-      "source: KEV source (+80)",
-      "link: NVD detail present (+5)",
-      "source-authority: tier-1 weight=1.0 (+30)",
-      "kev-medical-device: actively exploited medical device (+40)",
-      "priority: P0 (score=165)"
-    ],
-    "handling_warnings": [
-      "Remote exploitation could target systems if not updated",
-      "Ensure that users are informed about browser updates"
-    ],
-    "evidence_gaps": [],
-    "unknowns": [
-      "Specific versions affected beyond 140.0.7339.185",
-      "Timeline for deployment of patches"
-    ],
-    "source_consensus": {
-      "agreed": [
-        "CVEs: CVE-2025-10585"
-      ],
-      "contradicted": [],
-      "unique_contributions": {}
-    },
-    "source_authority_weight": 1.0,
-    "highest_authority_source": "cisa-kev-csv",
-    "healthcare_category": "healthcare_adjacent",
-    "classification": {},
-    "severity": "critical",
-    "affected_versions": [],
-    "vendor": "Google",
-    "generated_by": "ai",
-    "extracted_facts": {},
-    "inferred_facts": {},
-    "confidence_by_field": {},
-    "evidence_sources": [],
-    "insufficient_evidence": false,
-    "non_applicability": [],
-    "source_mitigations": [
-      {
-        "source": "cisa-kev-csv",
-        "source_tier": 1,
-        "action": "update to the latest version of Chrome",
-        "citation": "CVE-2025-10585",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-10585",
-        "mitigation_type": "patch"
-      }
-    ],
-    "iocs": [
-      {
-        "type": "cve",
-        "value": "CVE-2025-10585",
-        "source": "cisa-kev-csv"
-      }
-    ],
-    "cvss_score": 9.8,
-    "cvss_severity": "CRITICAL",
-    "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
-    "cwe_ids": [
-      "CWE-843"
-    ],
-    "affected_products": [
-      "Google Chrome",
-      "Apple Macos",
-      "Linux Linux Kernel",
-      "Microsoft Windows"
-    ],
-    "nvd_description": "Type confusion in V8 in Google Chrome prior to 140.0.7339.185 allowed a remote attacker to potentially exploit heap corruption via a crafted HTML page. (Chromium security severity: High)",
-    "source_summary": "Google Chromium contains a type confusion vulnerability in the V8 JavaScript and WebAssembly engine. | Google Chromium V8",
-    "kev_required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
-    "kev_due_date": "2025-10-14",
-    "kev_vendor": "Google",
-    "kev_product": "Chromium V8",
-    "kev_vulnerability_name": "Google Chromium V8 Type Confusion Vulnerability",
-    "remediation_steps": [
-      "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
-      "update to the latest version of Chrome"
-    ],
-    "healthcare_relevant": true,
-    "fda_risk_class": null,
-    "is_kev_medical_device": true,
-    "epss_score": 0.007,
-    "epss_percentile": 0.71985,
-    "recommended_patterns": [],
-    "tasks_by_role": {},
-    "reasoning": "",
-    "citations": [],
-    "cvss_attack_vector": "network",
-    "remotely_exploitable_no_auth": true
-  },
-  {
     "issue_id": "CVE-2025-21479",
     "issue_type": "cve",
     "title": "CVE-2025-21479",
@@ -7946,7 +7831,7 @@
       "Tue, 03 Feb 26 12:00:00 +0000"
     ],
     "first_seen_at": "2026-03-24T02:56:12.060923+00:00",
-    "last_seen_at": "2026-07-21T08:55:03.160475+00:00",
+    "last_seen_at": "2026-07-22T08:43:03.183657+00:00",
     "score": 165,
     "priority": "P0",
     "actions": [
