@@ -1414,6 +1414,97 @@
     "remotely_exploitable_no_auth": false
   },
   {
+    "issue_id": "CVE-2026-17264",
+    "issue_type": "cve",
+    "title": "CVE-2026-17264",
+    "summary": "Opening a crafted DICOM file containing malicious JPEG-compressed pixel data triggers an attacker-controlled heap out-of-bounds write, which may allow an attacker to remotely execute arbitrary code.",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-218-01.json",
+    "cves": [
+      "CVE-2026-17264"
+    ],
+    "sources": [
+      "cisa-icsma"
+    ],
+    "published_dates": [
+      "2026-08-06T06:00:00.000000Z"
+    ],
+    "first_seen_at": "2026-08-07T07:33:12.442079+00:00",
+    "last_seen_at": "2026-08-07T07:33:12.442079+00:00",
+    "score": 105,
+    "priority": "P1",
+    "actions": [
+      "ingest",
+      "track"
+    ],
+    "why": [
+      "base: issue_type=cve (+10)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "device: medical imaging/PACS (+15)",
+      "priority: P1 (score=105)"
+    ],
+    "handling_warnings": [],
+    "evidence_gaps": [],
+    "unknowns": [],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "medium",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2026-17264",
+        "source": "cisa-icsma"
+      }
+    ],
+    "cvss_score": 4.3,
+    "cvss_severity": "MEDIUM",
+    "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:L",
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true,
+    "cwe_ids": [
+      "CWE-787"
+    ],
+    "affected_products": [],
+    "nvd_description": "Opening a crafted DICOM file containing malicious JPEG-compressed pixel data triggers an attacker-controlled heap out-of-bounds write, which may allow an attacker to remotely execute arbitrary code.",
+    "source_summary": "Successful exploitation of this vulnerability could allow an attacker to cause the application to crash if a maliciously crafted DICOM file is opened.",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Review vendor advisory for mitigation guidance.",
+      "Monitor for exploitation indicators."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": null,
+    "epss_percentile": null,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": [],
+    "first_published_to_feed": "2026-08-07T07:41:36.205632+00:00"
+  },
+  {
     "issue_id": "UNK-006e21c3dc2847c0",
     "issue_type": "unknown",
     "title": "Z-0017-2016: Toshiba American Medical Systems Inc",
@@ -37849,7 +37940,7 @@
       "Fri, 15 May 2026 14:00:00 +0000"
     ],
     "first_seen_at": "2026-06-24T23:45:01.416683+00:00",
-    "last_seen_at": "2026-08-06T09:00:26.753627+00:00",
+    "last_seen_at": "2026-08-07T07:38:34.528057+00:00",
     "score": 38,
     "priority": "P3",
     "actions": [
