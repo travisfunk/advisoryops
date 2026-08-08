@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:/Repos/tools/Get-Workspace.ps1"
+          }
+        ]
+      }
+    ]
+  }
+}
