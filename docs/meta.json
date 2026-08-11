@@ -18,9 +18,9 @@
   "counts": {
     "validated_sources": 54,
     "candidate_sources": 1,
-    "issues_public": 8530,
+    "issues_public": 8641,
     "alerts_public": 100,
-    "latest": 8530,
+    "latest": 8641,
     "healthcare": 443,
     "packets": 0,
     "sources_enabled": 64
@@ -37,9 +37,9 @@
     "dashboard_html": "outputs/community_public/dashboard.html",
     "packets_dir": null
   },
-  "generated_at": "2026-08-08T07:14:51+00:00",
+  "generated_at": "2026-08-11T07:40:35+00:00",
   "methodology_stats": {
-    "total_issues": 8530,
+    "total_issues": 8641,
     "medical_device_issues": 443,
     "fda_risk_class_populated": 379,
     "fda_derived_medical_device": 378,
