@@ -24,7 +24,7 @@ def test_build_report_uses_full_kev_rows_and_exact_cve_intersection() -> None:
     kev = [
         {"guid": "CVE-2026-0001", "kev_vendor": "Acme Medical"},
         {"guid": "CVE-2026-9999", "kev_vendor": "Unrelated Vendor"},
-        {"title": "Known exploited CVE-2025-12345", "kev_vendor": "Third Vendor"},
+        {"guid": "CVE-2025-12345", "kev_vendor": "Third Vendor"},
     ]
 
     report = build_report(feed, kev)
