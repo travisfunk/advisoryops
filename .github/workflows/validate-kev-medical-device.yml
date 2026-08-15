@@ -11,7 +11,7 @@ permissions:
 jobs:
   validate:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -32,3 +32,17 @@ jobs:
           pytest -q \
             tests/test_kev_medical_device_reconcile.py \
             tests/test_kev_full_catalog.py
+
+      - name: Restore production discovery cache
+        uses: actions/cache/restore@v4
+        with:
+          path: outputs/discover/
+          key: discover-${{ runner.os }}-2026-08-15
+          restore-keys: |
+            discover-${{ runner.os }}-
+
+      - name: Reconcile published feed against full KEV cache
+        run: python -m advisoryops.kev_medical_device_reconcile
+
+      - name: Verify full-catalog overlap after reconciliation
+        run: python -m advisoryops.kev_full_catalog
