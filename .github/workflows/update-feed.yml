@@ -1,9 +1,6 @@
 name: Update Advisory Feed
 
 on:
-  push:
-    branches:
-      - agent/fix-nightly-kev-catalog
   schedule:
     - cron: '0 6 * * *'  # 06:00 UTC daily
   workflow_dispatch:
@@ -63,7 +60,6 @@ jobs:
           key: discover-${{ runner.os }}-${{ steps.date.outputs.date }}
 
       - name: Commit updated feed files
-        if: github.ref == 'refs/heads/main'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
