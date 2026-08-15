@@ -1,12 +1,12 @@
 """Validate medical-device CVEs against the full CISA KEV catalog.
 
 This module deliberately reads the raw discovered CISA KEV dataset rather than
-using KEV-enriched issues from the correlated feed.  Correlation intentionally
+using KEV-enriched issues from the correlated feed. Correlation intentionally
 caps ordinary per-source signal loading for performance, so it is not a valid
 basis for a claim about the *entire* KEV catalog.
 
 The nightly workflow runs this after the community feed is built and publishes
-an auditable JSON report beside the feed.  It also annotates docs/meta.json so
+an auditable JSON report beside the feed. It also annotates docs/meta.json so
 ``kev_md_cve_overlap`` has an explicit full-catalog scope.
 """
 from __future__ import annotations
@@ -34,23 +34,29 @@ def _read_jsonl(path: Path) -> List[Dict[str, Any]]:
     return rows
 
 
-def _extract_cves(record: Dict[str, Any]) -> Set[str]:
+def _cves_from_values(values: Iterable[Any]) -> Set[str]:
     cves: Set[str] = set()
+    for value in values:
+        if value is None:
+            continue
+        cves.update(m.upper() for m in _CVE_RE.findall(str(value)))
+    return cves
 
+
+def _structured_cves(record: Dict[str, Any]) -> Set[str]:
+    """Return CVEs explicitly assigned to a record, not incidental prose mentions."""
+    values: List[Any] = []
     structured = record.get("cves") or []
     if isinstance(structured, str):
-        structured = [structured]
-    if isinstance(structured, list):
-        for value in structured:
-            if isinstance(value, str):
-                cves.update(m.upper() for m in _CVE_RE.findall(value))
+        values.append(structured)
+    elif isinstance(structured, list):
+        values.extend(structured)
 
-    for key in ("issue_id", "guid", "title", "summary", "link", "canonical_link"):
-        value = record.get(key)
-        if value is not None:
-            cves.update(m.upper() for m in _CVE_RE.findall(str(value)))
-
-    return cves
+    # Correlated feed issues are keyed by CVE when a CVE is known. CISA KEV
+    # discovery records use guid as the canonical cveID. Restricting extraction
+    # to these fields avoids counting CVEs that are merely mentioned in prose.
+    values.extend((record.get("issue_id"), record.get("guid")))
+    return _cves_from_values(values)
 
 
 def _norm_vendor(value: Any) -> str:
@@ -86,11 +92,11 @@ def build_report(
 
     kev_cves: Set[str] = set()
     for row in kev_rows:
-        kev_cves.update(_extract_cves(row))
+        kev_cves.update(_structured_cves(row))
 
     md_cves: Set[str] = set()
     for row in medical_device_rows:
-        md_cves.update(_extract_cves(row))
+        md_cves.update(_structured_cves(row))
 
     overlap = sorted(md_cves & kev_cves)
 
@@ -127,10 +133,13 @@ def build_report(
             for a, b in sorted(partial_pairs)
         ],
         "methodology": {
-            "kev_side": "All CVE IDs parsed from outputs/discover/cisa-kev-json/items.jsonl",
+            "kev_side": (
+                "All records from outputs/discover/cisa-kev-json/items.jsonl; "
+                "CVE IDs are taken from structured cves and the KEV guid/cveID field"
+            ),
             "medical_device_side": (
                 "All published feed records where healthcare_category == medical_device; "
-                "CVE IDs are extracted from structured cves plus CVE-bearing identifier/text fields"
+                "CVE IDs are taken from structured cves and CVE-keyed issue_id values"
             ),
             "primary_overlap_test": "Exact set intersection of normalized CVE IDs",
             "vendor_checks": (
