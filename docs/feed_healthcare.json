@@ -25487,7 +25487,7 @@
       "2026-08-06T06:00:00.000000Z"
     ],
     "first_seen_at": "2026-08-08T07:06:47.263698+00:00",
-    "last_seen_at": "2026-08-11T07:31:52.911780+00:00",
+    "last_seen_at": "2026-08-15T21:54:13.337560+00:00",
     "score": 97,
     "priority": "P2",
     "actions": [
@@ -27283,6 +27283,985 @@
     "citations": [],
     "cvss_attack_vector": "network",
     "remotely_exploitable_no_auth": true
+  },
+  {
+    "issue_id": "CVE-2026-17583",
+    "issue_type": "cve",
+    "title": "CVE-2026-17583",
+    "summary": "The affected\n\nThermo Fisher Applied Biosystems Genetic Analyzers are vulnerable because .fsa/.hid output files can be edited. An attacker could tamper with these files, altering DNA data and resulting in inaccurate DNA test outcomes.",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-216-01.json",
+    "cves": [
+      "CVE-2026-17583"
+    ],
+    "sources": [
+      "cisa-icsma"
+    ],
+    "published_dates": [
+      "2026-08-04T06:00:00.000000Z"
+    ],
+    "first_seen_at": "2026-08-15T21:54:13.337560+00:00",
+    "last_seen_at": "2026-08-15T21:54:13.337560+00:00",
+    "score": 90,
+    "priority": "P2",
+    "actions": [
+      "track"
+    ],
+    "why": [
+      "base: issue_type=cve (+10)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "priority: P2 (score=90)"
+    ],
+    "handling_warnings": [],
+    "evidence_gaps": [],
+    "unknowns": [],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "high",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2026-17583",
+        "source": "cisa-icsma"
+      }
+    ],
+    "cvss_score": 8.4,
+    "cvss_severity": "HIGH",
+    "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+    "cvss_attack_vector": "local",
+    "remotely_exploitable_no_auth": false,
+    "cwe_ids": [
+      "CWE-353"
+    ],
+    "affected_products": [],
+    "nvd_description": "The affected\n\nThermo Fisher Applied Biosystems Genetic Analyzers are vulnerable because .fsa/.hid output files can be edited. An attacker could tamper with these files, altering DNA data and resulting in inaccurate DNA test outcomes.",
+    "source_summary": "Successful exploitation of this vulnerability could allow an attacker to modify .fsa/.hid output files, tampering with DNA data and resulting in inaccurate test results.",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Review vendor advisory for mitigation guidance.",
+      "Monitor for exploitation indicators."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": null,
+    "epss_percentile": null,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": [],
+    "first_published_to_feed": "2026-08-15T22:02:30.074400+00:00"
+  },
+  {
+    "issue_id": "CVE-2026-18164",
+    "issue_type": "cve",
+    "title": "CVE-2026-18164",
+    "summary": "An undocumented hard-coded credential, shared by all device units, is authorized to bypass authentication. This allows an attacker within Bluetooth range to arbitrarily manipulate brain stimulation parameters and state.",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-225-01.json",
+    "cves": [
+      "CVE-2026-18164"
+    ],
+    "sources": [
+      "cisa-icsma"
+    ],
+    "published_dates": [
+      "2026-08-13T06:00:00.000000Z"
+    ],
+    "first_seen_at": "2026-08-15T21:54:13.337560+00:00",
+    "last_seen_at": "2026-08-15T21:54:13.337560+00:00",
+    "score": 90,
+    "priority": "P2",
+    "actions": [
+      "track"
+    ],
+    "why": [
+      "base: issue_type=cve (+10)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "priority: P2 (score=90)"
+    ],
+    "handling_warnings": [],
+    "evidence_gaps": [],
+    "unknowns": [],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "high",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2026-18164",
+        "source": "cisa-icsma"
+      }
+    ],
+    "cvss_score": 8.1,
+    "cvss_severity": "HIGH",
+    "cvss_vector": "CVSS:3.1/AV:A/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:H",
+    "cvss_attack_vector": "adjacent",
+    "remotely_exploitable_no_auth": false,
+    "cwe_ids": [
+      "CWE-798"
+    ],
+    "affected_products": [],
+    "nvd_description": "An undocumented hard-coded credential, shared by all device units, is authorized to bypass authentication. This allows an attacker within Bluetooth range to arbitrarily manipulate brain stimulation parameters and state.",
+    "source_summary": "Successful exploitation of this vulnerability could allow an attacker within Bluetooth range to manipulate brain stimulation parameters and override safety limits.",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Review vendor advisory for mitigation guidance.",
+      "Monitor for exploitation indicators."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": null,
+    "epss_percentile": null,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": [],
+    "first_published_to_feed": "2026-08-15T22:02:30.074400+00:00"
+  },
+  {
+    "issue_id": "CVE-2026-18844",
+    "issue_type": "cve",
+    "title": "CVE-2026-18844",
+    "summary": "The firmware of the Pulsetto Vagus Nerve Stimulator accepts several undisclosed commands over its Bluetooth Low Energy (BLE) interface. These commands are sent without authentication or encryption, and are never issued by the companion mobile application, yet are fully processed by the device when it is powered on.",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-223-02.json",
+    "cves": [
+      "CVE-2026-18844"
+    ],
+    "sources": [
+      "cisa-icsma"
+    ],
+    "published_dates": [
+      "2026-08-11T06:00:00.000000Z"
+    ],
+    "first_seen_at": "2026-08-15T21:54:13.337560+00:00",
+    "last_seen_at": "2026-08-15T21:54:13.337560+00:00",
+    "score": 90,
+    "priority": "P2",
+    "actions": [
+      "track"
+    ],
+    "why": [
+      "base: issue_type=cve (+10)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "priority: P2 (score=90)"
+    ],
+    "handling_warnings": [],
+    "evidence_gaps": [],
+    "unknowns": [],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "high",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2026-18844",
+        "source": "cisa-icsma"
+      }
+    ],
+    "cvss_score": 8.1,
+    "cvss_severity": "HIGH",
+    "cvss_vector": "CVSS:3.1/AV:A/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:H",
+    "cvss_attack_vector": "adjacent",
+    "remotely_exploitable_no_auth": false,
+    "cwe_ids": [
+      "CWE-912"
+    ],
+    "affected_products": [],
+    "nvd_description": "The firmware of the Pulsetto Vagus Nerve Stimulator accepts several undisclosed commands over its Bluetooth Low Energy (BLE) interface. These commands are sent without authentication or encryption, and are never issued by the companion mobile application, yet are fully processed by the device when it is powered on.",
+    "source_summary": "Successful exploitation of this vulnerability could allow an attacker to use hidden commands to disable electrical safety mechanisms or modify other stimulation output settings.",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Review vendor advisory for mitigation guidance.",
+      "Monitor for exploitation indicators."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": null,
+    "epss_percentile": null,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": [],
+    "first_published_to_feed": "2026-08-15T22:02:30.074400+00:00"
+  },
+  {
+    "issue_id": "CVE-2026-64934",
+    "issue_type": "cve",
+    "title": "CVE-2026-64934",
+    "summary": "The Mira cloud API accepts the firmware version reported by the companion app as authoritative for a given device, without independently attesting the version from the device itself. An authenticated attacker could submit arbitrary firmware version strings for their own device, allowing them to evade vendor-side vulnerable-fleet analytics, suppress security update prompts to the user, and misrepresent patch-adoption metrics.",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-223-01.json",
+    "cves": [
+      "CVE-2026-64934"
+    ],
+    "sources": [
+      "cisa-icsma"
+    ],
+    "published_dates": [
+      "2026-08-11T06:00:00.000000Z"
+    ],
+    "first_seen_at": "2026-08-15T21:54:13.337560+00:00",
+    "last_seen_at": "2026-08-15T21:54:13.337560+00:00",
+    "score": 90,
+    "priority": "P2",
+    "actions": [
+      "track"
+    ],
+    "why": [
+      "base: issue_type=cve (+10)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "priority: P2 (score=90)"
+    ],
+    "handling_warnings": [],
+    "evidence_gaps": [],
+    "unknowns": [],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "medium",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2026-64934",
+        "source": "cisa-icsma"
+      }
+    ],
+    "cvss_score": 4.3,
+    "cvss_severity": "MEDIUM",
+    "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N",
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": false,
+    "cwe_ids": [
+      "CWE-807"
+    ],
+    "affected_products": [],
+    "nvd_description": "The Mira cloud API accepts the firmware version reported by the companion app as authoritative for a given device, without independently attesting the version from the device itself. An authenticated attacker could submit arbitrary firmware version strings for their own device, allowing them to evade vendor-side vulnerable-fleet analytics, suppress security update prompts to the user, and misrepresent patch-adoption metrics.",
+    "source_summary": "Successful exploitation of these vulnerabilities could allow an attacker to access unauthorized health profile information, make changes to health information, cause a denial-of-service condition, disclose session token information, and obtain control of user accounts.",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Review vendor advisory for mitigation guidance.",
+      "Monitor for exploitation indicators."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": null,
+    "epss_percentile": null,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": [],
+    "first_published_to_feed": "2026-08-15T22:02:30.074400+00:00"
+  },
+  {
+    "issue_id": "CVE-2026-66098",
+    "issue_type": "cve",
+    "title": "CVE-2026-66098",
+    "summary": "The Mira hormone monitor device firmware accepts a 0x01 write from any BLE central without authentication, causing the device to reboot into bootloader mode. An attacker could cause a denial-of-service condition or disrupt ovulation tracking and fertility monitoring workflow.",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-223-01.json",
+    "cves": [
+      "CVE-2026-66098"
+    ],
+    "sources": [
+      "cisa-icsma"
+    ],
+    "published_dates": [
+      "2026-08-11T06:00:00.000000Z"
+    ],
+    "first_seen_at": "2026-08-15T21:54:13.337560+00:00",
+    "last_seen_at": "2026-08-15T21:54:13.337560+00:00",
+    "score": 90,
+    "priority": "P2",
+    "actions": [
+      "track"
+    ],
+    "why": [
+      "base: issue_type=cve (+10)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "priority: P2 (score=90)"
+    ],
+    "handling_warnings": [],
+    "evidence_gaps": [],
+    "unknowns": [],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "medium",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2026-66098",
+        "source": "cisa-icsma"
+      }
+    ],
+    "cvss_score": 6.5,
+    "cvss_severity": "MEDIUM",
+    "cvss_vector": "CVSS:3.1/AV:A/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+    "cvss_attack_vector": "adjacent",
+    "remotely_exploitable_no_auth": false,
+    "cwe_ids": [
+      "CWE-306"
+    ],
+    "affected_products": [],
+    "nvd_description": "The Mira hormone monitor device firmware accepts a 0x01 write from any BLE central without authentication, causing the device to reboot into bootloader mode. An attacker could cause a denial-of-service condition or disrupt ovulation tracking and fertility monitoring workflow.",
+    "source_summary": "Successful exploitation of these vulnerabilities could allow an attacker to access unauthorized health profile information, make changes to health information, cause a denial-of-service condition, disclose session token information, and obtain control of user accounts.",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Review vendor advisory for mitigation guidance.",
+      "Monitor for exploitation indicators."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": null,
+    "epss_percentile": null,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": [],
+    "first_published_to_feed": "2026-08-15T22:02:30.074400+00:00"
+  },
+  {
+    "issue_id": "CVE-2026-66340",
+    "issue_type": "cve",
+    "title": "CVE-2026-66340",
+    "summary": "The Mira cloud authentication endpoints do not enforce per-account rate limiting, per-IP throttling, or account lockout after repeated failed login attempts. An attacker can use brute-force methods to obtain gain access to user accounts.",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-223-01.json",
+    "cves": [
+      "CVE-2026-66340"
+    ],
+    "sources": [
+      "cisa-icsma"
+    ],
+    "published_dates": [
+      "2026-08-11T06:00:00.000000Z"
+    ],
+    "first_seen_at": "2026-08-15T21:54:13.337560+00:00",
+    "last_seen_at": "2026-08-15T21:54:13.337560+00:00",
+    "score": 90,
+    "priority": "P2",
+    "actions": [
+      "track"
+    ],
+    "why": [
+      "base: issue_type=cve (+10)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "priority: P2 (score=90)"
+    ],
+    "handling_warnings": [],
+    "evidence_gaps": [],
+    "unknowns": [],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "medium",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2026-66340",
+        "source": "cisa-icsma"
+      }
+    ],
+    "cvss_score": 5.3,
+    "cvss_severity": "MEDIUM",
+    "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true,
+    "cwe_ids": [
+      "CWE-307"
+    ],
+    "affected_products": [],
+    "nvd_description": "The Mira cloud authentication endpoints do not enforce per-account rate limiting, per-IP throttling, or account lockout after repeated failed login attempts. An attacker can use brute-force methods to obtain gain access to user accounts.",
+    "source_summary": "Successful exploitation of these vulnerabilities could allow an attacker to access unauthorized health profile information, make changes to health information, cause a denial-of-service condition, disclose session token information, and obtain control of user accounts.",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Isolate affected systems. Block untrusted inbound connections.",
+      "Apply vendor patch when available."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": null,
+    "epss_percentile": null,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": [],
+    "first_published_to_feed": "2026-08-15T22:02:30.074400+00:00"
+  },
+  {
+    "issue_id": "CVE-2026-66832",
+    "issue_type": "cve",
+    "title": "CVE-2026-66832",
+    "summary": "When the Mira Android app opens in-app WebView content (e.g., shop redirect flows), the user's live session token is appended to the URL as a query string parameter, and a persistent user identifier is included in the WebView's User-Agent header. Both are then transmitted to third-party web properties, referrer logs, and any JavaScript running in the WebView context.",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-223-01.json",
+    "cves": [
+      "CVE-2026-66832"
+    ],
+    "sources": [
+      "cisa-icsma"
+    ],
+    "published_dates": [
+      "2026-08-11T06:00:00.000000Z"
+    ],
+    "first_seen_at": "2026-08-15T21:54:13.337560+00:00",
+    "last_seen_at": "2026-08-15T21:54:13.337560+00:00",
+    "score": 90,
+    "priority": "P2",
+    "actions": [
+      "track"
+    ],
+    "why": [
+      "base: issue_type=cve (+10)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "priority: P2 (score=90)"
+    ],
+    "handling_warnings": [],
+    "evidence_gaps": [],
+    "unknowns": [],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "medium",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2026-66832",
+        "source": "cisa-icsma"
+      }
+    ],
+    "cvss_score": 6.5,
+    "cvss_severity": "MEDIUM",
+    "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:N/A:N",
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true,
+    "cwe_ids": [
+      "CWE-598"
+    ],
+    "affected_products": [],
+    "nvd_description": "When the Mira Android app opens in-app WebView content (e.g., shop redirect flows), the user's live session token is appended to the URL as a query string parameter, and a persistent user identifier is included in the WebView's User-Agent header. Both are then transmitted to third-party web properties, referrer logs, and any JavaScript running in the WebView context.",
+    "source_summary": "Successful exploitation of these vulnerabilities could allow an attacker to access unauthorized health profile information, make changes to health information, cause a denial-of-service condition, disclose session token information, and obtain control of user accounts.",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Review vendor advisory for mitigation guidance.",
+      "Monitor for exploitation indicators."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": null,
+    "epss_percentile": null,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": [],
+    "first_published_to_feed": "2026-08-15T22:02:30.074400+00:00"
+  },
+  {
+    "issue_id": "CVE-2026-66875",
+    "issue_type": "cve",
+    "title": "CVE-2026-66875",
+    "summary": "In the Mira hormone monitor device firmware v1.7.1.47 build 01070147, a remote unauthenticated attacker within BLE range (approximately 10–30 meters) can silently rebind the device to an attacker-controlled account, extract stored hormone measurements in cleartext, cause a denial-of-service via malformed or undocumented command opcodes, and passively track the user via a static random BLE address that never rotates.",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-223-01.json",
+    "cves": [
+      "CVE-2026-66875"
+    ],
+    "sources": [
+      "cisa-icsma"
+    ],
+    "published_dates": [
+      "2026-08-11T06:00:00.000000Z"
+    ],
+    "first_seen_at": "2026-08-15T21:54:13.337560+00:00",
+    "last_seen_at": "2026-08-15T21:54:13.337560+00:00",
+    "score": 90,
+    "priority": "P2",
+    "actions": [
+      "track"
+    ],
+    "why": [
+      "base: issue_type=cve (+10)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "priority: P2 (score=90)"
+    ],
+    "handling_warnings": [],
+    "evidence_gaps": [],
+    "unknowns": [],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "high",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2026-66875",
+        "source": "cisa-icsma"
+      }
+    ],
+    "cvss_score": 8.8,
+    "cvss_severity": "HIGH",
+    "cvss_vector": "CVSS:3.1/AV:A/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+    "cvss_attack_vector": "adjacent",
+    "remotely_exploitable_no_auth": false,
+    "cwe_ids": [
+      "CWE-306"
+    ],
+    "affected_products": [],
+    "nvd_description": "In the Mira hormone monitor device firmware v1.7.1.47 build 01070147, a remote unauthenticated attacker within BLE range (approximately 10–30 meters) can silently rebind the device to an attacker-controlled account, extract stored hormone measurements in cleartext, cause a denial-of-service via malformed or undocumented command opcodes, and passively track the user via a static random BLE address that never rotates.",
+    "source_summary": "Successful exploitation of these vulnerabilities could allow an attacker to access unauthorized health profile information, make changes to health information, cause a denial-of-service condition, disclose session token information, and obtain control of user accounts.",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Review vendor advisory for mitigation guidance.",
+      "Monitor for exploitation indicators."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": null,
+    "epss_percentile": null,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": [],
+    "first_published_to_feed": "2026-08-15T22:02:30.074400+00:00"
+  },
+  {
+    "issue_id": "CVE-2026-67558",
+    "issue_type": "cve",
+    "title": "CVE-2026-67558",
+    "summary": "The Mira Android companion app v4.5.15.4 identifies the paired Mira hormone analyzer by performing a substring match against the BLE advertisement name only, with no cryptographic peripheral authentication, MAC allowlist, or bonded-identity check. An attacker could capture live session token information and inject forged hormone measurements into the victim's cloud record and clinical trend view.",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-223-01.json",
+    "cves": [
+      "CVE-2026-67558"
+    ],
+    "sources": [
+      "cisa-icsma"
+    ],
+    "published_dates": [
+      "2026-08-11T06:00:00.000000Z"
+    ],
+    "first_seen_at": "2026-08-15T21:54:13.337560+00:00",
+    "last_seen_at": "2026-08-15T21:54:13.337560+00:00",
+    "score": 90,
+    "priority": "P2",
+    "actions": [
+      "track"
+    ],
+    "why": [
+      "base: issue_type=cve (+10)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "priority: P2 (score=90)"
+    ],
+    "handling_warnings": [],
+    "evidence_gaps": [],
+    "unknowns": [],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "high",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2026-67558",
+        "source": "cisa-icsma"
+      }
+    ],
+    "cvss_score": 7.4,
+    "cvss_severity": "HIGH",
+    "cvss_vector": "CVSS:3.1/AV:A/AC:L/PR:N/UI:R/S:C/C:H/I:L/A:N",
+    "cvss_attack_vector": "adjacent",
+    "remotely_exploitable_no_auth": false,
+    "cwe_ids": [
+      "CWE-290"
+    ],
+    "affected_products": [],
+    "nvd_description": "The Mira Android companion app v4.5.15.4 identifies the paired Mira hormone analyzer by performing a substring match against the BLE advertisement name only, with no cryptographic peripheral authentication, MAC allowlist, or bonded-identity check. An attacker could capture live session token information and inject forged hormone measurements into the victim's cloud record and clinical trend view.",
+    "source_summary": "Successful exploitation of these vulnerabilities could allow an attacker to access unauthorized health profile information, make changes to health information, cause a denial-of-service condition, disclose session token information, and obtain control of user accounts.",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Review vendor advisory for mitigation guidance.",
+      "Monitor for exploitation indicators."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": null,
+    "epss_percentile": null,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": [],
+    "first_published_to_feed": "2026-08-15T22:02:30.074400+00:00"
+  },
+  {
+    "issue_id": "CVE-2026-67568",
+    "issue_type": "cve",
+    "title": "CVE-2026-67568",
+    "summary": "The distributed Mira Android APK v4.5.15.4 allows an attacker read/write access to reproductive health profiles from internet connected hosts, which could result in forgery, deletion, or destruction of health information.",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-223-01.json",
+    "cves": [
+      "CVE-2026-67568"
+    ],
+    "sources": [
+      "cisa-icsma"
+    ],
+    "published_dates": [
+      "2026-08-11T06:00:00.000000Z"
+    ],
+    "first_seen_at": "2026-08-15T21:54:13.337560+00:00",
+    "last_seen_at": "2026-08-15T21:54:13.337560+00:00",
+    "score": 90,
+    "priority": "P2",
+    "actions": [
+      "track"
+    ],
+    "why": [
+      "base: issue_type=cve (+10)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "priority: P2 (score=90)"
+    ],
+    "handling_warnings": [],
+    "evidence_gaps": [],
+    "unknowns": [],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "critical",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2026-67568",
+        "source": "cisa-icsma"
+      }
+    ],
+    "cvss_score": 9.1,
+    "cvss_severity": "CRITICAL",
+    "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N",
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true,
+    "cwe_ids": [
+      "CWE-798"
+    ],
+    "affected_products": [],
+    "nvd_description": "The distributed Mira Android APK v4.5.15.4 allows an attacker read/write access to reproductive health profiles from internet connected hosts, which could result in forgery, deletion, or destruction of health information.",
+    "source_summary": "Successful exploitation of these vulnerabilities could allow an attacker to access unauthorized health profile information, make changes to health information, cause a denial-of-service condition, disclose session token information, and obtain control of user accounts.",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Review vendor advisory for mitigation guidance.",
+      "Monitor for exploitation indicators."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": null,
+    "epss_percentile": null,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": [],
+    "first_published_to_feed": "2026-08-15T22:02:30.074400+00:00"
+  },
+  {
+    "issue_id": "CVE-2026-68067",
+    "issue_type": "cve",
+    "title": "CVE-2026-68067",
+    "summary": "The login endpoint on the Mira cloud API accepts any format-valid string in the password field and returns a live active session token for the account matching the supplied email address. An attacker could use an email address to control cloud accounts and access hormone record information and account settings.",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-223-01.json",
+    "cves": [
+      "CVE-2026-68067"
+    ],
+    "sources": [
+      "cisa-icsma"
+    ],
+    "published_dates": [
+      "2026-08-11T06:00:00.000000Z"
+    ],
+    "first_seen_at": "2026-08-15T21:54:13.337560+00:00",
+    "last_seen_at": "2026-08-15T21:54:13.337560+00:00",
+    "score": 90,
+    "priority": "P2",
+    "actions": [
+      "track"
+    ],
+    "why": [
+      "base: issue_type=cve (+10)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "priority: P2 (score=90)"
+    ],
+    "handling_warnings": [],
+    "evidence_gaps": [],
+    "unknowns": [],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "critical",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2026-68067",
+        "source": "cisa-icsma"
+      }
+    ],
+    "cvss_score": 9.8,
+    "cvss_severity": "CRITICAL",
+    "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+    "cvss_attack_vector": "network",
+    "remotely_exploitable_no_auth": true,
+    "cwe_ids": [
+      "CWE-1390"
+    ],
+    "affected_products": [],
+    "nvd_description": "The login endpoint on the Mira cloud API accepts any format-valid string in the password field and returns a live active session token for the account matching the supplied email address. An attacker could use an email address to control cloud accounts and access hormone record information and account settings.",
+    "source_summary": "Successful exploitation of these vulnerabilities could allow an attacker to access unauthorized health profile information, make changes to health information, cause a denial-of-service condition, disclose session token information, and obtain control of user accounts.",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Review vendor advisory for mitigation guidance.",
+      "Monitor for exploitation indicators."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": null,
+    "epss_percentile": null,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": [],
+    "first_published_to_feed": "2026-08-15T22:02:30.074400+00:00"
   },
   {
     "issue_id": "UNK-02fdb6ff2608f2b5",
@@ -38020,7 +38999,7 @@
       "Fri, 15 May 2026 14:00:00 +0000"
     ],
     "first_seen_at": "2026-06-24T23:45:01.416683+00:00",
-    "last_seen_at": "2026-08-11T07:37:24.692042+00:00",
+    "last_seen_at": "2026-08-15T21:59:46.043057+00:00",
     "score": 38,
     "priority": "P3",
     "actions": [

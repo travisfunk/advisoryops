@@ -1,0 +1,30 @@
+{
+  "generated_at": "2026-08-15T22:02:37.419490+00:00",
+  "comparison_scope": "full_cisa_kev_catalog",
+  "comparison_key": "exact_cve_id",
+  "kev_records_loaded": 1665,
+  "kev_unique_cves": 1665,
+  "medical_device_records": 454,
+  "medical_device_unique_cves": 69,
+  "cve_overlap_count": 0,
+  "cve_overlap_ids": [],
+  "vendor_exact_overlap_count": 0,
+  "vendor_exact_overlap": [],
+  "vendor_partial_overlap_count": 2,
+  "vendor_partial_overlap": [
+    {
+      "medical_device_vendor": "siemens medical solutions usa inc",
+      "kev_vendor": "siemens"
+    },
+    {
+      "medical_device_vendor": "sunquest information systems",
+      "kev_vendor": "quest"
+    }
+  ],
+  "methodology": {
+    "kev_side": "All records from outputs/discover/cisa-kev-json/items.jsonl; CVE IDs are taken from structured cves and the KEV guid/cveID field",
+    "medical_device_side": "All published feed records where healthcare_category == medical_device; CVE IDs are taken from structured cves and CVE-keyed issue_id values",
+    "primary_overlap_test": "Exact set intersection of normalized CVE IDs",
+    "vendor_checks": "Secondary sanity checks using normalized exact vendor names and substring matches for names at least four characters long"
+  }
+}

@@ -18,12 +18,13 @@
   "counts": {
     "validated_sources": 54,
     "candidate_sources": 1,
-    "issues_public": 8641,
+    "issues_public": 8840,
     "alerts_public": 100,
-    "latest": 8641,
-    "healthcare": 443,
+    "latest": 8840,
+    "healthcare": 454,
     "packets": 0,
-    "sources_enabled": 64
+    "sources_enabled": 64,
+    "kev_medical_device": 0
   },
   "outputs": {
     "issues_public_jsonl": "outputs/community_public/issues_public.jsonl",
@@ -37,17 +38,33 @@
     "dashboard_html": "outputs/community_public/dashboard.html",
     "packets_dir": null
   },
-  "generated_at": "2026-08-11T07:40:35+00:00",
+  "generated_at": "2026-08-15T22:02:33+00:00",
   "methodology_stats": {
-    "total_issues": 8641,
-    "medical_device_issues": 443,
+    "total_issues": 8840,
+    "medical_device_issues": 454,
     "fda_risk_class_populated": 379,
     "fda_derived_medical_device": 378,
     "fda_md_vendor_populated": 376,
     "fda_md_products_populated": 376,
-    "kev_enriched": 311,
+    "kev_enriched": 314,
     "kev_md_cve_overlap": 0,
     "kev_md_vendor_overlap": 0,
-    "pharmaceutical_leaks": 0
+    "pharmaceutical_leaks": 0,
+    "kev_medical_device_feed_count": 0,
+    "kev_medical_device_legacy_flags_corrected": 63,
+    "kev_medical_device_score_bonuses_added": 0,
+    "kev_medical_device_score_bonuses_removed": 63,
+    "kev_medical_device_reconciled": true,
+    "kev_medical_device_definition": "healthcare_category == medical_device AND exact structured CVE ID is present in the full CISA Known Exploited Vulnerabilities catalog",
+    "kev_medical_device_catalog_unique_cves": 1665,
+    "kev_medical_device_reconciled_at": "2026-08-15T22:02:36.702954+00:00",
+    "kev_catalog_records": 1665,
+    "kev_catalog_unique_cves": 1665,
+    "medical_device_unique_cves": 69,
+    "kev_md_cve_overlap_ids": [],
+    "kev_md_vendor_partial_overlap": 2,
+    "kev_comparison_scope": "full_cisa_kev_catalog",
+    "kev_comparison_key": "exact_cve_id",
+    "kev_comparison_generated_at": "2026-08-15T22:02:37.419490+00:00"
   }
 }
