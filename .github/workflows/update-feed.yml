@@ -50,6 +50,9 @@ jobs:
             --refresh \
             --refresh-limit 50
 
+      - name: Reconcile strict KEV medical-device classification
+        run: python -m advisoryops.kev_medical_device_reconcile
+
       - name: Verify full CISA KEV overlap
         run: python -m advisoryops.kev_full_catalog
 
