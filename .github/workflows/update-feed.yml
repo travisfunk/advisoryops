@@ -50,6 +50,9 @@ jobs:
             --refresh \
             --refresh-limit 50
 
+      - name: Verify full CISA KEV overlap
+        run: python -m advisoryops.kev_full_catalog
+
       - name: Save discover cache
         uses: actions/cache/save@v4
         with:
