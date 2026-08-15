@@ -1,0 +1,34 @@
+name: Validate KEV Medical Device Correction
+
+on:
+  push:
+    branches:
+      - agent/fix-nightly-kev-catalog
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+
+      - name: Install package and test runner
+        run: |
+          pip install -e .
+          pip install pytest
+
+      - name: Run focused KEV tests
+        run: |
+          pytest -q \
+            tests/test_kev_medical_device_reconcile.py \
+            tests/test_kev_full_catalog.py
