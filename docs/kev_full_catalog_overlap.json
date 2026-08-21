@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-08-20T07:09:43.635835+00:00",
+  "generated_at": "2026-08-21T07:10:58.472729+00:00",
   "comparison_scope": "full_cisa_kev_catalog",
   "comparison_key": "exact_cve_id",
-  "kev_records_loaded": 1671,
-  "kev_unique_cves": 1671,
+  "kev_records_loaded": 1673,
+  "kev_unique_cves": 1673,
   "medical_device_records": 458,
   "medical_device_unique_cves": 69,
   "cve_overlap_count": 0,
