@@ -38,6 +38,13 @@ jobs:
           restore-keys: |
             discover-${{ runner.os }}-
 
+      - name: Prepare durable full-history baseline
+        run: |
+          python -m advisoryops.feed_archive prepare-baseline \
+            --manifest docs/feed_archive/manifest.json \
+            --legacy docs/feed_latest.json \
+            --out "${RUNNER_TEMP}/advisoryops_baseline.json"
+
       - name: Run pipeline
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
@@ -46,7 +53,7 @@ jobs:
           advisoryops community-build \
             --set-id gold_pass2 \
             --out-root-community outputs/community_public \
-            --baseline-feed docs/feed_latest.json \
+            --baseline-feed "${RUNNER_TEMP}/advisoryops_baseline.json" \
             --refresh \
             --refresh-limit 50
 
@@ -55,6 +62,23 @@ jobs:
 
       - name: Verify full CISA KEV overlap
         run: python -m advisoryops.kev_full_catalog
+
+      - name: Publish scalable public feed
+        run: |
+          python -m advisoryops.feed_archive publish \
+            --source docs/feed_latest.json \
+            --docs docs \
+            --latest-count 750 \
+            --shards 32
+
+      - name: Enforce publication size budget
+        run: |
+          oversized="$(find docs -type f -size +50M -print)"
+          if [ -n "$oversized" ]; then
+            echo "Refusing to publish files above the 50 MiB AdvisoryOps budget:"
+            echo "$oversized"
+            exit 1
+          fi
 
       - name: Save discover cache
         uses: actions/cache/save@v4
@@ -67,6 +91,9 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add docs/
-          git diff --cached --quiet \
-            || git commit -m "chore(feed): daily pipeline run $(date -u +%Y-%m-%d)" \
-            && git push
+          if git diff --cached --quiet; then
+            echo "No published feed changes to commit."
+          else
+            git commit -m "chore(feed): daily pipeline run $(date -u +%Y-%m-%d)"
+            git push
+          fi
