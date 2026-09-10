@@ -96,3 +96,9 @@ The pipeline writes a public feed (all issues), a healthcare-filtered feed, per-
 
 ### Consumers
 The public dashboard at GitHub Pages serves the data files directly to any browser. API consumers can pull feed JSON. Hospital security teams use the dashboard for triage and the Excel export for procurement workflow integration.
+
+## Static publication boundary
+
+The complete canonical corpus is retained in deterministic JSONL archive shards.
+`docs/feed_latest.json` is a bounded dashboard projection, not a historical baseline.
+See [publication architecture, field inventory, and recovery](publication.md).

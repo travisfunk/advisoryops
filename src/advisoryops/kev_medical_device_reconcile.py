@@ -184,9 +184,9 @@ def run(
     *,
     docs_dir: Path,
     kev_path: Path,
+    feed_path: Path,
     min_kev_cves: int = 1000,
 ) -> Dict[str, int]:
-    feed_path = docs_dir / "feed_latest.json"
     meta_path = docs_dir / "meta.json"
 
     rows = json.loads(feed_path.read_text(encoding="utf-8"))
@@ -262,6 +262,8 @@ def run(
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--feed", type=Path, required=True,
+                        help="Full canonical JSON array to reconcile in place; never the dashboard projection")
     parser.add_argument("--docs-dir", type=Path, default=Path("docs"))
     parser.add_argument(
         "--kev-jsonl",
@@ -273,6 +275,7 @@ def main() -> int:
 
     stats = run(
         docs_dir=args.docs_dir,
+        feed_path=args.feed,
         kev_path=args.kev_jsonl,
         min_kev_cves=args.min_kev_cves,
     )

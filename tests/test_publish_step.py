@@ -234,3 +234,21 @@ def test_first_ever_build_no_baseline_always_allowed(tmp_path):
     docs = repo_root / "docs"
     new_feed = json.loads((docs / "feed_latest.json").read_text(encoding="utf-8"))
     assert len(new_feed) == 42
+
+
+def test_publish_guard_uses_full_archive_and_rejects_replaced_ids(tmp_path):
+    from advisoryops.feed_archive import publish_archive
+    repo = _make_repo(tmp_path)
+    docs = repo / "docs"
+    source = tmp_path / "full.json"
+    rows = [{"issue_id": str(i)} for i in range(20)]
+    source.write_text(json.dumps(rows))
+    publish_archive(source_path=source, docs_dir=docs, latest_count=2, shard_count=4)
+    community = _make_community(tmp_path, 3)
+    with pytest.raises(RuntimeError, match="degraded run"):
+        _publish_to_docs(community, repo)
+    rows[-1]["issue_id"] = "replacement"
+    (community / "feed_latest.json").write_text(json.dumps(rows))
+    with pytest.raises(RuntimeError, match="missing issue IDs"):
+        _publish_to_docs(community, repo)
+    assert len(json.loads((docs / "feed_latest.json").read_text())) == 2

@@ -403,7 +403,7 @@ a:hover { text-decoration:underline; }
     <button class="pill" id="reset-read-btn" title="Restore all dimmed (read) issues to full visibility" onclick="window._ao_clearRead()">Reset read</button>
     <div class="scope-toggle">
       <button class="toggle-btn active" data-scope-mode="healthcare">Medical devices</button>
-      <button class="toggle-btn" data-scope-mode="all">All vulnerabilities</button>
+      <button class="toggle-btn" data-scope-mode="all" title="Bounded priority/date window; complete history is available in the feed archive.">General advisories</button>
     </div>
   </div>
 
@@ -1756,12 +1756,12 @@ a:hover { text-decoration:underline; }
             try {
               issues = await loadAllIssues();
             } catch (e) {
-              console.error('Failed to load full feed:', e);
-              btn.textContent = 'All vulnerabilities';
+              console.error('Failed to load dashboard feed:', e);
+              btn.textContent = 'General advisories';
               btn.disabled = false;
               return;
             }
-            btn.textContent = 'All vulnerabilities';
+            btn.textContent = 'General advisories';
             btn.disabled = false;
           } else {
             issues = allIssuesCache;
