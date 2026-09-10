@@ -4,6 +4,9 @@ on:
   schedule:
     - cron: '0 6 * * *'  # 06:00 UTC daily
   workflow_dispatch:
+  push:
+    branches:
+      - agent/scalable-feed-publication  # temporary validation trigger; remove before merge
 
 permissions:
   contents: write
@@ -87,6 +90,7 @@ jobs:
           key: discover-${{ runner.os }}-${{ steps.date.outputs.date }}
 
       - name: Commit updated feed files
+        if: github.ref == 'refs/heads/main'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
