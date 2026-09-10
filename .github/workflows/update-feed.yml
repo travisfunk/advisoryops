@@ -4,9 +4,6 @@ on:
   schedule:
     - cron: '0 6 * * *'  # 06:00 UTC daily
   workflow_dispatch:
-  push:
-    branches:
-      - agent/scalable-feed-publication  # temporary validation trigger; remove before merge
 
 permissions:
   contents: write
@@ -57,19 +54,23 @@ jobs:
             --set-id gold_pass2 \
             --out-root-community outputs/community_public \
             --baseline-feed "${RUNNER_TEMP}/advisoryops_baseline.json" \
+            --latest 0 \
             --refresh \
             --refresh-limit 50
 
+      - name: Preserve full canonical corpus for reconciliation and publication
+        run: cp docs/feed_latest.json "${RUNNER_TEMP}/advisoryops_canonical.json"
+
       - name: Reconcile strict KEV medical-device classification
-        run: python -m advisoryops.kev_medical_device_reconcile
+        run: python -m advisoryops.kev_medical_device_reconcile --feed "${RUNNER_TEMP}/advisoryops_canonical.json"
 
       - name: Verify full CISA KEV overlap
-        run: python -m advisoryops.kev_full_catalog
+        run: python -m advisoryops.kev_full_catalog --feed "${RUNNER_TEMP}/advisoryops_canonical.json"
 
       - name: Publish scalable public feed
         run: |
           python -m advisoryops.feed_archive publish \
-            --source docs/feed_latest.json \
+            --source "${RUNNER_TEMP}/advisoryops_canonical.json" \
             --docs docs \
             --latest-count 750 \
             --shards 32

@@ -19,9 +19,12 @@ monolithic ``docs/feed_latest.json`` on the first migration run.
 from __future__ import annotations
 
 import argparse
+import filecmp
 import hashlib
 import json
 import shutil
+import tempfile
+from copy import deepcopy
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Sequence
@@ -31,6 +34,38 @@ DEFAULT_LATEST_COUNT = 750
 DEFAULT_SHARD_COUNT = 32
 DEFAULT_MAX_LATEST_BYTES = 25 * 1024 * 1024
 DEFAULT_MAX_SHARD_BYTES = 50 * 1024 * 1024
+
+
+# Audited against dashboard/index.html; docs/dashboard_feed_contract.json is
+# the public inventory. Keep optional values (including null/false) unchanged.
+DASHBOARD_FIELDS = frozenset("""
+issue_id title priority score summary cves cvss_score cvss_severity cwe_ids
+fda_risk_class kev_required_action kev_due_date kev_vendor kev_product
+kev_vulnerability_name is_kev_medical_device vendor affected_products
+affected_versions handling_warnings remediation_steps actions sources
+canonical_link published_dates first_seen_at last_seen_at healthcare_relevant
+healthcare_category nvd_description recommended_patterns tasks_by_role reasoning
+epss_score first_published_to_feed remotely_exploitable_no_auth
+""".split())
+
+
+def dashboard_record(row: Dict[str, Any]) -> Dict[str, Any]:
+    """Lossless projection of UI fields; never summarize or truncate facts."""
+    return {key: deepcopy(row[key]) for key in sorted(DASHBOARD_FIELDS) if key in row}
+
+
+def assert_history_retained(
+    prior: Sequence[Dict[str, Any]], current: Sequence[Dict[str, Any]],
+) -> None:
+    """A count floor alone misses replacement of old IDs by new IDs."""
+    _validate_unique_issue_ids(current)
+    missing = {_issue_key(row) for row in prior} - {_issue_key(row) for row in current}
+    if missing:
+        raise RuntimeError(
+            f"Publication would shrink or lose full history: {len(missing)} missing "
+            f"issue IDs (sample: {', '.join(sorted(missing)[:5])}). "
+            "Reconstruct the full archive baseline and merge before publishing."
+        )
 
 
 def _utc_now() -> str:
@@ -124,17 +159,27 @@ def _manifest_rows(manifest_path: Path) -> List[Dict[str, Any]]:
     if not isinstance(shards, list) or not shards:
         raise ValueError(f"{manifest_path} has no archive shards")
 
+    if len(shards) != manifest.get("shard_count"):
+        raise ValueError("Feed archive shard_count mismatch")
+    names = [entry.get("file") for entry in shards if isinstance(entry, dict)]
+    if len(set(names)) != len(shards):
+        raise ValueError("Duplicate or invalid archive shard entries")
     rows: List[Dict[str, Any]] = []
     root = manifest_path.parent
     for entry in shards:
         if not isinstance(entry, dict) or not entry.get("file"):
             raise ValueError(f"Invalid shard entry in {manifest_path}: {entry!r}")
-        shard_path = root / str(entry["file"])
+        name = str(entry["file"])
+        if Path(name).name != name or not name.startswith("shard-") or not name.endswith(".jsonl"):
+            raise ValueError(f"Invalid archive shard filename: {name}")
+        shard_path = root / name
         if not shard_path.exists():
             raise FileNotFoundError(f"Missing feed archive shard: {shard_path}")
         expected_hash = str(entry.get("sha256") or "")
-        if expected_hash and _sha256_file(shard_path) != expected_hash:
+        if not expected_hash or _sha256_file(shard_path) != expected_hash:
             raise ValueError(f"Feed archive shard hash mismatch: {shard_path}")
+        if shard_path.stat().st_size != entry.get("bytes"):
+            raise ValueError(f"Feed archive shard byte size mismatch: {shard_path}")
         shard_rows = _read_jsonl(shard_path)
         expected_count = int(entry.get("count", len(shard_rows)) or 0)
         if len(shard_rows) != expected_count:
@@ -166,6 +211,13 @@ def prepare_baseline(
     """
     out_path.parent.mkdir(parents=True, exist_ok=True)
 
+    if not manifest_path.exists():
+        if manifest_path.parent.exists():
+            raise RuntimeError("Archive directory exists without manifest; restore the durable archive")
+        meta_path = legacy_path.parent / "meta.json"
+        if meta_path.exists() and json.loads(meta_path.read_text(encoding="utf-8")).get("publication"):
+            raise RuntimeError("Missing durable archive; refusing compact feed as a historical baseline")
+
     if manifest_path.exists():
         rows = _manifest_rows(manifest_path)
         _write_json_array(out_path, rows)
@@ -187,7 +239,7 @@ def prepare_baseline(
     }
 
 
-def publish_archive(
+def _publish_archive_staged(
     *,
     source_path: Path,
     docs_dir: Path,
@@ -206,33 +258,26 @@ def publish_archive(
     _validate_unique_issue_ids(rows)
     docs_dir.mkdir(parents=True, exist_ok=True)
 
-    latest_rows = rows[:latest_count]
+    latest_rows = [dashboard_record(row) for row in rows[:latest_count]]
     latest_path = docs_dir / "feed_latest.json"
     _write_json_array(latest_path, latest_rows)
     latest_bytes = latest_path.stat().st_size
     if latest_bytes > max_latest_bytes:
         raise RuntimeError(
             f"Bounded feed_latest.json is {latest_bytes} bytes, above the "
-            f"{max_latest_bytes}-byte publication guard. Reduce latest_count "
-            "or investigate unexpectedly large records."
+            f"{max_latest_bytes}-byte publication guard. Inspect dashboard field sizes "
+            "and outlier issue IDs; preserve full facts in the archive. "
+            "Do not lower latest_count to conceal oversized records."
         )
 
     archive_dir = docs_dir / "feed_archive"
     archive_dir.mkdir(parents=True, exist_ok=True)
 
     prior_manifest_path = archive_dir / "manifest.json"
+    if archive_dir.exists() and any(archive_dir.iterdir()) and not prior_manifest_path.exists():
+        raise RuntimeError("Archive directory exists without manifest; restore the durable archive")
     if prior_manifest_path.exists():
-        prior_manifest = json.loads(prior_manifest_path.read_text(encoding="utf-8"))
-        prior_total = (
-            int(prior_manifest.get("total_records", 0) or 0)
-            if isinstance(prior_manifest, dict)
-            else 0
-        )
-        if len(rows) < prior_total:
-            raise RuntimeError(
-                f"Publication would shrink full history from {prior_total} "
-                f"to {len(rows)} records"
-            )
+        assert_history_retained(_manifest_rows(prior_manifest_path), rows)
 
     buckets: List[List[Dict[str, Any]]] = [[] for _ in range(shard_count)]
     for row in rows:
@@ -274,8 +319,10 @@ def publish_archive(
         "total_records": len(rows),
         "latest_records": len(latest_rows),
         "latest_file": "../feed_latest.json",
+        "dashboard_contract": "../dashboard_feed_contract.json",
+        "dashboard_projection_version": 1,
         "shard_count": shard_count,
-        "shard_function": "sha256(issue_id) mod shard_count",
+        "shard_function": "uint32_be(sha256(issue_id)[:4]) mod shard_count",
         "shards": shard_entries,
     }
     manifest_path = archive_dir / "manifest.json"
@@ -292,7 +339,7 @@ def publish_archive(
         "dashboard loading. The complete full-fidelity corpus is preserved in "
         "the JSONL shards in this directory. `manifest.json` records the shard "
         "count, record counts, byte sizes, SHA-256 hashes, and partition "
-        "strategy. Shard membership is deterministic: `sha256(issue_id) mod "
+        "strategy. Shard membership is deterministic: `uint32_be(sha256(issue_id)[:4]) mod "
         "shard_count`.\n\n"
         "This design keeps every published file well below GitHub's single-file "
         "limit while preserving an auditable, reconstructable historical "
@@ -328,11 +375,56 @@ def publish_archive(
         "latest_records": len(latest_rows),
         "latest_bytes": latest_bytes,
         "shard_count": shard_count,
+        "archive_bytes": sum(e["bytes"] for e in shard_entries),
         "largest_shard_bytes": max(
             (e["bytes"] for e in shard_entries), default=0
         ),
         "manifest": str(manifest_path),
     }
+
+
+def publish_archive(
+    *, source_path: Path, docs_dir: Path,
+    latest_count: int = DEFAULT_LATEST_COUNT,
+    shard_count: int = DEFAULT_SHARD_COUNT,
+    max_latest_bytes: int = DEFAULT_MAX_LATEST_BYTES,
+    max_shard_bytes: int = DEFAULT_MAX_SHARD_BYTES,
+) -> Dict[str, Any]:
+    """Validate all archive/projection files before replacing published files.
+
+    Failed guards leave the existing publication intact. GitHub Pages receives
+    the completed set through one git commit, not through these local renames.
+    """
+    docs_dir.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix=".publication-", dir=docs_dir.parent) as temp:
+        staged = Path(temp)
+        archive = docs_dir / "feed_archive"
+        if archive.exists():
+            shutil.copytree(archive, staged / "feed_archive")
+        if (docs_dir / "meta.json").exists():
+            shutil.copy2(docs_dir / "meta.json", staged / "meta.json")
+        result = _publish_archive_staged(
+            source_path=source_path, docs_dir=staged, latest_count=latest_count,
+            shard_count=shard_count, max_latest_bytes=max_latest_bytes,
+            max_shard_bytes=max_shard_bytes,
+        )
+        for source in sorted(staged.rglob("*")):
+            if source.is_file():
+                target = docs_dir / source.relative_to(staged)
+                target.parent.mkdir(parents=True, exist_ok=True)
+                # Compare contents, never just stat metadata: unchanged files
+                # keep their mtimes and existing Git blob identities. Staged
+                # serialization/validation still runs for every shard.
+                if target.is_file() and filecmp.cmp(source, target, shallow=False):
+                    continue
+                source.replace(target)
+        expected = {entry["file"] for entry in json.loads(
+            (archive / "manifest.json").read_text(encoding="utf-8"))["shards"]}
+        for stale in archive.glob("shard-*.jsonl"):
+            if stale.name not in expected:
+                stale.unlink()
+        result["manifest"] = str(archive / "manifest.json")
+        return result
 
 
 def _build_parser() -> argparse.ArgumentParser:

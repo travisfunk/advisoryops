@@ -644,7 +644,7 @@ def _publish_to_docs(community_root: Path, repo_root: Path) -> None:
     Atomic health guard
     -------------------
     Before any docs/ file is written, the new feed is validated against
-    the committed baseline (docs/feed_latest.json).  The rule:
+    the complete committed archive (legacy feed on first migration). The rule:
 
         len(new_feed) >= len(baseline_feed)
 
@@ -665,7 +665,13 @@ def _publish_to_docs(community_root: Path, repo_root: Path) -> None:
     new_feed_path = community_root / "feed_latest.json"
     baseline_docs_path = docs_dir / "feed_latest.json"
 
-    if baseline_docs_path.exists():
+    archive_manifest = docs_dir / "feed_archive" / "manifest.json"
+    archive_rows = None
+    if archive_manifest.exists():
+        from .feed_archive import _manifest_rows
+        archive_rows = _manifest_rows(archive_manifest)
+        baseline_count = len(archive_rows)
+    elif baseline_docs_path.exists():
         try:
             baseline_data = json.loads(baseline_docs_path.read_text(encoding="utf-8"))
             baseline_count = len(baseline_data) if isinstance(baseline_data, list) else 0
@@ -674,6 +680,7 @@ def _publish_to_docs(community_root: Path, repo_root: Path) -> None:
     else:
         baseline_count = 0  # no committed baseline yet (first-ever build) — allow
 
+    new_data = []
     if new_feed_path.exists():
         try:
             new_data = json.loads(new_feed_path.read_text(encoding="utf-8"))
@@ -691,6 +698,10 @@ def _publish_to_docs(community_root: Path, repo_root: Path) -> None:
             f"(additive build; equal = quiet day, less = degraded). "
             f"No docs/ file was updated."
         )
+
+    if archive_rows is not None:
+        from .feed_archive import assert_history_retained
+        assert_history_retained(archive_rows, new_data)
 
     print(f"  Health guard passed: {new_count} issues >= {baseline_count} baseline")
 

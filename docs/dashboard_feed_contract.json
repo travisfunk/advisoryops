@@ -1,0 +1,193 @@
+{
+  "version": 1,
+  "description": "docs/feed_latest.json is a JSON array of at most 750 dashboard serving records in canonical pipeline order. Optional fields retain original values when present. No facts are truncated. Full records are in feed_archive/manifest.json and its JSONL shards. The medical-device feed remains full-fidelity and complete.",
+  "fields": {
+    "actions": {
+      "type": "array",
+      "required": false
+    },
+    "affected_products": {
+      "type": "array",
+      "required": false
+    },
+    "affected_versions": {
+      "type": "array",
+      "required": false
+    },
+    "canonical_link": {
+      "type": "string",
+      "required": false
+    },
+    "cves": {
+      "type": "array",
+      "required": false
+    },
+    "cvss_score": {
+      "type": "number",
+      "required": false
+    },
+    "cvss_severity": {
+      "type": "string",
+      "required": false
+    },
+    "cwe_ids": {
+      "type": "array",
+      "required": false
+    },
+    "epss_score": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "required": false,
+      "added_by": "EPSS enrichment"
+    },
+    "fda_risk_class": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "required": false
+    },
+    "first_published_to_feed": {
+      "type": [
+        "string",
+        "boolean"
+      ],
+      "required": false,
+      "added_by": "Additive baseline merge: timestamp string on first publication; legacy boolean markers are accepted. The dashboard treats either as a truthy NEW marker."
+    },
+    "first_seen_at": {
+      "type": "string",
+      "required": false
+    },
+    "handling_warnings": {
+      "type": "array",
+      "required": false
+    },
+    "healthcare_category": {
+      "type": "string",
+      "required": false
+    },
+    "healthcare_relevant": {
+      "type": "boolean",
+      "required": false
+    },
+    "is_kev_medical_device": {
+      "type": "boolean",
+      "required": false
+    },
+    "issue_id": {
+      "type": "string",
+      "required": true
+    },
+    "kev_due_date": {
+      "type": "string",
+      "required": false
+    },
+    "kev_product": {
+      "type": "string",
+      "required": false
+    },
+    "kev_required_action": {
+      "type": "string",
+      "required": false
+    },
+    "kev_vendor": {
+      "type": "string",
+      "required": false
+    },
+    "kev_vulnerability_name": {
+      "type": "string",
+      "required": false
+    },
+    "last_seen_at": {
+      "type": "string",
+      "required": false
+    },
+    "nvd_description": {
+      "type": "string",
+      "required": false
+    },
+    "priority": {
+      "type": "string",
+      "required": true,
+      "enum": [
+        "P0",
+        "P1",
+        "P2",
+        "P3"
+      ]
+    },
+    "published_dates": {
+      "type": "array",
+      "required": false
+    },
+    "reasoning": {
+      "type": "string",
+      "required": false,
+      "added_by": "Problem 1 fix (commit 3)"
+    },
+    "recommended_patterns": {
+      "type": "array",
+      "required": false,
+      "added_by": "Problem 1 fix (commit 3)"
+    },
+    "remediation_steps": {
+      "type": "array",
+      "required": false
+    },
+    "remotely_exploitable_no_auth": {
+      "type": [
+        "boolean",
+        "null"
+      ],
+      "required": false,
+      "added_by": "CVSS exposure tagging \u00e2\u20ac\u201d true iff cvss_attack_vector==network and no authentication is required (PR:N for v3.x/v4.0, Au:N for v2); false when a vector exists but the condition fails; null when cvss_vector is absent or unparseable"
+    },
+    "score": {
+      "type": "integer",
+      "required": true
+    },
+    "sources": {
+      "type": "array",
+      "required": false
+    },
+    "summary": {
+      "type": "string",
+      "required": false
+    },
+    "tasks_by_role": {
+      "type": "object",
+      "required": false,
+      "added_by": "Problem 1 fix (commit 3)"
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "vendor": {
+      "type": "string",
+      "required": false
+    }
+  },
+  "nested_reads": {
+    "recommended_patterns": [
+      "priority_order",
+      "name",
+      "pattern_id",
+      "why_selected",
+      "basis",
+      "friction_level",
+      "side_effects"
+    ],
+    "tasks_by_role": [
+      "infosec",
+      "netops",
+      "htm_ce",
+      "vendor",
+      "clinical_ops",
+      "it_ops"
+    ]
+  }
+}
