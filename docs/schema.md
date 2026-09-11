@@ -1,6 +1,9 @@
 # AdvisoryOps Issue Schema — Field Reference
 
-Every issue in `issues_public.jsonl` and `feed_latest.json` follows this schema.
+Canonical issues in `issues_public.jsonl` and `feed_archive/*.jsonl` follow this schema.
+The public `docs/feed_latest.json` is a compact dashboard projection; see
+[publication architecture and field inventory](publication.md) and
+[serving contract](dashboard_feed_contract.json).
 
 ## Identity
 

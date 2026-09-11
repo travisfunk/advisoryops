@@ -93,3 +93,26 @@ def test_medical_device_non_kev_row_stays_unflagged():
     assert rows[0]["score"] == 70
     assert stats["strict_kev_medical_device"] == 0
     assert stats["legacy_flags_corrected"] == 0
+
+
+def test_reconcile_explicit_full_input_preserves_complete_medical_output(tmp_path):
+    import json
+    from advisoryops.kev_medical_device_reconcile import run
+    docs = tmp_path / "docs"
+    docs.mkdir()
+    general = {"issue_id": "general", "healthcare_category": "healthcare_it"}
+    medical = {"issue_id": "CVE-2026-12345", "healthcare_category": "medical_device"}
+    (docs / "feed_latest.json").write_text(json.dumps([general]))
+    (docs / "meta.json").write_text("{}")
+    canonical = tmp_path / "canonical.json"
+    canonical.write_text(json.dumps([general, medical]))
+    kev = tmp_path / "kev.jsonl"
+    kev.write_text(json.dumps({"guid": "CVE-2026-12345"}) + "\n")
+    stats = run(docs_dir=docs, feed_path=canonical, kev_path=kev, min_kev_cves=1)
+    assert stats["strict_kev_medical_device"] == 1
+    assert json.loads((docs / "feed_latest.json").read_text()) == [general]
+    medical_output = json.loads((docs / "feed_healthcare.json").read_text())
+    assert len(medical_output) == 1
+    assert medical_output[0]["issue_id"] == medical["issue_id"]
+    assert medical_output[0]["is_kev_medical_device"] is True
+    assert len(json.loads(canonical.read_text())) == 2

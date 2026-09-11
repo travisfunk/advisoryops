@@ -259,3 +259,9 @@ Artifacts:
 - `meta.json` — parameters, counts, and output paths for the community build
 
 That lets the free side ship from artifacts the repo already produces, while still exposing a stable file-based public feed surface.
+
+## Static publication boundary
+
+The complete canonical corpus is retained in deterministic JSONL archive shards.
+`docs/feed_latest.json` is a bounded dashboard projection, not a historical baseline.
+See [publication architecture, field inventory, and recovery](publication.md).

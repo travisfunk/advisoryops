@@ -210,7 +210,7 @@ def run(
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--feed", type=Path, default=Path("docs/feed_latest.json"))
+    parser.add_argument("--feed", type=Path, help="Explicit full canonical JSON array; never a dashboard projection")
     parser.add_argument(
         "--kev-jsonl",
         type=Path,
@@ -225,13 +225,25 @@ def main() -> int:
     parser.add_argument("--min-kev-cves", type=int, default=1000)
     args = parser.parse_args()
 
-    report = run(
-        feed_path=args.feed,
-        kev_path=args.kev_jsonl,
-        out_path=args.out,
-        meta_path=args.meta,
-        min_kev_cves=args.min_kev_cves,
-    )
+    # Default to reconstructing durable history after publication. The workflow
+    # passes the current reconciled full corpus explicitly before projection.
+    import tempfile
+    from .feed_archive import prepare_baseline
+    with tempfile.TemporaryDirectory() as temp:
+        feed = args.feed
+        if feed is None:
+            feed = Path(temp) / "full.json"
+            prepare_baseline(
+                manifest_path=Path("docs/feed_archive/manifest.json"),
+                legacy_path=Path("docs/feed_latest.json"), out_path=feed,
+            )
+        report = run(
+            feed_path=feed,
+            kev_path=args.kev_jsonl,
+            out_path=args.out,
+            meta_path=args.meta,
+            min_kev_cves=args.min_kev_cves,
+        )
 
     print("Full CISA KEV / medical-device overlap verification:")
     print(f"  KEV records loaded:        {report['kev_records_loaded']}")
