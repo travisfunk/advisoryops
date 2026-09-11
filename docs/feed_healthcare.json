@@ -28264,6 +28264,354 @@
     "first_published_to_feed": "2026-08-15T22:02:30.074400+00:00"
   },
   {
+    "issue_id": "CVE-2026-78224",
+    "issue_type": "cve",
+    "title": "CVE-2026-78224",
+    "summary": "Successful exploitation of these vulnerabilities could allow an attacker to exfiltrate date or cause a denial-of-service condition.",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-253-01.json",
+    "cves": [
+      "CVE-2026-78224"
+    ],
+    "sources": [
+      "cisa-icsma"
+    ],
+    "published_dates": [
+      "2026-09-10T06:00:00.000000Z"
+    ],
+    "first_seen_at": "2026-09-11T08:09:27.244428+00:00",
+    "last_seen_at": "2026-09-11T08:09:27.244428+00:00",
+    "score": 90,
+    "priority": "P2",
+    "actions": [
+      "track"
+    ],
+    "why": [
+      "base: issue_type=cve (+10)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "priority: P2 (score=90)"
+    ],
+    "handling_warnings": [],
+    "evidence_gaps": [],
+    "unknowns": [],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2026-78224",
+        "source": "cisa-icsma"
+      }
+    ],
+    "cvss_score": 0,
+    "cvss_severity": "",
+    "cvss_vector": "",
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null,
+    "cwe_ids": [],
+    "affected_products": [],
+    "nvd_description": "",
+    "source_summary": "",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Review vendor advisory for mitigation guidance.",
+      "Monitor for exploitation indicators."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": null,
+    "epss_percentile": null,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": [],
+    "first_published_to_feed": "2026-09-11T08:17:16.298951+00:00"
+  },
+  {
+    "issue_id": "CVE-2026-82578",
+    "issue_type": "cve",
+    "title": "CVE-2026-82578",
+    "summary": "Successful exploitation of these vulnerabilities could allow an attacker to exfiltrate date or cause a denial-of-service condition.",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-253-01.json",
+    "cves": [
+      "CVE-2026-82578"
+    ],
+    "sources": [
+      "cisa-icsma"
+    ],
+    "published_dates": [
+      "2026-09-10T06:00:00.000000Z"
+    ],
+    "first_seen_at": "2026-09-11T08:09:27.244428+00:00",
+    "last_seen_at": "2026-09-11T08:09:27.244428+00:00",
+    "score": 90,
+    "priority": "P2",
+    "actions": [
+      "track"
+    ],
+    "why": [
+      "base: issue_type=cve (+10)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "priority: P2 (score=90)"
+    ],
+    "handling_warnings": [],
+    "evidence_gaps": [],
+    "unknowns": [],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2026-82578",
+        "source": "cisa-icsma"
+      }
+    ],
+    "cvss_score": 0,
+    "cvss_severity": "",
+    "cvss_vector": "",
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null,
+    "cwe_ids": [],
+    "affected_products": [],
+    "nvd_description": "",
+    "source_summary": "",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Review vendor advisory for mitigation guidance.",
+      "Monitor for exploitation indicators."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": null,
+    "epss_percentile": null,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": [],
+    "first_published_to_feed": "2026-09-11T08:17:16.298951+00:00"
+  },
+  {
+    "issue_id": "CVE-2026-82583",
+    "issue_type": "cve",
+    "title": "CVE-2026-82583",
+    "summary": "Successful exploitation of these vulnerabilities could allow an attacker to exfiltrate date or cause a denial-of-service condition.",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-253-01.json",
+    "cves": [
+      "CVE-2026-82583"
+    ],
+    "sources": [
+      "cisa-icsma"
+    ],
+    "published_dates": [
+      "2026-09-10T06:00:00.000000Z"
+    ],
+    "first_seen_at": "2026-09-11T08:09:27.244428+00:00",
+    "last_seen_at": "2026-09-11T08:09:27.244428+00:00",
+    "score": 90,
+    "priority": "P2",
+    "actions": [
+      "track"
+    ],
+    "why": [
+      "base: issue_type=cve (+10)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "priority: P2 (score=90)"
+    ],
+    "handling_warnings": [],
+    "evidence_gaps": [],
+    "unknowns": [],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2026-82583",
+        "source": "cisa-icsma"
+      }
+    ],
+    "cvss_score": 0,
+    "cvss_severity": "",
+    "cvss_vector": "",
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null,
+    "cwe_ids": [],
+    "affected_products": [],
+    "nvd_description": "",
+    "source_summary": "",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Review vendor advisory for mitigation guidance.",
+      "Monitor for exploitation indicators."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": null,
+    "epss_percentile": null,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": [],
+    "first_published_to_feed": "2026-09-11T08:17:16.298951+00:00"
+  },
+  {
+    "issue_id": "CVE-2026-87020",
+    "issue_type": "cve",
+    "title": "CVE-2026-87020",
+    "summary": "Successful exploitation of this vulnerability could allow an authenticated remote attacker to write past the end of a heap allocation when Orthanc decodes an attacker-supplied PNG or JPEG image, resulting in a crash of the Orthanc process and a denial-of-service condition.",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-253-02.json",
+    "cves": [
+      "CVE-2026-87020"
+    ],
+    "sources": [
+      "cisa-icsma"
+    ],
+    "published_dates": [
+      "2026-09-10T06:00:00.000000Z"
+    ],
+    "first_seen_at": "2026-09-11T08:09:27.244428+00:00",
+    "last_seen_at": "2026-09-11T08:09:27.244428+00:00",
+    "score": 90,
+    "priority": "P2",
+    "actions": [
+      "track"
+    ],
+    "why": [
+      "base: issue_type=cve (+10)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "priority: P2 (score=90)"
+    ],
+    "handling_warnings": [],
+    "evidence_gaps": [],
+    "unknowns": [],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2026-87020",
+        "source": "cisa-icsma"
+      }
+    ],
+    "cvss_score": 0,
+    "cvss_severity": "",
+    "cvss_vector": "",
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null,
+    "cwe_ids": [],
+    "affected_products": [],
+    "nvd_description": "",
+    "source_summary": "",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Review vendor advisory for mitigation guidance.",
+      "Monitor for exploitation indicators."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": null,
+    "epss_percentile": null,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": [],
+    "first_published_to_feed": "2026-09-11T08:17:16.298951+00:00"
+  },
+  {
     "issue_id": "UNK-02fdb6ff2608f2b5",
     "issue_type": "unknown",
     "title": "Z-0091-2026: Boston Scientific Corporation",
@@ -29135,85 +29483,6 @@
     "first_published_to_feed": "2026-08-16T07:02:50.943131+00:00"
   },
   {
-    "issue_id": "UNK-2962f3ae8aeb9aa4",
-    "issue_type": "unknown",
-    "title": "Flow Neuroscience FL-100",
-    "summary": "Flow Neuroscience FL-100",
-    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-225-01.json",
-    "cves": [],
-    "sources": [
-      "cisa-icsma"
-    ],
-    "published_dates": [
-      "2026-08-13T06:00:00.000000Z"
-    ],
-    "first_seen_at": "2026-08-16T06:54:53.829922+00:00",
-    "last_seen_at": "2026-08-26T07:05:16.563879+00:00",
-    "score": 82,
-    "priority": "P2",
-    "actions": [
-      "track"
-    ],
-    "why": [
-      "base: issue_type!=cve (+2)",
-      "source-authority: tier-1 weight=1.0 (+30)",
-      "healthcare-source: tier-1 medical source (+50)",
-      "priority: P2 (score=82)"
-    ],
-    "handling_warnings": [],
-    "evidence_gaps": [],
-    "unknowns": [],
-    "source_consensus": {
-      "agreed": [],
-      "contradicted": [],
-      "unique_contributions": {}
-    },
-    "source_authority_weight": 1.0,
-    "highest_authority_source": "cisa-icsma",
-    "healthcare_category": "medical_device",
-    "classification": {},
-    "severity": "",
-    "affected_versions": [],
-    "vendor": "",
-    "generated_by": "deterministic",
-    "extracted_facts": {},
-    "inferred_facts": {},
-    "confidence_by_field": {},
-    "evidence_sources": [],
-    "insufficient_evidence": false,
-    "non_applicability": [],
-    "source_mitigations": [],
-    "iocs": [],
-    "cvss_score": 0,
-    "cvss_severity": "",
-    "cvss_vector": "",
-    "cvss_attack_vector": null,
-    "remotely_exploitable_no_auth": null,
-    "cwe_ids": [],
-    "affected_products": [],
-    "nvd_description": "",
-    "source_summary": "",
-    "kev_required_action": "",
-    "kev_due_date": "",
-    "kev_vendor": "",
-    "kev_product": "",
-    "kev_vulnerability_name": "",
-    "remediation_steps": [
-      "Review vendor advisory for mitigation guidance.",
-      "Monitor for exploitation indicators."
-    ],
-    "healthcare_relevant": true,
-    "fda_risk_class": null,
-    "is_kev_medical_device": false,
-    "epss_score": null,
-    "epss_percentile": null,
-    "recommended_patterns": [],
-    "tasks_by_role": {},
-    "reasoning": "",
-    "citations": [],
-    "first_published_to_feed": "2026-08-16T07:02:50.943131+00:00"
-  },
-  {
     "issue_id": "UNK-2de294dd1b89ba1e",
     "issue_type": "unknown",
     "title": "Pulsetto Vagus Nerve Stimulator",
@@ -29307,6 +29576,85 @@
     ],
     "first_seen_at": "2026-08-16T06:54:53.829922+00:00",
     "last_seen_at": "2026-08-26T07:05:16.563879+00:00",
+    "score": 82,
+    "priority": "P2",
+    "actions": [
+      "track"
+    ],
+    "why": [
+      "base: issue_type!=cve (+2)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "priority: P2 (score=82)"
+    ],
+    "handling_warnings": [],
+    "evidence_gaps": [],
+    "unknowns": [],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [],
+    "cvss_score": 0,
+    "cvss_severity": "",
+    "cvss_vector": "",
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null,
+    "cwe_ids": [],
+    "affected_products": [],
+    "nvd_description": "",
+    "source_summary": "",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Review vendor advisory for mitigation guidance.",
+      "Monitor for exploitation indicators."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": null,
+    "epss_percentile": null,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": [],
+    "first_published_to_feed": "2026-08-16T07:02:50.943131+00:00"
+  },
+  {
+    "issue_id": "UNK-2962f3ae8aeb9aa4",
+    "issue_type": "unknown",
+    "title": "Flow Neuroscience FL-100",
+    "summary": "Flow Neuroscience FL-100",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-225-01.json",
+    "cves": [],
+    "sources": [
+      "cisa-icsma"
+    ],
+    "published_dates": [
+      "2026-08-13T06:00:00.000000Z"
+    ],
+    "first_seen_at": "2026-08-16T06:54:53.829922+00:00",
+    "last_seen_at": "2026-09-11T08:09:27.244428+00:00",
     "score": 82,
     "priority": "P2",
     "actions": [
@@ -39315,7 +39663,7 @@
       "Fri, 15 May 2026 14:00:00 +0000"
     ],
     "first_seen_at": "2026-06-24T23:45:01.416683+00:00",
-    "last_seen_at": "2026-08-26T07:10:43.653257+00:00",
+    "last_seen_at": "2026-09-11T08:14:59.981301+00:00",
     "score": 38,
     "priority": "P3",
     "actions": [
