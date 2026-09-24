@@ -2,11 +2,11 @@
 
 ![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)
 ![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)
-![Tests: 1079 passing](https://img.shields.io/badge/tests-1079_passing-brightgreen.svg)
+![Tests: 1165 passing](https://img.shields.io/badge/tests-1165_passing-brightgreen.svg)
 [![Dashboard](https://img.shields.io/badge/dashboard-GitHub_Pages-blue.svg)](https://travisfunk.github.io/advisoryops/)
 
 **Open-source healthcare medical device security intelligence pipeline.**
-AdvisoryOps continuously monitors 66 public sources — CISA ICS-Medical, the Known Exploited Vulnerabilities catalog, FDA device recalls, NVD, CERT/CC, vendor PSIRTs, and more — and produces a prioritized, healthcare-aware feed of medical device vulnerabilities. Built for hospital security teams that can't afford commercial platforms like Claroty or TRIMEDX.
+AdvisoryOps has 64 enabled public source configurations — CISA ICS-Medical, the Known Exploited Vulnerabilities catalog, FDA device recalls, NVD, CERT/CC, vendor PSIRTs, and more — and produces a prioritized, healthcare-aware feed of medical device vulnerabilities. Built for hospital security teams that can't afford commercial platforms like Claroty or TRIMEDX.
 
 
 ---
@@ -17,7 +17,7 @@ AdvisoryOps continuously monitors 66 public sources — CISA ICS-Medical, the Kn
 
 2. **Fully open stack.** The data sources are public, the analysis pipeline is open source, the feed outputs are free to consume, and the dashboard is a static HTML file served from GitHub Pages. Most alternatives lock the data, the analysis, or the delivery behind enterprise pricing. AdvisoryOps is Apache 2.0 and free forever.
 
-3. **AI-assisted remediation guidance.** Each high-priority issue gets a recommendation packet: the AI selects from an 11-pattern approved mitigation playbook (VLAN isolation, ACL allowlisting, vendor case tracking, credential hardening, etc.), assigns tasks by role (infosec, netops, HTM/CE, vendor, clinical ops), and cites the underlying standards (NIST SP 800-82, IEC 62443, FDA guidance). Hallucinated patterns are silently filtered. The AI recommends from a curated list — it cannot invent guidance.
+3. **AI-assisted remediation guidance.** Optional recommendation generation selects from an 11-pattern approved mitigation playbook (VLAN isolation, ACL allowlisting, vendor case tracking, credential hardening, etc.), assigns tasks by role (infosec, netops, HTM/CE, vendor, clinical ops), and cites the underlying standards (NIST SP 800-82, IEC 62443, FDA guidance). Unknown pattern IDs are filtered. Packet generation is not guaranteed for every high-priority issue; the current build's packet count is recorded below.
 
 ---
 
@@ -31,17 +31,17 @@ AdvisoryOps closes that gap. The data is free, the analysis is free, the dashboa
 
 ---
 
-## Key finding: CISA KEV has zero medical device coverage
+## Key finding: zero exact structured CVE-ID overlap in the current corpus
 
-CISA's [Known Exploited Vulnerabilities](https://www.cisa.gov/known-exploited-vulnerabilities-catalog) catalog is the federal authoritative source for "vulnerabilities that are being exploited right now." Federal agencies have binding deadlines to patch anything on the KEV list. Hospital security teams watch it too — it's treated as the canonical signal for "drop everything and fix this."
+The full-corpus verifier compares every record classified as `medical_device` in the canonical archive with the **full CISA Known Exploited Vulnerabilities catalog**. In the production snapshot generated **2026-09-23 at 11:10 UTC**, 463 medical-device records contain 72 unique structured CVE IDs; none intersect the 1,721 unique CVEs in the full KEV catalog.
 
-**As of 2026-04-13, zero of the 203 entries in CISA KEV overlap with any medical device in the AdvisoryOps corpus.** Zero on CVE ID, zero on vendor name (exact or partial substring). The 203 KEV entries span 88 vendors — all enterprise IT (Cisco, Microsoft, Apple, Adobe, Fortinet, Ivanti, Citrix, F5, etc.). None of the 151 medical device vendors in the corpus (Philips Medical Systems, Medtronic, GE Healthcare, St Jude Medical, Siemens Healthineers, and 146 others) appear in KEV.
+The previously reported **203 KEV-enriched issues** were a historical subset of AdvisoryOps issues carrying KEV fields, **not the full CISA KEV catalog**. The current enriched subset is 370 issues. It is not the input for the authoritative comparison.
 
-This is not a bug in AdvisoryOps. It's a structural gap in the federal authoritative source. A hospital security team watching only KEV for patching deadlines would see nothing about their medical devices. Medical device exploitation at scale either isn't happening often enough to meet KEV inclusion criteria, or it's happening but isn't being reported to CISA in a form that triggers KEV listing. Either way, the teams operating those devices need a different signal.
+Vendor checks are diagnostic only: the current report has zero normalized exact vendor matches and two partial substring pairs (Siemens Medical Solutions USA / Siemens and Sunquest Information Systems / Quest). Neither establishes that a medical-device CVE is in KEV. Only an exact structured CVE-ID match supports the strict overlap flag.
 
-AdvisoryOps aggregates from the specialized sources where medical device advisories actually exist — CISA ICS-Medical (ICSMA), FDA device recalls, FDA safety communications, vendor PSIRTs (Philips, Siemens, Abbott, Medtronic), and Health Canada recalls. It auto-promotes FDA Class III devices via a clinical-severity floor (21 CFR 860: devices whose failure can cause serious injury or death) regardless of cyber score. And it exposes the KEV cross-reference live on every build, so if/when CISA starts adding medical device CVEs to KEV, the overlap badge fires automatically.
+This finding is bounded by this corpus, its classification and structured identifiers, and the catalog snapshot. It does not establish that KEV has no medical-device coverage universally, that exploitation never occurs, or why a vulnerability is absent. Records without structured CVEs cannot contribute to the CVE intersection. AdvisoryOps combines specialized medical-device advisory and recall sources with KEV cross-references for that reason.
 
-The methodology, numbers, and reproduction steps are documented in [docs/kev_medical_device_analysis.md](docs/kev_medical_device_analysis.md).
+See [methodology and full-corpus reproduction](docs/kev_medical_device_analysis.md) and the [generated report](docs/kev_full_catalog_overlap.json).
 
 ---
 
@@ -49,28 +49,36 @@ The methodology, numbers, and reproduction steps are documented in [docs/kev_med
 
 **Dashboard:** [https://travisfunk.github.io/advisoryops/](https://travisfunk.github.io/advisoryops/)
 
-The "Medical devices" view shows 422 healthcare-relevant issues with CVSS scores, EPSS exploit probabilities, KEV deadlines, FDA risk class badges, and AI-generated remediation guidance with role-split task assignments. Color-coded priority badges (P0-P3), click-to-expand detail panels, and a debounced search bar filtering by title, CVE, vendor, and product. No framework, no build step — single-file vanilla HTML/JS.
+The "Medical devices" view loads the complete medical-device subset (463 records in the dated snapshot below) with CVSS scores, EPSS exploit probabilities, KEV deadlines, FDA risk class badges, and AI-generated remediation guidance with role-split task assignments. Color-coded priority badges (P0-P3), click-to-expand detail panels, and a debounced search bar filtering by title, CVE, vendor, and product. No framework, no build step — single-file vanilla HTML/JS.
 
-The dashboard also exposes two reviewer-facing transparency views: a **Sources** tab ranking every enabled source by medical-device-signal contribution (so "66 sources" becomes a measurable curation claim), and a **Methodology** tab with live self-check counts refreshed from `meta.json` on every build (test pass rate, FDA coverage, vendor extraction coverage, KEV overlap, pharmaceutical-leak guard) plus the exact commands any reviewer can run to reproduce each number. There's also a "This week" toggle on the Issues tab that filters to advisories from the last 7 days with a priority summary banner, for the operational "what changed this week" use case.
+The dashboard also exposes two reviewer-facing transparency views: a **Sources** tab ranking published sources by medical-device-signal contribution, and a **Methodology** tab with live self-check counts refreshed from `meta.json` on every build (FDA coverage, vendor extraction coverage, strict KEV overlap, pharmaceutical-leak guard; test counts appear only when supplied) plus the exact commands any reviewer can run to reproduce each number. There's also a "This week" toggle on the Issues tab that filters to advisories from the last 7 days with a priority summary banner, for the operational "what changed this week" use case.
 
 ---
 
 ## Current scope
 
+Snapshot: **2026-09-23, 11:10 UTC**, from [meta.json](docs/meta.json), [KEV report](docs/kev_full_catalog_overlap.json), and [source configuration](configs/sources.json). These are dated measurements; generated metadata is authoritative for later builds.
+
 | Metric | Value |
 |--------|-------|
-| Total sources monitored | 66 |
-| Total issues tracked | 3,724 |
-| Medical device issues | 422 |
-| Issues with NVD enrichment | 2,372 |
-| Issues with KEV required actions | 203 |
-| AI recommendation packets | 100 (P0/P1) |
-| Automated tests | 1,079 |
-| Full corpus rebuild cost | $1.40 |
+| Enabled source configurations | 64 |
+| Scheduled `gold_pass2` source IDs / candidate sources | 54 / 1 |
+| Canonical issues in 32 archive shards | 10,880 |
+| General dashboard serving window | 750 |
+| Medical-device records (complete subset) | 463 |
+| Medical-device unique structured CVEs | 72 |
+| Canonical issues with nonempty `nvd_description` | 7,466 |
+| KEV-enriched corpus issues | 370 |
+| Full CISA KEV records / unique CVEs | 1,721 / 1,721 |
+| Exact structured CVE-ID overlap | 0 |
+| Vendor exact / partial pairs (diagnostic only) | 0 / 2 |
+| Recommendation packets generated in this build | 0 |
+
+Enabled configuration count is not a claim that every source yielded records in the scheduled run. The schedule uses `gold_pass2`, not the broader `full_public` set. NVD-description coverage is counted from the reconstructed canonical archive; it is not inferred from the bounded serving feed. Build cost and cumulative AI packet totals are not published current metrics.
 
 ### Repository structure
 
-The production dashboard lives at `dashboard/index.html` in this repo. The pipeline's `community-build` command copies it to `docs/index.html` along with the generated data files so GitHub Pages can serve it. The dashboard was previously in a separate `advisoryops-dashboard` repo and was consolidated on 2026-04-09 to eliminate cross-repo drift. That repo will be archived after verification.
+The production dashboard lives at `dashboard/index.html` in this repo. The pipeline's `community-build` command copies it to `docs/index.html` along with the generated data files so GitHub Pages can serve it. The canonical history lives in `docs/feed_archive/`; `docs/feed_latest.json` is a bounded serving projection. See [publication architecture](docs/publication.md) for the complete scheduled sequence and recovery steps.
 
 ---
 
@@ -84,11 +92,13 @@ cd advisoryops
 pip install -e .
 ```
 
-### Run the full public pipeline (one command)
+### Build the broader public source set locally
 
 ```bash
 advisoryops community-build --set-id full_public --out-root-community outputs/community_public
 ```
+This builder command alone is not the complete production publication sequence; the [scheduled workflow](.github/workflows/update-feed.yml) also reconstructs history, reconciles strict KEV flags, verifies the full catalog, and publishes archive shards.
+
 Outputs: `issues_public.jsonl` · `alerts_public.jsonl` · `feed_latest.json` · `feed_healthcare.json` · `feed.csv` · `feed.xml` · `issues_public.xlsx` · `meta.json`
 ### Run individual pipeline stages
 
@@ -120,7 +130,7 @@ advisoryops evaluate --fixtures tests/fixtures/golden --out outputs/eval
 ## Pipeline architecture
 ```mermaid
 flowchart TD
-    A[66 Public Sources<br/>CISA · FDA · NVD · Vendor PSIRTs · Threat Intel] --> B[Discover<br/>Fetch & normalize feeds]
+    A[Configured Public Sources<br/>CISA · FDA · NVD · Vendor PSIRTs · Threat Intel] --> B[Discover<br/>Fetch & normalize feeds]
     B --> C[Correlate<br/>Dedupe by CVE / signal hash]
     C --> D[NVD Enrich<br/>CVSS · CWE · CPE · KEV]
     D --> E[Score<br/>Healthcare-aware priority P0-P3]
@@ -135,7 +145,7 @@ flowchart TD
 ```
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                        DATA SOURCES (66 enabled)                │
+│  DATA SOURCES (see configs/sources.json)                         │
 │  CISA ICS-Medical · CISA KEV · FDA Recalls · CERT/CC · NVD     │
 │  MS MSRC · Siemens · Philips · ABB · ZDI · more                │
 └─────────────────────┬───────────────────────────────────────────┘
@@ -162,7 +172,7 @@ flowchart TD
 │  3. NVD ENRICH  (nvd_enrich.py)                                 │
 │  CVE → CVSS base score, vector, CWE, affected products (CPE)   │
 │  KEV cross-reference → required action, due date, ransomware    │
-│  2,372 issues enriched in current corpus                        │
+│  Coverage measured from the full canonical archive              │
 │  Output: NVD fields merged into issues.jsonl                    │
 └─────────────────────┬───────────────────────────────────────────┘
                       │
@@ -182,7 +192,7 @@ flowchart TD
 │  5. HEALTHCARE FILTER  (healthcare_filter.py)                   │
 │  Tags issues as healthcare-relevant using device keywords,      │
 │  ICS-Medical source, FDA recalls, clinical context signals      │
-│  422 / 3,724 issues tagged as medical_device in current corpus  │
+│  Complete medical_device subset retained for the dashboard      │
 │  Output: feed_healthcare.json                                   │
 └─────────────────────┬───────────────────────────────────────────┘
                       │
@@ -212,13 +222,13 @@ flowchart TD
 
 ## Source coverage
 
-**66 enabled sources across 4 scopes** (see `configs/sources.json` for the authoritative, up-to-date list)
+**64 enabled source configurations across 4 scopes (2026-09-23)** (see `configs/sources.json` for the authoritative, up-to-date list)
 
 | Scope | Count | Examples |
 |----------|-------|---------|
 | advisory | 16 | CISA ICS-Medical, CISA ICS, CERT/CC, Health Canada recalls, ABB PSIRT, ZDI Published / Upcoming, Philips PSIRT, Siemens ProductCERT |
 | dataset | 12 | CISA KEV (JSON + CSV), NVD CVE API, openFDA device recalls, openFDA device events, EPSS API, Tenable plugins, CWE catalog, MITRE ATT&CK ICS, CISA Vulnrichment |
-| news | 29 | CISA NCAS alerts/analysis/current activity, CyberScoop Healthcare, Fortified Health Security, HIPAA Guide Cyber, MedTech Intelligence, Microsoft MSRC blog, NCSC UK, NIST Cybersecurity Insights, Krebs on Security, Dark Reading |
+| news | 27 | CISA Cybersecurity Advisories, CyberScoop Healthcare, Fortified Health Security, HIPAA Guide Cyber, MedTech Intelligence, Microsoft MSRC, NCSC UK, Krebs on Security, Dark Reading |
 | threatintel | 9 | Cisco Talos, Google/Mandiant, Check Point Research, CrowdStrike, Abuse.ch URLhaus, Abuse.ch Feodo Tracker, Abuse.ch SSL Blacklist, SANS ISC Blocklist IPs, Binary Defense Banlist |
 
 Pharmaceutical sources (`fda-medwatch`, `mhra-uk-alerts`) are explicitly disabled — medicines recalls belong to pharmacy workflows, not medical device security.
@@ -235,9 +245,11 @@ python scripts/smoke_test_all_sources.py
 
 ## Running tests
 
+Fresh full run on **2026-09-23**, Python 3.11: `python -m pytest -o addopts= -q -rs` — **1,165 passed, 1 skipped**, including the live integration test. The skip is the contract check for an absent local pipeline output; the same assertion was separately verified against the complete published `docs/feed_healthcare.json`. Node.js is needed to execute the dashboard JavaScript behavior tests.
+
 ```bash
 # Full suite — no API key required (all AI calls use injectable mocks)
-python -m pytest            # 1079 tests
+python -m pytest            # configured suite (excludes live integration)
 
 # Specific modules
 python -m pytest tests/test_score_healthcare.py -v
@@ -263,12 +275,12 @@ Every AI-generated output carries an evidence trail:
 
 ## Documentation
 
-- **[Architecture diagram](docs/architecture.md)** — data flow from 66 sources through ingestion, correlation, enrichment, AI processing, and out to consumers
+- **[Architecture diagram](docs/architecture.md)** — data flow from configured sources through ingestion, correlation, enrichment, AI processing, and out to consumers
 - **[Scoring internals](docs/scoring_internals.md)** — how the v2 healthcare-aware scoring works (5 dimensions, score ranges, priority thresholds)
 - **[Feed schema](docs/schema.md)** — every field in the feed output with types and descriptions
 - **[Feed contract](docs/feed_contract.json)** — schema contract between the pipeline and the dashboard, enforced by tests
 - **[Playbook governance](docs/playbook_governance.md)** — how mitigation patterns are reviewed, approved, and cited
-- **[KEV analysis](docs/kev_medical_device_analysis.md)** — why CISA KEV has zero medical device overlap (and why that matters)
+- **[KEV analysis](docs/kev_medical_device_analysis.md)** — exact structured CVE-ID comparison against the full KEV catalog, with scope and limitations
 
 ---
 

@@ -1,5 +1,11 @@
 # AdvisoryOps — Release Notes
 
+Historical release record: the counts, source availability, costs, and limitations
+below describe the April 2026 release, not current production. For current dated
+metrics and publication behavior, see [README](README.md#current-scope) and
+[publication architecture](docs/publication.md). The historical 203 KEV-enriched
+issues were a corpus subset, not the full CISA KEV catalog.
+
 ## v1.0 — Initial Public Release (April 2026)
 
 ### Summary

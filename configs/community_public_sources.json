@@ -91,8 +91,8 @@
     },
     {
       "set_id": "gold_pass2",
-      "name": "Gold Pass 2 — all sources with verified discover data",
-      "description": "57 sources with confirmed discovery output (2026-03-24). Recovered 6 previously disabled sources: healthcare-it-news-security, msrc-blog, cshub-attacks, threatpost, nvd-cve-api, epss-api. All 57 fetch+parse successfully; 55 have filtered signals, 2 parse but have no current keyword matches.",
+      "name": "Gold Pass 2 — scheduled source selection",
+      "description": "Scheduled source selection. Membership is defined by source_ids for this set in configs/community_public_sources.json; discovery availability and keyword matches vary by run. This description is not a live source-health count.",
       "source_ids": [
         "abb-psirt",
         "asimily-blog",

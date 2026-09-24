@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Regression guard for the medical_device bucket.
 
-Loads docs/feed_latest.json, filters to healthcare_category == 'medical_device',
+Loads the complete docs/feed_healthcare.json subset, filters to healthcare_category == 'medical_device',
 and asserts none of the vendors are well-known general-IT companies that
 slipped through in the past (pre-classifier-tightening).
 
@@ -19,7 +19,7 @@ import sys
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
-FEED_PATH = REPO_ROOT / "docs" / "feed_latest.json"
+FEED_PATH = REPO_ROOT / "docs" / "feed_healthcare.json"
 
 # Vendors that must never appear in the medical_device bucket. These are
 # large general-IT companies — Philips Healthcare / Siemens Healthineers

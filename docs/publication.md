@@ -130,7 +130,7 @@ Two vendor-substring pairs were found as secondary diagnostics; neither establis
 exploitation or changes the strict exact-CVE medical-device definition.
 These measurements are a dated replay, not permanent live statistics. The failed
 Actions run's 9,533-record output had no retained artifact; it was not the input
-for this replay. A fresh end-to-end scheduled run still needs observation.
+for this replay. Production metadata now records the 2026-09-23 scheduled publication; see the [current snapshot](../README.md#current-scope).
 
 ## Recovery and verification
 
@@ -148,9 +148,5 @@ For an actual nightly build, run reconciliation before verification/publication 
 shown in the workflow. Restore corrupt/missing shards and their matching manifest
 from the same known-good git commit; do not substitute the serving window.
 
-The README's April statistics and “203 entries in CISA KEV” language are stale.
-That historical number describes an enriched feed subset, not the full catalog.
-They should be corrected in a separately verified public-statistics update after
-publication is restored. Existing dashboard legacy overlap prose/calculations also
-mix vendor diagnostics with exact-CVE results; the independent full-catalog report
-is authoritative, and that UI wording warrants a separate methodology correction.
+For strict KEV interpretation and a read-only full-corpus reproduction sequence, see
+[KEV methodology](kev_medical_device_analysis.md). Vendor checks are diagnostic only.

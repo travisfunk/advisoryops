@@ -21,6 +21,7 @@ The public `docs/feed_latest.json` is a compact dashboard projection; see
 | `score` | integer | deterministic/ai | Composite score (0-200+) | `145` |
 | `severity` | string | deterministic | Extracted severity level | `critical` |
 | `healthcare_category` | string | deterministic | `medical_device`, `healthcare_it`, `healthcare_infrastructure`, `healthcare_adjacent` | `medical_device` |
+| `is_kev_medical_device` | boolean | deterministic | `medical_device` classification AND an exact structured CVE ID in the full CISA KEV catalog; vendor exact/partial matches are diagnostic only | `false` |
 | `issue_type` | string | deterministic | `cve`, `advisory`, `alert`, `news` | `cve` |
 | `classification` | dict | deterministic | Taxonomy tags (type, CWE class, device category) | `{"type": "advisory"}` |
 | `fda_risk_class` | string or null | deterministic | FDA medical device class — `"1"`, `"2"`, `"3"`, or null | `"3"` |
@@ -35,7 +36,7 @@ The public `docs/feed_latest.json` is a compact dashboard projection; see
 | `vendor` | string | deterministic | Extracted vendor name | `Fortinet` |
 | `affected_products` | list[string] | deterministic | Products affected by the issue | `["FortiOS 7.4.x"]` |
 | `affected_versions` | list[string] | deterministic | Affected version ranges | `["< 7.4.3"]` |
-| `sources` | list[string] | deterministic | Source IDs that contributed signals (count is `len(sources)` — use `counts.sources` in `meta.json` for the aggregate) | `["cisa-kev-json", "mandiant-blog"]` |
+| `sources` | list[string] | deterministic | Source IDs that contributed signals to this issue (`len(sources)`); `counts.sources_enabled` in `meta.json` counts enabled configurations, not contributing sources | `["cisa-kev-json", "mandiant-blog"]` |
 
 ## Trust & Provenance
 

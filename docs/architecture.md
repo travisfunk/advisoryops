@@ -3,22 +3,27 @@
 This diagram shows the data flow from public sources through ingestion,
 correlation, enrichment, AI processing, and out to consumers.
 
+As of 2026-09-23, `configs/sources.json` enables 64 sources: 16 advisory,
+12 dataset, 27 news, and 9 threatintel. The scheduled workflow selects the
+54 source IDs in `gold_pass2` plus one candidate; enabled registry entries
+are not a per-run success count. See [current snapshot and metric provenance](../README.md#current-scope).
+
 ```mermaid
 graph TB
-    subgraph Sources["Public Sources (65)"]
+    subgraph Sources["Configured Public Sources"]
         S1[CISA ICS-Medical]
         S2[FDA Recalls<br/>openFDA]
         S3[NVD]
         S4[KEV Catalog]
         S5[Vendor PSIRTs<br/>Philips, Siemens]
         S6[Threat Intel<br/>URLhaus, Feodo]
-        S7[Other 58 sources]
+        S7[Other configured sources]
     end
 
     subgraph Ingestion["Ingestion Layer"]
         I1[Per-source<br/>connectors]
         I2[Historical<br/>backfill]
-        I3[Cache layer<br/>340K NVD records]
+        I3[Persistent NVD cache]
     end
 
     subgraph Correlation["Correlation"]
@@ -29,7 +34,7 @@ graph TB
     subgraph Enrichment["Enrichment Layer"]
         E1[NVD CVSS/CWE]
         E2[FDA Risk Class]
-        E3[EPSS scores<br/>325K cached]
+        E3[EPSS scores]
         E4[KEV cross-ref]
         E5[Vulnrichment]
     end
@@ -77,7 +82,7 @@ graph TB
 ## Layer descriptions
 
 ### Ingestion
-Each source has a per-source connector that handles its specific format (RSS, JSON API, CSV feed). All connectors write into a normalized signal format. Historical backfill modules can fetch years of data on demand. Persistent caches across runs keep API calls minimal — full corpus rebuild costs ~$1.40, weekly incremental updates near-zero.
+Each source has a per-source connector that handles its specific format (RSS, JSON API, CSV feed). All connectors write into a normalized signal format. Historical backfill modules can fetch years of data on demand. Persistent caches reduce repeated API calls; cost and cache sizes depend on the run and are not current published metrics.
 
 ### Correlation
 Signals are grouped into issues. CVE-based signals merge by CVE ID. Non-CVE signals merge by `(source_id, normalized_title, published_date)` — including source_id prevents cross-source collisions where different feeds with placeholder titles would otherwise merge incorrectly.
@@ -92,7 +97,7 @@ The AI layer is gated behind explicit CLI flags so the pipeline can run determin
 The v2 healthcare-aware scoring adds five healthcare-specific dimensions on top of a v1 keyword baseline: source authority (CISA ICS-Medical weighted higher), device context (infusion pump > general IT), patch feasibility (no-patch raises priority), clinical impact (life-sustaining > admin systems), and FDA risk class (Class III > Class II > Class I).
 
 ### Outputs
-The pipeline writes a public feed (all issues), a healthcare-filtered feed, per-issue JSON packets with full AI guidance, an Excel export for hospital procurement workflows, RSS feeds for various priority slices, and a sanity report surfacing aggregate health checks (correlation collisions, field completeness, AI coverage).
+The pipeline retains all canonical issues in archive shards and writes a bounded general dashboard feed, a complete medical-device feed, per-issue JSON packets with full AI guidance, an Excel export for hospital procurement workflows, RSS feeds for various priority slices, and a sanity report surfacing aggregate health checks (correlation collisions, field completeness, AI coverage).
 
 ### Consumers
 The public dashboard at GitHub Pages serves the data files directly to any browser. API consumers can pull feed JSON. Hospital security teams use the dashboard for triage and the Excel export for procurement workflow integration.
