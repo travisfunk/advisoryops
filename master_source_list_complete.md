@@ -1,8 +1,8 @@
-# AdvisoryOps Master Source List (COMPLETE)
+# AdvisoryOps Historical Source Research List
 
 **Last updated:** 2026-03-21
-**Purpose:** Authoritative, COMPLETE source list for Claude Code. Every parseable source from the full compilation.
-**How to use:** Claude Code should diff this against `configs/sources.json` and add ALL missing sources.
+**Purpose:** Historical research inventory and expansion proposals, not current enabled-source configuration or verified availability.
+**How to use:** Consult `configs/sources.json` for authoritative current enablement and `configs/community_public_sources.json` for build-set membership. Entries and totals below reflect March research; they do not authorize enabling sources or establish current coverage. See [current metrics](README.md#current-scope).
 
 ---
 

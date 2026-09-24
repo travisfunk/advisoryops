@@ -1,81 +1,112 @@
 # KEV / Medical Device Overlap Analysis
 
-**Date:** 2026-04-09 (original), re-verified 2026-04-13
-**Finding:** Zero overlap between CISA KEV entries and medical device records
+**Finding:** The current AdvisoryOps medical-device corpus has zero **exact structured CVE-ID overlap** with the **full CISA KEV catalog**.
+
+## Current measured snapshot
+
+Production comparison generated **2026-09-23T11:10:17.344475+00:00**, from
+[the full-catalog report](kev_full_catalog_overlap.json) and [metadata](meta.json).
+An independent reconstruction and fresh CISA discovery on 2026-09-23 reproduced these counts.
+
+| Metric | Count |
+| --- | ---: |
+| Full canonical corpus | 10,880 |
+| Medical-device records | 463 |
+| Unique structured medical-device CVEs | 72 |
+| Full KEV records / unique CVEs | 1,721 / 1,721 |
+| Exact structured CVE-ID intersection | **0** |
+| Normalized exact vendor matches (diagnostic only) | 0 |
+| Partial vendor pairs (diagnostic only) | 2 |
+| KEV-enriched issues in the corpus (not the full catalog) | 370 |
+
+These values are a dated snapshot, not permanent statistics. The generated report
+and metadata carry the authoritative counts and comparison timestamp for each build.
+The public `feed_latest.json` has only 750 projected rows and is **never an input
+for this analysis**. The full corpus is retained in 32 canonical archive shards.
 
 ## Methodology
 
-Compared all issues with KEV enrichment (kev_required_action populated) against all issues classified as medical_device by the healthcare filter. Checked overlap by:
-1. CVE ID intersection
-2. Vendor name intersection (exact match, lowercased, stripped)
-3. Vendor name intersection (partial substring match, length ≥ 4)
+The implementation is [`advisoryops.kev_full_catalog`](../src/advisoryops/kev_full_catalog.py).
 
-## Data
+1. Reconstruct every canonical row from `docs/feed_archive/manifest.json` and its
+   shards. Reconstruction validates hashes, byte sizes, record counts and unique
+   issue IDs. Select records with `healthcare_category == "medical_device"`.
+2. Load all discovered CISA KEV JSON records, independently of the bounded
+   correlation/enrichment subset. `cisa-kev-json` has no keyword filters and a
+   configured limit of 9,999; confirm the parsed and retained counts agree with
+   the downloaded catalog's `count`. The verifier's minimum of 1,000 unique CVEs
+   detects obvious truncation but alone does not prove completeness.
+3. Extract normalized uppercase CVE IDs from structured `cves`, `issue_id`, and
+   `guid` fields. CISA discovery maps its `cveID` to `guid`; correlated issues
+   can use CVE-keyed `issue_id` values. Ignore incidental CVE mentions in prose.
+4. Intersect the unique CVE sets. This exact structured CVE-ID intersection is
+   the authoritative overlap result. The strict per-record flag additionally
+   requires the medical-device classification.
+5. Separately normalize vendor names to lowercase alphanumeric words with
+   collapsed whitespace. Report exact matches and non-identical substring pairs
+   where both names have at least four characters. These are **diagnostics only**;
+   never add them to the CVE intersection or use them to activate strict KEV badges.
 
-| Metric | 2026-04-09 | 2026-04-13 |
-| --- | ---: | ---: |
-| Total issues in corpus | 3,929 | 3,724 |
-| KEV-enriched issues | 203 | 203 |
-| Medical device issues | 856 | 422 |
-| Unique KEV CVEs | — | 203 |
-| Unique medical_device CVEs | — | 44 |
-| CVE overlap | 0 | **0** |
-| Vendor exact overlap | 0 | **0** |
-| Vendor partial-match pairs (≥4 chars) | — | **0** |
+The two current partial pairs are `siemens medical solutions usa inc` / `siemens`
+and `sunquest information systems` / `quest`. A shared or contained vendor name
+does not identify the same product or vulnerability and is not evidence of KEV
+medical-device overlap.
 
-The corpus shrank between the two checks because of two 2026-04-12 missions (medical_device classifier tightening + pharmaceutical exclusion). Zero overlap held through both.
+## Correction of the historical claim
 
-### KEV vendor distribution
+The old **203 KEV-enriched issues** described a historical enriched subset of the
+AdvisoryOps corpus, **not all entries in CISA KEV**. Comparisons against that subset
+could not support a full-catalog claim. The old zero-vendor-overlap statement and
+claims that KEV universally lacks medical-device coverage are withdrawn.
 
-The 203 KEV entries span 88 unique vendors, dominated by enterprise IT: Cisco, Microsoft, Apple, Adobe, Fortinet, Ivanti, Google Chrome, VMware, Citrix, BeyondTrust, F5, etc. None overlap with the 151 unique vendors on the medical_device bucket, even allowing partial substring match.
+The defensible result is limited to this corpus, its classifications, its
+structured identifiers, and the catalog snapshot. Records without structured
+CVEs cannot participate in the intersection. A zero intersection does not establish
+that medical devices are never exploited, explain KEV inclusion decisions, or
+rule out other medical-device CVEs outside this corpus. Specialized advisory and
+recall sources remain useful alongside KEV.
 
-### Medical device source distribution
+## Reproduction from the full canonical archive
 
-Medical device records come primarily from: CISA ICS-Medical advisories (ICSMA), openFDA device recalls, FDA safety communications, Philips PSIRT, Siemens ProductCERT, Health Canada recalls.
+Run from the repository root after `pip install -e .`. The commands below use
+scratch outputs and do not change published feeds or production metadata.
+Use the repository commit for the desired corpus snapshot; a fresh CISA download
+can change later results. For a byte-identical historical comparison, retain the
+matching discovery input as well as the repository commit.
 
-## Conclusion
-
-The zero overlap is genuine, not a data quality bug. CISA's Known Exploited Vulnerabilities catalog tracks vulnerabilities that are actively exploited at scale in the wild. These tend to be in widely-deployed enterprise software and network infrastructure. Medical device vulnerabilities exist in the NVD and in CISA's ICSMA advisories, but they are not being added to KEV — likely because medical device exploitation at scale hasn't been observed or reported through CISA's KEV inclusion criteria.
-
-## Implications for AdvisoryOps
-
-This finding directly supports the grant narrative:
-
-1. **The federal authoritative source for "known exploited" vulnerabilities has zero medical device coverage.** A hospital security team watching only KEV for patching deadlines would see nothing about their medical devices. This is precisely the gap AdvisoryOps fills.
-
-2. **Medical device security intelligence requires dedicated sources.** The advisories that matter for medical devices (ICSMA, FDA recalls, vendor PSIRTs) exist in separate, specialized channels that general vulnerability platforms don't aggregate.
-
-3. **The `is_kev_medical_device` feature is architecturally correct but reflects a real data gap.** If/when CISA adds medical device CVEs to KEV, the cross-reference will automatically surface them. The feature doesn't need a code fix — it needs the upstream data to exist.
-
-4. **Post-extraction (Problem 3), the vendor overlap check should be re-run.** Once FDA-recall-derived issues have populated vendor fields (e.g., "Abiomed", "Medtronic"), the vendor-matching logic may find partial overlaps with KEV entries for enterprise infrastructure products that are also used in hospital environments (Cisco, Fortinet, Citrix). These would be real findings — IT infrastructure CVEs that affect hospital networks. **Re-run 2026-04-13 after Problem 3 extraction landed: still zero overlap.** The FDA medical device vendors (Philips Medical Systems, Medtronic, St Jude Medical, etc.) do not appear in KEV even as partial matches.
-
-## Verification
-
-Anyone can reproduce the numbers above against the current corpus by running:
-
-```python
-import json
-with open('docs/feed_latest.json', encoding='utf-8') as f:
-    issues = json.load(f)
-md = [i for i in issues if i.get('healthcare_category') == 'medical_device']
-kev = [i for i in issues if i.get('kev_required_action') or i.get('kev_vulnerability_name')]
-md_cves = {c.upper() for i in md for c in (i.get('cves') or [])}
-kev_cves = {c.upper() for i in kev for c in (i.get('cves') or [])}
-md_vendors = {(i.get('vendor') or '').lower().strip() for i in md if i.get('vendor')}
-kev_vendors = {(i.get('vendor') or '').lower().strip() for i in kev if i.get('vendor')}
-print(f'medical_device: {len(md)}')
-print(f'kev-enriched: {len(kev)}')
-print(f'CVE overlap: {len(md_cves & kev_cves)}')
-print(f'vendor exact overlap: {len(md_vendors & kev_vendors)}')
+```sh
+python -m advisoryops.cli discover --source cisa-kev-json --out-root tmp/closeout-discover --limit 9999
+python -m advisoryops.feed_archive prepare-baseline --manifest docs/feed_archive/manifest.json --legacy tmp/absent-legacy.json --out tmp/closeout-full.json
+python -c "import shutil; shutil.copyfile('docs/meta.json', 'tmp/closeout-meta.json')"
+python -m advisoryops.kev_full_catalog --feed tmp/closeout-full.json --kev-jsonl tmp/closeout-discover/cisa-kev-json/items.jsonl --meta tmp/closeout-meta.json --out tmp/closeout-kev.json
 ```
 
-As of 2026-04-13 this prints:
+Keep `tmp/absent-legacy.json` nonexistent: this deliberately prevents fallback to
+the serving projection. If the archive is missing or corrupt, restore the manifest
+and shards from the same known-good commit; do not substitute `docs/feed_latest.json`.
+The verifier CLI also reconstructs the archive by default when `--feed` is omitted.
+Any explicit `--feed` must be a **full canonical JSON array**.
 
-```
-medical_device: 422
-kev-enriched: 203
-CVE overlap: 0
-vendor exact overlap: 0
+Confirm the discovery cap did not omit records:
+
+```sh
+python -c "import json; from pathlib import Path; p=Path('tmp/closeout-discover/cisa-kev-json'); raw=json.loads((p/'raw_feed.json').read_text(encoding='utf-8')); rows=[json.loads(x) for x in (p/'items.jsonl').read_text(encoding='utf-8').splitlines() if x.strip()]; assert raw['count']==len(raw['vulnerabilities'])==len(rows); print('Complete KEV records:', len(rows))"
 ```
 
-If a future rebuild produces non-zero overlap, the dashboard `is_kev_medical_device` badge will fire automatically, and `feed_medical_device_kev.json` will become non-empty.
+The 2026-09-23 run prints 1,721 complete KEV records, 463 medical-device records,
+72 medical-device CVEs, zero exact CVE matches, zero exact vendor matches, and two
+partial vendor pairs. Current values may differ; report the resulting timestamp
+and counts rather than copying these numbers forward.
+
+## Production and dashboard contract
+
+The [scheduled workflow](../.github/workflows/update-feed.yml) reconciles strict
+flags on the full canonical corpus, verifies that same corpus against the full
+catalog, and only then publishes the bounded dashboard projection and full archive.
+The dashboard reads scoped full-corpus metrics from `meta.json`; absent or unscoped
+metrics remain unavailable, rather than being inferred from loaded rows.
+
+Only a medical-device record with an exact structured CVE ID in the full KEV
+catalog receives `is_kev_medical_device` and enters `feed_medical_device_kev.json`.
+Vendor diagnostics do not change those flags, feeds, scores, or priorities.
+See [publication architecture](publication.md) for the unchanged storage and serving contract.

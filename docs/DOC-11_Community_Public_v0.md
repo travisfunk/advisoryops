@@ -2,6 +2,10 @@
 
 **Last updated:** 2026-03-17
 
+**Historical design plan:** Pass 1 goals and source counts below describe March
+2026 planning, not current production coverage. Use [current metrics](../README.md#current-scope),
+`configs/sources.json`, and [publication architecture](publication.md) for current behavior.
+
 This document defines **Pass 1** for the public / free side of AdvisoryOps.
 
 The goal is not to finish the whole product. The goal is to stand up a credible, high-signal public intelligence layer quickly using the plumbing that already exists today.

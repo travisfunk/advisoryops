@@ -156,7 +156,10 @@ score = base
 | KEV medical device | 0 | 40 |
 | **Total** | **2** | **805** |
 
-In practice, observed range is 17-163 (most issues score 17-60). P0 threshold is 150.
+Observed score distributions depend on the corpus snapshot; no current range is
+asserted here. P0 threshold is 150. The KEV medical-device bonus requires the
+strict exact structured CVE-ID match against the full catalog; vendor diagnostics
+are not scoring evidence. See [KEV methodology](kev_medical_device_analysis.md).
 
 ## The `why` Field
 
@@ -197,21 +200,21 @@ Two fields, derived at feed-emission time in `_feed_entry()` (`community_build.p
 
 ## Cache Directory Reference
 
-All backfill caches are under `outputs/`:
+All backfill caches are under `outputs/`. Their sizes vary by local run and are not published corpus counts:
 
-| Source | Cache Directory | File Pattern | Record Count |
-|--------|-----------------|--------------|--------------|
-| NVD CVEs | `outputs/nvd_cache/` | `CVE-YYYY-NNNN.json` | ~340,000 |
-| CISA ICSMA | `outputs/cisa_icsma_cache/` | `ICSMA-YY-DDD-NN.json` | ~178 |
-| openFDA Recalls | `outputs/openfda_cache/` | `recall_NNNNN.json` | ~14,630 |
-| FDA Enforcement | `outputs/fda_safety_comms_cache/` | `enf_Z-NNNN-YYYY.json` | ~38,510 |
-| MHRA UK | `outputs/mhra_uk_cache/` | `mhra_*.json` | ~1,381 |
-| Health Canada | `outputs/health_canada_cache/` | `hc_NNNNN.json` | ~15 (incremental) |
-| Philips PSIRT | `outputs/philips_psirt_cache/` | `PHILIPS-*.json` | ~200 |
-| Siemens ProductCERT | `outputs/siemens_productcert_cache/` | `SSA-NNNNNN.json` | ~779 |
-| EPSS | `outputs/epss_cache/` | `epss_scores.json` | 1 file (325K scores) |
-| CWE Catalog | `outputs/cwe_cache/` | `cwe_catalog.json` | 1 file (~60 CWEs) |
-| ATT&CK ICS | `outputs/attack_ics_cache/` | `ics_attack.json` | 1 file (~60 techniques) |
-| CISA Vulnrichment | `outputs/vulnrichment_cache/` | `CVE-YYYY-NNNN.json` | on-demand |
+| Source | Cache Directory | File Pattern |
+|--------|-----------------|--------------|
+| NVD CVEs | `outputs/nvd_cache/` | `CVE-YYYY-NNNN.json` |
+| CISA ICSMA | `outputs/cisa_icsma_cache/` | `ICSMA-YY-DDD-NN.json` |
+| openFDA Recalls | `outputs/openfda_cache/` | `recall_NNNNN.json` |
+| FDA Enforcement | `outputs/fda_safety_comms_cache/` | `enf_Z-NNNN-YYYY.json` |
+| MHRA UK | `outputs/mhra_uk_cache/` | `mhra_*.json` |
+| Health Canada | `outputs/health_canada_cache/` | `hc_NNNNN.json` |
+| Philips PSIRT | `outputs/philips_psirt_cache/` | `PHILIPS-*.json` |
+| Siemens ProductCERT | `outputs/siemens_productcert_cache/` | `SSA-NNNNNN.json` |
+| EPSS | `outputs/epss_cache/` | `epss_scores.json` |
+| CWE Catalog | `outputs/cwe_cache/` | `cwe_catalog.json` |
+| ATT&CK ICS | `outputs/attack_ics_cache/` | `ics_attack.json` |
+| CISA Vulnrichment | `outputs/vulnrichment_cache/` | `CVE-YYYY-NNNN.json` |
 
 **Note**: The `analyze_scoring_calibration.py` script looks for `outputs/openfda_recalls_cache/` — this path does NOT exist. The correct path is `outputs/openfda_cache/`.
