@@ -18,9 +18,9 @@
   "counts": {
     "validated_sources": 54,
     "candidate_sources": 1,
-    "issues_public": 11522,
+    "issues_public": 11614,
     "alerts_public": 100,
-    "latest": 11522,
+    "latest": 11614,
     "healthcare": 463,
     "packets": 0,
     "sources_enabled": 64,
@@ -38,15 +38,15 @@
     "dashboard_html": "outputs/community_public/dashboard.html",
     "packets_dir": null
   },
-  "generated_at": "2026-09-29T12:31:03+00:00",
+  "generated_at": "2026-09-30T12:15:39+00:00",
   "methodology_stats": {
-    "total_issues": 11522,
+    "total_issues": 11614,
     "medical_device_issues": 463,
     "fda_risk_class_populated": 379,
     "fda_derived_medical_device": 378,
     "fda_md_vendor_populated": 376,
     "fda_md_products_populated": 376,
-    "kev_enriched": 377,
+    "kev_enriched": 378,
     "kev_md_cve_overlap": 0,
     "kev_md_vendor_overlap": 0,
     "pharmaceutical_leaks": 0,
@@ -56,25 +56,25 @@
     "kev_medical_device_score_bonuses_removed": 0,
     "kev_medical_device_reconciled": true,
     "kev_medical_device_definition": "healthcare_category == medical_device AND exact structured CVE ID is present in the full CISA Known Exploited Vulnerabilities catalog",
-    "kev_medical_device_catalog_unique_cves": 1728,
-    "kev_medical_device_reconciled_at": "2026-09-29T12:31:07.557820+00:00",
-    "kev_catalog_records": 1728,
-    "kev_catalog_unique_cves": 1728,
+    "kev_medical_device_catalog_unique_cves": 1729,
+    "kev_medical_device_reconciled_at": "2026-09-30T12:15:43.354832+00:00",
+    "kev_catalog_records": 1729,
+    "kev_catalog_unique_cves": 1729,
     "medical_device_unique_cves": 72,
     "kev_md_cve_overlap_ids": [],
     "kev_md_vendor_partial_overlap": 2,
     "kev_comparison_scope": "full_cisa_kev_catalog",
     "kev_comparison_key": "exact_cve_id",
-    "kev_comparison_generated_at": "2026-09-29T12:31:08.380780+00:00"
+    "kev_comparison_generated_at": "2026-09-30T12:15:44.471069+00:00"
   },
   "publication": {
     "strategy": "bounded_latest_plus_stable_hash_jsonl",
-    "total_records": 11522,
+    "total_records": 11614,
     "latest_records": 750,
     "archive_shards": 32,
     "archive_manifest": "feed_archive/manifest.json",
-    "largest_shard_bytes": 4822021,
-    "latest_bytes": 2080895,
-    "generated_at": "2026-09-29T12:31:10.673157+00:00"
+    "largest_shard_bytes": 4834908,
+    "latest_bytes": 2082719,
+    "generated_at": "2026-09-30T12:15:47.496053+00:00"
   }
 }
