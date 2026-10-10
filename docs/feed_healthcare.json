@@ -29793,6 +29793,85 @@
     ]
   },
   {
+    "issue_id": "UNK-c9542eff7dc6e1df",
+    "issue_type": "unknown",
+    "title": "Pulsetto Vagus Nerve Stimulator (Update A)",
+    "summary": "Pulsetto Vagus Nerve Stimulator (Update A)",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-223-02.json",
+    "cves": [],
+    "sources": [
+      "cisa-icsma"
+    ],
+    "published_dates": [
+      "2026-08-11T06:00:00.000000Z"
+    ],
+    "first_seen_at": "2026-10-10T12:08:02.926492+00:00",
+    "last_seen_at": "2026-10-10T12:08:02.926492+00:00",
+    "score": 82,
+    "priority": "P2",
+    "actions": [
+      "track"
+    ],
+    "why": [
+      "base: issue_type!=cve (+2)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "priority: P2 (score=82)"
+    ],
+    "handling_warnings": [],
+    "evidence_gaps": [],
+    "unknowns": [],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [],
+    "cvss_score": 0,
+    "cvss_severity": "",
+    "cvss_vector": "",
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null,
+    "cwe_ids": [],
+    "affected_products": [],
+    "nvd_description": "",
+    "source_summary": "",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Review vendor advisory for mitigation guidance.",
+      "Monitor for exploitation indicators."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": null,
+    "epss_percentile": null,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": [],
+    "first_published_to_feed": "2026-10-10T12:16:25.129431+00:00"
+  },
+  {
     "actions": [
       "track"
     ],

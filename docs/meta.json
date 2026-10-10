@@ -18,10 +18,10 @@
   "counts": {
     "validated_sources": 54,
     "candidate_sources": 1,
-    "issues_public": 13261,
+    "issues_public": 13345,
     "alerts_public": 100,
-    "latest": 13261,
-    "healthcare": 463,
+    "latest": 13345,
+    "healthcare": 464,
     "packets": 0,
     "sources_enabled": 64,
     "kev_medical_device": 0
@@ -38,10 +38,10 @@
     "dashboard_html": "outputs/community_public/dashboard.html",
     "packets_dir": null
   },
-  "generated_at": "2026-10-09T13:05:56+00:00",
+  "generated_at": "2026-10-10T12:16:30+00:00",
   "methodology_stats": {
-    "total_issues": 13261,
-    "medical_device_issues": 463,
+    "total_issues": 13345,
+    "medical_device_issues": 464,
     "fda_risk_class_populated": 379,
     "fda_derived_medical_device": 378,
     "fda_md_vendor_populated": 376,
@@ -57,7 +57,7 @@
     "kev_medical_device_reconciled": true,
     "kev_medical_device_definition": "healthcare_category == medical_device AND exact structured CVE ID is present in the full CISA Known Exploited Vulnerabilities catalog",
     "kev_medical_device_catalog_unique_cves": 1739,
-    "kev_medical_device_reconciled_at": "2026-10-09T13:06:02.076384+00:00",
+    "kev_medical_device_reconciled_at": "2026-10-10T12:16:36.188933+00:00",
     "kev_catalog_records": 1739,
     "kev_catalog_unique_cves": 1739,
     "medical_device_unique_cves": 72,
@@ -65,16 +65,16 @@
     "kev_md_vendor_partial_overlap": 2,
     "kev_comparison_scope": "full_cisa_kev_catalog",
     "kev_comparison_key": "exact_cve_id",
-    "kev_comparison_generated_at": "2026-10-09T13:06:03.087692+00:00"
+    "kev_comparison_generated_at": "2026-10-10T12:16:37.477568+00:00"
   },
   "publication": {
     "strategy": "bounded_latest_plus_stable_hash_jsonl",
-    "total_records": 13261,
+    "total_records": 13345,
     "latest_records": 750,
     "archive_shards": 32,
     "archive_manifest": "feed_archive/manifest.json",
-    "largest_shard_bytes": 5965043,
+    "largest_shard_bytes": 5968284,
     "latest_bytes": 2082992,
-    "generated_at": "2026-10-09T13:06:05.763545+00:00"
+    "generated_at": "2026-10-10T12:16:40.829541+00:00"
   }
 }
