@@ -87,6 +87,9 @@ a:hover { text-decoration:underline; }
 #filter-bar { display:flex; align-items:center; gap:10px; padding:6px 12px; flex-shrink:0; border-bottom:1px solid var(--card-border); }
 #digest-banner { padding:12px 16px; background:rgba(94,234,212,.04); border-bottom:1px solid #2a3f4f; font-size:12px; color:var(--text-body); display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
 #digest-banner.hidden { display:none; }
+#visit-changes-row { display:flex; align-items:center; gap:12px; padding:8px 12px; border-bottom:1px solid var(--card-border); background:var(--surface); flex-shrink:0; }
+#visit-changes-banner { flex:1; font-size:11px; color:var(--text-secondary); line-height:1.5; }
+#visit-review-btn { flex-shrink:0; }
 #digest-banner .db-label { font-size:10px; font-weight:600; letter-spacing:.8px; text-transform:uppercase; color:#5eead4; }
 #digest-banner .db-headline { color:var(--text-primary); font-weight:600; }
 #digest-banner .db-stat { color:var(--text-secondary); }
@@ -109,7 +112,8 @@ a:hover { text-decoration:underline; }
 .tab-content.visible { opacity:1; pointer-events:auto; }
 
 /* Issues tab - split pane */
-#issues-section { display:flex; }
+#issues-section { display:flex; flex-direction:column; }
+#issues-panes { display:flex; flex:1; min-height:0; }
 #issue-list-pane { flex:1; overflow-y:auto; padding:8px 12px; }
 #detail-pane { width:400px; border-left:1px solid var(--card-border); overflow-y:auto; background:#0e0f17; }
 
@@ -400,6 +404,7 @@ a:hover { text-decoration:underline; }
       <option value="all">All</option>
     </select>
     <button class="pill" id="weekly-digest-btn" title="Show only advisories from the last 7 days">This week</button>
+    <button class="pill" id="visit-changes-btn" aria-pressed="false">New or updated</button>
     <button class="pill" id="reset-read-btn" title="Restore all dimmed (read) issues to full visibility" onclick="window._ao_clearRead()">Reset read</button>
     <div class="scope-toggle">
       <button class="toggle-btn active" data-scope-mode="healthcare">Medical devices</button>
@@ -411,7 +416,12 @@ a:hover { text-decoration:underline; }
   <div id="content">
     <!-- Issues tab -->
     <div id="issues-section" class="tab-content visible">
+      <div id="visit-changes-row">
+        <div id="visit-changes-banner" role="status" aria-live="polite"></div>
+        <button class="pill" id="visit-review-btn" title="Save all currently loaded records as your comparison baseline, including records hidden by filters">Mark loaded records reviewed</button>
+      </div>
       <div id="digest-banner" class="hidden"></div>
+      <div id="issues-panes">
       <div id="issue-list-pane"></div>
       <div id="detail-pane">
         <div id="detail-empty">
@@ -426,6 +436,7 @@ a:hover { text-decoration:underline; }
           </div>
         </div>
         <div id="detail-content"></div>
+      </div>
       </div>
     </div>
 
@@ -864,6 +875,113 @@ a:hover { text-decoration:underline; }
     try { localStorage.removeItem(READ_KEY); } catch(e) {}
   }
 
+  // BEGIN VISIT CHANGES
+  var visitChanges = { changes: Object.create(null), available: false, message: '' };
+  var changesOnly = false;
+  var visitFields = [
+    ['priority', 'Priority'], ['severity', 'Severity'], ['vendor', 'Vendor'],
+    ['affected_products', 'Affected products'], ['affected_versions', 'Affected versions'],
+    ['cves', 'CVEs'], ['is_kev_medical_device', 'Known exploitation flag'],
+    ['fda_risk_class', 'FDA risk class'], ['summary', 'Advisory text'],
+    ['remediation_steps', 'Remediation guidance'], ['actions', 'Recommended actions'],
+    ['source_mitigations', 'Source mitigations'], ['tasks_by_role', 'Role assignments']
+  ];
+  function visitKey() { return 'ao_visit_v1_' + (healthcareMode ? 'medical' : 'general'); }
+  function visitNormalize(value) {
+    if (value == null) return '';
+    if (typeof value === 'string') return value.replace(/\s+/g, ' ').trim();
+    if (Array.isArray(value)) {
+      if (!value.length) return '';
+      return Array.from(new Set(value.map(function(v) { return JSON.stringify(visitNormalize(v)); }))).sort().map(function(v) { return JSON.parse(v); });
+    }
+    if (typeof value === 'object') {
+      if (!Object.keys(value).length) return '';
+      var result = Object.create(null);
+      Object.keys(value).sort().forEach(function(k) { result[k] = visitNormalize(value[k]); });
+      return result;
+    }
+    return value;
+  }
+  function visitRecord(issue) {
+    var record = {};
+    visitFields.forEach(function(f) { record[f[0]] = visitNormalize(issue[f[0]]); });
+    return record;
+  }
+  function readVisitBaseline() {
+    var saved = JSON.parse(localStorage.getItem(visitKey()) || 'null');
+    if (!saved || saved.version !== 1 || !saved.records || Array.isArray(saved.records) ||
+        typeof saved.records !== 'object' || Object.keys(saved.records).some(function(id) {
+          var row = saved.records[id];
+          return !row || typeof row !== 'object' || visitFields.some(function(f) { return !Object.prototype.hasOwnProperty.call(row, f[0]); });
+        })) return null;
+    return saved;
+  }
+  function saveVisitBaseline(rows, previous) {
+    var records = Object.assign(Object.create(null), previous ? previous.records : {});
+    rows.forEach(function(i) { if (i.issue_id) records[i.issue_id] = visitRecord(i); });
+    localStorage.setItem(visitKey(), JSON.stringify({ version: 1, saved_at: new Date().toISOString(), records: records }));
+  }
+  function prepareVisitChanges(rows) {
+    visitChanges = { changes: Object.create(null), available: true, message: '' };
+    try {
+      var previous;
+      try { previous = readVisitBaseline(); } catch (e) {
+        if (e instanceof SyntaxError) previous = null;
+        else throw e;
+      }
+      if (!previous) {
+        saveVisitBaseline(rows, null);
+        visitChanges.message = 'Baseline saved in this browser. Future visits will show new records and changes.';
+        return;
+      }
+      visitChanges.message = 'Compared with your last review in this browser' +
+        (previous.saved_at ? ' (' + new Date(previous.saved_at).toLocaleDateString() + ')' : '') + '.';
+      rows.forEach(function(i) {
+        if (!i.issue_id) return;
+        var before = previous.records[i.issue_id];
+        if (!Object.prototype.hasOwnProperty.call(previous.records, i.issue_id)) {
+          visitChanges.changes[i.issue_id] = { type: 'new', fields: [] };
+          return;
+        }
+        var after = visitRecord(i);
+        var fields = visitFields.filter(function(f) { return JSON.stringify(before[f[0]]) !== JSON.stringify(after[f[0]]); })
+          .map(function(f) { return { label: f[1], before: before[f[0]], after: after[f[0]] }; });
+        if (fields.length) visitChanges.changes[i.issue_id] = { type: 'updated', fields: fields };
+      });
+    } catch (e) {
+      visitChanges.available = false;
+      visitChanges.message = 'Change tracking is unavailable because this browser cannot save a baseline.';
+    }
+  }
+  function acknowledgeVisitChanges(rows) {
+    try {
+      var previous;
+      try { previous = readVisitBaseline(); } catch (e) {
+        if (e instanceof SyntaxError) previous = null;
+        else throw e;
+      }
+      saveVisitBaseline(rows, previous);
+      prepareVisitChanges(rows);
+      return true;
+    } catch (e) {
+      visitChanges.available = false;
+      visitChanges.message = 'Change tracking is unavailable because this browser cannot save a baseline.';
+      return false;
+    }
+  }
+  // END VISIT CHANGES
+
+  function renderVisitChanges() {
+    var banner = document.getElementById('visit-changes-banner');
+    var counts = { new: 0, updated: 0 };
+    issues.forEach(function(i) { var c = visitChanges.changes[i.issue_id]; if (c) counts[c.type]++; });
+    banner.textContent = visitChanges.message + ' ' + counts.new + ' new, ' + counts.updated + ' updated. ' +
+      (healthcareMode ? 'Covers the complete medical-device feed.' : 'Covers the loaded general feed window, not the full archive.') +
+      ' Changes stay flagged until you mark the loaded records reviewed.';
+    document.getElementById('visit-changes-btn').disabled = !visitChanges.available;
+    document.getElementById('visit-review-btn').disabled = !visitChanges.available;
+  }
+
   // Filter logic
   function applyFilters() {
     var list = issues.slice();
@@ -918,7 +1036,9 @@ a:hover { text-decoration:underline; }
     // without a parseable published_date are excluded from the digest view
     // (we don't know when they're from). When digest is active, LATEST is
     // ignored so the full last-7-day window renders.
-    if (weeklyDigest) {
+    if (changesOnly) {
+      list = list.filter(function(i) { return !!visitChanges.changes[i.issue_id]; });
+    } else if (weeklyDigest) {
       var cutoff = Date.now() - 7 * 24 * 60 * 60 * 1000;
       list = list.filter(function(i) {
         var d = getPublishedDate(i);
@@ -930,6 +1050,7 @@ a:hover { text-decoration:underline; }
     filteredIssues = list;
     selectedIdx = -1;
     renderDigestBanner(list);
+    renderVisitChanges();
     renderIssueList();
     renderDetail();
   }
@@ -1020,7 +1141,9 @@ a:hover { text-decoration:underline; }
       var hcBadge = issue.healthcare_relevant ? '<span class="hc-badge">HC</span>' : '';
       var fdaBadge = fdaBadgeHtml(issue.fda_risk_class);
       var kevMedBadge = kevMedBadgeHtml(issue);
-      var newBadge = issue.first_published_to_feed ? '<span class="new-badge">NEW</span>' : '';
+      var visitChange = visitChanges.changes[issue.issue_id];
+      var newBadge = visitChange ? '<span class="new-badge">' + (visitChange.type === 'new' ? 'NEW TO YOU' : 'UPDATED') + '</span>' :
+        (issue.first_published_to_feed ? '<span class="new-badge">NEW</span>' : '');
       var exposureBadge = exposureBadgeHtml(issue);
       var readCls = isRead(issue.issue_id) ? ' read' : '';
       html += '<div class="issue-card' + sel + readCls + '" data-idx="' + idx + '">' +
@@ -1090,6 +1213,16 @@ a:hover { text-decoration:underline; }
 
     var issue = filteredIssues[selectedIdx];
     var html = '';
+    var change = visitChanges.changes[issue.issue_id];
+    if (change) {
+      html += '<div class="dcard"><div class="label">' + (change.type === 'new' ? 'NEW SINCE YOUR REVIEW' : 'CHANGED SINCE YOUR REVIEW') + '</div>';
+      if (change.type === 'new') html += '<p>This record was not in your saved browser baseline. It may be an older advisory newly added to this feed.</p>';
+      change.fields.forEach(function(f) {
+        var display = function(v) { return escapeHtml((typeof v === 'string' ? v : JSON.stringify(v)).slice(0, 240) || 'Not supplied'); };
+        html += '<p><strong>' + escapeHtml(f.label) + '</strong><br>Previously: ' + display(f.before) + '<br>Now: ' + display(f.after) + '</p>';
+      });
+      html += '</div>';
+    }
 
     // Header
     html += '<div class="dcard">' + kevMedBadgeHtml(issue) +
@@ -1501,6 +1634,7 @@ a:hover { text-decoration:underline; }
       issues = healthcareIssues;
       sources = responses[1];
       meta = responses[2] || {};
+      prepareVisitChanges(issues);
     } catch (e) {
       console.error('Failed to load data:', e);
       document.getElementById('issue-list-pane').innerHTML = '<div style="text-align:center;padding:40px;color:var(--p0-text)">Failed to load data. Ensure feed_healthcare.json and validated_sources.json are accessible.</div>';
@@ -1694,6 +1828,11 @@ a:hover { text-decoration:underline; }
     digestBtn.addEventListener('click', function() {
       weeklyDigest = !weeklyDigest;
       if (weeklyDigest) {
+        changesOnly = false;
+        document.getElementById('visit-changes-btn').classList.remove('active');
+        document.getElementById('visit-changes-btn').setAttribute('aria-pressed', 'false');
+      }
+      if (weeklyDigest) {
         digestBtn.classList.add('active');
         if (latestSelect) latestSelect.disabled = true;
       } else {
@@ -1703,6 +1842,22 @@ a:hover { text-decoration:underline; }
       applyFilters();
     });
   }
+
+  document.getElementById('visit-changes-btn').addEventListener('click', function() {
+    changesOnly = !changesOnly;
+    this.classList.toggle('active', changesOnly);
+    this.setAttribute('aria-pressed', String(changesOnly));
+    if (changesOnly) {
+      weeklyDigest = false;
+      digestBtn.classList.remove('active');
+    }
+    if (latestSelect) latestSelect.disabled = changesOnly;
+    applyFilters();
+  });
+  document.getElementById('visit-review-btn').addEventListener('click', function() {
+    acknowledgeVisitChanges(issues);
+    applyFilters();
+  });
 
   // Scope toggle (healthcare / all) with lazy loading
   var scopeToggles = document.querySelectorAll('.scope-toggle .toggle-btn');
@@ -1735,6 +1890,7 @@ a:hover { text-decoration:underline; }
         } else {
           issues = healthcareIssues;
         }
+        prepareVisitChanges(issues);
         updateHeaderStats();
         updateUrgencyCounts();
         applyFilters();
