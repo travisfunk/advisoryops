@@ -2446,6 +2446,11 @@ def build_community_feed(
 
     print(f"\n  KEV medical device: {kev_med_count} issues flagged as actively exploited medical device vulnerabilities")
 
+    # Correct evidence before snapshotting alerts or producing remediation packets.
+    from .verified_corrections import apply_verified_corrections
+    apply_verified_corrections(scored_rows)
+    apply_verified_corrections(alert_rows)
+
     # --- Coverage tracking ---
     p012 = [r for r in scored_rows if r.get("priority") in ("P0", "P1", "P2")]
     if p012:
@@ -2480,7 +2485,12 @@ def build_community_feed(
         packets_dir.mkdir(parents=True, exist_ok=True)
 
         priority_set = set(recommend_priorities)
-        target_issues = [r for r in alert_rows if r.get("priority") in priority_set]
+        # Retire obsolete generated packets when a reviewed source-only policy applies.
+        for issue in alert_rows:
+            if issue.get("recommendation_policy") == "source_only":
+                (packets_dir / f"{_safe_stem(issue['issue_id'])}_packet.json").unlink(missing_ok=True)
+        target_issues = [r for r in alert_rows if r.get("priority") in priority_set
+                         and r.get("recommendation_policy") != "source_only"]
         print(f"\n  Recommend: generating packets for {len(target_issues)} alerts "
               f"(priorities: {', '.join(sorted(priority_set))})")
 
@@ -2611,7 +2621,7 @@ def build_community_feed(
     # Reviewed corrections must win over longer stale summaries and cached guidance.
     from .verified_corrections import apply_verified_corrections
     apply_verified_corrections(feed_rows)
-    apply_verified_corrections(alert_rows)
+    apply_verified_corrections(alert_feed_rows)
     feed_rows = _sort_feed_entries(feed_rows)
     latest_rows = feed_rows[:latest] if latest > 0 else feed_rows
 

@@ -335,7 +335,14 @@ def recommend_mitigations(
         RuntimeError: if OPENAI_API_KEY is not set and no ``_call_fn`` override
                       is provided.
     """
+    # Direct CLI callers may load an older snapshot without the policy marker.
+    from .verified_corrections import apply_verified_corrections
+    issue = dict(issue)
+    apply_verified_corrections([issue])
     issue_id = str(issue.get("issue_id") or "unknown")
+
+    if issue.get("recommendation_policy") == "source_only":
+        raise ValueError("AI remediation is disabled for this reviewed historical record; use verified manufacturer instructions.")
 
     system_prompt = _build_system_prompt(playbook)
     user_prompt = _build_user_prompt(issue)

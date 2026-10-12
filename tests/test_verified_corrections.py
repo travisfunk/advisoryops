@@ -1,5 +1,6 @@
 from copy import deepcopy
 import json
+import pytest
 
 from advisoryops.community_build import merge_baseline_feed
 from advisoryops.verified_corrections import apply_verified_corrections
@@ -75,3 +76,43 @@ def test_fda_initiation_date_wins_and_termination_is_not_publication(tmp_path):
     del record['event_date_initiated']
     path.write_text(json.dumps(record))
     assert generate_signals_from_cache(cache_dir=tmp_path)[0]['published_date'] == ''
+
+
+def test_source_only_record_cannot_generate_an_ai_packet():
+    from advisoryops.recommend import recommend_mitigations
+    row = bad_record()
+    with pytest.raises(ValueError, match='AI remediation is disabled'):
+        recommend_mitigations(row, None, _call_fn=lambda: pytest.fail('AI must not be called'))
+
+
+def test_alert_export_and_packet_generation_use_corrected_evidence(tmp_path, monkeypatch):
+    import advisoryops.community_build as builder
+    from test_community_build import _setup_community_env, _mock_recommend_call_fn
+    signal = {'source': 'cisa-icsma', 'guid': 'fixture', 'title': 'Medical device advisory',
+              'summary': 'Device recall', 'link': 'https://example.test', 'published_date': '2004-12-15'}
+    discover, out = _setup_community_env(tmp_path, monkeypatch, [signal])
+    real_read = builder._read_jsonl
+    stale = bad_record()
+    stale.update(priority='P0', score=150, cves=[])
+    monkeypatch.setattr(builder, '_read_jsonl', lambda path: [deepcopy(stale)]
+                        if path.name in ('issues_scored.jsonl', 'alerts.jsonl') else real_read(path))
+    packets = out / 'packets'
+    packets.mkdir(parents=True)
+    obsolete = packets / 'UNK-42c8bda5d1c8ebae_packet.json'
+    obsolete.write_text('{"reasoning":"update to latest software"}')
+    calls = []
+    def recommend_call():
+        calls.append(True)
+        return _mock_recommend_call_fn()
+    _, alerts, _ = builder.build_community_feed(
+        set_id='gold_pass1', refresh=False, backfill=False, publish=False,
+        out_root_discover=str(discover), out_root_community=str(out),
+        min_priority='P3', latest=0, recommend=True, _recommend_call_fn=recommend_call,
+        repo_root=tmp_path,
+    )
+    row = json.loads(alerts.read_text().splitlines()[0])
+    assert row['published_dates'] == ['2004-12-15']
+    assert 'No patch is currently available' not in row['summary']
+    assert row['recommendation_policy'] == 'source_only'
+    assert not calls
+    assert not obsolete.exists()
