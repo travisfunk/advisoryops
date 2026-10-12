@@ -1,0 +1,14 @@
+{
+  "cfres_id": "36309",
+  "product_res_number": "Z-0341-05",
+  "res_event_number": "30666",
+  "event_date_initiated": "2004-12-15",
+  "event_date_posted": "2004-12-21",
+  "event_date_terminated": "2016-02-02",
+  "recall_status": "Terminated",
+  "product_description": "Philips Heartstart MRx Monitor/Defibrillator\nModels: M3535A (Hospital Use) , M3536A (EMS Use)",
+  "code_info": "Software versions A.02.00 and lower",
+  "recalling_firm": "Philips Medical Systems",
+  "reason_for_recall": "In Software versions below A.02.00, with the sync function enabled and the device switched from manual to AED, there may be an unexpected delay in delivery of energy",
+  "action": "Philips notified customers on 12/13/04 by letter. Users are provided with action required to Mitigate Risk' until the correction is made by a Systems representative."
+}

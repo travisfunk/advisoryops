@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "corrections": [
+    {
+      "correction_id": "fda-30666-source-guidance-v1",
+      "issue_id": "UNK-42c8bda5d1c8ebae",
+      "source_id": "openfda-recalls-historical",
+      "allowed_links": [
+        "https://api.fda.gov/device/recall.json?search=res_event_number:\"30666\"",
+        "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=36309"
+      ],
+      "evidence_url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=36309",
+      "verified_at": "2026-10-12",
+      "reason": "The AI summary invented current patch availability and software-update/monitoring guidance. It also used recall termination as publication date. Verified against FDA recall event 30666, recall Z-0341-05.",
+      "fields": {
+        "canonical_link": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=36309",
+        "summary": "Historical FDA recall Z-0341-05 for Philips HeartStart MRx monitor/defibrillator models M3535A and M3536A. The recall concerns a possible delay in energy delivery when the sync function is enabled and the device switches from manual to AED mode. FDA lists software versions A.02.00 and lower in the code information. Philips notified customers by letter in December 2004, with interim risk mitigation pending correction by a company representative. The recall was initiated on 2004-12-15 and terminated on 2016-02-02. This historical record does not establish current patch availability or provide specific software-update or monitoring instructions.",
+        "source_summary": "Device: Automated External Defibrillators (Non-Wearable). | Philips Heartstart MRx Monitor/Defibrillator Models: M3535A (Hospital Use), M3536A (EMS Use). | Reason: In Software versions below A.02.00, with the sync function enabled and the device switched from manual to AED, there may be an unexpected delay in delivery of energy. | FDA code information: Software versions A.02.00 and lower. | FDA action: Philips notified customers by letter in December 2004; interim risk mitigation was provided pending correction by a company representative. | Recall status: Terminated on 2016-02-02; initiated 2004-12-15.",
+        "published_dates": ["2004-12-15"],
+        "affected_versions": ["FDA code information: A.02.00 and lower"],
+        "remediation_steps": [
+          "Review the historical FDA recall and the manufacturer's customer notification before deciding on action.",
+          "Confirm current device status and applicable correction instructions with the manufacturer."
+        ],
+        "source_mitigations": [
+          {
+            "source": "openfda-recalls-historical",
+            "source_tier": 1,
+            "action": "The FDA record describes interim risk mitigation from the customer notification pending correction by a company representative; it does not supply those detailed instructions.",
+            "mitigation_type": "process",
+            "citation": "FDA recall Z-0341-05, event 30666, Action field",
+            "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=36309"
+          }
+        ],
+        "unknowns": ["Current patch availability and present device status are not established by this historical recall record."],
+        "handling_warnings": ["Historical recall: verify current manufacturer guidance and recall status before taking operational action."],
+        "recommended_patterns": [],
+        "tasks_by_role": {},
+        "generated_by": "hybrid"
+      }
+    }
+  ]
+}

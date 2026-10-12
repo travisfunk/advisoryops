@@ -1,6 +1,6 @@
 {
   "set_id": "gold_pass2",
-  "set_name": "Gold Pass 2 \u2014 scheduled source selection",
+  "set_name": "Gold Pass 2 — scheduled source selection",
   "description": "Scheduled source selection. Membership is defined by source_ids for this set in configs/community_public_sources.json; discovery availability and keyword matches vary by run. This description is not a live source-health count.",
   "out_root_discover": "outputs/discover",
   "out_root_runs": "outputs/source_runs",
@@ -74,7 +74,7 @@
     "archive_shards": 32,
     "archive_manifest": "feed_archive/manifest.json",
     "largest_shard_bytes": 5986000,
-    "latest_bytes": 2234376,
-    "generated_at": "2026-10-12T14:39:58.314108+00:00"
+    "latest_bytes": 2234458,
+    "generated_at": "2026-10-12T20:50:04.296492+00:00"
   }
 }

@@ -42,11 +42,16 @@ summaries that a hospital security analyst can understand immediately.
 
 WRITING RULES:
 1. Name the vendor, product/device, and vulnerability type.
-2. State the severity (Critical/High/Medium/Low) and whether a patch exists.
-3. State what action is recommended in plain language.
+2. State severity and patch availability ONLY when the source explicitly establishes them.
+   Otherwise state that they are unknown; priority scores are not source evidence.
+3. Describe ONLY actions explicitly supported by the source. Never invent a software
+   update, monitoring recommendation, or a claim that no patch exists.
 4. Use 2-3 sentences. No jargon, no CVE numbers in the summary text.
 5. Write as if explaining to someone who protects hospital networks but \
    is not a software developer.
+
+6. Treat historical recalls as historical. Do not turn a terminated recall into a
+   current vulnerability or assert present patch availability from an old record.
 
 Also extract:
 - unknowns: things the advisory leaves unclear (versions, patch timeline, etc.)
@@ -68,7 +73,7 @@ def _build_user_prompt(issue: Dict[str, Any]) -> str:
     issue_id = str(issue.get("issue_id") or "unknown")
     title = sanitize_for_prompt(str(issue.get("title") or ""), field_name="title")
     raw_summary = sanitize_for_prompt(
-        str(issue.get("summary") or ""), field_name="summary", max_length=4000,
+        str(issue.get("source_summary") or issue.get("summary") or ""), field_name="summary", max_length=4000,
     )
     priority = str(issue.get("priority") or "")
     score = str(issue.get("score") or "")
@@ -124,14 +129,14 @@ def summarize_advisory(
     """
     issue_id = str(issue.get("issue_id") or "unknown")
     title = str(issue.get("title") or "")
-    raw_summary = str(issue.get("summary") or "")
+    raw_summary = str(issue.get("source_summary") or issue.get("summary") or "")
 
     key_data = {
-        "fn": "summarize_advisory_v1",
+        "fn": "summarize_advisory_v2_source_grounded",
         "model": model,
         "issue_id": issue_id,
         "title": title,
-        "summary": raw_summary[:2000],
+        "summary": raw_summary[:4000],
     }
 
     if _call_fn is not None:

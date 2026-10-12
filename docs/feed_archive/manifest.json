@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-10-12T14:39:58.314108+00:00",
+  "generated_at": "2026-10-12T20:50:04.296492+00:00",
   "strategy": "bounded_latest_plus_stable_hash_jsonl",
   "total_records": 13438,
   "latest_records": 750,
@@ -169,8 +169,8 @@
     {
       "file": "shard-26.jsonl",
       "count": 390,
-      "bytes": 4716436,
-      "sha256": "54c2e4ae32fdc010e434e0d3caef05c59af7bda943ed5ed655c21eb7f261569d"
+      "bytes": 4717508,
+      "sha256": "35da554500fc45faf58283b2ae459c504e6c9408755770651f6c9ab9c473eb39"
     },
     {
       "file": "shard-27.jsonl",

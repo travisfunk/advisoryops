@@ -1,5 +1,20 @@
 # AdvisoryOps — Release Notes
 
+## Source-grounded FDA guidance correction (October 2026)
+
+- Corrected Philips FDA recall event 30666 (Z-0341-05) against primary FDA evidence:
+  removed unsupported no-patch/update/monitoring claims, distinguished historical
+  recall status from present patch availability, and used the 2004 initiation date
+  instead of the 2016 termination date. Rescoring removes the unsupported no-patch
+  factor while retaining the existing FDA Class III clinical floor.
+- Added an evidence-reviewed correction registry applied after baseline merges
+  and at archive publication, so cached or longer old summaries cannot revive the error.
+- Preserved original source text before AI rewriting and made mitigation extraction
+  prefer that evidence. Updated AI prompts and cache versions to require explicit
+  source support for patch status, severity, and operational instructions.
+- FDA cache ingestion now recognizes both initiation date fields and never treats
+  a termination date as publication.
+
 ## Changes since review (October 2026)
 
 - Browser-local comparison baselines, separate for medical-device and general views.
