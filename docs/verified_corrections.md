@@ -6,7 +6,8 @@ requires an exact issue ID, contributing source, and an allowed primary link.
 The registry retains the evidence URL, review date, rationale, and corrected
 fields. Each corrected full record includes its `verified_correction` provenance.
 
-Corrections run after baseline merging and again at archive publication. They
+Corrections run before creating alert snapshots and recommendation packets,
+after baseline merging, and again at archive publication. They
 replace stale generated fields even when the old text is longer, rescore the
 corrected evidence, and remain idempotent. They do not delete historical issues.
 
@@ -34,3 +35,10 @@ that preserved evidence rather than generated prose. The summarization prompt
 requires unsupported patch status to remain unknown and distinguishes historical
 recalls from current claims. This improves evidence handling but does not prove
 that every generated sentence is correct; verified corrections are deterministic.
+
+Event 30666 has a reviewed `source_only` recommendation policy: optional AI packet
+generation is disabled because this historical record does not supply detailed
+manufacturer correction instructions. The builder retires a previously generated
+JSON packet for the same issue when recommendations are requested. Direct CLI
+recommendation calls also enforce the policy, including on older snapshots that
+have not yet received the policy marker.
