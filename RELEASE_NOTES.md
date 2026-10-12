@@ -1,5 +1,17 @@
 # AdvisoryOps — Release Notes
 
+## Changes since review (October 2026)
+
+- Browser-local comparison baselines, separate for medical-device and general views.
+- New-to-you and updated badges, a New or updated filter, and before/after detail.
+- Explicit Mark loaded records reviewed action; returning visits preserve outstanding changes.
+- Timestamp refreshes, list ordering, and raw score noise do not trigger updates.
+- First visits establish a baseline; unavailable storage is reported without breaking browsing.
+- General-feed window limits and snapshot comparison limits are documented in
+  [changes since review](docs/changes_since_review.md).
+
+No ingestion, source configuration, scoring, or publication data was changed.
+
 Historical release record: the counts, source availability, costs, and limitations
 below describe the April 2026 release, not current production. For current dated
 metrics and publication behavior, see [README](README.md#current-scope) and

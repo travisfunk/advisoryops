@@ -57,6 +57,12 @@ The dashboard also exposes two reviewer-facing transparency views: a **Sources**
 
 ## Current scope
 
+Returning readers can use **New or updated** to compare the loaded feed with
+their last review in this browser, see field-level before/after differences, and
+mark loaded records reviewed. No account is needed. Medical-device coverage is
+complete; general-view comparisons cover its bounded serving window. See
+[change tracking behavior and limits](docs/changes_since_review.md).
+
 Snapshot: **2026-09-23, 11:10 UTC**, from [meta.json](docs/meta.json), [KEV report](docs/kev_full_catalog_overlap.json), and [source configuration](configs/sources.json). These are dated measurements; generated metadata is authoritative for later builds.
 
 | Metric | Value |
