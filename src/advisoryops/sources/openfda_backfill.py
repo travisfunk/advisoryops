@@ -656,10 +656,11 @@ def generate_signals_from_cache(
             summary_parts.append(firm)
         summary = " | ".join(summary_parts) if summary_parts else title
 
-        # Date: prefer recall_initiation_date, fall back to event_date_terminated
+        # Both FDA endpoints have initiation fields; termination is not publication.
         published = str(
             data.get("recall_initiation_date", "")
-            or data.get("event_date_terminated", "")
+            or data.get("event_date_initiated", "")
+            or data.get("event_date_posted", "")
             or data.get("center_classification_date", "")
             or ""
         ).strip()

@@ -256,6 +256,8 @@ def _publish_archive_staged(
 
     rows = _read_json_array(source_path)
     _validate_unique_issue_ids(rows)
+    from .verified_corrections import apply_verified_corrections
+    apply_verified_corrections(rows)
     docs_dir.mkdir(parents=True, exist_ok=True)
 
     latest_rows = [dashboard_record(row) for row in rows[:latest_count]]

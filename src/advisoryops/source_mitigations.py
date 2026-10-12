@@ -90,7 +90,7 @@ def _build_user_prompt(issue: Dict[str, Any], source_id: str) -> str:
 
     # Prefer enriched page text (richer), fall back to RSS summary
     enriched = str(issue.get("enriched_text") or "").strip()
-    summary = str(issue.get("summary") or "").strip()
+    summary = str(issue.get("source_summary") or issue.get("summary") or "").strip()
     if enriched and len(enriched) > len(summary):
         advisory_text = sanitize_for_prompt(
             enriched, field_name="enriched_text", max_length=12000,
@@ -168,7 +168,7 @@ def extract_source_mitigations(
     """
     issue_id = str(issue.get("issue_id") or "unknown")
     sources = issue.get("sources") or []
-    summary_text = str(issue.get("summary") or "")
+    summary_text = str(issue.get("source_summary") or issue.get("summary") or "")
 
     if not sources or not summary_text.strip():
         return []
@@ -210,7 +210,7 @@ def extract_source_mitigations(
     enriched = str(issue.get("enriched_text") or "").strip()
     text_for_key = enriched[:3000] if enriched else summary_text[:3000]
     key_data = {
-        "fn": "extract_source_mitigations_v2",
+        "fn": "extract_source_mitigations_v3_original_evidence",
         "model": model,
         "issue_id": issue_id,
         "text": text_for_key,

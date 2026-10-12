@@ -1953,6 +1953,11 @@ def build_community_feed(
         for issue in targets:
             issue_id = issue.get("issue_id", "unknown")
             try:
+                # Keep actual input evidence before replacing it with AI prose.
+                for row_dict in (scored_by_id, alert_by_id):
+                    row = row_dict.get(issue_id)
+                    if row is not None and not row.get("source_summary"):
+                        row["source_summary"] = row.get("summary", "")
                 result = summarize_advisory(
                     issue,
                     model=summarize_model,
@@ -2602,6 +2607,13 @@ def build_community_feed(
         new_count = sum(1 for r in feed_rows if r.get("first_published_to_feed"))
         print(f"  Baseline merge: {len(feed_rows)} issues after merge "
               f"({new_count} new, {len(feed_rows) - new_count} carried)")
+
+    # Reviewed corrections must win over longer stale summaries and cached guidance.
+    from .verified_corrections import apply_verified_corrections
+    apply_verified_corrections(feed_rows)
+    apply_verified_corrections(alert_rows)
+    feed_rows = _sort_feed_entries(feed_rows)
+    latest_rows = feed_rows[:latest] if latest > 0 else feed_rows
 
     out_issues_public = community_root / "issues_public.jsonl"
     out_alerts_public = community_root / "alerts_public.jsonl"
