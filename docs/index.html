@@ -907,6 +907,9 @@ a:hover { text-decoration:underline; }
     visitFields.forEach(function(f) { record[f[0]] = visitNormalize(issue[f[0]]); });
     return record;
   }
+  function visitDisplayValue(value) {
+    return (typeof value === 'string' ? value : JSON.stringify(value)) || 'Not supplied';
+  }
   function readVisitBaseline() {
     var saved = JSON.parse(localStorage.getItem(visitKey()) || 'null');
     if (!saved || saved.version !== 1 || !saved.records || Array.isArray(saved.records) ||
@@ -1218,8 +1221,8 @@ a:hover { text-decoration:underline; }
       html += '<div class="dcard"><div class="label">' + (change.type === 'new' ? 'NEW SINCE YOUR REVIEW' : 'CHANGED SINCE YOUR REVIEW') + '</div>';
       if (change.type === 'new') html += '<p>This record was not in your saved browser baseline. It may be an older advisory newly added to this feed.</p>';
       change.fields.forEach(function(f) {
-        var display = function(v) { return escapeHtml((typeof v === 'string' ? v : JSON.stringify(v)).slice(0, 240) || 'Not supplied'); };
-        html += '<p><strong>' + escapeHtml(f.label) + '</strong><br>Previously: ' + display(f.before) + '<br>Now: ' + display(f.after) + '</p>';
+        var display = function(v) { return escapeHtml(visitDisplayValue(v)); };
+        html += '<p style="overflow-wrap:anywhere"><strong>' + escapeHtml(f.label) + '</strong><br>Previously: ' + display(f.before) + '<br>Now: ' + display(f.after) + '</p>';
       });
       html += '</div>';
     }

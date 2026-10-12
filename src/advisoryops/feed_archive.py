@@ -39,13 +39,13 @@ DEFAULT_MAX_SHARD_BYTES = 50 * 1024 * 1024
 # Audited against dashboard/index.html; docs/dashboard_feed_contract.json is
 # the public inventory. Keep optional values (including null/false) unchanged.
 DASHBOARD_FIELDS = frozenset("""
-issue_id title priority score summary cves cvss_score cvss_severity cwe_ids
+issue_id title priority score severity summary cves cvss_score cvss_severity cwe_ids
 fda_risk_class kev_required_action kev_due_date kev_vendor kev_product
 kev_vulnerability_name is_kev_medical_device vendor affected_products
 affected_versions handling_warnings remediation_steps actions sources
 canonical_link published_dates first_seen_at last_seen_at healthcare_relevant
 healthcare_category nvd_description recommended_patterns tasks_by_role reasoning
-epss_score first_published_to_feed remotely_exploitable_no_auth
+epss_score first_published_to_feed remotely_exploitable_no_auth source_mitigations
 """.split())
 
 

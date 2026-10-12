@@ -149,6 +149,14 @@
       "type": "integer",
       "required": true
     },
+    "severity": {
+      "type": "string",
+      "required": false
+    },
+    "source_mitigations": {
+      "type": "array",
+      "required": false
+    },
     "sources": {
       "type": "array",
       "required": false
