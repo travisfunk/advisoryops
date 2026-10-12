@@ -13,6 +13,9 @@ prepareVisitChanges([issue]);
 assert.equal(visitChanges.message.includes('Baseline saved'), true);
 assert.deepEqual(Object.keys(visitChanges.changes), []);
 const baseline = storage[visitKey()];
+const longText = 'unchanged prefix '.repeat(30) + 'DIFFERENT END';
+assert.equal(visitDisplayValue(longText), longText);
+assert.equal(visitDisplayValue([longText]).includes('DIFFERENT END'), true);
 prepareVisitChanges([{ ...issue, affected_versions: ['1', '2', '1'], last_seen_at: 'today', score: 150, cves: [], tasks_by_role: {} }]);
 assert.deepEqual(Object.keys(visitChanges.changes), []); // ordering, refresh and raw score noise
 prepareVisitChanges([{ ...issue, priority: 'P1', affected_versions: ['3'], summary: 'Patch available' }, { issue_id: 'B' }]);

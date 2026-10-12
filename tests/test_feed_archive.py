@@ -158,6 +158,9 @@ def test_projection_matches_dashboard_inventory_and_preserves_values():
     reads = set(re.findall(r'\b(?:issue|i|it)\.([a-z_][a-z0-9_]*)', html))
     reads.update(re.findall(r'\b(?:issues|list|mdList|kevList)\[[^\]]+\]\.([a-z_][a-z0-9_]*)', html))
     reads.update({"priority", "published_dates", "first_seen_at"})  # sort helpers a/b
+    # Change comparison reads field names dynamically through visitFields.
+    visit_fields = re.search(r'var visitFields = \[(.*?)\n  \];', html, re.S).group(1)
+    reads.update(re.findall(r"\['([a-z_]+)'", visit_fields))
     contract = json.loads((root / "docs/dashboard_feed_contract.json").read_text())
     assert reads == DASHBOARD_FIELDS == set(contract["fields"])
     row = {key: ["unchanged", {"unicode": "\u2713"}] for key in DASHBOARD_FIELDS}
