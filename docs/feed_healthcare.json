@@ -254,6 +254,12 @@
       "Current patch availability and present device status are not established by this historical recall record."
     ],
     "vendor": "Philips Medical Systems",
+    "verified_correction": {
+      "correction_id": "fda-30666-source-guidance-v1",
+      "evidence_url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=36309",
+      "verified_at": "2026-10-12",
+      "reason": "The AI summary invented current patch availability and software-update/monitoring guidance. It also used recall termination as publication date. Verified against FDA recall event 30666, recall Z-0341-05."
+    },
     "why": [
       "base: issue_type!=cve (+2)",
       "source-authority: tier-1 weight=1.0 (+30)",
@@ -262,12 +268,7 @@
       "FDA Class III auto-floored to P0 (clinical-severity authority)",
       "priority: P0 (score=150)"
     ],
-    "verified_correction": {
-      "correction_id": "fda-30666-source-guidance-v1",
-      "evidence_url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=36309",
-      "verified_at": "2026-10-12",
-      "reason": "The AI summary invented current patch availability and software-update/monitoring guidance. It also used recall termination as publication date. Verified against FDA recall event 30666, recall Z-0341-05."
-    }
+    "recommendation_policy": "source_only"
   },
   {
     "actions": [
@@ -29803,7 +29804,7 @@
       "2026-08-11T06:00:00.000000Z"
     ],
     "first_seen_at": "2026-10-10T12:08:02.926492+00:00",
-    "last_seen_at": "2026-10-12T14:30:05.512492+00:00",
+    "last_seen_at": "2026-10-13T13:50:07.976376+00:00",
     "score": 82,
     "priority": "P2",
     "actions": [
