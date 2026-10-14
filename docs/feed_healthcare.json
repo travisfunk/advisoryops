@@ -219,6 +219,7 @@
       "2004-12-15"
     ],
     "reasoning": "",
+    "recommendation_policy": "source_only",
     "recommended_patterns": [],
     "remediation_steps": [
       "Review the historical FDA recall and the manufacturer's customer notification before deciding on action.",
@@ -267,8 +268,7 @@
       "fda-risk-class: Class III highest-risk device (+30)",
       "FDA Class III auto-floored to P0 (clinical-severity authority)",
       "priority: P0 (score=150)"
-    ],
-    "recommendation_policy": "source_only"
+    ]
   },
   {
     "actions": [
@@ -29804,7 +29804,7 @@
       "2026-08-11T06:00:00.000000Z"
     ],
     "first_seen_at": "2026-10-10T12:08:02.926492+00:00",
-    "last_seen_at": "2026-10-13T13:50:07.976376+00:00",
+    "last_seen_at": "2026-10-14T11:26:45.384444+00:00",
     "score": 82,
     "priority": "P2",
     "actions": [
