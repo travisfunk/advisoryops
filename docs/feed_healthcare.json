@@ -1503,6 +1503,540 @@
     ]
   },
   {
+    "issue_id": "CVE-2026-101021",
+    "issue_type": "cve",
+    "title": "CVE-2026-101021",
+    "summary": "Successful exploitation of these vulnerabilities could allow an attacker to delete stored medical images, disclose patient information, inject forged studies, reassign patient records, overwrite files, and cause a denial-of-service condition.",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-288-02.json",
+    "cves": [
+      "CVE-2026-101021"
+    ],
+    "sources": [
+      "cisa-icsma"
+    ],
+    "published_dates": [
+      "2026-10-15T06:00:00.000000Z"
+    ],
+    "first_seen_at": "2026-10-16T11:01:22.636772+00:00",
+    "last_seen_at": "2026-10-16T11:01:22.636772+00:00",
+    "score": 105,
+    "priority": "P1",
+    "actions": [
+      "ingest",
+      "track"
+    ],
+    "why": [
+      "base: issue_type=cve (+10)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "clinical: PHI/patient data (+15)",
+      "priority: P1 (score=105)"
+    ],
+    "handling_warnings": [],
+    "evidence_gaps": [],
+    "unknowns": [],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2026-101021",
+        "source": "cisa-icsma"
+      }
+    ],
+    "cvss_score": 0,
+    "cvss_severity": "",
+    "cvss_vector": "",
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null,
+    "cwe_ids": [],
+    "affected_products": [],
+    "nvd_description": "",
+    "source_summary": "",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Review vendor advisory for mitigation guidance.",
+      "Monitor for exploitation indicators."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": null,
+    "epss_percentile": null,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": [],
+    "first_published_to_feed": "2026-10-16T11:11:13.823067+00:00"
+  },
+  {
+    "issue_id": "CVE-2026-105273",
+    "issue_type": "cve",
+    "title": "CVE-2026-105273",
+    "summary": "Successful exploitation of these vulnerabilities could allow an attacker to delete stored medical images, disclose patient information, inject forged studies, reassign patient records, overwrite files, and cause a denial-of-service condition.",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-288-02.json",
+    "cves": [
+      "CVE-2026-105273"
+    ],
+    "sources": [
+      "cisa-icsma"
+    ],
+    "published_dates": [
+      "2026-10-15T06:00:00.000000Z"
+    ],
+    "first_seen_at": "2026-10-16T11:01:22.636772+00:00",
+    "last_seen_at": "2026-10-16T11:01:22.636772+00:00",
+    "score": 105,
+    "priority": "P1",
+    "actions": [
+      "ingest",
+      "track"
+    ],
+    "why": [
+      "base: issue_type=cve (+10)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "clinical: PHI/patient data (+15)",
+      "priority: P1 (score=105)"
+    ],
+    "handling_warnings": [],
+    "evidence_gaps": [],
+    "unknowns": [],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2026-105273",
+        "source": "cisa-icsma"
+      }
+    ],
+    "cvss_score": 0,
+    "cvss_severity": "",
+    "cvss_vector": "",
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null,
+    "cwe_ids": [],
+    "affected_products": [],
+    "nvd_description": "",
+    "source_summary": "",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Review vendor advisory for mitigation guidance.",
+      "Monitor for exploitation indicators."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": null,
+    "epss_percentile": null,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": [],
+    "first_published_to_feed": "2026-10-16T11:11:13.823067+00:00"
+  },
+  {
+    "issue_id": "CVE-2026-105279",
+    "issue_type": "cve",
+    "title": "CVE-2026-105279",
+    "summary": "Successful exploitation of these vulnerabilities could allow an attacker to delete stored medical images, disclose patient information, inject forged studies, reassign patient records, overwrite files, and cause a denial-of-service condition.",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-288-02.json",
+    "cves": [
+      "CVE-2026-105279"
+    ],
+    "sources": [
+      "cisa-icsma"
+    ],
+    "published_dates": [
+      "2026-10-15T06:00:00.000000Z"
+    ],
+    "first_seen_at": "2026-10-16T11:01:22.636772+00:00",
+    "last_seen_at": "2026-10-16T11:01:22.636772+00:00",
+    "score": 105,
+    "priority": "P1",
+    "actions": [
+      "ingest",
+      "track"
+    ],
+    "why": [
+      "base: issue_type=cve (+10)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "clinical: PHI/patient data (+15)",
+      "priority: P1 (score=105)"
+    ],
+    "handling_warnings": [],
+    "evidence_gaps": [],
+    "unknowns": [],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2026-105279",
+        "source": "cisa-icsma"
+      }
+    ],
+    "cvss_score": 0,
+    "cvss_severity": "",
+    "cvss_vector": "",
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null,
+    "cwe_ids": [],
+    "affected_products": [],
+    "nvd_description": "",
+    "source_summary": "",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Review vendor advisory for mitigation guidance.",
+      "Monitor for exploitation indicators."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": null,
+    "epss_percentile": null,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": [],
+    "first_published_to_feed": "2026-10-16T11:11:13.823067+00:00"
+  },
+  {
+    "issue_id": "CVE-2026-105667",
+    "issue_type": "cve",
+    "title": "CVE-2026-105667",
+    "summary": "Successful exploitation of these vulnerabilities could allow an attacker to delete stored medical images, disclose patient information, inject forged studies, reassign patient records, overwrite files, and cause a denial-of-service condition.",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-288-02.json",
+    "cves": [
+      "CVE-2026-105667"
+    ],
+    "sources": [
+      "cisa-icsma"
+    ],
+    "published_dates": [
+      "2026-10-15T06:00:00.000000Z"
+    ],
+    "first_seen_at": "2026-10-16T11:01:22.636772+00:00",
+    "last_seen_at": "2026-10-16T11:01:22.636772+00:00",
+    "score": 105,
+    "priority": "P1",
+    "actions": [
+      "ingest",
+      "track"
+    ],
+    "why": [
+      "base: issue_type=cve (+10)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "clinical: PHI/patient data (+15)",
+      "priority: P1 (score=105)"
+    ],
+    "handling_warnings": [],
+    "evidence_gaps": [],
+    "unknowns": [],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2026-105667",
+        "source": "cisa-icsma"
+      }
+    ],
+    "cvss_score": 0,
+    "cvss_severity": "",
+    "cvss_vector": "",
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null,
+    "cwe_ids": [],
+    "affected_products": [],
+    "nvd_description": "",
+    "source_summary": "",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Review vendor advisory for mitigation guidance.",
+      "Monitor for exploitation indicators."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": null,
+    "epss_percentile": null,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": [],
+    "first_published_to_feed": "2026-10-16T11:11:13.823067+00:00"
+  },
+  {
+    "issue_id": "CVE-2026-107621",
+    "issue_type": "cve",
+    "title": "CVE-2026-107621",
+    "summary": "Successful exploitation of these vulnerabilities could allow an attacker to delete stored medical images, disclose patient information, inject forged studies, reassign patient records, overwrite files, and cause a denial-of-service condition.",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-288-02.json",
+    "cves": [
+      "CVE-2026-107621"
+    ],
+    "sources": [
+      "cisa-icsma"
+    ],
+    "published_dates": [
+      "2026-10-15T06:00:00.000000Z"
+    ],
+    "first_seen_at": "2026-10-16T11:01:22.636772+00:00",
+    "last_seen_at": "2026-10-16T11:01:22.636772+00:00",
+    "score": 105,
+    "priority": "P1",
+    "actions": [
+      "ingest",
+      "track"
+    ],
+    "why": [
+      "base: issue_type=cve (+10)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "clinical: PHI/patient data (+15)",
+      "priority: P1 (score=105)"
+    ],
+    "handling_warnings": [],
+    "evidence_gaps": [],
+    "unknowns": [],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2026-107621",
+        "source": "cisa-icsma"
+      }
+    ],
+    "cvss_score": 0,
+    "cvss_severity": "",
+    "cvss_vector": "",
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null,
+    "cwe_ids": [],
+    "affected_products": [],
+    "nvd_description": "",
+    "source_summary": "",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Review vendor advisory for mitigation guidance.",
+      "Monitor for exploitation indicators."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": null,
+    "epss_percentile": null,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": [],
+    "first_published_to_feed": "2026-10-16T11:11:13.823067+00:00"
+  },
+  {
+    "issue_id": "CVE-2026-97851",
+    "issue_type": "cve",
+    "title": "CVE-2026-97851",
+    "summary": "Successful exploitation of these vulnerabilities could allow an attacker to delete stored medical images, disclose patient information, inject forged studies, reassign patient records, overwrite files, and cause a denial-of-service condition.",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-288-02.json",
+    "cves": [
+      "CVE-2026-97851"
+    ],
+    "sources": [
+      "cisa-icsma"
+    ],
+    "published_dates": [
+      "2026-10-15T06:00:00.000000Z"
+    ],
+    "first_seen_at": "2026-10-16T11:01:22.636772+00:00",
+    "last_seen_at": "2026-10-16T11:01:22.636772+00:00",
+    "score": 105,
+    "priority": "P1",
+    "actions": [
+      "ingest",
+      "track"
+    ],
+    "why": [
+      "base: issue_type=cve (+10)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "clinical: PHI/patient data (+15)",
+      "priority: P1 (score=105)"
+    ],
+    "handling_warnings": [],
+    "evidence_gaps": [],
+    "unknowns": [],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2026-97851",
+        "source": "cisa-icsma"
+      }
+    ],
+    "cvss_score": 0,
+    "cvss_severity": "",
+    "cvss_vector": "",
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null,
+    "cwe_ids": [],
+    "affected_products": [],
+    "nvd_description": "",
+    "source_summary": "",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Review vendor advisory for mitigation guidance.",
+      "Monitor for exploitation indicators."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": null,
+    "epss_percentile": null,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": [],
+    "first_published_to_feed": "2026-10-16T11:11:13.823067+00:00"
+  },
+  {
     "actions": [
       "ingest",
       "track"
@@ -28683,6 +29217,93 @@
     ]
   },
   {
+    "issue_id": "CVE-2026-107777",
+    "issue_type": "cve",
+    "title": "CVE-2026-107777",
+    "summary": "Successful exploitation of this vulnerability could allow an attacker to read arbitrary files on the Torrent Server.",
+    "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-288-01.json",
+    "cves": [
+      "CVE-2026-107777"
+    ],
+    "sources": [
+      "cisa-icsma"
+    ],
+    "published_dates": [
+      "2026-10-15T06:00:00.000000Z"
+    ],
+    "first_seen_at": "2026-10-16T11:01:22.636772+00:00",
+    "last_seen_at": "2026-10-16T11:01:22.636772+00:00",
+    "score": 90,
+    "priority": "P2",
+    "actions": [
+      "track"
+    ],
+    "why": [
+      "base: issue_type=cve (+10)",
+      "source-authority: tier-1 weight=1.0 (+30)",
+      "healthcare-source: tier-1 medical source (+50)",
+      "priority: P2 (score=90)"
+    ],
+    "handling_warnings": [],
+    "evidence_gaps": [],
+    "unknowns": [],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 1.0,
+    "highest_authority_source": "cisa-icsma",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [
+      {
+        "type": "cve",
+        "value": "CVE-2026-107777",
+        "source": "cisa-icsma"
+      }
+    ],
+    "cvss_score": 0,
+    "cvss_severity": "",
+    "cvss_vector": "",
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null,
+    "cwe_ids": [],
+    "affected_products": [],
+    "nvd_description": "",
+    "source_summary": "",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Review vendor advisory for mitigation guidance.",
+      "Monitor for exploitation indicators."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": null,
+    "is_kev_medical_device": false,
+    "epss_score": null,
+    "epss_percentile": null,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": [],
+    "first_published_to_feed": "2026-10-16T11:11:13.823067+00:00"
+  },
+  {
     "actions": [
       "track"
     ],
@@ -29804,7 +30425,7 @@
       "2026-08-11T06:00:00.000000Z"
     ],
     "first_seen_at": "2026-10-10T12:08:02.926492+00:00",
-    "last_seen_at": "2026-10-15T11:16:47.874946+00:00",
+    "last_seen_at": "2026-10-16T11:01:22.636772+00:00",
     "score": 82,
     "priority": "P2",
     "actions": [
