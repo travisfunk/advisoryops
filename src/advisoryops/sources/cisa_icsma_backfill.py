@@ -332,6 +332,9 @@ def _merge_advisory(
     if csaf_data.get("products"):
         merged["products_list"] = csaf_data["products"]
 
+    if csaf_data.get("vendor"):
+        merged["vendor"] = csaf_data["vendor"]
+
     # Merge CVEs (union of both sources)
     csv_cves = set(csv_row.get("cves") or [])
     csaf_cves = set(csaf_data.get("cves") or [])
@@ -569,6 +572,7 @@ def generate_signals_from_cache(
 
         signals.append({
             "source": source_id,
+            "vendor": vendor,
             "guid": advisory_id,
             "title": title,
             "link": link,

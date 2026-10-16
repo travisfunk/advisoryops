@@ -163,7 +163,7 @@ class _IssueBuilder:
             "fetched_at": fetched_at,
         }
         # Passthrough KEV fields from discover items
-        for key in ("kev_required_action", "kev_due_date", "kev_vendor",
+        for key in ("vendor", "kev_required_action", "kev_due_date", "kev_vendor",
                      "kev_product", "kev_vulnerability_name"):
             val = it.get(key)
             if val:

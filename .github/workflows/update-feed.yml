@@ -67,6 +67,9 @@ jobs:
       - name: Verify full CISA KEV overlap
         run: python -m advisoryops.kev_full_catalog --feed "${RUNNER_TEMP}/advisoryops_canonical.json"
 
+      - name: Refresh source-backed SBOM vendor evidence
+        run: python -m advisoryops.source_vendors
+
       - name: Publish scalable public feed
         run: |
           python -m advisoryops.feed_archive publish \
@@ -95,7 +98,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/
+          git add docs/ configs/sbom_vendor_sources.json
           if git diff --cached --quiet; then
             echo "No published feed changes to commit."
           else

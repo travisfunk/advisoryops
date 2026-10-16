@@ -196,6 +196,11 @@ def _extract_fields_for_cache(cve_obj: Dict[str, Any]) -> Dict[str, Any]:
                         seen_products.add(readable)
                         products.append(readable)
     result["affected_products"] = products
+    from advisoryops.source_vendors import cpe_vendors
+
+    result["cpe_vendors"] = cpe_vendors(configurations)
+    if len(result["cpe_vendors"]) == 1:
+        result["vendor"] = result["cpe_vendors"][0]
 
     # Store published date for signal generation
     published = cve_obj.get("published", "")
@@ -518,6 +523,7 @@ def generate_signals_from_cache(
 
         signals.append({
             "source": source_id,
+            "vendor": data.get("vendor", ""),
             "guid": cve_id,
             "title": cve_id,
             "link": link,

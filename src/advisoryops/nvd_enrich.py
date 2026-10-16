@@ -177,6 +177,11 @@ def _extract_nvd_fields(cve_item: Dict[str, Any]) -> Dict[str, Any]:
                         seen_products.add(readable)
                         products.append(readable)
     result["affected_products"] = products
+    from advisoryops.source_vendors import cpe_vendors
+
+    result["cpe_vendors"] = cpe_vendors(configurations)
+    if len(result["cpe_vendors"]) == 1:
+        result["vendor"] = result["cpe_vendors"][0]
 
     return result
 
@@ -399,6 +404,8 @@ def enrich_issue(
 
 def _apply_nvd_fields(issue: Dict[str, Any], nvd: Dict[str, Any]) -> None:
     """Apply NVD-extracted fields onto an issue dict."""
+    if nvd.get("vendor") and not issue.get("vendor"):
+        issue["vendor"] = nvd["vendor"]
     if nvd.get("nvd_description"):
         issue["nvd_description"] = nvd["nvd_description"]
     if nvd.get("cvss_score"):
