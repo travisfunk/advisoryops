@@ -455,7 +455,7 @@ a:hover { text-decoration:underline; }
       </div>
     </div>
 
-    <section id="sbom-section" class="tab-content" aria-label="Device SBOM check">
+    <section id="sbom-section" class="tab-content" inert aria-label="Device SBOM check">
       <div class="prose-wrap">
         <h2>Check a device’s software components</h2>
         <p>Import a CycloneDX 1.2–1.7 or SPDX 2.2/2.3 JSON SBOM and compare its components with the full tracked advisory history.</p>
@@ -1635,6 +1635,7 @@ a:hover { text-decoration:underline; }
   function switchTab(tab) {
     activeTab = tab;
     document.getElementById('app').classList.toggle('sbom-active', tab === 'sbom');
+    document.getElementById('sbom-section').inert = tab !== 'sbom';
     var btns = document.querySelectorAll('.tab-btn');
     for (var i = 0; i < btns.length; i++) {
       if (btns[i].getAttribute('data-tab') === tab) btns[i].classList.add('active');
@@ -2019,5 +2020,6 @@ a:hover { text-decoration:underline; }
 })();
 </script>
 <script src="sbom.js"></script>
+<script src="sbom-ui.js"></script>
 </body>
 </html>

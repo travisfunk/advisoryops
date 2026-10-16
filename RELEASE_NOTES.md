@@ -9,6 +9,9 @@
 - Findings require review: package ecosystem, installed-version applicability and
   exploitability are not inferred from product-name matches. Coverage gaps and
   snapshot dates are visible. No inventory upload or application dependency added.
+- Split the matching engine from browser controls, added offline controller and
+  edge-case regressions, and added read-only pull-request CI. Generated serving
+  files are identified separately from authored source for code review.
 - See [SBOM behavior and limits](docs/sbom.md).
 
 ## Source-grounded FDA guidance correction (October 2026)
