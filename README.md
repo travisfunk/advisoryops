@@ -5,8 +5,21 @@
 [![Tests](https://github.com/travisfunk/advisoryops/actions/workflows/tests.yml/badge.svg)](https://github.com/travisfunk/advisoryops/actions/workflows/tests.yml)
 [![Dashboard](https://img.shields.io/badge/dashboard-GitHub_Pages-blue.svg)](https://travisfunk.github.io/advisoryops/)
 
-**Open-source healthcare medical device security intelligence pipeline.**
-AdvisoryOps has 64 enabled public source configurations — CISA ICS-Medical, the Known Exploited Vulnerabilities catalog, FDA device recalls, NVD, CERT/CC, vendor PSIRTs, and more — and produces a prioritized, healthcare-aware feed of medical device vulnerabilities. Built for hospital security teams that can't afford commercial platforms like Claroty or TRIMEDX.
+**Open-source healthcare advisory intelligence and private SBOM component matching.**
+
+AdvisoryOps helps hospital security teams prioritize medical-device advisories,
+review source-linked remediation guidance, and connect a device's software
+components to the advisories already tracked. It brings together government,
+vendor, and research sources, including CISA ICS-Medical, KEV, FDA recalls, and NVD.
+
+Import a **CycloneDX or SPDX JSON SBOM** in the browser to see component matches,
+installed versions, advisory evidence, and source links, then download a local
+report. The SBOM stays in the browser. Matches are candidates for review;
+affected-version applicability and exploitability require source confirmation.
+
+**[Browse advisories](https://travisfunk.github.io/advisoryops/)** ·
+**[Check a device SBOM](https://travisfunk.github.io/advisoryops/#sbom)** ·
+[Supported formats and matching limits](docs/sbom.md)
 
 
 ---
@@ -18,6 +31,13 @@ AdvisoryOps has 64 enabled public source configurations — CISA ICS-Medical, th
 2. **Fully open stack.** The data sources are public, the analysis pipeline is open source, the feed outputs are free to consume, and the dashboard is a static HTML file served from GitHub Pages. Most alternatives lock the data, the analysis, or the delivery behind enterprise pricing. AdvisoryOps is Apache 2.0 and free forever.
 
 3. **AI-assisted remediation guidance.** Optional recommendation generation selects from an 11-pattern approved mitigation playbook (VLAN isolation, ACL allowlisting, vendor case tracking, credential hardening, etc.), assigns tasks by role (infosec, netops, HTM/CE, vendor, clinical ops), and cites the underlying standards (NIST SP 800-82, IEC 62443, FDA guidance). Unknown pattern IDs are filtered. Packet generation is not guaranteed for every high-priority issue; the current build's packet count is recorded below.
+
+4. **Private device SBOM checks.** Import CycloneDX or SPDX JSON and compare
+   software components with the full tracked advisory history, including records
+   outside the dashboard's latest window. Review installed versions, matching
+   evidence, coverage gaps, and source advisories; export a local JSON report.
+   No SBOM upload or account is required. These are product-identity candidates,
+   with version applicability left for review.
 
 ---
 
@@ -47,7 +67,8 @@ See [methodology and full-corpus reproduction](docs/kev_medical_device_analysis.
 
 ## Live demo
 
-**Dashboard:** [https://travisfunk.github.io/advisoryops/](https://travisfunk.github.io/advisoryops/)
+- **[Advisory dashboard](https://travisfunk.github.io/advisoryops/):** browse and prioritize healthcare advisories.
+- **[Device SBOM](https://travisfunk.github.io/advisoryops/#sbom):** import a device's CycloneDX/SPDX JSON and review software-component matches.
 
 The "Medical devices" view loads the complete medical-device subset (463 records in the dated snapshot below) with CVSS scores, EPSS exploit probabilities, KEV deadlines, FDA risk class badges, and AI-generated remediation guidance with role-split task assignments. Color-coded priority badges (P0-P3), click-to-expand detail panels, and a debounced search bar filtering by title, CVE, vendor, and product. No framework or frontend build step — static HTML and vanilla JavaScript.
 
@@ -135,7 +156,8 @@ advisoryops evaluate --fixtures tests/fixtures/golden --out outputs/eval
 
 ## Device SBOM checks
 
-The **Device SBOM** tab privately imports CycloneDX or SPDX JSON and compares
+The **[Device SBOM](https://travisfunk.github.io/advisoryops/#sbom)** tab privately
+imports CycloneDX 1.2–1.7 or SPDX 2.2/2.3 JSON and compares
 software components with the full tracked advisory history. Findings show product
 identity evidence and installed versions, with source links for review. Version
 applicability is not verified; no match does not mean safe. SBOMs stay in browser

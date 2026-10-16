@@ -3,7 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AdvisoryOps — Healthcare Advisory Intelligence</title>
+<title>AdvisoryOps — Healthcare Advisories and SBOM Matching</title>
+<meta name="description" content="Prioritize healthcare and medical-device advisories, review source-linked guidance, and privately match CycloneDX/SPDX SBOM components against tracked advisories.">
+<meta property="og:title" content="AdvisoryOps — Healthcare Advisories and SBOM Matching">
+<meta property="og:description" content="Healthcare advisory intelligence with private device SBOM component matching, review evidence, and local report export.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://travisfunk.github.io/advisoryops/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -346,7 +351,7 @@ a:hover { text-decoration:underline; }
   <header id="topbar">
     <div class="brand">
       <span class="brand-name">AdvisoryOps</span>
-      <span class="brand-sub">HEALTHCARE ADVISORY INTELLIGENCE</span>
+      <span class="brand-sub">HEALTHCARE ADVISORIES + SBOM MATCHING</span>
     </div>
     <div class="meta">
       <span id="meta-stats"></span>
@@ -642,7 +647,11 @@ a:hover { text-decoration:underline; }
         </div>
 
         <h2>What is AdvisoryOps?</h2>
-        <p>AdvisoryOps is a deterministic, healthcare-focused vulnerability intelligence pipeline. It continuously ingests advisories from government, vendor, and research sources — scores them for healthcare relevance and urgency — and produces structured, actionable issue records for security teams at hospitals and health systems.</p>
+        <p>AdvisoryOps combines healthcare advisory intelligence with private device SBOM component matching. It ingests government, vendor, and research advisories, scores them for healthcare relevance and urgency, and provides source-linked issue records and remediation guidance for hospital security teams.</p>
+
+        <h3>Connect device software to tracked advisories</h3>
+        <p>Import a CycloneDX or SPDX JSON SBOM in <a href="#sbom">Device SBOM</a> to compare software components with the full tracked advisory history. Review installed versions, matching evidence, coverage gaps, and source links, then download a local JSON report. Your SBOM stays in the browser; no upload or account is required.</p>
+        <p>Matches identify products for review. They do not confirm that an installed version is affected or exploitable. See <a href="sbom.md">supported formats, privacy, and matching limits</a>.</p>
 
         <div class="metric-grid">
           <div class="metric-card"><div class="mv" id="about-issues">—</div><div class="ml">Total issues</div></div>
@@ -675,6 +684,7 @@ a:hover { text-decoration:underline; }
           <div class="detail-row"><span class="dk">Language</span><span class="dv">Python 3.10+</span></div>
           <div class="detail-row"><span class="dk">AI model</span><span class="dv">GPT-4o-mini (optional AI stages)</span></div>
           <div class="detail-row"><span class="dk">Full corpus rebuild cost</span><span class="dv">Not published for the current build</span></div>
+          <div class="detail-row"><span class="dk">Device SBOM</span><span class="dv">CycloneDX / SPDX JSON · browser-only import · local report export</span></div>
           <div class="detail-row"><span class="dk">Dashboard</span><span class="dv">Vanilla HTML/CSS/JS — no frameworks</span></div>
           <div class="detail-row"><span class="dk">Repository</span><span class="dv"><a href="https://github.com/travisfunk/advisoryops" target="_blank">github.com/travisfunk/advisoryops</a></span></div>
         </div>

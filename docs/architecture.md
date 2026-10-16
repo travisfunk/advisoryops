@@ -79,6 +79,20 @@ graph TB
     Outputs --> Consumers
 ```
 
+## Private SBOM component matching
+
+The dashboard's **Device SBOM** tab reads CycloneDX or SPDX JSON in browser memory.
+The same browser downloads a compact public identity catalog derived from the
+complete canonical advisory history and checks its snapshot against the archive
+manifest. The imported device inventory is never sent to the publication pipeline.
+
+The pure JavaScript engine identifies product-name candidates using declared
+component names, PURL package names, and CPE vendor/product evidence. Browser
+controls display installed versions, match traces, source links and coverage gaps,
+and export a local JSON report. Results require review; the existing feed does
+not support reliable per-component version applicability or exploitability claims.
+See [SBOM formats, module boundaries and contracts](sbom.md).
+
 ## Layer descriptions
 
 ### Ingestion
