@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "advisoryops"
 version = "0.0.1"
-description = "AdvisoryOps MVP CLI (discover + ingest + extract)"
+description = "Healthcare advisory intelligence with private CycloneDX/SPDX SBOM component matching"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [

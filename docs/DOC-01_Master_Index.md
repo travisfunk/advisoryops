@@ -1,6 +1,6 @@
 # Master Documentation Index (DOC-01)
 
-**Last updated:** 2026-04-12
+**Last updated:** 2026-10-16
 
 This index is the starting point for navigating AdvisoryOps documentation.
 
@@ -8,7 +8,8 @@ This index is the starting point for navigating AdvisoryOps documentation.
 
 ## Quick links
 - **Project status:** [STATUS.md](STATUS.md)
-- **MVP guide:** (repo root) `README_MVP.md`
+- **Project overview and quickstart:** [README.md](../README.md)
+- **Device SBOM checks:** [sbom.md](sbom.md) — CycloneDX/SPDX imports, component matching, privacy, and report contracts
 - **Data contracts:** [DOC-02_Data_Contracts.md](DOC-02_Data_Contracts.md)
 - **Community public-side plan:** [DOC-11_Community_Public_v0.md](DOC-11_Community_Public_v0.md)
 - **Discovery + ingestion details:** [DOC-05_Ingestion.md](DOC-05_Ingestion.md)
