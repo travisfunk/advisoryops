@@ -53,8 +53,11 @@
     const sourceLink = url
       ? `<a href="${escape(url)}" target="_blank" rel="noopener noreferrer">Review source advisory ↗</a>`
       : "<p>No source URL provided.</p>";
+    const evidenceFlags = (finding.evidence_flags || [])
+      .map((flag) => `<span class="badge">${escape(flag)}</span>`)
+      .join(" ");
     return `<article class="prose-card">
-      <h3>${escape(finding.component)} <span class="badge">${escape(finding.priority)}</span></h3>
+      <h3>${escape(finding.component)} <span class="badge">${escape(finding.priority)}</span> ${evidenceFlags}</h3>
       <p>Installed version: ${escape(finding.installed_version || "unknown")}<br>
         ${escape(finding.title)} · ${escape(finding.issue_id)}<br>
         ${escape(finding.cves.join(", "))}</p>

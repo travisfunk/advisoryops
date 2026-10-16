@@ -235,10 +235,10 @@
     };
   }
   /**
-   * Validate catalog coverage and index exact product-name suffixes once per check.
+   * Validate coverage and index product-name suffixes and vendor labels once per check.
    * Values retain the original advisory and label for an auditable match trace.
    * @param {object} catalog Published full-history identity catalog (schema v1).
-   * @returns {{catalog: object, index: Map<string, object[]>}}
+   * @returns {{catalog: object, index: Map<string, object[]>, vendorProducts: Map<string, object[]>}}
    * @throws {Error} Duplicate IDs, missing records, or inconsistent coverage.
    */
   function buildIndex(catalog) {
@@ -252,6 +252,7 @@
         "Advisory catalog is invalid or incomplete. Retry after the next feed publication.",
       );
     const index = new Map(),
+      vendorProducts = new Map(),
       ids = new Set();
     let withProducts = 0;
     for (const issue of catalog.issues) {
@@ -261,7 +262,14 @@
       const products = list(issue.affected_products).map(text).filter(Boolean);
       if (text(issue.kev_product)) products.push(text(issue.kev_product));
       if (products.length) withProducts++;
+      const vendors = new Set(
+        [issue.vendor, issue.kev_vendor].map(norm).filter(Boolean),
+      );
       for (const label of new Set(products)) {
+        for (const vendor of vendors) {
+          if (!vendorProducts.has(vendor)) vendorProducts.set(vendor, []);
+          vendorProducts.get(vendor).push({ issue, label });
+        }
         const full = norm(label),
           words = full.split(" ");
         // Exact, complete trailing product names; never substring/fuzzy search.
@@ -276,14 +284,14 @@
     }
     if (catalog.records_with_products !== withProducts)
       throw Error("Advisory catalog product coverage is inconsistent.");
-    return { catalog, index };
+    return { catalog, index, vendorProducts };
   }
   /**
    * Return review candidates, never a vulnerable/safe classification.
    * A known CPE vendor also constrains a matching declared/PURL product name,
    * so falling back to a weaker name cannot bypass available vendor evidence.
    * @param {object} sbom Inventory returned by parseSBOM.
-   * @param {{catalog: object, index: Map<string, object[]>}} built Validated index.
+   * @param {{catalog: object, index: Map<string, object[]>, vendorProducts: Map<string, object[]>}} built Validated index.
    * @returns {object} Versioned report with component/advisory evidence and gaps.
    */
   function matchSBOM(sbom, built) {
@@ -358,6 +366,36 @@
           }
         }
       }
+      // A declared manufacturer can qualify a name embedded in a longer product
+      // label. Do not broaden this rule to suppliers, PURL namespaces, or inferred
+      // CPE vendors. Exact candidates above take precedence over partial evidence.
+      const manufacturer = norm(component.vendor);
+      const componentName = norm(component.name);
+      if (
+        manufacturer &&
+        componentName.length >= 4 &&
+        !generic.has(componentName)
+      ) {
+        const escapedName = componentName.replace(
+          /[.*+?^${}()|[\]\\]/g,
+          "\\$&",
+        );
+        const wholeName = new RegExp(
+          `(^|[^\\p{L}\\p{N}])${escapedName}(?=$|[^\\p{L}\\p{N}])`,
+          "u",
+        );
+        for (const hit of built.vendorProducts.get(manufacturer) || []) {
+          if (
+            wholeName.test(norm(hit.label)) &&
+            !candidates.has(hit.issue.issue_id)
+          ) {
+            candidates.set(hit.issue.issue_id, {
+              ...hit,
+              partialProductName: true,
+            });
+          }
+        }
+      }
       if (!candidates.size) unmatched.push(componentIndex);
       for (const hit of candidates.values()) {
         if (findings.length >= MAX_FINDINGS)
@@ -376,11 +414,16 @@
           affected_product: hit.label,
           advisory_version_evidence: list(hit.issue.affected_versions),
           status: "review_required",
-          evidence:
-            "Exact normalized product-name match via " +
-            hit.via +
-            ": " +
-            hit.label,
+          evidence_flags: hit.partialProductName
+            ? ["partial product name"]
+            : [],
+          evidence: hit.partialProductName
+            ? "Partial product name match with matching manufacturer and advisory vendor: " +
+              hit.label
+            : "Exact normalized product-name match via " +
+              hit.via +
+              ": " +
+              hit.label,
           limitation:
             "Installed-version applicability, package ecosystem, deployment conditions, and exploitability are not verified.",
         });

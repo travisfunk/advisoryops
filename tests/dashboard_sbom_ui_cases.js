@@ -198,6 +198,34 @@ const documentFor = (name) => ({
   await get("run").emit("click");
   assert.ok(get("results").innerHTML.includes("&lt;script&gt;"));
   assert.ok(!get("results").innerHTML.includes("<script>"));
+  harness.catalog.issues = [
+    {
+      issue_id: "medfusion-test",
+      vendor: "Smiths Medical",
+      affected_products: [
+        "Smiths-Medical Medfusion 4000 Wireless Syringe Infusion Pump",
+      ],
+    },
+  ];
+  await harness.importDocument({
+    bomFormat: "CycloneDX",
+    specVersion: "1.6",
+    components: [
+      { name: "Medfusion 4000", manufacturer: { name: "Smiths-Medical" } },
+    ],
+  });
+  await get("run").emit("click");
+  assert.ok(
+    get("results").innerHTML.includes(
+      '<span class="badge">partial product name</span>',
+    ),
+  );
+  await get("download").emit("click");
+  const partialReport = JSON.parse(await harness.blobs.at(-1).text());
+  assert.deepEqual(partialReport.findings[0].evidence_flags, [
+    "partial product name",
+  ]);
+
   console.log(
     "PASS SBOM controller: imports, privacy, escaped text, safe links, export, reset, failures and cancellation",
   );

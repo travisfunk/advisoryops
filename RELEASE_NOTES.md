@@ -1,5 +1,14 @@
 # AdvisoryOps — Release Notes
 
+## Manufacturer-gated SBOM product names (October 2026)
+
+- Recognize a component name as a whole-word sequence inside a longer advisory
+  product label when its declared manufacturer matches the advisory vendor.
+- Flag these candidates as `partial product name`; retain stronger exact evidence
+  and keep all findings subject to version/applicability review.
+- Added Medfusion 4000 coverage, vendor and word-boundary rejection cases, literal
+  punctuation checks, and deduplication/precedence regressions.
+
 ## Device SBOM ingestion (October 2026)
 
 - Added a private browser import for CycloneDX 1.2–1.7 and SPDX 2.2/2.3 JSON,

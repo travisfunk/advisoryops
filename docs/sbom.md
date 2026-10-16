@@ -37,6 +37,16 @@ PURL namespace are not treated as manufacturers. Short/generic names without a
 specific full identity are deliberately not candidates. Titles and summaries are
 not searched for component matches. No fuzzy matching or curated aliases are used.
 
+When the declared component manufacturer matches an advisory's vendor (normalized
+`vendor` or `kev_vendor`), a whole-word component name inside a longer affected
+product label is also a candidate. For example, **Medfusion 4000** can match
+**Smiths-Medical Medfusion 4000 Wireless Syringe Infusion Pump** when the
+manufacturer is Smiths Medical. These findings carry
+`evidence_flags: ["partial product name"]`, also shown in the dashboard. Missing or
+mismatched manufacturers, suppliers and inferred CPE vendors do not qualify this
+rule. Word fragments such as **Medfusion 4000A** do not match **Medfusion 4000**.
+Exact identity evidence takes precedence; a component/advisory pair appears once.
+
 All findings are **review required**. The current feed's human-readable affected
 products lack reliable per-component version ranges and ecosystem identifiers.
 Advisory version text is preserved as evidence but **never evaluated**, even if it
@@ -111,6 +121,6 @@ Reports contain the device label, source SBOM format, catalog/check timestamps,
 coverage counts, imported component inventory, warnings, skipped entry count,
 `findings` and `unmatched_component_indexes`. Each finding links a zero-based
 `component_index` to an `issue_id`, retains the matched product label and advisory
-version text, and has `status: "review_required"`. The `evidence`, `limitation` and
-report `interpretation` fields explain what that result establishes. Schema
+version text, and has `status: "review_required"`. The `evidence`, `evidence_flags`,
+`limitation` and report `interpretation` fields explain what that result establishes. Schema
 changes that break consumers must increment the relevant document version.
