@@ -334,6 +334,10 @@ def _publish_archive_staged(
         newline="\n",
     )
 
+    # Full-history identity index, independent of the bounded dashboard window.
+    from .sbom_catalog import write_sbom_catalog
+    write_sbom_catalog(rows, docs_dir / "sbom_advisories.json", generated_at=manifest["generated_at"])
+
     readme_path = archive_dir / "README.md"
     readme_path.write_text(
         "# AdvisoryOps full feed archive\n\n"

@@ -133,6 +133,15 @@ advisoryops evaluate --fixtures tests/fixtures/golden --out outputs/eval
 
 ---
 
+## Device SBOM checks
+
+The **Device SBOM** tab privately imports CycloneDX or SPDX JSON and compares
+software components with the full tracked advisory history. Findings show product
+identity evidence and installed versions, with source links for review. Version
+applicability is not verified; no match does not mean safe. SBOMs stay in browser
+memory, and reports can be downloaded locally. See [formats, matching limits and
+privacy](docs/sbom.md).
+
 ## Pipeline architecture
 ```mermaid
 flowchart TD

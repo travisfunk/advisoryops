@@ -1,5 +1,16 @@
 # AdvisoryOps — Release Notes
 
+## Device SBOM ingestion (October 2026)
+
+- Added a private browser import for CycloneDX 1.2–1.7 and SPDX 2.2/2.3 JSON,
+  device association, component inventory, source-linked candidate findings and JSON export.
+- Added a compact full-history product catalog to archive publication, independent
+  of dashboard filters and the bounded latest-feed window.
+- Findings require review: package ecosystem, installed-version applicability and
+  exploitability are not inferred from product-name matches. Coverage gaps and
+  snapshot dates are visible. No inventory upload or application dependency added.
+- See [SBOM behavior and limits](docs/sbom.md).
+
 ## Source-grounded FDA guidance correction (October 2026)
 
 - Corrected Philips FDA recall event 30666 (Z-0341-05) against primary FDA evidence:
