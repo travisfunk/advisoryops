@@ -19,3 +19,10 @@
 *.ico binary
 *.exe binary
 *.dll binary
+
+# Published copies/data are reproducible outputs; review authored source instead.
+# GitHub keeps these available, but collapses them in pull-request diffs.
+docs/index.html linguist-generated=true
+docs/sbom.js linguist-generated=true
+docs/sbom-ui.js linguist-generated=true
+docs/sbom_advisories.json linguist-generated=true

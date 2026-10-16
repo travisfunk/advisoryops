@@ -2,7 +2,7 @@
 
 ![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)
 ![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)
-![Tests: 1165 passing](https://img.shields.io/badge/tests-1165_passing-brightgreen.svg)
+[![Tests](https://github.com/travisfunk/advisoryops/actions/workflows/tests.yml/badge.svg)](https://github.com/travisfunk/advisoryops/actions/workflows/tests.yml)
 [![Dashboard](https://img.shields.io/badge/dashboard-GitHub_Pages-blue.svg)](https://travisfunk.github.io/advisoryops/)
 
 **Open-source healthcare medical device security intelligence pipeline.**
@@ -49,7 +49,7 @@ See [methodology and full-corpus reproduction](docs/kev_medical_device_analysis.
 
 **Dashboard:** [https://travisfunk.github.io/advisoryops/](https://travisfunk.github.io/advisoryops/)
 
-The "Medical devices" view loads the complete medical-device subset (463 records in the dated snapshot below) with CVSS scores, EPSS exploit probabilities, KEV deadlines, FDA risk class badges, and AI-generated remediation guidance with role-split task assignments. Color-coded priority badges (P0-P3), click-to-expand detail panels, and a debounced search bar filtering by title, CVE, vendor, and product. No framework, no build step — single-file vanilla HTML/JS.
+The "Medical devices" view loads the complete medical-device subset (463 records in the dated snapshot below) with CVSS scores, EPSS exploit probabilities, KEV deadlines, FDA risk class badges, and AI-generated remediation guidance with role-split task assignments. Color-coded priority badges (P0-P3), click-to-expand detail panels, and a debounced search bar filtering by title, CVE, vendor, and product. No framework or frontend build step — static HTML and vanilla JavaScript.
 
 The dashboard also exposes two reviewer-facing transparency views: a **Sources** tab ranking published sources by medical-device-signal contribution, and a **Methodology** tab with live self-check counts refreshed from `meta.json` on every build (FDA coverage, vendor extraction coverage, strict KEV overlap, pharmaceutical-leak guard; test counts appear only when supplied) plus the exact commands any reviewer can run to reproduce each number. There's also a "This week" toggle on the Issues tab that filters to advisories from the last 7 days with a priority summary banner, for the operational "what changed this week" use case.
 
@@ -132,6 +132,15 @@ advisoryops evaluate --fixtures tests/fixtures/golden --out outputs/eval
 ```
 
 ---
+
+## Device SBOM checks
+
+The **Device SBOM** tab privately imports CycloneDX or SPDX JSON and compares
+software components with the full tracked advisory history. Findings show product
+identity evidence and installed versions, with source links for review. Version
+applicability is not verified; no match does not mean safe. SBOMs stay in browser
+memory, and reports can be downloaded locally. See [formats, matching limits and
+privacy](docs/sbom.md).
 
 ## Pipeline architecture
 ```mermaid

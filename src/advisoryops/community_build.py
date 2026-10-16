@@ -712,6 +712,11 @@ def _publish_to_docs(community_root: Path, repo_root: Path) -> None:
     else:
         print(f"  Warning: dashboard/index.html not found, skipping HTML publish")
 
+    for name in ("sbom.js", "sbom-ui.js"):
+        sbom_src = repo_root / "dashboard" / name
+        if sbom_src.exists():
+            shutil.copy2(sbom_src, docs_dir / name)
+
     # Augment meta.json with publish metadata the dashboard header reads.
     _augment_meta_json(community_root, repo_root)
 

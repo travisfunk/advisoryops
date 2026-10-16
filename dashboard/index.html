@@ -58,6 +58,20 @@ a:hover { text-decoration:underline; }
 
 /* Layout */
 #app { display:flex; flex-direction:column; height:100vh; min-width:1024px; }
+#app.sbom-active { min-width:0; }
+.sbom-active #urgency-row, .sbom-active #urgency-legend { display:none; }
+.sbom-active #tab-bar { overflow-x:auto; }
+.sbom-active .tab-btn { flex-shrink:0; }
+#sbom-section .prose-wrap { width:100%; overflow-wrap:anywhere; }
+#sbom-section input { max-width:100%; }
+#sbom-section ul { padding-left:18px; }
+#sbom-section .pill { min-height:40px; margin:3px; border-color:var(--card-border); font-size:12px; }
+#sbom-run { background:var(--blue-border); color:white; }
+#sbom-section button:disabled { opacity:.45; cursor:default; }
+@media (max-width:760px) {
+  .sbom-active #topbar .brand-sub, .sbom-active #topbar .meta { display:none; }
+  #sbom-section .prose-wrap { padding:18px 12px; }
+}
 
 /* Top bar */
 #topbar { display:flex; align-items:center; justify-content:space-between; height:44px; padding:0 16px; background:var(--surface); border-bottom:1px solid var(--card-border); flex-shrink:0; }
@@ -369,6 +383,7 @@ a:hover { text-decoration:underline; }
   <!-- Tab bar -->
   <nav id="tab-bar">
     <button class="tab-btn active" data-tab="issues">Issues</button>
+    <button class="tab-btn" data-tab="sbom">Device SBOM</button>
     <button class="tab-btn" data-tab="sources">Sources</button>
     <button class="tab-btn" data-tab="methodology">Methodology</button>
     <button class="tab-btn" data-tab="about">About</button>
@@ -439,6 +454,26 @@ a:hover { text-decoration:underline; }
       </div>
       </div>
     </div>
+
+    <section id="sbom-section" class="tab-content" inert aria-label="Device SBOM check">
+      <div class="prose-wrap">
+        <h2>Check a device’s software components</h2>
+        <p>Import a CycloneDX 1.2–1.7 or SPDX 2.2/2.3 JSON SBOM and compare its components with the full tracked advisory history.</p>
+        <div class="prose-card">
+          <p><label for="sbom-device">Device name or asset ID (optional)</label><br>
+            <input id="sbom-device" type="text" maxlength="200" placeholder="Example: Imaging workstation 12" style="width:100%;max-width:460px;padding:8px"></p>
+          <p><label for="sbom-file">Device SBOM (JSON, up to 10 MiB / 10,000 components)</label><br>
+            <input id="sbom-file" type="file" accept=".json,application/json"></p>
+          <p>Your SBOM stays in this tab’s memory. It is not uploaded or saved. Clear or close the tab to remove it. A downloaded report contains device inventory; keep it private.</p>
+          <p>Matches identify products for review. Installed-version applicability and exploitability require confirmation against the source advisory.</p>
+          <button id="sbom-run" class="pill">Check components</button>
+          <button id="sbom-download" class="pill" disabled>Download report (JSON)</button>
+          <button id="sbom-clear" class="pill">Clear device</button>
+        </div>
+        <p id="sbom-status" role="status" aria-live="polite">Choose a device SBOM to check.</p>
+        <div id="sbom-results"></div>
+      </div>
+    </section>
 
     <!-- Sources tab -->
     <div id="sources-section" class="tab-content">
@@ -1599,6 +1634,8 @@ a:hover { text-decoration:underline; }
 
   function switchTab(tab) {
     activeTab = tab;
+    document.getElementById('app').classList.toggle('sbom-active', tab === 'sbom');
+    document.getElementById('sbom-section').inert = tab !== 'sbom';
     var btns = document.querySelectorAll('.tab-btn');
     for (var i = 0; i < btns.length; i++) {
       if (btns[i].getAttribute('data-tab') === tab) btns[i].classList.add('active');
@@ -1703,7 +1740,7 @@ a:hover { text-decoration:underline; }
     renderSources();
 
     var hash = window.location.hash.slice(1);
-    if (['issues', 'sources', 'methodology', 'about'].indexOf(hash) !== -1) {
+    if (['issues', 'sbom', 'sources', 'methodology', 'about'].indexOf(hash) !== -1) {
       switchTab(hash);
     }
   }
@@ -1962,7 +1999,7 @@ a:hover { text-decoration:underline; }
   // Hash change
   window.addEventListener('hashchange', function() {
     var h = window.location.hash.slice(1);
-    if (['issues', 'sources', 'methodology', 'about'].indexOf(h) !== -1) switchTab(h);
+    if (['issues', 'sbom', 'sources', 'methodology', 'about'].indexOf(h) !== -1) switchTab(h);
   });
 
   // Expose for inline event handlers (urgency legend link, mark-read button)
@@ -1982,5 +2019,7 @@ a:hover { text-decoration:underline; }
   init();
 })();
 </script>
+<script src="sbom.js"></script>
+<script src="sbom-ui.js"></script>
 </body>
 </html>
