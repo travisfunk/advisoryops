@@ -279,4 +279,168 @@ test("SPDX NOASSERTION does not create a false version-conflict warning", () => 
   assert.deepEqual(parsed.warnings, []);
 });
 
+const medfusionLabel =
+  "Smiths-Medical Medfusion 4000 Wireless Syringe Infusion Pump";
+const medfusionComponent = {
+  name: "Medfusion 4000",
+  version: "1.5.1",
+  manufacturer: { name: "Smiths Medical" },
+};
+
+test("Medfusion 4000 matches a longer product label with manufacturer evidence", () => {
+  const result = check(
+    [medfusionComponent],
+    [
+      issue("medfusion-advisory", [medfusionLabel], {
+        vendor: "Smiths-Medical",
+      }),
+    ],
+  );
+  assert.equal(result.findings.length, 1);
+  const finding = result.findings[0];
+  assert.equal(finding.affected_product, medfusionLabel);
+  assert.deepEqual(finding.evidence_flags, ["partial product name"]);
+  assert.match(finding.evidence, /Partial product name/);
+  assert.equal(finding.installed_version, "1.5.1");
+  assert.equal(finding.status, "review_required");
+  assert.deepEqual(result.unmatched_component_indexes, []);
+});
+
+test("partial product names require a matching declared manufacturer", () => {
+  const components = [
+    { ...medfusionComponent, manufacturer: { name: "Other vendor" } },
+    { ...medfusionComponent, manufacturer: undefined },
+    {
+      ...medfusionComponent,
+      manufacturer: undefined,
+      supplier: { name: "Smiths Medical" },
+    },
+    {
+      ...medfusionComponent,
+      manufacturer: undefined,
+      cpe: "cpe:2.3:a:smiths_medical:medfusion_4000:1.5.1:*:*:*:*:*:*:*",
+    },
+  ];
+  for (const extra of [{ vendor: "Smiths Medical" }, { vendor: "" }, {}]) {
+    const result = check(components, [
+      issue("medfusion-advisory", [medfusionLabel], extra),
+    ]);
+    assert.equal(result.findings.length, 0);
+  }
+});
+
+test("partial product names use whole-word sequences rather than fragments", () => {
+  const labels = [
+    "Smiths Medical XMedfusion 4000 Wireless Pump",
+    "Smiths Medical Medfusion 40000 Wireless Pump",
+    "Smiths Medical Medfusion 4000A Wireless Pump",
+    "Smiths Medical Medfusion Pro 4000 Wireless Pump",
+    "Smiths Medical Medfusion 4000é Wireless Pump",
+  ];
+  const result = check(
+    [medfusionComponent],
+    labels.map((label, index) =>
+      issue("near-" + index, [label], { vendor: "Smiths Medical" }),
+    ),
+  );
+  assert.equal(result.findings.length, 0);
+});
+
+test("partial product names handle case, separators and punctuation boundaries", () => {
+  const result = check(
+    [medfusionComponent],
+    [
+      issue(
+        "medfusion-advisory",
+        ["SMITHS MEDICAL (MEDFUSION-4000), Wireless Pump"],
+        { vendor: "SMITHS-MEDICAL" },
+      ),
+    ],
+  );
+  assert.equal(result.findings.length, 1);
+  assert.deepEqual(result.findings[0].evidence_flags, ["partial product name"]);
+});
+
+test("literal regex characters in component names cannot broaden partial matches", () => {
+  const component = {
+    ...medfusionComponent,
+    name: "Medfusion 4000 (Wireless)",
+  };
+  const result = check(
+    [component],
+    [
+      issue("literal", ["Smiths Medical Medfusion 4000 (Wireless) Pump"], {
+        vendor: "Smiths Medical",
+      }),
+      issue("not-literal", ["Smiths Medical Medfusion 4000 Wireless Pump"], {
+        vendor: "Smiths Medical",
+      }),
+    ],
+  );
+  assert.deepEqual(
+    result.findings.map((finding) => finding.issue_id),
+    ["literal"],
+  );
+});
+
+test("exact product evidence takes precedence and partial candidates do not duplicate it", () => {
+  const result = check(
+    [medfusionComponent],
+    [
+      issue(
+        "medfusion-advisory",
+        [medfusionLabel, "Smiths Medical Medfusion 4000"],
+        { vendor: "Smiths Medical" },
+      ),
+    ],
+  );
+  assert.equal(result.findings.length, 1);
+  assert.deepEqual(result.findings[0].evidence_flags, []);
+  assert.match(result.findings[0].evidence, /Exact normalized/);
+});
+
+test("partial product names reject missing or mismatched advisory vendors", () => {
+  for (const fields of [
+    { vendor: "Other vendor" },
+    { vendor: "" },
+    {},
+    { vendor: "Smiths Medical Devices" },
+  ]) {
+    const result = check(
+      [medfusionComponent],
+      [issue("medfusion-advisory", [medfusionLabel], fields)],
+    );
+    assert.equal(result.findings.length, 0);
+  }
+});
+
+test("partial product names accept explicit KEV vendor evidence and deduplicate labels", () => {
+  const result = check(
+    [medfusionComponent],
+    [
+      issue(
+        "medfusion-advisory",
+        [medfusionLabel, medfusionLabel + " System"],
+        {
+          vendor: "Smiths Medical",
+          kev_vendor: "Smiths-Medical",
+          kev_product: medfusionLabel,
+        },
+      ),
+    ],
+  );
+  assert.equal(result.findings.length, 1);
+  assert.deepEqual(result.findings[0].evidence_flags, ["partial product name"]);
+  const kevOnly = check(
+    [medfusionComponent],
+    [
+      issue("kev-advisory", [], {
+        kev_vendor: "Smiths-Medical",
+        kev_product: medfusionLabel,
+      }),
+    ],
+  );
+  assert.equal(kevOnly.findings.length, 1);
+});
+
 console.log(tests + " SBOM behavior checks passed.");
