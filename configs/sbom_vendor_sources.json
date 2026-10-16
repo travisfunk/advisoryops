@@ -1,0 +1,2091 @@
+{
+  "version": 1,
+  "records": [
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-16-089-01",
+      "cves": [
+        "CVE-NA"
+      ],
+      "vendor": "CareFusion, Becton, Dickinson and Company (BD)",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-16-196-01",
+      "cves": [
+        "CVE-NA"
+      ],
+      "vendor": "Philips",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-16-279-01",
+      "cves": [
+        "CVE-2016-5084",
+        "CVE-2016-5085",
+        "CVE-2016-5086"
+      ],
+      "vendor": "Animas",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-16-306-01",
+      "cves": [
+        "CVE-2016-8355",
+        "CVE-2016-8358"
+      ],
+      "vendor": "Smiths Medical",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-17-009-01",
+      "cves": [
+        "CVE-2017-5149"
+      ],
+      "vendor": "St. Jude Medical",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-17-017-01",
+      "cves": [
+        "CVE-2016-8375"
+      ],
+      "vendor": "Becton, Dickinson and Company (BD)",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-17-017-02",
+      "cves": [
+        "CVE-2016-8375",
+        "CVE-2016-9355"
+      ],
+      "vendor": "Becton, Dickinson and Company (BD)",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-17-082-01",
+      "cves": [
+        "CVE-2017-6022"
+      ],
+      "vendor": "Becton, Dickinson and Company (BD)",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-17-082-02",
+      "cves": [
+        "CVE-2017-6018"
+      ],
+      "vendor": "B. Braun Medical Inc.",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-17-215-01",
+      "cves": [
+        "CVE-2008-4250",
+        "CVE-2017-7269"
+      ],
+      "vendor": "Siemens",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-17-215-02",
+      "cves": [
+        "CVE-2015-1497",
+        "CVE-2015-1635",
+        "CVE-2015-7860",
+        "CVE-2015-7861"
+      ],
+      "vendor": "Siemens",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-17-227-01",
+      "cves": [
+        "CVE-2017-12701"
+      ],
+      "vendor": "BMC Medical, 3B Medical",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-17-229-01",
+      "cves": [
+        "CVE-2017-9654",
+        "CVE-2017-9656"
+      ],
+      "vendor": "Philips",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-17-241-01",
+      "cves": [
+        "CVE-2017-12712",
+        "CVE-2017-12714",
+        "CVE-2017-12716"
+      ],
+      "vendor": "Abbott Laboratories",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-17-250-01",
+      "cves": [
+        "CVE-2017-13993"
+      ],
+      "vendor": "I-SENS Inc.",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-17-250-02",
+      "cves": [
+        "CVE-2017-12718",
+        "CVE-2017-12720",
+        "CVE-2017-12721",
+        "CVE-2017-12722",
+        "CVE-2017-12723",
+        "CVE-2017-12724",
+        "CVE-2017-12725",
+        "CVE-2017-12726"
+      ],
+      "vendor": "Smiths Medical",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-17-255-01",
+      "cves": [
+        "CVE-2017-9657",
+        "CVE-2017-9658"
+      ],
+      "vendor": "Philips",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-17-292-01",
+      "cves": [
+        "CVE-2017-14012",
+        "CVE-2017-14014"
+      ],
+      "vendor": "Boston Scientific",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-17-318-01",
+      "cves": [
+        "CVE-2017-14111"
+      ],
+      "vendor": "Philips",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-17-332-01",
+      "cves": [
+        "CVE-2017-14018"
+      ],
+      "vendor": "Ethicon",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-18-025-01",
+      "cves": [
+        "CVE-2018-5438"
+      ],
+      "vendor": "Philips",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-18-037-01",
+      "cves": [
+        "CVE-2018-5457"
+      ],
+      "vendor": "Vyaire Medical",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-18-037-02",
+      "cves": [
+        "CVE-2001-1594",
+        "CVE-2002-2446",
+        "CVE-2003-1603",
+        "CVE-2004-2777",
+        "CVE-2007-6757",
+        "CVE-2009-5143",
+        "CVE-2010-5306",
+        "CVE-2010-5307",
+        "CVE-2010-5309",
+        "CVE-2010-5310",
+        "CVE-2011-5322",
+        "CVE-2012-6660",
+        "CVE-2012-6693",
+        "CVE-2012-6694",
+        "CVE-2012-6695",
+        "CVE-2013-7404",
+        "CVE-2013-7442",
+        "CVE-2014-7232",
+        "CVE-2014-7233",
+        "CVE-2017-14002",
+        "CVE-2017-14004",
+        "CVE-2017-14006",
+        "CVE-2017-14008"
+      ],
+      "vendor": "GE",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-18-058-01",
+      "cves": [
+        "CVE-2018-10596",
+        "CVE-2018-5446",
+        "CVE-2018-5448"
+      ],
+      "vendor": "Medtronic",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-18-058-02",
+      "cves": [
+        "CVE-2004-2761",
+        "CVE-2005-1794",
+        "CVE-2011-3389",
+        "CVE-2014-3566",
+        "CVE-2016-2183",
+        "CVE-2017-0143",
+        "CVE-2017-0144",
+        "CVE-2017-0145",
+        "CVE-2017-0146",
+        "CVE-2017-0147",
+        "CVE-2017-0148",
+        "CVE-2017-0199",
+        "CVE-2017-0267",
+        "CVE-2017-0268",
+        "CVE-2017-0269",
+        "CVE-2017-0270",
+        "CVE-2017-0271",
+        "CVE-2017-0272",
+        "CVE-2017-0273",
+        "CVE-2017-0274",
+        "CVE-2017-0275",
+        "CVE-2017-0276",
+        "CVE-2017-0277",
+        "CVE-2017-0278",
+        "CVE-2017-0279",
+        "CVE-2017-0280",
+        "CVE-2018-5454",
+        "CVE-2018-5458",
+        "CVE-2018-5462",
+        "CVE-2018-5464",
+        "CVE-2018-5466",
+        "CVE-2018-5468",
+        "CVE-2018-5470",
+        "CVE-2018-5472",
+        "CVE-2018-5474"
+      ],
+      "vendor": "Philips",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-18-086-01",
+      "cves": [
+        "CVE-2018-5451",
+        "CVE-2018-7498"
+      ],
+      "vendor": "Philips",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-18-088-01",
+      "cves": [
+        "CVE-NA"
+      ],
+      "vendor": "Philips",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-18-107-01",
+      "cves": [
+        "CVE-2017-12712",
+        "CVE-2017-12714"
+      ],
+      "vendor": "Abbott Laboratories",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-18-107-02",
+      "cves": [
+        "CVE-2013-6629",
+        "CVE-2017-0005",
+        "CVE-2017-0014",
+        "CVE-2017-0022",
+        "CVE-2017-0025",
+        "CVE-2017-0038",
+        "CVE-2017-0039",
+        "CVE-2017-0042",
+        "CVE-2017-0043",
+        "CVE-2017-0045",
+        "CVE-2017-0047",
+        "CVE-2017-0050",
+        "CVE-2017-0055",
+        "CVE-2017-0056",
+        "CVE-2017-0058",
+        "CVE-2017-0060",
+        "CVE-2017-0061",
+        "CVE-2017-0062",
+        "CVE-2017-0063",
+        "CVE-2017-0064",
+        "CVE-2017-0072",
+        "CVE-2017-0073",
+        "CVE-2017-0075",
+        "CVE-2017-0076",
+        "CVE-2017-0077",
+        "CVE-2017-0083",
+        "CVE-2017-0084",
+        "CVE-2017-0085",
+        "CVE-2017-0086",
+        "CVE-2017-0087",
+        "CVE-2017-0088",
+        "CVE-2017-0089",
+        "CVE-2017-0090",
+        "CVE-2017-0091",
+        "CVE-2017-0092",
+        "CVE-2017-0096",
+        "CVE-2017-0097",
+        "CVE-2017-0099",
+        "CVE-2017-0100",
+        "CVE-2017-0101",
+        "CVE-2017-0102",
+        "CVE-2017-0103",
+        "CVE-2017-0104",
+        "CVE-2017-0108",
+        "CVE-2017-0109",
+        "CVE-2017-0111",
+        "CVE-2017-0112",
+        "CVE-2017-0113",
+        "CVE-2017-0114",
+        "CVE-2017-0115",
+        "CVE-2017-0116",
+        "CVE-2017-0117",
+        "CVE-2017-0118",
+        "CVE-2017-0119",
+        "CVE-2017-0120",
+        "CVE-2017-0121",
+        "CVE-2017-0122",
+        "CVE-2017-0123",
+        "CVE-2017-0124",
+        "CVE-2017-0125",
+        "CVE-2017-0126",
+        "CVE-2017-0127",
+        "CVE-2017-0128",
+        "CVE-2017-0143",
+        "CVE-2017-0144",
+        "CVE-2017-0145",
+        "CVE-2017-0146",
+        "CVE-2017-0147",
+        "CVE-2017-0148",
+        "CVE-2017-0155",
+        "CVE-2017-0156",
+        "CVE-2017-0158",
+        "CVE-2017-0163",
+        "CVE-2017-0166",
+        "CVE-2017-0167",
+        "CVE-2017-0168",
+        "CVE-2017-0170",
+        "CVE-2017-0171",
+        "CVE-2017-0175",
+        "CVE-2017-0180",
+        "CVE-2017-0182",
+        "CVE-2017-0183",
+        "CVE-2017-0184",
+        "CVE-2017-0190",
+        "CVE-2017-0191",
+        "CVE-2017-0192",
+        "CVE-2017-0193",
+        "CVE-2017-0199",
+        "CVE-2017-0213",
+        "CVE-2017-0214",
+        "CVE-2017-0220",
+        "CVE-2017-0222",
+        "CVE-2017-0226",
+        "CVE-2017-0231",
+        "CVE-2017-0238",
+        "CVE-2017-0242",
+        "CVE-2017-0244",
+        "CVE-2017-0245",
+        "CVE-2017-0246",
+        "CVE-2017-0248",
+        "CVE-2017-0258",
+        "CVE-2017-0260",
+        "CVE-2017-0263",
+        "CVE-2017-0267",
+        "CVE-2017-0268",
+        "CVE-2017-0269",
+        "CVE-2017-0270",
+        "CVE-2017-0271",
+        "CVE-2017-0272",
+        "CVE-2017-0273",
+        "CVE-2017-0274",
+        "CVE-2017-0275",
+        "CVE-2017-0276",
+        "CVE-2017-0277",
+        "CVE-2017-0278",
+        "CVE-2017-0279",
+        "CVE-2017-0280",
+        "CVE-2017-0282",
+        "CVE-2017-0283",
+        "CVE-2017-0284",
+        "CVE-2017-0285",
+        "CVE-2017-0286",
+        "CVE-2017-0287",
+        "CVE-2017-0288",
+        "CVE-2017-0289",
+        "CVE-2017-0294",
+        "CVE-2017-0296",
+        "CVE-2017-0297",
+        "CVE-2017-0298",
+        "CVE-2017-0300",
+        "CVE-2017-8462",
+        "CVE-2017-8463",
+        "CVE-2017-8464",
+        "CVE-2017-8467",
+        "CVE-2017-8469",
+        "CVE-2017-8470",
+        "CVE-2017-8471",
+        "CVE-2017-8472",
+        "CVE-2017-8473",
+        "CVE-2017-8475",
+        "CVE-2017-8476",
+        "CVE-2017-8477",
+        "CVE-2017-8478",
+        "CVE-2017-8479",
+        "CVE-2017-8480",
+        "CVE-2017-8481",
+        "CVE-2017-8482",
+        "CVE-2017-8483",
+        "CVE-2017-8484",
+        "CVE-2017-8485",
+        "CVE-2017-8486",
+        "CVE-2017-8488",
+        "CVE-2017-8489",
+        "CVE-2017-8490",
+        "CVE-2017-8491",
+        "CVE-2017-8492",
+        "CVE-2017-8495",
+        "CVE-2017-8527",
+        "CVE-2017-8528",
+        "CVE-2017-8531",
+        "CVE-2017-8532",
+        "CVE-2017-8533",
+        "CVE-2017-8534",
+        "CVE-2017-8543",
+        "CVE-2017-8544",
+        "CVE-2017-8552",
+        "CVE-2017-8553",
+        "CVE-2017-8554",
+        "CVE-2017-8556",
+        "CVE-2017-8557",
+        "CVE-2017-8564",
+        "CVE-2017-8565",
+        "CVE-2017-8573",
+        "CVE-2017-8577",
+        "CVE-2017-8578",
+        "CVE-2017-8580",
+        "CVE-2017-8581",
+        "CVE-2017-8582",
+        "CVE-2017-8587",
+        "CVE-2017-8588",
+        "CVE-2017-8589",
+        "CVE-2017-8590",
+        "CVE-2017-8592"
+      ],
+      "vendor": "Biosense Webster",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-18-114-01",
+      "cves": [
+        "CVE-2017-13077",
+        "CVE-2017-13078",
+        "CVE-2017-13079",
+        "CVE-2017-13080",
+        "CVE-2017-13081",
+        "CVE-2017-13082",
+        "CVE-2017-13086",
+        "CVE-2017-13087",
+        "CVE-2017-13088"
+      ],
+      "vendor": "Becton, Dickinson and Company (BD)",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-18-123-01",
+      "cves": [
+        "CVE-2018-8853",
+        "CVE-2018-8857",
+        "CVE-2018-8861"
+      ],
+      "vendor": "Philips",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-18-128-01",
+      "cves": [
+        "CVE-2018-6020",
+        "CVE-2018-6021"
+      ],
+      "vendor": "Silex Technology",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-18-137-01",
+      "cves": [
+        "CVE-2018-10631",
+        "CVE-2018-8849"
+      ],
+      "vendor": "Medtronic",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-18-142-01",
+      "cves": [
+        "CVE-2018-10593",
+        "CVE-2018-10595"
+      ],
+      "vendor": "Becton, Dickinson and Company (BD)",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-18-144-01",
+      "cves": [
+        "CVE-2018-7510",
+        "CVE-2018-7518",
+        "CVE-2018-7526"
+      ],
+      "vendor": "BeaconMedaes",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-18-156-01",
+      "cves": [
+        "CVE-2018-10597",
+        "CVE-2018-10599",
+        "CVE-2018-10601"
+      ],
+      "vendor": "Philips",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-18-165-01",
+      "cves": [
+        "CVE-2017-2852",
+        "CVE-2017-2853",
+        "CVE-2017-2858",
+        "CVE-2017-2860",
+        "CVE-2017-2861",
+        "CVE-2017-2867",
+        "CVE-2017-2868",
+        "CVE-2017-2869"
+      ],
+      "vendor": "Natus Medical Inc",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-18-179-01",
+      "cves": [
+        "CVE-2018-8868",
+        "CVE-2018-8870"
+      ],
+      "vendor": "Medtronic",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-18-219-01",
+      "cves": [
+        "CVE-2018-10622",
+        "CVE-2018-10626"
+      ],
+      "vendor": "Medtronic",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-18-219-02",
+      "cves": [
+        "CVE-2018-10634",
+        "CVE-2018-14781"
+      ],
+      "vendor": "Medtronic",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-18-226-01",
+      "cves": [
+        "CVE-2018-14787",
+        "CVE-2018-14789"
+      ],
+      "vendor": "Philips",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-18-228-01",
+      "cves": [
+        "CVE-2018-14799",
+        "CVE-2018-14801"
+      ],
+      "vendor": "Philips",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-18-233-01",
+      "cves": [
+        "CVE-1999-0103"
+      ],
+      "vendor": "Philips",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-18-235-01",
+      "cves": [
+        "CVE-2018-14786"
+      ],
+      "vendor": "Becton, Dickinson and Company (BD)",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-18-240-01",
+      "cves": [
+        "CVE-2014-9222"
+      ],
+      "vendor": "Qualcomm Life",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-18-277-01",
+      "cves": [
+        "CVE-2018-17891"
+      ],
+      "vendor": "Carestream",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-18-277-02",
+      "cves": [
+        "CVE-2018-10624"
+      ],
+      "vendor": "Change Healthcare",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-18-310-01",
+      "cves": [
+        "CVE-2018-18561",
+        "CVE-2018-18562",
+        "CVE-2018-18563",
+        "CVE-2018-18564",
+        "CVE-2018-18565"
+      ],
+      "vendor": "Roche",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-18-312-01",
+      "cves": [
+        "CVE-2018-17906"
+      ],
+      "vendor": "Philips",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-18-340-01",
+      "cves": [
+        "CVE-2018-19001"
+      ],
+      "vendor": "Philips",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-18-347-01",
+      "cves": [
+        "CVE-2018-18984"
+      ],
+      "vendor": "Medtronic",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-19-022-01",
+      "cves": [
+        "CVE-2018-19010",
+        "CVE-2018-19012",
+        "CVE-2018-19014"
+      ],
+      "vendor": "Drager",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-19-029-01",
+      "cves": [
+        "CVE-2017-13077"
+      ],
+      "vendor": "Stryker",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-19-029-02",
+      "cves": [
+        "CVE-2019-6517"
+      ],
+      "vendor": "Becton, Dickinson and Company (BD)",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-19-080-01",
+      "cves": [
+        "CVE-2019-6538",
+        "CVE-2019-6540"
+      ],
+      "vendor": "Medtronic",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-19-113-01",
+      "cves": [
+        "CVE-2019-10948",
+        "CVE-2019-10950"
+      ],
+      "vendor": "Fujifilm",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-19-120-01",
+      "cves": [
+        "CVE-2019-13557",
+        "CVE-2019-6562"
+      ],
+      "vendor": "Philips",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-19-164-01",
+      "cves": [
+        "CVE-2019-10959",
+        "CVE-2019-10962"
+      ],
+      "vendor": "Becton, Dickinson and Company (BD)",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-19-178-01",
+      "cves": [
+        "CVE-2019-10964"
+      ],
+      "vendor": "Medtronic",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-19-190-01",
+      "cves": [
+        "CVE-2019-10966"
+      ],
+      "vendor": "GE",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-19-192-01",
+      "cves": [
+        "CVE-2019-10968"
+      ],
+      "vendor": "Philips",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-19-241-01",
+      "cves": [
+        "CVE-2018-18630"
+      ],
+      "vendor": "Change Healthcare",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-19-241-02",
+      "cves": [
+        "CVE-2019-10988"
+      ],
+      "vendor": "Philips",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-19-248-01",
+      "cves": [
+        "CVE-2019-13517"
+      ],
+      "vendor": "Becton, Dickinson and Company (BD)",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-19-255-01",
+      "cves": [
+        "CVE-2019-13530",
+        "CVE-2019-13534"
+      ],
+      "vendor": "Philips",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-19-274-01",
+      "cves": [
+        "CVE-2019-12255",
+        "CVE-2019-12256",
+        "CVE-2019-12257",
+        "CVE-2019-12258",
+        "CVE-2019-12259",
+        "CVE-2019-12260",
+        "CVE-2019-12261",
+        "CVE-2019-12262",
+        "CVE-2019-12263",
+        "CVE-2019-12264",
+        "CVE-2019-12265"
+      ],
+      "vendor": "ENEA, Green Hills Software, ITRON, IP Infusion, Wind River",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-19-297-01",
+      "cves": [
+        "CVE-2019-13546"
+      ],
+      "vendor": "Philips",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-19-311-01",
+      "cves": [
+        "CVE-2019-13531",
+        "CVE-2019-13535"
+      ],
+      "vendor": "Medtronic",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-19-311-02",
+      "cves": [
+        "CVE-2019-13539",
+        "CVE-2019-13543",
+        "CVE-2019-3463",
+        "CVE-2019-3464"
+      ],
+      "vendor": "Medtronic",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-19-318-01",
+      "cves": [
+        "CVE-2019-18241"
+      ],
+      "vendor": "Philips",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-19-353-01",
+      "cves": [
+        "CVE-2019-18263"
+      ],
+      "vendor": "Philips",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-20-023-01",
+      "cves": [
+        "CVE-2020-6961",
+        "CVE-2020-6962",
+        "CVE-2020-6963",
+        "CVE-2020-6964",
+        "CVE-2020-6965",
+        "CVE-2020-6966"
+      ],
+      "vendor": "GE",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-20-049-01",
+      "cves": [
+        "CVE-2019-0708"
+      ],
+      "vendor": "Spacelabs",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-20-049-02",
+      "cves": [
+        "CVE-2020-6977",
+        "CVE-2024-1486"
+      ],
+      "vendor": "GE Healthcare",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-20-079-01",
+      "cves": [
+        "CVE-2020-10627"
+      ],
+      "vendor": "Insulet",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-20-091-01",
+      "cves": [
+        "CVE-2020-10598"
+      ],
+      "vendor": "Becton, Dickinson and Company (BD)",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-20-163-01",
+      "cves": [
+        "CVE-2020-12023"
+      ],
+      "vendor": "Philips",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-20-170-01",
+      "cves": [
+        "CVE-2017-0143",
+        "CVE-2020-12008",
+        "CVE-2020-12012",
+        "CVE-2020-12016",
+        "CVE-2020-12020",
+        "CVE-2020-12024",
+        "CVE-2020-12032"
+      ],
+      "vendor": "Baxter",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-20-170-02",
+      "cves": [
+        "CVE-2020-12035",
+        "CVE-2020-12036",
+        "CVE-2020-12037"
+      ],
+      "vendor": "Baxter",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-20-170-03",
+      "cves": [
+        "CVE-2020-12048"
+      ],
+      "vendor": "Baxter",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-20-170-04",
+      "cves": [
+        "CVE-2020-12039",
+        "CVE-2020-12040",
+        "CVE-2020-12041",
+        "CVE-2020-12043",
+        "CVE-2020-12045",
+        "CVE-2020-12047"
+      ],
+      "vendor": "Baxter",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-20-170-05",
+      "cves": [
+        "CVE-2019-18246",
+        "CVE-2019-18248",
+        "CVE-2019-18252",
+        "CVE-2019-18254",
+        "CVE-2019-18256"
+      ],
+      "vendor": "BIOTRONIK",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-20-170-06",
+      "cves": [
+        "CVE-2019-11479"
+      ],
+      "vendor": "Becton, Dickinson and Company (BD)",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-20-177-01",
+      "cves": [
+        "CVE-2020-14477"
+      ],
+      "vendor": "Philips",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-20-184-01",
+      "cves": [
+        "CVE-2014-0114",
+        "CVE-2016-1181",
+        "CVE-2016-1182",
+        "CVE-2020-14484",
+        "CVE-2020-14485",
+        "CVE-2020-14486",
+        "CVE-2020-14487",
+        "CVE-2020-14488",
+        "CVE-2020-14489",
+        "CVE-2020-14490",
+        "CVE-2020-14491",
+        "CVE-2020-14492",
+        "CVE-2020-14493",
+        "CVE-2020-14494"
+      ],
+      "vendor": "OpenClinic GA",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-20-196-01",
+      "cves": [
+        "CVE-2019-5024"
+      ],
+      "vendor": "Capsule Technologies Inc",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-20-212-01",
+      "cves": [
+        "CVE-2020-14518"
+      ],
+      "vendor": "Philips",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-20-233-01",
+      "cves": [
+        "CVE-2020-16237",
+        "CVE-2020-16239",
+        "CVE-2020-16241"
+      ],
+      "vendor": "Philips",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-20-254-01",
+      "cves": [
+        "CVE-2020-16212",
+        "CVE-2020-16214",
+        "CVE-2020-16216",
+        "CVE-2020-16218",
+        "CVE-2020-16220",
+        "CVE-2020-16222",
+        "CVE-2020-16224",
+        "CVE-2020-16228"
+      ],
+      "vendor": "Philips",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-20-261-01",
+      "cves": [
+        "CVE-2020-14506",
+        "CVE-2020-14525",
+        "CVE-2020-16198",
+        "CVE-2020-16200",
+        "CVE-2020-16247"
+      ],
+      "vendor": "Philips",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-20-296-01",
+      "cves": [
+        "CVE-2020-25170",
+        "CVE-2020-25172",
+        "CVE-2020-25174"
+      ],
+      "vendor": "B. Braun Melsungen AG",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-20-296-02",
+      "cves": [
+        "CVE-2020-16238",
+        "CVE-2020-25150",
+        "CVE-2020-25152",
+        "CVE-2020-25154",
+        "CVE-2020-25156",
+        "CVE-2020-25158",
+        "CVE-2020-25160",
+        "CVE-2020-25162",
+        "CVE-2020-25164",
+        "CVE-2020-25166",
+        "CVE-2020-25168"
+      ],
+      "vendor": "B. Braun Melsungen AG",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-20-317-01",
+      "cves": [
+        "CVE-2020-25165"
+      ],
+      "vendor": "Becton, Dickinson and Company (BD)",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-20-343-01",
+      "cves": [
+        "CVE-2020-25175",
+        "CVE-2020-25179"
+      ],
+      "vendor": "GE Healthcare",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-20-345-01",
+      "cves": [
+        "CVE-2020-25183",
+        "CVE-2020-25187",
+        "CVE-2020-27252"
+      ],
+      "vendor": "Medtronic",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-21-007-01",
+      "cves": [
+        "CVE-2020-27260",
+        "CVE-2020-27262"
+      ],
+      "vendor": "Innokas YhtymÃƒÂ¤ Oy",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-21-012-01",
+      "cves": [
+        "CVE-2020-27256",
+        "CVE-2020-27258",
+        "CVE-2020-27264",
+        "CVE-2020-27266",
+        "CVE-2020-27268",
+        "CVE-2020-27269",
+        "CVE-2020-27270",
+        "CVE-2020-27272",
+        "CVE-2020-27276"
+      ],
+      "vendor": "SOOIL Development Co. Ltd.",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-21-019-01",
+      "cves": [
+        "CVE-2020-27298"
+      ],
+      "vendor": "Philips",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-21-047-01",
+      "cves": [
+        "CVE-2020-27278",
+        "CVE-2020-27282",
+        "CVE-2020-27290"
+      ],
+      "vendor": "Hamilton Medical AG",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-21-084-01",
+      "cves": [
+        "CVE-2021-27456"
+      ],
+      "vendor": "Philips",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-21-152-01",
+      "cves": [
+        "CVE-2021-27408",
+        "CVE-2021-27410"
+      ],
+      "vendor": "Hillrom",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-21-161-01",
+      "cves": [
+        "CVE-2021-27479",
+        "CVE-2021-27481",
+        "CVE-2021-27483",
+        "CVE-2021-27485",
+        "CVE-2021-27487",
+        "CVE-2021-27489"
+      ],
+      "vendor": "ZOLL",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-21-175-01",
+      "cves": [
+        "CVE-2021-32966"
+      ],
+      "vendor": "Philips",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-21-187-01",
+      "cves": [
+        "CVE-2012-1708",
+        "CVE-2015-9251",
+        "CVE-2018-10115",
+        "CVE-2018-11218",
+        "CVE-2018-12326",
+        "CVE-2018-8014",
+        "CVE-2019-9636",
+        "CVE-2020-1938",
+        "CVE-2020-4670",
+        "CVE-2021-27493",
+        "CVE-2021-27497",
+        "CVE-2021-27501",
+        "CVE-2021-33018",
+        "CVE-2021-33020",
+        "CVE-2021-33022",
+        "CVE-2021-33024",
+        "CVE-2021-39369"
+      ],
+      "vendor": "Philips",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-21-196-01",
+      "cves": [
+        "CVE-2021-27491",
+        "CVE-2021-27495",
+        "CVE-2021-27499",
+        "CVE-2021-27503"
+      ],
+      "vendor": "Ypsomed",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-21-215-01",
+      "cves": [
+        "CVE-2021-37160",
+        "CVE-2021-37161",
+        "CVE-2021-37162",
+        "CVE-2021-37163",
+        "CVE-2021-37164",
+        "CVE-2021-37165",
+        "CVE-2021-37166",
+        "CVE-2021-37167"
+      ],
+      "vendor": "Swisslog Healthcare",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-21-273-01",
+      "cves": [
+        "CVE-2021-38392",
+        "CVE-2021-38394",
+        "CVE-2021-38396",
+        "CVE-2021-38398",
+        "CVE-2021-38400"
+      ],
+      "vendor": "Boston Scientific",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-21-294-01",
+      "cves": [
+        "CVE-2021-33882",
+        "CVE-2021-33883",
+        "CVE-2021-33884",
+        "CVE-2021-33885",
+        "CVE-2021-33886"
+      ],
+      "vendor": "B. Braun Melsungen AG",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-21-308-01",
+      "cves": [
+        "CVE-2021-39375",
+        "CVE-2021-39376"
+      ],
+      "vendor": "Philips",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-21-313-01",
+      "cves": [
+        "CVE-2021-26248",
+        "CVE-2021-26262",
+        "CVE-2021-42744"
+      ],
+      "vendor": "Philips",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-21-322-01",
+      "cves": [
+        "CVE-2021-32993",
+        "CVE-2021-33017"
+      ],
+      "vendor": "Philips",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-21-322-02",
+      "cves": [
+        "CVE-2021-43548",
+        "CVE-2021-43550",
+        "CVE-2021-43552"
+      ],
+      "vendor": "Philips",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-21-343-01",
+      "cves": [
+        "CVE-2021-43935"
+      ],
+      "vendor": "Hillrom",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-21-355-01",
+      "cves": [
+        "CVE-2020-35340",
+        "CVE-2021-23195",
+        "CVE-2021-23196",
+        "CVE-2021-23207",
+        "CVE-2021-23233",
+        "CVE-2021-23236",
+        "CVE-2021-31562",
+        "CVE-2021-33843",
+        "CVE-2021-33846",
+        "CVE-2021-33848",
+        "CVE-2021-41835",
+        "CVE-2021-43355",
+        "CVE-2021-44464"
+      ],
+      "vendor": "Fresenius Kabi",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-22-006-01",
+      "cves": [
+        "CVE-2021-23173"
+      ],
+      "vendor": "Philips",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-22-062-01",
+      "cves": [
+        "CVE-2022-22766"
+      ],
+      "vendor": "Becton, Dickinson and Company (BD)",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-22-062-02",
+      "cves": [
+        "CVE-2022-22765"
+      ],
+      "vendor": "Becton, Dickinson and Company (BD)",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-22-088-01",
+      "cves": [
+        "CVE-2022-0922"
+      ],
+      "vendor": "Philips",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-22-095-01",
+      "cves": [
+        "CVE-2022-1067"
+      ],
+      "vendor": "LifePoint Informatics",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-22-151-01",
+      "cves": [
+        "CVE-2022-22767"
+      ],
+      "vendor": "Becton, Dickinson and Company (BD)",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-22-151-02",
+      "cves": [
+        "CVE-2022-30277"
+      ],
+      "vendor": "Becton, Dickinson and Company (BD)",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-22-167-01",
+      "cves": [
+        "CVE-2022-26388",
+        "CVE-2022-26389"
+      ],
+      "vendor": "Hillrom",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-22-174-01",
+      "cves": [
+        "CVE-2022-2119",
+        "CVE-2022-2120",
+        "CVE-2022-2121"
+      ],
+      "vendor": "OFFIS",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-22-244-01",
+      "cves": [
+        "CVE-2022-3027",
+        "CVE-2022-36385",
+        "CVE-2022-38069",
+        "CVE-2022-38100",
+        "CVE-2022-38453"
+      ],
+      "vendor": "Contec Health",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-22-251-01",
+      "cves": [
+        "CVE-2022-26390",
+        "CVE-2022-26392",
+        "CVE-2022-26393",
+        "CVE-2022-26394"
+      ],
+      "vendor": "Baxter",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-22-263-01",
+      "cves": [
+        "CVE-2022-32537"
+      ],
+      "vendor": "Medtronic",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-22-277-01",
+      "cves": [
+        "CVE-2022-40263"
+      ],
+      "vendor": "Becton, Dickinson and Company (BD)",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-22-298-01",
+      "cves": [
+        "CVE-2022-40703",
+        "CVE-2022-41627"
+      ],
+      "vendor": "AliveCor",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-22-335-01",
+      "cves": [
+        "CVE-2022-43557"
+      ],
+      "vendor": "Becton, Dickinson and Company (BD)",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-23-047-01",
+      "cves": [
+        "CVE-2022-47376"
+      ],
+      "vendor": "Becton, Dickinson and Company (BD)",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-23-061-01",
+      "cves": [
+        "CVE-2023-25931"
+      ],
+      "vendor": "Medtronic",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-23-103-01",
+      "cves": [
+        "CVE-2023-0888"
+      ],
+      "vendor": "B. Braun Melsungen AG",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-23-117-01",
+      "cves": [
+        "CVE-2023-1966",
+        "CVE-2023-1968"
+      ],
+      "vendor": "Illumina",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-23-180-01",
+      "cves": [
+        "CVE-2023-31222"
+      ],
+      "vendor": "Medtronic",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-23-194-01",
+      "cves": [
+        "CVE-2018-1285",
+        "CVE-2023-30559",
+        "CVE-2023-30560",
+        "CVE-2023-30561",
+        "CVE-2023-30562",
+        "CVE-2023-30563",
+        "CVE-2023-30564",
+        "CVE-2023-30565"
+      ],
+      "vendor": "Becton, Dickinson and Company (BD)",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-23-248-01",
+      "cves": [
+        "CVE-2023-39227",
+        "CVE-2023-40150"
+      ],
+      "vendor": "Softneta",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-23-285-01",
+      "cves": [
+        "CVE-2023-35986",
+        "CVE-2023-39431"
+      ],
+      "vendor": "Santesoft",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-23-285-02",
+      "cves": [
+        "CVE-2023-5059"
+      ],
+      "vendor": "Santesoft",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-23-331-01",
+      "cves": [
+        "CVE-2023-29060",
+        "CVE-2023-29061",
+        "CVE-2023-29062",
+        "CVE-2023-29063",
+        "CVE-2023-29064",
+        "CVE-2023-29065",
+        "CVE-2023-29066"
+      ],
+      "vendor": "Becton, Dickinson and Company (BD)",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-24-023-01",
+      "cves": [
+        "CVE-2023-7238"
+      ],
+      "vendor": "Orthanc",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-24-058-01",
+      "cves": [
+        "CVE-2024-1453"
+      ],
+      "vendor": "Santesoft",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-24-060-01",
+      "cves": [
+        "CVE-2024-22100",
+        "CVE-2024-25578"
+      ],
+      "vendor": "MicroDicom",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-24-065-01",
+      "cves": [
+        "CVE-2024-1696"
+      ],
+      "vendor": "Santesoft",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-24-151-01",
+      "cves": [
+        "CVE-2024-5176"
+      ],
+      "vendor": "Baxter",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-24-151-02",
+      "cves": [
+        "CVE-2024-1275"
+      ],
+      "vendor": "Baxter",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-24-163-01",
+      "cves": [
+        "CVE-2024-28877",
+        "CVE-2024-33606"
+      ],
+      "vendor": "MicroDicom",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-24-200-01",
+      "cves": [
+        "CVE-2021-28165",
+        "CVE-2023-40704"
+      ],
+      "vendor": "Philips",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-24-249-01",
+      "cves": [
+        "CVE-2024-6795",
+        "CVE-2024-6796"
+      ],
+      "vendor": "Baxter",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-24-254-01",
+      "cves": [
+        "CVE-2024-34463"
+      ],
+      "vendor": "BPL Medical Technologies",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-24-319-01",
+      "cves": [
+        "CVE-2020-8004",
+        "CVE-2024-48966",
+        "CVE-2024-48967",
+        "CVE-2024-48970",
+        "CVE-2024-48971",
+        "CVE-2024-48973",
+        "CVE-2024-48974",
+        "CVE-2024-9832",
+        "CVE-2024-9834"
+      ],
+      "vendor": "Baxter",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-24-352-01",
+      "cves": [
+        "CVE-2024-10476"
+      ],
+      "vendor": "Becton, Dickinson and Company (BD)",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-24-354-01",
+      "cves": [
+        "CVE-2024-45832",
+        "CVE-2024-53683",
+        "CVE-2024-54681"
+      ],
+      "vendor": "Ossur",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-030-01",
+      "cves": [
+        "CVE-2024-12248",
+        "CVE-2025-0626",
+        "CVE-2025-0683",
+        "CVE-2025-1204"
+      ],
+      "vendor": "Contec Health",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-037-01",
+      "cves": [
+        "CVE-2025-1002"
+      ],
+      "vendor": "MicroDicom",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-037-02",
+      "cves": [
+        "CVE-2025-0896"
+      ],
+      "vendor": "Orthanc",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-044-01",
+      "cves": [
+        "CVE-2025-20615",
+        "CVE-2025-23421",
+        "CVE-2025-24836"
+      ],
+      "vendor": "Qardio",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-051-01",
+      "cves": [
+        "CVE-2025-1001"
+      ],
+      "vendor": "Medixant",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-058-01",
+      "cves": [
+        "CVE-2025-20049",
+        "CVE-2025-20060",
+        "CVE-2025-23405",
+        "CVE-2025-24316",
+        "CVE-2025-24318",
+        "CVE-2025-24843",
+        "CVE-2025-24849"
+      ],
+      "vendor": "Dario Health",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-072-01",
+      "cves": [
+        "CVE-2025-2229",
+        "CVE-2025-2230"
+      ],
+      "vendor": "Philips",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-079-01",
+      "cves": [
+        "CVE-2025-2480"
+      ],
+      "vendor": "Santesoft",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-100-01",
+      "cves": [
+        "CVE-2025-24489",
+        "CVE-2025-27714",
+        "CVE-2025-27721"
+      ],
+      "vendor": "INFINITT Healthcare",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-121-01",
+      "cves": [
+        "CVE-2025-35975",
+        "CVE-2025-36521"
+      ],
+      "vendor": "MicroDicom",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-128-01",
+      "cves": [
+        "CVE-2025-27578",
+        "CVE-2025-27720",
+        "CVE-2025-31946"
+      ],
+      "vendor": "Pixmeo",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-148-01",
+      "cves": [
+        "CVE-2025-5307"
+      ],
+      "vendor": "Santesoft",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-160-01",
+      "cves": [
+        "CVE-2025-5943"
+      ],
+      "vendor": "MicroDicom",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-198-01",
+      "cves": [
+        "CVE-2024-22774"
+      ],
+      "vendor": "Panoramic Corporation",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-205-01",
+      "cves": [
+        "CVE-2018-10622",
+        "CVE-2025-4386",
+        "CVE-2025-4393",
+        "CVE-2025-4394",
+        "CVE-2025-4395",
+        "CVE-2025-4397"
+      ],
+      "vendor": "Medtronic",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-224-01",
+      "cves": [
+        "CVE-2025-0572",
+        "CVE-2025-53948",
+        "CVE-2025-54156",
+        "CVE-2025-54759",
+        "CVE-2025-54862"
+      ],
+      "vendor": "Santesoft",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-233-01",
+      "cves": [
+        "CVE-2025-54551"
+      ],
+      "vendor": "FUJIFILM Healthcare Americas Corporation",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-294-01",
+      "cves": [
+        "CVE-2024-35585",
+        "CVE-2025-10937",
+        "CVE-2025-54808"
+      ],
+      "vendor": "Oxford Nanopore Technologies",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-296-01",
+      "cves": [
+        "CVE-2025-59668"
+      ],
+      "vendor": "NIHON KOHDEN",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-301-01",
+      "cves": [
+        "CVE-2025-54459",
+        "CVE-2025-61959"
+      ],
+      "vendor": "Vertikal Systems",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-336-01",
+      "cves": [
+        "CVE-2025-61940",
+        "CVE-2025-62575",
+        "CVE-2025-64298",
+        "CVE-2025-64642",
+        "CVE-2025-64778"
+      ],
+      "vendor": "Mirion Medical",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-345-01",
+      "cves": [
+        "CVE-2025-11266"
+      ],
+      "vendor": "Grassroots",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-345-02",
+      "cves": [
+        "CVE-2024-22774"
+      ],
+      "vendor": "Varex Imaging",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-25-364-01",
+      "cves": [
+        "CVE-2025-14346"
+      ],
+      "vendor": "WHILL Inc.",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-26-041-01",
+      "cves": [
+        "CVE-2025-12699"
+      ],
+      "vendor": "ZOLL",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-26-083-01",
+      "cves": [
+        "CVE-2026-3650"
+      ],
+      "vendor": "Grassroots",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-26-146-01",
+      "cves": [
+        "CVE-2026-7251"
+      ],
+      "vendor": "Eppendorf",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-26-148-01",
+      "cves": [
+        "CVE-2026-5768"
+      ],
+      "vendor": "Fourth Frontier",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-26-169-01",
+      "cves": [
+        "CVE-2026-50034",
+        "CVE-2026-52866"
+      ],
+      "vendor": "Apollo Pharmacy",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-26-176-01",
+      "cves": [
+        "CVE-2026-56445"
+      ],
+      "vendor": "pydicom",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-26-176-02",
+      "cves": [
+        "CVE-2026-12473"
+      ],
+      "vendor": "Open Health Imaging Foundation (OHIF)",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-26-181-01",
+      "cves": [
+        "CVE-2026-35505",
+        "CVE-2026-44628",
+        "CVE-2026-50003",
+        "CVE-2026-50254",
+        "CVE-2026-52868"
+      ],
+      "vendor": "OFFIS",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-26-216-01",
+      "cves": [
+        "CVE-2026-17583"
+      ],
+      "vendor": "Thermo Fisher",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-26-218-01",
+      "cves": [
+        "CVE-2026-17264"
+      ],
+      "vendor": "Medixant",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-26-223-01",
+      "cves": [
+        "CVE-2026-64934",
+        "CVE-2026-66098",
+        "CVE-2026-66340",
+        "CVE-2026-66832",
+        "CVE-2026-66875",
+        "CVE-2026-67558",
+        "CVE-2026-67568",
+        "CVE-2026-68067"
+      ],
+      "vendor": "Quanovate Tech Inc. (operating as Mira / Mira Care)",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-26-223-02",
+      "cves": [
+        "CVE-2026-18844"
+      ],
+      "vendor": "Pulsetto",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-26-225-01",
+      "cves": [
+        "CVE-2026-18164"
+      ],
+      "vendor": "Flow Neuroscience",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-26-253-01",
+      "cves": [
+        "CVE-2026-78224",
+        "CVE-2026-82578",
+        "CVE-2026-82583"
+      ],
+      "vendor": "NextGen Healthcare",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-26-253-02",
+      "cves": [
+        "CVE-2026-87020"
+      ],
+      "vendor": "Orthanc",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-26-288-01",
+      "cves": [
+        "CVE-2026-107777"
+      ],
+      "vendor": "Thermo Fisher",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-26-288-02",
+      "cves": [
+        "CVE-2026-101021",
+        "CVE-2026-105273",
+        "CVE-2026-105279",
+        "CVE-2026-105667",
+        "CVE-2026-107621",
+        "CVE-2026-97851"
+      ],
+      "vendor": "J4Care",
+      "source": "https://raw.githubusercontent.com/icsadvprj/ICS-Advisory-Project/main/ICS-CERT_ADV/CISA_ICS_ADV_Master.csv"
+    }
+  ]
+}

@@ -1886,7 +1886,7 @@
       "cves": [
         "CVE-1999-0103"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -3845,7 +3845,7 @@
       "cves": [
         "CVE-2001-1594"
       ],
-      "vendor": "",
+      "vendor": "GE",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -3861,7 +3861,7 @@
       "cves": [
         "CVE-2002-2446"
       ],
-      "vendor": "",
+      "vendor": "GE",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -3879,7 +3879,7 @@
       "cves": [
         "CVE-2003-1603"
       ],
-      "vendor": "",
+      "vendor": "GE",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -3933,7 +3933,7 @@
       "cves": [
         "CVE-2004-2761"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -3950,7 +3950,7 @@
       "cves": [
         "CVE-2004-2777"
       ],
-      "vendor": "",
+      "vendor": "GE",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -3966,7 +3966,7 @@
       "cves": [
         "CVE-2005-1794"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -4060,7 +4060,7 @@
       "cves": [
         "CVE-2007-6757"
       ],
-      "vendor": "",
+      "vendor": "GE",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -4202,7 +4202,7 @@
       "cves": [
         "CVE-2009-5143"
       ],
-      "vendor": "",
+      "vendor": "GE",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -4351,7 +4351,7 @@
       "cves": [
         "CVE-2010-5306"
       ],
-      "vendor": "",
+      "vendor": "GE",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -4369,7 +4369,7 @@
       "cves": [
         "CVE-2010-5307"
       ],
-      "vendor": "",
+      "vendor": "GE",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -4385,7 +4385,7 @@
       "cves": [
         "CVE-2010-5309"
       ],
-      "vendor": "",
+      "vendor": "GE",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -4401,7 +4401,7 @@
       "cves": [
         "CVE-2010-5310"
       ],
-      "vendor": "",
+      "vendor": "GE",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -4434,7 +4434,7 @@
       "cves": [
         "CVE-2011-3389"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -4519,7 +4519,7 @@
       "cves": [
         "CVE-2011-5322"
       ],
-      "vendor": "",
+      "vendor": "GE",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -4708,7 +4708,7 @@
       "cves": [
         "CVE-2012-1708"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -4829,7 +4829,7 @@
       "cves": [
         "CVE-2012-6660"
       ],
-      "vendor": "",
+      "vendor": "GE",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -4845,7 +4845,7 @@
       "cves": [
         "CVE-2012-6693"
       ],
-      "vendor": "",
+      "vendor": "GE",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -4861,7 +4861,7 @@
       "cves": [
         "CVE-2012-6694"
       ],
-      "vendor": "",
+      "vendor": "GE",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -4878,7 +4878,7 @@
       "cves": [
         "CVE-2012-6695"
       ],
-      "vendor": "",
+      "vendor": "GE",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -5084,7 +5084,7 @@
       "cves": [
         "CVE-2013-6629"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -5110,7 +5110,7 @@
       "cves": [
         "CVE-2013-7404"
       ],
-      "vendor": "",
+      "vendor": "GE",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -5126,7 +5126,7 @@
       "cves": [
         "CVE-2013-7442"
       ],
-      "vendor": "",
+      "vendor": "GE",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -5142,7 +5142,7 @@
       "cves": [
         "CVE-2014-0114"
       ],
-      "vendor": "",
+      "vendor": "OpenClinic GA",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -5159,7 +5159,7 @@
       "cves": [
         "CVE-2014-3566"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -5243,7 +5243,7 @@
       "cves": [
         "CVE-2014-7232"
       ],
-      "vendor": "",
+      "vendor": "GE",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -5260,7 +5260,7 @@
       "cves": [
         "CVE-2014-7233"
       ],
-      "vendor": "",
+      "vendor": "GE",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -5293,7 +5293,7 @@
       "cves": [
         "CVE-2014-9222"
       ],
-      "vendor": "",
+      "vendor": "Qualcomm Life",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -5309,7 +5309,7 @@
       "cves": [
         "CVE-2015-1497"
       ],
-      "vendor": "",
+      "vendor": "Siemens",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -5325,7 +5325,7 @@
       "cves": [
         "CVE-2015-1635"
       ],
-      "vendor": "",
+      "vendor": "Siemens",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -5534,7 +5534,7 @@
       "cves": [
         "CVE-2015-7860"
       ],
-      "vendor": "",
+      "vendor": "Siemens",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -5550,7 +5550,7 @@
       "cves": [
         "CVE-2015-7861"
       ],
-      "vendor": "",
+      "vendor": "Siemens",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -5598,7 +5598,7 @@
       "cves": [
         "CVE-2015-9251"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -5694,7 +5694,7 @@
       "cves": [
         "CVE-2016-1181"
       ],
-      "vendor": "",
+      "vendor": "OpenClinic GA",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -5712,7 +5712,7 @@
       "cves": [
         "CVE-2016-1182"
       ],
-      "vendor": "",
+      "vendor": "OpenClinic GA",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -5760,7 +5760,7 @@
       "cves": [
         "CVE-2016-2183"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -5798,7 +5798,7 @@
       "cves": [
         "CVE-2016-5084"
       ],
-      "vendor": "",
+      "vendor": "Animas",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -5815,7 +5815,7 @@
       "cves": [
         "CVE-2016-5085"
       ],
-      "vendor": "",
+      "vendor": "Animas",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -5832,7 +5832,7 @@
       "cves": [
         "CVE-2016-5086"
       ],
-      "vendor": "",
+      "vendor": "Animas",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -5914,7 +5914,7 @@
       "cves": [
         "CVE-2016-8355"
       ],
-      "vendor": "",
+      "vendor": "Smiths Medical",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -5930,7 +5930,7 @@
       "cves": [
         "CVE-2016-8358"
       ],
-      "vendor": "",
+      "vendor": "Smiths Medical",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -5946,7 +5946,7 @@
       "cves": [
         "CVE-2016-8375"
       ],
-      "vendor": "",
+      "vendor": "Becton, Dickinson and Company (BD)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -5962,7 +5962,7 @@
       "cves": [
         "CVE-2016-9355"
       ],
-      "vendor": "",
+      "vendor": "Becton, Dickinson and Company (BD)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -6101,7 +6101,7 @@
       "cves": [
         "CVE-2017-0005"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -6126,7 +6126,7 @@
       "cves": [
         "CVE-2017-0014"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -6149,7 +6149,7 @@
       "cves": [
         "CVE-2017-0022"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -6175,7 +6175,7 @@
       "cves": [
         "CVE-2017-0025"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -6198,7 +6198,7 @@
       "cves": [
         "CVE-2017-0038"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -6221,7 +6221,7 @@
       "cves": [
         "CVE-2017-0039"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -6238,7 +6238,7 @@
       "cves": [
         "CVE-2017-0042"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -6261,7 +6261,7 @@
       "cves": [
         "CVE-2017-0043"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -6280,7 +6280,7 @@
       "cves": [
         "CVE-2017-0045"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -6298,7 +6298,7 @@
       "cves": [
         "CVE-2017-0047"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -6320,7 +6320,7 @@
       "cves": [
         "CVE-2017-0050"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -6343,7 +6343,7 @@
       "cves": [
         "CVE-2017-0055"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -6366,7 +6366,7 @@
       "cves": [
         "CVE-2017-0056"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -6389,7 +6389,7 @@
       "cves": [
         "CVE-2017-0058"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -6412,7 +6412,7 @@
       "cves": [
         "CVE-2017-0060"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -6441,7 +6441,7 @@
       "cves": [
         "CVE-2017-0061"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -6459,7 +6459,7 @@
       "cves": [
         "CVE-2017-0062"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -6481,7 +6481,7 @@
       "cves": [
         "CVE-2017-0063"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -6504,7 +6504,7 @@
       "cves": [
         "CVE-2017-0064"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -6520,7 +6520,7 @@
       "cves": [
         "CVE-2017-0072"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -6538,7 +6538,7 @@
       "cves": [
         "CVE-2017-0073"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -6567,7 +6567,7 @@
       "cves": [
         "CVE-2017-0075"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -6589,7 +6589,7 @@
       "cves": [
         "CVE-2017-0076"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -6611,7 +6611,7 @@
       "cves": [
         "CVE-2017-0077"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -6633,7 +6633,7 @@
       "cves": [
         "CVE-2017-0083"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -6651,7 +6651,7 @@
       "cves": [
         "CVE-2017-0084"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -6674,7 +6674,7 @@
       "cves": [
         "CVE-2017-0085"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -6692,7 +6692,7 @@
       "cves": [
         "CVE-2017-0086"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -6710,7 +6710,7 @@
       "cves": [
         "CVE-2017-0087"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -6728,7 +6728,7 @@
       "cves": [
         "CVE-2017-0088"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -6746,7 +6746,7 @@
       "cves": [
         "CVE-2017-0089"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -6764,7 +6764,7 @@
       "cves": [
         "CVE-2017-0090"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -6782,7 +6782,7 @@
       "cves": [
         "CVE-2017-0091"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -6800,7 +6800,7 @@
       "cves": [
         "CVE-2017-0092"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -6818,7 +6818,7 @@
       "cves": [
         "CVE-2017-0096"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -6840,7 +6840,7 @@
       "cves": [
         "CVE-2017-0097"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -6862,7 +6862,7 @@
       "cves": [
         "CVE-2017-0099"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -6884,7 +6884,7 @@
       "cves": [
         "CVE-2017-0100"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -6906,7 +6906,7 @@
       "cves": [
         "CVE-2017-0101"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -6924,7 +6924,7 @@
       "cves": [
         "CVE-2017-0102"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -6947,7 +6947,7 @@
       "cves": [
         "CVE-2017-0103"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -6966,7 +6966,7 @@
       "cves": [
         "CVE-2017-0104"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -6984,7 +6984,7 @@
       "cves": [
         "CVE-2017-0108"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -7008,7 +7008,7 @@
       "cves": [
         "CVE-2017-0109"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -7030,7 +7030,7 @@
       "cves": [
         "CVE-2017-0111"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -7048,7 +7048,7 @@
       "cves": [
         "CVE-2017-0112"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -7066,7 +7066,7 @@
       "cves": [
         "CVE-2017-0113"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -7084,7 +7084,7 @@
       "cves": [
         "CVE-2017-0114"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -7102,7 +7102,7 @@
       "cves": [
         "CVE-2017-0115"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -7120,7 +7120,7 @@
       "cves": [
         "CVE-2017-0116"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -7138,7 +7138,7 @@
       "cves": [
         "CVE-2017-0117"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -7156,7 +7156,7 @@
       "cves": [
         "CVE-2017-0118"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -7179,7 +7179,7 @@
       "cves": [
         "CVE-2017-0119"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -7197,7 +7197,7 @@
       "cves": [
         "CVE-2017-0120"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -7215,7 +7215,7 @@
       "cves": [
         "CVE-2017-0121"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -7238,7 +7238,7 @@
       "cves": [
         "CVE-2017-0122"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -7256,7 +7256,7 @@
       "cves": [
         "CVE-2017-0123"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -7274,7 +7274,7 @@
       "cves": [
         "CVE-2017-0124"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -7292,7 +7292,7 @@
       "cves": [
         "CVE-2017-0125"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -7310,7 +7310,7 @@
       "cves": [
         "CVE-2017-0126"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -7328,7 +7328,7 @@
       "cves": [
         "CVE-2017-0127"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -7346,7 +7346,7 @@
       "cves": [
         "CVE-2017-0128"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -7364,7 +7364,7 @@
       "cves": [
         "CVE-2017-0143"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -7407,7 +7407,7 @@
       "cves": [
         "CVE-2017-0144"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -7449,7 +7449,7 @@
       "cves": [
         "CVE-2017-0145"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -7491,7 +7491,7 @@
       "cves": [
         "CVE-2017-0146"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -7533,7 +7533,7 @@
       "cves": [
         "CVE-2017-0147"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -7574,7 +7574,7 @@
       "cves": [
         "CVE-2017-0148"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -7616,7 +7616,7 @@
       "cves": [
         "CVE-2017-0155"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -7634,7 +7634,7 @@
       "cves": [
         "CVE-2017-0156"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -7656,7 +7656,7 @@
       "cves": [
         "CVE-2017-0158"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -7679,7 +7679,7 @@
       "cves": [
         "CVE-2017-0163"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -7699,7 +7699,7 @@
       "cves": [
         "CVE-2017-0166"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -7722,7 +7722,7 @@
       "cves": [
         "CVE-2017-0167"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -7742,7 +7742,7 @@
       "cves": [
         "CVE-2017-0168"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -7760,7 +7760,7 @@
       "cves": [
         "CVE-2017-0170"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -7781,7 +7781,7 @@
       "cves": [
         "CVE-2017-0171"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -7799,7 +7799,7 @@
       "cves": [
         "CVE-2017-0175"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -7816,7 +7816,7 @@
       "cves": [
         "CVE-2017-0180"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -7836,7 +7836,7 @@
       "cves": [
         "CVE-2017-0182"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -7856,7 +7856,7 @@
       "cves": [
         "CVE-2017-0183"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -7876,7 +7876,7 @@
       "cves": [
         "CVE-2017-0184"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -7896,7 +7896,7 @@
       "cves": [
         "CVE-2017-0190"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -7918,7 +7918,7 @@
       "cves": [
         "CVE-2017-0191"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -7940,7 +7940,7 @@
       "cves": [
         "CVE-2017-0192"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -7963,7 +7963,7 @@
       "cves": [
         "CVE-2017-0193"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -7984,7 +7984,7 @@
       "cves": [
         "CVE-2017-0199"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -8005,7 +8005,7 @@
       "cves": [
         "CVE-2017-0213"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -8030,7 +8030,7 @@
       "cves": [
         "CVE-2017-0214"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -8052,7 +8052,7 @@
       "cves": [
         "CVE-2017-0220"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -8070,7 +8070,7 @@
       "cves": [
         "CVE-2017-0222"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -8096,7 +8096,7 @@
       "cves": [
         "CVE-2017-0226"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -8112,7 +8112,7 @@
       "cves": [
         "CVE-2017-0231"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -8129,7 +8129,7 @@
       "cves": [
         "CVE-2017-0238"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -8146,7 +8146,7 @@
       "cves": [
         "CVE-2017-0242"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -8163,7 +8163,7 @@
       "cves": [
         "CVE-2017-0244"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -8180,7 +8180,7 @@
       "cves": [
         "CVE-2017-0245"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -8198,7 +8198,7 @@
       "cves": [
         "CVE-2017-0246"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -8220,7 +8220,7 @@
       "cves": [
         "CVE-2017-0248"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -8236,7 +8236,7 @@
       "cves": [
         "CVE-2017-0258"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -8258,7 +8258,7 @@
       "cves": [
         "CVE-2017-0260"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -8276,7 +8276,7 @@
       "cves": [
         "CVE-2017-0263"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -8301,7 +8301,7 @@
       "cves": [
         "CVE-2017-0267"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -8322,7 +8322,7 @@
       "cves": [
         "CVE-2017-0268"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -8344,7 +8344,7 @@
       "cves": [
         "CVE-2017-0269"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -8365,7 +8365,7 @@
       "cves": [
         "CVE-2017-0270"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -8387,7 +8387,7 @@
       "cves": [
         "CVE-2017-0271"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -8409,7 +8409,7 @@
       "cves": [
         "CVE-2017-0272"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -8431,7 +8431,7 @@
       "cves": [
         "CVE-2017-0273"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -8452,7 +8452,7 @@
       "cves": [
         "CVE-2017-0274"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -8474,7 +8474,7 @@
       "cves": [
         "CVE-2017-0275"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -8496,7 +8496,7 @@
       "cves": [
         "CVE-2017-0276"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -8518,7 +8518,7 @@
       "cves": [
         "CVE-2017-0277"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -8540,7 +8540,7 @@
       "cves": [
         "CVE-2017-0278"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -8562,7 +8562,7 @@
       "cves": [
         "CVE-2017-0279"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -8584,7 +8584,7 @@
       "cves": [
         "CVE-2017-0280"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -8606,7 +8606,7 @@
       "cves": [
         "CVE-2017-0282"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -8629,7 +8629,7 @@
       "cves": [
         "CVE-2017-0283"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -8655,7 +8655,7 @@
       "cves": [
         "CVE-2017-0284"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -8678,7 +8678,7 @@
       "cves": [
         "CVE-2017-0285"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -8702,7 +8702,7 @@
       "cves": [
         "CVE-2017-0286"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -8720,7 +8720,7 @@
       "cves": [
         "CVE-2017-0287"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -8743,7 +8743,7 @@
       "cves": [
         "CVE-2017-0288"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -8766,7 +8766,7 @@
       "cves": [
         "CVE-2017-0289"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -8789,7 +8789,7 @@
       "cves": [
         "CVE-2017-0294"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -8811,7 +8811,7 @@
       "cves": [
         "CVE-2017-0296"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -8832,7 +8832,7 @@
       "cves": [
         "CVE-2017-0297"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -8853,7 +8853,7 @@
       "cves": [
         "CVE-2017-0298"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -8874,7 +8874,7 @@
       "cves": [
         "CVE-2017-0300"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -8912,7 +8912,7 @@
       "cves": [
         "CVE-2017-12701"
       ],
-      "vendor": "",
+      "vendor": "BMC Medical, 3B Medical",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -8929,7 +8929,7 @@
       "cves": [
         "CVE-2017-12712"
       ],
-      "vendor": "",
+      "vendor": "Abbott Laboratories",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -8958,7 +8958,7 @@
       "cves": [
         "CVE-2017-12714"
       ],
-      "vendor": "",
+      "vendor": "Abbott Laboratories",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -8987,7 +8987,7 @@
       "cves": [
         "CVE-2017-12716"
       ],
-      "vendor": "",
+      "vendor": "Abbott Laboratories",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -9010,7 +9010,7 @@
       "cves": [
         "CVE-2017-12718"
       ],
-      "vendor": "",
+      "vendor": "Smiths Medical",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -9026,7 +9026,7 @@
       "cves": [
         "CVE-2017-12720"
       ],
-      "vendor": "",
+      "vendor": "Smiths Medical",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -9042,7 +9042,7 @@
       "cves": [
         "CVE-2017-12721"
       ],
-      "vendor": "",
+      "vendor": "Smiths Medical",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -9058,7 +9058,7 @@
       "cves": [
         "CVE-2017-12722"
       ],
-      "vendor": "",
+      "vendor": "Smiths Medical",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -9074,7 +9074,7 @@
       "cves": [
         "CVE-2017-12723"
       ],
-      "vendor": "",
+      "vendor": "Smiths Medical",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -9090,7 +9090,7 @@
       "cves": [
         "CVE-2017-12724"
       ],
-      "vendor": "",
+      "vendor": "Smiths Medical",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -9106,7 +9106,7 @@
       "cves": [
         "CVE-2017-12725"
       ],
-      "vendor": "",
+      "vendor": "Smiths Medical",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -9122,7 +9122,7 @@
       "cves": [
         "CVE-2017-12726"
       ],
-      "vendor": "",
+      "vendor": "Smiths Medical",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -9154,7 +9154,7 @@
       "cves": [
         "CVE-2017-13077"
       ],
-      "vendor": "",
+      "vendor": "Becton, Dickinson and Company (BD)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -9181,7 +9181,7 @@
       "cves": [
         "CVE-2017-13078"
       ],
-      "vendor": "",
+      "vendor": "Becton, Dickinson and Company (BD)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -9208,7 +9208,7 @@
       "cves": [
         "CVE-2017-13079"
       ],
-      "vendor": "",
+      "vendor": "Becton, Dickinson and Company (BD)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -9235,7 +9235,7 @@
       "cves": [
         "CVE-2017-13080"
       ],
-      "vendor": "",
+      "vendor": "Becton, Dickinson and Company (BD)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -9262,7 +9262,7 @@
       "cves": [
         "CVE-2017-13081"
       ],
-      "vendor": "",
+      "vendor": "Becton, Dickinson and Company (BD)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -9289,7 +9289,7 @@
       "cves": [
         "CVE-2017-13082"
       ],
-      "vendor": "",
+      "vendor": "Becton, Dickinson and Company (BD)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -9316,7 +9316,7 @@
       "cves": [
         "CVE-2017-13086"
       ],
-      "vendor": "",
+      "vendor": "Becton, Dickinson and Company (BD)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -9343,7 +9343,7 @@
       "cves": [
         "CVE-2017-13087"
       ],
-      "vendor": "",
+      "vendor": "Becton, Dickinson and Company (BD)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -9370,7 +9370,7 @@
       "cves": [
         "CVE-2017-13088"
       ],
-      "vendor": "",
+      "vendor": "Becton, Dickinson and Company (BD)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -9397,7 +9397,7 @@
       "cves": [
         "CVE-2017-13993"
       ],
-      "vendor": "",
+      "vendor": "I-SENS Inc.",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -9413,7 +9413,7 @@
       "cves": [
         "CVE-2017-14002"
       ],
-      "vendor": "",
+      "vendor": "GE",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -9430,7 +9430,7 @@
       "cves": [
         "CVE-2017-14004"
       ],
-      "vendor": "",
+      "vendor": "GE",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -9446,7 +9446,7 @@
       "cves": [
         "CVE-2017-14006"
       ],
-      "vendor": "",
+      "vendor": "GE",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -9462,7 +9462,7 @@
       "cves": [
         "CVE-2017-14008"
       ],
-      "vendor": "",
+      "vendor": "GE",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -9478,7 +9478,7 @@
       "cves": [
         "CVE-2017-14012"
       ],
-      "vendor": "",
+      "vendor": "Boston Scientific",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -9495,7 +9495,7 @@
       "cves": [
         "CVE-2017-14014"
       ],
-      "vendor": "",
+      "vendor": "Boston Scientific",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -9512,7 +9512,7 @@
       "cves": [
         "CVE-2017-14018"
       ],
-      "vendor": "",
+      "vendor": "Ethicon",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -9529,7 +9529,7 @@
       "cves": [
         "CVE-2017-14111"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -9930,7 +9930,7 @@
       "cves": [
         "CVE-2017-2852"
       ],
-      "vendor": "",
+      "vendor": "Natus Medical Inc",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -9946,7 +9946,7 @@
       "cves": [
         "CVE-2017-2853"
       ],
-      "vendor": "",
+      "vendor": "Natus Medical Inc",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -9962,7 +9962,7 @@
       "cves": [
         "CVE-2017-2858"
       ],
-      "vendor": "",
+      "vendor": "Natus Medical Inc",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -9978,7 +9978,7 @@
       "cves": [
         "CVE-2017-2860"
       ],
-      "vendor": "",
+      "vendor": "Natus Medical Inc",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -9994,7 +9994,7 @@
       "cves": [
         "CVE-2017-2861"
       ],
-      "vendor": "",
+      "vendor": "Natus Medical Inc",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -10010,7 +10010,7 @@
       "cves": [
         "CVE-2017-2867"
       ],
-      "vendor": "",
+      "vendor": "Natus Medical Inc",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -10026,7 +10026,7 @@
       "cves": [
         "CVE-2017-2868"
       ],
-      "vendor": "",
+      "vendor": "Natus Medical Inc",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -10042,7 +10042,7 @@
       "cves": [
         "CVE-2017-2869"
       ],
-      "vendor": "",
+      "vendor": "Natus Medical Inc",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -10108,7 +10108,7 @@
       "cves": [
         "CVE-2017-5149"
       ],
-      "vendor": "",
+      "vendor": "St. Jude Medical",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -10126,7 +10126,7 @@
       "cves": [
         "CVE-2017-6018"
       ],
-      "vendor": "",
+      "vendor": "B. Braun Medical Inc.",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -10143,7 +10143,7 @@
       "cves": [
         "CVE-2017-6022"
       ],
-      "vendor": "",
+      "vendor": "Becton, Dickinson and Company (BD)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -10160,7 +10160,7 @@
       "cves": [
         "CVE-2017-7269"
       ],
-      "vendor": "",
+      "vendor": "Siemens",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -10308,7 +10308,7 @@
       "cves": [
         "CVE-2017-8462"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -10330,7 +10330,7 @@
       "cves": [
         "CVE-2017-8463"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -10352,7 +10352,7 @@
       "cves": [
         "CVE-2017-8464"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -10376,7 +10376,7 @@
       "cves": [
         "CVE-2017-8467"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -10398,7 +10398,7 @@
       "cves": [
         "CVE-2017-8469"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -10418,7 +10418,7 @@
       "cves": [
         "CVE-2017-8470"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -10440,7 +10440,7 @@
       "cves": [
         "CVE-2017-8471"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -10462,7 +10462,7 @@
       "cves": [
         "CVE-2017-8472"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -10480,7 +10480,7 @@
       "cves": [
         "CVE-2017-8473"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -10502,7 +10502,7 @@
       "cves": [
         "CVE-2017-8475"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -10524,7 +10524,7 @@
       "cves": [
         "CVE-2017-8476"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -10546,7 +10546,7 @@
       "cves": [
         "CVE-2017-8477"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -10568,7 +10568,7 @@
       "cves": [
         "CVE-2017-8478"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -10590,7 +10590,7 @@
       "cves": [
         "CVE-2017-8479"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -10612,7 +10612,7 @@
       "cves": [
         "CVE-2017-8480"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -10634,7 +10634,7 @@
       "cves": [
         "CVE-2017-8481"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -10656,7 +10656,7 @@
       "cves": [
         "CVE-2017-8482"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -10678,7 +10678,7 @@
       "cves": [
         "CVE-2017-8483"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -10700,7 +10700,7 @@
       "cves": [
         "CVE-2017-8484"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -10722,7 +10722,7 @@
       "cves": [
         "CVE-2017-8485"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -10744,7 +10744,7 @@
       "cves": [
         "CVE-2017-8486"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -10766,7 +10766,7 @@
       "cves": [
         "CVE-2017-8488"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -10786,7 +10786,7 @@
       "cves": [
         "CVE-2017-8489"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -10808,7 +10808,7 @@
       "cves": [
         "CVE-2017-8490"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -10830,7 +10830,7 @@
       "cves": [
         "CVE-2017-8491"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -10852,7 +10852,7 @@
       "cves": [
         "CVE-2017-8492"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -10874,7 +10874,7 @@
       "cves": [
         "CVE-2017-8495"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -10896,7 +10896,7 @@
       "cves": [
         "CVE-2017-8527"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -10922,7 +10922,7 @@
       "cves": [
         "CVE-2017-8528"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -10943,7 +10943,7 @@
       "cves": [
         "CVE-2017-8531"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -10966,7 +10966,7 @@
       "cves": [
         "CVE-2017-8532"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -10989,7 +10989,7 @@
       "cves": [
         "CVE-2017-8533"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -11012,7 +11012,7 @@
       "cves": [
         "CVE-2017-8534"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -11030,7 +11030,7 @@
       "cves": [
         "CVE-2017-8543"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -11055,7 +11055,7 @@
       "cves": [
         "CVE-2017-8544"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -11077,7 +11077,7 @@
       "cves": [
         "CVE-2017-8552"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -11094,7 +11094,7 @@
       "cves": [
         "CVE-2017-8553"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -11114,7 +11114,7 @@
       "cves": [
         "CVE-2017-8554"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -11136,7 +11136,7 @@
       "cves": [
         "CVE-2017-8556"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -11158,7 +11158,7 @@
       "cves": [
         "CVE-2017-8557"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -11180,7 +11180,7 @@
       "cves": [
         "CVE-2017-8564"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -11202,7 +11202,7 @@
       "cves": [
         "CVE-2017-8565"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -11224,7 +11224,7 @@
       "cves": [
         "CVE-2017-8573"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -11246,7 +11246,7 @@
       "cves": [
         "CVE-2017-8577"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -11268,7 +11268,7 @@
       "cves": [
         "CVE-2017-8578"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -11290,7 +11290,7 @@
       "cves": [
         "CVE-2017-8580"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -11312,7 +11312,7 @@
       "cves": [
         "CVE-2017-8581"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -11334,7 +11334,7 @@
       "cves": [
         "CVE-2017-8582"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -11356,7 +11356,7 @@
       "cves": [
         "CVE-2017-8587"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -11377,7 +11377,7 @@
       "cves": [
         "CVE-2017-8588"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -11399,7 +11399,7 @@
       "cves": [
         "CVE-2017-8589"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -11421,7 +11421,7 @@
       "cves": [
         "CVE-2017-8590"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -11443,7 +11443,7 @@
       "cves": [
         "CVE-2017-8592"
       ],
-      "vendor": "",
+      "vendor": "Biosense Webster",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -11483,7 +11483,7 @@
       "cves": [
         "CVE-2017-9654"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -11499,7 +11499,7 @@
       "cves": [
         "CVE-2017-9656"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -11515,7 +11515,7 @@
       "cves": [
         "CVE-2017-9657"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -11532,7 +11532,7 @@
       "cves": [
         "CVE-2017-9658"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -11649,7 +11649,7 @@
       "cves": [
         "CVE-2018-10115"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -11697,7 +11697,7 @@
       "cves": [
         "CVE-2018-10593"
       ],
-      "vendor": "",
+      "vendor": "Becton, Dickinson and Company (BD)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -11718,7 +11718,7 @@
       "cves": [
         "CVE-2018-10595"
       ],
-      "vendor": "",
+      "vendor": "Becton, Dickinson and Company (BD)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -11739,7 +11739,7 @@
       "cves": [
         "CVE-2018-10596"
       ],
-      "vendor": "",
+      "vendor": "Medtronic",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -11756,7 +11756,7 @@
       "cves": [
         "CVE-2018-10597"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -11807,7 +11807,7 @@
       "cves": [
         "CVE-2018-10599"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -11858,7 +11858,7 @@
       "cves": [
         "CVE-2018-10601"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -11936,7 +11936,7 @@
       "cves": [
         "CVE-2018-10622"
       ],
-      "vendor": "",
+      "vendor": "Medtronic",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -11955,7 +11955,7 @@
       "cves": [
         "CVE-2018-10624"
       ],
-      "vendor": "",
+      "vendor": "Change Healthcare",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -11972,7 +11972,7 @@
       "cves": [
         "CVE-2018-10626"
       ],
-      "vendor": "",
+      "vendor": "Medtronic",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -11991,7 +11991,7 @@
       "cves": [
         "CVE-2018-10631"
       ],
-      "vendor": "",
+      "vendor": "Medtronic",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -12010,7 +12010,7 @@
       "cves": [
         "CVE-2018-10634"
       ],
-      "vendor": "",
+      "vendor": "Medtronic",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -12043,7 +12043,7 @@
       "cves": [
         "CVE-2018-11218"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -12087,7 +12087,7 @@
       "cves": [
         "CVE-2018-12326"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -12103,7 +12103,7 @@
       "cves": [
         "CVE-2018-1285"
       ],
-      "vendor": "",
+      "vendor": "Becton, Dickinson and Company (BD)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -12184,7 +12184,7 @@
       "cves": [
         "CVE-2018-14781"
       ],
-      "vendor": "",
+      "vendor": "Medtronic",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -12217,7 +12217,7 @@
       "cves": [
         "CVE-2018-14786"
       ],
-      "vendor": "",
+      "vendor": "Becton, Dickinson and Company (BD)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -12240,7 +12240,7 @@
       "cves": [
         "CVE-2018-14787"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -12257,7 +12257,7 @@
       "cves": [
         "CVE-2018-14789"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -12274,7 +12274,7 @@
       "cves": [
         "CVE-2018-14799"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -12299,7 +12299,7 @@
       "cves": [
         "CVE-2018-14801"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -12396,7 +12396,7 @@
       "cves": [
         "CVE-2018-17891"
       ],
-      "vendor": "",
+      "vendor": "Carestream",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -12413,7 +12413,7 @@
       "cves": [
         "CVE-2018-17906"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -12430,7 +12430,7 @@
       "cves": [
         "CVE-2018-18561"
       ],
-      "vendor": "",
+      "vendor": "Roche",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -12453,7 +12453,7 @@
       "cves": [
         "CVE-2018-18562"
       ],
-      "vendor": "",
+      "vendor": "Roche",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -12476,7 +12476,7 @@
       "cves": [
         "CVE-2018-18563"
       ],
-      "vendor": "",
+      "vendor": "Roche",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -12501,7 +12501,7 @@
       "cves": [
         "CVE-2018-18564"
       ],
-      "vendor": "",
+      "vendor": "Roche",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -12522,7 +12522,7 @@
       "cves": [
         "CVE-2018-18565"
       ],
-      "vendor": "",
+      "vendor": "Roche",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -12547,7 +12547,7 @@
       "cves": [
         "CVE-2018-18630"
       ],
-      "vendor": "",
+      "vendor": "Change Healthcare",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -12568,7 +12568,7 @@
       "cves": [
         "CVE-2018-18984"
       ],
-      "vendor": "",
+      "vendor": "Medtronic",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -12589,7 +12589,7 @@
       "cves": [
         "CVE-2018-19001"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -12605,7 +12605,7 @@
       "cves": [
         "CVE-2018-19010"
       ],
-      "vendor": "",
+      "vendor": "Drager",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -12628,7 +12628,7 @@
       "cves": [
         "CVE-2018-19012"
       ],
-      "vendor": "",
+      "vendor": "Drager",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -12651,7 +12651,7 @@
       "cves": [
         "CVE-2018-19014"
       ],
-      "vendor": "",
+      "vendor": "Drager",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -12883,7 +12883,7 @@
       "cves": [
         "CVE-2018-5438"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -12899,7 +12899,7 @@
       "cves": [
         "CVE-2018-5446"
       ],
-      "vendor": "",
+      "vendor": "Medtronic",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -12916,7 +12916,7 @@
       "cves": [
         "CVE-2018-5448"
       ],
-      "vendor": "",
+      "vendor": "Medtronic",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -12933,7 +12933,7 @@
       "cves": [
         "CVE-2018-5451"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -12950,7 +12950,7 @@
       "cves": [
         "CVE-2018-5454"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -12966,7 +12966,7 @@
       "cves": [
         "CVE-2018-5457"
       ],
-      "vendor": "",
+      "vendor": "Vyaire Medical",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -12983,7 +12983,7 @@
       "cves": [
         "CVE-2018-5458"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -12999,7 +12999,7 @@
       "cves": [
         "CVE-2018-5462"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -13015,7 +13015,7 @@
       "cves": [
         "CVE-2018-5464"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -13031,7 +13031,7 @@
       "cves": [
         "CVE-2018-5466"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -13047,7 +13047,7 @@
       "cves": [
         "CVE-2018-5468"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -13063,7 +13063,7 @@
       "cves": [
         "CVE-2018-5470"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -13079,7 +13079,7 @@
       "cves": [
         "CVE-2018-5472"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -13095,7 +13095,7 @@
       "cves": [
         "CVE-2018-5474"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -13111,7 +13111,7 @@
       "cves": [
         "CVE-2018-6020"
       ],
-      "vendor": "",
+      "vendor": "Silex Technology",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -13134,7 +13134,7 @@
       "cves": [
         "CVE-2018-6021"
       ],
-      "vendor": "",
+      "vendor": "Silex Technology",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -13185,7 +13185,7 @@
       "cves": [
         "CVE-2018-7498"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -13202,7 +13202,7 @@
       "cves": [
         "CVE-2018-7510"
       ],
-      "vendor": "",
+      "vendor": "BeaconMedaes",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -13219,7 +13219,7 @@
       "cves": [
         "CVE-2018-7518"
       ],
-      "vendor": "",
+      "vendor": "BeaconMedaes",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -13236,7 +13236,7 @@
       "cves": [
         "CVE-2018-7526"
       ],
-      "vendor": "",
+      "vendor": "BeaconMedaes",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -13269,7 +13269,7 @@
       "cves": [
         "CVE-2018-8014"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -13293,7 +13293,7 @@
       "cves": [
         "CVE-2018-8849"
       ],
-      "vendor": "",
+      "vendor": "Medtronic",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -13312,7 +13312,7 @@
       "cves": [
         "CVE-2018-8853"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -13335,7 +13335,7 @@
       "cves": [
         "CVE-2018-8857"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -13358,7 +13358,7 @@
       "cves": [
         "CVE-2018-8861"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -13381,7 +13381,7 @@
       "cves": [
         "CVE-2018-8868"
       ],
-      "vendor": "",
+      "vendor": "Medtronic",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -13400,7 +13400,7 @@
       "cves": [
         "CVE-2018-8870"
       ],
-      "vendor": "",
+      "vendor": "Medtronic",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -13436,7 +13436,7 @@
       "cves": [
         "CVE-2019-0708"
       ],
-      "vendor": "",
+      "vendor": "Spacelabs",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -13718,7 +13718,7 @@
       "cves": [
         "CVE-2019-10948"
       ],
-      "vendor": "",
+      "vendor": "Fujifilm",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -13739,7 +13739,7 @@
       "cves": [
         "CVE-2019-10950"
       ],
-      "vendor": "",
+      "vendor": "Fujifilm",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -13760,7 +13760,7 @@
       "cves": [
         "CVE-2019-10959"
       ],
-      "vendor": "",
+      "vendor": "Becton, Dickinson and Company (BD)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -13785,7 +13785,7 @@
       "cves": [
         "CVE-2019-10962"
       ],
-      "vendor": "",
+      "vendor": "Becton, Dickinson and Company (BD)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -13802,7 +13802,7 @@
       "cves": [
         "CVE-2019-10964"
       ],
-      "vendor": "",
+      "vendor": "Medtronic",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -13855,7 +13855,7 @@
       "cves": [
         "CVE-2019-10966"
       ],
-      "vendor": "",
+      "vendor": "GE",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -13878,7 +13878,7 @@
       "cves": [
         "CVE-2019-10968"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -13894,7 +13894,7 @@
       "cves": [
         "CVE-2019-10988"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -13911,7 +13911,7 @@
       "cves": [
         "CVE-2019-11479"
       ],
-      "vendor": "",
+      "vendor": "Becton, Dickinson and Company (BD)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -13947,7 +13947,7 @@
       "cves": [
         "CVE-2019-12255"
       ],
-      "vendor": "",
+      "vendor": "ENEA, Green Hills Software, ITRON, IP Infusion, Wind River",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -14012,7 +14012,7 @@
       "cves": [
         "CVE-2019-12256"
       ],
-      "vendor": "",
+      "vendor": "ENEA, Green Hills Software, ITRON, IP Infusion, Wind River",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -14077,7 +14077,7 @@
       "cves": [
         "CVE-2019-12257"
       ],
-      "vendor": "",
+      "vendor": "ENEA, Green Hills Software, ITRON, IP Infusion, Wind River",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -14138,7 +14138,7 @@
       "cves": [
         "CVE-2019-12258"
       ],
-      "vendor": "",
+      "vendor": "ENEA, Green Hills Software, ITRON, IP Infusion, Wind River",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -14203,7 +14203,7 @@
       "cves": [
         "CVE-2019-12259"
       ],
-      "vendor": "",
+      "vendor": "ENEA, Green Hills Software, ITRON, IP Infusion, Wind River",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -14267,7 +14267,7 @@
       "cves": [
         "CVE-2019-12260"
       ],
-      "vendor": "",
+      "vendor": "ENEA, Green Hills Software, ITRON, IP Infusion, Wind River",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -14333,7 +14333,7 @@
       "cves": [
         "CVE-2019-12261"
       ],
-      "vendor": "",
+      "vendor": "ENEA, Green Hills Software, ITRON, IP Infusion, Wind River",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -14399,7 +14399,7 @@
       "cves": [
         "CVE-2019-12262"
       ],
-      "vendor": "",
+      "vendor": "ENEA, Green Hills Software, ITRON, IP Infusion, Wind River",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -14456,7 +14456,7 @@
       "cves": [
         "CVE-2019-12263"
       ],
-      "vendor": "",
+      "vendor": "ENEA, Green Hills Software, ITRON, IP Infusion, Wind River",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -14521,7 +14521,7 @@
       "cves": [
         "CVE-2019-12264"
       ],
-      "vendor": "",
+      "vendor": "ENEA, Green Hills Software, ITRON, IP Infusion, Wind River",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -14578,7 +14578,7 @@
       "cves": [
         "CVE-2019-12265"
       ],
-      "vendor": "",
+      "vendor": "ENEA, Green Hills Software, ITRON, IP Infusion, Wind River",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -14680,7 +14680,7 @@
       "cves": [
         "CVE-2019-13517"
       ],
-      "vendor": "",
+      "vendor": "Becton, Dickinson and Company (BD)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -14697,7 +14697,7 @@
       "cves": [
         "CVE-2019-13530"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -14731,7 +14731,7 @@
       "cves": [
         "CVE-2019-13531"
       ],
-      "vendor": "",
+      "vendor": "Medtronic",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -14778,7 +14778,7 @@
       "cves": [
         "CVE-2019-13534"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -14812,7 +14812,7 @@
       "cves": [
         "CVE-2019-13535"
       ],
-      "vendor": "",
+      "vendor": "Medtronic",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -14847,7 +14847,7 @@
       "cves": [
         "CVE-2019-13539"
       ],
-      "vendor": "",
+      "vendor": "Medtronic",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -14892,7 +14892,7 @@
       "cves": [
         "CVE-2019-13543"
       ],
-      "vendor": "",
+      "vendor": "Medtronic",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -14912,7 +14912,7 @@
       "cves": [
         "CVE-2019-13546"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -14956,7 +14956,7 @@
       "cves": [
         "CVE-2019-13557"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -15068,7 +15068,7 @@
       "cves": [
         "CVE-2019-18241"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -15087,7 +15087,7 @@
       "cves": [
         "CVE-2019-18246"
       ],
-      "vendor": "",
+      "vendor": "BIOTRONIK",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -15106,7 +15106,7 @@
       "cves": [
         "CVE-2019-18248"
       ],
-      "vendor": "",
+      "vendor": "BIOTRONIK",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -15125,7 +15125,7 @@
       "cves": [
         "CVE-2019-18252"
       ],
-      "vendor": "",
+      "vendor": "BIOTRONIK",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -15144,7 +15144,7 @@
       "cves": [
         "CVE-2019-18254"
       ],
-      "vendor": "",
+      "vendor": "BIOTRONIK",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -15163,7 +15163,7 @@
       "cves": [
         "CVE-2019-18256"
       ],
-      "vendor": "",
+      "vendor": "BIOTRONIK",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -15182,7 +15182,7 @@
       "cves": [
         "CVE-2019-18263"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -15440,7 +15440,7 @@
       "cves": [
         "CVE-2019-3463"
       ],
-      "vendor": "",
+      "vendor": "Medtronic",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -15459,7 +15459,7 @@
       "cves": [
         "CVE-2019-3464"
       ],
-      "vendor": "",
+      "vendor": "Medtronic",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -15478,7 +15478,7 @@
       "cves": [
         "CVE-2019-5024"
       ],
-      "vendor": "",
+      "vendor": "Capsule Technologies Inc",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -15550,7 +15550,7 @@
       "cves": [
         "CVE-2019-6517"
       ],
-      "vendor": "",
+      "vendor": "Becton, Dickinson and Company (BD)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -15567,7 +15567,7 @@
       "cves": [
         "CVE-2019-6538"
       ],
-      "vendor": "",
+      "vendor": "Medtronic",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -15622,7 +15622,7 @@
       "cves": [
         "CVE-2019-6540"
       ],
-      "vendor": "",
+      "vendor": "Medtronic",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -15683,7 +15683,7 @@
       "cves": [
         "CVE-2019-6562"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -16138,7 +16138,7 @@
       "cves": [
         "CVE-2019-9636"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -16263,7 +16263,7 @@
       "cves": [
         "CVE-2020-10598"
       ],
-      "vendor": "",
+      "vendor": "Becton, Dickinson and Company (BD)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -16282,7 +16282,7 @@
       "cves": [
         "CVE-2020-10627"
       ],
-      "vendor": "",
+      "vendor": "Insulet",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -16456,7 +16456,7 @@
       "cves": [
         "CVE-2020-12008"
       ],
-      "vendor": "",
+      "vendor": "Baxter",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -16475,7 +16475,7 @@
       "cves": [
         "CVE-2020-12012"
       ],
-      "vendor": "",
+      "vendor": "Baxter",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -16494,7 +16494,7 @@
       "cves": [
         "CVE-2020-12016"
       ],
-      "vendor": "",
+      "vendor": "Baxter",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -16513,7 +16513,7 @@
       "cves": [
         "CVE-2020-12020"
       ],
-      "vendor": "",
+      "vendor": "Baxter",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -16532,7 +16532,7 @@
       "cves": [
         "CVE-2020-12023"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -16548,7 +16548,7 @@
       "cves": [
         "CVE-2020-12024"
       ],
-      "vendor": "",
+      "vendor": "Baxter",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -16567,7 +16567,7 @@
       "cves": [
         "CVE-2020-12032"
       ],
-      "vendor": "",
+      "vendor": "Baxter",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -16586,7 +16586,7 @@
       "cves": [
         "CVE-2020-12035"
       ],
-      "vendor": "",
+      "vendor": "Baxter",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -16605,7 +16605,7 @@
       "cves": [
         "CVE-2020-12036"
       ],
-      "vendor": "",
+      "vendor": "Baxter",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -16624,7 +16624,7 @@
       "cves": [
         "CVE-2020-12037"
       ],
-      "vendor": "",
+      "vendor": "Baxter",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -16643,7 +16643,7 @@
       "cves": [
         "CVE-2020-12039"
       ],
-      "vendor": "",
+      "vendor": "Baxter",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -16660,7 +16660,7 @@
       "cves": [
         "CVE-2020-12040"
       ],
-      "vendor": "",
+      "vendor": "Baxter",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -16677,7 +16677,7 @@
       "cves": [
         "CVE-2020-12041"
       ],
-      "vendor": "",
+      "vendor": "Baxter",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -16695,7 +16695,7 @@
       "cves": [
         "CVE-2020-12043"
       ],
-      "vendor": "",
+      "vendor": "Baxter",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -16713,7 +16713,7 @@
       "cves": [
         "CVE-2020-12045"
       ],
-      "vendor": "",
+      "vendor": "Baxter",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -16731,7 +16731,7 @@
       "cves": [
         "CVE-2020-12047"
       ],
-      "vendor": "",
+      "vendor": "Baxter",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -16749,7 +16749,7 @@
       "cves": [
         "CVE-2020-12048"
       ],
-      "vendor": "",
+      "vendor": "Baxter",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -18739,7 +18739,7 @@
       "cves": [
         "CVE-2020-14477"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -18770,7 +18770,7 @@
       "cves": [
         "CVE-2020-14484"
       ],
-      "vendor": "",
+      "vendor": "OpenClinic GA",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -18786,7 +18786,7 @@
       "cves": [
         "CVE-2020-14485"
       ],
-      "vendor": "",
+      "vendor": "OpenClinic GA",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -18802,7 +18802,7 @@
       "cves": [
         "CVE-2020-14486"
       ],
-      "vendor": "",
+      "vendor": "OpenClinic GA",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -18818,7 +18818,7 @@
       "cves": [
         "CVE-2020-14487"
       ],
-      "vendor": "",
+      "vendor": "OpenClinic GA",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -18834,7 +18834,7 @@
       "cves": [
         "CVE-2020-14488"
       ],
-      "vendor": "",
+      "vendor": "OpenClinic GA",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -18850,7 +18850,7 @@
       "cves": [
         "CVE-2020-14489"
       ],
-      "vendor": "",
+      "vendor": "OpenClinic GA",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -18866,7 +18866,7 @@
       "cves": [
         "CVE-2020-14490"
       ],
-      "vendor": "",
+      "vendor": "OpenClinic GA",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -18882,7 +18882,7 @@
       "cves": [
         "CVE-2020-14491"
       ],
-      "vendor": "",
+      "vendor": "OpenClinic GA",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -18898,7 +18898,7 @@
       "cves": [
         "CVE-2020-14492"
       ],
-      "vendor": "",
+      "vendor": "OpenClinic GA",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -18914,7 +18914,7 @@
       "cves": [
         "CVE-2020-14493"
       ],
-      "vendor": "",
+      "vendor": "OpenClinic GA",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -18930,7 +18930,7 @@
       "cves": [
         "CVE-2020-14494"
       ],
-      "vendor": "",
+      "vendor": "OpenClinic GA",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -18946,7 +18946,7 @@
       "cves": [
         "CVE-2020-14506"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -19026,7 +19026,7 @@
       "cves": [
         "CVE-2020-14518"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -19058,7 +19058,7 @@
       "cves": [
         "CVE-2020-14525"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -19482,7 +19482,7 @@
       "cves": [
         "CVE-2020-16198"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -19498,7 +19498,7 @@
       "cves": [
         "CVE-2020-16200"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -19514,7 +19514,7 @@
       "cves": [
         "CVE-2020-16212"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -19530,7 +19530,7 @@
       "cves": [
         "CVE-2020-16214"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -19546,7 +19546,7 @@
       "cves": [
         "CVE-2020-16216"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -19585,7 +19585,7 @@
       "cves": [
         "CVE-2020-16218"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -19601,7 +19601,7 @@
       "cves": [
         "CVE-2020-16220"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -19618,7 +19618,7 @@
       "cves": [
         "CVE-2020-16222"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -19635,7 +19635,7 @@
       "cves": [
         "CVE-2020-16224"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -19651,7 +19651,7 @@
       "cves": [
         "CVE-2020-16228"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -19706,7 +19706,7 @@
       "cves": [
         "CVE-2020-16237"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -19723,7 +19723,7 @@
       "cves": [
         "CVE-2020-16238"
       ],
-      "vendor": "",
+      "vendor": "B. Braun Melsungen AG",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -19740,7 +19740,7 @@
       "cves": [
         "CVE-2020-16239"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -19757,7 +19757,7 @@
       "cves": [
         "CVE-2020-16241"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -19774,7 +19774,7 @@
       "cves": [
         "CVE-2020-16247"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -19806,7 +19806,7 @@
       "cves": [
         "CVE-2020-1938"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -21317,7 +21317,7 @@
       "cves": [
         "CVE-2020-25150"
       ],
-      "vendor": "",
+      "vendor": "B. Braun Melsungen AG",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -21334,7 +21334,7 @@
       "cves": [
         "CVE-2020-25152"
       ],
-      "vendor": "",
+      "vendor": "B. Braun Melsungen AG",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -21351,7 +21351,7 @@
       "cves": [
         "CVE-2020-25154"
       ],
-      "vendor": "",
+      "vendor": "B. Braun Melsungen AG",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -21368,7 +21368,7 @@
       "cves": [
         "CVE-2020-25156"
       ],
-      "vendor": "",
+      "vendor": "B. Braun Melsungen AG",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -21385,7 +21385,7 @@
       "cves": [
         "CVE-2020-25158"
       ],
-      "vendor": "",
+      "vendor": "B. Braun Melsungen AG",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -21402,7 +21402,7 @@
       "cves": [
         "CVE-2020-25160"
       ],
-      "vendor": "",
+      "vendor": "B. Braun Melsungen AG",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -21419,7 +21419,7 @@
       "cves": [
         "CVE-2020-25162"
       ],
-      "vendor": "",
+      "vendor": "B. Braun Melsungen AG",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -21436,7 +21436,7 @@
       "cves": [
         "CVE-2020-25164"
       ],
-      "vendor": "",
+      "vendor": "B. Braun Melsungen AG",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -21453,7 +21453,7 @@
       "cves": [
         "CVE-2020-25165"
       ],
-      "vendor": "",
+      "vendor": "Becton, Dickinson and Company (BD)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -21471,7 +21471,7 @@
       "cves": [
         "CVE-2020-25166"
       ],
-      "vendor": "",
+      "vendor": "B. Braun Melsungen AG",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -21488,7 +21488,7 @@
       "cves": [
         "CVE-2020-25168"
       ],
-      "vendor": "",
+      "vendor": "B. Braun Melsungen AG",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -21505,7 +21505,7 @@
       "cves": [
         "CVE-2020-25170"
       ],
-      "vendor": "",
+      "vendor": "B. Braun Melsungen AG",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -21521,7 +21521,7 @@
       "cves": [
         "CVE-2020-25172"
       ],
-      "vendor": "",
+      "vendor": "B. Braun Melsungen AG",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -21537,7 +21537,7 @@
       "cves": [
         "CVE-2020-25174"
       ],
-      "vendor": "",
+      "vendor": "B. Braun Melsungen AG",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -21553,7 +21553,7 @@
       "cves": [
         "CVE-2020-25175"
       ],
-      "vendor": "",
+      "vendor": "GE Healthcare",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -21792,7 +21792,7 @@
       "cves": [
         "CVE-2020-25179"
       ],
-      "vendor": "",
+      "vendor": "GE Healthcare",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -22031,7 +22031,7 @@
       "cves": [
         "CVE-2020-25183"
       ],
-      "vendor": "",
+      "vendor": "Medtronic",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -22048,7 +22048,7 @@
       "cves": [
         "CVE-2020-25187"
       ],
-      "vendor": "",
+      "vendor": "Medtronic",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -22229,7 +22229,7 @@
       "cves": [
         "CVE-2020-27252"
       ],
-      "vendor": "",
+      "vendor": "Medtronic",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -22246,7 +22246,7 @@
       "cves": [
         "CVE-2020-27256"
       ],
-      "vendor": "",
+      "vendor": "SOOIL Development Co. Ltd.",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -22267,7 +22267,7 @@
       "cves": [
         "CVE-2020-27258"
       ],
-      "vendor": "",
+      "vendor": "SOOIL Development Co. Ltd.",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -22286,7 +22286,7 @@
       "cves": [
         "CVE-2020-27260"
       ],
-      "vendor": "",
+      "vendor": "Innokas YhtymÃƒÂ¤ Oy",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -22303,7 +22303,7 @@
       "cves": [
         "CVE-2020-27262"
       ],
-      "vendor": "",
+      "vendor": "Innokas YhtymÃƒÂ¤ Oy",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -22320,7 +22320,7 @@
       "cves": [
         "CVE-2020-27264"
       ],
-      "vendor": "",
+      "vendor": "SOOIL Development Co. Ltd.",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -22341,7 +22341,7 @@
       "cves": [
         "CVE-2020-27266"
       ],
-      "vendor": "",
+      "vendor": "SOOIL Development Co. Ltd.",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -22362,7 +22362,7 @@
       "cves": [
         "CVE-2020-27268"
       ],
-      "vendor": "",
+      "vendor": "SOOIL Development Co. Ltd.",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -22383,7 +22383,7 @@
       "cves": [
         "CVE-2020-27269"
       ],
-      "vendor": "",
+      "vendor": "SOOIL Development Co. Ltd.",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -22404,7 +22404,7 @@
       "cves": [
         "CVE-2020-27270"
       ],
-      "vendor": "",
+      "vendor": "SOOIL Development Co. Ltd.",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -22425,7 +22425,7 @@
       "cves": [
         "CVE-2020-27272"
       ],
-      "vendor": "",
+      "vendor": "SOOIL Development Co. Ltd.",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -22446,7 +22446,7 @@
       "cves": [
         "CVE-2020-27276"
       ],
-      "vendor": "",
+      "vendor": "SOOIL Development Co. Ltd.",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -22467,7 +22467,7 @@
       "cves": [
         "CVE-2020-27278"
       ],
-      "vendor": "",
+      "vendor": "Hamilton Medical AG",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -22484,7 +22484,7 @@
       "cves": [
         "CVE-2020-27282"
       ],
-      "vendor": "",
+      "vendor": "Hamilton Medical AG",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -22501,7 +22501,7 @@
       "cves": [
         "CVE-2020-27290"
       ],
-      "vendor": "",
+      "vendor": "Hamilton Medical AG",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -22518,7 +22518,7 @@
       "cves": [
         "CVE-2020-27298"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -22985,7 +22985,7 @@
       "cves": [
         "CVE-2020-35340"
       ],
-      "vendor": "",
+      "vendor": "Fresenius Kabi",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -23058,7 +23058,7 @@
       "cves": [
         "CVE-2020-4670"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -23123,7 +23123,7 @@
       "cves": [
         "CVE-2020-6961"
       ],
-      "vendor": "",
+      "vendor": "GE",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -23150,7 +23150,7 @@
       "cves": [
         "CVE-2020-6962"
       ],
-      "vendor": "",
+      "vendor": "GE",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -23183,7 +23183,7 @@
       "cves": [
         "CVE-2020-6963"
       ],
-      "vendor": "",
+      "vendor": "GE",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -23210,7 +23210,7 @@
       "cves": [
         "CVE-2020-6964"
       ],
-      "vendor": "",
+      "vendor": "GE",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -23237,7 +23237,7 @@
       "cves": [
         "CVE-2020-6965"
       ],
-      "vendor": "",
+      "vendor": "GE",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -23270,7 +23270,7 @@
       "cves": [
         "CVE-2020-6966"
       ],
-      "vendor": "",
+      "vendor": "GE",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -23297,7 +23297,7 @@
       "cves": [
         "CVE-2020-6977"
       ],
-      "vendor": "",
+      "vendor": "GE Healthcare",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -23586,7 +23586,7 @@
       "cves": [
         "CVE-2020-8004"
       ],
-      "vendor": "",
+      "vendor": "Baxter",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -24256,7 +24256,7 @@
       "cves": [
         "CVE-2021-23173"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -24272,7 +24272,7 @@
       "cves": [
         "CVE-2021-23195"
       ],
-      "vendor": "",
+      "vendor": "Fresenius Kabi",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -24295,7 +24295,7 @@
       "cves": [
         "CVE-2021-23196"
       ],
-      "vendor": "",
+      "vendor": "Fresenius Kabi",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -24318,7 +24318,7 @@
       "cves": [
         "CVE-2021-23207"
       ],
-      "vendor": "",
+      "vendor": "Fresenius Kabi",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -24340,7 +24340,7 @@
       "cves": [
         "CVE-2021-23233"
       ],
-      "vendor": "",
+      "vendor": "Fresenius Kabi",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -24363,7 +24363,7 @@
       "cves": [
         "CVE-2021-23236"
       ],
-      "vendor": "",
+      "vendor": "Fresenius Kabi",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -24784,7 +24784,7 @@
       "cves": [
         "CVE-2021-26248"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -24803,7 +24803,7 @@
       "cves": [
         "CVE-2021-26262"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -24963,7 +24963,7 @@
       "cves": [
         "CVE-2021-27408"
       ],
-      "vendor": "",
+      "vendor": "Hillrom",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -24987,7 +24987,7 @@
       "cves": [
         "CVE-2021-27410"
       ],
-      "vendor": "",
+      "vendor": "Hillrom",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -25011,7 +25011,7 @@
       "cves": [
         "CVE-2021-27456"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -25048,7 +25048,7 @@
       "cves": [
         "CVE-2021-27479"
       ],
-      "vendor": "",
+      "vendor": "ZOLL",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -25064,7 +25064,7 @@
       "cves": [
         "CVE-2021-27481"
       ],
-      "vendor": "",
+      "vendor": "ZOLL",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -25080,7 +25080,7 @@
       "cves": [
         "CVE-2021-27483"
       ],
-      "vendor": "",
+      "vendor": "ZOLL",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -25096,7 +25096,7 @@
       "cves": [
         "CVE-2021-27485"
       ],
-      "vendor": "",
+      "vendor": "ZOLL",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -25112,7 +25112,7 @@
       "cves": [
         "CVE-2021-27487"
       ],
-      "vendor": "",
+      "vendor": "ZOLL",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -25149,7 +25149,7 @@
       "cves": [
         "CVE-2021-27489"
       ],
-      "vendor": "",
+      "vendor": "ZOLL",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -25186,7 +25186,7 @@
       "cves": [
         "CVE-2021-27491"
       ],
-      "vendor": "",
+      "vendor": "Ypsomed",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -25224,7 +25224,7 @@
       "cves": [
         "CVE-2021-27493"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -25264,7 +25264,7 @@
       "cves": [
         "CVE-2021-27495"
       ],
-      "vendor": "",
+      "vendor": "Ypsomed",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -25302,7 +25302,7 @@
       "cves": [
         "CVE-2021-27497"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -25321,7 +25321,7 @@
       "cves": [
         "CVE-2021-27499"
       ],
-      "vendor": "",
+      "vendor": "Ypsomed",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -25338,7 +25338,7 @@
       "cves": [
         "CVE-2021-27501"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -25357,7 +25357,7 @@
       "cves": [
         "CVE-2021-27503"
       ],
-      "vendor": "",
+      "vendor": "Ypsomed",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -25406,7 +25406,7 @@
       "cves": [
         "CVE-2021-28165"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -26145,7 +26145,7 @@
       "cves": [
         "CVE-2021-31562"
       ],
-      "vendor": "",
+      "vendor": "Fresenius Kabi",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -26375,7 +26375,7 @@
       "cves": [
         "CVE-2021-32966"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -26391,7 +26391,7 @@
       "cves": [
         "CVE-2021-32993"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -26410,7 +26410,7 @@
       "cves": [
         "CVE-2021-33017"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -26429,7 +26429,7 @@
       "cves": [
         "CVE-2021-33018"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -26448,7 +26448,7 @@
       "cves": [
         "CVE-2021-33020"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -26467,7 +26467,7 @@
       "cves": [
         "CVE-2021-33022"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -26486,7 +26486,7 @@
       "cves": [
         "CVE-2021-33024"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -26830,7 +26830,7 @@
       "cves": [
         "CVE-2021-33843"
       ],
-      "vendor": "",
+      "vendor": "Fresenius Kabi",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -26847,7 +26847,7 @@
       "cves": [
         "CVE-2021-33846"
       ],
-      "vendor": "",
+      "vendor": "Fresenius Kabi",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -26870,7 +26870,7 @@
       "cves": [
         "CVE-2021-33848"
       ],
-      "vendor": "",
+      "vendor": "Fresenius Kabi",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -26893,7 +26893,7 @@
       "cves": [
         "CVE-2021-33882"
       ],
-      "vendor": "",
+      "vendor": "B. Braun Melsungen AG",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -26911,7 +26911,7 @@
       "cves": [
         "CVE-2021-33883"
       ],
-      "vendor": "",
+      "vendor": "B. Braun Melsungen AG",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -26929,7 +26929,7 @@
       "cves": [
         "CVE-2021-33884"
       ],
-      "vendor": "",
+      "vendor": "B. Braun Melsungen AG",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -26947,7 +26947,7 @@
       "cves": [
         "CVE-2021-33885"
       ],
-      "vendor": "",
+      "vendor": "B. Braun Melsungen AG",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -26965,7 +26965,7 @@
       "cves": [
         "CVE-2021-33886"
       ],
-      "vendor": "",
+      "vendor": "B. Braun Melsungen AG",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -27703,7 +27703,7 @@
       "cves": [
         "CVE-2021-37160"
       ],
-      "vendor": "",
+      "vendor": "Swisslog Healthcare",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -27720,7 +27720,7 @@
       "cves": [
         "CVE-2021-37161"
       ],
-      "vendor": "",
+      "vendor": "Swisslog Healthcare",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -27737,7 +27737,7 @@
       "cves": [
         "CVE-2021-37162"
       ],
-      "vendor": "",
+      "vendor": "Swisslog Healthcare",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -27754,7 +27754,7 @@
       "cves": [
         "CVE-2021-37163"
       ],
-      "vendor": "",
+      "vendor": "Swisslog Healthcare",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -27771,7 +27771,7 @@
       "cves": [
         "CVE-2021-37164"
       ],
-      "vendor": "",
+      "vendor": "Swisslog Healthcare",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -27788,7 +27788,7 @@
       "cves": [
         "CVE-2021-37165"
       ],
-      "vendor": "",
+      "vendor": "Swisslog Healthcare",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -27805,7 +27805,7 @@
       "cves": [
         "CVE-2021-37166"
       ],
-      "vendor": "",
+      "vendor": "Swisslog Healthcare",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -27822,7 +27822,7 @@
       "cves": [
         "CVE-2021-37167"
       ],
-      "vendor": "",
+      "vendor": "Swisslog Healthcare",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -28344,7 +28344,7 @@
       "cves": [
         "CVE-2021-38392"
       ],
-      "vendor": "",
+      "vendor": "Boston Scientific",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -28361,7 +28361,7 @@
       "cves": [
         "CVE-2021-38394"
       ],
-      "vendor": "",
+      "vendor": "Boston Scientific",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -28378,7 +28378,7 @@
       "cves": [
         "CVE-2021-38396"
       ],
-      "vendor": "",
+      "vendor": "Boston Scientific",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -28395,7 +28395,7 @@
       "cves": [
         "CVE-2021-38398"
       ],
-      "vendor": "",
+      "vendor": "Boston Scientific",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -28414,7 +28414,7 @@
       "cves": [
         "CVE-2021-38400"
       ],
-      "vendor": "",
+      "vendor": "Boston Scientific",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -28465,7 +28465,7 @@
       "cves": [
         "CVE-2021-39369"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -28484,7 +28484,7 @@
       "cves": [
         "CVE-2021-39375"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -28500,7 +28500,7 @@
       "cves": [
         "CVE-2021-39376"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -28999,7 +28999,7 @@
       "cves": [
         "CVE-2021-41835"
       ],
-      "vendor": "",
+      "vendor": "Fresenius Kabi",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -29350,7 +29350,7 @@
       "cves": [
         "CVE-2021-42744"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -29422,7 +29422,7 @@
       "cves": [
         "CVE-2021-43355"
       ],
-      "vendor": "",
+      "vendor": "Fresenius Kabi",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -29445,7 +29445,7 @@
       "cves": [
         "CVE-2021-43548"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -29461,7 +29461,7 @@
       "cves": [
         "CVE-2021-43550"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -29479,7 +29479,7 @@
       "cves": [
         "CVE-2021-43552"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -29538,7 +29538,7 @@
       "cves": [
         "CVE-2021-43935"
       ],
-      "vendor": "",
+      "vendor": "Hillrom",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -29635,7 +29635,7 @@
       "cves": [
         "CVE-2021-44464"
       ],
-      "vendor": "",
+      "vendor": "Fresenius Kabi",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -29899,7 +29899,7 @@
       "cves": [
         "CVE-2022-0922"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -29930,7 +29930,7 @@
       "cves": [
         "CVE-2022-1067"
       ],
-      "vendor": "",
+      "vendor": "LifePoint Informatics",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -30342,7 +30342,7 @@
       "cves": [
         "CVE-2022-2119"
       ],
-      "vendor": "",
+      "vendor": "OFFIS",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -30358,7 +30358,7 @@
       "cves": [
         "CVE-2022-2120"
       ],
-      "vendor": "",
+      "vendor": "OFFIS",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -30374,7 +30374,7 @@
       "cves": [
         "CVE-2022-2121"
       ],
-      "vendor": "",
+      "vendor": "OFFIS",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -30733,7 +30733,7 @@
       "cves": [
         "CVE-2022-22765"
       ],
-      "vendor": "",
+      "vendor": "Becton, Dickinson and Company (BD)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -30750,7 +30750,7 @@
       "cves": [
         "CVE-2022-22766"
       ],
-      "vendor": "",
+      "vendor": "Becton, Dickinson and Company (BD)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -30813,7 +30813,7 @@
       "cves": [
         "CVE-2022-22767"
       ],
-      "vendor": "",
+      "vendor": "Becton, Dickinson and Company (BD)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -31268,7 +31268,7 @@
       "cves": [
         "CVE-2022-26388"
       ],
-      "vendor": "",
+      "vendor": "Hillrom",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -31282,7 +31282,7 @@
       "cves": [
         "CVE-2022-26389"
       ],
-      "vendor": "",
+      "vendor": "Hillrom",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -31296,7 +31296,7 @@
       "cves": [
         "CVE-2022-26390"
       ],
-      "vendor": "",
+      "vendor": "Baxter",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -31319,7 +31319,7 @@
       "cves": [
         "CVE-2022-26392"
       ],
-      "vendor": "",
+      "vendor": "Baxter",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -31342,7 +31342,7 @@
       "cves": [
         "CVE-2022-26393"
       ],
-      "vendor": "",
+      "vendor": "Baxter",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -31365,7 +31365,7 @@
       "cves": [
         "CVE-2022-26394"
       ],
-      "vendor": "",
+      "vendor": "Baxter",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -32309,7 +32309,7 @@
       "cves": [
         "CVE-2022-3027"
       ],
-      "vendor": "",
+      "vendor": "Contec Health",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -32326,7 +32326,7 @@
       "cves": [
         "CVE-2022-30277"
       ],
-      "vendor": "",
+      "vendor": "Becton, Dickinson and Company (BD)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -32714,7 +32714,7 @@
       "cves": [
         "CVE-2022-32537"
       ],
-      "vendor": "",
+      "vendor": "Medtronic",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -32875,7 +32875,7 @@
       "cves": [
         "CVE-2022-36385"
       ],
-      "vendor": "",
+      "vendor": "Contec Health",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -33025,7 +33025,7 @@
       "cves": [
         "CVE-2022-38069"
       ],
-      "vendor": "",
+      "vendor": "Contec Health",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -33042,7 +33042,7 @@
       "cves": [
         "CVE-2022-38100"
       ],
-      "vendor": "",
+      "vendor": "Contec Health",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -33113,7 +33113,7 @@
       "cves": [
         "CVE-2022-38453"
       ],
-      "vendor": "",
+      "vendor": "Contec Health",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -33147,7 +33147,7 @@
       "cves": [
         "CVE-2022-40263"
       ],
-      "vendor": "",
+      "vendor": "Becton, Dickinson and Company (BD)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -33209,7 +33209,7 @@
       "cves": [
         "CVE-2022-40703"
       ],
-      "vendor": "",
+      "vendor": "AliveCor",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -33321,7 +33321,7 @@
       "cves": [
         "CVE-2022-41627"
       ],
-      "vendor": "",
+      "vendor": "AliveCor",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -33588,7 +33588,7 @@
       "cves": [
         "CVE-2022-43557"
       ],
-      "vendor": "",
+      "vendor": "Becton, Dickinson and Company (BD)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -34016,7 +34016,7 @@
       "cves": [
         "CVE-2022-47376"
       ],
-      "vendor": "",
+      "vendor": "Becton, Dickinson and Company (BD)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -34788,7 +34788,7 @@
       "cves": [
         "CVE-2023-0888"
       ],
-      "vendor": "",
+      "vendor": "B. Braun Melsungen AG",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -34859,7 +34859,7 @@
       "cves": [
         "CVE-2023-1966"
       ],
-      "vendor": "",
+      "vendor": "Illumina",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -34896,7 +34896,7 @@
       "cves": [
         "CVE-2023-1968"
       ],
-      "vendor": "",
+      "vendor": "Illumina",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -35478,7 +35478,7 @@
       "cves": [
         "CVE-2023-25931"
       ],
-      "vendor": "",
+      "vendor": "Medtronic",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -36112,7 +36112,7 @@
       "cves": [
         "CVE-2023-29060"
       ],
-      "vendor": "",
+      "vendor": "Becton, Dickinson and Company (BD)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -36130,7 +36130,7 @@
       "cves": [
         "CVE-2023-29061"
       ],
-      "vendor": "",
+      "vendor": "Becton, Dickinson and Company (BD)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -36148,7 +36148,7 @@
       "cves": [
         "CVE-2023-29062"
       ],
-      "vendor": "",
+      "vendor": "Becton, Dickinson and Company (BD)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -36166,7 +36166,7 @@
       "cves": [
         "CVE-2023-29063"
       ],
-      "vendor": "",
+      "vendor": "Becton, Dickinson and Company (BD)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -36184,7 +36184,7 @@
       "cves": [
         "CVE-2023-29064"
       ],
-      "vendor": "",
+      "vendor": "Becton, Dickinson and Company (BD)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -36202,7 +36202,7 @@
       "cves": [
         "CVE-2023-29065"
       ],
-      "vendor": "",
+      "vendor": "Becton, Dickinson and Company (BD)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -36220,7 +36220,7 @@
       "cves": [
         "CVE-2023-29066"
       ],
-      "vendor": "",
+      "vendor": "Becton, Dickinson and Company (BD)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -36352,7 +36352,7 @@
       "cves": [
         "CVE-2023-30559"
       ],
-      "vendor": "",
+      "vendor": "Becton, Dickinson and Company (BD)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -36369,7 +36369,7 @@
       "cves": [
         "CVE-2023-30560"
       ],
-      "vendor": "",
+      "vendor": "Becton, Dickinson and Company (BD)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -36386,7 +36386,7 @@
       "cves": [
         "CVE-2023-30561"
       ],
-      "vendor": "",
+      "vendor": "Becton, Dickinson and Company (BD)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -36403,7 +36403,7 @@
       "cves": [
         "CVE-2023-30562"
       ],
-      "vendor": "",
+      "vendor": "Becton, Dickinson and Company (BD)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -36419,7 +36419,7 @@
       "cves": [
         "CVE-2023-30563"
       ],
-      "vendor": "",
+      "vendor": "Becton, Dickinson and Company (BD)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -36435,7 +36435,7 @@
       "cves": [
         "CVE-2023-30564"
       ],
-      "vendor": "",
+      "vendor": "Becton, Dickinson and Company (BD)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -36451,7 +36451,7 @@
       "cves": [
         "CVE-2023-30565"
       ],
-      "vendor": "",
+      "vendor": "Becton, Dickinson and Company (BD)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -36573,7 +36573,7 @@
       "cves": [
         "CVE-2023-31222"
       ],
-      "vendor": "",
+      "vendor": "Medtronic",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -37109,7 +37109,7 @@
       "cves": [
         "CVE-2023-35986"
       ],
-      "vendor": "",
+      "vendor": "Santesoft",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -38049,7 +38049,7 @@
       "cves": [
         "CVE-2023-39227"
       ],
-      "vendor": "",
+      "vendor": "Softneta",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -38104,7 +38104,7 @@
       "cves": [
         "CVE-2023-39431"
       ],
-      "vendor": "",
+      "vendor": "Santesoft",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -38136,7 +38136,7 @@
       "cves": [
         "CVE-2023-40150"
       ],
-      "vendor": "",
+      "vendor": "Softneta",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -38172,7 +38172,7 @@
       "cves": [
         "CVE-2023-40704"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -40823,7 +40823,7 @@
       "cves": [
         "CVE-2023-5059"
       ],
-      "vendor": "",
+      "vendor": "Santesoft",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -41528,7 +41528,7 @@
       "cves": [
         "CVE-2023-7238"
       ],
-      "vendor": "",
+      "vendor": "Orthanc",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -41720,7 +41720,7 @@
       "cves": [
         "CVE-2024-10476"
       ],
-      "vendor": "",
+      "vendor": "Becton, Dickinson and Company (BD)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -42003,7 +42003,7 @@
       "cves": [
         "CVE-2024-12248"
       ],
-      "vendor": "",
+      "vendor": "Contec Health",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -42078,7 +42078,7 @@
       "cves": [
         "CVE-2024-1275"
       ],
-      "vendor": "",
+      "vendor": "Baxter",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -42181,7 +42181,7 @@
       "cves": [
         "CVE-2024-1453"
       ],
-      "vendor": "",
+      "vendor": "Santesoft",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -42197,7 +42197,7 @@
       "cves": [
         "CVE-2024-1486"
       ],
-      "vendor": "",
+      "vendor": "GE Healthcare",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -42239,7 +42239,7 @@
       "cves": [
         "CVE-2024-1696"
       ],
-      "vendor": "",
+      "vendor": "Santesoft",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -42526,7 +42526,7 @@
       "cves": [
         "CVE-2024-22100"
       ],
-      "vendor": "",
+      "vendor": "MicroDicom",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -42880,7 +42880,7 @@
       "cves": [
         "CVE-2024-22774"
       ],
-      "vendor": "",
+      "vendor": "Panoramic Corporation",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -43340,7 +43340,7 @@
       "cves": [
         "CVE-2024-25578"
       ],
-      "vendor": "",
+      "vendor": "MicroDicom",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -43650,7 +43650,7 @@
       "cves": [
         "CVE-2024-28877"
       ],
-      "vendor": "",
+      "vendor": "MicroDicom",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -45508,7 +45508,7 @@
       "cves": [
         "CVE-2024-33606"
       ],
-      "vendor": "",
+      "vendor": "MicroDicom",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -45570,7 +45570,7 @@
       "cves": [
         "CVE-2024-34463"
       ],
-      "vendor": "",
+      "vendor": "BPL Medical Technologies",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -45664,7 +45664,7 @@
       "cves": [
         "CVE-2024-35585"
       ],
-      "vendor": "",
+      "vendor": "Oxford Nanopore Technologies",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -47094,7 +47094,7 @@
       "cves": [
         "CVE-2024-45832"
       ],
-      "vendor": "",
+      "vendor": "Ossur",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -47514,7 +47514,7 @@
       "cves": [
         "CVE-2024-48966"
       ],
-      "vendor": "",
+      "vendor": "Baxter",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -47528,7 +47528,7 @@
       "cves": [
         "CVE-2024-48967"
       ],
-      "vendor": "",
+      "vendor": "Baxter",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -47542,7 +47542,7 @@
       "cves": [
         "CVE-2024-48970"
       ],
-      "vendor": "",
+      "vendor": "Baxter",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -47556,7 +47556,7 @@
       "cves": [
         "CVE-2024-48971"
       ],
-      "vendor": "",
+      "vendor": "Baxter",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -47570,7 +47570,7 @@
       "cves": [
         "CVE-2024-48973"
       ],
-      "vendor": "",
+      "vendor": "Baxter",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -47584,7 +47584,7 @@
       "cves": [
         "CVE-2024-48974"
       ],
-      "vendor": "",
+      "vendor": "Baxter",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -47934,7 +47934,7 @@
       "cves": [
         "CVE-2024-5176"
       ],
-      "vendor": "",
+      "vendor": "Baxter",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -48168,7 +48168,7 @@
       "cves": [
         "CVE-2024-53683"
       ],
-      "vendor": "",
+      "vendor": "Ossur",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -48293,7 +48293,7 @@
       "cves": [
         "CVE-2024-54681"
       ],
-      "vendor": "",
+      "vendor": "Ossur",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -49012,7 +49012,7 @@
       "cves": [
         "CVE-2024-6795"
       ],
-      "vendor": "",
+      "vendor": "Baxter",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -49028,7 +49028,7 @@
       "cves": [
         "CVE-2024-6796"
       ],
-      "vendor": "",
+      "vendor": "Baxter",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -49312,7 +49312,7 @@
       "cves": [
         "CVE-2024-9832"
       ],
-      "vendor": "",
+      "vendor": "Baxter",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -49326,7 +49326,7 @@
       "cves": [
         "CVE-2024-9834"
       ],
-      "vendor": "",
+      "vendor": "Baxter",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -49403,7 +49403,7 @@
       "cves": [
         "CVE-2025-0572"
       ],
-      "vendor": "",
+      "vendor": "Santesoft",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -49419,7 +49419,7 @@
       "cves": [
         "CVE-2025-0626"
       ],
-      "vendor": "",
+      "vendor": "Contec Health",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -49447,7 +49447,7 @@
       "cves": [
         "CVE-2025-0683"
       ],
-      "vendor": "",
+      "vendor": "Contec Health",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -49475,7 +49475,7 @@
       "cves": [
         "CVE-2025-0896"
       ],
-      "vendor": "",
+      "vendor": "Orthanc",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -49491,7 +49491,7 @@
       "cves": [
         "CVE-2025-1001"
       ],
-      "vendor": "",
+      "vendor": "Medixant",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -49505,7 +49505,7 @@
       "cves": [
         "CVE-2025-1002"
       ],
-      "vendor": "",
+      "vendor": "MicroDicom",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -49626,7 +49626,7 @@
       "cves": [
         "CVE-2025-10937"
       ],
-      "vendor": "",
+      "vendor": "Oxford Nanopore Technologies",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -49714,7 +49714,7 @@
       "cves": [
         "CVE-2025-11266"
       ],
-      "vendor": "",
+      "vendor": "Grassroots",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -49931,7 +49931,7 @@
       "cves": [
         "CVE-2025-1204"
       ],
-      "vendor": "",
+      "vendor": "Contec Health",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -50005,7 +50005,7 @@
       "cves": [
         "CVE-2025-12699"
       ],
-      "vendor": "",
+      "vendor": "ZOLL",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -50727,7 +50727,7 @@
       "cves": [
         "CVE-2025-14346"
       ],
-      "vendor": "",
+      "vendor": "WHILL Inc.",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -51202,7 +51202,7 @@
       "cves": [
         "CVE-2025-20049"
       ],
-      "vendor": "",
+      "vendor": "Dario Health",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -51216,7 +51216,7 @@
       "cves": [
         "CVE-2025-20060"
       ],
-      "vendor": "",
+      "vendor": "Dario Health",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -51352,7 +51352,7 @@
       "cves": [
         "CVE-2025-20615"
       ],
-      "vendor": "",
+      "vendor": "Qardio",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -52885,7 +52885,7 @@
       "cves": [
         "CVE-2025-2229"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -52899,7 +52899,7 @@
       "cves": [
         "CVE-2025-2230"
       ],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -53150,7 +53150,7 @@
       "cves": [
         "CVE-2025-23405"
       ],
-      "vendor": "",
+      "vendor": "Dario Health",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -53164,7 +53164,7 @@
       "cves": [
         "CVE-2025-23421"
       ],
-      "vendor": "",
+      "vendor": "Qardio",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -53250,7 +53250,7 @@
       "cves": [
         "CVE-2025-24316"
       ],
-      "vendor": "",
+      "vendor": "Dario Health",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -53264,7 +53264,7 @@
       "cves": [
         "CVE-2025-24318"
       ],
-      "vendor": "",
+      "vendor": "Dario Health",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -53295,7 +53295,7 @@
       "cves": [
         "CVE-2025-24489"
       ],
-      "vendor": "",
+      "vendor": "INFINITT Healthcare",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -53309,7 +53309,7 @@
       "cves": [
         "CVE-2025-2480"
       ],
-      "vendor": "",
+      "vendor": "Santesoft",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -53372,7 +53372,7 @@
       "cves": [
         "CVE-2025-24836"
       ],
-      "vendor": "",
+      "vendor": "Qardio",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -53386,7 +53386,7 @@
       "cves": [
         "CVE-2025-24843"
       ],
-      "vendor": "",
+      "vendor": "Dario Health",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -53400,7 +53400,7 @@
       "cves": [
         "CVE-2025-24849"
       ],
-      "vendor": "",
+      "vendor": "Dario Health",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -53935,7 +53935,7 @@
       "cves": [
         "CVE-2025-27578"
       ],
-      "vendor": "",
+      "vendor": "Pixmeo",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -53949,7 +53949,7 @@
       "cves": [
         "CVE-2025-27714"
       ],
-      "vendor": "",
+      "vendor": "INFINITT Healthcare",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -53963,7 +53963,7 @@
       "cves": [
         "CVE-2025-27720"
       ],
-      "vendor": "",
+      "vendor": "Pixmeo",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -53977,7 +53977,7 @@
       "cves": [
         "CVE-2025-27721"
       ],
-      "vendor": "",
+      "vendor": "INFINITT Healthcare",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -54489,7 +54489,7 @@
       "cves": [
         "CVE-2025-31946"
       ],
-      "vendor": "",
+      "vendor": "Pixmeo",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -54832,7 +54832,7 @@
       "cves": [
         "CVE-2025-35975"
       ],
-      "vendor": "",
+      "vendor": "MicroDicom",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -54879,7 +54879,7 @@
       "cves": [
         "CVE-2025-36521"
       ],
-      "vendor": "",
+      "vendor": "MicroDicom",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -58948,7 +58948,7 @@
       "cves": [
         "CVE-2025-4386"
       ],
-      "vendor": "",
+      "vendor": "Medtronic",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -58962,7 +58962,7 @@
       "cves": [
         "CVE-2025-4393"
       ],
-      "vendor": "",
+      "vendor": "Medtronic",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -58976,7 +58976,7 @@
       "cves": [
         "CVE-2025-4394"
       ],
-      "vendor": "",
+      "vendor": "Medtronic",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -58990,7 +58990,7 @@
       "cves": [
         "CVE-2025-4395"
       ],
-      "vendor": "",
+      "vendor": "Medtronic",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -59004,7 +59004,7 @@
       "cves": [
         "CVE-2025-4397"
       ],
-      "vendor": "",
+      "vendor": "Medtronic",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -59711,7 +59711,7 @@
       "cves": [
         "CVE-2025-5307"
       ],
-      "vendor": "",
+      "vendor": "Santesoft",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -59938,7 +59938,7 @@
       "cves": [
         "CVE-2025-53948"
       ],
-      "vendor": "",
+      "vendor": "Santesoft",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -59986,7 +59986,7 @@
       "cves": [
         "CVE-2025-54156"
       ],
-      "vendor": "",
+      "vendor": "Santesoft",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -60092,7 +60092,7 @@
       "cves": [
         "CVE-2025-54459"
       ],
-      "vendor": "",
+      "vendor": "Vertikal Systems",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -60122,7 +60122,7 @@
       "cves": [
         "CVE-2025-54551"
       ],
-      "vendor": "",
+      "vendor": "FUJIFILM Healthcare Americas Corporation",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -60136,7 +60136,7 @@
       "cves": [
         "CVE-2025-54759"
       ],
-      "vendor": "",
+      "vendor": "Santesoft",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -60152,7 +60152,7 @@
       "cves": [
         "CVE-2025-54808"
       ],
-      "vendor": "",
+      "vendor": "Oxford Nanopore Technologies",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -60184,7 +60184,7 @@
       "cves": [
         "CVE-2025-54862"
       ],
-      "vendor": "",
+      "vendor": "Santesoft",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -60865,7 +60865,7 @@
       "cves": [
         "CVE-2025-5943"
       ],
-      "vendor": "",
+      "vendor": "MicroDicom",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -60911,7 +60911,7 @@
       "cves": [
         "CVE-2025-59668"
       ],
-      "vendor": "",
+      "vendor": "NIHON KOHDEN",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -61472,7 +61472,7 @@
       "cves": [
         "CVE-2025-61940"
       ],
-      "vendor": "",
+      "vendor": "Mirion Medical",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -61488,7 +61488,7 @@
       "cves": [
         "CVE-2025-61959"
       ],
-      "vendor": "",
+      "vendor": "Vertikal Systems",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -61687,7 +61687,7 @@
       "cves": [
         "CVE-2025-62575"
       ],
-      "vendor": "",
+      "vendor": "Mirion Medical",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -61846,7 +61846,7 @@
       "cves": [
         "CVE-2025-64298"
       ],
-      "vendor": "",
+      "vendor": "Mirion Medical",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -61937,7 +61937,7 @@
       "cves": [
         "CVE-2025-64642"
       ],
-      "vendor": "",
+      "vendor": "Mirion Medical",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -61985,7 +61985,7 @@
       "cves": [
         "CVE-2025-64778"
       ],
-      "vendor": "",
+      "vendor": "Mirion Medical",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
@@ -67297,7 +67297,7 @@
       "cves": [
         "CVE-2026-101021"
       ],
-      "vendor": "",
+      "vendor": "J4Care",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -68631,7 +68631,7 @@
       "cves": [
         "CVE-2026-105273"
       ],
-      "vendor": "",
+      "vendor": "J4Care",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -68673,7 +68673,7 @@
       "cves": [
         "CVE-2026-105279"
       ],
-      "vendor": "",
+      "vendor": "J4Care",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -68890,7 +68890,7 @@
       "cves": [
         "CVE-2026-105667"
       ],
-      "vendor": "",
+      "vendor": "J4Care",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -70316,7 +70316,7 @@
       "cves": [
         "CVE-2026-107621"
       ],
-      "vendor": "",
+      "vendor": "J4Care",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -70358,7 +70358,7 @@
       "cves": [
         "CVE-2026-107777"
       ],
-      "vendor": "",
+      "vendor": "Thermo Fisher",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -72727,7 +72727,7 @@
       "cves": [
         "CVE-2026-12473"
       ],
-      "vendor": "",
+      "vendor": "Open Health Imaging Foundation (OHIF)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -84471,7 +84471,7 @@
       "cves": [
         "CVE-2026-17264"
       ],
-      "vendor": "",
+      "vendor": "Medixant",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -84502,7 +84502,7 @@
       "cves": [
         "CVE-2026-17583"
       ],
-      "vendor": "",
+      "vendor": "Thermo Fisher",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -84707,7 +84707,7 @@
       "cves": [
         "CVE-2026-18164"
       ],
-      "vendor": "",
+      "vendor": "Flow Neuroscience",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -85655,7 +85655,7 @@
       "cves": [
         "CVE-2026-18844"
       ],
-      "vendor": "",
+      "vendor": "Pulsetto",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -101216,7 +101216,7 @@
       "cves": [
         "CVE-2026-35505"
       ],
-      "vendor": "",
+      "vendor": "OFFIS",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -101404,7 +101404,7 @@
       "cves": [
         "CVE-2026-3650"
       ],
-      "vendor": "",
+      "vendor": "Grassroots",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -107534,7 +107534,7 @@
       "cves": [
         "CVE-2026-44628"
       ],
-      "vendor": "",
+      "vendor": "OFFIS",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -116304,7 +116304,7 @@
       "cves": [
         "CVE-2026-50003"
       ],
-      "vendor": "",
+      "vendor": "OFFIS",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -116388,7 +116388,7 @@
       "cves": [
         "CVE-2026-50034"
       ],
-      "vendor": "",
+      "vendor": "Apollo Pharmacy",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -116852,7 +116852,7 @@
       "cves": [
         "CVE-2026-50254"
       ],
-      "vendor": "",
+      "vendor": "OFFIS",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -119261,7 +119261,7 @@
       "cves": [
         "CVE-2026-52866"
       ],
-      "vendor": "",
+      "vendor": "Apollo Pharmacy",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -119275,7 +119275,7 @@
       "cves": [
         "CVE-2026-52868"
       ],
-      "vendor": "",
+      "vendor": "OFFIS",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -127205,7 +127205,7 @@
       "cves": [
         "CVE-2026-56445"
       ],
-      "vendor": "",
+      "vendor": "pydicom",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -128576,7 +128576,7 @@
       "cves": [
         "CVE-2026-5768"
       ],
-      "vendor": "",
+      "vendor": "Fourth Frontier",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -140361,7 +140361,7 @@
       "cves": [
         "CVE-2026-64934"
       ],
-      "vendor": "",
+      "vendor": "Quanovate Tech Inc. (operating as Mira / Mira Care)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -141245,7 +141245,7 @@
       "cves": [
         "CVE-2026-66098"
       ],
-      "vendor": "",
+      "vendor": "Quanovate Tech Inc. (operating as Mira / Mira Care)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -141347,7 +141347,7 @@
       "cves": [
         "CVE-2026-66340"
       ],
-      "vendor": "",
+      "vendor": "Quanovate Tech Inc. (operating as Mira / Mira Care)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -141730,7 +141730,7 @@
       "cves": [
         "CVE-2026-66832"
       ],
-      "vendor": "",
+      "vendor": "Quanovate Tech Inc. (operating as Mira / Mira Care)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -141744,7 +141744,7 @@
       "cves": [
         "CVE-2026-66875"
       ],
-      "vendor": "",
+      "vendor": "Quanovate Tech Inc. (operating as Mira / Mira Care)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -142502,7 +142502,7 @@
       "cves": [
         "CVE-2026-67558"
       ],
-      "vendor": "",
+      "vendor": "Quanovate Tech Inc. (operating as Mira / Mira Care)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -142530,7 +142530,7 @@
       "cves": [
         "CVE-2026-67568"
       ],
-      "vendor": "",
+      "vendor": "Quanovate Tech Inc. (operating as Mira / Mira Care)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -142628,7 +142628,7 @@
       "cves": [
         "CVE-2026-68067"
       ],
-      "vendor": "",
+      "vendor": "Quanovate Tech Inc. (operating as Mira / Mira Care)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -155690,7 +155690,7 @@
       "cves": [
         "CVE-2026-7251"
       ],
-      "vendor": "",
+      "vendor": "Eppendorf",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -161586,7 +161586,7 @@
       "cves": [
         "CVE-2026-78224"
       ],
-      "vendor": "",
+      "vendor": "NextGen Healthcare",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -166092,7 +166092,7 @@
       "cves": [
         "CVE-2026-82578"
       ],
-      "vendor": "",
+      "vendor": "NextGen Healthcare",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -166106,7 +166106,7 @@
       "cves": [
         "CVE-2026-82583"
       ],
-      "vendor": "",
+      "vendor": "NextGen Healthcare",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -168949,7 +168949,7 @@
       "cves": [
         "CVE-2026-87020"
       ],
-      "vendor": "",
+      "vendor": "Orthanc",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -192051,7 +192051,7 @@
       "cves": [
         "CVE-2026-97851"
       ],
-      "vendor": "",
+      "vendor": "J4Care",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -216119,7 +216119,7 @@
       "title": "CareFusion Pyxis SupplyStation System Vulnerabilities",
       "priority": "P3",
       "cves": [],
-      "vendor": "",
+      "vendor": "CareFusion, Becton, Dickinson and Company (BD)",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -229285,7 +229285,7 @@
       "title": "Philips iSite/IntelliSpace PACS Vulnerabilities (Update A)",
       "priority": "P3",
       "cves": [],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
@@ -232883,7 +232883,7 @@
       "title": "Philips Xper-IM Connect Vulnerabilities",
       "priority": "P3",
       "cves": [],
-      "vendor": "",
+      "vendor": "Philips",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],

@@ -18,6 +18,19 @@
       .replace(/[_\-./]+/g, " ")
       .replace(/\s+/g, " ")
       .trim();
+  // Legal suffixes are identity noise; keep product normalization separate.
+  function vendorNorm(value) {
+    let vendor = norm(value).replace(/,/g, "").trim();
+    vendor = vendor
+      .replace(
+        /(?:\s+(?:inc|incorporated|llc|corp|corporation|ltd|limited|co|company|plc|llp))+$/,
+        "",
+      )
+      .trim();
+    // ASD is Smiths Medical's source-record division name, not a generic suffix.
+    if (vendor === "smiths medical asd") vendor = "smiths medical";
+    return vendor;
+  }
   const list = (value) => (Array.isArray(value) ? value : []);
   const generic = new Set([
     "server",
@@ -263,7 +276,7 @@
       if (text(issue.kev_product)) products.push(text(issue.kev_product));
       if (products.length) withProducts++;
       const vendors = new Set(
-        [issue.vendor, issue.kev_vendor].map(norm).filter(Boolean),
+        [issue.vendor, issue.kev_vendor].map(vendorNorm).filter(Boolean),
       );
       for (const label of new Set(products)) {
         for (const vendor of vendors) {
@@ -347,16 +360,17 @@
       const candidates = new Map();
       for (const identity of identities) {
         const name = norm(identity.name),
-          vendor = norm(identity.vendor);
+          vendor = vendorNorm(identity.vendor);
         const keys = new Set([name, vendor ? vendor + " " + name : name]);
         for (const key of keys) {
           for (const hit of built.index.get(key) || []) {
             // Require an exact vendor prefix when one is provided. Supplier and
             // PURL namespace are not assumed to be the software manufacturer.
-            if (vendor && hit.prefix && hit.prefix !== vendor) continue;
+            if (vendor && hit.prefix && vendorNorm(hit.prefix) !== vendor)
+              continue;
             if (vendor && !hit.prefix && norm(hit.label) === name) {
               const advisoryVendors = [hit.issue.vendor, hit.issue.kev_vendor]
-                .map(norm)
+                .map(vendorNorm)
                 .filter(Boolean);
               if (advisoryVendors.length && !advisoryVendors.includes(vendor))
                 continue;
@@ -369,7 +383,7 @@
       // A declared manufacturer can qualify a name embedded in a longer product
       // label. Do not broaden this rule to suppliers, PURL namespaces, or inferred
       // CPE vendors. Exact candidates above take precedence over partial evidence.
-      const manufacturer = norm(component.vendor);
+      const manufacturer = vendorNorm(component.vendor);
       const componentName = norm(component.name);
       if (
         manufacturer &&

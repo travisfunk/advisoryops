@@ -114,7 +114,7 @@ Both JSON documents carry `version: 1`. Catalogs contain `generated_at`,
 `total_records`, `records_with_products`, `matching_policy` and `issues`.
 `matching_policy` must be `product_identity_candidates_only`. Each issue is an
 allowlisted projection; raw source documents, signals and private inventory are
-never included. The generated catalog can be reproduced from the archive using
+never included. The generated catalog can be reproduced from the archive and checked-in source vendor evidence using
 the normal publication command documented in [publication.md](publication.md).
 
 Reports contain the device label, source SBOM format, catalog/check timestamps,
@@ -124,3 +124,37 @@ coverage counts, imported component inventory, warnings, skipped entry count,
 version text, and has `status: "review_required"`. The `evidence`, `evidence_flags`,
 `limitation` and report `interpretation` fields explain what that result establishes. Schema
 changes that break consumers must increment the relevant document version.
+
+
+## Source vendor coverage
+
+Publication fills empty `vendor` fields from explicit source signals and
+`configs/sbom_vendor_sources.json`. This public evidence snapshot retains advisory
+URLs, CVEs, vendor names and source URLs; it contains no inventory. It repairs
+historical records whose vendor was dropped upstream. Existing vendor fields
+remain authoritative. URL associations take precedence over CVE associations;
+ambiguous multi-vendor associations stay unresolved. Product labels and AI prose
+are never used to invent manufacturers.
+
+The daily feed workflow runs `python -m advisoryops.source_vendors` before
+publication to refresh the existing ICS-Medical CSV source and incorporate
+CISA/CSAF and NVD caches. NVD parsing retains vendors from vulnerable CPE matches,
+excluding non-vulnerable platform prerequisites. Multiple concrete CPE vendors
+remain ambiguous rather than selecting the first. An offline refresh can use
+`--csv /path/to/CISA_ICS_ADV_Master.csv --cache-root outputs`. Publication itself
+has no network dependency; commit source evidence alongside the generated catalog.
+
+Manufacturer comparisons normalize hyphens/spacing and trailing legal suffixes
+(Inc., Incorporated, LLC, Corp., Corporation, Ltd., Limited, Co., Company, PLC,
+LLP). The specific source division name `Smiths Medical ASD` maps to
+`Smiths Medical`; ASD is not stripped from unrelated company names. Raw names
+remain visible in source evidence. Product word boundaries and the manufacturer
+gate still apply.
+
+The October 16, 2026 repair raises vendor coverage (`vendor` or `kev_vendor`)
+from 772 to 1,478 of 14,720 issues; among 6,474 issues with product labels,
+coverage rises from 770 to 1,380. Missing source evidence still limits coverage.
+The executable regression loads the actual published catalog and requires all
+eight Medfusion 4000 CVEs, including CVE-2017-12718, to return candidates for
+manufacturer `Smiths Medical` with `partial product name` evidence. A second
+regression reproduces the catalog from the archive and source snapshot.

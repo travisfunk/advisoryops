@@ -443,4 +443,75 @@ test("partial product names accept explicit KEV vendor evidence and deduplicate 
   assert.equal(kevOnly.findings.length, 1);
 });
 
+test("manufacturer corporate suffixes and Smiths division names normalize symmetrically", () => {
+  const names = [
+    "Smiths Medical",
+    "Smiths-Medical",
+    "Smiths Medical ASD Inc.",
+    "Smiths Medical, LLC",
+    "Smiths Medical Corp.",
+    "Smiths Medical Ltd.",
+  ];
+  for (const manufacturer of names) {
+    for (const vendor of names) {
+      const result = check(
+        [{ ...medfusionComponent, manufacturer: { name: manufacturer } }],
+        [issue("medfusion", [medfusionLabel], { vendor })],
+      );
+      assert.equal(result.findings.length, 1, `${manufacturer} vs ${vendor}`);
+    }
+  }
+  for (const vendor of [
+    "Smiths Medical Devices Inc.",
+    "Other ASD Inc.",
+    "Smiths Medical Incorporated Technologies",
+  ]) {
+    assert.equal(
+      check(
+        [medfusionComponent],
+        [issue("other", [medfusionLabel], { vendor })],
+      ).findings.length,
+      0,
+    );
+  }
+});
+
+test("actual published catalog returns all eight Medfusion 4000 CVEs", () => {
+  const path = require("node:path");
+  const published = JSON.parse(
+    fs.readFileSync(
+      path.join(__dirname, "../docs/sbom_advisories.json"),
+      "utf8",
+    ),
+  );
+  const result = matchSBOM(
+    parseSBOM(cdx([medfusionComponent])),
+    buildIndex(published),
+  );
+  const expected = [
+    "CVE-2017-12718",
+    "CVE-2017-12720",
+    "CVE-2017-12721",
+    "CVE-2017-12722",
+    "CVE-2017-12723",
+    "CVE-2017-12724",
+    "CVE-2017-12725",
+    "CVE-2017-12726",
+  ];
+  assert.ok(result.findings.length >= 8);
+  for (const id of expected) {
+    const finding = result.findings.find((f) => f.issue_id === id);
+    assert.ok(finding, id);
+    assert.equal(finding.status, "review_required");
+    assert.deepEqual(finding.evidence_flags, ["partial product name"]);
+  }
+  const wrongManufacturer = matchSBOM(
+    parseSBOM(
+      cdx([{ ...medfusionComponent, manufacturer: { name: "Other Medical" } }]),
+    ),
+    buildIndex(published),
+  );
+  assert.equal(wrongManufacturer.findings.length, 0);
+});
+
 console.log(tests + " SBOM behavior checks passed.");

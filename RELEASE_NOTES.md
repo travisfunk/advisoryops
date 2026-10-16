@@ -1,5 +1,11 @@
 # AdvisoryOps — Release Notes
 
+## SBOM source vendor repair (October 2026)
+
+- Preserve CISA/CSAF vendor and NVD vulnerable CPE vendor evidence through publication; backfill historical identities from a reproducible public source snapshot.
+- Normalize legal company suffixes and Smiths Medical ASD division naming for manufacturer comparisons.
+- Test all eight Medfusion 4000 CVEs against the actual published catalog; vendor coverage increases from 772 to 1,478 issues (770 to 1,380 with product labels).
+
 ## Manufacturer-gated SBOM product names (October 2026)
 
 - Recognize a component name as a whole-word sequence inside a longer advisory

@@ -18,6 +18,9 @@ def write_sbom_catalog(
     generated_at: str,
 ) -> dict[str, Any]:
     """Publish every tracked issue, including those without product evidence."""
+    from .source_vendors import load_vendor_sources, populate_source_vendors
+
+    rows = populate_source_vendors(rows, load_vendor_sources())
     fields = (
         "issue_id",
         "title",
