@@ -419,8 +419,25 @@
               if (advisoryVendors.length && !advisoryVendors.includes(vendor))
                 continue;
             }
-            if (!candidates.has(hit.issue.issue_id))
-              candidates.set(hit.issue.issue_id, { ...hit, via: identity.via });
+            if (!candidates.has(hit.issue.issue_id)) {
+              const bindings = list(hit.issue.product_vendors).filter(
+                (b) => b.product === hit.label,
+              );
+              const distinctVendors = new Set(
+                bindings.map((b) => vendorNorm(b.vendor)),
+              );
+              const binding = vendor
+                ? bindings.find((b) => vendorNorm(b.vendor) === vendor)
+                : distinctVendors.size === 1
+                  ? bindings[0]
+                  : undefined;
+              candidates.set(hit.issue.issue_id, {
+                ...hit,
+                via: identity.via,
+                vendorName: binding?.vendor || "",
+                vendorSource: binding?.source || "",
+              });
+            }
           }
         }
       }

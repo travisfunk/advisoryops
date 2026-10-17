@@ -61,12 +61,13 @@ catalog remains below its 25 MiB publication guard.
 | An FDA helper confused recall hazard and device risk class | Remove the recall-class conversion. Only explicit `device_class` populates device risk. Production builder tracing found no call to the incorrect helper; this fix does not claim to revalidate historical FDA metadata. [FDA describes recall classifications separately](https://www.fda.gov/medical-devices/postmarket-requirements-devices/recalls-corrections-and-removals-devices). |
 | Name-based device class lookup selected the first match | Empty names and conflicting class results now return unknown; exact product-code lookup retains precedence. |
 | Main advisory links interpolated untrusted data | Require HTTP(S) source URLs, escape attribute values, validate CVE link identifiers, and use a data attribute/event listener for read-state controls. An adversarial browser case supplies a JavaScript URL, malformed CVE HTML and an executable-looking issue ID and checks that none execute. |
+| Exact matches omitted vendor provenance | Resolve the applicable product binding for exact hits too; retain unknown when the vendor is ambiguous. A dedicated regression checks both cases. |
 | Public wording overstated availability/cost | Clarify that the complete **published subset** is loaded, guidance is present where available, and optional AI API use can incur charges. Remove unsupported competitor-pricing assertions. |
 
 ## Executable checks
 
 Local final build: **1,198 Python tests passed**, one optional test skipped and
-one integration test deselected. All **31 Node matching cases** and **19 Chromium
+one integration test deselected. All **32 Node matching cases** and **19 Chromium
 acceptance checks** passed; the controller harness also runs in the Python suite.
 CI and deployed-file verification are required before calling this release live.
 
@@ -129,6 +130,12 @@ technology and representative hospital end users have not participated.
 The locked browser-test dependencies were checked with `npm audit --package-lock-only`;
 the registry reported zero known advisories at review time. This is limited to
 the Node development dependency lockfile, not a complete supply-chain audit.
+
+An automated review also questioned the plural NVD `cveIds` parameter. The
+[current primary NVD API documentation](https://nvd.nist.gov/developers/vulnerabilities)
+documents it and deprecates singular `cveId`; the historical recovery also
+validated returned IDs against each requested batch. The supported batched filter
+is retained rather than applying that incorrect review suggestion.
 
 ## Demonstration and review boundaries
 

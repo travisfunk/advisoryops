@@ -32,6 +32,9 @@ def recover_nvd(
 ):
     """Recover missing/stale historical CPE evidence, in resumable 100-CVE batches.
 
+    Uses NVD's documented cveIds filter (up to 100 comma-separated IDs):
+    https://nvd.nist.gov/developers/vulnerabilities#cveIds
+    The singular cveId parameter is deprecated in current NVD documentation.
     Zero limit covers the entire catalog. Responses are validated before each
     checkpoint; failed requests remain retryable. No API key is needed or logged.
     """

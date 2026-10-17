@@ -583,4 +583,35 @@ test("corporate normalization retains meaningful words and division identities",
   }
 });
 
+test("exact matches preserve the applicable product vendor evidence", () => {
+  const advisory = issue("exact-scoped", ["Station"], {
+    product_vendors: [
+      {
+        product: "Station",
+        vendor: "Alpha",
+        source: "https://alpha.example/advisory",
+      },
+      {
+        product: "Station",
+        vendor: "Beta",
+        source: "https://beta.example/advisory",
+      },
+    ],
+  });
+  const result = check(
+    [{ name: "Station", manufacturer: { name: "Beta Inc." } }],
+    [advisory],
+  );
+  assert.equal(result.findings.length, 1);
+  assert.deepEqual(result.findings[0].evidence_flags, []);
+  assert.equal(result.findings[0].matched_vendor, "Beta");
+  assert.equal(
+    result.findings[0].vendor_evidence_source,
+    "https://beta.example/advisory",
+  );
+  const ambiguous = check([{ name: "Station" }], [advisory]);
+  assert.equal(ambiguous.findings[0].matched_vendor, "");
+  assert.equal(ambiguous.findings[0].vendor_evidence_source, "");
+});
+
 console.log(tests + " SBOM behavior checks passed.");
