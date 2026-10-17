@@ -636,7 +636,7 @@ for (const [product, id, aliases] of [
     ],
   ],
   [
-    "Medical Beds",
+    "InTouch ICU Bed",
     "CVE-2017-13077",
     ["Stryker", "Stryker Corporation", "Physio-Control"],
   ],

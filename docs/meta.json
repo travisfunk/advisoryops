@@ -18,10 +18,10 @@
   "counts": {
     "validated_sources": 54,
     "candidate_sources": 1,
-    "issues_public": 14720,
+    "issues_public": 14799,
     "alerts_public": 100,
-    "latest": 14720,
-    "healthcare": 471,
+    "latest": 14799,
+    "healthcare": 475,
     "packets": 0,
     "sources_enabled": 64,
     "kev_medical_device": 0
@@ -38,15 +38,15 @@
     "dashboard_html": "outputs/community_public/dashboard.html",
     "packets_dir": null
   },
-  "generated_at": "2026-10-16T11:11:20+00:00",
+  "generated_at": "2026-10-17T10:36:15+00:00",
   "methodology_stats": {
-    "total_issues": 14720,
-    "medical_device_issues": 471,
-    "fda_risk_class_populated": 379,
+    "total_issues": 14799,
+    "medical_device_issues": 475,
+    "fda_risk_class_populated": 380,
     "fda_derived_medical_device": 378,
     "fda_md_vendor_populated": 376,
     "fda_md_products_populated": 376,
-    "kev_enriched": 396,
+    "kev_enriched": 398,
     "kev_md_cve_overlap": 0,
     "kev_md_vendor_overlap": 0,
     "pharmaceutical_leaks": 0,
@@ -56,25 +56,25 @@
     "kev_medical_device_score_bonuses_removed": 0,
     "kev_medical_device_reconciled": true,
     "kev_medical_device_definition": "healthcare_category == medical_device AND exact structured CVE ID is present in the full CISA Known Exploited Vulnerabilities catalog",
-    "kev_medical_device_catalog_unique_cves": 1746,
-    "kev_medical_device_reconciled_at": "2026-10-16T11:11:27.897588+00:00",
-    "kev_catalog_records": 1746,
-    "kev_catalog_unique_cves": 1746,
-    "medical_device_unique_cves": 79,
+    "kev_medical_device_catalog_unique_cves": 1748,
+    "kev_medical_device_reconciled_at": "2026-10-17T10:36:22.301824+00:00",
+    "kev_catalog_records": 1748,
+    "kev_catalog_unique_cves": 1748,
+    "medical_device_unique_cves": 80,
     "kev_md_cve_overlap_ids": [],
     "kev_md_vendor_partial_overlap": 2,
     "kev_comparison_scope": "full_cisa_kev_catalog",
     "kev_comparison_key": "exact_cve_id",
-    "kev_comparison_generated_at": "2026-10-16T11:11:29.964090+00:00"
+    "kev_comparison_generated_at": "2026-10-17T10:36:24.360989+00:00"
   },
   "publication": {
     "strategy": "bounded_latest_plus_stable_hash_jsonl",
-    "total_records": 14720,
+    "total_records": 14799,
     "latest_records": 750,
     "archive_shards": 32,
     "archive_manifest": "feed_archive/manifest.json",
-    "largest_shard_bytes": 6985055,
-    "latest_bytes": 2220878,
-    "generated_at": "2026-10-16T11:11:34.709133+00:00"
+    "largest_shard_bytes": 6997255,
+    "latest_bytes": 2218190,
+    "generated_at": "2026-10-17T10:36:30.774399+00:00"
   }
 }
