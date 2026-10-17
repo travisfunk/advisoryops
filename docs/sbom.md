@@ -35,7 +35,7 @@ label; supplied manufacturer/CPE vendor evidence gates that prefix, including
 when the declared name or PURL provides the fallback product name. Supplier and
 PURL namespace are not treated as manufacturers. Short/generic names without a
 specific full identity are deliberately not candidates. Titles and summaries are
-not searched for component matches. No fuzzy matching or curated aliases are used.
+not searched for component matches. No fuzzy matching is used. Manufacturer comparisons use the explicit alias policy below.
 
 When the declared component manufacturer matches an advisory's vendor (normalized
 `vendor` or `kev_vendor`), a whole-word component name inside a longer affected
@@ -144,12 +144,31 @@ remain ambiguous rather than selecting the first. An offline refresh can use
 `--csv /path/to/CISA_ICS_ADV_Master.csv --cache-root outputs`. Publication itself
 has no network dependency; commit source evidence alongside the generated catalog.
 
-Manufacturer comparisons normalize hyphens/spacing and trailing legal suffixes
-(Inc., Incorporated, LLC, Corp., Corporation, Ltd., Limited, Co., Company, PLC,
-LLP). The specific source division name `Smiths Medical ASD` maps to
-`Smiths Medical`; ASD is not stripped from unrelated company names. Raw names
-remain visible in source evidence. Product word boundaries and the manufacturer
-gate still apply.
+Manufacturer comparisons strip punctuation, normalize case/spacing and remove
+trailing legal suffixes (Inc., Incorporated, LLC, Corp., Corporation, Ltd.,
+Limited, Co., Company, PLC, LLP and N.V.). Product normalization stays separate.
+The following complete manufacturer names compare as equivalent in both directions:
+
+| Canonical lookup name | Additional names |
+| --- | --- |
+| BD | Becton, Dickinson and Company; CareFusion |
+| Stryker | Stryker Corporation; Physio-Control |
+| Medtronic | Medtronic plc; Covidien |
+| Philips | Koninklijke Philips N.V. |
+| GE HealthCare | GE Healthcare; General Electric |
+| Baxter | Baxter International; Hillrom; Hill-rom; Welch Allyn |
+| Smiths Medical | Smiths Medical ASD; ICU Medical |
+| Siemens Healthineers | Siemens Healthcare; Siemens |
+
+The catalog's explicit `Becton, Dickinson and Company (BD)` and combined
+`CareFusion, Becton, Dickinson and Company (BD)` spellings are included too.
+These are candidate lookup equivalences requested for this checker, not an
+assertion of current corporate ownership or vulnerability across a group's
+products. Only complete names qualify; meaningful extra words are retained.
+Raw vendor names and source URLs remain in findings. Product-specific evidence,
+whole-word product boundaries and review-required status still apply. The real
+published catalog regression covers every listed alias, suffix handling, and
+unrelated-name rejection; symmetric comparison also has focused tests.
 
 The October 16, 2026 repair raises vendor coverage (`vendor` or `kev_vendor`)
 from 772 to 1,478 of 14,720 issues; among 6,474 issues with product labels,

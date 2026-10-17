@@ -614,4 +614,143 @@ test("exact matches preserve the applicable product vendor evidence", () => {
   assert.equal(ambiguous.findings[0].vendor_evidence_source, "");
 });
 
+// These identities come from the checked-in published corpus, not a fixture.
+// Assert a specific source-bound advisory for every requested manufacturer alias.
+const publishedAliases = buildIndex(
+  JSON.parse(
+    fs.readFileSync(
+      require("node:path").join(__dirname, "../docs/sbom_advisories.json"),
+      "utf8",
+    ),
+  ),
+);
+for (const [product, id, aliases] of [
+  [
+    "Alaris 8000",
+    "CVE-2016-8375",
+    [
+      "BD",
+      "Becton, Dickinson and Company",
+      "CareFusion",
+      "Becton, Dickinson and Company (BD)",
+    ],
+  ],
+  [
+    "Medical Beds",
+    "CVE-2017-13077",
+    ["Stryker", "Stryker Corporation", "Physio-Control"],
+  ],
+  [
+    "2090 Carelink Programmer",
+    "CVE-2018-10596",
+    ["Medtronic", "Medtronic plc", "Covidien"],
+  ],
+  [
+    "IntelliVue Information Center iX",
+    "CVE-1999-0103",
+    ["Philips", "Koninklijke Philips N.V."],
+  ],
+  [
+    "Imaging and Ultrasound Products",
+    "CVE-2020-25175",
+    ["GE HealthCare", "GE Healthcare", "General Electric"],
+  ],
+  [
+    "ExactaMix",
+    "CVE-2017-0143",
+    ["Baxter", "Baxter International", "Hillrom", "Hill-rom", "Welch Allyn"],
+  ],
+  [
+    "Medfusion 4000",
+    "CVE-2017-12718",
+    ["Smiths Medical", "ICU Medical", "Smiths Medical ASD Inc."],
+  ],
+  [
+    "Syngo Sc2000 Firmware",
+    "CVE-2017-0143",
+    ["Siemens Healthineers", "Siemens Healthcare", "Siemens"],
+  ],
+]) {
+  test(`published catalog manufacturer aliases: ${aliases[0]}`, () => {
+    for (const alias of aliases) {
+      for (const suffix of [
+        "",
+        " Inc.",
+        " Corp.",
+        " Corporation",
+        " LLC",
+        " plc",
+        " N.V.",
+        " Ltd.",
+        " Co.",
+      ]) {
+        const result = matchSBOM(
+          parseSBOM(
+            cdx([{ name: product, manufacturer: { name: alias + suffix } }]),
+          ),
+          publishedAliases,
+        );
+        const finding = result.findings.find((f) => f.issue_id === id);
+        assert.ok(finding, `${alias + suffix}: ${product} -> ${id}`);
+        assert.equal(finding.status, "review_required");
+        if (product === "Medfusion 4000")
+          assert.ok(result.findings.length >= 8);
+      }
+      const wrong = matchSBOM(
+        parseSBOM(
+          cdx([
+            {
+              name: product,
+              manufacturer: { name: alias + " Unrelated Devices" },
+            },
+          ]),
+        ),
+        publishedAliases,
+      );
+      assert.ok(!wrong.findings.some((f) => f.issue_id === id), alias);
+    }
+  });
+}
+
+test("alias comparison is symmetric and keeps product/vendor scope", () => {
+  for (const [canonical, alias] of [
+    ["BD", "CareFusion"],
+    ["Stryker", "Physio-Control"],
+    ["Medtronic", "Covidien"],
+    ["Philips", "Koninklijke Philips N.V."],
+    ["GE HealthCare", "General Electric"],
+    ["Baxter", "Welch Allyn"],
+    ["Smiths Medical", "ICU Medical"],
+    ["Siemens Healthineers", "Siemens Healthcare"],
+  ]) {
+    for (const [manufacturer, vendor] of [
+      [canonical, alias],
+      [alias, canonical],
+    ]) {
+      const label = "Vendor Specific Pump Model";
+      const advisory = issue("alias-scoped", [label], {
+        product_vendors: [
+          { product: label, vendor, source: "https://example.org/advisory" },
+        ],
+      });
+      const result = check(
+        [{ name: "Specific Pump", manufacturer: { name: manufacturer } }],
+        [advisory],
+      );
+      assert.equal(result.findings.length, 1, manufacturer + " -> " + vendor);
+      assert.equal(result.findings[0].matched_vendor, vendor);
+      assert.deepEqual(result.findings[0].evidence_flags, [
+        "partial product name",
+      ]);
+      assert.equal(
+        check(
+          [{ name: "Specific PumpX", manufacturer: { name: manufacturer } }],
+          [advisory],
+        ).findings.length,
+        0,
+      );
+    }
+  }
+});
+
 console.log(tests + " SBOM behavior checks passed.");

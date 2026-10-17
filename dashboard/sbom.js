@@ -19,20 +19,48 @@
       .replace(/[_\-./]+/g, " ")
       .replace(/\s+/g, " ")
       .trim();
-  // Legal suffixes are identity noise; keep product normalization separate.
-  function vendorNorm(value) {
-    let vendor = norm(value).replace(/,/g, "").trim();
-    vendor = vendor
+  // Vendor identities have their own normalization: product word boundaries must
+  // not inherit punctuation removal or these explicit lookup equivalences.
+  function vendorKey(value) {
+    return text(value)
+      .toLowerCase()
+      .replace(/\bn\.\s*v\.(?=\s|$)/g, "nv")
+      .replace(/[^\p{L}\p{N}\s]/gu, " ")
+      .replace(/\s+/g, " ")
+      .trim()
       .replace(
-        /(?:\s+(?:inc|incorporated|llc|corp|corporation|ltd|limited|co|company|plc|llp))+$/,
+        /(?:\s+(?:inc|incorporated|llc|corp|corporation|ltd|limited|co|company|plc|llp|nv))+$/,
         "",
       )
       .trim();
-    // ASD is Smiths Medical's source-record division name, not a generic suffix.
-    if (vendor === "smiths medical asd") vendor = "smiths medical";
-    return ["unknown", "noassertion", "none", "n/a"].includes(vendor)
-      ? ""
-      : vendor;
+  }
+  // Deliberate manufacturer lookup policy, not a claim about current ownership
+  // or applicability across every product of a corporate group. Match only a
+  // complete alias key; never infer a vendor from a substring or product label.
+  const vendorAliases = new Map();
+  for (const aliases of [
+    [
+      "BD",
+      "Becton Dickinson and Company",
+      "Becton Dickinson and Company BD",
+      "CareFusion",
+      "CareFusion Becton Dickinson and Company BD",
+    ],
+    ["Stryker", "Physio-Control"],
+    ["Medtronic", "Covidien"],
+    ["Philips", "Koninklijke Philips"],
+    ["GE HealthCare", "General Electric"],
+    ["Baxter", "Baxter International", "Hillrom", "Hill-rom", "Welch Allyn"],
+    ["Smiths Medical", "Smiths Medical ASD", "ICU Medical"],
+    ["Siemens Healthineers", "Siemens Healthcare", "Siemens"],
+  ]) {
+    const canonical = vendorKey(aliases[0]);
+    for (const alias of aliases) vendorAliases.set(vendorKey(alias), canonical);
+  }
+  function vendorNorm(value) {
+    const vendor = vendorKey(value);
+    if (["unknown", "noassertion", "none", "n a"].includes(vendor)) return "";
+    return vendorAliases.get(vendor) || vendor;
   }
   const list = (value) => (Array.isArray(value) ? value : []);
   const generic = new Set([
