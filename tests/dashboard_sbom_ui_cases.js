@@ -129,7 +129,7 @@ const documentFor = (name) => ({
   await harness.importDocument(documentFor("openssl"));
   get("device").value = "Synthetic device";
   await get("run").emit("click");
-  assert.match(get("status").textContent, /1 tracked advisories checked/);
+  assert.match(get("status").textContent, /1 tracked advisory checked/);
   assert.equal(get("download").disabled, false);
   assert.deepEqual(
     harness.requests.map((r) => r.url),
@@ -147,6 +147,23 @@ const documentFor = (name) => ({
   const report = JSON.parse(await harness.blobs[0].text());
   assert.equal(report.device, "Synthetic device");
   assert.equal(report.findings[0].status, "review_required");
+
+  assert.match(get("status").textContent, /1 component ·/);
+  assert.match(get("status").textContent, /1 component with candidates/);
+  assert.match(get("status").textContent, /1 advisory match requiring review/);
+  for (const title of [
+    "CVE-2099-10000",
+    "Pump issue (CVE-2099-10000)",
+    "Descriptive pump issue",
+  ]) {
+    harness.catalog.issues[0].title = title;
+    harness.catalog.issues[0].cves = ["CVE-2099-10000", "CVE-2099-10001"];
+    await get("run").emit("click");
+    const html = get("results").innerHTML;
+    assert.equal((html.match(/CVE-2099-10000/g) || []).length, 1);
+    assert.equal((html.match(/CVE-2099-10001/g) || []).length, 1);
+    assert.ok(html.includes(title));
+  }
 
   // Input changes and failed checks cannot leave an older report available.
   state.failure = true;

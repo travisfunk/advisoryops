@@ -131,6 +131,11 @@ function passed(name) {
     passed(
       "actual catalog returns all eight Medfusion CVEs with review evidence",
     );
+    for (const article of await page.locator("#sbom-results article").all()) {
+      const ids = (await article.innerText()).match(/CVE-\d{4}-\d+/g) || [];
+      assert.equal(ids.length, 1, "each Medfusion finding shows its CVE once");
+    }
+    passed("finding identifiers are displayed once");
     const downloadPromise = page.waitForEvent("download");
     await page.locator("#sbom-download").click();
     const download = await downloadPromise;
@@ -162,6 +167,18 @@ function passed(name) {
     assert.ok(!storage.includes(marker));
     passed(
       "synthetic inventory never enters network requests or browser storage",
+    );
+    const aliasDocument = medfusion("ICU Medical L.L.C.,");
+    aliasDocument.components.pop();
+    await upload(aliasDocument);
+    await done();
+    assert.equal(await page.locator("#sbom-results article").count(), 8);
+    const aliasStatus = await page.locator("#sbom-status").innerText();
+    assert.match(aliasStatus, /1 component ·/);
+    assert.match(aliasStatus, /1 component with candidates/);
+    assert.ok(!aliasStatus.includes("1 components"));
+    passed(
+      "ICU Medical punctuated alias returns eight real-catalog findings with singular component grammar",
     );
     await page.setViewportSize({ width: 320, height: 720 });
     assert.ok(

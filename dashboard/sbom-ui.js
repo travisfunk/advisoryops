@@ -56,11 +56,27 @@
     const evidenceFlags = (finding.evidence_flags || [])
       .map((flag) => `<span class="badge">${escape(flag)}</span>`)
       .join(" ");
+    // Titles often equal the issue ID; CVE lists repeat it again. Keep the title
+    // and show only identifiers it does not already contain, once each.
+    const title = String(finding.title || "").trim();
+    const titleTokens = new Set(
+      title.toUpperCase().match(/[\p{L}\p{N}_-]+/gu) || [],
+    );
+    const identifiers = [
+      ...new Set(
+        [finding.issue_id, ...finding.cves]
+          .filter(Boolean)
+          .map((id) => String(id).trim().toUpperCase()),
+      ),
+    ].filter((id) => id && !titleTokens.has(id));
+    const identity = [title, identifiers.join(", ")]
+      .filter(Boolean)
+      .map(escape)
+      .join("<br>");
     return `<article class="prose-card">
       <h3>${escape(finding.component)} <span class="badge">${escape(finding.priority)}</span> ${evidenceFlags}</h3>
       <p>Installed version: ${escape(finding.installed_version || "unknown")}<br>
-        ${escape(finding.title)} · ${escape(finding.issue_id)}<br>
-        ${escape(finding.cves.join(", "))}</p>
+        ${identity}</p>
       <p>${escape(finding.evidence)}<br>
         Advisory version text: ${escape(versions)}<br>${escape(finding.limitation)}</p>
       ${sourceLink}
@@ -180,17 +196,13 @@
       report = matchSBOM(sbom, built);
       const matched =
         report.components.length - report.unmatched_component_indexes.length;
+      const count = (n, singular, plural = singular + "s") =>
+        `${n.toLocaleString()} ${n === 1 ? singular : plural}`;
       status.textContent =
-        sbom.device +
-        " · " +
-        sbom.components.length +
-        " components · " +
-        report.advisories_checked.toLocaleString() +
-        " tracked advisories checked · " +
-        matched +
-        " components with candidates · " +
-        report.findings.length +
-        " advisory matches requiring review.";
+        `${sbom.device} · ${count(sbom.components.length, "component")} · ` +
+        `${count(report.advisories_checked, "tracked advisory", "tracked advisories")} checked · ` +
+        `${count(matched, "component")} with candidates · ` +
+        `${count(report.findings.length, "advisory match", "advisory matches")} requiring review.`;
       results.innerHTML = renderReport(report);
       download.disabled = false;
     } catch (error) {
