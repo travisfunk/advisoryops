@@ -168,7 +168,7 @@ function passed(name) {
     passed(
       "synthetic inventory never enters network requests or browser storage",
     );
-    const aliasDocument = medfusion("ICU Medical");
+    const aliasDocument = medfusion("ICU Medical L.L.C.,");
     aliasDocument.components.pop();
     await upload(aliasDocument);
     await done();
@@ -178,7 +178,7 @@ function passed(name) {
     assert.match(aliasStatus, /1 component with candidates/);
     assert.ok(!aliasStatus.includes("1 components"));
     passed(
-      "ICU Medical alias returns eight real-catalog findings with singular component grammar",
+      "ICU Medical punctuated alias returns eight real-catalog findings with singular component grammar",
     );
     await page.setViewportSize({ width: 320, height: 720 });
     assert.ok(

@@ -681,6 +681,10 @@ for (const [product, id, aliases] of [
         " LLC",
         " plc",
         " N.V.",
+        " N.V.,",
+        " L.L.C.",
+        " L.L.P.,",
+        " P.L.C.",
         " Ltd.",
         " Co.",
       ]) {

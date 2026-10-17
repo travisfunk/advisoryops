@@ -24,12 +24,11 @@
   function vendorKey(value) {
     return text(value)
       .toLowerCase()
-      .replace(/\bn\.\s*v\.(?=\s|$)/g, "nv")
       .replace(/[^\p{L}\p{N}\s]/gu, " ")
       .replace(/\s+/g, " ")
       .trim()
       .replace(
-        /(?:\s+(?:inc|incorporated|llc|corp|corporation|ltd|limited|co|company|plc|llp|nv))+$/,
+        /(?:\s+(?:inc|incorporated|llc|corp|corporation|ltd|limited|co|company|plc|llp|nv|l l c|l l p|p l c|n v))+$/,
         "",
       )
       .trim();
