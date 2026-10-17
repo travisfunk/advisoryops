@@ -60,12 +60,13 @@ catalog remains below its 25 MiB publication guard.
 | Old CPE display parsing retained escapes/truncated names | Decode escaped punctuation and retain authoritative CPE names alongside earlier labels. Existing evidence labels are not silently deleted. |
 | An FDA helper confused recall hazard and device risk class | Remove the recall-class conversion. Only explicit `device_class` populates device risk. Production builder tracing found no call to the incorrect helper; this fix does not claim to revalidate historical FDA metadata. [FDA describes recall classifications separately](https://www.fda.gov/medical-devices/postmarket-requirements-devices/recalls-corrections-and-removals-devices). |
 | Name-based device class lookup selected the first match | Empty names and conflicting class results now return unknown; exact product-code lookup retains precedence. |
+| Main advisory links interpolated untrusted data | Require HTTP(S) source URLs, escape attribute values, validate CVE link identifiers, and use a data attribute/event listener for read-state controls. An adversarial browser case supplies a JavaScript URL, malformed CVE HTML and an executable-looking issue ID and checks that none execute. |
 | Public wording overstated availability/cost | Clarify that the complete **published subset** is loaded, guidance is present where available, and optional AI API use can incur charges. Remove unsupported competitor-pricing assertions. |
 
 ## Executable checks
 
 Local final build: **1,198 Python tests passed**, one optional test skipped and
-one integration test deselected. All **31 Node matching cases** and **18 Chromium
+one integration test deselected. All **31 Node matching cases** and **19 Chromium
 acceptance checks** passed; the controller harness also runs in the Python suite.
 CI and deployed-file verification are required before calling this release live.
 
@@ -98,7 +99,7 @@ existing integration test is excluded from the offline suite; the optional
 pipeline feed is present, and it must not be counted as tested. Other optional
 fixture-dependent tests may be skipped and must not be counted as tested.
 
-`tests/browser_uat.cjs` runs **18 acceptance checks** against the real `docs/`
+`tests/browser_uat.cjs` runs **19 acceptance checks** against the real `docs/`
 files served by an ephemeral loopback server:
 
 - SBOM deep link, tab visibility and keyboard focus.
@@ -113,6 +114,7 @@ files served by an ephemeral loopback server:
 - SPDX import follows the documented identity policy; supplier/originator fields
   do not become manufacturers automatically.
 - Component HTML is escaped, with no executed event handler.
+- Main advisory links reject non-HTTP(S) URLs; malformed CVE text and executable-looking issue IDs cannot inject HTML or inline JavaScript.
 - Unsupported/malformed/oversized input fails without leaving stale exports.
 - Catalog HTTP failure and manifest/catalog mismatch fail closed.
 - Clear removes device/file/results.

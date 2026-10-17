@@ -298,6 +298,45 @@ function passed(name) {
         document.querySelector("#visit-changes-banner").textContent.length > 0,
     );
     passed("advisory search, detail view and local review controls work");
+    const adversarial = await browser.newPage();
+    adversarial.on("pageerror", (e) => errors.push(e.message));
+    const feed = JSON.parse(
+      await fs.readFile(path.join(root, "feed_healthcare.json"), "utf8"),
+    );
+    const bad = {
+      ...feed[0],
+      issue_id: "audit');window.__idXSS=1;//",
+      title: "Synthetic security acceptance record",
+      canonical_link: "javascript:window.__urlXSS=1",
+      cves: ['CVE-2026-1234"><img src=x onerror="window.__cveXSS=1">'],
+    };
+    await adversarial.route("**/feed_healthcare.json", (route) =>
+      route.fulfill({ json: [bad] }),
+    );
+    await adversarial.goto(base);
+    await adversarial.locator(".issue-card").first().click();
+    assert.equal(
+      await adversarial
+        .locator('#detail-content a[href^="javascript:"]')
+        .count(),
+      0,
+    );
+    assert.equal(await adversarial.locator("#detail-content img").count(), 0);
+    await adversarial.locator("#mark-read-btn").click();
+    assert.equal(
+      await adversarial.evaluate(
+        () => window.__idXSS || window.__urlXSS || window.__cveXSS,
+      ),
+      undefined,
+    );
+    assert.match(
+      await adversarial.locator("#detail-content").innerText(),
+      /Source URL unavailable/,
+    );
+    await adversarial.close();
+    passed(
+      "main advisory view rejects unsafe URLs, malformed CVE HTML and executable issue IDs",
+    );
     assert.deepEqual(errors, []);
     passed("no uncaught JavaScript errors during the acceptance flows");
     await fs.writeFile(
