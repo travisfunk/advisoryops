@@ -907,9 +907,10 @@ a:hover { text-decoration:underline; }
     } catch (e) { return ''; }
   }
 
+  var CVE_ID_RE = /^CVE-\d{4}-\d{4,}$/i;
   function cveLink(value, className, stopPropagation) {
     var cve = String(value || '');
-    if (!/^CVE-\d{4}-\d{4,}$/i.test(cve)) return escapeHtml(cve);
+    if (!CVE_ID_RE.test(cve)) return escapeHtml(cve);
     return '<a class="' + className + '" href="https://nvd.nist.gov/vuln/detail/' +
       encodeURIComponent(cve) + '" target="_blank" rel="noopener noreferrer"' +
       (stopPropagation ? ' onclick="event.stopPropagation()"' : '') + '>' + escapeHtml(cve) + '</a>';
