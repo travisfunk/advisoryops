@@ -71,6 +71,16 @@
     const unmatched = new Set(report.unmatched_component_indexes);
     const warnings = [
       ...report.warnings,
+      ...(Number.isFinite(report.advisories_with_manufacturer_evidence)
+        ? [
+            `${report.advisories_with_product_evidence - report.advisories_with_manufacturer_evidence} advisories with product names lack manufacturer/product evidence needed for partial-name matches.`,
+          ]
+        : []),
+      ...(report.vendor_evidence_checked_at
+        ? [
+            `Latest manufacturer evidence check ${report.vendor_evidence_checked_at}.`,
+          ]
+        : []),
       report.interpretation,
       `${report.advisories_without_product_evidence} advisories have no product names and cannot be matched.`,
       `Catalog published ${report.catalog_generated_at}. Checks use this snapshot; import again to recheck after updates.`,

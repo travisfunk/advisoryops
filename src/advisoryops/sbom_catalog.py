@@ -20,7 +20,8 @@ def write_sbom_catalog(
     """Publish every tracked issue, including those without product evidence."""
     from .source_vendors import load_vendor_sources, populate_source_vendors
 
-    rows = populate_source_vendors(rows, load_vendor_sources())
+    sources = load_vendor_sources()
+    rows = populate_source_vendors(rows, sources)
     fields = (
         "issue_id",
         "title",
@@ -30,6 +31,7 @@ def write_sbom_catalog(
         "kev_vendor",
         "kev_product",
         "affected_products",
+        "product_vendors",
         "affected_versions",
         "canonical_link",
     )
@@ -37,6 +39,8 @@ def write_sbom_catalog(
         "version": 1,
         "generated_at": generated_at,
         "total_records": len(rows),
+        "vendor_evidence_checked_at": max((r.get("checked_at", "") for r in sources), default=""),
+        "records_with_vendor_products": sum(bool(r.get("product_vendors")) for r in rows),
         "records_with_products": sum(
             bool(r.get("affected_products") or r.get("kev_product")) for r in rows
         ),

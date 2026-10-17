@@ -112,8 +112,16 @@ def _save_cve_raw(cve_data: Dict[str, Any], cache_dir: Path) -> Optional[str]:
         return None
 
     cache_file = cache_dir / f"{cve_id}.json"
+    from advisoryops.source_vendors import IDENTITY_SCHEMA
+
     if cache_file.exists():
-        return cve_id  # Already cached
+        try:
+            existing = json.loads(cache_file.read_text())
+            modified = cve_obj.get("lastModified", "")
+            if existing.get("identity_schema") == IDENTITY_SCHEMA and (not modified or existing.get("nvd_last_modified", "") >= modified):
+                return cve_id
+        except (OSError, ValueError):
+            pass
 
     # Extract and save the enrichment fields (same format as nvd_enrich cache)
     fields = _extract_fields_for_cache(cve_obj)
@@ -196,8 +204,12 @@ def _extract_fields_for_cache(cve_obj: Dict[str, Any]) -> Dict[str, Any]:
                         seen_products.add(readable)
                         products.append(readable)
     result["affected_products"] = products
-    from advisoryops.source_vendors import cpe_vendors
+    from advisoryops.source_vendors import cpe_vendors, cpe_identities, IDENTITY_SCHEMA
 
+    result["nvd_last_modified"] = cve_obj.get("lastModified", "")
+    result["identity_schema"] = IDENTITY_SCHEMA
+    result["vendor_checked_at"] = datetime.now(timezone.utc).isoformat()
+    result["product_identities"] = cpe_identities(configurations)
     result["cpe_vendors"] = cpe_vendors(configurations)
     if len(result["cpe_vendors"]) == 1:
         result["vendor"] = result["cpe_vendors"][0]
@@ -431,7 +443,8 @@ def run_backfill(
                 continue
 
             cache_file = cache_dir / f"{cve_id}.json"
-            if cache_file.exists():
+            from advisoryops.nvd_enrich import _load_cache
+            if _load_cache(cve_id, cache_dir) is not None:
                 page_skipped += 1
             else:
                 _save_cve_raw(vuln, cache_dir)
@@ -523,6 +536,8 @@ def generate_signals_from_cache(
 
         signals.append({
             "source": source_id,
+            "product_identities": data.get("product_identities") or [],
+            "vendor_source_kind": "nvd",
             "vendor": data.get("vendor", ""),
             "guid": cve_id,
             "title": cve_id,
@@ -656,9 +671,13 @@ def incremental_update(
 
             stats["new_cves_fetched"] += 1
             cache_file = cache_dir / f"{cve_id}.json"
-            if not cache_file.exists():
-                _save_cve_raw(vuln, cache_dir)
+            existed = cache_file.exists()
+            before = cache_file.read_bytes() if existed else None
+            _save_cve_raw(vuln, cache_dir)
+            if not existed:
                 stats["new_cves_cached"] += 1
+            elif cache_file.read_bytes() != before:
+                stats["updated_cves_cached"] = stats.get("updated_cves_cached", 0) + 1
 
         start_index += page_size
 

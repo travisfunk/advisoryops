@@ -15,6 +15,7 @@
   const norm = (value) =>
     text(value)
       .toLowerCase()
+      .replace(/\\([^\p{L}\p{N}\s])/gu, "$1")
       .replace(/[_\-./]+/g, " ")
       .replace(/\s+/g, " ")
       .trim();
@@ -29,7 +30,9 @@
       .trim();
     // ASD is Smiths Medical's source-record division name, not a generic suffix.
     if (vendor === "smiths medical asd") vendor = "smiths medical";
-    return vendor;
+    return ["unknown", "noassertion", "none", "n/a"].includes(vendor)
+      ? ""
+      : vendor;
   }
   const list = (value) => (Array.isArray(value) ? value : []);
   const generic = new Set([
@@ -267,7 +270,8 @@
     const index = new Map(),
       vendorProducts = new Map(),
       ids = new Set();
-    let withProducts = 0;
+    let withProducts = 0,
+      withVendorProducts = 0;
     for (const issue of catalog.issues) {
       if (!text(issue?.issue_id) || ids.has(issue.issue_id))
         throw Error("Advisory catalog has missing or duplicate issue IDs.");
@@ -278,10 +282,34 @@
       const vendors = new Set(
         [issue.vendor, issue.kev_vendor].map(vendorNorm).filter(Boolean),
       );
+      const scoped = Array.isArray(issue.product_vendors);
+      if (scoped && issue.product_vendors.length) withVendorProducts++;
+      for (const binding of list(issue.product_vendors)) {
+        if (!text(binding?.vendor) || !products.includes(binding?.product))
+          throw Error("Advisory catalog has invalid product/vendor evidence.");
+      }
       for (const label of new Set(products)) {
-        for (const vendor of vendors) {
+        const labelVendors = scoped
+          ? new Set(
+              issue.product_vendors
+                .filter((b) => b.product === label)
+                .map((b) => vendorNorm(b.vendor))
+                .filter(Boolean),
+            )
+          : products.length === 1 && vendors.size === 1
+            ? vendors
+            : new Set();
+        for (const vendor of labelVendors) {
           if (!vendorProducts.has(vendor)) vendorProducts.set(vendor, []);
-          vendorProducts.get(vendor).push({ issue, label });
+          const binding = list(issue.product_vendors).find(
+            (b) => b.product === label && vendorNorm(b.vendor) === vendor,
+          );
+          vendorProducts.get(vendor).push({
+            issue,
+            label,
+            vendorName: binding?.vendor || issue.vendor || issue.kev_vendor,
+            vendorSource: binding?.source || "",
+          });
         }
         const full = norm(label),
           words = full.split(" ");
@@ -295,6 +323,11 @@
         }
       }
     }
+    if (
+      catalog.records_with_vendor_products != null &&
+      catalog.records_with_vendor_products !== withVendorProducts
+    )
+      throw Error("Advisory catalog manufacturer coverage is inconsistent.");
     if (catalog.records_with_products !== withProducts)
       throw Error("Advisory catalog product coverage is inconsistent.");
     return { catalog, index, vendorProducts };
@@ -368,10 +401,21 @@
             // PURL namespace are not assumed to be the software manufacturer.
             if (vendor && hit.prefix && vendorNorm(hit.prefix) !== vendor)
               continue;
+            const scoped = Array.isArray(hit.issue.product_vendors);
+            const boundVendors = scoped
+              ? hit.issue.product_vendors
+                  .filter((b) => b.product === hit.label)
+                  .map((b) => vendorNorm(b.vendor))
+              : [];
+            if (vendor && boundVendors.length && !boundVendors.includes(vendor))
+              continue;
             if (vendor && !hit.prefix && norm(hit.label) === name) {
-              const advisoryVendors = [hit.issue.vendor, hit.issue.kev_vendor]
-                .map(vendorNorm)
-                .filter(Boolean);
+              const advisoryVendors = scoped
+                ? boundVendors
+                : [hit.issue.vendor, hit.issue.kev_vendor]
+                    .map(vendorNorm)
+                    .filter(Boolean);
+              if (scoped && !advisoryVendors.length) continue;
               if (advisoryVendors.length && !advisoryVendors.includes(vendor))
                 continue;
             }
@@ -426,6 +470,8 @@
           cves: list(hit.issue.cves),
           source_url: text(hit.issue.canonical_link),
           affected_product: hit.label,
+          matched_vendor: text(hit.vendorName),
+          vendor_evidence_source: text(hit.vendorSource),
           advisory_version_evidence: list(hit.issue.affected_versions),
           status: "review_required",
           evidence_flags: hit.partialProductName
@@ -457,6 +503,10 @@
       catalog_generated_at: built.catalog.generated_at,
       advisories_checked: built.catalog.total_records,
       advisories_with_product_evidence: built.catalog.records_with_products,
+      advisories_with_manufacturer_evidence:
+        built.catalog.records_with_vendor_products ?? null,
+      vendor_evidence_checked_at:
+        built.catalog.vendor_evidence_checked_at || "",
       advisories_without_product_evidence:
         built.catalog.total_records - built.catalog.records_with_products,
       components: sbom.components,

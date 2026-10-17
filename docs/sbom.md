@@ -158,3 +158,43 @@ The executable regression loads the actual published catalog and requires all
 eight Medfusion 4000 CVEs, including CVE-2017-12718, to return candidates for
 manufacturer `Smiths Medical` with `partial product name` evidence. A second
 regression reproduces the catalog from the archive and source snapshot.
+
+
+## Historical recovery and product-scoped vendor evidence
+
+`configs/sbom_vendor_sources.json` version 2 records explicit vendor/product
+pairs, source URLs, NVD check dates and recovery outcomes. The catalog remains
+schema version 1 with additive `product_vendors`, `records_with_vendor_products`
+and `vendor_evidence_checked_at` fields. Summary `vendor` values are not a license
+to apply that manufacturer to every product in a multi-vendor advisory.
+
+CPE extraction excludes non-vulnerable platform prerequisites, negated nodes,
+and wildcard vendor/product identities. CSAF extraction follows vendor ancestry
+and each CVE's `known_affected` product IDs; unresolved relationships stay unknown.
+Authoritative CPE names recover historical display-name escaping/truncation errors
+without deleting older labels. Partial matches use the resulting product-specific
+bindings. Exported findings retain the matched vendor and vendor evidence URL.
+
+NVD caches carry an identity schema version. Older flattened caches are refetched
+or upgraded from raw configurations; modified NVD source records refresh current
+caches too. Source identities survive correlation, baseline merging and feed
+projection, including standalone builds without the checked-in snapshot. Stored
+CSAF evidence cannot be replaced by a lower-authority CSV refresh; older NVD
+cache files cannot roll back a newer persisted check.
+
+Run a complete, resumable historical recovery with:
+
+```bash
+python -m advisoryops.source_vendors --recover-nvd --nvd-limit 0
+```
+
+The daily workflow checks at most 200 missing/stale CVEs, in 100-CVE batches,
+with a 30-day recheck interval. Missing records go first, followed by the oldest
+checks. Each completed batch is checkpointed; incomplete responses fail instead
+of marking records checked. Public raw responses stay in ignored `outputs/`;
+only the minimal evidence snapshot is committed. No API key is required for this
+recovery command. Unknowns and multi-vendor identities are retained honestly.
+
+For reproducible acceptance scenarios and current measured coverage, see the
+[release audit](release-audit.md). These checks establish candidate-generation
+behavior and data handling, not installed-version vulnerability applicability.

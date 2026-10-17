@@ -68,7 +68,7 @@ jobs:
         run: python -m advisoryops.kev_full_catalog --feed "${RUNNER_TEMP}/advisoryops_canonical.json"
 
       - name: Refresh source-backed SBOM vendor evidence
-        run: python -m advisoryops.source_vendors
+        run: python -m advisoryops.source_vendors --recover-nvd --nvd-limit 200
 
       - name: Publish scalable public feed
         run: |

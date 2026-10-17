@@ -19,6 +19,7 @@ Caching:
 from __future__ import annotations
 
 import json
+from datetime import datetime, timezone
 import logging
 import os
 import re
@@ -177,8 +178,12 @@ def _extract_nvd_fields(cve_item: Dict[str, Any]) -> Dict[str, Any]:
                         seen_products.add(readable)
                         products.append(readable)
     result["affected_products"] = products
-    from advisoryops.source_vendors import cpe_vendors
+    from advisoryops.source_vendors import cpe_vendors, cpe_identities, IDENTITY_SCHEMA
 
+    result["nvd_last_modified"] = cve_item.get("lastModified", "")
+    result["identity_schema"] = IDENTITY_SCHEMA
+    result["vendor_checked_at"] = datetime.now(timezone.utc).isoformat()
+    result["product_identities"] = cpe_identities(configurations)
     result["cpe_vendors"] = cpe_vendors(configurations)
     if len(result["cpe_vendors"]) == 1:
         result["vendor"] = result["cpe_vendors"][0]
@@ -337,7 +342,15 @@ def _load_cache(cve_id: str, cache_dir: Path) -> Optional[Dict[str, Any]]:
     cache_file = cache_dir / f"{cve_id}.json"
     if cache_file.exists():
         try:
-            return json.loads(cache_file.read_text(encoding="utf-8"))
+            from .source_vendors import IDENTITY_SCHEMA
+
+            cached = json.loads(cache_file.read_text(encoding="utf-8"))
+            if cached.get("identity_schema") != IDENTITY_SCHEMA:
+                if "configurations" not in cached:
+                    return None  # Old flattened caches must be refetched once.
+                cached = _extract_nvd_fields(cached)
+                _save_cache(cve_id, cached, cache_dir)
+            return cached
         except (json.JSONDecodeError, OSError):
             return None
     return None
@@ -389,21 +402,25 @@ def enrich_issue(
         # Check cache first
         cached = _load_cache(cve_id, cache_dir)
         if cached is not None:
-            _apply_nvd_fields(issue, cached)
+            _apply_nvd_fields(issue, cached, cve_id=cve_id)
             return issue
 
         # Fetch from API
         fields = _fetch_cve(cve_id, rate_limiter=rate_limiter, _fetch_fn=_fetch_fn)
         if fields:
             _save_cache(cve_id, fields, cache_dir)
-            _apply_nvd_fields(issue, fields)
+            _apply_nvd_fields(issue, fields, cve_id=cve_id)
             return issue
 
     return issue
 
 
-def _apply_nvd_fields(issue: Dict[str, Any], nvd: Dict[str, Any]) -> None:
+def _apply_nvd_fields(issue: Dict[str, Any], nvd: Dict[str, Any], *, cve_id: str = "") -> None:
     """Apply NVD-extracted fields onto an issue dict."""
+    if cve_id and "product_identities" in nvd:
+        source = "https://nvd.nist.gov/vuln/detail/" + cve_id
+        retained = [p for p in issue.get("source_product_identities") or [] if p.get("source") != source]
+        issue["source_product_identities"] = retained + [dict(p, source=source, kind="nvd") for p in nvd["product_identities"]]
     if nvd.get("vendor") and not issue.get("vendor"):
         issue["vendor"] = nvd["vendor"]
     if nvd.get("nvd_description"):
