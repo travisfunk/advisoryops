@@ -425,6 +425,9 @@ test("partial product names accept explicit KEV vendor evidence and deduplicate 
           vendor: "Smiths Medical",
           kev_vendor: "Smiths-Medical",
           kev_product: medfusionLabel,
+          product_vendors: [
+            { product: medfusionLabel, vendor: "Smiths Medical" },
+          ],
         },
       ),
     ],
@@ -512,6 +515,103 @@ test("actual published catalog returns all eight Medfusion 4000 CVEs", () => {
     buildIndex(published),
   );
   assert.equal(wrongManufacturer.findings.length, 0);
+});
+
+test("scoped product evidence prevents cross-vendor partial and exact matches", () => {
+  const advisory = issue(
+    "multi-vendor",
+    ["Alpha Station Pro", "Beta Station Pro"],
+    {
+      vendor: "Alpha",
+      product_vendors: [
+        { vendor: "Alpha", product: "Alpha Station Pro" },
+        { vendor: "Beta", product: "Beta Station Pro" },
+      ],
+    },
+  );
+  for (const vendor of ["Alpha", "Beta"]) {
+    const result = check(
+      [{ name: "Station", manufacturer: { name: vendor } }],
+      [advisory],
+    );
+    assert.equal(result.findings.length, 1);
+    assert.equal(result.findings[0].affected_product, `${vendor} Station Pro`);
+  }
+  assert.equal(
+    check(
+      [{ name: "Beta Station Pro", manufacturer: { name: "Alpha" } }],
+      [advisory],
+    ).findings.length,
+    0,
+  );
+  assert.equal(
+    check([{ name: "Station", manufacturer: { name: "Other" } }], [advisory])
+      .findings.length,
+    0,
+  );
+});
+
+test("unbound published products cannot borrow a summary vendor", () => {
+  const advisory = issue("unbound", [medfusionLabel], {
+    vendor: "Smiths Medical",
+    product_vendors: [],
+  });
+  assert.equal(check([medfusionComponent], [advisory]).findings.length, 0);
+  const multi = issue(
+    "legacy-multi",
+    [medfusionLabel, medfusionLabel + " System"],
+    { vendor: "Smiths Medical" },
+  );
+  assert.equal(check([medfusionComponent], [multi]).findings.length, 0);
+});
+
+test("corporate normalization retains meaningful words and division identities", () => {
+  for (const manufacturer of [
+    "Smiths Medical Devices Inc.",
+    "Smiths Medical Incognito",
+    "Smiths Medical Corporation Systems",
+    "Other ASD Inc.",
+    "Unknown Inc.",
+  ]) {
+    assert.equal(
+      check(
+        [{ ...medfusionComponent, manufacturer: { name: manufacturer } }],
+        [issue("medfusion", [medfusionLabel], { vendor: "Smiths Medical" })],
+      ).findings.length,
+      0,
+    );
+  }
+});
+
+test("exact matches preserve the applicable product vendor evidence", () => {
+  const advisory = issue("exact-scoped", ["Station"], {
+    product_vendors: [
+      {
+        product: "Station",
+        vendor: "Alpha",
+        source: "https://alpha.example/advisory",
+      },
+      {
+        product: "Station",
+        vendor: "Beta",
+        source: "https://beta.example/advisory",
+      },
+    ],
+  });
+  const result = check(
+    [{ name: "Station", manufacturer: { name: "Beta Inc." } }],
+    [advisory],
+  );
+  assert.equal(result.findings.length, 1);
+  assert.deepEqual(result.findings[0].evidence_flags, []);
+  assert.equal(result.findings[0].matched_vendor, "Beta");
+  assert.equal(
+    result.findings[0].vendor_evidence_source,
+    "https://beta.example/advisory",
+  );
+  const ambiguous = check([{ name: "Station" }], [advisory]);
+  assert.equal(ambiguous.findings[0].matched_vendor, "");
+  assert.equal(ambiguous.findings[0].vendor_evidence_source, "");
 });
 
 console.log(tests + " SBOM behavior checks passed.");

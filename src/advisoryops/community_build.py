@@ -163,6 +163,7 @@ def merge_baseline_feed(
     _GUARD_COLLECTION: tuple = (
         "cwe_ids",
         "affected_products",
+        "source_product_identities",
         "actions",
         "remediation_steps",
         "source_mitigations",
@@ -239,6 +240,17 @@ def merge_baseline_feed(
             if not row.get(field) and base.get(field):
                 row[field] = base[field]
 
+        # Keep other sources' identities while replacing corrections from a
+        # source present in this run. Never flatten all vendors onto all products.
+        incoming = new.get("source_product_identities") or []
+        refreshed = {p.get("source") for p in incoming}
+        retained = [
+            p
+            for p in base.get("source_product_identities") or []
+            if p.get("source") not in refreshed
+        ]
+        if incoming or retained:
+            row["source_product_identities"] = retained + incoming
         merged.append(row)
 
     # Pass 2: append baseline-only issues (not seen in new run at all).
@@ -347,6 +359,7 @@ def _feed_entry(issue: Dict[str, Any]) -> Dict[str, Any]:
         **_cvss_exposure_fields(issue.get("cvss_vector", "")),
         "cwe_ids": issue.get("cwe_ids") or [],
         "affected_products": issue.get("affected_products") or [],
+        "source_product_identities": issue.get("source_product_identities") or [],
         "nvd_description": issue.get("nvd_description", ""),
         "source_summary": issue.get("source_summary", ""),
         # KEV-specific fields
@@ -1930,7 +1943,7 @@ def build_community_feed(
         "kev_required_action", "kev_due_date", "kev_vendor", "kev_product",
         "kev_vulnerability_name",
         "nvd_description", "cvss_score", "cvss_severity", "cvss_vector",
-        "cwe_ids", "affected_products", "source_summary", "vendor", "severity",
+        "cwe_ids", "affected_products", "source_product_identities", "source_summary", "vendor", "severity",
     )
     for ar in alert_rows:
         iid = ar.get("issue_id", "")

@@ -29,3 +29,16 @@ jobs:
           node --check dashboard/sbom-ui.js
       - name: Run offline regression suite
         run: python -m pytest tests/ -q
+      - name: Install browser acceptance dependencies
+        run: |
+          npm ci --ignore-scripts
+          npx playwright install --with-deps chromium
+      - name: Run browser acceptance checks
+        run: npm run test:browser
+      - name: Preserve browser acceptance evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-acceptance-evidence
+          path: outputs/uat/
+          if-no-files-found: ignore

@@ -112,6 +112,29 @@ def _ensure_signal_id(item: Dict[str, Any], *, source_id: str) -> None:
     item["signal_id"] = _sha256_hex(f"{source_id}|{guid}")
 
 
+def _signal_vendor_fields(signals: List[Dict[str, Any]], cves=None) -> Dict[str, Any]:
+    """Promote deterministic vendor evidence before downstream feed projections."""
+    vendors = {s["vendor"] for s in signals if s.get("vendor")}
+    identities = [
+        {
+            "vendor": identity["vendor"],
+            "product": identity["product"],
+            "source": sig.get("link", ""),
+            "kind": sig.get(
+                "vendor_source_kind",
+                "nvd" if "nvd" in sig.get("source", "") else "csaf",
+            ),
+        }
+        for sig in signals
+        for identity in sig.get("product_identities") or []
+        if not identity.get("cves") or set(identity["cves"]).intersection(cves or [])
+    ]
+    return {
+        "vendor": next(iter(vendors)) if len(vendors) == 1 else "",
+        "source_product_identities": identities,
+    }
+
+
 @dataclass
 class _IssueBuilder:
     issue_id: str
@@ -163,7 +186,7 @@ class _IssueBuilder:
             "fetched_at": fetched_at,
         }
         # Passthrough KEV fields from discover items
-        for key in ("vendor", "kev_required_action", "kev_due_date", "kev_vendor",
+        for key in ("vendor", "product_identities", "vendor_source_kind", "kev_required_action", "kev_due_date", "kev_vendor",
                      "kev_product", "kev_vulnerability_name"):
             val = it.get(key)
             if val:
@@ -217,6 +240,7 @@ class _IssueBuilder:
                 "links": len(self.links),
             },
             "signals": signals_sorted,
+            **_signal_vendor_fields(signals_sorted, self.cves),
         }
 
 
@@ -355,6 +379,7 @@ def _merge_issues_group(
             "links": len(links_sorted),
         },
         "signals": signals_sorted,
+        **_signal_vendor_fields(signals_sorted, cves),
         "merged_from": absorbed_ids,
     }
 

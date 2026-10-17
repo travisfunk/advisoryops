@@ -296,7 +296,11 @@ def parse_csaf_advisory(csaf: Dict[str, Any]) -> Dict[str, Any]:
             prod_name = sub.get("name", "")
             if prod_name:
                 products.append(prod_name)
-    if vendors:
+    from advisoryops.source_vendors import csaf_cve_identities
+
+    result["product_identities"] = csaf_cve_identities(csaf)
+    # Summary metadata may be singular only; matching uses scoped identities.
+    if len(set(vendors)) == 1:
         result["vendor"] = vendors[0]
     if products:
         result["products"] = products
@@ -316,6 +320,7 @@ def _merge_advisory(
     merged = dict(csv_row)
 
     if csaf_data is None:
+        merged["vendor_source_kind"] = "cisa_csv"
         return merged
 
     # CSAF overrides where it has richer data
@@ -334,6 +339,8 @@ def _merge_advisory(
 
     if csaf_data.get("vendor"):
         merged["vendor"] = csaf_data["vendor"]
+    merged["product_identities"] = csaf_data.get("product_identities") or []
+    merged["vendor_source_kind"] = "csaf" if merged["product_identities"] or csaf_data.get("vendor") else "cisa_csv"
 
     # Merge CVEs (union of both sources)
     csv_cves = set(csv_row.get("cves") or [])
@@ -572,6 +579,8 @@ def generate_signals_from_cache(
 
         signals.append({
             "source": source_id,
+            "product_identities": data.get("product_identities") or ([{"vendor": vendor, "product": product}] if vendor and product and data.get("vendor_source_kind") == "cisa_csv" else []),
+            "vendor_source_kind": data.get("vendor_source_kind", "csaf"),
             "vendor": vendor,
             "guid": advisory_id,
             "title": title,

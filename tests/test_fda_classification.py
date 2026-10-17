@@ -27,35 +27,23 @@ from advisoryops.score import score_issue_v2, _score_fda_risk_class
 
 
 class TestExtractRiskClassFromEnforcement:
-    def test_class_iii(self):
-        assert extract_risk_class_from_enforcement({"classification": "Class III"}) == "3"
+    def test_recall_hazard_classes_cannot_become_device_classes(self):
+        for value in ("Class I", "Class II", "Class III", "class iii", "  Class II  "):
+            assert extract_risk_class_from_enforcement({"classification": value}) is None
 
-    def test_class_ii(self):
-        assert extract_risk_class_from_enforcement({"classification": "Class II"}) == "2"
+    def test_explicit_device_class_wins_over_opposite_recall_hazard(self):
+        assert extract_risk_class_from_enforcement({"classification": "Class I", "openfda": {"device_class": ["3"]}}) == "3"
+        assert extract_risk_class_from_enforcement({"classification": "Class III", "device_class": "1"}) == "1"
 
-    def test_class_i(self):
-        assert extract_risk_class_from_enforcement({"classification": "Class I"}) == "1"
-
-    def test_case_insensitive(self):
-        assert extract_risk_class_from_enforcement({"classification": "class iii"}) == "3"
-
-    def test_whitespace_tolerated(self):
-        assert extract_risk_class_from_enforcement({"classification": "  Class II  "}) == "2"
-
-    def test_missing_field(self):
-        assert extract_risk_class_from_enforcement({}) is None
-
-    def test_null_value(self):
-        assert extract_risk_class_from_enforcement({"classification": None}) is None
-
-    def test_unknown_value(self):
-        assert extract_risk_class_from_enforcement({"classification": "Class IV"}) is None
+    def test_missing_and_unknown_values(self):
+        for record in ({}, {"classification": None}, {"classification": "Class IV"}):
+            assert extract_risk_class_from_enforcement(record) is None
 
 
 class TestLookupClassByRecallNumber:
     def test_happy_path(self, tmp_path):
         (tmp_path / "enf_Z-0001-2014.json").write_text(
-            json.dumps({"classification": "Class II", "recall_number": "Z-0001-2014"}),
+            json.dumps({"classification": "Class I", "device_class": "2", "recall_number": "Z-0001-2014"}),
             encoding="utf-8",
         )
         assert lookup_class_by_recall_number("Z-0001-2014", cache_dir=tmp_path) == "2"
@@ -577,3 +565,10 @@ class TestExtractVendorProductsForIssue:
         vendor, products = extract_vendor_products_for_issue(issue, cache_dir=tmp_path)
         assert vendor is None
         assert products == []
+
+
+def test_device_class_name_lookup_rejects_empty_names_and_conflicting_classes():
+    assert lookup_risk_class(device_name="Infusion Pump", classifications={"A": {"device_name": "", "device_class": "3"}}) is None
+    db={"A": {"device_name": "Infusion Pump", "device_class": "2"}, "B": {"device_name": "Pump", "device_class": "3"}}
+    assert lookup_risk_class(device_name="Infusion Pump", classifications=db) is None
+    assert lookup_risk_class(product_code="A", device_name="Infusion Pump", classifications=db) == "2"

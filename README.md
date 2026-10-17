@@ -19,7 +19,7 @@ affected-version applicability and exploitability require source confirmation.
 
 **[Browse advisories](https://travisfunk.github.io/advisoryops/)** ·
 **[Check a device SBOM](https://travisfunk.github.io/advisoryops/#sbom)** ·
-[Supported formats and matching limits](docs/sbom.md)
+[Supported formats and matching limits](docs/sbom.md) · [Release audit](docs/release-audit.md)
 
 
 ---
@@ -28,7 +28,7 @@ affected-version applicability and exploitability require source confirmation.
 
 1. **Healthcare-focused by design.** The default view is medical device issues, not general IT vulnerabilities. Scoring uses five healthcare-specific dimensions (source authority, device context, patch feasibility, clinical impact, FDA risk class). An FDA Class III cardiac device with no patch available gets a higher priority than a WordPress plugin bug with a patch — that's the point.
 
-2. **Fully open stack.** The data sources are public, the analysis pipeline is open source, the feed outputs are free to consume, and the dashboard is a static HTML file served from GitHub Pages. Most alternatives lock the data, the analysis, or the delivery behind enterprise pricing. AdvisoryOps is Apache 2.0 and free forever.
+2. **Fully open stack.** The data sources are public, the analysis pipeline is open source, the feed outputs are free to consume, and the dashboard is a static HTML file served from GitHub Pages. AdvisoryOps is Apache 2.0; the public dashboard requires no account. Optional AI-assisted local runs require API access and may incur provider charges.
 
 3. **AI-assisted remediation guidance.** Optional recommendation generation selects from an 11-pattern approved mitigation playbook (VLAN isolation, ACL allowlisting, vendor case tracking, credential hardening, etc.), assigns tasks by role (infosec, netops, HTM/CE, vendor, clinical ops), and cites the underlying standards (NIST SP 800-82, IEC 62443, FDA guidance). Unknown pattern IDs are filtered. Packet generation is not guaranteed for every high-priority issue; the current build's packet count is recorded below.
 
@@ -45,17 +45,17 @@ affected-version applicability and exploitability require source confirmation.
 
 Medical device vulnerabilities are chronically under-tracked. Most vulnerability tools treat a pacemaker firmware advisory the same as a WordPress plugin bug. Infusion pumps, ventilators, patient monitors, and imaging systems have unique risk profiles — they sit on clinical networks, they can't always be patched on schedule, and when they fail the consequences are measured in patient safety, not just downtime.
 
-Small and rural hospitals face the same threats as large health systems but with a fraction of the security staff and budget. Commercial medical device security platforms start at six figures per year. Meanwhile, the raw data — CISA advisories, FDA recalls, NVD records, KEV deadlines — is all public. What's missing is the pipeline to pull it together, score it for healthcare relevance, and present it in a way that a two-person security team can act on.
+Small and rural hospitals face the same threats as large health systems but with a fraction of the security staff and budget. The data — CISA advisories, FDA recalls, NVD records, KEV deadlines — is all public. What's missing is the pipeline to pull it together, score it for healthcare relevance, and present it in a way that a two-person security team can act on.
 
-AdvisoryOps closes that gap. The data is free, the analysis is free, the dashboard is free. Apache 2.0 forever.
+AdvisoryOps brings that evidence into one public workflow. The source code is Apache 2.0 licensed, and the public dashboard is free to use.
 
 ---
 
 ## Key finding: zero exact structured CVE-ID overlap in the current corpus
 
-The full-corpus verifier compares every record classified as `medical_device` in the canonical archive with the **full CISA Known Exploited Vulnerabilities catalog**. In the production snapshot generated **2026-09-23 at 11:10 UTC**, 463 medical-device records contain 72 unique structured CVE IDs; none intersect the 1,721 unique CVEs in the full KEV catalog.
+The full-corpus verifier compares every record classified as `medical_device` in the canonical archive with the **full CISA Known Exploited Vulnerabilities catalog**. In the production snapshot generated **2026-10-16 at 11:11 UTC**, 471 medical-device records contain 79 unique structured CVE IDs; none intersect the 1,746 unique CVEs in the full KEV catalog.
 
-The previously reported **203 KEV-enriched issues** were a historical subset of AdvisoryOps issues carrying KEV fields, **not the full CISA KEV catalog**. The current enriched subset is 370 issues. It is not the input for the authoritative comparison.
+The previously reported **203 KEV-enriched issues** were a historical subset of AdvisoryOps issues carrying KEV fields, **not the full CISA KEV catalog**. The current enriched subset is 396 issues. It is not the input for the authoritative comparison.
 
 Vendor checks are diagnostic only: the current report has zero normalized exact vendor matches and two partial substring pairs (Siemens Medical Solutions USA / Siemens and Sunquest Information Systems / Quest). Neither establishes that a medical-device CVE is in KEV. Only an exact structured CVE-ID match supports the strict overlap flag.
 
@@ -70,7 +70,7 @@ See [methodology and full-corpus reproduction](docs/kev_medical_device_analysis.
 - **[Advisory dashboard](https://travisfunk.github.io/advisoryops/):** browse and prioritize healthcare advisories.
 - **[Device SBOM](https://travisfunk.github.io/advisoryops/#sbom):** import a device's CycloneDX/SPDX JSON and review software-component matches.
 
-The "Medical devices" view loads the complete medical-device subset (463 records in the dated snapshot below) with CVSS scores, EPSS exploit probabilities, KEV deadlines, FDA risk class badges, and AI-generated remediation guidance with role-split task assignments. Color-coded priority badges (P0-P3), click-to-expand detail panels, and a debounced search bar filtering by title, CVE, vendor, and product. No framework or frontend build step — static HTML and vanilla JavaScript.
+The "Medical devices" view loads the complete medical-device subset (471 records in the dated snapshot below) with CVSS scores, EPSS exploit probabilities, KEV deadlines, FDA device risk-class badges, and guidance/task fields where available. The dated build below generated zero AI recommendation packets. Color-coded priority badges (P0-P3), click-to-expand detail panels, and a debounced search bar filtering by title, CVE, vendor, and product. No framework or frontend build step — static HTML and vanilla JavaScript.
 
 The dashboard also exposes two reviewer-facing transparency views: a **Sources** tab ranking published sources by medical-device-signal contribution, and a **Methodology** tab with live self-check counts refreshed from `meta.json` on every build (FDA coverage, vendor extraction coverage, strict KEV overlap, pharmaceutical-leak guard; test counts appear only when supplied) plus the exact commands any reviewer can run to reproduce each number. There's also a "This week" toggle on the Issues tab that filters to advisories from the last 7 days with a priority summary banner, for the operational "what changed this week" use case.
 
@@ -80,23 +80,22 @@ The dashboard also exposes two reviewer-facing transparency views: a **Sources**
 
 Returning readers can use **New or updated** to compare the loaded feed with
 their last review in this browser, see field-level before/after differences, and
-mark loaded records reviewed. No account is needed. Medical-device coverage is
-complete; general-view comparisons cover its bounded serving window. See
+mark loaded records reviewed. No account is needed. The complete published medical-device subset is loaded; general-view comparisons cover its bounded serving window. See
 [change tracking behavior and limits](docs/changes_since_review.md).
 
-Snapshot: **2026-09-23, 11:10 UTC**, from [meta.json](docs/meta.json), [KEV report](docs/kev_full_catalog_overlap.json), and [source configuration](configs/sources.json). These are dated measurements; generated metadata is authoritative for later builds.
+Snapshot: **2026-10-16, 11:11 UTC**, from [meta.json](docs/meta.json), [KEV report](docs/kev_full_catalog_overlap.json), and [source configuration](configs/sources.json). These are dated measurements; generated metadata is authoritative for later builds.
 
 | Metric | Value |
 |--------|-------|
 | Enabled source configurations | 64 |
 | Scheduled `gold_pass2` source IDs / candidate sources | 54 / 1 |
-| Canonical issues in 32 archive shards | 10,880 |
+| Canonical issues in 32 archive shards | 14,720 |
 | General dashboard serving window | 750 |
-| Medical-device records (complete subset) | 463 |
-| Medical-device unique structured CVEs | 72 |
-| Canonical issues with nonempty `nvd_description` | 7,466 |
-| KEV-enriched corpus issues | 370 |
-| Full CISA KEV records / unique CVEs | 1,721 / 1,721 |
+| Medical-device records (complete subset) | 471 |
+| Medical-device unique structured CVEs | 79 |
+| Canonical issues with nonempty `nvd_description` | 10,829 |
+| KEV-enriched corpus issues | 396 |
+| Full CISA KEV records / unique CVEs | 1,746 / 1,746 |
 | Exact structured CVE-ID overlap | 0 |
 | Vendor exact / partial pairs (diagnostic only) | 0 / 2 |
 | Recommendation packets generated in this build | 0 |

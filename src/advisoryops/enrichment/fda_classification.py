@@ -33,13 +33,6 @@ _ENFORCEMENT_CACHE_DIR = Path("outputs/fda_safety_comms_cache")
 _CLASSIFICATION_API = "https://api.fda.gov/device/classification.json"
 _PAGE_SIZE = 1000
 
-# Maps the enforcement-record string format to the canonical digit string.
-_ENFORCEMENT_CLASS_MAP = {
-    "class i":   "1",
-    "class ii":  "2",
-    "class iii": "3",
-}
-
 
 def extract_risk_class_from_recall(recall: dict) -> str | None:
     """Extract FDA risk class from a cached recall record.
@@ -71,17 +64,14 @@ def extract_risk_class_from_recall(recall: dict) -> str | None:
 
 
 def extract_risk_class_from_enforcement(record: dict) -> str | None:
-    """Extract FDA risk class from an enforcement-cache record.
+    """Read explicit device_class only; enforcement classification is recall hazard.
 
-    Enforcement records (``outputs/fda_safety_comms_cache/enf_*.json``) carry
-    the class in a string ``classification`` field like ``"Class II"``. This
-    parser maps ``"Class I/II/III"`` (case-insensitive) onto the canonical
-    digit string ``"1"``/``"2"``/``"3"``. Any other value returns None.
+    FDA recall Class I has the highest hazard; FDA device Class III has the
+    highest regulatory risk. They cannot share a numeric conversion.
     """
-    raw = record.get("classification")
-    if not raw:
-        return None
-    return _ENFORCEMENT_CLASS_MAP.get(str(raw).strip().lower())
+    # Recall hazard classes run in the opposite direction to device classes.
+    # Only explicit device_class metadata may populate the device-risk field.
+    return extract_risk_class_from_recall(record)
 
 
 def lookup_class_by_recall_number(
@@ -407,15 +397,20 @@ def lookup_risk_class(
     if device_name:
         name_lower = device_name.strip().lower()
         if len(name_lower) >= 4:  # Avoid matching very short strings
+            matches = set()
             for key, rec in classifications.items():
                 if key.startswith("_"):
                     continue
                 if not isinstance(rec, dict):
                     continue
                 rec_name = (rec.get("device_name") or "").lower()
-                if name_lower in rec_name or rec_name in name_lower:
+                if len(rec_name) >= 4 and (
+                    name_lower in rec_name or rec_name in name_lower
+                ):
                     dc = str(rec.get("device_class", "")).strip()
                     if dc in _VALID_CLASSES:
-                        return dc
+                        matches.add(dc)
+            if len(matches) == 1:
+                return next(iter(matches))
 
     return None

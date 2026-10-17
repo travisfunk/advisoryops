@@ -26,3 +26,4 @@ docs/index.html linguist-generated=true
 docs/sbom.js linguist-generated=true
 docs/sbom-ui.js linguist-generated=true
 docs/sbom_advisories.json linguist-generated=true
+configs/sbom_vendor_sources.json linguist-generated=true

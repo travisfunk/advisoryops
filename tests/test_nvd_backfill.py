@@ -142,15 +142,16 @@ class TestSaveCveRaw:
         data = json.loads((tmp_path / "CVE-2024-9999.json").read_text())
         assert data["nvd_description"] == "Test vulnerability description."
 
-    def test_skips_existing_cve(self, tmp_path):
+    def test_upgrades_legacy_existing_cve(self, tmp_path):
         # Pre-populate cache
         (tmp_path / "CVE-2024-0001.json").write_text('{"old": true}')
         vuln = _nvd_vuln("CVE-2024-0001")
         cve_id = _save_cve_raw(vuln, tmp_path)
         assert cve_id == "CVE-2024-0001"
-        # Should NOT overwrite
+        # Flattened caches must be upgraded when the source record is available.
         data = json.loads((tmp_path / "CVE-2024-0001.json").read_text())
-        assert data == {"old": True}
+        assert data["identity_schema"] == 2
+        assert data["product_identities"] == [{"vendor": "test vendor", "product": "test product"}]
 
     def test_returns_none_for_missing_id(self, tmp_path):
         assert _save_cve_raw({"cve": {}}, tmp_path) is None

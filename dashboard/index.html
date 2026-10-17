@@ -895,9 +895,25 @@ a:hover { text-decoration:underline; }
   }
 
   function escapeHtml(s) {
-    var d = document.createElement('div');
-    d.textContent = s || '';
-    return d.innerHTML;
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function(c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  function safeExternalURL(value) {
+    try {
+      var url = new URL(value);
+      return url.protocol === 'https:' || url.protocol === 'http:' ? url.href : '';
+    } catch (e) { return ''; }
+  }
+
+  var CVE_ID_RE = /^CVE-\d{4}-\d{4,}$/i;
+  function cveLink(value, className, stopPropagation) {
+    var cve = String(value || '');
+    if (!CVE_ID_RE.test(cve)) return escapeHtml(cve);
+    return '<a class="' + className + '" href="https://nvd.nist.gov/vuln/detail/' +
+      encodeURIComponent(cve) + '" target="_blank" rel="noopener noreferrer"' +
+      (stopPropagation ? ' onclick="event.stopPropagation()"' : '') + '>' + escapeHtml(cve) + '</a>';
   }
 
   // Read-state helpers (per-device, localStorage)
@@ -1206,7 +1222,7 @@ a:hover { text-decoration:underline; }
         '<span class="ic-title">' + title + '</span>' +
         '</div>' +
         '<div class="ic-meta">' +
-        (cve ? '<a class="cve-link" href="https://nvd.nist.gov/vuln/detail/' + cve + '" target="_blank" onclick="event.stopPropagation()">' + cve + '</a>' : '') +
+        (cve ? cveLink(cve, 'cve-link', true) : '') +
         '<span>' + srcCount + ' source' + (srcCount !== 1 ? 's' : '') + '</span>' +
         '<span>' + date + '</span>' +
         (issue.healthcare_category && HC_CATEGORY_LABELS[issue.healthcare_category] ? '<span style="color:var(--text-muted)">' + HC_CATEGORY_LABELS[issue.healthcare_category] + '</span>' : '') +
@@ -1336,7 +1352,7 @@ a:hover { text-decoration:underline; }
     if (issue.cves && issue.cves.length) {
       html += '<div class="dcard"><div class="label" style="margin-bottom:6px">CVES</div><div>';
       for (var c = 0; c < issue.cves.length; c++) {
-        html += '<a class="cve-pill" href="https://nvd.nist.gov/vuln/detail/' + issue.cves[c] + '" target="_blank">' + issue.cves[c] + '</a>';
+        html += cveLink(issue.cves[c], 'cve-pill', false);
       }
       html += '</div></div>';
     }
@@ -1476,8 +1492,9 @@ a:hover { text-decoration:underline; }
           if (sources[j].source_id === sid) { src = sources[j]; break; }
         }
         var name = src ? src.name : sid;
-        var url = issue.canonical_link || (src ? src.entry_url : '#');
-        html += '<div class="src-link"><span class="src-dot"></span><span style="color:var(--text-body);font-size:12px">' + escapeHtml(name) + '</span> <a href="' + url + '" target="_blank" style="font-size:11px">View</a></div>';
+        var url = safeExternalURL(issue.canonical_link || (src ? src.entry_url : ''));
+        var link = url ? '<a href="' + escapeHtml(url) + '" target="_blank" rel="noopener noreferrer" style="font-size:11px">View</a>' : '<span>Source URL unavailable</span>';
+        html += '<div class="src-link"><span class="src-dot"></span><span style="color:var(--text-body);font-size:12px">' + escapeHtml(name) + '</span> ' + link + '</div>';
       }
       html += '</div>';
     }
@@ -1485,13 +1502,16 @@ a:hover { text-decoration:underline; }
     // Mark-as-read controls
     var alreadyRead = isRead(issue.issue_id);
     html += '<div class="dcard" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">' +
-      '<button id="mark-read-btn" onclick="window._ao_toggleRead(\'' + escapeHtml(issue.issue_id) + '\')" ' +
+      '<button id="mark-read-btn" data-issue-id="' + escapeHtml(issue.issue_id) + '" ' +
       'style="font-size:11px;padding:4px 10px;border-radius:4px;border:1px solid var(--card-border);background:var(--card-bg);color:var(--text-secondary);cursor:pointer;font-family:inherit">' +
       (alreadyRead ? 'Mark as unread' : 'Mark as read') + '</button>' +
       '<span style="font-size:10px;color:var(--text-muted)">Read state is stored per-device (this browser only)</span>' +
       '</div>';
 
     content.innerHTML = html;
+    document.getElementById('mark-read-btn').addEventListener('click', function() {
+      window._ao_toggleRead(this.dataset.issueId);
+    });
   }
 
   function renderSourceContribution() {
@@ -1601,7 +1621,7 @@ a:hover { text-decoration:underline; }
         dotsHtml += '<div class="dot ' + (d <= filledCount ? 'filled' : 'empty') + '"></div>';
       }
       html += '<div class="source-row">' +
-        '<div class="sr-info"><div class="sr-name">' + escapeHtml(src.name) + '</div><div class="sr-id">' + src.source_id + '</div></div>' +
+        '<div class="sr-info"><div class="sr-name">' + escapeHtml(src.name) + '</div><div class="sr-id">' + escapeHtml(src.source_id) + '</div></div>' +
         '<span class="badge ' + scopeClass + '">' + scopeLabel + '</span>' +
         '<div class="authority-dots">' + dotsHtml + '<span class="tier-label">T' + tier + '</span></div>' +
         '<span class="badge status-badge ' + statusClass + '">' + statusLabel + '</span>' +

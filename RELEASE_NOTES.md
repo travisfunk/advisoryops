@@ -1,5 +1,15 @@
 # AdvisoryOps — Release Notes
 
+## Source identity hardening and release audit (October 2026)
+
+- Recovered historical NVD CPE vendor/product evidence and added resumable, rate-limited refresh with cache-version upgrades.
+- Bound manufacturers to their own products and CSAF known-affected CVEs; preserved identities through correlation, feed projection and baseline merging.
+- Prevented CSV/cache downgrades of stronger or newer evidence; recovered escaped historical CPE names.
+- Added browser acceptance checks for actual-catalog matches, privacy, exports, failures, mobile layout and dashboard navigation. CI retains screenshots and check results.
+- Hardened the main advisory view against unsafe source URL schemes, malformed CVE link markup and issue IDs interpolated into inline JavaScript.
+- Corrected an unused FDA helper that confused recall hazard classifications with device risk classes, and rejected ambiguous name-based class lookups. The current production builder uses explicit device-class extraction; no historical clinical validation is claimed.
+- Added a documented release audit and narrowed unsupported public claims.
+
 ## SBOM source vendor repair (October 2026)
 
 - Preserve CISA/CSAF vendor and NVD vulnerable CPE vendor evidence through publication; backfill historical identities from a reproducible public source snapshot.

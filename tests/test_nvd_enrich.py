@@ -253,6 +253,8 @@ class TestNvdCache:
 
         # Pre-populate cache
         cached_data = {
+            "identity_schema": 2,
+            "product_identities": [],
             "nvd_description": "Cached description",
             "cvss_score": 7.5,
             "cvss_severity": "HIGH",
