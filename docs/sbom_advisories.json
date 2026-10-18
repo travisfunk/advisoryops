@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "generated_at": "2026-10-17T10:36:30.774399+00:00",
-  "total_records": 14799,
-  "vendor_evidence_checked_at": "2026-10-17T10:35:50.878042+00:00",
-  "records_with_vendor_products": 6384,
-  "records_with_products": 6777,
+  "generated_at": "2026-10-18T10:48:24.446506+00:00",
+  "total_records": 14809,
+  "vendor_evidence_checked_at": "2026-10-18T10:47:53.511291+00:00",
+  "records_with_vendor_products": 6385,
+  "records_with_products": 6778,
   "matching_policy": "product_identity_candidates_only",
   "issues": [
     {
@@ -147961,6 +147961,21 @@
       "canonical_link": "https://www.tenable.com/plugins/nessus/351384"
     },
     {
+      "issue_id": "CVE-2026-102633",
+      "title": "CVE-2026-102633",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-102633"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/476120"
+    },
+    {
       "issue_id": "CVE-2026-10275",
       "title": "CVE-2026-10275",
       "priority": "P3",
@@ -149775,6 +149790,29 @@
       ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/476116"
+    },
+    {
+      "issue_id": "CVE-2026-105758",
+      "title": "CVE-2026-105758",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-105758"
+      ],
+      "vendor": "vllm",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Vllm Vllm"
+      ],
+      "product_vendors": [
+        {
+          "product": "Vllm Vllm",
+          "vendor": "vllm",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-105758"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/476112"
     },
     {
       "issue_id": "CVE-2026-10577",
@@ -244093,6 +244131,21 @@
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/444802"
     },
     {
+      "issue_id": "CVE-2026-59951",
+      "title": "CVE-2026-59951",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-59951"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/476119"
+    },
+    {
       "issue_id": "CVE-2026-59981",
       "title": "CVE-2026-59981",
       "priority": "P3",
@@ -286985,6 +287038,21 @@
       "canonical_link": "https://www.tenable.com/plugins/nessus/362910"
     },
     {
+      "issue_id": "CVE-2026-77214",
+      "title": "CVE-2026-77214",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-77214"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/476120"
+    },
+    {
       "issue_id": "CVE-2026-77219",
       "title": "CVE-2026-77219",
       "priority": "P3",
@@ -296692,6 +296760,36 @@
       "canonical_link": "https://www.tenable.com/plugins/nessus/348302"
     },
     {
+      "issue_id": "CVE-2026-85745",
+      "title": "CVE-2026-85745",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-85745"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/476121"
+    },
+    {
+      "issue_id": "CVE-2026-85746",
+      "title": "CVE-2026-85746",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-85746"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/476122"
+    },
+    {
       "issue_id": "CVE-2026-85790",
       "title": "CVE-2026-85790 Microsoft QUIC Information Disclosure Vulnerability",
       "priority": "P3",
@@ -297012,6 +297110,21 @@
       "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-85921"
     },
     {
+      "issue_id": "CVE-2026-85985",
+      "title": "CVE-2026-85985",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-85985"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/476125"
+    },
+    {
       "issue_id": "CVE-2026-85999",
       "title": "Linux Distros Unpatched Vulnerability : CVE-2026-85999",
       "priority": "P2",
@@ -297040,6 +297153,21 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/348293"
+    },
+    {
+      "issue_id": "CVE-2026-86047",
+      "title": "CVE-2026-86047",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-86047"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/476124"
     },
     {
       "issue_id": "CVE-2026-86049",
@@ -313561,6 +313689,21 @@
       "canonical_link": "https://www.tenable.com/plugins/nessus/348350"
     },
     {
+      "issue_id": "CVE-2026-92262",
+      "title": "CVE-2026-92262",
+      "priority": "P1",
+      "cves": [
+        "CVE-2026-92262"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/476126"
+    },
+    {
       "issue_id": "CVE-2026-92288",
       "title": "CVE-2026-92288",
       "priority": "P3",
@@ -322076,6 +322219,21 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-274-02.json"
+    },
+    {
+      "issue_id": "CVE-2026-97380",
+      "title": "CVE-2026-97380",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-97380"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/476123"
     },
     {
       "issue_id": "CVE-2026-97407",
