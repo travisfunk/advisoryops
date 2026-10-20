@@ -18,9 +18,9 @@
   "counts": {
     "validated_sources": 54,
     "candidate_sources": 1,
-    "issues_public": 14908,
+    "issues_public": 14946,
     "alerts_public": 100,
-    "latest": 14908,
+    "latest": 14946,
     "healthcare": 475,
     "packets": 0,
     "sources_enabled": 64,
@@ -38,9 +38,9 @@
     "dashboard_html": "outputs/community_public/dashboard.html",
     "packets_dir": null
   },
-  "generated_at": "2026-10-19T12:27:18+00:00",
+  "generated_at": "2026-10-20T11:23:51+00:00",
   "methodology_stats": {
-    "total_issues": 14908,
+    "total_issues": 14946,
     "medical_device_issues": 475,
     "fda_risk_class_populated": 380,
     "fda_derived_medical_device": 378,
@@ -57,7 +57,7 @@
     "kev_medical_device_reconciled": true,
     "kev_medical_device_definition": "healthcare_category == medical_device AND exact structured CVE ID is present in the full CISA Known Exploited Vulnerabilities catalog",
     "kev_medical_device_catalog_unique_cves": 1748,
-    "kev_medical_device_reconciled_at": "2026-10-19T12:27:25.436959+00:00",
+    "kev_medical_device_reconciled_at": "2026-10-20T11:23:58.942885+00:00",
     "kev_catalog_records": 1748,
     "kev_catalog_unique_cves": 1748,
     "medical_device_unique_cves": 80,
@@ -65,16 +65,16 @@
     "kev_md_vendor_partial_overlap": 2,
     "kev_comparison_scope": "full_cisa_kev_catalog",
     "kev_comparison_key": "exact_cve_id",
-    "kev_comparison_generated_at": "2026-10-19T12:27:27.361553+00:00"
+    "kev_comparison_generated_at": "2026-10-20T11:24:01.078484+00:00"
   },
   "publication": {
     "strategy": "bounded_latest_plus_stable_hash_jsonl",
-    "total_records": 14908,
+    "total_records": 14946,
     "latest_records": 750,
     "archive_shards": 32,
     "archive_manifest": "feed_archive/manifest.json",
-    "largest_shard_bytes": 7016044,
-    "latest_bytes": 2218190,
-    "generated_at": "2026-10-19T12:27:34.378655+00:00"
+    "largest_shard_bytes": 7014358,
+    "latest_bytes": 2216186,
+    "generated_at": "2026-10-20T11:24:08.357270+00:00"
   }
 }
