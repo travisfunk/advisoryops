@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "generated_at": "2026-10-25T11:07:40.538185+00:00",
-  "total_records": 15295,
-  "vendor_evidence_checked_at": "2026-10-25T11:06:47.454099+00:00",
-  "records_with_vendor_products": 6794,
-  "records_with_products": 7187,
+  "generated_at": "2026-10-26T12:39:22.582202+00:00",
+  "total_records": 15324,
+  "vendor_evidence_checked_at": "2026-10-26T12:38:50.407763+00:00",
+  "records_with_vendor_products": 6798,
+  "records_with_products": 7191,
   "matching_policy": "product_identity_candidates_only",
   "issues": [
     {
@@ -150552,6 +150552,21 @@
       "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-102867"
     },
     {
+      "issue_id": "CVE-2026-102870",
+      "title": "CVE-2026-102870 ASP.NET Core Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [
+        "CVE-2026-102870"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-102870"
+    },
+    {
       "issue_id": "CVE-2026-103001",
       "title": "CVE-2026-103001",
       "priority": "P3",
@@ -156595,6 +156610,75 @@
       "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-293-03.json"
     },
     {
+      "issue_id": "CVE-2026-109841",
+      "title": "CVE-2026-109841",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-109841"
+      ],
+      "vendor": "nodejs",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Nodejs Undici"
+      ],
+      "product_vendors": [
+        {
+          "product": "Nodejs Undici",
+          "vendor": "nodejs",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-109841"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/477465"
+    },
+    {
+      "issue_id": "CVE-2026-109869",
+      "title": "CVE-2026-109869",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-109869"
+      ],
+      "vendor": "nodejs",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Nodejs Undici"
+      ],
+      "product_vendors": [
+        {
+          "product": "Nodejs Undici",
+          "vendor": "nodejs",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-109869"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/477462"
+    },
+    {
+      "issue_id": "CVE-2026-109924",
+      "title": "CVE-2026-109924",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-109924"
+      ],
+      "vendor": "nodejs",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Nodejs Undici"
+      ],
+      "product_vendors": [
+        {
+          "product": "Nodejs Undici",
+          "vendor": "nodejs",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-109924"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/477463"
+    },
+    {
       "issue_id": "CVE-2026-109940",
       "title": "Linux Distros Unpatched Vulnerability : CVE-2026-109940",
       "priority": "P3",
@@ -157612,6 +157696,51 @@
       "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-295-01.json"
     },
     {
+      "issue_id": "CVE-2026-110857",
+      "title": "CVE-2026-110857",
+      "priority": "P2",
+      "cves": [
+        "CVE-2026-110857"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/477472"
+    },
+    {
+      "issue_id": "CVE-2026-110858",
+      "title": "CVE-2026-110858",
+      "priority": "P2",
+      "cves": [
+        "CVE-2026-110858"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/477478"
+    },
+    {
+      "issue_id": "CVE-2026-110860",
+      "title": "CVE-2026-110860",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-110860"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/477473"
+    },
+    {
       "issue_id": "CVE-2026-110913",
       "title": "CVE-2026-110913",
       "priority": "P3",
@@ -157945,6 +158074,21 @@
       "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-774/"
     },
     {
+      "issue_id": "CVE-2026-111497",
+      "title": "CVE-2026-111497 Google: CVE-2026-111497 Buffer overflow vulnerability in the Brotli decoder",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-111497"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-111497"
+    },
+    {
       "issue_id": "CVE-2026-111594",
       "title": "CVE-2026-111594",
       "priority": "P2",
@@ -158056,6 +158200,21 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/476403"
+    },
+    {
+      "issue_id": "CVE-2026-111879",
+      "title": "CVE-2026-111879",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-111879"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/477469"
     },
     {
       "issue_id": "CVE-2026-111943",
@@ -158552,6 +158711,29 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/476591"
+    },
+    {
+      "issue_id": "CVE-2026-112940",
+      "title": "CVE-2026-112940",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-112940"
+      ],
+      "vendor": "tox-dev",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Tox-Dev Filelock"
+      ],
+      "product_vendors": [
+        {
+          "product": "Tox-Dev Filelock",
+          "vendor": "tox-dev",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-112940"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/477475"
     },
     {
       "issue_id": "CVE-2026-112948",
@@ -159778,6 +159960,36 @@
       "canonical_link": "https://kb.cert.org/vuls/id/213560"
     },
     {
+      "issue_id": "CVE-2026-114145",
+      "title": "CVE-2026-114145",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-114145"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/477468"
+    },
+    {
+      "issue_id": "CVE-2026-114148",
+      "title": "CVE-2026-114148 ASP.NET Core Elevation of Privilege Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-114148"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-114148"
+    },
+    {
       "issue_id": "CVE-2026-1144",
       "title": "CVE-2026-1144",
       "priority": "P3",
@@ -159943,6 +160155,21 @@
       "canonical_link": "https://www.tenable.com/plugins/nessus/324009"
     },
     {
+      "issue_id": "CVE-2026-115586",
+      "title": "CVE-2026-115586",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-115586"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/477467"
+    },
+    {
       "issue_id": "CVE-2026-11564",
       "title": "Linux Distros Unpatched Vulnerability : CVE-2026-11564",
       "priority": "P3",
@@ -159973,6 +160200,36 @@
       "canonical_link": "https://www.tenable.com/plugins/nessus/367214"
     },
     {
+      "issue_id": "CVE-2026-115822",
+      "title": "Linux Distros Unpatched Vulnerability : CVE-2026-115822",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-115822"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/371972"
+    },
+    {
+      "issue_id": "CVE-2026-115825",
+      "title": "Linux Distros Unpatched Vulnerability : CVE-2026-115825",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-115825"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/371971"
+    },
+    {
       "issue_id": "CVE-2026-11586",
       "title": "CVE-2026-11586",
       "priority": "P3",
@@ -159996,6 +160253,21 @@
       "canonical_link": "https://www.tenable.com/plugins/nessus/345801"
     },
     {
+      "issue_id": "CVE-2026-115892",
+      "title": "CVE-2026-115892",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-115892"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/477466"
+    },
+    {
       "issue_id": "CVE-2026-11610",
       "title": "CVE-2026-11610",
       "priority": "P3",
@@ -160009,6 +160281,186 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/326524"
+    },
+    {
+      "issue_id": "CVE-2026-116140",
+      "title": "Linux Distros Unpatched Vulnerability : CVE-2026-116140",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-116140"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/371965"
+    },
+    {
+      "issue_id": "CVE-2026-116141",
+      "title": "Linux Distros Unpatched Vulnerability : CVE-2026-116141",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-116141"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/371960"
+    },
+    {
+      "issue_id": "CVE-2026-116142",
+      "title": "Linux Distros Unpatched Vulnerability : CVE-2026-116142",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-116142"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/371969"
+    },
+    {
+      "issue_id": "CVE-2026-116143",
+      "title": "Linux Distros Unpatched Vulnerability : CVE-2026-116143",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-116143"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/371967"
+    },
+    {
+      "issue_id": "CVE-2026-116146",
+      "title": "Linux Distros Unpatched Vulnerability : CVE-2026-116146",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-116146"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/371961"
+    },
+    {
+      "issue_id": "CVE-2026-116147",
+      "title": "Linux Distros Unpatched Vulnerability : CVE-2026-116147",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-116147"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/371966"
+    },
+    {
+      "issue_id": "CVE-2026-116152",
+      "title": "Linux Distros Unpatched Vulnerability : CVE-2026-116152",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-116152"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/371963"
+    },
+    {
+      "issue_id": "CVE-2026-116157",
+      "title": "Linux Distros Unpatched Vulnerability : CVE-2026-116157",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-116157"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/371959"
+    },
+    {
+      "issue_id": "CVE-2026-116160",
+      "title": "Linux Distros Unpatched Vulnerability : CVE-2026-116160",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-116160"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/371964"
+    },
+    {
+      "issue_id": "CVE-2026-116190",
+      "title": "Linux Distros Unpatched Vulnerability : CVE-2026-116190",
+      "priority": "P2",
+      "cves": [
+        "CVE-2026-116190"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/371962"
+    },
+    {
+      "issue_id": "CVE-2026-116191",
+      "title": "Linux Distros Unpatched Vulnerability : CVE-2026-116191",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-116191"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/371970"
+    },
+    {
+      "issue_id": "CVE-2026-116194",
+      "title": "Linux Distros Unpatched Vulnerability : CVE-2026-116194",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-116194"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/371968"
     },
     {
       "issue_id": "CVE-2026-11622",
@@ -370394,6 +370846,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/349124"
+    },
+    {
+      "issue_id": "UNK-b3ef7158aad0deff",
+      "title": "Technology That Personalizes Healthcare Hospitality",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.fiercehealthcare.com/sponsored/technology-personalizes-healthcare-hospitality"
     },
     {
       "issue_id": "UNK-b411aa09cfa2b96c",

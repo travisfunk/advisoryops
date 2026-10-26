@@ -18,9 +18,9 @@
   "counts": {
     "validated_sources": 54,
     "candidate_sources": 1,
-    "issues_public": 15295,
+    "issues_public": 15324,
     "alerts_public": 100,
-    "latest": 15295,
+    "latest": 15324,
     "healthcare": 477,
     "packets": 0,
     "sources_enabled": 64,
@@ -38,9 +38,9 @@
     "dashboard_html": "outputs/community_public/dashboard.html",
     "packets_dir": null
   },
-  "generated_at": "2026-10-25T11:07:23+00:00",
+  "generated_at": "2026-10-26T12:39:06+00:00",
   "methodology_stats": {
-    "total_issues": 15295,
+    "total_issues": 15324,
     "medical_device_issues": 477,
     "fda_risk_class_populated": 380,
     "fda_derived_medical_device": 378,
@@ -57,7 +57,7 @@
     "kev_medical_device_reconciled": true,
     "kev_medical_device_definition": "healthcare_category == medical_device AND exact structured CVE ID is present in the full CISA Known Exploited Vulnerabilities catalog",
     "kev_medical_device_catalog_unique_cves": 1756,
-    "kev_medical_device_reconciled_at": "2026-10-25T11:07:31.050048+00:00",
+    "kev_medical_device_reconciled_at": "2026-10-26T12:39:13.979981+00:00",
     "kev_catalog_records": 1756,
     "kev_catalog_unique_cves": 1756,
     "medical_device_unique_cves": 81,
@@ -65,16 +65,16 @@
     "kev_md_vendor_partial_overlap": 2,
     "kev_comparison_scope": "full_cisa_kev_catalog",
     "kev_comparison_key": "exact_cve_id",
-    "kev_comparison_generated_at": "2026-10-25T11:07:33.155118+00:00"
+    "kev_comparison_generated_at": "2026-10-26T12:39:16.060347+00:00"
   },
   "publication": {
     "strategy": "bounded_latest_plus_stable_hash_jsonl",
-    "total_records": 15295,
+    "total_records": 15324,
     "latest_records": 750,
     "archive_shards": 32,
     "archive_manifest": "feed_archive/manifest.json",
-    "largest_shard_bytes": 6991167,
+    "largest_shard_bytes": 6998005,
     "latest_bytes": 2222431,
-    "generated_at": "2026-10-25T11:07:40.538185+00:00"
+    "generated_at": "2026-10-26T12:39:22.582202+00:00"
   }
 }
