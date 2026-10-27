@@ -38,12 +38,17 @@ Keep the two copies identical when updating the example.
 
 ## Usage measurement
 
-Analytics is not enabled. No provider token, telemetry code, inventory collection,
-or private configuration is included. The homepage FAQ accurately discloses that.
-Adding homepage analytics alone will not measure direct app visits. Any future
-measurement must cover the actual application entry points, review transmitted
-URLs and fields, preserve private input handling, and update the disclosures and
-security policy intentionally. Separate subdomains alone do not count app usage.
+Cloudflare Web Analytics is enabled for the `devicelantern.com` zone. Cloudflare
+injects its beacon at the edge; nothing analytics-related is in this source. The
+beacon reports the page URL, referrer, browser type, and page-load timing. It sets
+no cookies and keeps no cross-site identifier. `_headers` allows only that beacon
+script (`static.cloudflareinsights.com`) and its report endpoint
+(`cloudflareinsights.com`); everything else stays same-origin.
+
+`Referrer-Policy: strict-origin-when-cross-origin` lets the app's own analytics
+tell homepage referrals from direct visits: only the origin is sent, never the path.
+
+Homepage analytics alone does not count app visits or completed SBOM checks.
 
 ## Checks
 
@@ -52,6 +57,7 @@ three workflow tabs with clicks and ArrowUp/ArrowDown/Home/End, the FAQ accordio
 the narrow-screen menu, sample download, and app launch/deep links. Check layout
 at desktop and mobile widths before production cutover.
 
-The page has no external fonts, scripts, forms, APIs, authentication, or storage.
+The page has no external fonts, forms, APIs, authentication, or storage. Its only
+third-party script is the Cloudflare Web Analytics beacon described above.
 This is not a HIPAA certification or an assertion about the separate app's
 hosting providers. Patient information is outside the intended workflow.
