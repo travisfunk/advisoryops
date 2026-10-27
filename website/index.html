@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102d32">
+  <meta name="description" content="Open-source healthcare advisory intelligence. Prioritize medical-device advisories and privately match SBOM components to source-linked evidence.">
+  <meta property="og:title" content="DeviceLantern — From advisory to informed action">
+  <meta property="og:description" content="Healthcare advisory intelligence and private SBOM component matching. Open source. Free to use. No account required.">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://devicelantern.com/">
+  <meta property="og:url" content="https://devicelantern.com/">
+  <title>DeviceLantern — From advisory to informed action</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="site.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="header">
+    <a class="brand" href="./" aria-label="DeviceLantern home"><span class="brand-mark" aria-hidden="true">d<span>l</span></span>DeviceLantern<span class="brand-label">OPEN SOURCE</span></a>
+    <button class="menu-button" aria-expanded="false" aria-controls="navigation">Menu <span aria-hidden="true">+</span></button>
+    <nav id="navigation" aria-label="Main navigation">
+      <a href="#workflow">How it works</a><a href="#sbom">Device SBOM</a><a href="#privacy">Privacy</a>
+      <a class="nav-source" href="https://github.com/travisfunk/advisoryops">GitHub <span aria-hidden="true">↗</span></a>
+      <a class="button small" href="https://travisfunk.github.io/advisoryops/">Launch app <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> HEALTHCARE ADVISORY INTELLIGENCE</p>
+        <h1 id="hero-title">From advisory<br>to <em>informed action.</em></h1>
+        <p class="hero-description">Medical-device security deserves more than another list of CVEs. Bring advisories, healthcare priorities, and software-component evidence into one clear workflow.</p>
+        <div class="hero-actions"><a class="button" href="https://travisfunk.github.io/advisoryops/">Launch DeviceLantern <span aria-hidden="true">↗</span></a><a class="text-link" href="#workflow">Explore the workflow <span aria-hidden="true">↓</span></a></div>
+        <p class="hero-footnote">Free to use. No account required. Apache 2.0 licensed.</p>
+      </div>
+      <div class="hero-visual" aria-label="Illustrative advisory review workflow">
+        <div class="visual-top"><span><span class="tiny-mark" aria-hidden="true">d</span> DeviceLantern</span><span class="mono">ILLUSTRATIVE VIEW</span></div>
+        <div class="visual-body">
+          <div class="visual-subtitle"><span class="mono">DEVICE REVIEW</span><span class="connected">Local SBOM</span></div>
+          <h2>Know what needs<br>a closer look.</h2>
+          <div class="device-row"><span class="device-icon" aria-hidden="true">▤</span><div><strong>Synthetic device inventory</strong><span>CycloneDX JSON · demonstration only</span></div><span class="check" aria-hidden="true">✓</span></div>
+          <div class="evidence-card"><div class="evidence-heading"><span class="candidate">REVIEW REQUIRED</span><span class="mono">01 / EVIDENCE</span></div><h3>Component identity match</h3><p>A product match is the start of a review. Check affected versions and the original advisory before deciding on action.</p><div class="evidence-bottom"><span>Source-linked evidence</span><span aria-hidden="true">↗</span></div></div>
+          <div class="visual-bottom"><span><span class="status-dot" aria-hidden="true"></span> SBOM processed in your browser</span><span aria-hidden="true">⌁</span></div>
+        </div>
+      </div>
+    </section>
+    <div class="source-strip"><span class="mono">BUILT ON PUBLIC EVIDENCE</span><div><span>CISA ICS-Medical</span><span>FDA recalls</span><span>NVD</span><span>CISA KEV</span><span>Vendor advisories</span></div><span class="source-note">Source coverage varies.</span></div>
+    <section class="intro section" aria-labelledby="intro-title"><p class="eyebrow">THE PROBLEM</p><div><h2 id="intro-title">The advisory is public.<br>The review still takes work.</h2><p>A hospital security team needs to understand which devices may be involved, what the source actually says, and what deserves attention first. DeviceLantern brings that evidence together with healthcare-focused prioritization.</p><p>Built with small and rural healthcare security teams in mind—and open for anyone to inspect, use, and improve.</p></div></section>
+    <section class="workflow section" id="workflow" aria-labelledby="workflow-title">
+      <div class="section-heading"><div><p class="eyebrow">THE WORKFLOW</p><h2 id="workflow-title">Less hunting.<br>More informed review.</h2></div><p>Start with the advisory landscape.<br>Follow the evidence to your next step.</p></div>
+      <div class="workflow-layout">
+        <div class="steps" role="tablist" aria-label="Explore the DeviceLantern workflow" aria-orientation="vertical">
+          <button id="step-prioritize" class="step active" role="tab" aria-selected="true" aria-controls="panel-prioritize" tabindex="0"><span class="step-number">01</span><span><strong>Prioritize the signal</strong><span>Healthcare context alongside vulnerability evidence.</span></span><span class="step-arrow" aria-hidden="true">↗</span></button>
+          <button id="step-connect" class="step" role="tab" aria-selected="false" aria-controls="panel-connect" tabindex="-1"><span class="step-number">02</span><span><strong>Connect your components</strong><span>Privately compare an SBOM with tracked advisories.</span></span><span class="step-arrow" aria-hidden="true">↗</span></button>
+          <button id="step-review" class="step" role="tab" aria-selected="false" aria-controls="panel-review" tabindex="-1"><span class="step-number">03</span><span><strong>Review the evidence</strong><span>Keep original sources and limitations in view.</span></span><span class="step-arrow" aria-hidden="true">↗</span></button>
+        </div>
+        <div class="workflow-panel">
+          <div class="panel-meta mono"><span>WORKFLOW EXPLAINER</span><span>DEVICELANTERN / FIELD NOTES</span></div>
+          <div role="tabpanel" id="panel-prioritize" aria-labelledby="step-prioritize" tabindex="0"><div class="priority-example" aria-label="Priority buckets"><span class="p0">P0 <small>ACT NOW</small></span><span class="p1">P1 <small>7-DAY SLA</small></span><span class="p2">P2 <small>SCHEDULED</small></span><span class="p3">P3 <small>MONITOR</small></span></div><h3>Urgency with healthcare context.</h3><p>Browse medical-device advisories with deterministic scoring that considers source authority, healthcare context, and other available evidence. Open a record to inspect its sources and scoring factors.</p><p class="panel-note">Priority is a review aid. It is not a clinical decision or proof of exploitability.</p><a class="text-link" href="https://travisfunk.github.io/advisoryops/">Browse advisories <span aria-hidden="true">↗</span></a></div>
+          <div role="tabpanel" id="panel-connect" aria-labelledby="step-connect" tabindex="0" hidden><div class="format-example mono"><span>YOUR SBOM</span><span aria-hidden="true">→</span><span>PUBLIC ADVISORIES</span></div><h3>Your inventory stays with you.</h3><p>Import CycloneDX or SPDX JSON in the app. Compare component identities against the full tracked advisory history, including records outside the latest dashboard window.</p><p class="panel-note">Findings are candidates for review. Installed versions are displayed; affected-version ranges are not evaluated.</p><a class="text-link" href="https://travisfunk.github.io/advisoryops/#sbom">Open Device SBOM <span aria-hidden="true">↗</span></a></div>
+          <div role="tabpanel" id="panel-review" aria-labelledby="step-review" tabindex="0" hidden><div class="review-example"><span aria-hidden="true">↗</span><span>Original source · Matching evidence · Coverage gaps</span></div><h3>Keep the reasoning inspectable.</h3><p>Follow advisory links, inspect product-match evidence, and see coverage limitations. Download the SBOM findings and component inventory as a local JSON report for further review.</p><p class="panel-note">No match does not mean safe. Confirm applicability and operational actions with authoritative guidance.</p><a class="text-link" href="https://github.com/travisfunk/advisoryops/blob/main/docs/sbom.md">Read the matching policy <span aria-hidden="true">↗</span></a></div>
+        </div>
+      </div>
+    </section>
+    <section class="sbom-section" id="sbom" aria-labelledby="sbom-title"><div class="section sbom-inner"><div><p class="eyebrow">DEVICE SBOM</p><h2 id="sbom-title">Start with a file.<br>Keep control of it.</h2><p>You don't need to connect a hospital network or create an account to explore component matching. Bring a supported SBOM—or start with our synthetic example.</p><a class="button mint" href="https://travisfunk.github.io/advisoryops/#sbom">Check an SBOM <span aria-hidden="true">↗</span></a></div><div class="sample"><div class="sample-header mono"><span>TRY THE WORKFLOW</span><span aria-hidden="true">↓</span></div><h3>A sample, not a real device.</h3><p>Download the synthetic Medfusion example. Open Device SBOM, choose the file, and select <strong>Check components</strong>. Inspect the linked evidence and review-required labels.</p><a class="sample-download" href="assets/medfusion-demo.cdx.json" download="devicelantern-synthetic-demo.cdx.json"><span><strong>Download sample SBOM</strong><small>CycloneDX 1.6 · JSON · synthetic inventory</small></span><span aria-hidden="true">↓</span></a><p class="sample-note">The example demonstrates matching behavior. It does not establish that the listed version is vulnerable.</p></div></div></section>
+    <section class="privacy section" id="privacy" aria-labelledby="privacy-title"><div><p class="eyebrow">PRIVACY BY DESIGN</p><h2 id="privacy-title">Private inputs.<br>Public, inspectable code.</h2><p>The Device SBOM workflow processes your file in the current browser tab. DeviceLantern does not upload it to an inventory service.</p><a class="text-link" href="https://github.com/travisfunk/advisoryops/blob/main/docs/sbom.md#privacy-and-rendering">Read the data-handling details <span aria-hidden="true">↗</span></a></div><dl class="privacy-list"><div><dt>Browser-local processing</dt><dd>SBOMs and device labels stay in page memory. Reloading or closing the app clears that import.</dd></div><div><dt>Local report export</dt><dd>You choose whether to download a report. Treat downloaded inventory and findings as confidential.</dd></div><div><dt>No patient information needed</dt><dd>Use software inventories without patient names, records, or treatment details. DeviceLantern is a security review tool.</dd></div><div><dt>Clear limits</dt><dd>Product matches require review. The tool does not verify version applicability, reachability, or exploitability.</dd></div></dl></section>
+    <section class="faq section" aria-labelledby="faq-title"><div><p class="eyebrow">A FEW PRACTICAL ANSWERS</p><h2 id="faq-title">Before you launch.</h2></div><div class="questions"><details><summary>Is DeviceLantern free to use?</summary><p>Yes. The public dashboard and browser-based SBOM checker require no account. The code is Apache 2.0 licensed. Optional AI-assisted pipeline runs on your own infrastructure may incur provider charges.</p></details><details><summary>Is this a network scanner?</summary><p>No. DeviceLantern brings together public advisory evidence and supports local SBOM component matching. It does not discover devices on your network, inspect traffic, or enforce network controls.</p></details><details><summary>Does a match mean my device is vulnerable?</summary><p>No. It means the component identity has a candidate relationship to an advisory. Review affected versions, deployment conditions, and manufacturer guidance before deciding on action. A missing match is not proof of safety.</p></details><details><summary>Can I inspect or run the code myself?</summary><p>Yes. The public repository includes the source, tests, matching-policy documentation, and pipeline instructions. <a href="https://github.com/travisfunk/advisoryops">Explore the repository ↗</a></p></details><details><summary>What does this website track?</summary><p>This homepage currently has no analytics, advertising pixels, or session recording. Its styles and scripts are served with the page. Launching the app or following an external link takes you to that destination; the linked app documentation describes its separate data handling.</p></details></div></section>
+    <section class="closing section"><div><p class="eyebrow">OPEN SOURCE. HEALTHCARE FOCUSED.</p><h2>Bring the evidence<br>into focus.</h2></div><div><a class="button" href="https://travisfunk.github.io/advisoryops/">Launch DeviceLantern <span aria-hidden="true">↗</span></a><a class="text-link" href="https://github.com/travisfunk/advisoryops/issues">Share feedback or report an issue <span aria-hidden="true">↗</span></a></div></section>
+  </main>
+  <footer><a class="brand" href="./"><span class="brand-mark" aria-hidden="true">d<span>l</span></span>DeviceLantern</a><p>Created by <a href="https://travisfunk.github.io/">Travis Funkhouser</a><br>Healthcare security experience. Open-source execution.</p><div><a href="https://github.com/travisfunk/advisoryops">Source code ↗</a><a href="https://github.com/travisfunk/advisoryops/blob/main/LICENSE">Apache 2.0</a><a href="#privacy">Privacy</a></div><span class="footer-note">Evidence supports judgment.<br>It doesn't replace it.</span></footer>
+</body>
+</html>

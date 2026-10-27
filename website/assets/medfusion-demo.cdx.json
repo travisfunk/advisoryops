@@ -1,0 +1,20 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6",
+  "version": 1,
+  "metadata": {
+    "component": {
+      "type": "device",
+      "name": "Synthetic Medfusion review demo"
+    }
+  },
+  "components": [
+    {
+      "type": "firmware",
+      "name": "Medfusion 4000",
+      "version": "1.5",
+      "manufacturer": { "name": "Smiths Medical" },
+      "description": "Synthetic demonstration inventory. Version applicability is not evaluated by this matcher."
+    }
+  ]
+}
