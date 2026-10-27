@@ -67,6 +67,10 @@ See [methodology and full-corpus reproduction](docs/kev_medical_device_analysis.
 
 ## Live demo
 
+The standalone project homepage is maintained in [`website/`](website/README.md).
+It can be deployed separately as a static site with a custom domain; the current
+dashboard and daily feed publication remain independent.
+
 - **[Advisory dashboard](https://travisfunk.github.io/advisoryops/):** browse and prioritize healthcare advisories.
 - **[Device SBOM](https://travisfunk.github.io/advisoryops/#sbom):** import a device's CycloneDX/SPDX JSON and review software-component matches.
 
