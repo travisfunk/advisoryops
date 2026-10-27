@@ -34,7 +34,9 @@ jobs:
           npm ci --ignore-scripts
           npx playwright install --with-deps chromium
       - name: Run browser acceptance checks
-        run: npm run test:browser
+        run: |
+          npm run test:browser
+          node tests/analytics_uat.cjs
       - name: Preserve browser acceptance evidence
         if: always()
         uses: actions/upload-artifact@v4

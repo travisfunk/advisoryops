@@ -78,6 +78,9 @@ function passed(name) {
         body: r.postData() || "",
       }),
     );
+    // Analytics isolation is exercised independently by analytics_uat.cjs.
+    await page.route("https://devicelantern.pages.dev/usage/*", route =>
+      route.fulfill({contentType: "text/html", body: "<!doctype html><title>Visit counter</title>"}));
     const base = `http://127.0.0.1:${server.address().port}`;
     await page.goto(base + "/#sbom");
     await page.locator("#sbom-section.visible").waitFor();

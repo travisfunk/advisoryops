@@ -651,7 +651,7 @@ a:hover { text-decoration:underline; }
 
         <h3>Connect device software to tracked advisories</h3>
         <p>Import a CycloneDX or SPDX JSON SBOM in <a href="#sbom">Device SBOM</a> to compare software components with the full tracked advisory history. Review installed versions, matching evidence, coverage gaps, and source links, then download a local JSON report. Your SBOM stays in the browser; no upload or account is required.</p>
-        <p>Matches identify products for review. They do not confirm that an installed version is affected or exploitable. See <a href="sbom.md">supported formats, privacy, and matching limits</a>.</p>
+        <p>Matches identify products for review. They do not confirm that an installed version is affected or exploitable. See <a href="sbom.md">supported formats, privacy, and matching limits</a>. <a href="visit-analytics.md">Anonymous visit measurement</a> runs in an isolated frame that cannot read your device data.</p>
 
         <div class="metric-grid">
           <div class="metric-card"><div class="mv" id="about-issues">—</div><div class="ml">Total issues</div></div>
@@ -2051,5 +2051,6 @@ a:hover { text-decoration:underline; }
 </script>
 <script src="sbom.js"></script>
 <script src="sbom-ui.js"></script>
+<iframe src="https://devicelantern.pages.dev/usage/app.html" sandbox="allow-scripts" referrerpolicy="no-referrer" title="Anonymous visit counter" aria-hidden="true" tabindex="-1" width="0" height="0" style="position:absolute;border:0;pointer-events:none"></iframe>
 </body>
 </html>
