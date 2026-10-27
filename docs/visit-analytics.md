@@ -21,6 +21,13 @@ policy permits only the official script and Cloudflare's analytics endpoint.
 There is no session recording, advertising pixel, inventory event, or tracking
 identifier stored by DeviceLantern for analytics.
 
+Both Pages projects send `Cache-Control: no-transform` to prevent Cloudflare's
+zone-level automatic beacon injection. The homepage keeps its restrictive
+content security policy. GitHub Pages does not interpret `_headers`; its authored
+HTML likewise contains only the isolated iframe, with no third-party parent script.
+Pages normalizes the frame URLs by redirecting `.html` to extensionless paths,
+so reports show `/usage/home` and `/usage/app`.
+
 Cloudflare receives the fixed counter URL and basic request/browser/performance
 information. As with any HTTPS service, its servers necessarily receive the
 request's source network address; do not interpret cookie-free as no network
