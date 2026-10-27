@@ -11,7 +11,8 @@ advisory updates. This website adds no runtime dependencies or backend.
 
 ## Deployment
 
-For a Cloudflare Pages project connected to this public repository:
+Hosting and deploy commands are in [`cloudflare/README.md`](../cloudflare/README.md).
+The notes below also apply if the directory is later moved to Cloudflare Pages:
 
 - Use `main` as the production branch after merging the website change.
 - Leave the build command empty and use `website` as the build output directory.

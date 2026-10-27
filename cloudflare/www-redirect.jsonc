@@ -1,0 +1,9 @@
+// www.devicelantern.com: permanent redirect to the apex homepage.
+{
+  "name": "devicelantern-www-redirect",
+  "main": "www-redirect.js",
+  "compatibility_date": "2026-10-01",
+  "routes": [{ "pattern": "www.devicelantern.com", "custom_domain": true }],
+  "workers_dev": false,
+  "preview_urls": false
+}

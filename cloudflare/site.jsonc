@@ -1,0 +1,12 @@
+// devicelantern.com: the static homepage in website/, served as Cloudflare
+// Workers static assets. No server code runs; requests never invoke a Worker.
+{
+  "name": "devicelantern-site",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "../website"
+  },
+  "routes": [{ "pattern": "devicelantern.com", "custom_domain": true }],
+  "workers_dev": false,
+  "preview_urls": false
+}
