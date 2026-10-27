@@ -1,6 +1,10 @@
-# AdvisoryOps website
+# DeviceLantern website
 
-The standalone project homepage. Publish this directory as its own static site;
+The standalone project homepage, served at <https://devicelantern.com>.
+DeviceLantern was previously named AdvisoryOps; the repository and Python package
+keep the `advisoryops` name for now so existing links and automation keep working.
+
+Publish this directory as its own static site;
 do not replace `docs/index.html` or change the feed publication output directory.
 The existing application continues to run independently, including its daily
 advisory updates. This website adds no runtime dependencies or backend.
@@ -14,8 +18,7 @@ For a Cloudflare Pages project connected to this public repository:
 - Configure a preview deployment from the feature branch if reviewing before merge.
 - The included `_headers` file supplies a restrictive content security policy,
   disables outbound browser connections from this homepage, and suppresses referrers.
-- Attach a chosen custom domain using Pages' custom-domain configuration. No
-  domain is registered or assumed by this source.
+- Production custom domain: `devicelantern.com` (`www.devicelantern.com` redirects to it).
 
 GitHub Pages does not apply Cloudflare's `_headers` syntax. Other static hosts
 must configure equivalent response headers using their own controls.
