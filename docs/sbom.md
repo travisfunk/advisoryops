@@ -66,11 +66,15 @@ Import again to check a newer snapshot.
 ## Privacy and rendering
 
 The selected SBOM and device name stay in the current page's memory. There are no
-inventory POSTs, query-string lookups, localStorage/IndexedDB writes, telemetry or
+inventory POSTs, query-string lookups, localStorage/IndexedDB writes, inventory telemetry or
 server-side inventory storage. Only same-origin public catalog/manifest GETs are
 needed for a check. Reloading, clearing or closing the tab removes the import;
 browser download history and downloaded reports are separate. Exported JSON
 contains private inventory and should not be committed to this public repository.
+
+Anonymous page-load measurement runs in a separate sandboxed frame. It cannot
+read the SBOM, device name, findings, parent URL, or browser storage. See
+[visit analytics](visit-analytics.md) for the exact isolation and provider details.
 
 Imported text and advisory evidence are HTML-escaped. Source links accept only
 HTTP(S). Errors, changed input and failed catalog checks clear previous findings
