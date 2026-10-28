@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "generated_at": "2026-10-27T12:11:11.790021+00:00",
-  "total_records": 15384,
-  "vendor_evidence_checked_at": "2026-10-27T12:10:41.965105+00:00",
-  "records_with_vendor_products": 6943,
-  "records_with_products": 7336,
+  "generated_at": "2026-10-28T12:34:54.857877+00:00",
+  "total_records": 15423,
+  "vendor_evidence_checked_at": "2026-10-28T12:34:06.960442+00:00",
+  "records_with_vendor_products": 6977,
+  "records_with_products": 7370,
   "matching_policy": "product_identity_candidates_only",
   "issues": [
     {
@@ -138386,7 +138386,7 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://projectzero.google/2026/01/pixel-0-click-part-3.html"
+      "canonical_link": "https://projectzero.google/2026/05/pixel-10-exploit.html"
     },
     {
       "issue_id": "CVE-2025-54988",
@@ -145547,7 +145547,7 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-202-04.json"
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/477686"
     },
     {
       "issue_id": "CVE-2025-9232",
@@ -145562,7 +145562,7 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-202-04.json"
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/477683"
     },
     {
       "issue_id": "CVE-2025-9242",
@@ -149731,11 +149731,19 @@
       "cves": [
         "CVE-2026-102231"
       ],
-      "vendor": "",
+      "vendor": "microsoft",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "microsoft visual studio code"
+      ],
+      "product_vendors": [
+        {
+          "product": "microsoft visual studio code",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-102231"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-102231"
     },
@@ -154458,11 +154466,25 @@
       "cves": [
         "CVE-2026-106460"
       ],
-      "vendor": "",
+      "vendor": "linuxfoundation",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "linuxfoundation backstage",
+        "linuxfoundation backstage/plugin-auth-node"
+      ],
+      "product_vendors": [
+        {
+          "product": "linuxfoundation backstage",
+          "vendor": "linuxfoundation",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-106460"
+        },
+        {
+          "product": "linuxfoundation backstage/plugin-auth-node",
+          "vendor": "linuxfoundation",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-106460"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/473815"
     },
@@ -156643,11 +156665,91 @@
       "cves": [
         "CVE-2026-108458"
       ],
-      "vendor": "",
+      "vendor": "microsoft",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "microsoft windows 10 1607",
+        "microsoft windows 10 1809",
+        "microsoft windows 10 21h2",
+        "microsoft windows 10 22h2",
+        "microsoft windows 11 23h2",
+        "microsoft windows 11 24h2",
+        "microsoft windows 11 25h2",
+        "microsoft windows 11 26h1",
+        "microsoft windows server 2012",
+        "microsoft windows server 2016",
+        "microsoft windows server 2019",
+        "microsoft windows server 2022",
+        "microsoft windows server 2025"
+      ],
+      "product_vendors": [
+        {
+          "product": "microsoft windows 10 1607",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-108458"
+        },
+        {
+          "product": "microsoft windows 10 1809",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-108458"
+        },
+        {
+          "product": "microsoft windows 10 21h2",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-108458"
+        },
+        {
+          "product": "microsoft windows 10 22h2",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-108458"
+        },
+        {
+          "product": "microsoft windows 11 23h2",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-108458"
+        },
+        {
+          "product": "microsoft windows 11 24h2",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-108458"
+        },
+        {
+          "product": "microsoft windows 11 25h2",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-108458"
+        },
+        {
+          "product": "microsoft windows 11 26h1",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-108458"
+        },
+        {
+          "product": "microsoft windows server 2012",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-108458"
+        },
+        {
+          "product": "microsoft windows server 2016",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-108458"
+        },
+        {
+          "product": "microsoft windows server 2019",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-108458"
+        },
+        {
+          "product": "microsoft windows server 2022",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-108458"
+        },
+        {
+          "product": "microsoft windows server 2025",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-108458"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-108458"
     },
@@ -158605,18 +158707,24 @@
     },
     {
       "issue_id": "CVE-2026-111497",
-      "title": "CVE-2026-111497 Google: CVE-2026-111497 Buffer overflow vulnerability in the Brotli decoder",
-      "priority": "P3",
+      "title": "CVE-2026-111497",
+      "priority": "P0",
       "cves": [
         "CVE-2026-111497"
       ],
-      "vendor": "",
-      "kev_vendor": "",
-      "kev_product": "",
+      "vendor": "Google",
+      "kev_vendor": "Google",
+      "kev_product": "Brotli",
       "affected_products": [],
-      "product_vendors": [],
+      "product_vendors": [
+        {
+          "product": "Brotli",
+          "vendor": "Google",
+          "source": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog"
+        }
+      ],
       "affected_versions": [],
-      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-111497"
+      "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
     },
     {
       "issue_id": "CVE-2026-111594",
@@ -158759,7 +158867,7 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/cloud-security/476418"
+      "canonical_link": "https://www.tenable.com/plugins/nessus/372880"
     },
     {
       "issue_id": "CVE-2026-112021",
@@ -159033,11 +159141,19 @@
       "cves": [
         "CVE-2026-112397"
       ],
-      "vendor": "",
+      "vendor": "python",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "python pillow"
+      ],
+      "product_vendors": [
+        {
+          "product": "python pillow",
+          "vendor": "python",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-112397"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/476404"
     },
@@ -159048,11 +159164,19 @@
       "cves": [
         "CVE-2026-112399"
       ],
-      "vendor": "",
+      "vendor": "python",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "python pillow"
+      ],
+      "product_vendors": [
+        {
+          "product": "python pillow",
+          "vendor": "python",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-112399"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/476594"
     },
@@ -159063,11 +159187,19 @@
       "cves": [
         "CVE-2026-112400"
       ],
-      "vendor": "",
+      "vendor": "python",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "python pillow"
+      ],
+      "product_vendors": [
+        {
+          "product": "python pillow",
+          "vendor": "python",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-112400"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/476400"
     },
@@ -159078,11 +159210,19 @@
       "cves": [
         "CVE-2026-112401"
       ],
-      "vendor": "",
+      "vendor": "python",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "python pillow"
+      ],
+      "product_vendors": [
+        {
+          "product": "python pillow",
+          "vendor": "python",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-112401"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/476598"
     },
@@ -159093,11 +159233,19 @@
       "cves": [
         "CVE-2026-112402"
       ],
-      "vendor": "",
+      "vendor": "python",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "python pillow"
+      ],
+      "product_vendors": [
+        {
+          "product": "python pillow",
+          "vendor": "python",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-112402"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/476590"
     },
@@ -159108,11 +159256,19 @@
       "cves": [
         "CVE-2026-112403"
       ],
-      "vendor": "",
+      "vendor": "python",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "python pillow"
+      ],
+      "product_vendors": [
+        {
+          "product": "python pillow",
+          "vendor": "python",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-112403"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/476408"
     },
@@ -159123,11 +159279,19 @@
       "cves": [
         "CVE-2026-112404"
       ],
-      "vendor": "",
+      "vendor": "python",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "python pillow"
+      ],
+      "product_vendors": [
+        {
+          "product": "python pillow",
+          "vendor": "python",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-112404"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/476407"
     },
@@ -159138,11 +159302,19 @@
       "cves": [
         "CVE-2026-112405"
       ],
-      "vendor": "",
+      "vendor": "python",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "python pillow"
+      ],
+      "product_vendors": [
+        {
+          "product": "python pillow",
+          "vendor": "python",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-112405"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/476589"
     },
@@ -159153,11 +159325,19 @@
       "cves": [
         "CVE-2026-112891"
       ],
-      "vendor": "",
+      "vendor": "python",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "python pillow"
+      ],
+      "product_vendors": [
+        {
+          "product": "python pillow",
+          "vendor": "python",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-112891"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/476603"
     },
@@ -159168,11 +159348,19 @@
       "cves": [
         "CVE-2026-112892"
       ],
-      "vendor": "",
+      "vendor": "python",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "python pillow"
+      ],
+      "product_vendors": [
+        {
+          "product": "python pillow",
+          "vendor": "python",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-112892"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/476595"
     },
@@ -159183,11 +159371,19 @@
       "cves": [
         "CVE-2026-112894"
       ],
-      "vendor": "",
+      "vendor": "python",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "python pillow"
+      ],
+      "product_vendors": [
+        {
+          "product": "python pillow",
+          "vendor": "python",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-112894"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/476596"
     },
@@ -159198,11 +159394,19 @@
       "cves": [
         "CVE-2026-112895"
       ],
-      "vendor": "",
+      "vendor": "python",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "python pillow"
+      ],
+      "product_vendors": [
+        {
+          "product": "python pillow",
+          "vendor": "python",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-112895"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/476414"
     },
@@ -159213,11 +159417,19 @@
       "cves": [
         "CVE-2026-112896"
       ],
-      "vendor": "",
+      "vendor": "python",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "python pillow"
+      ],
+      "product_vendors": [
+        {
+          "product": "python pillow",
+          "vendor": "python",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-112896"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/476401"
     },
@@ -159228,11 +159440,19 @@
       "cves": [
         "CVE-2026-112897"
       ],
-      "vendor": "",
+      "vendor": "python",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "python pillow"
+      ],
+      "product_vendors": [
+        {
+          "product": "python pillow",
+          "vendor": "python",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-112897"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/476412"
     },
@@ -159243,11 +159463,19 @@
       "cves": [
         "CVE-2026-112898"
       ],
-      "vendor": "",
+      "vendor": "python",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "python pillow"
+      ],
+      "product_vendors": [
+        {
+          "product": "python pillow",
+          "vendor": "python",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-112898"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/476588"
     },
@@ -159258,11 +159486,19 @@
       "cves": [
         "CVE-2026-112900"
       ],
-      "vendor": "",
+      "vendor": "python",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "python pillow"
+      ],
+      "product_vendors": [
+        {
+          "product": "python pillow",
+          "vendor": "python",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-112900"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/476591"
     },
@@ -160658,6 +160894,36 @@
       "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-792/"
     },
     {
+      "issue_id": "CVE-2026-114551",
+      "title": "CVE-2026-114551",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-114551"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-810/"
+    },
+    {
+      "issue_id": "CVE-2026-114552",
+      "title": "CVE-2026-114552",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-114552"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-811/"
+    },
+    {
       "issue_id": "CVE-2026-114625",
       "title": "CVE-2026-114625",
       "priority": "P1",
@@ -161084,11 +161350,19 @@
       "cves": [
         "CVE-2026-116191"
       ],
-      "vendor": "",
+      "vendor": "rclone",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "rclone rclone"
+      ],
+      "product_vendors": [
+        {
+          "product": "rclone rclone",
+          "vendor": "rclone",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-116191"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/371970"
     },
@@ -161099,11 +161373,19 @@
       "cves": [
         "CVE-2026-116194"
       ],
-      "vendor": "",
+      "vendor": "rclone",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "rclone rclone"
+      ],
+      "product_vendors": [
+        {
+          "product": "rclone rclone",
+          "vendor": "rclone",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-116194"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/371968"
     },
@@ -161136,6 +161418,21 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/446254"
+    },
+    {
+      "issue_id": "CVE-2026-116272",
+      "title": "Linux Distros Unpatched Vulnerability : CVE-2026-116272",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-116272"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/372876"
     },
     {
       "issue_id": "CVE-2026-11645",
@@ -161190,6 +161487,171 @@
       "canonical_link": "https://www.tenable.com/plugins/nessus/323230"
     },
     {
+      "issue_id": "CVE-2026-116676",
+      "title": "CVE-2026-116676",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-116676"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/477700"
+    },
+    {
+      "issue_id": "CVE-2026-116679",
+      "title": "CVE-2026-116679",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-116679"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/477688"
+    },
+    {
+      "issue_id": "CVE-2026-116682",
+      "title": "CVE-2026-116682",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-116682"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/477689"
+    },
+    {
+      "issue_id": "CVE-2026-116684",
+      "title": "CVE-2026-116684",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-116684"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/477691"
+    },
+    {
+      "issue_id": "CVE-2026-116685",
+      "title": "CVE-2026-116685",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-116685"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/477698"
+    },
+    {
+      "issue_id": "CVE-2026-116686",
+      "title": "CVE-2026-116686",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-116686"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/477695"
+    },
+    {
+      "issue_id": "CVE-2026-116688",
+      "title": "CVE-2026-116688",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-116688"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/477696"
+    },
+    {
+      "issue_id": "CVE-2026-116690",
+      "title": "CVE-2026-116690",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-116690"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/477697"
+    },
+    {
+      "issue_id": "CVE-2026-116691",
+      "title": "CVE-2026-116691",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-116691"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/477690"
+    },
+    {
+      "issue_id": "CVE-2026-116694",
+      "title": "CVE-2026-116694",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-116694"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/477692"
+    },
+    {
+      "issue_id": "CVE-2026-116730",
+      "title": "Linux Distros Unpatched Vulnerability : CVE-2026-116730",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-116730"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/372877"
+    },
+    {
       "issue_id": "CVE-2026-11714",
       "title": "CVE-2026-11714",
       "priority": "P3",
@@ -161241,6 +161703,36 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/326524"
+    },
+    {
+      "issue_id": "CVE-2026-117875",
+      "title": "Linux Distros Unpatched Vulnerability : CVE-2026-117875",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-117875"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/372878"
+    },
+    {
+      "issue_id": "CVE-2026-117885",
+      "title": "Linux Distros Unpatched Vulnerability : CVE-2026-117885",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-117885"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/372879"
     },
     {
       "issue_id": "CVE-2026-11796",
@@ -184145,6 +184637,21 @@
       ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/ot/506215"
+    },
+    {
+      "issue_id": "CVE-2026-20942",
+      "title": "CVE-2026-20942 Microsoft Edge (Chromium-based) Spoofing Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-20942"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-20942"
     },
     {
       "issue_id": "CVE-2026-20963",
@@ -211248,7 +211755,7 @@
         }
       ],
       "affected_versions": [],
-      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-426/"
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/477685"
     },
     {
       "issue_id": "CVE-2026-42778",
@@ -228213,6 +228720,52 @@
       ],
       "affected_versions": [],
       "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-420/"
+    },
+    {
+      "issue_id": "CVE-2026-48356",
+      "title": "CVE-2026-48356",
+      "priority": "P0",
+      "cves": [
+        "CVE-2026-48356"
+      ],
+      "vendor": "Adobe",
+      "kev_vendor": "Adobe",
+      "kev_product": "Commerce and Magento",
+      "affected_products": [
+        "adobe commerce",
+        "adobe commerce b2b",
+        "adobe i/o events",
+        "adobe magento"
+      ],
+      "product_vendors": [
+        {
+          "product": "Commerce and Magento",
+          "vendor": "Adobe",
+          "source": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog"
+        },
+        {
+          "product": "adobe commerce",
+          "vendor": "adobe",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-48356"
+        },
+        {
+          "product": "adobe commerce b2b",
+          "vendor": "adobe",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-48356"
+        },
+        {
+          "product": "adobe i/o events",
+          "vendor": "adobe",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-48356"
+        },
+        {
+          "product": "adobe magento",
+          "vendor": "adobe",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-48356"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2026-48356"
     },
     {
       "issue_id": "CVE-2026-48521",
@@ -257615,6 +258168,21 @@
       "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-293-05.json"
     },
     {
+      "issue_id": "CVE-2026-62765",
+      "title": "CVE-2026-62765 Microsoft Edge (Chromium-based) Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [
+        "CVE-2026-62765"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-62765"
+    },
+    {
       "issue_id": "CVE-2026-62772",
       "title": "CVE-2026-62772 Windows Container Isolation FS Filter Driver (unionfs.sys) Elevation of Privilege Vulnerability",
       "priority": "P3",
@@ -259381,6 +259949,21 @@
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/446231"
     },
     {
+      "issue_id": "CVE-2026-63481",
+      "title": "CVE-2026-63481",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-63481"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/477684"
+    },
+    {
       "issue_id": "CVE-2026-63508",
       "title": "CVE-2026-63508 Microsoft Planetary Computer Pro Elevation of Privilege Vulnerability",
       "priority": "P3",
@@ -261001,11 +261584,19 @@
       "cves": [
         "CVE-2026-63919"
       ],
-      "vendor": "",
+      "vendor": "linux",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "linux linux kernel"
+      ],
+      "product_vendors": [
+        {
+          "product": "linux linux kernel",
+          "vendor": "linux",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-63919"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/367721"
     },
@@ -261016,11 +261607,19 @@
       "cves": [
         "CVE-2026-63920"
       ],
-      "vendor": "",
+      "vendor": "linux",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "linux linux kernel"
+      ],
+      "product_vendors": [
+        {
+          "product": "linux linux kernel",
+          "vendor": "linux",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-63920"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/367227"
     },
@@ -261031,11 +261630,19 @@
       "cves": [
         "CVE-2026-63921"
       ],
-      "vendor": "",
+      "vendor": "linux",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "linux linux kernel"
+      ],
+      "product_vendors": [
+        {
+          "product": "linux linux kernel",
+          "vendor": "linux",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-63921"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/367721"
     },
@@ -261046,11 +261653,19 @@
       "cves": [
         "CVE-2026-63922"
       ],
-      "vendor": "",
+      "vendor": "linux",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "linux linux kernel"
+      ],
+      "product_vendors": [
+        {
+          "product": "linux linux kernel",
+          "vendor": "linux",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-63922"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/367227"
     },
@@ -261061,11 +261676,19 @@
       "cves": [
         "CVE-2026-63923"
       ],
-      "vendor": "",
+      "vendor": "linux",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "linux linux kernel"
+      ],
+      "product_vendors": [
+        {
+          "product": "linux linux kernel",
+          "vendor": "linux",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-63923"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/348288"
     },
@@ -261099,11 +261722,19 @@
       "cves": [
         "CVE-2026-63925"
       ],
-      "vendor": "",
+      "vendor": "linux",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "linux linux kernel"
+      ],
+      "product_vendors": [
+        {
+          "product": "linux linux kernel",
+          "vendor": "linux",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-63925"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/365544"
     },
@@ -278275,6 +278906,101 @@
       "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-69282"
     },
     {
+      "issue_id": "CVE-2026-69284",
+      "title": "CVE-2026-69284 Windows DCOM Server Elevation of Privilege Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-69284"
+      ],
+      "vendor": "microsoft",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Microsoft Windows 10 1607",
+        "Microsoft Windows 10 1809",
+        "Microsoft Windows 10 21H2",
+        "Microsoft Windows 10 22H2",
+        "Microsoft Windows 11 23H2",
+        "Microsoft Windows 11 24H2",
+        "Microsoft Windows 11 25H2",
+        "Microsoft Windows 11 26H1",
+        "Microsoft Windows Server 2012",
+        "Microsoft Windows Server 2016",
+        "Microsoft Windows Server 2019",
+        "Microsoft Windows Server 2022",
+        "Microsoft Windows Server 2025"
+      ],
+      "product_vendors": [
+        {
+          "product": "Microsoft Windows 10 1607",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-69284"
+        },
+        {
+          "product": "Microsoft Windows 10 1809",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-69284"
+        },
+        {
+          "product": "Microsoft Windows 10 21H2",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-69284"
+        },
+        {
+          "product": "Microsoft Windows 10 22H2",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-69284"
+        },
+        {
+          "product": "Microsoft Windows 11 23H2",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-69284"
+        },
+        {
+          "product": "Microsoft Windows 11 24H2",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-69284"
+        },
+        {
+          "product": "Microsoft Windows 11 25H2",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-69284"
+        },
+        {
+          "product": "Microsoft Windows 11 26H1",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-69284"
+        },
+        {
+          "product": "Microsoft Windows Server 2012",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-69284"
+        },
+        {
+          "product": "Microsoft Windows Server 2016",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-69284"
+        },
+        {
+          "product": "Microsoft Windows Server 2019",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-69284"
+        },
+        {
+          "product": "Microsoft Windows Server 2022",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-69284"
+        },
+        {
+          "product": "Microsoft Windows Server 2025",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-69284"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-69284"
+    },
+    {
       "issue_id": "CVE-2026-69286",
       "title": "CVE-2026-69286 Windows USB Audio Class Driver Information Disclosure Vulnerability",
       "priority": "P3",
@@ -280125,6 +280851,101 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-69468"
+    },
+    {
+      "issue_id": "CVE-2026-69473",
+      "title": "CVE-2026-69473 Windows Kernel Elevation of Privilege Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-69473"
+      ],
+      "vendor": "microsoft",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Microsoft Windows 10 1607",
+        "Microsoft Windows 10 1809",
+        "Microsoft Windows 10 21H2",
+        "Microsoft Windows 10 22H2",
+        "Microsoft Windows 11 23H2",
+        "Microsoft Windows 11 24H2",
+        "Microsoft Windows 11 25H2",
+        "Microsoft Windows 11 26H1",
+        "Microsoft Windows Server 2012",
+        "Microsoft Windows Server 2016",
+        "Microsoft Windows Server 2019",
+        "Microsoft Windows Server 2022",
+        "Microsoft Windows Server 2025"
+      ],
+      "product_vendors": [
+        {
+          "product": "Microsoft Windows 10 1607",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-69473"
+        },
+        {
+          "product": "Microsoft Windows 10 1809",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-69473"
+        },
+        {
+          "product": "Microsoft Windows 10 21H2",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-69473"
+        },
+        {
+          "product": "Microsoft Windows 10 22H2",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-69473"
+        },
+        {
+          "product": "Microsoft Windows 11 23H2",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-69473"
+        },
+        {
+          "product": "Microsoft Windows 11 24H2",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-69473"
+        },
+        {
+          "product": "Microsoft Windows 11 25H2",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-69473"
+        },
+        {
+          "product": "Microsoft Windows 11 26H1",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-69473"
+        },
+        {
+          "product": "Microsoft Windows Server 2012",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-69473"
+        },
+        {
+          "product": "Microsoft Windows Server 2016",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-69473"
+        },
+        {
+          "product": "Microsoft Windows Server 2019",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-69473"
+        },
+        {
+          "product": "Microsoft Windows Server 2022",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-69473"
+        },
+        {
+          "product": "Microsoft Windows Server 2025",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-69473"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-69473"
     },
     {
       "issue_id": "CVE-2026-69486",
@@ -283128,6 +283949,21 @@
       "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-69926"
     },
     {
+      "issue_id": "CVE-2026-70007",
+      "title": "CVE-2026-70007 .NET Framework Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [
+        "CVE-2026-70007"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-70007"
+    },
+    {
       "issue_id": "CVE-2026-70009",
       "title": "CVE-2026-70009 Azure Arc Elevation of Privilege Vulnerability",
       "priority": "P3",
@@ -283698,6 +284534,21 @@
       ],
       "affected_versions": [],
       "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-70268"
+    },
+    {
+      "issue_id": "CVE-2026-70277",
+      "title": "CVE-2026-70277 Windows Fast FAT File System Driver Information Disclosure Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-70277"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-70277"
     },
     {
       "issue_id": "CVE-2026-70332",
@@ -299602,6 +300453,36 @@
       "canonical_link": "https://www.tenable.com/plugins/nessus/349607"
     },
     {
+      "issue_id": "CVE-2026-78667",
+      "title": "CVE-2026-78667",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-78667"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/372881"
+    },
+    {
+      "issue_id": "CVE-2026-78669",
+      "title": "CVE-2026-78669",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-78669"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/372880"
+    },
+    {
       "issue_id": "CVE-2026-7891",
       "title": "CVE-2026-7891",
       "priority": "P2",
@@ -305317,11 +306198,79 @@
       "cves": [
         "CVE-2026-83839"
       ],
-      "vendor": "",
+      "vendor": "microsoft",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "Microsoft Windows 10 1809",
+        "Microsoft Windows 10 21H2",
+        "Microsoft Windows 10 22H2",
+        "Microsoft Windows 11 23H2",
+        "Microsoft Windows 11 24H2",
+        "Microsoft Windows 11 25H2",
+        "Microsoft Windows 11 26H1",
+        "Microsoft Windows 11 26H2",
+        "Microsoft Windows Server 2019",
+        "Microsoft Windows Server 2022",
+        "Microsoft Windows Server 2025"
+      ],
+      "product_vendors": [
+        {
+          "product": "Microsoft Windows 10 1809",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-83839"
+        },
+        {
+          "product": "Microsoft Windows 10 21H2",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-83839"
+        },
+        {
+          "product": "Microsoft Windows 10 22H2",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-83839"
+        },
+        {
+          "product": "Microsoft Windows 11 23H2",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-83839"
+        },
+        {
+          "product": "Microsoft Windows 11 24H2",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-83839"
+        },
+        {
+          "product": "Microsoft Windows 11 25H2",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-83839"
+        },
+        {
+          "product": "Microsoft Windows 11 26H1",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-83839"
+        },
+        {
+          "product": "Microsoft Windows 11 26H2",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-83839"
+        },
+        {
+          "product": "Microsoft Windows Server 2019",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-83839"
+        },
+        {
+          "product": "Microsoft Windows Server 2022",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-83839"
+        },
+        {
+          "product": "Microsoft Windows Server 2025",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-83839"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-83839"
     },
@@ -306962,6 +307911,29 @@
       ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/364669"
+    },
+    {
+      "issue_id": "CVE-2026-84783",
+      "title": "CVE-2026-84783",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-84783"
+      ],
+      "vendor": "openssl",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Openssl Openssl"
+      ],
+      "product_vendors": [
+        {
+          "product": "Openssl Openssl",
+          "vendor": "openssl",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-84783"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/477682"
     },
     {
       "issue_id": "CVE-2026-8479",
@@ -310995,6 +311967,21 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/447942"
+    },
+    {
+      "issue_id": "CVE-2026-88078",
+      "title": "CVE-2026-88078 Microsoft Edge (Chromium-based) Spoofing Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-88078"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-88078"
     },
     {
       "issue_id": "CVE-2026-88097",
@@ -329913,6 +330900,21 @@
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/473829"
     },
     {
+      "issue_id": "CVE-2026-93753",
+      "title": "CVE-2026-93753",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-93753"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/477701"
+    },
+    {
       "issue_id": "CVE-2026-93781",
       "title": "CVE-2026-93781",
       "priority": "P3",
@@ -333450,6 +334452,21 @@
       "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-96185"
     },
     {
+      "issue_id": "CVE-2026-96196",
+      "title": "CVE-2026-96196 Microsoft Edge (Chromium-based) Security Feature Bypass Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-96196"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-96196"
+    },
+    {
       "issue_id": "CVE-2026-96198",
       "title": "CVE-2026-96198 Microsoft Edge (Chromium-based) Remote Code Execution Vulnerability",
       "priority": "P2",
@@ -333594,6 +334611,21 @@
       ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/476230"
+    },
+    {
+      "issue_id": "CVE-2026-96225",
+      "title": "CVE-2026-96225 .NET Elevation of Privilege Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-96225"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-96225"
     },
     {
       "issue_id": "CVE-2026-96234",
@@ -334805,6 +335837,21 @@
       ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/326511"
+    },
+    {
+      "issue_id": "CVE-2026-97031",
+      "title": "CVE-2026-97031",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-97031"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/372880"
     },
     {
       "issue_id": "CVE-2026-9712",
@@ -340048,11 +341095,19 @@
       "cves": [
         "CVE-2026-98142"
       ],
-      "vendor": "",
+      "vendor": "linux",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "linux linux kernel"
+      ],
+      "product_vendors": [
+        {
+          "product": "linux linux kernel",
+          "vendor": "linux",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-98142"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/362907"
     },
@@ -349641,6 +350696,19 @@
       "canonical_link": "https://api.fda.gov/device/enforcement.json?search=recall_number:\"Z-0010-2019\""
     },
     {
+      "issue_id": "UNK-2df770168544c1da",
+      "title": "Multiple Vulnerabilities in Apple Products Could Allow for Arbitrary Code Execution",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.cisecurity.org/advisory/multiple-vulnerabilities-in-apple-products-could-allow-for-arbitrary-code-execution_2026-121"
+    },
+    {
       "issue_id": "UNK-2e417f3ab08aa50e",
       "title": "Fedora 43 : kernel (2026-8202400aa0)",
       "priority": "P3",
@@ -351669,6 +352737,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://www.securitymagazine.com/articles/100302-product-spotlight-on-mobile-security-solutions"
+    },
+    {
+      "issue_id": "UNK-39c93b065a990604",
+      "title": "National cyber director rolls out latest pilot in South Carolina, this time for rural hospitals",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://cyberscoop.com/oncd-rural-hospital-cybersecurity-pilot-project-lifeline-250/"
     },
     {
       "issue_id": "UNK-39dab35d98a2460f",
@@ -356017,7 +357098,7 @@
     },
     {
       "issue_id": "UNK-53f879b26c60fa72",
-      "title": "VU#456950: Komodo Periphery Agent Contains an OS Command Injection Vulnerability",
+      "title": "VU#456950: Komodo Periphery agent contains an OS command injection vulnerability",
       "priority": "P3",
       "cves": [],
       "vendor": "",
@@ -356765,6 +357846,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-398/"
+    },
+    {
+      "issue_id": "UNK-57953d43548ef9b3",
+      "title": "Asset and Device Visibility FAQ",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://asimily.com/blog/asset-device-visibility-faq/"
     },
     {
       "issue_id": "UNK-579aaf0d36b206f6",
@@ -360888,6 +361982,19 @@
       "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
     },
     {
+      "issue_id": "UNK-6d13b0401498976e",
+      "title": "Multiple Vulnerabilities in Google Chrome Could Allow for Arbitrary Code Execution",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.cisecurity.org/advisory/multiple-vulnerabilities-in-google-chrome-could-allow-for-arbitrary-code-execution_2026-122"
+    },
+    {
       "issue_id": "UNK-6d2423151dfbdc5a",
       "title": "Automated External Defibrillators (Non-Wearable) recall (Philips Medical Systems)",
       "priority": "P0",
@@ -362900,6 +364007,19 @@
       "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-162-02.json"
     },
     {
+      "issue_id": "UNK-77b3e4b9ff32bf7a",
+      "title": "Fuzzers vs. AI: Comparing Fuzzilli and BigSleep on JavaScript Engines",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://projectzero.google/2026/10/fuzzing-v-AI.html"
+    },
+    {
       "issue_id": "UNK-77c9795b25ca2ab9",
       "title": "pydicom pynetdicom Library",
       "priority": "P2",
@@ -364353,6 +365473,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://www.hipaaguide.net/hscc-model-contract-language-hdos-mdms-cybersecurity/"
+    },
+    {
+      "issue_id": "UNK-80fd88bd8e6e7c7d",
+      "title": "A Vulnerability in Brotli Library Could Allow for Remote Code Execution",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.cisecurity.org/advisory/a-vulnerability-in-brotli-library-could-allow-for-remote-code-execution_2026-120"
     },
     {
       "issue_id": "UNK-81340caf165c9297",
@@ -367536,7 +368669,7 @@
     },
     {
       "issue_id": "UNK-934dbd844a93707f",
-      "title": "VU#410595: Google BoringSSL Name Constraints Bypass in SAN Validation Logic",
+      "title": "VU#410595: Google BoringSSL Name Constraints bypass in SAN validation logic",
       "priority": "P3",
       "cves": [],
       "vendor": "",
@@ -369519,6 +370652,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
+    },
+    {
+      "issue_id": "UNK-9f5deb7e7c7970ad",
+      "title": "Why this new Fitbit feature takes us one step closer to non-invasive glucose tracking",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.zdnet.com/tech/fitbit-glucose-patterns-blood-pressure-health-features/"
     },
     {
       "issue_id": "UNK-9f5fbbbea434e038",

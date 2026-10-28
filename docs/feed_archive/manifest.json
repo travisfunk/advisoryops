@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "generated_at": "2026-10-27T12:11:11.790021+00:00",
+  "generated_at": "2026-10-28T12:34:54.857877+00:00",
   "strategy": "bounded_latest_plus_stable_hash_jsonl",
-  "total_records": 15384,
+  "total_records": 15423,
   "latest_records": 750,
   "latest_file": "../feed_latest.json",
   "dashboard_contract": "../dashboard_feed_contract.json",
@@ -13,194 +13,194 @@
     {
       "file": "shard-00.jsonl",
       "count": 482,
-      "bytes": 4889344,
-      "sha256": "1b7de0b2678b58b2bbca8d59a445bc845b49a1cbd301e042715b81691b25bf15"
+      "bytes": 4889357,
+      "sha256": "8d86177a118312ca1689fb0ec64efdcabede7fffca9684a16124c3ce7a365088"
     },
     {
       "file": "shard-01.jsonl",
-      "count": 453,
-      "bytes": 5322080,
-      "sha256": "c54bd660436d1dc32f8b1f6d0acf30aff9bc6a0be65b1bcd9ca37b2a59668203"
+      "count": 456,
+      "bytes": 5323064,
+      "sha256": "09d52afb2749efbcbb962df4e6a2edb55a9cd328bba45e980557e7f7c4dbfa32"
     },
     {
       "file": "shard-02.jsonl",
-      "count": 489,
-      "bytes": 6098719,
-      "sha256": "d91c9b498d022196b75a412778e7ccbe12c5daf20a3529d5f504d772af751a2c"
+      "count": 490,
+      "bytes": 6103581,
+      "sha256": "a11e986b022447d60ee41ff37cf8c54c23db3c9ac858b92fd2e1852e40610033"
     },
     {
       "file": "shard-03.jsonl",
-      "count": 492,
-      "bytes": 4570198,
-      "sha256": "b9d7d011695f92bbc97f59d3838172fe46508a0111ade6e6e8e8fa9b7ca32dd4"
+      "count": 494,
+      "bytes": 4573851,
+      "sha256": "4055130b619cab08e0d49ed2a48b45a0c66cf109716f22c4aee17555dd4d831d"
     },
     {
       "file": "shard-04.jsonl",
       "count": 476,
-      "bytes": 5654797,
-      "sha256": "6099432d6751290c8480d2a3759f0914940694bdd262827915e3b632a6fe1f6c"
+      "bytes": 5655190,
+      "sha256": "be88bcdd0281c22f1aa818416bf4310714c53fd762442e48f2469bb09a2ef4da"
     },
     {
       "file": "shard-05.jsonl",
-      "count": 518,
-      "bytes": 6287931,
-      "sha256": "7f630e74463e24992252d4f85b52a21e845d510befa2ac6dc4906e2c35c3d668"
+      "count": 519,
+      "bytes": 6289838,
+      "sha256": "42bf835c7764f4ed4a3b753548cfe3d45024b86a2c2158c108410eda43c218aa"
     },
     {
       "file": "shard-06.jsonl",
       "count": 448,
-      "bytes": 5742640,
-      "sha256": "2531ea3bf97767568d2de24053976273b39811f05510cc7e42a1c5632caa3bf8"
+      "bytes": 5744345,
+      "sha256": "7bb956b35aeac674ea7cbaf8c91b9a36d403ef34c85e785c660974ccb2af67e0"
     },
     {
       "file": "shard-07.jsonl",
-      "count": 536,
-      "bytes": 6227602,
-      "sha256": "81db238382fcb428211398404a5747a04022a97d002c97439e06e6d5a2a479ae"
+      "count": 537,
+      "bytes": 6232672,
+      "sha256": "b625b2a4fb0693f0158546de05099e8a768412e4fe35c6e3decedba382ecbaf4"
     },
     {
       "file": "shard-08.jsonl",
-      "count": 468,
-      "bytes": 6479798,
-      "sha256": "744b8744d4d03a9ed98220091aba9aae77777c8996e5da9ccb4224379da3d8fc"
+      "count": 469,
+      "bytes": 6483713,
+      "sha256": "b7edc4f1f82e7964ef192984dcda794e47275f450a16fc373fdac18f58d372c8"
     },
     {
       "file": "shard-09.jsonl",
-      "count": 468,
-      "bytes": 4543518,
-      "sha256": "1b9196c3ead64428bd22e75f71de45b298021fa8e301f83d9580e167cc19bc17"
+      "count": 470,
+      "bytes": 4551622,
+      "sha256": "5c855cfbabe5a970b13eb8d5d751bf33eb866c9759dcaa2cce54464f23ba634e"
     },
     {
       "file": "shard-10.jsonl",
-      "count": 481,
-      "bytes": 5012974,
-      "sha256": "ce872f454814f63c1a128bb60a8029c6c83bfec7480df776ac04d0f6ebb7deff"
+      "count": 483,
+      "bytes": 5019824,
+      "sha256": "0c30ed7912dbd83c6f4a599a7b164f76545f95c36e16e5146b3b564c547e457f"
     },
     {
       "file": "shard-11.jsonl",
-      "count": 499,
-      "bytes": 5528014,
-      "sha256": "e6447554c9c1692d6fd0e10b096faa984f15cb7e1065a6f5db36c8720a25670d"
+      "count": 502,
+      "bytes": 5546672,
+      "sha256": "f6f8b6d91438cc1afdd8a93d9b4035b6a495262f861f64acb92ca5b3803f8091"
     },
     {
       "file": "shard-12.jsonl",
       "count": 462,
-      "bytes": 5364536,
-      "sha256": "4ddc0132cda0d01e1d2e0357ca8057e54833bc42aff08f7527cf2d99fe7501a1"
+      "bytes": 5364549,
+      "sha256": "a54cc13af02d79fee7dde1057452e5a7298271ca2ed91c04a7bd51fdfba4e385"
     },
     {
       "file": "shard-13.jsonl",
-      "count": 451,
-      "bytes": 5138599,
-      "sha256": "3c3157075c41c9313be86bf739403dcc767477781594eb797c0d46459938569c"
+      "count": 454,
+      "bytes": 5186979,
+      "sha256": "a850f26e4749583dee832e3e0ced3b1fba0d455dfe47deaabf5842e15f7247e1"
     },
     {
       "file": "shard-14.jsonl",
-      "count": 482,
-      "bytes": 4619722,
-      "sha256": "e1b20f3098295316f227d21b9645bb01df8f57804d6c33256c9097debdf378a1"
+      "count": 484,
+      "bytes": 4627484,
+      "sha256": "a3548ced4cd13ea83687266b239c0ce442454d442bf7f549e7d6d92afad41b71"
     },
     {
       "file": "shard-15.jsonl",
-      "count": 486,
-      "bytes": 4858206,
-      "sha256": "44796dcb68805431bed533c805036714c4d349060aca9542a628cacadcb50fad"
+      "count": 487,
+      "bytes": 4860472,
+      "sha256": "99a4e5b587ffdbafaa8b079a4870d95cb7589683e7d6576b533410d904336ccc"
     },
     {
       "file": "shard-16.jsonl",
-      "count": 498,
-      "bytes": 6338659,
-      "sha256": "ed4a154b1450f0ffa8a8bf69b32f44bdddf709f10386bbbf1e70090b878f2afd"
+      "count": 500,
+      "bytes": 6345040,
+      "sha256": "1a6d406c10db6bed4af86557cc77b916fdcf0f6a84cf1d42238dc711ecf58cb6"
     },
     {
       "file": "shard-17.jsonl",
-      "count": 488,
-      "bytes": 5010409,
-      "sha256": "6a51e58a814a85a247382e02da066ed04b4e663c60ed9414769f339fc2bf64d9"
+      "count": 489,
+      "bytes": 5016310,
+      "sha256": "4be0ed67279a927f7ba73b53fe0053c498fd258da7058f770f1f6eb93f140309"
     },
     {
       "file": "shard-18.jsonl",
-      "count": 483,
-      "bytes": 6243418,
-      "sha256": "6bd77367a989313165073890ce7ed29878704e3f0094ebf62a5891a3b159182a"
+      "count": 484,
+      "bytes": 6247230,
+      "sha256": "74202fd73717ef9488d1c9573898378c52d461bdefac747ccf2bd7a19feda345"
     },
     {
       "file": "shard-19.jsonl",
       "count": 517,
-      "bytes": 7002498,
-      "sha256": "9436defafdac717de837a8cc24118f244c1f01c4a845337f2a74dec30eca0c9f"
+      "bytes": 7003829,
+      "sha256": "ee4b27052031d7495f306c0eb47ceae7830a65d083186d568c500bf16b2c08ff"
     },
     {
       "file": "shard-20.jsonl",
-      "count": 480,
-      "bytes": 6391408,
-      "sha256": "7b58825f02f445e905243b018706bc43449ec45442a36c7b8ab6a7a18a1ff74a"
+      "count": 481,
+      "bytes": 6394723,
+      "sha256": "003ac2c946b2c574d2b8c2ae54508fef94a2260a4785fa8ce5d249715714a951"
     },
     {
       "file": "shard-21.jsonl",
-      "count": 488,
-      "bytes": 6659838,
-      "sha256": "b27dd91de48ae12f50efcb9140247d250d58c72ac7d72b47c6afc0fd86e8604a"
+      "count": 490,
+      "bytes": 6668218,
+      "sha256": "c0897ace71684e947cf309389700b1dcebcd286fdedb3c29d0669a54eca1b281"
     },
     {
       "file": "shard-22.jsonl",
       "count": 491,
-      "bytes": 5291781,
-      "sha256": "f3142fe3546dddb89734c3dd880955a4e9b9b5b1b11d83b3106090990ca75d40"
+      "bytes": 5291792,
+      "sha256": "efa15395ff782414158161339c270bc9c15450c1622c2733abd08626b0473b26"
     },
     {
       "file": "shard-23.jsonl",
-      "count": 490,
-      "bytes": 5284330,
-      "sha256": "a887849fab3f4bad79d8a0316ab8e01a6135331aa30842e4903bae1447696569"
+      "count": 492,
+      "bytes": 5292523,
+      "sha256": "85019ec07cbaf52fcaa3f5a967e108f21b7e1a114c6b05a25a51072fb96981ad"
     },
     {
       "file": "shard-24.jsonl",
       "count": 489,
-      "bytes": 6073941,
-      "sha256": "b167327c4690473d368aa02f9a94a0299cd3070b65e707b26d9bd305e5806a8c"
+      "bytes": 6073980,
+      "sha256": "b96829a6148f5ff5823d8c9ac0cc6182ca17d2ecff1ab66f149d2ebca08635be"
     },
     {
       "file": "shard-25.jsonl",
       "count": 473,
-      "bytes": 5738352,
-      "sha256": "6f67f673bcf01bc22ac5c1188af047bab0f881292eaca95fcc224c57256de89a"
+      "bytes": 5738378,
+      "sha256": "63d10519c6e697d15fcc1ed26e6e337c8989aecf364c842009cadd0f52a25a57"
     },
     {
       "file": "shard-26.jsonl",
-      "count": 448,
-      "bytes": 5586969,
-      "sha256": "0ccdc1d1ee623820fd47636a37006d9ee3afdcd4f2537e13f2596694ec19dcbf"
+      "count": 449,
+      "bytes": 5589749,
+      "sha256": "975574529f03798256abd600e9c73ab86da1f8b452a104e63ad96485e41a6f13"
     },
     {
       "file": "shard-27.jsonl",
-      "count": 457,
-      "bytes": 5707809,
-      "sha256": "a23e3a5e0a2277873e89087a5ed569c0077757b6fe348308536e8d33979250c5"
+      "count": 458,
+      "bytes": 5710826,
+      "sha256": "0645540133bd747d8c06daa630acc1195623373ccefe0ba3d7b9aeda4b44446a"
     },
     {
       "file": "shard-28.jsonl",
       "count": 466,
-      "bytes": 4843977,
-      "sha256": "b646548247ab958945fed02661d18e8ef8d6dfe2f1ffb43d21143ef2a69a9a7c"
+      "bytes": 4843926,
+      "sha256": "655a39a014b88b59f77acd3860379ac7a2ea94e27f453aeab26347ead8eb0a6b"
     },
     {
       "file": "shard-29.jsonl",
-      "count": 451,
-      "bytes": 5349320,
-      "sha256": "eaa4d19bb6b2b72490f783a78f0c5218b2ca68f49e153cd34bc478d448d21375"
+      "count": 452,
+      "bytes": 5351805,
+      "sha256": "457c2f02d41b7551f27dc6fa3dec1b3b8712068babd52b72f38123568dfbaed1"
     },
     {
       "file": "shard-30.jsonl",
-      "count": 494,
-      "bytes": 5444343,
-      "sha256": "51f2e7f4b9a8fb4d5461acff4d9a1a2c446b23e6d93af4f3cb3ea3419f3bb6a8"
+      "count": 498,
+      "bytes": 5457530,
+      "sha256": "3002cb8725334f0ac5970d4150c87277f6b845177bd1ec4604cd0b8f13428bc4"
     },
     {
       "file": "shard-31.jsonl",
-      "count": 480,
-      "bytes": 5198121,
-      "sha256": "cf023e26b134fc583b336a2b26db87436b5252521ce52b536d12c4b34021e564"
+      "count": 481,
+      "bytes": 5200086,
+      "sha256": "110b7d02352220c9b0a1a407249bbb1b810612a5c8967fd2804148b0cdd70d20"
     }
   ]
 }
