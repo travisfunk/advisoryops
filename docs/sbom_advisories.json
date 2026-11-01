@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "generated_at": "2026-10-31T12:08:05.744753+00:00",
-  "total_records": 15629,
-  "vendor_evidence_checked_at": "2026-10-31T12:07:17.800951+00:00",
-  "records_with_vendor_products": 7037,
-  "records_with_products": 7430,
+  "generated_at": "2026-11-01T13:02:24.202415+00:00",
+  "total_records": 15742,
+  "vendor_evidence_checked_at": "2026-11-01T13:02:15.995086+00:00",
+  "records_with_vendor_products": 7091,
+  "records_with_products": 7484,
   "matching_policy": "product_identity_candidates_only",
   "issues": [
     {
@@ -95001,6 +95001,35 @@
       "canonical_link": "https://cert-portal.siemens.com/productcert/csaf/ssa-089022.json"
     },
     {
+      "issue_id": "CVE-2023-42811",
+      "title": "CVE-2023-42811",
+      "priority": "P3",
+      "cves": [
+        "CVE-2023-42811"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Aes-Gcm Project Aes-Gcm",
+        "Fedoraproject Fedora"
+      ],
+      "product_vendors": [
+        {
+          "product": "Aes-Gcm Project Aes-Gcm",
+          "vendor": "aes-gcm project",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2023-42811"
+        },
+        {
+          "product": "Fedoraproject Fedora",
+          "vendor": "fedoraproject",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2023-42811"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374756"
+    },
+    {
       "issue_id": "CVE-2023-43000",
       "title": "CVE-2023-43000",
       "priority": "P1",
@@ -129921,6 +129950,21 @@
       "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2025-34026"
     },
     {
+      "issue_id": "CVE-2025-3416",
+      "title": "CVE-2025-3416",
+      "priority": "P3",
+      "cves": [
+        "CVE-2025-3416"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374756"
+    },
+    {
       "issue_id": "CVE-2025-34291",
       "title": "CVE-2025-34291",
       "priority": "P0",
@@ -149332,6 +149376,21 @@
       "canonical_link": "https://www.tenable.com/plugins/nessus/322850"
     },
     {
+      "issue_id": "CVE-2026-101258",
+      "title": "CVE-2026-101258",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-101258"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374758"
+    },
+    {
       "issue_id": "CVE-2026-101278",
       "title": "Linux Distros Unpatched Vulnerability : CVE-2026-101278",
       "priority": "P3",
@@ -150424,7 +150483,22 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/cloud-security/476120"
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374770"
+    },
+    {
+      "issue_id": "CVE-2026-102700",
+      "title": "CVE-2026-102700",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-102700"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374779"
     },
     {
       "issue_id": "CVE-2026-10275",
@@ -150964,7 +151038,7 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/cloud-security/474344"
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374758"
     },
     {
       "issue_id": "CVE-2026-103262",
@@ -151393,7 +151467,7 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/cloud-security/476224"
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374760"
     },
     {
       "issue_id": "CVE-2026-104844",
@@ -155252,6 +155326,21 @@
       "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-280-01.json"
     },
     {
+      "issue_id": "CVE-2026-107378",
+      "title": "CVE-2026-107378",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-107378"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374772"
+    },
+    {
       "issue_id": "CVE-2026-10756",
       "title": "CVE-2026-10756",
       "priority": "P2",
@@ -157413,6 +157502,51 @@
       "canonical_link": "https://www.tenable.com/plugins/nessus/365504"
     },
     {
+      "issue_id": "CVE-2026-109349",
+      "title": "CVE-2026-109349",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-109349"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374759"
+    },
+    {
+      "issue_id": "CVE-2026-109350",
+      "title": "CVE-2026-109350",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-109350"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374759"
+    },
+    {
+      "issue_id": "CVE-2026-109351",
+      "title": "CVE-2026-109351",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-109351"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374759"
+    },
+    {
       "issue_id": "CVE-2026-109468",
       "title": "CVE-2026-109468 ASP.NET Core Denial of Service Vulnerability",
       "priority": "P3",
@@ -158682,6 +158816,231 @@
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/477853"
     },
     {
+      "issue_id": "CVE-2026-110672",
+      "title": "CVE-2026-110672",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-110672"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374777"
+    },
+    {
+      "issue_id": "CVE-2026-110673",
+      "title": "CVE-2026-110673",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-110673"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374777"
+    },
+    {
+      "issue_id": "CVE-2026-110674",
+      "title": "CVE-2026-110674",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-110674"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374777"
+    },
+    {
+      "issue_id": "CVE-2026-110675",
+      "title": "CVE-2026-110675",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-110675"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374777"
+    },
+    {
+      "issue_id": "CVE-2026-110676",
+      "title": "CVE-2026-110676",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-110676"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374777"
+    },
+    {
+      "issue_id": "CVE-2026-110677",
+      "title": "CVE-2026-110677",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-110677"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374777"
+    },
+    {
+      "issue_id": "CVE-2026-110678",
+      "title": "CVE-2026-110678",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-110678"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374777"
+    },
+    {
+      "issue_id": "CVE-2026-110680",
+      "title": "CVE-2026-110680",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-110680"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374777"
+    },
+    {
+      "issue_id": "CVE-2026-110681",
+      "title": "CVE-2026-110681",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-110681"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374777"
+    },
+    {
+      "issue_id": "CVE-2026-110682",
+      "title": "CVE-2026-110682",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-110682"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374777"
+    },
+    {
+      "issue_id": "CVE-2026-110684",
+      "title": "CVE-2026-110684",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-110684"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374777"
+    },
+    {
+      "issue_id": "CVE-2026-110685",
+      "title": "CVE-2026-110685",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-110685"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374777"
+    },
+    {
+      "issue_id": "CVE-2026-110686",
+      "title": "CVE-2026-110686",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-110686"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374777"
+    },
+    {
+      "issue_id": "CVE-2026-110687",
+      "title": "CVE-2026-110687",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-110687"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374777"
+    },
+    {
+      "issue_id": "CVE-2026-110688",
+      "title": "CVE-2026-110688",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-110688"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374777"
+    },
+    {
       "issue_id": "CVE-2026-110825",
       "title": "CVE-2026-110825",
       "priority": "P3",
@@ -159151,34 +159510,52 @@
       "kev_vendor": "Google",
       "kev_product": "Brotli",
       "affected_products": [
-        "7-zip p7zip",
-        "anthropic bun",
-        "apache arrow",
-        "clickhouse clickhouse",
-        "debian debian linux",
-        "duckdb duckdb",
-        "envoyproxy envoy",
-        "google woff2",
-        "istio istio",
-        "mcmilk 7-zip-zstd",
-        "microsoft .net",
-        "nodejs node.js",
-        "python-hyper brotlicffi",
-        "siemens common configurator",
-        "siemens data flow monitoring",
-        "siemens edge opc ua server configurator",
-        "siemens flow creator configurator",
-        "siemens industrial edge cloud connector configurator",
-        "siemens industrial edge databus configurator",
-        "siemens industrial edge hub",
-        "siemens industrial edge management cloud",
-        "siemens ruggedcom ape1808 firmware",
-        "tianocore edk2"
+        "7-Zip P7Zip",
+        "Andybalholm Brotli",
+        "Anthropic Bun",
+        "Apache Arrow",
+        "Clickhouse Clickhouse",
+        "Debian Debian Linux",
+        "Duckdb Duckdb",
+        "Envoyproxy Envoy",
+        "Google Brotli",
+        "Google Woff2",
+        "Istio Istio",
+        "Mcmilk 7-Zip-Zstd",
+        "Microsoft .Net",
+        "Nodejs Node.Js",
+        "Python-Hyper Brotlicffi",
+        "Siemens Common Configurator",
+        "Siemens Data Flow Monitoring",
+        "Siemens Edge Opc Ua Server Configurator",
+        "Siemens Flow Creator Configurator",
+        "Siemens Industrial Edge Cloud Connector Configurator",
+        "Siemens Industrial Edge Databus Configurator",
+        "Siemens Industrial Edge Hub",
+        "Siemens Industrial Edge Management Cloud",
+        "Siemens Ruggedcom Ape1808",
+        "Siemens Ruggedcom Ape1808 Firmware",
+        "Tianocore Edk2"
       ],
       "product_vendors": [
         {
-          "product": "7-zip p7zip",
+          "product": "7-Zip P7Zip",
           "vendor": "7-zip",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
+        },
+        {
+          "product": "Andybalholm Brotli",
+          "vendor": "andybalholm",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
+        },
+        {
+          "product": "Anthropic Bun",
+          "vendor": "anthropic",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
+        },
+        {
+          "product": "Apache Arrow",
+          "vendor": "apache",
           "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
         },
         {
@@ -159187,112 +159564,107 @@
           "source": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog"
         },
         {
-          "product": "anthropic bun",
-          "vendor": "anthropic",
-          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
-        },
-        {
-          "product": "apache arrow",
-          "vendor": "apache",
-          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
-        },
-        {
-          "product": "clickhouse clickhouse",
+          "product": "Clickhouse Clickhouse",
           "vendor": "clickhouse",
           "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
         },
         {
-          "product": "debian debian linux",
+          "product": "Debian Debian Linux",
           "vendor": "debian",
           "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
         },
         {
-          "product": "duckdb duckdb",
+          "product": "Duckdb Duckdb",
           "vendor": "duckdb",
           "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
         },
         {
-          "product": "envoyproxy envoy",
+          "product": "Envoyproxy Envoy",
           "vendor": "envoyproxy",
           "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
         },
         {
-          "product": "google woff2",
+          "product": "Google Brotli",
           "vendor": "google",
           "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
         },
         {
-          "product": "istio istio",
+          "product": "Google Woff2",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
+        },
+        {
+          "product": "Istio Istio",
           "vendor": "istio",
           "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
         },
         {
-          "product": "mcmilk 7-zip-zstd",
+          "product": "Mcmilk 7-Zip-Zstd",
           "vendor": "mcmilk",
           "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
         },
         {
-          "product": "microsoft .net",
+          "product": "Microsoft .Net",
           "vendor": "microsoft",
           "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
         },
         {
-          "product": "nodejs node.js",
+          "product": "Nodejs Node.Js",
           "vendor": "nodejs",
           "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
         },
         {
-          "product": "python-hyper brotlicffi",
+          "product": "Python-Hyper Brotlicffi",
           "vendor": "python-hyper",
           "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
         },
         {
-          "product": "siemens common configurator",
+          "product": "Siemens Common Configurator",
           "vendor": "siemens",
           "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
         },
         {
-          "product": "siemens data flow monitoring",
+          "product": "Siemens Data Flow Monitoring",
           "vendor": "siemens",
           "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
         },
         {
-          "product": "siemens edge opc ua server configurator",
+          "product": "Siemens Edge Opc Ua Server Configurator",
           "vendor": "siemens",
           "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
         },
         {
-          "product": "siemens flow creator configurator",
+          "product": "Siemens Flow Creator Configurator",
           "vendor": "siemens",
           "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
         },
         {
-          "product": "siemens industrial edge cloud connector configurator",
+          "product": "Siemens Industrial Edge Cloud Connector Configurator",
           "vendor": "siemens",
           "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
         },
         {
-          "product": "siemens industrial edge databus configurator",
+          "product": "Siemens Industrial Edge Databus Configurator",
           "vendor": "siemens",
           "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
         },
         {
-          "product": "siemens industrial edge hub",
+          "product": "Siemens Industrial Edge Hub",
           "vendor": "siemens",
           "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
         },
         {
-          "product": "siemens industrial edge management cloud",
+          "product": "Siemens Industrial Edge Management Cloud",
           "vendor": "siemens",
           "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
         },
         {
-          "product": "siemens ruggedcom ape1808 firmware",
+          "product": "Siemens Ruggedcom Ape1808 Firmware",
           "vendor": "siemens",
           "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
         },
         {
-          "product": "tianocore edk2",
+          "product": "Tianocore Edk2",
           "vendor": "tianocore",
           "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
         }
@@ -161317,6 +161689,126 @@
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/476593"
     },
     {
+      "issue_id": "CVE-2026-113786",
+      "title": "CVE-2026-113786",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-113786"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374765"
+    },
+    {
+      "issue_id": "CVE-2026-113789",
+      "title": "CVE-2026-113789",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-113789"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374765"
+    },
+    {
+      "issue_id": "CVE-2026-113790",
+      "title": "CVE-2026-113790",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-113790"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374765"
+    },
+    {
+      "issue_id": "CVE-2026-113791",
+      "title": "CVE-2026-113791",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-113791"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374765"
+    },
+    {
+      "issue_id": "CVE-2026-113792",
+      "title": "CVE-2026-113792",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-113792"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374765"
+    },
+    {
+      "issue_id": "CVE-2026-113793",
+      "title": "CVE-2026-113793",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-113793"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374765"
+    },
+    {
+      "issue_id": "CVE-2026-113794",
+      "title": "CVE-2026-113794",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-113794"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374765"
+    },
+    {
+      "issue_id": "CVE-2026-113795",
+      "title": "CVE-2026-113795",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-113795"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374765"
+    },
+    {
       "issue_id": "CVE-2026-11393",
       "title": "CVE-2026-11393",
       "priority": "P3",
@@ -161458,6 +161950,21 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-358/"
+    },
+    {
+      "issue_id": "CVE-2026-114437",
+      "title": "CVE-2026-114437",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-114437"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374761"
     },
     {
       "issue_id": "CVE-2026-1145",
@@ -162553,6 +163060,21 @@
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/477692"
     },
     {
+      "issue_id": "CVE-2026-116696",
+      "title": "CVE-2026-116696",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-116696"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478146"
+    },
+    {
       "issue_id": "CVE-2026-116730",
       "title": "Linux Distros Unpatched Vulnerability : CVE-2026-116730",
       "priority": "P3",
@@ -162566,6 +163088,51 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/372877"
+    },
+    {
+      "issue_id": "CVE-2026-116773",
+      "title": "CVE-2026-116773",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-116773"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478139"
+    },
+    {
+      "issue_id": "CVE-2026-116774",
+      "title": "CVE-2026-116774",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-116774"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478147"
+    },
+    {
+      "issue_id": "CVE-2026-116794",
+      "title": "CVE-2026-116794",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-116794"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478144"
     },
     {
       "issue_id": "CVE-2026-11714",
@@ -162787,6 +163354,517 @@
       "canonical_link": "https://www.tenable.com/plugins/nessus/374040"
     },
     {
+      "issue_id": "CVE-2026-118304",
+      "title": "Chromium: CVE-2026-118304 Improper input validation in SVG",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118304"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118304"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118304"
+    },
+    {
+      "issue_id": "CVE-2026-118305",
+      "title": "Chromium: CVE-2026-118305 Memory corruption in Turbolev",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118305"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118305"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118305"
+    },
+    {
+      "issue_id": "CVE-2026-118306",
+      "title": "Chromium: CVE-2026-118306 Memory corruption in FileSystem",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118306"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118306"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118306"
+    },
+    {
+      "issue_id": "CVE-2026-118307",
+      "title": "Chromium: CVE-2026-118307 Use after free in Paint",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118307"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118307"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118307"
+    },
+    {
+      "issue_id": "CVE-2026-118308",
+      "title": "Chromium: CVE-2026-118308 Use after free in SVG",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118308"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118308"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118308"
+    },
+    {
+      "issue_id": "CVE-2026-118309",
+      "title": "CVE-2026-118309",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118309"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Android",
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118309"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374763"
+    },
+    {
+      "issue_id": "CVE-2026-118310",
+      "title": "Chromium: CVE-2026-118310 Improper input validation in Views",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118310"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome",
+        "Microsoft Windows"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118310"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118310"
+    },
+    {
+      "issue_id": "CVE-2026-118311",
+      "title": "Chromium: CVE-2026-118311 Memory corruption in Media",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118311"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118311"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118311"
+    },
+    {
+      "issue_id": "CVE-2026-118312",
+      "title": "Chromium: CVE-2026-118312 Memory corruption in Paint",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118312"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118312"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118312"
+    },
+    {
+      "issue_id": "CVE-2026-118313",
+      "title": "Chromium: CVE-2026-118313 Use after free in Video",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118313"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118313"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118313"
+    },
+    {
+      "issue_id": "CVE-2026-118314",
+      "title": "CVE-2026-118314",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118314"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Android",
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118314"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374763"
+    },
+    {
+      "issue_id": "CVE-2026-118315",
+      "title": "Chromium: CVE-2026-118315 Improper input validation in SVG",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118315"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118315"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118315"
+    },
+    {
+      "issue_id": "CVE-2026-118316",
+      "title": "Chromium: CVE-2026-118316 Improper input validation in V8",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118316"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118316"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118316"
+    },
+    {
+      "issue_id": "CVE-2026-118317",
+      "title": "Chromium: CVE-2026-118317 Memory corruption in HTML",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118317"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118317"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118317"
+    },
+    {
+      "issue_id": "CVE-2026-118318",
+      "title": "Chromium: CVE-2026-118318 Improper access control in V8",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118318"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118318"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118318"
+    },
+    {
+      "issue_id": "CVE-2026-118319",
+      "title": "Chromium: CVE-2026-118319 Memory corruption in Skia",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118319"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118319"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118319"
+    },
+    {
+      "issue_id": "CVE-2026-118320",
+      "title": "Chromium: CVE-2026-118320 Memory corruption in V8",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118320"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118320"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118320"
+    },
+    {
+      "issue_id": "CVE-2026-118321",
+      "title": "CVE-2026-118321",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118321"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Android",
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118321"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374763"
+    },
+    {
+      "issue_id": "CVE-2026-118322",
+      "title": "Chromium: CVE-2026-118322 Memory corruption in ANGLE",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118322"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118322"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118322"
+    },
+    {
+      "issue_id": "CVE-2026-118327",
+      "title": "Chromium: CVE-2026-118327 Memory corruption in Media",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118327"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118327"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118327"
+    },
+    {
+      "issue_id": "CVE-2026-118328",
+      "title": "Chromium: CVE-2026-118328 Improper input validation in WebRTC",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118328"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118328"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118328"
+    },
+    {
+      "issue_id": "CVE-2026-118329",
+      "title": "Chromium: CVE-2026-118329 Improper input validation in ANGLE",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118329"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Apple Macos",
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118329"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118329"
+    },
+    {
       "issue_id": "CVE-2026-11833",
       "title": "CVE-2026-11833",
       "priority": "P3",
@@ -162800,6 +163878,689 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-176-01.json"
+    },
+    {
+      "issue_id": "CVE-2026-118330",
+      "title": "Chromium: CVE-2026-118330 Use after free in Browser",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118330"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome",
+        "Microsoft Windows"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118330"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118330"
+    },
+    {
+      "issue_id": "CVE-2026-118331",
+      "title": "Chromium: CVE-2026-118331 Improper input validation in FileAPI",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118331"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118331"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118331"
+    },
+    {
+      "issue_id": "CVE-2026-118332",
+      "title": "Chromium: CVE-2026-118332 Improper input validation in Compositing",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118332"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118332"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118332"
+    },
+    {
+      "issue_id": "CVE-2026-118333",
+      "title": "Chromium: CVE-2026-118333 Missing authorization in Video",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118333"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118333"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118333"
+    },
+    {
+      "issue_id": "CVE-2026-118334",
+      "title": "Chromium: CVE-2026-118334 Use after free in ImageCapture",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118334"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118334"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118334"
+    },
+    {
+      "issue_id": "CVE-2026-118335",
+      "title": "Chromium: CVE-2026-118335 Improper input validation in Metrics",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118335"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118335"
+    },
+    {
+      "issue_id": "CVE-2026-118336",
+      "title": "Chromium: CVE-2026-118336 Improper input validation in Headless",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118336"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118336"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118336"
+    },
+    {
+      "issue_id": "CVE-2026-118337",
+      "title": "Chromium: CVE-2026-118337 Improper access control in Forms",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118337"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118337"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118337"
+    },
+    {
+      "issue_id": "CVE-2026-118338",
+      "title": "Chromium: CVE-2026-118338 Use after free in Animation",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118338"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118338"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118338"
+    },
+    {
+      "issue_id": "CVE-2026-118339",
+      "title": "Chromium: CVE-2026-118339 Use after free in Animation",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118339"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118339"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118339"
+    },
+    {
+      "issue_id": "CVE-2026-118340",
+      "title": "Chromium: CVE-2026-118340 Memory corruption in Skia",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118340"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118340"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118340"
+    },
+    {
+      "issue_id": "CVE-2026-118341",
+      "title": "Chromium: CVE-2026-118341 Use after free in Modularization",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118341"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118341"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118341"
+    },
+    {
+      "issue_id": "CVE-2026-118342",
+      "title": "Chromium: CVE-2026-118342 Out of bounds write in Editing",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118342"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118342"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118342"
+    },
+    {
+      "issue_id": "CVE-2026-118343",
+      "title": "Chromium: CVE-2026-118343 Improper input validation in ReadingList",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118343"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118343"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118343"
+    },
+    {
+      "issue_id": "CVE-2026-118344",
+      "title": "Chromium: CVE-2026-118344 Use after free in Layout",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118344"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118344"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118344"
+    },
+    {
+      "issue_id": "CVE-2026-118345",
+      "title": "Chromium: CVE-2026-118345 Use after free in PDFium",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118345"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118345"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118345"
+    },
+    {
+      "issue_id": "CVE-2026-118346",
+      "title": "Chromium: CVE-2026-118346 Use after free in Compositing",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118346"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118346"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118346"
+    },
+    {
+      "issue_id": "CVE-2026-118347",
+      "title": "Chromium: CVE-2026-118347 Use after free in FileSystem",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118347"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118347"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118347"
+    },
+    {
+      "issue_id": "CVE-2026-118348",
+      "title": "Chromium: CVE-2026-118348 Improper input validation in Skia",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118348"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118348"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118348"
+    },
+    {
+      "issue_id": "CVE-2026-118349",
+      "title": "Chromium: CVE-2026-118349 Memory corruption in Payments",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118349"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118349"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118349"
+    },
+    {
+      "issue_id": "CVE-2026-118350",
+      "title": "Chromium: CVE-2026-118350 Use after free in Turbolev",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118350"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118350"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118350"
+    },
+    {
+      "issue_id": "CVE-2026-118351",
+      "title": "Chromium: CVE-2026-118351 Memory corruption in Skia",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118351"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118351"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118351"
+    },
+    {
+      "issue_id": "CVE-2026-118352",
+      "title": "Chromium: CVE-2026-118352 Memory corruption in Cache",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118352"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118352"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118352"
+    },
+    {
+      "issue_id": "CVE-2026-118353",
+      "title": "Chromium: CVE-2026-118353 Use after free in Paint",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118353"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118353"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118353"
+    },
+    {
+      "issue_id": "CVE-2026-118354",
+      "title": "Chromium: CVE-2026-118354 Improper input validation in Skia",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118354"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118354"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118354"
+    },
+    {
+      "issue_id": "CVE-2026-118355",
+      "title": "Chromium: CVE-2026-118355 Improper input validation in Command",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118355"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118355"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118355"
+    },
+    {
+      "issue_id": "CVE-2026-118356",
+      "title": "Chromium: CVE-2026-118356 Use after free in WTF",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118356"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118356"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118356"
+    },
+    {
+      "issue_id": "CVE-2026-118357",
+      "title": "Chromium: CVE-2026-118357 Use after free in FileSystem",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118357"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118357"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118357"
+    },
+    {
+      "issue_id": "CVE-2026-118358",
+      "title": "Chromium: CVE-2026-118358 Memory corruption in WebAudio",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118358"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118358"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118358"
+    },
+    {
+      "issue_id": "CVE-2026-118359",
+      "title": "Chromium: CVE-2026-118359 Memory corruption in V8",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118359"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118359"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118359"
     },
     {
       "issue_id": "CVE-2026-11850",
@@ -163458,6 +165219,21 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/478095"
+    },
+    {
+      "issue_id": "CVE-2026-119206",
+      "title": "CVE-2026-119206",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-119206"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478148"
     },
     {
       "issue_id": "CVE-2026-119210",
@@ -166763,6 +168539,21 @@
       ],
       "affected_versions": [],
       "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-211/"
+    },
+    {
+      "issue_id": "CVE-2026-13622",
+      "title": "CVE-2026-13622",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-13622"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374771"
     },
     {
       "issue_id": "CVE-2026-13676",
@@ -179326,7 +181117,7 @@
         }
       ],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/cloud-security/474354"
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374769"
     },
     {
       "issue_id": "CVE-2026-15310",
@@ -179341,7 +181132,7 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/366009"
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374781"
     },
     {
       "issue_id": "CVE-2026-15337",
@@ -179966,6 +181757,21 @@
       "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-260-02.json"
     },
     {
+      "issue_id": "CVE-2026-15689",
+      "title": "CVE-2026-15689",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-15689"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374773"
+    },
+    {
       "issue_id": "CVE-2026-15705",
       "title": "Linux Distros Unpatched Vulnerability : CVE-2026-15705",
       "priority": "P3",
@@ -180054,7 +181860,7 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/366009"
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374781"
     },
     {
       "issue_id": "CVE-2026-15815",
@@ -181124,7 +182930,7 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/366009"
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374781"
     },
     {
       "issue_id": "CVE-2026-17106",
@@ -182998,7 +184804,7 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/366009"
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374781"
     },
     {
       "issue_id": "CVE-2026-19490",
@@ -183219,7 +185025,7 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/366009"
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374781"
     },
     {
       "issue_id": "CVE-2026-19556",
@@ -183338,6 +185144,21 @@
       "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-19560"
     },
     {
+      "issue_id": "CVE-2026-19585",
+      "title": "CVE-2026-19585",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-19585"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374775"
+    },
+    {
       "issue_id": "CVE-2026-19590",
       "title": "CVE-2026-19590",
       "priority": "P2",
@@ -183445,7 +185266,7 @@
     {
       "issue_id": "CVE-2026-19654",
       "title": "CVE-2026-19654",
-      "priority": "P3",
+      "priority": "P2",
       "cves": [
         "CVE-2026-19654"
       ],
@@ -183469,7 +185290,7 @@
         }
       ],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/367229"
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374764"
     },
     {
       "issue_id": "CVE-2026-19662",
@@ -183574,7 +185395,7 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/366009"
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374781"
     },
     {
       "issue_id": "CVE-2026-19694",
@@ -195851,7 +197672,7 @@
         }
       ],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/362898"
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374756"
     },
     {
       "issue_id": "CVE-2026-25569",
@@ -210669,6 +212490,29 @@
       "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-176-02.json"
     },
     {
+      "issue_id": "CVE-2026-40860",
+      "title": "CVE-2026-40860",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-40860"
+      ],
+      "vendor": "apache",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Apache Camel"
+      ],
+      "product_vendors": [
+        {
+          "product": "Apache Camel",
+          "vendor": "apache",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-40860"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478140"
+    },
+    {
       "issue_id": "CVE-2026-40861",
       "title": "CVE-2026-40861",
       "priority": "P3",
@@ -216983,6 +218827,29 @@
       ],
       "affected_versions": [],
       "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-492/"
+    },
+    {
+      "issue_id": "CVE-2026-43866",
+      "title": "CVE-2026-43866",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-43866"
+      ],
+      "vendor": "apache",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Apache Camel"
+      ],
+      "product_vendors": [
+        {
+          "product": "Apache Camel",
+          "vendor": "apache",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-43866"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478140"
     },
     {
       "issue_id": "CVE-2026-43951",
@@ -250009,6 +251876,21 @@
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/447986"
     },
     {
+      "issue_id": "CVE-2026-56711",
+      "title": "CVE-2026-56711",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-56711"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374757"
+    },
+    {
       "issue_id": "CVE-2026-56737",
       "title": "CVE-2026-56737",
       "priority": "P3",
@@ -257272,6 +259154,21 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/330024"
+    },
+    {
+      "issue_id": "CVE-2026-61548",
+      "title": "CVE-2026-61548",
+      "priority": "P2",
+      "cves": [
+        "CVE-2026-61548"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374764"
     },
     {
       "issue_id": "CVE-2026-61554",
@@ -301314,7 +303211,7 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/cloud-security/474354"
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374769"
     },
     {
       "issue_id": "CVE-2026-77117",
@@ -301359,7 +303256,7 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/cloud-security/476120"
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374770"
     },
     {
       "issue_id": "CVE-2026-77219",
@@ -302016,7 +303913,7 @@
     {
       "issue_id": "CVE-2026-78002",
       "title": "CVE-2026-78002",
-      "priority": "P3",
+      "priority": "P2",
       "cves": [
         "CVE-2026-78002"
       ],
@@ -302026,7 +303923,7 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/367229"
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374764"
     },
     {
       "issue_id": "CVE-2026-78224",
@@ -303086,6 +304983,36 @@
       "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-295-02.json"
     },
     {
+      "issue_id": "CVE-2026-78659",
+      "title": "CVE-2026-78659",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-78659"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374771"
+    },
+    {
+      "issue_id": "CVE-2026-78660",
+      "title": "CVE-2026-78660",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-78660"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374771"
+    },
+    {
       "issue_id": "CVE-2026-78662",
       "title": "CVE-2026-78662",
       "priority": "P2",
@@ -303107,6 +305034,21 @@
       ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/349607"
+    },
+    {
+      "issue_id": "CVE-2026-78663",
+      "title": "CVE-2026-78663",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-78663"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374771"
     },
     {
       "issue_id": "CVE-2026-78667",
@@ -303136,7 +305078,7 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/372880"
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374761"
     },
     {
       "issue_id": "CVE-2026-7891",
@@ -303167,6 +305109,66 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/348256"
+    },
+    {
+      "issue_id": "CVE-2026-79608",
+      "title": "CVE-2026-79608",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-79608"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374779"
+    },
+    {
+      "issue_id": "CVE-2026-79609",
+      "title": "CVE-2026-79609",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-79609"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374779"
+    },
+    {
+      "issue_id": "CVE-2026-79610",
+      "title": "CVE-2026-79610",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-79610"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374779"
+    },
+    {
+      "issue_id": "CVE-2026-79611",
+      "title": "CVE-2026-79611",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-79611"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374779"
     },
     {
       "issue_id": "CVE-2026-79678",
@@ -307997,7 +309999,7 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/366009"
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374781"
     },
     {
       "issue_id": "CVE-2026-82078",
@@ -309783,7 +311785,7 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/350829"
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374768"
     },
     {
       "issue_id": "CVE-2026-84330",
@@ -310013,7 +312015,7 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/cloud-security/474354"
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374769"
     },
     {
       "issue_id": "CVE-2026-84444",
@@ -314676,7 +316678,7 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/cloud-security/474354"
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374769"
     },
     {
       "issue_id": "CVE-2026-87902",
@@ -314719,7 +316721,7 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/cloud-security/474354"
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374769"
     },
     {
       "issue_id": "CVE-2026-88011",
@@ -315542,6 +317544,21 @@
       "canonical_link": "https://www.tenable.com/plugins/nessus/348314"
     },
     {
+      "issue_id": "CVE-2026-88924",
+      "title": "CVE-2026-88924",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-88924"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374766"
+    },
+    {
       "issue_id": "CVE-2026-88932",
       "title": "CVE-2026-88932",
       "priority": "P3",
@@ -315615,6 +317632,21 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/348357"
+    },
+    {
+      "issue_id": "CVE-2026-89091",
+      "title": "CVE-2026-89091",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-89091"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374767"
     },
     {
       "issue_id": "CVE-2026-89092",
@@ -326162,7 +328194,7 @@
     {
       "issue_id": "CVE-2026-90616",
       "title": "CVE-2026-90616",
-      "priority": "P2",
+      "priority": "P3",
       "cves": [
         "CVE-2026-90616"
       ],
@@ -326172,7 +328204,7 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/366013"
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374780"
     },
     {
       "issue_id": "CVE-2026-9064",
@@ -328601,6 +330633,21 @@
       "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2026-9198"
     },
     {
+      "issue_id": "CVE-2026-91986",
+      "title": "CVE-2026-91986",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-91986"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374759"
+    },
+    {
       "issue_id": "CVE-2026-92005",
       "title": "CVE-2026-92005",
       "priority": "P2",
@@ -329440,6 +331487,21 @@
       ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/366012"
+    },
+    {
+      "issue_id": "CVE-2026-92162",
+      "title": "CVE-2026-92162",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-92162"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374780"
     },
     {
       "issue_id": "CVE-2026-92183",
@@ -330482,6 +332544,21 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/365512"
+    },
+    {
+      "issue_id": "CVE-2026-92709",
+      "title": "CVE-2026-92709",
+      "priority": "P2",
+      "cves": [
+        "CVE-2026-92709"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374764"
     },
     {
       "issue_id": "CVE-2026-9277",
@@ -333818,7 +335895,7 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/362898"
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374756"
     },
     {
       "issue_id": "CVE-2026-93600",
@@ -333833,7 +335910,7 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/362898"
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374756"
     },
     {
       "issue_id": "CVE-2026-93601",
@@ -333848,7 +335925,7 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/362898"
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374756"
     },
     {
       "issue_id": "CVE-2026-93602",
@@ -333863,7 +335940,7 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/362898"
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374756"
     },
     {
       "issue_id": "CVE-2026-93605",
@@ -334792,7 +336869,7 @@
     },
     {
       "issue_id": "CVE-2026-93990",
-      "title": "Linux Distros Unpatched Vulnerability : CVE-2026-93990",
+      "title": "CVE-2026-93990",
       "priority": "P3",
       "cves": [
         "CVE-2026-93990"
@@ -334803,7 +336880,7 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/348348"
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374770"
     },
     {
       "issue_id": "CVE-2026-94054",
@@ -337766,7 +339843,7 @@
     {
       "issue_id": "CVE-2026-96275",
       "title": "CVE-2026-96275",
-      "priority": "P2",
+      "priority": "P3",
       "cves": [
         "CVE-2026-96275"
       ],
@@ -337776,7 +339853,22 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/366013"
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374780"
+    },
+    {
+      "issue_id": "CVE-2026-96276",
+      "title": "CVE-2026-96276",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-96276"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374780"
     },
     {
       "issue_id": "CVE-2026-96279",
@@ -337796,7 +339888,7 @@
     {
       "issue_id": "CVE-2026-96280",
       "title": "CVE-2026-96280",
-      "priority": "P2",
+      "priority": "P3",
       "cves": [
         "CVE-2026-96280"
       ],
@@ -337806,7 +339898,37 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/366013"
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374780"
+    },
+    {
+      "issue_id": "CVE-2026-96281",
+      "title": "CVE-2026-96281",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-96281"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374780"
+    },
+    {
+      "issue_id": "CVE-2026-96282",
+      "title": "CVE-2026-96282",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-96282"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374780"
     },
     {
       "issue_id": "CVE-2026-96283",
@@ -338436,7 +340558,7 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/346781"
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374781"
     },
     {
       "issue_id": "CVE-2026-9672",
@@ -338560,9 +340682,24 @@
       "canonical_link": "https://kb.cert.org/vuls/id/369093"
     },
     {
+      "issue_id": "CVE-2026-96807",
+      "title": "CVE-2026-96807",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-96807"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374780"
+    },
+    {
       "issue_id": "CVE-2026-96808",
       "title": "CVE-2026-96808",
-      "priority": "P2",
+      "priority": "P3",
       "cves": [
         "CVE-2026-96808"
       ],
@@ -338572,7 +340709,7 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/366013"
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374780"
     },
     {
       "issue_id": "CVE-2026-96869",
@@ -338935,6 +341072,21 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/372880"
+    },
+    {
+      "issue_id": "CVE-2026-97032",
+      "title": "CVE-2026-97032",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-97032"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/374762"
     },
     {
       "issue_id": "CVE-2026-9712",
