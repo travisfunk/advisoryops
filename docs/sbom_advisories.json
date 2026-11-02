@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "generated_at": "2026-11-01T13:02:24.202415+00:00",
-  "total_records": 15742,
-  "vendor_evidence_checked_at": "2026-11-01T13:02:15.995086+00:00",
-  "records_with_vendor_products": 7091,
-  "records_with_products": 7484,
+  "generated_at": "2026-11-02T15:02:21.861945+00:00",
+  "total_records": 15762,
+  "vendor_evidence_checked_at": "2026-11-02T15:01:37.229153+00:00",
+  "records_with_vendor_products": 7092,
+  "records_with_products": 7485,
   "matching_policy": "product_identity_candidates_only",
   "issues": [
     {
@@ -159966,6 +159966,21 @@
       "canonical_link": "https://www.tenable.com/plugins/nessus/367194"
     },
     {
+      "issue_id": "CVE-2026-112307",
+      "title": "CVE-2026-112307",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-112307"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478179"
+    },
+    {
       "issue_id": "CVE-2026-112390",
       "title": "CVE-2026-112390",
       "priority": "P3",
@@ -161885,8 +161900,8 @@
     },
     {
       "issue_id": "CVE-2026-114148",
-      "title": "CVE-2026-114148 ASP.NET Core Elevation of Privilege Vulnerability",
-      "priority": "P3",
+      "title": "CVE-2026-114148",
+      "priority": "P2",
       "cves": [
         "CVE-2026-114148"
       ],
@@ -161896,7 +161911,7 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-114148"
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478171"
     },
     {
       "issue_id": "CVE-2026-1144",
@@ -165266,6 +165281,21 @@
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/478098"
     },
     {
+      "issue_id": "CVE-2026-119283",
+      "title": "CVE-2026-119283",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-119283"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478178"
+    },
+    {
       "issue_id": "CVE-2026-119285",
       "title": "CVE-2026-119285",
       "priority": "P3",
@@ -165279,6 +165309,51 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/478104"
+    },
+    {
+      "issue_id": "CVE-2026-119371",
+      "title": "CVE-2026-119371",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-119371"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478168"
+    },
+    {
+      "issue_id": "CVE-2026-119374",
+      "title": "CVE-2026-119374",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-119374"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478164"
+    },
+    {
+      "issue_id": "CVE-2026-119375",
+      "title": "CVE-2026-119375",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-119375"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478162"
     },
     {
       "issue_id": "CVE-2026-12028",
@@ -185776,7 +185851,7 @@
     {
       "issue_id": "CVE-2026-20127",
       "title": "CVE-2026-20127",
-      "priority": "P2",
+      "priority": "P3",
       "cves": [
         "CVE-2026-20127"
       ],
@@ -186370,7 +186445,7 @@
     {
       "issue_id": "CVE-2026-20245",
       "title": "CVE-2026-20245",
-      "priority": "P0",
+      "priority": "P1",
       "cves": [
         "CVE-2026-20245"
       ],
@@ -310992,11 +311067,97 @@
       "cves": [
         "CVE-2026-83782"
       ],
-      "vendor": "",
+      "vendor": "microsoft",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "microsoft windows 10 1607",
+        "microsoft windows 10 1809",
+        "microsoft windows 10 21h2",
+        "microsoft windows 10 22h2",
+        "microsoft windows 11 23h2",
+        "microsoft windows 11 24h2",
+        "microsoft windows 11 25h2",
+        "microsoft windows 11 26h1",
+        "microsoft windows 11 26h2",
+        "microsoft windows server 2012",
+        "microsoft windows server 2016",
+        "microsoft windows server 2019",
+        "microsoft windows server 2022",
+        "microsoft windows server 2025"
+      ],
+      "product_vendors": [
+        {
+          "product": "microsoft windows 10 1607",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-83782"
+        },
+        {
+          "product": "microsoft windows 10 1809",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-83782"
+        },
+        {
+          "product": "microsoft windows 10 21h2",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-83782"
+        },
+        {
+          "product": "microsoft windows 10 22h2",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-83782"
+        },
+        {
+          "product": "microsoft windows 11 23h2",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-83782"
+        },
+        {
+          "product": "microsoft windows 11 24h2",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-83782"
+        },
+        {
+          "product": "microsoft windows 11 25h2",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-83782"
+        },
+        {
+          "product": "microsoft windows 11 26h1",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-83782"
+        },
+        {
+          "product": "microsoft windows 11 26h2",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-83782"
+        },
+        {
+          "product": "microsoft windows server 2012",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-83782"
+        },
+        {
+          "product": "microsoft windows server 2016",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-83782"
+        },
+        {
+          "product": "microsoft windows server 2019",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-83782"
+        },
+        {
+          "product": "microsoft windows server 2022",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-83782"
+        },
+        {
+          "product": "microsoft windows server 2025",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-83782"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-83782"
     },
@@ -341213,7 +341374,8 @@
       "kev_vendor": "GitLab",
       "kev_product": "Community Edition and Enterprise Edition",
       "affected_products": [
-        "gitlab gitlab"
+        "gitlab gitlab",
+        "ruby-lang ruby"
       ],
       "product_vendors": [
         {
@@ -341224,6 +341386,11 @@
         {
           "product": "gitlab gitlab",
           "vendor": "gitlab",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-97229"
+        },
+        {
+          "product": "ruby-lang ruby",
+          "vendor": "ruby-lang",
           "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-97229"
         }
       ],
@@ -346705,6 +346872,21 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-837/"
+    },
+    {
+      "issue_id": "CVE-2026-98432",
+      "title": "CVE-2026-98432",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-98432"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://isc.sans.edu/diary/rss/33482"
     },
     {
       "issue_id": "CVE-2026-9852",
@@ -359260,6 +359442,19 @@
       "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
     },
     {
+      "issue_id": "UNK-3ee91a6b09f68199",
+      "title": "Photon OS 5.0: Libssh2 PHSA-2026-5.0-92-0985",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/375061"
+    },
+    {
       "issue_id": "UNK-3f06a73865502ba7",
       "title": "ZDI-CAN-29200: Samba",
       "priority": "P3",
@@ -359323,6 +359518,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": ""
+    },
+    {
+      "issue_id": "UNK-3f81170a832dbfb9",
+      "title": "ARTEX and Friends: Enter Agentic Offensive Frameworks",
+      "priority": "P1",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://cloud.google.com/blog/topics/threat-intelligence/artex-and-friends-enter-agentic-offensive-frameworks/"
     },
     {
       "issue_id": "UNK-3f8473da1096cd4a",
@@ -359630,6 +359838,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-225-04.json"
+    },
+    {
+      "issue_id": "UNK-423501662914308a",
+      "title": "Photon OS 5.0: Nss PHSA-2026-5.0-90-0965",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/375065"
     },
     {
       "issue_id": "UNK-42753f440c04b4bf",
@@ -362534,6 +362755,19 @@
       "canonical_link": "https://www.nist.gov/blogs/cybersecurity-insights/iot-assignment-completed-report-barriers-us-iot-adoption"
     },
     {
+      "issue_id": "UNK-52a8d40ca405638c",
+      "title": "Photon OS 5.0: Openssh PHSA-2026-5.0-90-0830",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/375057"
+    },
+    {
       "issue_id": "UNK-52be7db2ca1faa3e",
       "title": "FreeStyle Libre 3 — Device Alarm System",
       "priority": "P2",
@@ -363960,6 +364194,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
+    },
+    {
+      "issue_id": "UNK-5a4160cd1b495f02",
+      "title": "Photon OS 4.0: Rubygem PHSA-2026-4.0-1018",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/375062"
     },
     {
       "issue_id": "UNK-5a5491959fb77820",
@@ -369040,6 +369287,19 @@
       "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-225-10.json"
     },
     {
+      "issue_id": "UNK-733ef8b32d9c02e6",
+      "title": "Photon OS 5.0: Nasm PHSA-2026-5.0-91-0925",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/375060"
+    },
+    {
       "issue_id": "UNK-734c0479bbe45756",
       "title": "MikroTik RouterOS",
       "priority": "P3",
@@ -369228,6 +369488,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://www.compliancejunction.com/reports-ransomware-attacks-rise-as-healthcare-sector-is-heaviest-hit/"
+    },
+    {
+      "issue_id": "UNK-7427bf5523912b13",
+      "title": "Photon OS 5.0: Python3 PHSA-2026-5.0-91-0997",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/375059"
     },
     {
       "issue_id": "UNK-743fe971414dd93d",
@@ -373039,6 +373312,19 @@
       "canonical_link": "https://hitconsultant.net/2026/03/11/himss-elisity-report-microsegmentation-iomt-security-paradox/"
     },
     {
+      "issue_id": "UNK-8a243636bd79ba25",
+      "title": "Photon OS 5.0: Linux PHSA-2026-5.0-90-0830",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/375068"
+    },
+    {
       "issue_id": "UNK-8a50926fb7a5ebf3",
       "title": "29161: Baxter Healthcare Renal Div",
       "priority": "P3",
@@ -376161,6 +376447,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": ""
+    },
+    {
+      "issue_id": "UNK-9bd42ec2ce75f948",
+      "title": "Photon OS 5.0: Dotnet PHSA-2026-5.0-92-1014",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/375066"
     },
     {
       "issue_id": "UNK-9bd55673ebe2d651",
@@ -379774,6 +380073,19 @@
       "canonical_link": "https://api.fda.gov/device/recall.json?search=res_event_number:\"97879\""
     },
     {
+      "issue_id": "UNK-af48da03d653328d",
+      "title": "Photon OS 5.0: Nss PHSA-2023-5.0-90-0006",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/375067"
+    },
+    {
       "issue_id": "UNK-af5633694b2ae144",
       "title": "Multiple Vulnerabilities in Mozilla Products Could Allow for Arbitrary Code Execution",
       "priority": "P3",
@@ -380726,6 +381038,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://search.abb.com/library/Download.aspx?DocumentID=9AKK108472A9037&LanguageCode=en&DocumentPartId=pdf&Action=Launch"
+    },
+    {
+      "issue_id": "UNK-b467918853d962a7",
+      "title": "Photon OS 5.0: Lz4 PHSA-2025-5.0-91-0677",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/375064"
     },
     {
       "issue_id": "UNK-b47f1fa9a52acf3f",
@@ -382739,6 +383064,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-169-06.json"
+    },
+    {
+      "issue_id": "UNK-c01942eabf891bf9",
+      "title": "Photon OS 5.0: Linux PHSA-2025-5.0-90-0717",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/375058"
     },
     {
       "issue_id": "UNK-c0264bc63a6a71dd",
@@ -392032,6 +392370,19 @@
       "canonical_link": "https://www.tenable.com/plugins/nessus/348352"
     },
     {
+      "issue_id": "UNK-f200bc949e65a01f",
+      "title": "Photon OS 5.0: Util PHSA-2026-5.0-91-0999",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/375063"
+    },
+    {
       "issue_id": "UNK-f211f84f75bf022a",
       "title": "LigaSure Impact — Device Alarm System",
       "priority": "P2",
@@ -392762,6 +393113,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-806/"
+    },
+    {
+      "issue_id": "UNK-f57364d75e59a11c",
+      "title": "Shutting the Door on the XCPE Botnet",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://cloud.google.com/blog/topics/threat-intelligence/shutting-the-door-on-the-xcpe-botnet/"
     },
     {
       "issue_id": "UNK-f577b3fee6d38ed9",
