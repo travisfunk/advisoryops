@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "generated_at": "2026-11-02T15:02:21.861945+00:00",
-  "total_records": 15762,
-  "vendor_evidence_checked_at": "2026-11-02T15:01:37.229153+00:00",
-  "records_with_vendor_products": 7092,
-  "records_with_products": 7485,
+  "generated_at": "2026-11-03T13:58:42.274576+00:00",
+  "total_records": 15804,
+  "vendor_evidence_checked_at": "2026-11-03T13:57:54.622822+00:00",
+  "records_with_vendor_products": 7131,
+  "records_with_products": 7524,
   "matching_policy": "product_identity_candidates_only",
   "issues": [
     {
@@ -155152,11 +155152,19 @@
       "cves": [
         "CVE-2026-10723"
       ],
-      "vendor": "",
+      "vendor": "isc",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "isc bind"
+      ],
+      "product_vendors": [
+        {
+          "product": "isc bind",
+          "vendor": "isc",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-10723"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/367203"
     },
@@ -155696,11 +155704,19 @@
       "cves": [
         "CVE-2026-10822"
       ],
-      "vendor": "",
+      "vendor": "isc",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "isc bind"
+      ],
+      "product_vendors": [
+        {
+          "product": "isc bind",
+          "vendor": "isc",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-10822"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/367203"
     },
@@ -157597,8 +157613,17 @@
         "Paloaltonetworks Wf-500",
         "Paloaltonetworks Wf-500-B",
         "Php Php",
+        "Siemens Amis Ts",
+        "Siemens Blueplanet 360 Nx3 M6 Wm Od Iisx",
+        "Siemens Blueplanet 360 Nx3 M6 Wm Od Iisx Firmware",
+        "Siemens Blueplanet 360 Nx3 M6 Wm Od Iisx-S",
+        "Siemens Blueplanet 360 Nx3 M6 Wm Od Iisx-S Firmware",
+        "Siemens Energy Engage",
         "Siemens Ruggedcom Ape1808",
-        "Siemens Ruggedcom Ape1808 Firmware"
+        "Siemens Ruggedcom Ape1808 Firmware",
+        "Siemens Spectrum Power 4",
+        "Siemens Spectrum Power 7",
+        "Siemens Spectrum Power Tg"
       ],
       "product_vendors": [
         {
@@ -157622,7 +157647,42 @@
           "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-109618"
         },
         {
+          "product": "Siemens Amis Ts",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-109618"
+        },
+        {
+          "product": "Siemens Blueplanet 360 Nx3 M6 Wm Od Iisx Firmware",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-109618"
+        },
+        {
+          "product": "Siemens Blueplanet 360 Nx3 M6 Wm Od Iisx-S Firmware",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-109618"
+        },
+        {
+          "product": "Siemens Energy Engage",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-109618"
+        },
+        {
           "product": "Siemens Ruggedcom Ape1808 Firmware",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-109618"
+        },
+        {
+          "product": "Siemens Spectrum Power 4",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-109618"
+        },
+        {
+          "product": "Siemens Spectrum Power 7",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-109618"
+        },
+        {
+          "product": "Siemens Spectrum Power Tg",
           "vendor": "siemens",
           "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-109618"
         }
@@ -157651,8 +157711,18 @@
         "Paloaltonetworks Wf-500",
         "Paloaltonetworks Wf-500-B",
         "Php Php",
+        "Siemens Amis Ts",
+        "Siemens Blueplanet 360 Nx3 M6 Wm Od Iisx",
+        "Siemens Blueplanet 360 Nx3 M6 Wm Od Iisx Firmware",
+        "Siemens Blueplanet 360 Nx3 M6 Wm Od Iisx-S",
+        "Siemens Blueplanet 360 Nx3 M6 Wm Od Iisx-S Firmware",
+        "Siemens Energy Engage",
         "Siemens Ruggedcom Ape1808",
-        "Siemens Ruggedcom Ape1808 Firmware"
+        "Siemens Ruggedcom Ape1808 Firmware",
+        "Siemens Spectrum Power 3",
+        "Siemens Spectrum Power 4",
+        "Siemens Spectrum Power 7",
+        "Siemens Spectrum Power Tg"
       ],
       "product_vendors": [
         {
@@ -157676,7 +157746,47 @@
           "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-109619"
         },
         {
+          "product": "Siemens Amis Ts",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-109619"
+        },
+        {
+          "product": "Siemens Blueplanet 360 Nx3 M6 Wm Od Iisx Firmware",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-109619"
+        },
+        {
+          "product": "Siemens Blueplanet 360 Nx3 M6 Wm Od Iisx-S Firmware",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-109619"
+        },
+        {
+          "product": "Siemens Energy Engage",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-109619"
+        },
+        {
           "product": "Siemens Ruggedcom Ape1808 Firmware",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-109619"
+        },
+        {
+          "product": "Siemens Spectrum Power 3",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-109619"
+        },
+        {
+          "product": "Siemens Spectrum Power 4",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-109619"
+        },
+        {
+          "product": "Siemens Spectrum Power 7",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-109619"
+        },
+        {
+          "product": "Siemens Spectrum Power Tg",
           "vendor": "siemens",
           "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-109619"
         }
@@ -161504,11 +161614,19 @@
       "cves": [
         "CVE-2026-11331"
       ],
-      "vendor": "",
+      "vendor": "isc",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "isc bind"
+      ],
+      "product_vendors": [
+        {
+          "product": "isc bind",
+          "vendor": "isc",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-11331"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/367203"
     },
@@ -161725,11 +161843,19 @@
       "cves": [
         "CVE-2026-113789"
       ],
-      "vendor": "",
+      "vendor": "py-pdf",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "py-pdf pypdf"
+      ],
+      "product_vendors": [
+        {
+          "product": "py-pdf pypdf",
+          "vendor": "py-pdf",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-113789"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/374765"
     },
@@ -161800,11 +161926,19 @@
       "cves": [
         "CVE-2026-113794"
       ],
-      "vendor": "",
+      "vendor": "py-pdf",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "py-pdf pypdf"
+      ],
+      "product_vendors": [
+        {
+          "product": "py-pdf pypdf",
+          "vendor": "py-pdf",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-113794"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/374765"
     },
@@ -161815,11 +161949,19 @@
       "cves": [
         "CVE-2026-113795"
       ],
-      "vendor": "",
+      "vendor": "py-pdf",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "py-pdf pypdf"
+      ],
+      "product_vendors": [
+        {
+          "product": "py-pdf pypdf",
+          "vendor": "py-pdf",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-113795"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/374765"
     },
@@ -162789,11 +162931,19 @@
       "cves": [
         "CVE-2026-11622"
       ],
-      "vendor": "",
+      "vendor": "isc",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "isc bind"
+      ],
+      "product_vendors": [
+        {
+          "product": "isc bind",
+          "vendor": "isc",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-11622"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/367203"
     },
@@ -163179,11 +163329,19 @@
       "cves": [
         "CVE-2026-11721"
       ],
-      "vendor": "",
+      "vendor": "isc",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "isc bind"
+      ],
+      "product_vendors": [
+        {
+          "product": "isc bind",
+          "vendor": "isc",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-11721"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/367203"
     },
@@ -164013,15 +164171,24 @@
     {
       "issue_id": "CVE-2026-118335",
       "title": "Chromium: CVE-2026-118335 Improper input validation in Metrics",
-      "priority": "P3",
+      "priority": "P2",
       "cves": [
         "CVE-2026-118335"
       ],
-      "vendor": "",
+      "vendor": "google",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "Apple Macos",
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118335"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118335"
     },
@@ -165122,11 +165289,19 @@
       "cves": [
         "CVE-2026-119123"
       ],
-      "vendor": "",
+      "vendor": "imagemagick",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "imagemagick imagemagick"
+      ],
+      "product_vendors": [
+        {
+          "product": "imagemagick imagemagick",
+          "vendor": "imagemagick",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-119123"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/374031"
     },
@@ -165242,11 +165417,19 @@
       "cves": [
         "CVE-2026-119206"
       ],
-      "vendor": "",
+      "vendor": "py-pdf",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "py-pdf pypdf"
+      ],
+      "product_vendors": [
+        {
+          "product": "py-pdf pypdf",
+          "vendor": "py-pdf",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-119206"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/478148"
     },
@@ -165264,6 +165447,305 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/478099"
+    },
+    {
+      "issue_id": "CVE-2026-119260",
+      "title": "CVE-2026-119260",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-119260"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-119260"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478237"
+    },
+    {
+      "issue_id": "CVE-2026-119261",
+      "title": "CVE-2026-119261",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-119261"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-119261"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478221"
+    },
+    {
+      "issue_id": "CVE-2026-119262",
+      "title": "CVE-2026-119262",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-119262"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-119262"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478225"
+    },
+    {
+      "issue_id": "CVE-2026-119263",
+      "title": "CVE-2026-119263",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-119263"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-119263"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478222"
+    },
+    {
+      "issue_id": "CVE-2026-119264",
+      "title": "CVE-2026-119264",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-119264"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-119264"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478226"
+    },
+    {
+      "issue_id": "CVE-2026-119265",
+      "title": "CVE-2026-119265",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-119265"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-119265"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478235"
+    },
+    {
+      "issue_id": "CVE-2026-119266",
+      "title": "CVE-2026-119266",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-119266"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-119266"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478234"
+    },
+    {
+      "issue_id": "CVE-2026-119267",
+      "title": "CVE-2026-119267",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-119267"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-119267"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478236"
+    },
+    {
+      "issue_id": "CVE-2026-119268",
+      "title": "CVE-2026-119268",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-119268"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-119268"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478217"
+    },
+    {
+      "issue_id": "CVE-2026-119269",
+      "title": "CVE-2026-119269",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-119269"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-119269"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478228"
+    },
+    {
+      "issue_id": "CVE-2026-119270",
+      "title": "CVE-2026-119270",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-119270"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-119270"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478238"
+    },
+    {
+      "issue_id": "CVE-2026-119271",
+      "title": "CVE-2026-119271",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-119271"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-119271"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478220"
+    },
+    {
+      "issue_id": "CVE-2026-119272",
+      "title": "CVE-2026-119272",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-119272"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-119272"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478232"
     },
     {
       "issue_id": "CVE-2026-119279",
@@ -168006,11 +168488,19 @@
       "cves": [
         "CVE-2026-13204"
       ],
-      "vendor": "",
+      "vendor": "isc",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "isc bind"
+      ],
+      "product_vendors": [
+        {
+          "product": "isc bind",
+          "vendor": "isc",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-13204"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/367203"
     },
@@ -168223,11 +168713,19 @@
       "cves": [
         "CVE-2026-13321"
       ],
-      "vendor": "",
+      "vendor": "isc",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "isc bind"
+      ],
+      "product_vendors": [
+        {
+          "product": "isc bind",
+          "vendor": "isc",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-13321"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/367203"
     },
@@ -182548,6 +183046,36 @@
       ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/477553"
+    },
+    {
+      "issue_id": "CVE-2026-16305",
+      "title": "CVE-2026-16305",
+      "priority": "P2",
+      "cves": [
+        "CVE-2026-16305"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://kb.cert.org/vuls/id/203719"
+    },
+    {
+      "issue_id": "CVE-2026-16306",
+      "title": "CVE-2026-16306",
+      "priority": "P2",
+      "cves": [
+        "CVE-2026-16306"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://kb.cert.org/vuls/id/203719"
     },
     {
       "issue_id": "CVE-2026-16313",
@@ -212169,6 +212697,29 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/323101"
+    },
+    {
+      "issue_id": "CVE-2026-40217",
+      "title": "CVE-2026-40217",
+      "priority": "P1",
+      "cves": [
+        "CVE-2026-40217"
+      ],
+      "vendor": "litellm",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Litellm Litellm"
+      ],
+      "product_vendors": [
+        {
+          "product": "Litellm Litellm",
+          "vendor": "litellm",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-40217"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://cloud.google.com/blog/topics/threat-intelligence/llmjacking-monetizing-compromised-cloud-models/"
     },
     {
       "issue_id": "CVE-2026-40226",
@@ -257660,16 +258211,17 @@
       "cves": [
         "CVE-2026-59935"
       ],
-      "vendor": "pypdf project",
+      "vendor": "py-pdf",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
-        "Pypdf Project Pypdf"
+        "Pypdf Project Pypdf",
+        "py-pdf pypdf"
       ],
       "product_vendors": [
         {
-          "product": "Pypdf Project Pypdf",
-          "vendor": "pypdf project",
+          "product": "py-pdf pypdf",
+          "vendor": "py-pdf",
           "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-59935"
         }
       ],
@@ -257683,16 +258235,17 @@
       "cves": [
         "CVE-2026-59936"
       ],
-      "vendor": "pypdf project",
+      "vendor": "py-pdf",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
-        "Pypdf Project Pypdf"
+        "Pypdf Project Pypdf",
+        "py-pdf pypdf"
       ],
       "product_vendors": [
         {
-          "product": "Pypdf Project Pypdf",
-          "vendor": "pypdf project",
+          "product": "py-pdf pypdf",
+          "vendor": "py-pdf",
           "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-59936"
         }
       ],
@@ -259349,6 +259902,21 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/448252"
+    },
+    {
+      "issue_id": "CVE-2026-61666",
+      "title": "CVE-2026-61666",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-61666"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478216"
     },
     {
       "issue_id": "CVE-2026-61732",
@@ -262191,11 +262759,19 @@
       "cves": [
         "CVE-2026-62765"
       ],
-      "vendor": "",
+      "vendor": "microsoft",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "microsoft edge"
+      ],
+      "product_vendors": [
+        {
+          "product": "microsoft edge",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-62765"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-62765"
     },
@@ -302241,6 +302817,190 @@
       "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-76023"
     },
     {
+      "issue_id": "CVE-2026-76024",
+      "title": "CVE-2026-76024",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-76024"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-76024"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478224"
+    },
+    {
+      "issue_id": "CVE-2026-76025",
+      "title": "CVE-2026-76025",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-76025"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-76025"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478229"
+    },
+    {
+      "issue_id": "CVE-2026-76026",
+      "title": "CVE-2026-76026",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-76026"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-76026"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478230"
+    },
+    {
+      "issue_id": "CVE-2026-76027",
+      "title": "CVE-2026-76027",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-76027"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-76027"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478227"
+    },
+    {
+      "issue_id": "CVE-2026-76028",
+      "title": "CVE-2026-76028",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-76028"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-76028"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478231"
+    },
+    {
+      "issue_id": "CVE-2026-76029",
+      "title": "CVE-2026-76029",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-76029"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-76029"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478223"
+    },
+    {
+      "issue_id": "CVE-2026-76030",
+      "title": "CVE-2026-76030",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-76030"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-76030"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478218"
+    },
+    {
+      "issue_id": "CVE-2026-76031",
+      "title": "CVE-2026-76031",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-76031"
+      ],
+      "vendor": "google",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Google Chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Google Chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-76031"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478219"
+    },
+    {
       "issue_id": "CVE-2026-76036",
       "title": "Chromium CVE-2026-76036:  Buffer overflow in Dawn",
       "priority": "P3",
@@ -309085,7 +309845,7 @@
         }
       ],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/cloud-security/476115"
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478215"
     },
     {
       "issue_id": "CVE-2026-81736",
@@ -311168,11 +311928,19 @@
       "cves": [
         "CVE-2026-83831"
       ],
-      "vendor": "",
+      "vendor": "microsoft",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "microsoft edge"
+      ],
+      "product_vendors": [
+        {
+          "product": "microsoft edge",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-83831"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-83831"
     },
@@ -314443,11 +315211,19 @@
       "cves": [
         "CVE-2026-85898"
       ],
-      "vendor": "",
+      "vendor": "microsoft",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "microsoft edge"
+      ],
+      "product_vendors": [
+        {
+          "product": "microsoft edge",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-85898"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-85898"
     },
@@ -341165,11 +341941,37 @@
       "cves": [
         "CVE-2026-96956"
       ],
-      "vendor": "",
+      "vendor": "microsoft",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "microsoft sql server 2017",
+        "microsoft sql server 2019",
+        "microsoft sql server 2022",
+        "microsoft sql server 2025"
+      ],
+      "product_vendors": [
+        {
+          "product": "microsoft sql server 2017",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-96956"
+        },
+        {
+          "product": "microsoft sql server 2019",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-96956"
+        },
+        {
+          "product": "microsoft sql server 2022",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-96956"
+        },
+        {
+          "product": "microsoft sql server 2025",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-96956"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-96956"
     },
@@ -354957,6 +355759,19 @@
       "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
     },
     {
+      "issue_id": "UNK-25a8cef5118dfe95",
+      "title": "Illumina, Inc. — Nextseq 550Dx Instrument\r\nREF: 20005715, FOR IN VITRO DIAGNOSTIC USE",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://api.fda.gov/device/recall.json?search=res_event_number:\"99957\""
+    },
+    {
       "issue_id": "UNK-2619982ab7e18bc1",
       "title": "ZDI-CAN-33067: NVIDIA",
       "priority": "P3",
@@ -356555,6 +357370,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
+    },
+    {
+      "issue_id": "UNK-2eb0fece10652d4d",
+      "title": "The Best Critical Infrastructure Cybersecurity Companies in 2026",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://asimily.com/blog/best-cybersecurity-for-critical-infrastructure/"
     },
     {
       "issue_id": "UNK-2eb107c9a46583e2",
@@ -359195,6 +360023,19 @@
       "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
     },
     {
+      "issue_id": "UNK-3d1b10ffe345706a",
+      "title": "Illumina, Inc. — NovaSeq 6000Dx Instrument\r\nREF: 20068232, FOR IN VITRO DIAGNOSTIC USE",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://api.fda.gov/device/recall.json?search=res_event_number:\"99957\""
+    },
+    {
       "issue_id": "UNK-3d398af730084ae9",
       "title": "Cyber Security Advisory - BnR APROL SSH service vulnerable to Terrapin attack",
       "priority": "P3",
@@ -359596,6 +360437,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/344990"
+    },
+    {
+      "issue_id": "UNK-40367aeb35913e24",
+      "title": "Illumina, Inc. — VeriSeq Onsite Server V2\r\nREF: 20047000",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://api.fda.gov/device/recall.json?search=res_event_number:\"99957\""
     },
     {
       "issue_id": "UNK-40676cef8a81cfbe",
@@ -364423,6 +365277,19 @@
       "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2025/icsa-25-259-02.json"
     },
     {
+      "issue_id": "UNK-5b5d7e7284c8448c",
+      "title": "Illumina, Inc. — MiSeq Dx Instrument\r\nREF: DX-410-1001 / 15036706, FOR IN VITRO DIAGNOSTIC USE",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://api.fda.gov/device/recall.json?search=res_event_number:\"99957\""
+    },
+    {
       "issue_id": "UNK-5b646d7ecdec1653",
       "title": "mySCADA myPRO Manager",
       "priority": "P3",
@@ -368482,6 +369349,19 @@
       "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-190-03.json"
     },
     {
+      "issue_id": "UNK-6f68b08efde4eb6d",
+      "title": "Tech Firms Dismantle Botnet That Turned 1.3M TV Boxes Into Proxies",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://krebsonsecurity.com/2026/11/tech-firms-dismantle-botnet-that-turned-1-3m-tv-boxes-into-proxies/"
+    },
+    {
       "issue_id": "UNK-6f6f97581a29300f",
       "title": "Rockwell Automation Redundancy Module Configuration Tool",
       "priority": "P3",
@@ -371486,6 +372366,19 @@
       "canonical_link": "https://api.fda.gov/device/recall.json?search=res_event_number:\"31058\""
     },
     {
+      "issue_id": "UNK-7ff86cac77274829",
+      "title": "ZDI-26-848: Microsoft Qlib StaticDataLoader Deserialization of Untrusted Data Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-848/"
+    },
+    {
       "issue_id": "UNK-7ffa5eec39128492",
       "title": "The Numbers Are In, and We Have Work to Do",
       "priority": "P3",
@@ -372001,6 +372894,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://api.fda.gov/device/recall.json?search=res_event_number:\"34266\""
+    },
+    {
+      "issue_id": "UNK-837ed504ae0caf7d",
+      "title": "The Best Utility Cybersecurity Companies in 2026",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://asimily.com/blog/best-cybersecurity-for-utilities/"
     },
     {
       "issue_id": "UNK-837fb687bb37a5f4",
@@ -373323,6 +374229,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/375068"
+    },
+    {
+      "issue_id": "UNK-8a4efea31648f739",
+      "title": "Athenahealth patients can ask Claude about their medical records now",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.zdnet.com/health/athenahealth-claude-ai-medical-partnership/"
     },
     {
       "issue_id": "UNK-8a50926fb7a5ebf3",
@@ -376808,6 +377727,19 @@
       "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
     },
     {
+      "issue_id": "UNK-9e1ffbba326800b7",
+      "title": "Second Wave of Fridge Cyberattacks Hits Europe: How to Protect Your Connected Devices",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://asimily.com/blog/second-wave-european-supermarket-refrigerator-cyberattacks-iot-ot-security/"
+    },
+    {
       "issue_id": "UNK-9e2a45d923a8a034",
       "title": "What 524B and QMSR Change About Medical Device Risk",
       "priority": "P3",
@@ -377243,6 +378175,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
+    },
+    {
+      "issue_id": "UNK-a0c6224f9d5a6dbc",
+      "title": "What exploited vulnerabilities have in common: A data-driven analysis of real-world attacks",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.microsoft.com/en-us/security/blog/2026/11/02/exploited-vulnerabilities-common-data-driven-analysis-real-world-attacks/"
     },
     {
       "issue_id": "UNK-a0c85dc9be812819",
@@ -377771,6 +378716,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": ""
+    },
+    {
+      "issue_id": "UNK-a3b385182753ed87",
+      "title": "ZDI-26-849: Microsoft Qlib RestrictedUnpickler Deserialization of Untrusted Data Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-849/"
     },
     {
       "issue_id": "UNK-a3cd23dc0b7a39f4",
@@ -380609,6 +381567,19 @@
       "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-265-02.json"
     },
     {
+      "issue_id": "UNK-b1b6a51a12a71856",
+      "title": "Cyber chief: UK facing AI-powered attacks on critical infrastructure within two years",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.ncsc.gov.uk/news/cyber-chief-uk-facing-ai-powered-attacks-on-critical-infrastructure-in-two-years"
+    },
+    {
       "issue_id": "UNK-b1df4b68c47a0ccd",
       "title": "FOOTPRINT ULTRA PK SUTURE ANCHOR 4.5 — Break",
       "priority": "P2",
@@ -380739,6 +381710,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://isc.sans.edu/diary/rss/33324"
+    },
+    {
+      "issue_id": "UNK-b266711c5db1f9b0",
+      "title": "ZDI-26-850: Microsoft Qlib MLflowRecorder Deserialization of Untrusted Data Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-850/"
     },
     {
       "issue_id": "UNK-b274020fe923c170",
@@ -380986,6 +381970,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://compliancejunction.com/california-privacy-rights-act/"
+    },
+    {
+      "issue_id": "UNK-b420a174318962b2",
+      "title": "Artificial intelligence and cyber intrusion",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.ncsc.gov.uk/report/artificial-intelligence-and-cyber-intrusion"
     },
     {
       "issue_id": "UNK-b43fb267530ef188",
@@ -381248,6 +382245,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": ""
+    },
+    {
+      "issue_id": "UNK-b57128c07ea36c49",
+      "title": "Illumina, Inc. — Illumina DRAGEN Server for NextSeq 550Dx\r\nREF: 20086130,",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://api.fda.gov/device/recall.json?search=res_event_number:\"99957\""
     },
     {
       "issue_id": "UNK-b571595202d3039b",
@@ -381670,6 +382680,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": ""
+    },
+    {
+      "issue_id": "UNK-b84d58f8cfe65f33",
+      "title": "The Best Manufacturing Cybersecurity Companies in 2026",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://asimily.com/blog/best-manufacturing-cybersecurity-companies/"
     },
     {
       "issue_id": "UNK-b8535377964e4eba",
