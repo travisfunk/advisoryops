@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "generated_at": "2026-11-07T12:48:30.188896+00:00",
-  "total_records": 16019,
-  "vendor_evidence_checked_at": "2026-11-07T12:47:48.911469+00:00",
-  "records_with_vendor_products": 7264,
-  "records_with_products": 7657,
+  "generated_at": "2026-11-08T13:09:41.595783+00:00",
+  "total_records": 16082,
+  "vendor_evidence_checked_at": "2026-11-08T13:08:54.375733+00:00",
+  "records_with_vendor_products": 7281,
+  "records_with_products": 7674,
   "matching_policy": "product_identity_candidates_only",
   "issues": [
     {
@@ -85678,6 +85678,29 @@
       "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-202-04.json"
     },
     {
+      "issue_id": "CVE-2022-48468",
+      "title": "CVE-2022-48468",
+      "priority": "P3",
+      "cves": [
+        "CVE-2022-48468"
+      ],
+      "vendor": "protobuf-c project",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Protobuf-C Project Protobuf-C"
+      ],
+      "product_vendors": [
+        {
+          "product": "Protobuf-C Project Protobuf-C",
+          "vendor": "protobuf-c project",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2022-48468"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/377575"
+    },
+    {
       "issue_id": "CVE-2022-48503",
       "title": "CVE-2022-48503",
       "priority": "P0",
@@ -94000,6 +94023,35 @@
       ],
       "affected_versions": [],
       "canonical_link": "https://cert-portal.siemens.com/productcert/csaf/ssa-082556.json"
+    },
+    {
+      "issue_id": "CVE-2023-38552",
+      "title": "CVE-2023-38552",
+      "priority": "P3",
+      "cves": [
+        "CVE-2023-38552"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Fedoraproject Fedora",
+        "Nodejs Node.Js"
+      ],
+      "product_vendors": [
+        {
+          "product": "Fedoraproject Fedora",
+          "vendor": "fedoraproject",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2023-38552"
+        },
+        {
+          "product": "Nodejs Node.Js",
+          "vendor": "nodejs",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2023-38552"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478642"
     },
     {
       "issue_id": "CVE-2023-38606",
@@ -150541,6 +150593,21 @@
       "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2026-102489"
     },
     {
+      "issue_id": "CVE-2026-102523",
+      "title": "CVE-2026-102523",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-102523"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478648"
+    },
+    {
       "issue_id": "CVE-2026-102556",
       "title": "CVE-2026-102556",
       "priority": "P3",
@@ -151244,7 +151311,7 @@
     {
       "issue_id": "CVE-2026-103111",
       "title": "CVE-2026-103111",
-      "priority": "P2",
+      "priority": "P3",
       "cves": [
         "CVE-2026-103111"
       ],
@@ -151254,7 +151321,7 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/365536"
+      "canonical_link": "https://www.tenable.com/plugins/nessus/377561"
     },
     {
       "issue_id": "CVE-2026-103226",
@@ -166957,6 +167024,29 @@
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/478162"
     },
     {
+      "issue_id": "CVE-2026-119741",
+      "title": "CVE-2026-119741",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-119741"
+      ],
+      "vendor": "samba",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Samba Rsync"
+      ],
+      "product_vendors": [
+        {
+          "product": "Samba Rsync",
+          "vendor": "samba",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-119741"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/377571"
+    },
+    {
       "issue_id": "CVE-2026-119977",
       "title": "CVE-2026-119977",
       "priority": "P1",
@@ -167179,6 +167269,51 @@
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/478405"
     },
     {
+      "issue_id": "CVE-2026-121007",
+      "title": "CVE-2026-121007",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-121007"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478644"
+    },
+    {
+      "issue_id": "CVE-2026-121008",
+      "title": "CVE-2026-121008",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-121008"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478644"
+    },
+    {
+      "issue_id": "CVE-2026-121009",
+      "title": "CVE-2026-121009",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-121009"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478644"
+    },
+    {
       "issue_id": "CVE-2026-12116",
       "title": "CVE-2026-12116",
       "priority": "P1",
@@ -167192,6 +167327,21 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://kb.cert.org/vuls/id/734812"
+    },
+    {
+      "issue_id": "CVE-2026-121265",
+      "title": "CVE-2026-121265",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-121265"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478644"
     },
     {
       "issue_id": "CVE-2026-12151",
@@ -186898,7 +187048,7 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/cloud-security/448453"
+      "canonical_link": "https://www.tenable.com/plugins/nessus/377568"
     },
     {
       "issue_id": "CVE-2026-19033",
@@ -216846,6 +216996,30 @@
       "canonical_link": "https://www.tenable.com/plugins/nessus/346786"
     },
     {
+      "issue_id": "CVE-2026-42256",
+      "title": "CVE-2026-42256",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-42256"
+      ],
+      "vendor": "ruby-lang",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Ruby-Lang Net\\",
+        "ruby-lang net::imap"
+      ],
+      "product_vendors": [
+        {
+          "product": "ruby-lang net::imap",
+          "vendor": "ruby-lang",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-42256"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478647"
+    },
+    {
       "issue_id": "CVE-2026-42257",
       "title": "CVE-2026-42257",
       "priority": "P3",
@@ -220788,6 +220962,21 @@
       ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/349618"
+    },
+    {
+      "issue_id": "CVE-2026-43598",
+      "title": "CVE-2026-43598",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-43598"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/377566"
     },
     {
       "issue_id": "CVE-2026-43617",
@@ -257006,6 +257195,223 @@
       "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-57993"
     },
     {
+      "issue_id": "CVE-2026-58010",
+      "title": "CVE-2026-58010",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-58010"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Gnome Glib",
+        "Redhat Enterprise Linux"
+      ],
+      "product_vendors": [
+        {
+          "product": "Gnome Glib",
+          "vendor": "gnome",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-58010"
+        },
+        {
+          "product": "Redhat Enterprise Linux",
+          "vendor": "redhat",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-58010"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478651"
+    },
+    {
+      "issue_id": "CVE-2026-58011",
+      "title": "CVE-2026-58011",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-58011"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Gnome Glib",
+        "Redhat Enterprise Linux"
+      ],
+      "product_vendors": [
+        {
+          "product": "Gnome Glib",
+          "vendor": "gnome",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-58011"
+        },
+        {
+          "product": "Redhat Enterprise Linux",
+          "vendor": "redhat",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-58011"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478651"
+    },
+    {
+      "issue_id": "CVE-2026-58012",
+      "title": "CVE-2026-58012",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-58012"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Gnome Glib",
+        "Redhat Enterprise Linux"
+      ],
+      "product_vendors": [
+        {
+          "product": "Gnome Glib",
+          "vendor": "gnome",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-58012"
+        },
+        {
+          "product": "Redhat Enterprise Linux",
+          "vendor": "redhat",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-58012"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478651"
+    },
+    {
+      "issue_id": "CVE-2026-58013",
+      "title": "CVE-2026-58013",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-58013"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Gnome Glib",
+        "Redhat Enterprise Linux"
+      ],
+      "product_vendors": [
+        {
+          "product": "Gnome Glib",
+          "vendor": "gnome",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-58013"
+        },
+        {
+          "product": "Redhat Enterprise Linux",
+          "vendor": "redhat",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-58013"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478651"
+    },
+    {
+      "issue_id": "CVE-2026-58016",
+      "title": "CVE-2026-58016",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-58016"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Gnome Glib",
+        "Redhat Cert-Manager Operator",
+        "Redhat Codeready Linux Builder",
+        "Redhat Codeready Linux Builder Eus",
+        "Redhat Discovery",
+        "Redhat Enterprise Linux",
+        "Redhat Enterprise Linux Aus",
+        "Redhat Enterprise Linux Els",
+        "Redhat Enterprise Linux Eus",
+        "Redhat Enterprise Linux Server Tus",
+        "Redhat Enterprise Linux Update Services For Sap Solutions",
+        "Redhat Insights-Proxy",
+        "Redhat Openshift Ai",
+        "Redhat Update Infrastructure"
+      ],
+      "product_vendors": [
+        {
+          "product": "Gnome Glib",
+          "vendor": "gnome",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-58016"
+        },
+        {
+          "product": "Redhat Cert-Manager Operator",
+          "vendor": "redhat",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-58016"
+        },
+        {
+          "product": "Redhat Codeready Linux Builder",
+          "vendor": "redhat",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-58016"
+        },
+        {
+          "product": "Redhat Codeready Linux Builder Eus",
+          "vendor": "redhat",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-58016"
+        },
+        {
+          "product": "Redhat Discovery",
+          "vendor": "redhat",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-58016"
+        },
+        {
+          "product": "Redhat Enterprise Linux",
+          "vendor": "redhat",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-58016"
+        },
+        {
+          "product": "Redhat Enterprise Linux Aus",
+          "vendor": "redhat",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-58016"
+        },
+        {
+          "product": "Redhat Enterprise Linux Els",
+          "vendor": "redhat",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-58016"
+        },
+        {
+          "product": "Redhat Enterprise Linux Eus",
+          "vendor": "redhat",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-58016"
+        },
+        {
+          "product": "Redhat Enterprise Linux Server Tus",
+          "vendor": "redhat",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-58016"
+        },
+        {
+          "product": "Redhat Enterprise Linux Update Services For Sap Solutions",
+          "vendor": "redhat",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-58016"
+        },
+        {
+          "product": "Redhat Insights-Proxy",
+          "vendor": "redhat",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-58016"
+        },
+        {
+          "product": "Redhat Openshift Ai",
+          "vendor": "redhat",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-58016"
+        },
+        {
+          "product": "Redhat Update Infrastructure",
+          "vendor": "redhat",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-58016"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478651"
+    },
+    {
       "issue_id": "CVE-2026-58024",
       "title": "CVE-2026-58024",
       "priority": "P2",
@@ -262525,8 +262931,8 @@
     },
     {
       "issue_id": "CVE-2026-61857",
-      "title": "Linux Distros Unpatched Vulnerability : CVE-2026-61857",
-      "priority": "P3",
+      "title": "CVE-2026-61857",
+      "priority": "P2",
       "cves": [
         "CVE-2026-61857"
       ],
@@ -262534,17 +262940,17 @@
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
-        "imagemagick imagemagick"
+        "Imagemagick Imagemagick"
       ],
       "product_vendors": [
         {
-          "product": "imagemagick imagemagick",
+          "product": "Imagemagick Imagemagick",
           "vendor": "imagemagick",
           "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-61857"
         }
       ],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/326392"
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478650"
     },
     {
       "issue_id": "CVE-2026-61858",
@@ -262570,8 +262976,46 @@
       "canonical_link": "https://www.tenable.com/plugins/nessus/326396"
     },
     {
+      "issue_id": "CVE-2026-61859",
+      "title": "CVE-2026-61859",
+      "priority": "P2",
+      "cves": [
+        "CVE-2026-61859"
+      ],
+      "vendor": "imagemagick",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Imagemagick Imagemagick"
+      ],
+      "product_vendors": [
+        {
+          "product": "Imagemagick Imagemagick",
+          "vendor": "imagemagick",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-61859"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478650"
+    },
+    {
+      "issue_id": "CVE-2026-61860",
+      "title": "CVE-2026-61860",
+      "priority": "P2",
+      "cves": [
+        "CVE-2026-61860"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478650"
+    },
+    {
       "issue_id": "CVE-2026-61861",
-      "title": "Linux Distros Unpatched Vulnerability : CVE-2026-61861",
+      "title": "CVE-2026-61861",
       "priority": "P2",
       "cves": [
         "CVE-2026-61861"
@@ -262580,22 +263024,22 @@
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
-        "imagemagick imagemagick"
+        "Imagemagick Imagemagick"
       ],
       "product_vendors": [
         {
-          "product": "imagemagick imagemagick",
+          "product": "Imagemagick Imagemagick",
           "vendor": "imagemagick",
           "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-61861"
         }
       ],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/326397"
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478650"
     },
     {
       "issue_id": "CVE-2026-61870",
-      "title": "Linux Distros Unpatched Vulnerability : CVE-2026-61870",
-      "priority": "P3",
+      "title": "CVE-2026-61870",
+      "priority": "P2",
       "cves": [
         "CVE-2026-61870"
       ],
@@ -262603,17 +263047,17 @@
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
-        "imagemagick imagemagick"
+        "Imagemagick Imagemagick"
       ],
       "product_vendors": [
         {
-          "product": "imagemagick imagemagick",
+          "product": "Imagemagick Imagemagick",
           "vendor": "imagemagick",
           "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-61870"
         }
       ],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/326395"
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478650"
     },
     {
       "issue_id": "CVE-2026-61884",
@@ -283857,7 +284301,22 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/cloud-security/448452"
+      "canonical_link": "https://www.tenable.com/plugins/nessus/377568"
+    },
+    {
+      "issue_id": "CVE-2026-68498",
+      "title": "CVE-2026-68498",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-68498"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/377568"
     },
     {
       "issue_id": "CVE-2026-68499",
@@ -314345,7 +314804,7 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/cloud-security/448456"
+      "canonical_link": "https://www.tenable.com/plugins/nessus/377568"
     },
     {
       "issue_id": "CVE-2026-8356",
@@ -318294,7 +318753,7 @@
     {
       "issue_id": "CVE-2026-86145",
       "title": "CVE-2026-86145",
-      "priority": "P2",
+      "priority": "P3",
       "cves": [
         "CVE-2026-86145"
       ],
@@ -318304,7 +318763,7 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/365536"
+      "canonical_link": "https://www.tenable.com/plugins/nessus/377561"
     },
     {
       "issue_id": "CVE-2026-86218",
@@ -320613,6 +321072,75 @@
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/447953"
     },
     {
+      "issue_id": "CVE-2026-88047",
+      "title": "CVE-2026-88047",
+      "priority": "P2",
+      "cves": [
+        "CVE-2026-88047"
+      ],
+      "vendor": "tesseract-ocr",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Tesseract-Ocr Tesseract Ocr"
+      ],
+      "product_vendors": [
+        {
+          "product": "Tesseract-Ocr Tesseract Ocr",
+          "vendor": "tesseract-ocr",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-88047"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/377574"
+    },
+    {
+      "issue_id": "CVE-2026-88048",
+      "title": "CVE-2026-88048",
+      "priority": "P2",
+      "cves": [
+        "CVE-2026-88048"
+      ],
+      "vendor": "tesseract-ocr",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Tesseract-Ocr Tesseract Ocr"
+      ],
+      "product_vendors": [
+        {
+          "product": "Tesseract-Ocr Tesseract Ocr",
+          "vendor": "tesseract-ocr",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-88048"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/377574"
+    },
+    {
+      "issue_id": "CVE-2026-88049",
+      "title": "CVE-2026-88049",
+      "priority": "P2",
+      "cves": [
+        "CVE-2026-88049"
+      ],
+      "vendor": "tesseract-ocr",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Tesseract-Ocr Tesseract Ocr"
+      ],
+      "product_vendors": [
+        {
+          "product": "Tesseract-Ocr Tesseract Ocr",
+          "vendor": "tesseract-ocr",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-88049"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/377574"
+    },
+    {
       "issue_id": "CVE-2026-8805",
       "title": "CVE-2026-8805",
       "priority": "P3",
@@ -320626,6 +321154,75 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-169-05.json"
+    },
+    {
+      "issue_id": "CVE-2026-88051",
+      "title": "CVE-2026-88051",
+      "priority": "P2",
+      "cves": [
+        "CVE-2026-88051"
+      ],
+      "vendor": "tesseract-ocr",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Tesseract-Ocr Tesseract Ocr"
+      ],
+      "product_vendors": [
+        {
+          "product": "Tesseract-Ocr Tesseract Ocr",
+          "vendor": "tesseract-ocr",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-88051"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/377574"
+    },
+    {
+      "issue_id": "CVE-2026-88052",
+      "title": "CVE-2026-88052",
+      "priority": "P2",
+      "cves": [
+        "CVE-2026-88052"
+      ],
+      "vendor": "tesseract-ocr",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Tesseract-Ocr Tesseract Ocr"
+      ],
+      "product_vendors": [
+        {
+          "product": "Tesseract-Ocr Tesseract Ocr",
+          "vendor": "tesseract-ocr",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-88052"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/377574"
+    },
+    {
+      "issue_id": "CVE-2026-88053",
+      "title": "CVE-2026-88053",
+      "priority": "P2",
+      "cves": [
+        "CVE-2026-88053"
+      ],
+      "vendor": "tesseract-ocr",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Tesseract-Ocr Tesseract Ocr"
+      ],
+      "product_vendors": [
+        {
+          "product": "Tesseract-Ocr Tesseract Ocr",
+          "vendor": "tesseract-ocr",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-88053"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/377574"
     },
     {
       "issue_id": "CVE-2026-88056",
@@ -321419,7 +322016,7 @@
     {
       "issue_id": "CVE-2026-89156",
       "title": "CVE-2026-89156",
-      "priority": "P2",
+      "priority": "P3",
       "cves": [
         "CVE-2026-89156"
       ],
@@ -321437,12 +322034,12 @@
         }
       ],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/365539"
+      "canonical_link": "https://www.tenable.com/plugins/nessus/377561"
     },
     {
       "issue_id": "CVE-2026-89157",
       "title": "CVE-2026-89157",
-      "priority": "P2",
+      "priority": "P3",
       "cves": [
         "CVE-2026-89157"
       ],
@@ -321460,12 +322057,12 @@
         }
       ],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/365536"
+      "canonical_link": "https://www.tenable.com/plugins/nessus/377561"
     },
     {
       "issue_id": "CVE-2026-89158",
       "title": "CVE-2026-89158",
-      "priority": "P2",
+      "priority": "P3",
       "cves": [
         "CVE-2026-89158"
       ],
@@ -321483,7 +322080,7 @@
         }
       ],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/365536"
+      "canonical_link": "https://www.tenable.com/plugins/nessus/377561"
     },
     {
       "issue_id": "CVE-2026-8916",
@@ -321503,7 +322100,7 @@
     {
       "issue_id": "CVE-2026-89160",
       "title": "CVE-2026-89160",
-      "priority": "P2",
+      "priority": "P3",
       "cves": [
         "CVE-2026-89160"
       ],
@@ -321521,12 +322118,12 @@
         }
       ],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/365539"
+      "canonical_link": "https://www.tenable.com/plugins/nessus/377561"
     },
     {
       "issue_id": "CVE-2026-89161",
       "title": "CVE-2026-89161",
-      "priority": "P2",
+      "priority": "P3",
       "cves": [
         "CVE-2026-89161"
       ],
@@ -321544,7 +322141,30 @@
         }
       ],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/365539"
+      "canonical_link": "https://www.tenable.com/plugins/nessus/377561"
+    },
+    {
+      "issue_id": "CVE-2026-89162",
+      "title": "CVE-2026-89162",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-89162"
+      ],
+      "vendor": "pcre",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Pcre Pcre2"
+      ],
+      "product_vendors": [
+        {
+          "product": "Pcre Pcre2",
+          "vendor": "pcre",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-89162"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/377561"
     },
     {
       "issue_id": "CVE-2026-89196",
@@ -321885,6 +322505,36 @@
       ],
       "affected_versions": [],
       "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-293-05.json"
+    },
+    {
+      "issue_id": "CVE-2026-89407",
+      "title": "CVE-2026-89407",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-89407"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/377568"
+    },
+    {
+      "issue_id": "CVE-2026-89425",
+      "title": "CVE-2026-89425",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-89425"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/377568"
     },
     {
       "issue_id": "CVE-2026-89438",
@@ -333644,6 +334294,21 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/349622"
+    },
+    {
+      "issue_id": "CVE-2026-91777",
+      "title": "CVE-2026-91777",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-91777"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/377568"
     },
     {
       "issue_id": "CVE-2026-91786",
@@ -352164,6 +352829,19 @@
       "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2026-99999"
     },
     {
+      "issue_id": "UNK-000a605cad8b3a1d",
+      "title": "ZDI-CAN-33751: AzeoTech",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
+    },
+    {
       "issue_id": "UNK-000b23b16d2cc1f2",
       "title": "Microsoft Secure Boot Advisory",
       "priority": "P3",
@@ -353221,6 +353899,19 @@
       "canonical_link": "https://api.fda.gov/device/enforcement.json?search=recall_number:\"Z-0117-2020\""
     },
     {
+      "issue_id": "UNK-0570db829bf6e3bd",
+      "title": "ZDI-CAN-32673: Microsoft",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
+    },
+    {
       "issue_id": "UNK-05749d60bfceabb9",
       "title": "ZDI-CAN-28054: Microsoft",
       "priority": "P3",
@@ -353392,6 +354083,19 @@
       "canonical_link": "https://asimily.com/blog/how-poor-device-visibility-undermines-segmentation-in-connected-environments/"
     },
     {
+      "issue_id": "UNK-062fda080294e3a4",
+      "title": "ZDI-CAN-34742: MariaDB",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
+    },
+    {
       "issue_id": "UNK-06388cd8f083f61a",
       "title": "FreeStyle Libre 3 — High Readings",
       "priority": "P2",
@@ -353455,6 +354159,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://medtechintelligence.com/viewpoint/the-interface-is-the-risk-a-medtech-blueprint-for-ai-and-system-integration/"
+    },
+    {
+      "issue_id": "UNK-0673b5053998a8ce",
+      "title": "The Fridge-Hacking Spree Is an Internet-of-Things Wake-Up Call",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.wired.com/story/kernel-panic-refrigeration-hacks-internet-of-things/"
     },
     {
       "issue_id": "UNK-0673b892a8d6296c",
@@ -354574,6 +355291,19 @@
       "canonical_link": "https://www.tenable.com/plugins/nessus/365516"
     },
     {
+      "issue_id": "UNK-0caa3cc527cd86d4",
+      "title": "Fedora 43 : elixir (2026-f5e380a553)",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/377558"
+    },
+    {
       "issue_id": "UNK-0cee3c4b98d48929",
       "title": "3005334138-2020-00166",
       "priority": "P2",
@@ -354797,6 +355527,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
+    },
+    {
+      "issue_id": "UNK-0e3783ce6f5e3250",
+      "title": "Fedora 44 : pie (2026-35cc73bd06)",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/377554"
     },
     {
       "issue_id": "UNK-0e7d7e82d5d1067d",
@@ -355866,6 +356609,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
+    },
+    {
+      "issue_id": "UNK-13d85a2297a59370",
+      "title": "Fedora 45 : python-joserfc (2026-a4d05e8333)",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/377553"
     },
     {
       "issue_id": "UNK-13f460ef4640d986",
@@ -359386,6 +360142,19 @@
       "canonical_link": "https://www.tenable.com/plugins/nessus/350789"
     },
     {
+      "issue_id": "UNK-2837592f7eb56128",
+      "title": "ZDI-CAN-33193: MariaDB",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
+    },
+    {
       "issue_id": "UNK-2843ff2a1e29e12f",
       "title": "A Vulnerability in Cisco Secure Firewall ASA and FTD Could Allow for Denial of Service",
       "priority": "P3",
@@ -362213,6 +362982,19 @@
       "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-281-01.json"
     },
     {
+      "issue_id": "UNK-3781908d180e6932",
+      "title": "ZDI-CAN-31984: Microsoft",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
+    },
+    {
       "issue_id": "UNK-37888b38e4ef0d4d",
       "title": "1723170-2020-01299",
       "priority": "P2",
@@ -362354,6 +363136,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/339198"
+    },
+    {
+      "issue_id": "UNK-3819816bc417c7f3",
+      "title": "ZDI-CAN-33519: Microsoft",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
     },
     {
       "issue_id": "UNK-383e35d58867a7de",
@@ -364229,6 +365024,19 @@
       "canonical_link": ""
     },
     {
+      "issue_id": "UNK-43422188fee719ce",
+      "title": "ZDI-CAN-33211: oFono",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
+    },
+    {
       "issue_id": "UNK-434baf6743bf4fd8",
       "title": "Octrode Lead Kit, 60cm Length — High impedance",
       "priority": "P2",
@@ -365458,6 +366266,19 @@
       "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
     },
     {
+      "issue_id": "UNK-49e93b3e8271307f",
+      "title": "ZDI-CAN-34915: Net-SNMP",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
+    },
+    {
       "issue_id": "UNK-49f89354816c493a",
       "title": "Z-0095-2024: Advance-Esthetic LLC",
       "priority": "P1",
@@ -366211,6 +367032,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
+    },
+    {
+      "issue_id": "UNK-4ec7650b18b107e9",
+      "title": "Fedora 45 : pie (2026-0d5a544c64)",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/377556"
     },
     {
       "issue_id": "UNK-4ecead2704c078b7",
@@ -367407,6 +368241,19 @@
       "canonical_link": "https://www.darkreading.com/endpoint-security/15-tp-link-bugs-risks-zero-trust-provisioning"
     },
     {
+      "issue_id": "UNK-5453eedcc33b176b",
+      "title": "Fedora 44 : elixir (2026-7be0823ab4)",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/377564"
+    },
+    {
       "issue_id": "UNK-545b14d2ec3a17d2",
       "title": "ZDI-CAN-28447: Ashlar-Vellum",
       "priority": "P3",
@@ -368333,6 +369180,19 @@
       "canonical_link": "https://asimily.com/blog/10-iot-healthcare-examples/"
     },
     {
+      "issue_id": "UNK-59610c2728f3d871",
+      "title": "ZDI-CAN-33781: MariaDB",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
+    },
+    {
       "issue_id": "UNK-596b97e3cbd955d4",
       "title": "A Vulnerability in Oracle E-Business Suite Could Allow for Remote Code Execution",
       "priority": "P2",
@@ -369199,6 +370059,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://www.fiercehealthcare.com/sponsored/why-early-car-t-conversations-matter-multiple-myeloma"
+    },
+    {
+      "issue_id": "UNK-5d47fbc66164a0b6",
+      "title": "Fedora 45 : elixir (2026-173435e952)",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/377559"
     },
     {
       "issue_id": "UNK-5d48c906e224cf3a",
@@ -377813,6 +378686,19 @@
       "canonical_link": "https://hitconsultant.net/2026/03/11/himss-elisity-report-microsegmentation-iomt-security-paradox/"
     },
     {
+      "issue_id": "UNK-8a075b8ab9e1b102",
+      "title": "ZDI-CAN-33793: MariaDB",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
+    },
+    {
       "issue_id": "UNK-8a243636bd79ba25",
       "title": "Photon OS 5.0: Linux PHSA-2026-5.0-90-0830",
       "priority": "P3",
@@ -382601,6 +383487,19 @@
       "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
     },
     {
+      "issue_id": "UNK-a4b0778957bc4095",
+      "title": "Fedora 44 : composer (2026-0fac5fe7fe)",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/377570"
+    },
+    {
       "issue_id": "UNK-a4eb6d4e64956f96",
       "title": "Own a Pixel? You can add device protection now for $5/month - but should you?",
       "priority": "P3",
@@ -386089,6 +386988,19 @@
       "canonical_link": "https://www.cisa.gov/news-events/alerts/2026/03/18/cisa-urges-endpoint-management-system-hardening-after-cyberattack-against-us-organization"
     },
     {
+      "issue_id": "UNK-b59a20b3be2cfd7c",
+      "title": "Fedora 44 : python-joserfc (2026-7888ffd011)",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/377555"
+    },
+    {
       "issue_id": "UNK-b59af0976dd2f348",
       "title": "ZDI-CAN-30608: Parallels",
       "priority": "P3",
@@ -388128,6 +389040,19 @@
       "canonical_link": "https://api.fda.gov/device/recall.json?search=res_event_number:\"97879\""
     },
     {
+      "issue_id": "UNK-c0dd39e4c5b598eb",
+      "title": "ZDI-CAN-33790: MariaDB",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
+    },
+    {
       "issue_id": "UNK-c0ed278766ff998e",
       "title": "Rockwell Automation FactoryTalk DataMosaix",
       "priority": "P3",
@@ -388537,6 +389462,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://www.zdnet.com/uncategorized/lg-tv-can-spy-on-you-say-researchers-how-to-prevent-it/"
+    },
+    {
+      "issue_id": "UNK-c34f38e27dbe1925",
+      "title": "Fedora 45 : luksmeta (2026-a00abaf169)",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/377565"
     },
     {
       "issue_id": "UNK-c3858ad402af3a6f",
@@ -389311,6 +390249,19 @@
       "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
     },
     {
+      "issue_id": "UNK-c7f29f5253a8c12d",
+      "title": "Fedora 43 : java-21-openjdk / java-21-openjdk-portable (2026-765549feb9)",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/377563"
+    },
+    {
       "issue_id": "UNK-c7f33e2f8051328d",
       "title": "Schneider Electric EcoStruxure IT Data Center Expert",
       "priority": "P3",
@@ -389744,6 +390695,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://api.fda.gov/device/recall.json?search=res_event_number:\"97879\""
+    },
+    {
+      "issue_id": "UNK-ca48af26e2d3e635",
+      "title": "ZDI-CAN-34916: Net-SNMP",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
     },
     {
       "issue_id": "UNK-ca6535f7d59a9ac4",
@@ -391021,6 +391985,19 @@
       "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-809/"
     },
     {
+      "issue_id": "UNK-d156014349bb7a52",
+      "title": "ZDI-CAN-33792: MariaDB",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
+    },
+    {
       "issue_id": "UNK-d1577345d160c281",
       "title": "Siemens SINEC INS",
       "priority": "P3",
@@ -391625,6 +392602,19 @@
       "canonical_link": "https://www.tenable.com/plugins/was/115277"
     },
     {
+      "issue_id": "UNK-d55b04487cf7f3ed",
+      "title": "Fedora 43 : pie (2026-0a5b752f19)",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/377551"
+    },
+    {
       "issue_id": "UNK-d561c2beb27084a8",
       "title": "iPhone Users Urged to Update to Patch 2 Zero-Days",
       "priority": "P3",
@@ -392086,6 +393076,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://www.nist.gov/blogs/cybersecurity-insights/lets-get-digital-updated-digital-identity-guidelines-are-here"
+    },
+    {
+      "issue_id": "UNK-d81ec72ef3605f7d",
+      "title": "Fedora 44 : dnf5 (2026-97ca946ad2)",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/377552"
     },
     {
       "issue_id": "UNK-d8206f69d0b0a900",
@@ -392942,6 +393945,19 @@
       "canonical_link": "https://www.bioworld.com/articles/732454-blood-based-circrnas-for-early-detection-and-monitoring-of-alzheimers"
     },
     {
+      "issue_id": "UNK-dc8c352356f59fb5",
+      "title": "ZDI-CAN-33752: AzeoTech",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
+    },
+    {
       "issue_id": "UNK-dc9f53eb495564f8",
       "title": "Cyber Security Notification - Automation Builder, Drive Application Builder, Virtual Drive, Virtual DrivePlus Impacted by multiple vulnerabilities in Wibu CodeMeter",
       "priority": "P3",
@@ -393656,6 +394672,19 @@
       "canonical_link": "https://api.fda.gov/device/recall.json?search=res_event_number:\"25162\""
     },
     {
+      "issue_id": "UNK-e047140f0416dcba",
+      "title": "Fedora 43 : python-boto3 / python-botocore / python-s3transfer (2026-1f40f6b868)",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/377569"
+    },
+    {
       "issue_id": "UNK-e04e4eadaa4eeeb2",
       "title": "Phishers Gain Persistence at EU, Asia Hospitality Orgs",
       "priority": "P3",
@@ -393935,6 +394964,19 @@
     {
       "issue_id": "UNK-e1ac51ee075ada46",
       "title": "ZDI-CAN-30928: Microsoft",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
+    },
+    {
+      "issue_id": "UNK-e1b1fff28e46fe44",
+      "title": "ZDI-CAN-29524: Octopus",
       "priority": "P3",
       "cves": [],
       "vendor": "",
@@ -394472,6 +395514,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": ""
+    },
+    {
+      "issue_id": "UNK-e3d524ab1714260e",
+      "title": "Fedora 45 : python3.12 (2026-5f99243da4)",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/377573"
     },
     {
       "issue_id": "UNK-e3d58f71127fa247",
@@ -395372,6 +396427,19 @@
       "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-209-02.json"
     },
     {
+      "issue_id": "UNK-e82d12e8bb8c6ffe",
+      "title": "Fedora 43 : python3.12 (2026-4e3279af04)",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/377557"
+    },
+    {
       "issue_id": "UNK-e83335288eb44232",
       "title": "CYSTO-NEPHRO VIDEOSCOPE — Corroded",
       "priority": "P2",
@@ -395690,6 +396758,19 @@
       "canonical_link": "https://isc.sans.edu/diary/rss/33400"
     },
     {
+      "issue_id": "UNK-e9ac4fe1f2d2dca1",
+      "title": "Fedora 43 : composer (2026-f2a72b9a61)",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/377562"
+    },
+    {
       "issue_id": "UNK-e9b21ef64558ab41",
       "title": "ZDI-CAN-34286: Foxit",
       "priority": "P3",
@@ -395850,8 +396931,34 @@
       "canonical_link": "https://www.darkreading.com/endpoint-security/beyondtrust-remote-support-exploited-edge-bugs"
     },
     {
+      "issue_id": "UNK-ea4ad6bd87ce1462",
+      "title": "Fedora 45 : mtools (2026-e9b29b6da4)",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/nessus/377560"
+    },
+    {
       "issue_id": "UNK-ea536556b4e75eac",
       "title": "ZDI-CAN-32922: Adobe",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
+    },
+    {
+      "issue_id": "UNK-ea5631c5ada3571d",
+      "title": "ZDI-CAN-33230: NVIDIA",
       "priority": "P3",
       "cves": [],
       "vendor": "",
@@ -397069,6 +398176,19 @@
       ],
       "affected_versions": [],
       "canonical_link": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-16-196-01"
+    },
+    {
+      "issue_id": "UNK-eff01bff423ecf47",
+      "title": "ZDI-CAN-31878: KeePassXC",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
     },
     {
       "issue_id": "UNK-effc11cb71531f8a",
