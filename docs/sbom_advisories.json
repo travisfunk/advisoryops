@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "generated_at": "2026-11-08T13:09:41.595783+00:00",
-  "total_records": 16082,
-  "vendor_evidence_checked_at": "2026-11-08T13:08:54.375733+00:00",
-  "records_with_vendor_products": 7281,
-  "records_with_products": 7674,
+  "generated_at": "2026-11-09T15:24:42.885729+00:00",
+  "total_records": 16102,
+  "vendor_evidence_checked_at": "2026-11-09T15:23:56.936014+00:00",
+  "records_with_vendor_products": 7289,
+  "records_with_products": 7682,
   "matching_policy": "product_identity_candidates_only",
   "issues": [
     {
@@ -53906,6 +53906,35 @@
       "canonical_link": "https://cert-portal.siemens.com/productcert/csaf/ssa-139628.json"
     },
     {
+      "issue_id": "CVE-2020-26247",
+      "title": "CVE-2020-26247",
+      "priority": "P3",
+      "cves": [
+        "CVE-2020-26247"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Debian Debian Linux",
+        "Nokogiri Nokogiri"
+      ],
+      "product_vendors": [
+        {
+          "product": "Debian Debian Linux",
+          "vendor": "debian",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2020-26247"
+        },
+        {
+          "product": "Nokogiri Nokogiri",
+          "vendor": "nokogiri",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2020-26247"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478655"
+    },
+    {
       "issue_id": "CVE-2020-27009",
       "title": "CVE-2020-27009",
       "priority": "P3",
@@ -91566,6 +91595,41 @@
       "canonical_link": "https://www.philips.com/a-w/security/security-advisories/product-security-2023.html"
     },
     {
+      "issue_id": "CVE-2023-34969",
+      "title": "CVE-2023-34969",
+      "priority": "P3",
+      "cves": [
+        "CVE-2023-34969"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Debian Debian Linux",
+        "Fedoraproject Fedora",
+        "Freedesktop Dbus"
+      ],
+      "product_vendors": [
+        {
+          "product": "Debian Debian Linux",
+          "vendor": "debian",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2023-34969"
+        },
+        {
+          "product": "Fedoraproject Fedora",
+          "vendor": "fedoraproject",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2023-34969"
+        },
+        {
+          "product": "Freedesktop Dbus",
+          "vendor": "freedesktop",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2023-34969"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478668"
+    },
+    {
       "issue_id": "CVE-2023-35986",
       "title": "CVE-2023-35986",
       "priority": "P2",
@@ -126933,6 +126997,21 @@
       "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2025-24016"
     },
     {
+      "issue_id": "CVE-2025-24294",
+      "title": "CVE-2025-24294",
+      "priority": "P3",
+      "cves": [
+        "CVE-2025-24294"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478666"
+    },
+    {
       "issue_id": "CVE-2025-24316",
       "title": "CVE-2025-24316",
       "priority": "P3",
@@ -152948,6 +153027,21 @@
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/473813"
     },
     {
+      "issue_id": "CVE-2026-105946",
+      "title": "CVE-2026-105946",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-105946"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478653"
+    },
+    {
       "issue_id": "CVE-2026-105960",
       "title": "CVE-2026-105960",
       "priority": "P3",
@@ -167200,6 +167294,21 @@
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/478307"
     },
     {
+      "issue_id": "CVE-2026-120749",
+      "title": "CVE-2026-120749",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-120749"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478668"
+    },
+    {
       "issue_id": "CVE-2026-120754",
       "title": "CVE-2026-120754",
       "priority": "P3",
@@ -168378,6 +168487,21 @@
       ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/326509"
+    },
+    {
+      "issue_id": "CVE-2026-123158",
+      "title": "Scans for Sshole Vulnerability (CVE-2026-123158), (Sun, Nov 8th)",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-123158"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://isc.sans.edu/diary/rss/33498"
     },
     {
       "issue_id": "CVE-2026-12324",
@@ -186887,6 +187011,21 @@
       "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2026-18577"
     },
     {
+      "issue_id": "CVE-2026-18739",
+      "title": "CVE-2026-18739",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-18739"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478662"
+    },
+    {
       "issue_id": "CVE-2026-1874",
       "title": "CVE-2026-1874",
       "priority": "P2",
@@ -186900,6 +187039,21 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-62-01"
+    },
+    {
+      "issue_id": "CVE-2026-18743",
+      "title": "CVE-2026-18743",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-18743"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478663"
     },
     {
       "issue_id": "CVE-2026-1875",
@@ -211666,6 +211820,29 @@
       "canonical_link": "https://www.tenable.com/plugins/nessus/323099"
     },
     {
+      "issue_id": "CVE-2026-34543",
+      "title": "CVE-2026-34543",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-34543"
+      ],
+      "vendor": "openexr",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Openexr Openexr"
+      ],
+      "product_vendors": [
+        {
+          "product": "Openexr Openexr",
+          "vendor": "openexr",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-34543"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478660"
+    },
+    {
       "issue_id": "CVE-2026-34621",
       "title": "CVE-2026-34621",
       "priority": "P0",
@@ -214395,6 +214572,29 @@
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/445579"
     },
     {
+      "issue_id": "CVE-2026-40113",
+      "title": "CVE-2026-40113",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-40113"
+      ],
+      "vendor": "praison",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Praison Praisonai"
+      ],
+      "product_vendors": [
+        {
+          "product": "Praison Praisonai",
+          "vendor": "praison",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-40113"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478657"
+    },
+    {
       "issue_id": "CVE-2026-40170",
       "title": "CVE-2026-40170",
       "priority": "P3",
@@ -216954,7 +217154,7 @@
         }
       ],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/346780"
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478664"
     },
     {
       "issue_id": "CVE-2026-42246",
@@ -217041,7 +217241,7 @@
         }
       ],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/346780"
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478661"
     },
     {
       "issue_id": "CVE-2026-42258",
@@ -217065,7 +217265,7 @@
         }
       ],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/346780"
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478667"
     },
     {
       "issue_id": "CVE-2026-42271",
@@ -255050,6 +255250,21 @@
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/447986"
     },
     {
+      "issue_id": "CVE-2026-56684",
+      "title": "CVE-2026-56684",
+      "priority": "P2",
+      "cves": [
+        "CVE-2026-56684"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478658"
+    },
+    {
       "issue_id": "CVE-2026-56711",
       "title": "CVE-2026-56711",
       "priority": "P3",
@@ -256062,6 +256277,75 @@
       "canonical_link": "https://www.tenable.com/plugins/nessus/326503"
     },
     {
+      "issue_id": "CVE-2026-57234",
+      "title": "CVE-2026-57234",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-57234"
+      ],
+      "vendor": "nokogiri",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Nokogiri Nokogiri"
+      ],
+      "product_vendors": [
+        {
+          "product": "Nokogiri Nokogiri",
+          "vendor": "nokogiri",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-57234"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478655"
+    },
+    {
+      "issue_id": "CVE-2026-57235",
+      "title": "CVE-2026-57235",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-57235"
+      ],
+      "vendor": "nokogiri",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Nokogiri Nokogiri"
+      ],
+      "product_vendors": [
+        {
+          "product": "Nokogiri Nokogiri",
+          "vendor": "nokogiri",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-57235"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478655"
+    },
+    {
+      "issue_id": "CVE-2026-57236",
+      "title": "CVE-2026-57236",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-57236"
+      ],
+      "vendor": "nokogiri",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Nokogiri Nokogiri"
+      ],
+      "product_vendors": [
+        {
+          "product": "Nokogiri Nokogiri",
+          "vendor": "nokogiri",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-57236"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478655"
+    },
+    {
       "issue_id": "CVE-2026-57237",
       "title": "CVE-2026-57237",
       "priority": "P3",
@@ -256929,6 +257213,29 @@
       ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/444128"
+    },
+    {
+      "issue_id": "CVE-2026-57434",
+      "title": "CVE-2026-57434",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-57434"
+      ],
+      "vendor": "nokogiri",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Nokogiri Nokogiri"
+      ],
+      "product_vendors": [
+        {
+          "product": "Nokogiri Nokogiri",
+          "vendor": "nokogiri",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-57434"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478655"
     },
     {
       "issue_id": "CVE-2026-57439",
@@ -267960,6 +268267,21 @@
       ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/345797"
+    },
+    {
+      "issue_id": "CVE-2026-63639",
+      "title": "CVE-2026-63639",
+      "priority": "P2",
+      "cves": [
+        "CVE-2026-63639"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478658"
     },
     {
       "issue_id": "CVE-2026-63650",
@@ -306255,7 +306577,7 @@
     {
       "issue_id": "CVE-2026-76181",
       "title": "CVE-2026-76181",
-      "priority": "P3",
+      "priority": "P2",
       "cves": [
         "CVE-2026-76181"
       ],
@@ -356979,6 +357301,19 @@
       "canonical_link": "https://www.zdnet.com/article/framework-laptop-13-pro-review/"
     },
     {
+      "issue_id": "UNK-15a7c40f041a1687",
+      "title": "Hospitals Warned of Potential Cyberattacks on Refrigeration and Freezer Systems",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.hipaaguide.net/hospitals-cyberattacks-refrigeration-freezer-systems/"
+    },
+    {
       "issue_id": "UNK-15bbbc898c569e1d",
       "title": "ZDI-CAN-32677: NVIDIA",
       "priority": "P3",
@@ -361015,6 +361350,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://isc.sans.edu/diary/rss/33242"
+    },
+    {
+      "issue_id": "UNK-2d00fc7bcbea095b",
+      "title": "VU#385711: PrestaShop Performance Debug Configuration Contains a PHP Code Injection Vulnerability",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://kb.cert.org/vuls/id/385711"
     },
     {
       "issue_id": "UNK-2d12e85ade2bbd1b",
@@ -370388,6 +370736,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
+    },
+    {
+      "issue_id": "UNK-5ee3567293b18931",
+      "title": "Strengthening Healthcare Delivery Through Proactive Primary Care",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.fiercehealthcare.com/sponsored/strengthening-healthcare-delivery-through-proactive-primary-care"
     },
     {
       "issue_id": "UNK-5ef99e5ea8f73858",
@@ -398297,6 +398658,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://api.fda.gov/device/enforcement.json?search=recall_number:\"Z-0092-2026\""
+    },
+    {
+      "issue_id": "UNK-f08e3e08575e32dc",
+      "title": "Cyber Security Notification - OpenSSL Vulnerabilities in BnR products",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://br-cws-assets.de-fra-1.linodeobjects.com/SA26P003-8f937685.pdf"
     },
     {
       "issue_id": "UNK-f0a200e929739307",

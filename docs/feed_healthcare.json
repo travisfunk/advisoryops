@@ -30515,7 +30515,7 @@
       "2026-10-22T06:00:00.000000Z"
     ],
     "first_seen_at": "2026-10-24T10:33:10.353645+00:00",
-    "last_seen_at": "2026-11-08T13:01:03.048776+00:00",
+    "last_seen_at": "2026-11-09T15:15:55.231375+00:00",
     "score": 82,
     "priority": "P2",
     "actions": [
@@ -30595,7 +30595,7 @@
       "2026-10-15T06:00:00.000000Z"
     ],
     "first_seen_at": "2026-10-17T10:27:41.142183+00:00",
-    "last_seen_at": "2026-11-08T13:01:03.048776+00:00",
+    "last_seen_at": "2026-11-09T15:15:55.231375+00:00",
     "score": 82,
     "priority": "P2",
     "actions": [
@@ -30675,7 +30675,7 @@
       "2026-08-11T06:00:00.000000Z"
     ],
     "first_seen_at": "2026-10-10T12:08:02.926492+00:00",
-    "last_seen_at": "2026-11-08T13:01:03.048776+00:00",
+    "last_seen_at": "2026-11-09T15:15:55.231375+00:00",
     "score": 82,
     "priority": "P2",
     "actions": [
@@ -30755,7 +30755,7 @@
       "2026-10-15T06:00:00.000000Z"
     ],
     "first_seen_at": "2026-10-17T10:27:41.142183+00:00",
-    "last_seen_at": "2026-11-08T13:01:03.048776+00:00",
+    "last_seen_at": "2026-11-09T15:15:55.231375+00:00",
     "score": 82,
     "priority": "P2",
     "actions": [
@@ -34793,7 +34793,7 @@
       "Thu, 15 Oct 2026 11:00:00 +0000"
     ],
     "first_seen_at": "2026-10-17T10:33:01.439192+00:00",
-    "last_seen_at": "2026-11-08T13:06:29.953666+00:00",
+    "last_seen_at": "2026-11-09T15:21:26.946359+00:00",
     "score": 48,
     "priority": "P3",
     "actions": [
@@ -41562,5 +41562,95 @@
       "source-authority: tier-3 weight=0.7 (+21)",
       "priority: P3 (score=38)"
     ]
+  },
+  {
+    "issue_id": "UNK-15a7c40f041a1687",
+    "issue_type": "unknown",
+    "title": "Hospitals Warned of Potential Cyberattacks on Refrigeration and Freezer Systems",
+    "summary": "Hospitals and other critical infrastructure entities in the United States have been warned that internet-connected refrigeration and freezer systems could be targeted by threat actors, as they have been in Europe. Starting in mid-October, hackers started targeting internet-connected industrial refrigeration, freezer, and cold chain monitoring systems. The hackers remotely altered temperature control settings, causing hazardous temperature increases. These attacks pose a fire risk, have resulted in loss of inventory, and have the potential to change the service life of an affected system. In Europe, there have been two waves of attacks; the first started in mid-October and affected refrigeration controllers in France. Hackers remotely accessed control systems and activated defrost functions in refrigerators and freezers. An estimated 250 to 350 French supermarkets were affected, resulting in significant food waste and financial losses. In these attacks, the hackers targeted older versions of control software from the company Danfoss, which had stopped issuing security updates for the affected software. Then came a second wave of attacks in early November, affecting refrigeration and freezer systems in six European countries. On November 3, 2026, the French Blood bank EFS confirmed that it had been affected. Refrigeration systems that kept blood products at -30°C (-22°F) [...] The post Hospitals Warned of Potential Cyberattacks on Refrigeration and Freezer Systems appeared first on The HIPAA Guide .",
+    "canonical_link": "https://www.hipaaguide.net/hospitals-cyberattacks-refrigeration-freezer-systems/",
+    "cves": [],
+    "sources": [
+      "hipaa-guide-cyber"
+    ],
+    "published_dates": [
+      "Mon, 09 Nov 2026 11:25:49 +0000"
+    ],
+    "first_seen_at": "2026-11-09T15:16:36.120366+00:00",
+    "last_seen_at": "2026-11-09T15:16:36.120366+00:00",
+    "score": 17,
+    "priority": "P3",
+    "actions": [
+      "log"
+    ],
+    "why": [
+      "base: issue_type!=cve (+2)",
+      "source-authority: tier-4 weight=0.5 (+15)",
+      "priority: P3 (score=17)"
+    ],
+    "handling_warnings": [],
+    "evidence_gaps": [],
+    "unknowns": [],
+    "source_consensus": {
+      "agreed": [],
+      "contradicted": [],
+      "unique_contributions": {}
+    },
+    "source_authority_weight": 0.5,
+    "highest_authority_source": "hipaa-guide-cyber",
+    "healthcare_category": "medical_device",
+    "classification": {},
+    "severity": "",
+    "affected_versions": [],
+    "vendor": "",
+    "generated_by": "deterministic",
+    "extracted_facts": {},
+    "inferred_facts": {},
+    "confidence_by_field": {},
+    "evidence_sources": [],
+    "insufficient_evidence": false,
+    "non_applicability": [],
+    "source_mitigations": [],
+    "iocs": [
+      {
+        "type": "url",
+        "value": "https://www.hipaaguide.net/?p=12430",
+        "source": "hipaa-guide-cyber"
+      },
+      {
+        "type": "domain",
+        "value": "www.hipaaguide.net",
+        "source": "hipaa-guide-cyber"
+      }
+    ],
+    "cvss_score": 0,
+    "cvss_severity": "",
+    "cvss_vector": "",
+    "cvss_attack_vector": null,
+    "remotely_exploitable_no_auth": null,
+    "cwe_ids": [],
+    "affected_products": [],
+    "source_product_identities": [],
+    "nvd_description": "",
+    "source_summary": "",
+    "kev_required_action": "",
+    "kev_due_date": "",
+    "kev_vendor": "",
+    "kev_product": "",
+    "kev_vulnerability_name": "",
+    "remediation_steps": [
+      "Review vendor advisory for mitigation guidance.",
+      "Monitor for exploitation indicators."
+    ],
+    "healthcare_relevant": true,
+    "fda_risk_class": "1",
+    "is_kev_medical_device": false,
+    "epss_score": null,
+    "epss_percentile": null,
+    "recommended_patterns": [],
+    "tasks_by_role": {},
+    "reasoning": "",
+    "citations": [],
+    "first_published_to_feed": "2026-11-09T15:24:08.829034+00:00"
   }
 ]
