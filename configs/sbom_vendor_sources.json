@@ -24,7 +24,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:53.428962+00:00"
+      "checked_at": "2026-11-10T14:43:45.933025+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0002",
@@ -49,7 +49,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:53.643564+00:00"
+      "checked_at": "2026-11-10T14:43:46.152043+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0003",
@@ -86,7 +86,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:53.972325+00:00"
+      "checked_at": "2026-11-10T14:43:46.359346+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0004",
@@ -111,7 +111,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:54.182787+00:00"
+      "checked_at": "2026-11-10T14:43:46.986360+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0005",
@@ -132,7 +132,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:54.437112+00:00"
+      "checked_at": "2026-11-10T14:43:47.198311+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0006",
@@ -149,7 +149,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:54.730367+00:00"
+      "checked_at": "2026-11-10T14:43:47.409048+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0007",
@@ -214,7 +214,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:54.941405+00:00"
+      "checked_at": "2026-11-10T14:44:26.948652+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0008",
@@ -239,7 +239,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:55.126249+00:00"
+      "checked_at": "2026-11-10T14:44:27.140602+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0009",
@@ -304,7 +304,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:55.340764+00:00"
+      "checked_at": "2026-11-10T14:44:27.328201+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0010",
@@ -361,7 +361,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:55.633176+00:00"
+      "checked_at": "2026-11-10T14:44:47.053953+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0011",
@@ -418,7 +418,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:55.851755+00:00"
+      "checked_at": "2026-11-10T14:44:47.428879+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0012",
@@ -451,7 +451,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:56.052097+00:00"
+      "checked_at": "2026-11-10T14:44:47.798098+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0013",
@@ -468,7 +468,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:56.469609+00:00"
+      "checked_at": "2026-11-10T14:44:48.113255+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0014",
@@ -497,7 +497,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:56.701532+00:00"
+      "checked_at": "2026-11-10T14:44:48.425753+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0015",
@@ -530,7 +530,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:57.049594+00:00"
+      "checked_at": "2026-11-10T14:44:48.635957+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0016",
@@ -575,7 +575,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:57.246708+00:00"
+      "checked_at": "2026-11-10T14:44:48.818717+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0017",
@@ -632,7 +632,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:57.489424+00:00"
+      "checked_at": "2026-11-10T14:44:48.998782+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0018",
@@ -661,7 +661,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:57.681911+00:00"
+      "checked_at": "2026-11-10T14:44:49.273245+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0019",
@@ -714,7 +714,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:57.878542+00:00"
+      "checked_at": "2026-11-10T14:44:49.483759+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0021",
@@ -731,7 +731,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:58.075637+00:00"
+      "checked_at": "2026-11-10T14:44:49.690208+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0022",
@@ -772,7 +772,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:58.280819+00:00"
+      "checked_at": "2026-11-10T14:44:49.896295+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0023",
@@ -825,7 +825,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:58.488364+00:00"
+      "checked_at": "2026-11-10T14:44:50.164285+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0024",
@@ -886,7 +886,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:58.747643+00:00"
+      "checked_at": "2026-11-10T14:44:50.516836+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0025",
@@ -903,7 +903,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:59.135413+00:00"
+      "checked_at": "2026-11-10T14:44:50.729687+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0026",
@@ -920,7 +920,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:17.825887+00:00"
+      "checked_at": "2026-11-10T14:44:50.984959+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0027",
@@ -937,7 +937,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:18.033372+00:00"
+      "checked_at": "2026-11-10T14:44:51.246963+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0028",
@@ -954,7 +954,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:18.258587+00:00"
+      "checked_at": "2026-11-10T14:44:51.451277+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0029",
@@ -971,7 +971,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:18.466381+00:00"
+      "checked_at": "2026-11-10T14:44:51.873331+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0030",
@@ -988,7 +988,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:18.650187+00:00"
+      "checked_at": "2026-11-10T14:44:52.055220+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0031",
@@ -1009,7 +1009,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:18.941065+00:00"
+      "checked_at": "2026-11-10T14:44:52.262009+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0032",
@@ -1042,7 +1042,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:19.260085+00:00"
+      "checked_at": "2026-11-10T14:44:52.457133+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0033",
@@ -1083,7 +1083,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:19.666435+00:00"
+      "checked_at": "2026-11-10T14:44:52.708928+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0034",
@@ -1112,7 +1112,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:19.997044+00:00"
+      "checked_at": "2026-11-10T14:44:52.937325+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0035",
@@ -1133,7 +1133,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:20.244897+00:00"
+      "checked_at": "2026-11-10T14:44:53.171076+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0036",
@@ -1150,7 +1150,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:20.468363+00:00"
+      "checked_at": "2026-11-10T14:44:53.387526+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0037",
@@ -1171,7 +1171,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:20.650191+00:00"
+      "checked_at": "2026-11-10T14:44:53.751849+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0038",
@@ -1216,7 +1216,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:21.158602+00:00"
+      "checked_at": "2026-11-10T14:44:53.948540+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0039",
@@ -1233,7 +1233,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:21.364703+00:00"
+      "checked_at": "2026-11-10T14:44:54.320067+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0040",
@@ -1286,7 +1286,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:21.744057+00:00"
+      "checked_at": "2026-11-10T14:44:54.521872+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0041",
@@ -1323,7 +1323,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:21.949527+00:00"
+      "checked_at": "2026-11-10T14:44:54.721739+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0042",
@@ -1360,7 +1360,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:22.161547+00:00"
+      "checked_at": "2026-11-10T14:44:54.939947+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0043",
@@ -1401,7 +1401,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:22.394042+00:00"
+      "checked_at": "2026-11-10T14:44:55.170578+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0044",
@@ -1418,7 +1418,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:22.934904+00:00"
+      "checked_at": "2026-11-10T14:44:55.443514+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0045",
@@ -1447,7 +1447,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:23.155094+00:00"
+      "checked_at": "2026-11-10T14:44:55.689060+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0046",
@@ -1500,7 +1500,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:23.387033+00:00"
+      "checked_at": "2026-11-10T14:44:56.052748+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0047",
@@ -1525,7 +1525,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:23.746479+00:00"
+      "checked_at": "2026-11-10T14:44:56.243483+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0048",
@@ -1558,7 +1558,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:23.945796+00:00"
+      "checked_at": "2026-11-10T14:44:56.478792+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0049",
@@ -1575,7 +1575,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:24.157373+00:00"
+      "checked_at": "2026-11-10T14:44:56.672067+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0050",
@@ -1592,7 +1592,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:24.484042+00:00"
+      "checked_at": "2026-11-10T14:44:56.963427+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0051",
@@ -1625,7 +1625,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:24.681577+00:00"
+      "checked_at": "2026-11-10T14:44:57.148330+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0052",
@@ -2348,7 +2348,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:23.958194+00:00"
+      "checked_at": "2026-11-10T14:40:54.087553+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0083",
@@ -2384,7 +2384,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:24.173689+00:00"
+      "checked_at": "2026-11-10T14:40:54.382166+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0085",
@@ -2599,7 +2599,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:24.523461+00:00"
+      "checked_at": "2026-11-10T14:40:54.564924+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0096",
@@ -4829,7 +4829,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:24.899384+00:00"
+      "checked_at": "2026-11-10T14:40:54.752848+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-0315",
@@ -4881,7 +4881,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:25.156311+00:00"
+      "checked_at": "2026-11-10T14:40:55.084160+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-1115",
@@ -4898,7 +4898,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:25.352664+00:00"
+      "checked_at": "2026-11-10T14:40:55.274787+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-1122",
@@ -4915,7 +4915,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:25.742473+00:00"
+      "checked_at": "2026-11-10T14:40:55.472074+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-1197",
@@ -4932,7 +4932,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:25.940928+00:00"
+      "checked_at": "2026-11-10T14:40:55.660642+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-1198",
@@ -4949,7 +4949,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:26.307294+00:00"
+      "checked_at": "2026-11-10T14:40:55.975278+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-1211",
@@ -4966,7 +4966,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:26.571101+00:00"
+      "checked_at": "2026-11-10T14:40:56.170036+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-1212",
@@ -4983,7 +4983,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:26.826115+00:00"
+      "checked_at": "2026-11-10T14:40:56.525556+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-1258",
@@ -5000,7 +5000,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:27.049174+00:00"
+      "checked_at": "2026-11-10T14:40:56.722350+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-1391",
@@ -5017,7 +5017,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:27.243728+00:00"
+      "checked_at": "2026-11-10T14:40:56.940444+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-1392",
@@ -5038,7 +5038,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:27.470984+00:00"
+      "checked_at": "2026-11-10T14:40:57.134411+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-1438",
@@ -5055,7 +5055,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:27.652415+00:00"
+      "checked_at": "2026-11-10T14:40:57.316382+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-1467",
@@ -5072,7 +5072,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:27.958918+00:00"
+      "checked_at": "2026-11-10T14:40:57.520859+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-1471",
@@ -5089,7 +5089,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:28.172325+00:00"
+      "checked_at": "2026-11-10T14:41:16.831342+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-1506",
@@ -5106,7 +5106,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:28.437635+00:00"
+      "checked_at": "2026-11-10T14:41:17.195214+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-1554",
@@ -5123,7 +5123,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:28.715595+00:00"
+      "checked_at": "2026-11-10T14:41:17.434357+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-1999-1594",
@@ -5200,7 +5200,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:47.779578+00:00"
+      "checked_at": "2026-11-10T14:41:17.655037+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2000-0411",
@@ -5217,7 +5217,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:21.720900+00:00"
+      "checked_at": "2026-11-10T14:40:52.073050+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2000-1248",
@@ -93423,7 +93423,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:24.934299+00:00"
+      "checked_at": "2026-11-10T14:44:57.418691+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2020-4670",
@@ -105473,6 +105473,27 @@
       "status": "available"
     },
     {
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2021-36386",
+      "cves": [
+        "CVE-2021-36386"
+      ],
+      "vendor": "",
+      "source": "https://nvd.nist.gov/vuln/detail/CVE-2021-36386",
+      "kind": "nvd",
+      "product_identities": [
+        {
+          "vendor": "fedoraproject",
+          "product": "fedora"
+        },
+        {
+          "vendor": "fetchmail",
+          "product": "fetchmail"
+        }
+      ],
+      "identity_schema": 2,
+      "checked_at": "2026-11-10T14:40:18.349676+00:00"
+    },
+    {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2021-36690",
       "cves": [
         "CVE-2021-36690"
@@ -109656,7 +109677,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:20.612853+00:00"
+      "checked_at": "2026-11-10T14:40:27.055796+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2021-44000",
@@ -136934,7 +136955,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:25.129836+00:00"
+      "checked_at": "2026-11-10T14:44:57.683125+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-20239",
@@ -154468,7 +154489,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:21:54.938111+00:00"
+      "checked_at": "2026-11-10T14:38:24.883701+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-41839",
@@ -160065,7 +160086,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:21.123010+00:00"
+      "checked_at": "2026-11-10T14:40:48.446854+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-46838",
@@ -177634,7 +177655,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:21.497820+00:00"
+      "checked_at": "2026-11-10T14:40:48.740269+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-21950",
@@ -201383,7 +201404,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:21:54.732968+00:00"
+      "checked_at": "2026-11-10T14:38:24.693397+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-5089",
@@ -203288,7 +203309,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:41:58.656207+00:00"
+      "checked_at": "2026-11-10T14:38:23.612855+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-54581",
@@ -246640,7 +246661,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:22.379193+00:00"
+      "checked_at": "2026-11-10T14:40:52.476344+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-2615",
@@ -252773,7 +252794,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:21:53.082075+00:00"
+      "checked_at": "2026-11-10T14:38:23.806675+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-31254",
@@ -254239,7 +254260,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:21:47.942768+00:00"
+      "checked_at": "2026-11-10T14:38:16.808663+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-3261",
@@ -291028,7 +291049,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:22.617542+00:00"
+      "checked_at": "2026-11-10T14:40:52.680546+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-41669",
@@ -291088,7 +291109,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:22.811996+00:00"
+      "checked_at": "2026-11-10T14:40:52.866911+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-41699",
@@ -313567,7 +313588,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:00.666747+00:00"
+      "checked_at": "2026-11-10T14:38:21.979395+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-54963",
@@ -313876,7 +313897,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.886753+00:00"
+      "checked_at": "2026-11-10T14:38:19.770541+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-55002",
@@ -313888,7 +313909,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.886867+00:00"
+      "checked_at": "2026-11-10T14:38:20.122289+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-55018",
@@ -343050,7 +343071,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-10-26T11:54:24.471329+00:00"
+      "checked_at": "2026-11-10T14:40:18.827276+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-61974",
@@ -394050,7 +394071,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:02.761120+00:00"
+      "checked_at": "2026-11-10T14:43:37.295143+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-10025",
@@ -395792,7 +395813,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-03T13:15:48.099452+00:00"
+      "checked_at": "2026-11-10T14:38:25.092585+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-100802",
@@ -409545,6 +409566,30 @@
       "checked_at": "2026-11-09T14:42:07.752423+00:00"
     },
     {
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-102620",
+      "cves": [
+        "CVE-2026-102620"
+      ],
+      "vendor": "",
+      "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-102620",
+      "kind": "nvd",
+      "product_identities": [],
+      "identity_schema": 2,
+      "checked_at": "2026-11-10T14:41:17.913304+00:00"
+    },
+    {
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-102621",
+      "cves": [
+        "CVE-2026-102621"
+      ],
+      "vendor": "",
+      "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-102621",
+      "kind": "nvd",
+      "product_identities": [],
+      "identity_schema": 2,
+      "checked_at": "2026-11-10T14:41:18.268283+00:00"
+    },
+    {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-102627",
       "cves": [
         "CVE-2026-102627"
@@ -409891,7 +409936,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-01T13:00:04.329338+00:00"
+      "checked_at": "2026-11-10T14:43:37.477121+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-102702",
@@ -409915,7 +409960,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.699203+00:00"
+      "checked_at": "2026-11-10T14:43:37.662193+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-102704",
@@ -409927,7 +409972,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.699315+00:00"
+      "checked_at": "2026-11-10T14:43:37.845099+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-102709",
@@ -410256,7 +410301,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:21:48.664642+00:00"
+      "checked_at": "2026-11-10T14:38:18.165978+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-102774",
@@ -414105,7 +414150,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-10-20T10:41:04.229475+00:00"
+      "checked_at": "2026-11-10T14:40:27.248807+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-103665",
@@ -417562,6 +417607,30 @@
       "checked_at": "2026-10-20T10:41:19.877305+00:00"
     },
     {
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-104619",
+      "cves": [
+        "CVE-2026-104619"
+      ],
+      "vendor": "",
+      "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-104619",
+      "kind": "nvd",
+      "product_identities": [],
+      "identity_schema": 2,
+      "checked_at": "2026-11-10T14:40:48.929924+00:00"
+    },
+    {
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-104620",
+      "cves": [
+        "CVE-2026-104620"
+      ],
+      "vendor": "",
+      "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-104620",
+      "kind": "nvd",
+      "product_identities": [],
+      "identity_schema": 2,
+      "checked_at": "2026-11-10T14:40:49.298997+00:00"
+    },
+    {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-104623",
       "cves": [
         "CVE-2026-104623"
@@ -418741,7 +418810,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:21:52.853245+00:00"
+      "checked_at": "2026-11-10T14:38:22.630719+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-104939",
@@ -434642,7 +434711,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-10-20T10:41:01.516819+00:00"
+      "checked_at": "2026-11-10T14:41:18.909104+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-107708",
@@ -451200,7 +451269,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.007513+00:00"
+      "checked_at": "2026-11-10T14:38:17.692868+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-109619",
@@ -451261,7 +451330,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.013031+00:00"
+      "checked_at": "2026-11-10T14:38:17.973998+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-109620",
@@ -463980,7 +464049,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.776998+00:00"
+      "checked_at": "2026-11-10T14:43:38.023080+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-111254",
@@ -465869,7 +465938,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.030925+00:00"
+      "checked_at": "2026-11-10T14:38:17.409988+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-111498",
@@ -487954,7 +488023,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.812314+00:00"
+      "checked_at": "2026-11-10T14:40:49.497992+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-113436",
@@ -488110,7 +488179,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-10-28T11:52:04.420100+00:00"
+      "checked_at": "2026-11-10T14:38:25.289408+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-113472",
@@ -497041,7 +497110,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-02T14:18:44.929491+00:00"
+      "checked_at": "2026-11-10T14:41:19.600154+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-115183",
@@ -500122,7 +500191,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.812466+00:00"
+      "checked_at": "2026-11-10T14:40:49.729034+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-115706",
@@ -511331,7 +511400,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-04T13:29:38.749591+00:00"
+      "checked_at": "2026-11-10T14:43:38.249612+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117557",
@@ -514248,7 +514317,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.153473+00:00"
+      "checked_at": "2026-11-10T14:38:25.529484+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117861",
@@ -514260,7 +514329,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.153585+00:00"
+      "checked_at": "2026-11-10T14:38:25.720748+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117862",
@@ -514272,7 +514341,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.153698+00:00"
+      "checked_at": "2026-11-10T14:38:25.907069+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117863",
@@ -514284,7 +514353,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.153798+00:00"
+      "checked_at": "2026-11-10T14:38:26.186517+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117864",
@@ -514296,7 +514365,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.153900+00:00"
+      "checked_at": "2026-11-10T14:38:26.364586+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117865",
@@ -514308,7 +514377,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.153998+00:00"
+      "checked_at": "2026-11-10T14:38:46.404892+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117866",
@@ -514320,7 +514389,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.154094+00:00"
+      "checked_at": "2026-11-10T14:38:46.593414+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117867",
@@ -514332,7 +514401,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.154191+00:00"
+      "checked_at": "2026-11-10T14:38:46.925408+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117868",
@@ -514344,7 +514413,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.154289+00:00"
+      "checked_at": "2026-11-10T14:38:47.235197+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117869",
@@ -514356,7 +514425,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.154405+00:00"
+      "checked_at": "2026-11-10T14:38:47.437624+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-11787",
@@ -514393,7 +514462,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.154507+00:00"
+      "checked_at": "2026-11-10T14:38:47.661709+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117871",
@@ -514405,7 +514474,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.154603+00:00"
+      "checked_at": "2026-11-10T14:38:47.878010+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117872",
@@ -514417,7 +514486,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.154707+00:00"
+      "checked_at": "2026-11-10T14:38:48.083115+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117873",
@@ -514429,7 +514498,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.154812+00:00"
+      "checked_at": "2026-11-10T14:38:48.263004+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117874",
@@ -514441,7 +514510,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.154913+00:00"
+      "checked_at": "2026-11-10T14:38:48.434109+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117875",
@@ -514453,7 +514522,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.155011+00:00"
+      "checked_at": "2026-11-10T14:38:48.821587+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117876",
@@ -514465,7 +514534,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.155109+00:00"
+      "checked_at": "2026-11-10T14:38:49.023536+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117877",
@@ -514477,7 +514546,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.155207+00:00"
+      "checked_at": "2026-11-10T14:38:49.281421+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117878",
@@ -514489,7 +514558,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.155433+00:00"
+      "checked_at": "2026-11-10T14:38:49.527264+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117879",
@@ -514501,7 +514570,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.155538+00:00"
+      "checked_at": "2026-11-10T14:38:49.772965+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-11788",
@@ -514538,7 +514607,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.155645+00:00"
+      "checked_at": "2026-11-10T14:38:49.987704+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117881",
@@ -514550,7 +514619,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.155742+00:00"
+      "checked_at": "2026-11-10T14:38:50.220827+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117882",
@@ -514562,7 +514631,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.155842+00:00"
+      "checked_at": "2026-11-10T14:38:50.543639+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117883",
@@ -514574,7 +514643,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.155942+00:00"
+      "checked_at": "2026-11-10T14:38:50.735575+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117884",
@@ -514586,7 +514655,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.156045+00:00"
+      "checked_at": "2026-11-10T14:38:50.939058+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117885",
@@ -514598,7 +514667,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.156154+00:00"
+      "checked_at": "2026-11-10T14:38:51.135216+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117886",
@@ -514610,7 +514679,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.156251+00:00"
+      "checked_at": "2026-11-10T14:38:51.395743+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117887",
@@ -514622,7 +514691,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.156366+00:00"
+      "checked_at": "2026-11-10T14:38:51.579645+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117888",
@@ -514634,7 +514703,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.156489+00:00"
+      "checked_at": "2026-11-10T14:38:51.802246+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117889",
@@ -514646,7 +514715,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.156592+00:00"
+      "checked_at": "2026-11-10T14:38:52.011272+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-11789",
@@ -514683,7 +514752,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.156691+00:00"
+      "checked_at": "2026-11-10T14:38:52.215768+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117891",
@@ -514695,7 +514764,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.156796+00:00"
+      "checked_at": "2026-11-10T14:38:52.633166+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117892",
@@ -514707,7 +514776,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.156896+00:00"
+      "checked_at": "2026-11-10T14:38:52.829756+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117893",
@@ -514719,7 +514788,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.157002+00:00"
+      "checked_at": "2026-11-10T14:38:53.007931+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117894",
@@ -514731,7 +514800,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.157104+00:00"
+      "checked_at": "2026-11-10T14:38:53.317881+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117895",
@@ -514743,7 +514812,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.157206+00:00"
+      "checked_at": "2026-11-10T14:38:53.522490+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117896",
@@ -514755,7 +514824,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.157306+00:00"
+      "checked_at": "2026-11-10T14:38:53.703037+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117897",
@@ -514767,7 +514836,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.157524+00:00"
+      "checked_at": "2026-11-10T14:38:53.946981+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117898",
@@ -514779,7 +514848,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.157629+00:00"
+      "checked_at": "2026-11-10T14:38:54.141877+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117899",
@@ -514791,7 +514860,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.157729+00:00"
+      "checked_at": "2026-11-10T14:38:54.353960+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-11790",
@@ -514828,7 +514897,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.157826+00:00"
+      "checked_at": "2026-11-10T14:38:54.560559+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117901",
@@ -514840,7 +514909,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.157925+00:00"
+      "checked_at": "2026-11-10T14:38:54.745389+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117902",
@@ -514852,7 +514921,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.158026+00:00"
+      "checked_at": "2026-11-10T14:38:54.947221+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117903",
@@ -514864,7 +514933,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.158123+00:00"
+      "checked_at": "2026-11-10T14:38:55.177344+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117904",
@@ -514876,7 +514945,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.158228+00:00"
+      "checked_at": "2026-11-10T14:38:55.417430+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117905",
@@ -514888,7 +514957,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.158325+00:00"
+      "checked_at": "2026-11-10T14:38:55.668815+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117906",
@@ -514900,7 +514969,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.158447+00:00"
+      "checked_at": "2026-11-10T14:38:55.910242+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117907",
@@ -514912,7 +514981,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.158545+00:00"
+      "checked_at": "2026-11-10T14:38:56.168698+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117908",
@@ -514924,7 +514993,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.158641+00:00"
+      "checked_at": "2026-11-10T14:38:56.374119+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117909",
@@ -514936,7 +515005,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.158748+00:00"
+      "checked_at": "2026-11-10T14:38:56.591318+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-11791",
@@ -514973,7 +515042,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.158845+00:00"
+      "checked_at": "2026-11-10T14:39:16.535967+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117911",
@@ -514985,7 +515054,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.158939+00:00"
+      "checked_at": "2026-11-10T14:39:16.736680+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117912",
@@ -514997,7 +515066,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.159036+00:00"
+      "checked_at": "2026-11-10T14:39:17.029779+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117913",
@@ -515009,7 +515078,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.159135+00:00"
+      "checked_at": "2026-11-10T14:39:17.265232+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117914",
@@ -515021,7 +515090,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.159232+00:00"
+      "checked_at": "2026-11-10T14:39:17.455916+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117915",
@@ -515033,7 +515102,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.159444+00:00"
+      "checked_at": "2026-11-10T14:39:17.653531+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117916",
@@ -515045,7 +515114,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.159549+00:00"
+      "checked_at": "2026-11-10T14:39:18.011717+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117917",
@@ -515057,7 +515126,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.159646+00:00"
+      "checked_at": "2026-11-10T14:39:18.228844+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117918",
@@ -515069,7 +515138,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.159745+00:00"
+      "checked_at": "2026-11-10T14:39:18.504742+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117919",
@@ -515081,7 +515150,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.159844+00:00"
+      "checked_at": "2026-11-10T14:39:18.803176+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-11792",
@@ -515105,7 +515174,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.159949+00:00"
+      "checked_at": "2026-11-10T14:39:18.999864+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117921",
@@ -515117,7 +515186,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.160053+00:00"
+      "checked_at": "2026-11-10T14:39:19.219096+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117922",
@@ -515129,7 +515198,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.160148+00:00"
+      "checked_at": "2026-11-10T14:39:19.403264+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117923",
@@ -515141,7 +515210,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.160243+00:00"
+      "checked_at": "2026-11-10T14:39:19.606120+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117924",
@@ -515153,7 +515222,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.160338+00:00"
+      "checked_at": "2026-11-10T14:39:19.810685+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117925",
@@ -515165,7 +515234,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.160456+00:00"
+      "checked_at": "2026-11-10T14:39:20.056883+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117926",
@@ -515177,7 +515246,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.160554+00:00"
+      "checked_at": "2026-11-10T14:39:20.243286+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117927",
@@ -515189,7 +515258,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.160650+00:00"
+      "checked_at": "2026-11-10T14:39:20.437147+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117928",
@@ -515201,7 +515270,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.160746+00:00"
+      "checked_at": "2026-11-10T14:39:20.835251+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117929",
@@ -515213,7 +515282,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.160843+00:00"
+      "checked_at": "2026-11-10T14:39:21.027091+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-11793",
@@ -515242,7 +515311,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.160942+00:00"
+      "checked_at": "2026-11-10T14:39:21.261268+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117931",
@@ -515254,7 +515323,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.161042+00:00"
+      "checked_at": "2026-11-10T14:39:21.600381+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117932",
@@ -515266,7 +515335,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.161139+00:00"
+      "checked_at": "2026-11-10T14:39:21.802291+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117933",
@@ -515278,7 +515347,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.161296+00:00"
+      "checked_at": "2026-11-10T14:39:22.100185+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117934",
@@ -515290,7 +515359,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.161511+00:00"
+      "checked_at": "2026-11-10T14:39:22.288167+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117935",
@@ -515302,7 +515371,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.161616+00:00"
+      "checked_at": "2026-11-10T14:39:22.541896+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117936",
@@ -515314,7 +515383,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.161720+00:00"
+      "checked_at": "2026-11-10T14:39:22.729964+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117937",
@@ -515326,7 +515395,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.161818+00:00"
+      "checked_at": "2026-11-10T14:39:22.935462+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117938",
@@ -515338,7 +515407,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.161918+00:00"
+      "checked_at": "2026-11-10T14:39:23.139875+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117939",
@@ -515350,7 +515419,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.162016+00:00"
+      "checked_at": "2026-11-10T14:39:23.323088+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117940",
@@ -515362,7 +515431,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.162120+00:00"
+      "checked_at": "2026-11-10T14:39:23.524320+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117941",
@@ -515374,7 +515443,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.162217+00:00"
+      "checked_at": "2026-11-10T14:39:23.730301+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117942",
@@ -515386,7 +515455,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.162312+00:00"
+      "checked_at": "2026-11-10T14:39:23.921962+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117943",
@@ -515398,7 +515467,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.162434+00:00"
+      "checked_at": "2026-11-10T14:39:24.241633+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117944",
@@ -515410,7 +515479,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.162536+00:00"
+      "checked_at": "2026-11-10T14:39:24.448273+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117945",
@@ -515422,7 +515491,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.162641+00:00"
+      "checked_at": "2026-11-10T14:39:24.639390+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117946",
@@ -515434,7 +515503,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.162739+00:00"
+      "checked_at": "2026-11-10T14:39:24.844250+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117947",
@@ -515446,7 +515515,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.162836+00:00"
+      "checked_at": "2026-11-10T14:39:25.145344+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117948",
@@ -515458,7 +515527,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.162942+00:00"
+      "checked_at": "2026-11-10T14:39:25.333906+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117949",
@@ -515470,7 +515539,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.163055+00:00"
+      "checked_at": "2026-11-10T14:39:25.570145+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117950",
@@ -515482,7 +515551,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.163153+00:00"
+      "checked_at": "2026-11-10T14:39:25.779018+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117951",
@@ -515494,7 +515563,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.163253+00:00"
+      "checked_at": "2026-11-10T14:39:25.958244+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117952",
@@ -515506,7 +515575,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.163376+00:00"
+      "checked_at": "2026-11-10T14:39:26.136117+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117953",
@@ -515518,7 +515587,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.163571+00:00"
+      "checked_at": "2026-11-10T14:39:26.479866+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117954",
@@ -515530,7 +515599,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.163669+00:00"
+      "checked_at": "2026-11-10T14:39:26.824833+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117955",
@@ -515542,7 +515611,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.163764+00:00"
+      "checked_at": "2026-11-10T14:39:46.523211+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117956",
@@ -515554,7 +515623,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.163860+00:00"
+      "checked_at": "2026-11-10T14:39:46.940958+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117957",
@@ -515566,7 +515635,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.163959+00:00"
+      "checked_at": "2026-11-10T14:39:47.128683+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117958",
@@ -515578,7 +515647,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.164054+00:00"
+      "checked_at": "2026-11-10T14:39:47.427956+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117959",
@@ -515590,7 +515659,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.164147+00:00"
+      "checked_at": "2026-11-10T14:39:47.638513+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117960",
@@ -515602,7 +515671,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.164242+00:00"
+      "checked_at": "2026-11-10T14:39:47.843735+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117961",
@@ -515614,7 +515683,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.164410+00:00"
+      "checked_at": "2026-11-10T14:39:48.034794+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117962",
@@ -515626,7 +515695,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.164553+00:00"
+      "checked_at": "2026-11-10T14:39:48.232064+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117963",
@@ -515638,7 +515707,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.164659+00:00"
+      "checked_at": "2026-11-10T14:39:48.548763+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117964",
@@ -515650,7 +515719,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.164758+00:00"
+      "checked_at": "2026-11-10T14:39:48.800297+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117965",
@@ -515662,7 +515731,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.164856+00:00"
+      "checked_at": "2026-11-10T14:39:49.191389+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117966",
@@ -515674,7 +515743,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.164954+00:00"
+      "checked_at": "2026-11-10T14:39:49.476426+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117967",
@@ -515686,7 +515755,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.165052+00:00"
+      "checked_at": "2026-11-10T14:39:49.748808+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117968",
@@ -515698,7 +515767,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.165154+00:00"
+      "checked_at": "2026-11-10T14:39:49.955670+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117969",
@@ -515710,7 +515779,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.165260+00:00"
+      "checked_at": "2026-11-10T14:39:50.135856+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117970",
@@ -515722,7 +515791,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.165385+00:00"
+      "checked_at": "2026-11-10T14:39:50.498182+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117971",
@@ -515734,7 +515803,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.165498+00:00"
+      "checked_at": "2026-11-10T14:39:50.701379+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117972",
@@ -515746,7 +515815,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.165692+00:00"
+      "checked_at": "2026-11-10T14:39:50.902315+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117973",
@@ -515758,7 +515827,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.165800+00:00"
+      "checked_at": "2026-11-10T14:39:51.090517+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117974",
@@ -515770,7 +515839,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.165899+00:00"
+      "checked_at": "2026-11-10T14:39:51.288449+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117975",
@@ -515782,7 +515851,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.165999+00:00"
+      "checked_at": "2026-11-10T14:39:51.492495+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117976",
@@ -515794,7 +515863,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.166104+00:00"
+      "checked_at": "2026-11-10T14:39:51.679005+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117977",
@@ -515806,7 +515875,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.166204+00:00"
+      "checked_at": "2026-11-10T14:39:51.995499+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117978",
@@ -515818,7 +515887,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.166308+00:00"
+      "checked_at": "2026-11-10T14:39:52.209344+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117979",
@@ -515830,7 +515899,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.166448+00:00"
+      "checked_at": "2026-11-10T14:39:52.404859+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117980",
@@ -515842,7 +515911,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.166555+00:00"
+      "checked_at": "2026-11-10T14:39:52.616222+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117981",
@@ -515854,7 +515923,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.166669+00:00"
+      "checked_at": "2026-11-10T14:39:52.957121+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117982",
@@ -515866,7 +515935,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.166770+00:00"
+      "checked_at": "2026-11-10T14:39:53.150208+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117983",
@@ -515878,7 +515947,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.166866+00:00"
+      "checked_at": "2026-11-10T14:39:53.399353+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117984",
@@ -515890,7 +515959,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.166968+00:00"
+      "checked_at": "2026-11-10T14:39:53.584259+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117985",
@@ -515902,7 +515971,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.167064+00:00"
+      "checked_at": "2026-11-10T14:39:53.807342+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117986",
@@ -515914,7 +515983,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.167163+00:00"
+      "checked_at": "2026-11-10T14:39:54.018476+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117987",
@@ -515926,7 +515995,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.167261+00:00"
+      "checked_at": "2026-11-10T14:39:54.354922+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117988",
@@ -515938,7 +516007,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.167377+00:00"
+      "checked_at": "2026-11-10T14:39:54.530247+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117989",
@@ -515950,7 +516019,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.167483+00:00"
+      "checked_at": "2026-11-10T14:39:54.723344+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117990",
@@ -515962,7 +516031,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.167580+00:00"
+      "checked_at": "2026-11-10T14:39:54.962187+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117991",
@@ -515974,7 +516043,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.167772+00:00"
+      "checked_at": "2026-11-10T14:39:55.161438+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117992",
@@ -515986,7 +516055,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.167870+00:00"
+      "checked_at": "2026-11-10T14:39:55.343119+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117993",
@@ -515998,7 +516067,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.167971+00:00"
+      "checked_at": "2026-11-10T14:39:55.551253+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117994",
@@ -516010,7 +516079,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.168065+00:00"
+      "checked_at": "2026-11-10T14:39:55.736044+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117995",
@@ -516022,7 +516091,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.168160+00:00"
+      "checked_at": "2026-11-10T14:39:55.934394+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117996",
@@ -516034,7 +516103,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.168253+00:00"
+      "checked_at": "2026-11-10T14:39:56.126007+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117997",
@@ -516046,7 +516115,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.168363+00:00"
+      "checked_at": "2026-11-10T14:39:56.307879+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117998",
@@ -516058,7 +516127,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.168467+00:00"
+      "checked_at": "2026-11-10T14:39:56.516730+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117999",
@@ -516070,7 +516139,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.168562+00:00"
+      "checked_at": "2026-11-10T14:39:56.723240+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-11800",
@@ -516099,7 +516168,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.168670+00:00"
+      "checked_at": "2026-11-10T14:40:16.617450+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-118002",
@@ -516111,7 +516180,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.168764+00:00"
+      "checked_at": "2026-11-10T14:40:16.945636+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-118003",
@@ -516123,7 +516192,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.168858+00:00"
+      "checked_at": "2026-11-10T14:40:17.169901+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-118004",
@@ -516135,7 +516204,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.168958+00:00"
+      "checked_at": "2026-11-10T14:40:17.395235+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-118005",
@@ -518161,7 +518230,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.189022+00:00"
+      "checked_at": "2026-11-10T14:41:19.832033+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-118305",
@@ -518178,7 +518247,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.189179+00:00"
+      "checked_at": "2026-11-10T14:41:20.056499+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-118306",
@@ -518195,7 +518264,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.189324+00:00"
+      "checked_at": "2026-11-10T14:41:20.338250+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-118307",
@@ -518212,7 +518281,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.189516+00:00"
+      "checked_at": "2026-11-10T14:41:20.581032+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-118308",
@@ -518229,7 +518298,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.189666+00:00"
+      "checked_at": "2026-11-10T14:41:20.810029+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-118309",
@@ -518246,7 +518315,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.189808+00:00"
+      "checked_at": "2026-11-10T14:41:21.136789+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-11831",
@@ -518284,7 +518353,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.189953+00:00"
+      "checked_at": "2026-11-10T14:41:21.319424+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-118311",
@@ -518301,7 +518370,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.190096+00:00"
+      "checked_at": "2026-11-10T14:41:21.676716+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-118312",
@@ -518318,7 +518387,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.190235+00:00"
+      "checked_at": "2026-11-10T14:41:21.886190+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-118313",
@@ -518335,7 +518404,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.190388+00:00"
+      "checked_at": "2026-11-10T14:41:22.237575+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-118314",
@@ -518352,7 +518421,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.190533+00:00"
+      "checked_at": "2026-11-10T14:41:22.520698+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-118315",
@@ -518369,7 +518438,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.190678+00:00"
+      "checked_at": "2026-11-10T14:41:22.794293+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-118316",
@@ -518386,7 +518455,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.190825+00:00"
+      "checked_at": "2026-11-10T14:41:22.990837+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-118317",
@@ -518403,7 +518472,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.190963+00:00"
+      "checked_at": "2026-11-10T14:41:23.189897+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-118318",
@@ -518420,7 +518489,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.191097+00:00"
+      "checked_at": "2026-11-10T14:41:23.514723+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-118319",
@@ -518437,7 +518506,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.191229+00:00"
+      "checked_at": "2026-11-10T14:41:23.714378+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-11832",
@@ -518466,7 +518535,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.191385+00:00"
+      "checked_at": "2026-11-10T14:41:23.944195+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-118321",
@@ -518483,7 +518552,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.191533+00:00"
+      "checked_at": "2026-11-10T14:41:24.262656+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-118322",
@@ -518500,7 +518569,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.191775+00:00"
+      "checked_at": "2026-11-10T14:41:24.459014+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-118327",
@@ -518517,7 +518586,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.191916+00:00"
+      "checked_at": "2026-11-10T14:41:24.648870+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-118328",
@@ -518534,7 +518603,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.192054+00:00"
+      "checked_at": "2026-11-10T14:41:24.864742+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-118329",
@@ -518568,7 +518637,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.192328+00:00"
+      "checked_at": "2026-11-10T14:41:25.057643+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-118331",
@@ -518585,7 +518654,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.192487+00:00"
+      "checked_at": "2026-11-10T14:41:25.300468+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-118332",
@@ -518602,7 +518671,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.192621+00:00"
+      "checked_at": "2026-11-10T14:41:25.518380+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-118333",
@@ -518619,7 +518688,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.192756+00:00"
+      "checked_at": "2026-11-10T14:41:25.720513+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-118334",
@@ -518636,7 +518705,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:48.524337+00:00"
+      "checked_at": "2026-11-10T14:41:25.919041+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-118335",
@@ -524060,7 +524129,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:05.372471+00:00"
+      "checked_at": "2026-11-10T14:41:26.349225+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-119195",
@@ -524072,7 +524141,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-06T13:27:29.436064+00:00"
+      "checked_at": "2026-11-10T14:41:26.549874+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-119196",
@@ -524084,7 +524153,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:05.372583+00:00"
+      "checked_at": "2026-11-10T14:41:26.771476+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-119197",
@@ -524096,7 +524165,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-06T13:27:29.436314+00:00"
+      "checked_at": "2026-11-10T14:41:26.975823+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-119198",
@@ -524453,7 +524522,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:49.352388+00:00"
+      "checked_at": "2026-11-10T14:41:27.172278+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-119261",
@@ -524470,7 +524539,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:05.376708+00:00"
+      "checked_at": "2026-11-10T14:41:27.413621+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-119262",
@@ -524487,7 +524556,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:05.376858+00:00"
+      "checked_at": "2026-11-10T14:41:27.694744+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-119263",
@@ -524504,7 +524573,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:05.376994+00:00"
+      "checked_at": "2026-11-10T14:41:27.908049+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-119264",
@@ -524521,7 +524590,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:05.377130+00:00"
+      "checked_at": "2026-11-10T14:41:28.146380+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-119265",
@@ -524538,7 +524607,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:05.377268+00:00"
+      "checked_at": "2026-11-10T14:41:46.913726+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-119266",
@@ -524555,7 +524624,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:05.377423+00:00"
+      "checked_at": "2026-11-10T14:41:47.123196+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-119267",
@@ -524572,7 +524641,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:05.377562+00:00"
+      "checked_at": "2026-11-10T14:41:47.476142+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-119268",
@@ -524589,7 +524658,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:05.377703+00:00"
+      "checked_at": "2026-11-10T14:41:47.754314+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-119269",
@@ -524606,7 +524675,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:05.377836+00:00"
+      "checked_at": "2026-11-10T14:41:47.974347+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-119270",
@@ -524623,7 +524692,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:05.378066+00:00"
+      "checked_at": "2026-11-10T14:41:48.441274+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-119271",
@@ -524640,7 +524709,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:05.378205+00:00"
+      "checked_at": "2026-11-10T14:41:48.858718+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-119272",
@@ -524657,7 +524726,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:05.378366+00:00"
+      "checked_at": "2026-11-10T14:41:49.330531+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-119274",
@@ -532211,7 +532280,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.682042+00:00"
+      "checked_at": "2026-11-10T14:41:49.642755+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-120632",
@@ -532223,7 +532292,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.682144+00:00"
+      "checked_at": "2026-11-10T14:41:49.854769+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-120633",
@@ -532235,7 +532304,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.682243+00:00"
+      "checked_at": "2026-11-10T14:41:50.055824+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-120634",
@@ -532247,7 +532316,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.682362+00:00"
+      "checked_at": "2026-11-10T14:41:50.351889+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-120635",
@@ -532259,7 +532328,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.682491+00:00"
+      "checked_at": "2026-11-10T14:41:50.558363+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-120636",
@@ -532271,7 +532340,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.682654+00:00"
+      "checked_at": "2026-11-10T14:41:50.925535+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-120637",
@@ -532283,7 +532352,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.682770+00:00"
+      "checked_at": "2026-11-10T14:41:51.136180+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-120638",
@@ -532295,7 +532364,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.682869+00:00"
+      "checked_at": "2026-11-10T14:41:51.434035+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-120639",
@@ -532307,7 +532376,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.682965+00:00"
+      "checked_at": "2026-11-10T14:41:51.702180+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-12064",
@@ -532338,7 +532407,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.683065+00:00"
+      "checked_at": "2026-11-10T14:41:52.050259+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-120641",
@@ -532350,7 +532419,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.683161+00:00"
+      "checked_at": "2026-11-10T14:41:52.285709+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-120642",
@@ -532362,7 +532431,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.683260+00:00"
+      "checked_at": "2026-11-10T14:41:52.495753+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-120643",
@@ -532374,7 +532443,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.683400+00:00"
+      "checked_at": "2026-11-10T14:41:52.842204+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-120644",
@@ -532386,7 +532455,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.683513+00:00"
+      "checked_at": "2026-11-10T14:41:53.066612+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-120645",
@@ -532398,7 +532467,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.683610+00:00"
+      "checked_at": "2026-11-10T14:41:53.251346+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-120646",
@@ -532410,7 +532479,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.683715+00:00"
+      "checked_at": "2026-11-10T14:41:53.469051+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-120647",
@@ -532422,7 +532491,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.683809+00:00"
+      "checked_at": "2026-11-10T14:41:53.791880+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-120648",
@@ -532434,7 +532503,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.683902+00:00"
+      "checked_at": "2026-11-10T14:41:54.177110+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-12065",
@@ -532458,7 +532527,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.684092+00:00"
+      "checked_at": "2026-11-10T14:41:54.395765+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-120651",
@@ -532470,7 +532539,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.684194+00:00"
+      "checked_at": "2026-11-10T14:41:54.581297+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-120656",
@@ -539307,7 +539376,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.675097+00:00"
+      "checked_at": "2026-11-10T14:40:22.017827+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-121615",
@@ -539659,6 +539728,78 @@
       "product_identities": [],
       "identity_schema": 2,
       "checked_at": "2026-11-01T12:19:00.797754+00:00"
+    },
+    {
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-121685",
+      "cves": [
+        "CVE-2026-121685"
+      ],
+      "vendor": "",
+      "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-121685",
+      "kind": "nvd",
+      "product_identities": [],
+      "identity_schema": 2,
+      "checked_at": "2026-11-10T14:38:20.328712+00:00"
+    },
+    {
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-121686",
+      "cves": [
+        "CVE-2026-121686"
+      ],
+      "vendor": "",
+      "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-121686",
+      "kind": "nvd",
+      "product_identities": [],
+      "identity_schema": 2,
+      "checked_at": "2026-11-10T14:38:20.532099+00:00"
+    },
+    {
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-121687",
+      "cves": [
+        "CVE-2026-121687"
+      ],
+      "vendor": "",
+      "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-121687",
+      "kind": "nvd",
+      "product_identities": [],
+      "identity_schema": 2,
+      "checked_at": "2026-11-10T14:38:20.754228+00:00"
+    },
+    {
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-121688",
+      "cves": [
+        "CVE-2026-121688"
+      ],
+      "vendor": "",
+      "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-121688",
+      "kind": "nvd",
+      "product_identities": [],
+      "identity_schema": 2,
+      "checked_at": "2026-11-10T14:38:20.974465+00:00"
+    },
+    {
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-121689",
+      "cves": [
+        "CVE-2026-121689"
+      ],
+      "vendor": "",
+      "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-121689",
+      "kind": "nvd",
+      "product_identities": [],
+      "identity_schema": 2,
+      "checked_at": "2026-11-10T14:38:21.292555+00:00"
+    },
+    {
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-121690",
+      "cves": [
+        "CVE-2026-121690"
+      ],
+      "vendor": "",
+      "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-121690",
+      "kind": "nvd",
+      "product_identities": [],
+      "identity_schema": 2,
+      "checked_at": "2026-11-10T14:38:21.534026+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-121722",
@@ -543834,12 +543975,17 @@
       "cves": [
         "CVE-2026-123158"
       ],
-      "vendor": "",
+      "vendor": "openbsd",
       "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-123158",
       "kind": "nvd",
-      "product_identities": [],
+      "product_identities": [
+        {
+          "vendor": "openbsd",
+          "product": "openssh"
+        }
+      ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.775508+00:00"
+      "checked_at": "2026-11-10T14:38:19.373317+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-12316",
@@ -546097,7 +546243,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:07.731559+00:00"
+      "checked_at": "2026-11-10T14:40:50.010331+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-123533",
@@ -546745,7 +546891,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:07.737080+00:00"
+      "checked_at": "2026-11-10T14:40:46.740837+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-123585",
@@ -546781,7 +546927,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:07.737391+00:00"
+      "checked_at": "2026-11-10T14:40:50.347863+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-123588",
@@ -546841,7 +546987,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:07.737914+00:00"
+      "checked_at": "2026-11-10T14:40:50.542797+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-123593",
@@ -547021,7 +547167,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:07.739559+00:00"
+      "checked_at": "2026-11-10T14:40:50.734349+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-123608",
@@ -547273,7 +547419,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.821426+00:00"
+      "checked_at": "2026-11-10T14:40:17.756749+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-123660",
@@ -548416,7 +548562,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.885245+00:00"
+      "checked_at": "2026-11-10T14:40:50.921655+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-124031",
@@ -548428,7 +548574,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.885386+00:00"
+      "checked_at": "2026-11-10T14:40:51.168138+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-124039",
@@ -550574,7 +550720,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:07.769300+00:00"
+      "checked_at": "2026-11-10T14:40:51.366898+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-124585",
@@ -550598,7 +550744,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:07.772449+00:00"
+      "checked_at": "2026-11-10T14:40:51.576247+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-124587",
@@ -555767,7 +555913,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:21:49.298566+00:00"
+      "checked_at": "2026-11-10T14:38:18.869385+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-13243",
@@ -578880,7 +579026,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:05.504167+00:00"
+      "checked_at": "2026-11-10T14:38:23.121436+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-16306",
@@ -578892,7 +579038,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:05.473143+00:00"
+      "checked_at": "2026-11-10T14:38:23.382486+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-16307",
@@ -582231,7 +582377,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:23.019090+00:00"
+      "checked_at": "2026-11-10T14:40:53.200003+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-16754",
@@ -587121,7 +587267,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:21:48.186126+00:00"
+      "checked_at": "2026-11-10T14:38:17.006203+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-17310",
@@ -605992,7 +606138,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-02T14:17:40.471981+00:00"
+      "checked_at": "2026-11-10T14:43:38.447903+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-19642",
@@ -607179,7 +607325,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.019554+00:00"
+      "checked_at": "2026-11-10T14:40:23.747392+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-20045",
@@ -607596,7 +607742,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:20.873072+00:00"
+      "checked_at": "2026-11-10T14:40:47.012185+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-20128",
@@ -683453,7 +683599,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:23.210414+00:00"
+      "checked_at": "2026-11-10T14:40:53.442618+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-34076",
@@ -693240,7 +693386,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:21:47.740126+00:00"
+      "checked_at": "2026-11-10T14:38:16.628708+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-35274",
@@ -695309,7 +695455,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:22:23.545776+00:00"
+      "checked_at": "2026-11-10T14:40:53.680089+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-35480",
@@ -697530,7 +697676,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:00.968128+00:00"
+      "checked_at": "2026-11-10T14:40:53.888608+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-38361",
@@ -704181,7 +704327,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:21:49.718811+00:00"
+      "checked_at": "2026-11-10T14:38:19.569103+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-40226",
@@ -716736,6 +716882,23 @@
       "checked_at": "2026-11-02T14:16:38.245055+00:00"
     },
     {
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-41651",
+      "cves": [
+        "CVE-2026-41651"
+      ],
+      "vendor": "packagekit project",
+      "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-41651",
+      "kind": "nvd",
+      "product_identities": [
+        {
+          "vendor": "packagekit project",
+          "product": "packagekit"
+        }
+      ],
+      "identity_schema": 2,
+      "checked_at": "2026-11-10T14:40:51.868753+00:00"
+    },
+    {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-41653",
       "cves": [
         "CVE-2026-41653"
@@ -721087,7 +721250,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:21:47.549029+00:00"
+      "checked_at": "2026-11-10T14:38:16.333086+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-42272",
@@ -781825,7 +781988,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:21:48.453700+00:00"
+      "checked_at": "2026-11-10T14:38:17.198264+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-50271",
@@ -782826,7 +782989,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:21:49.917330+00:00"
+      "checked_at": "2026-11-10T14:38:22.247463+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-50351",
@@ -812600,7 +812763,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:21:49.489378+00:00"
+      "checked_at": "2026-11-10T14:38:19.070577+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-55804",
@@ -841290,6 +841453,57 @@
       ],
       "identity_schema": 2,
       "checked_at": "2026-11-01T12:19:00.928424+00:00"
+    },
+    {
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-59884",
+      "cves": [
+        "CVE-2026-59884"
+      ],
+      "vendor": "pyasn1",
+      "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-59884",
+      "kind": "nvd",
+      "product_identities": [
+        {
+          "vendor": "pyasn1",
+          "product": "pyasn1"
+        }
+      ],
+      "identity_schema": 2,
+      "checked_at": "2026-11-10T14:41:55.596348+00:00"
+    },
+    {
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-59885",
+      "cves": [
+        "CVE-2026-59885"
+      ],
+      "vendor": "pyasn1",
+      "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-59885",
+      "kind": "nvd",
+      "product_identities": [
+        {
+          "vendor": "pyasn1",
+          "product": "pyasn1"
+        }
+      ],
+      "identity_schema": 2,
+      "checked_at": "2026-11-10T14:41:55.957152+00:00"
+    },
+    {
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-59886",
+      "cves": [
+        "CVE-2026-59886"
+      ],
+      "vendor": "pyasn1",
+      "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-59886",
+      "kind": "nvd",
+      "product_identities": [
+        {
+          "vendor": "pyasn1",
+          "product": "pyasn1"
+        }
+      ],
+      "identity_schema": 2,
+      "checked_at": "2026-11-10T14:41:56.175191+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-59887",
@@ -871128,6 +871342,18 @@
       "product_identities": [],
       "identity_schema": 2,
       "checked_at": "2026-10-20T10:41:01.562583+00:00"
+    },
+    {
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-62437",
+      "cves": [
+        "CVE-2026-62437"
+      ],
+      "vendor": "",
+      "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-62437",
+      "kind": "nvd",
+      "product_identities": [],
+      "identity_schema": 2,
+      "checked_at": "2026-11-10T14:43:38.756650+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-62438",
@@ -909234,7 +909460,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:21:50.123689+00:00"
+      "checked_at": "2026-11-10T14:38:22.441302+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-66805",
@@ -979739,6 +979965,30 @@
       "checked_at": "2026-11-09T14:42:05.445326+00:00"
     },
     {
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-74765",
+      "cves": [
+        "CVE-2026-74765"
+      ],
+      "vendor": "",
+      "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-74765",
+      "kind": "nvd",
+      "product_identities": [],
+      "identity_schema": 2,
+      "checked_at": "2026-11-10T14:43:38.973689+00:00"
+    },
+    {
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-74766",
+      "cves": [
+        "CVE-2026-74766"
+      ],
+      "vendor": "",
+      "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-74766",
+      "kind": "nvd",
+      "product_identities": [],
+      "identity_schema": 2,
+      "checked_at": "2026-11-10T14:43:39.164700+00:00"
+    },
+    {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-74768",
       "cves": [
         "CVE-2026-74768"
@@ -983340,6 +983590,30 @@
       "checked_at": "2026-11-02T14:16:38.145666+00:00"
     },
     {
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-75818",
+      "cves": [
+        "CVE-2026-75818"
+      ],
+      "vendor": "",
+      "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-75818",
+      "kind": "nvd",
+      "product_identities": [],
+      "identity_schema": 2,
+      "checked_at": "2026-11-10T14:40:47.212247+00:00"
+    },
+    {
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-75819",
+      "cves": [
+        "CVE-2026-75819"
+      ],
+      "vendor": "",
+      "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-75819",
+      "kind": "nvd",
+      "product_identities": [],
+      "identity_schema": 2,
+      "checked_at": "2026-11-10T14:40:47.503914+00:00"
+    },
+    {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-7582",
       "cves": [
         "CVE-2026-7582"
@@ -983350,6 +983624,18 @@
       "product_identities": [],
       "identity_schema": 2,
       "checked_at": "2026-11-02T14:16:38.146285+00:00"
+    },
+    {
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-75820",
+      "cves": [
+        "CVE-2026-75820"
+      ],
+      "vendor": "",
+      "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-75820",
+      "kind": "nvd",
+      "product_identities": [],
+      "identity_schema": 2,
+      "checked_at": "2026-11-10T14:40:47.976137+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-75826",
@@ -984851,7 +985137,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:05.378508+00:00"
+      "checked_at": "2026-11-10T14:41:56.365038+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-76025",
@@ -984868,7 +985154,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:05.378644+00:00"
+      "checked_at": "2026-11-10T14:41:56.590360+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-76026",
@@ -984885,7 +985171,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:05.378780+00:00"
+      "checked_at": "2026-11-10T14:41:56.926881+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-76027",
@@ -984902,7 +985188,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:05.378911+00:00"
+      "checked_at": "2026-11-10T14:41:57.101981+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-76028",
@@ -984919,7 +985205,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:05.379061+00:00"
+      "checked_at": "2026-11-10T14:41:57.428235+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-76029",
@@ -984936,7 +985222,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:05.379193+00:00"
+      "checked_at": "2026-11-10T14:41:57.608535+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-76030",
@@ -984953,7 +985239,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:05.379327+00:00"
+      "checked_at": "2026-11-10T14:41:57.811721+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-76031",
@@ -984970,7 +985256,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:05.379489+00:00"
+      "checked_at": "2026-11-10T14:41:58.040156+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-76032",
@@ -985841,7 +986127,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.793783+00:00"
+      "checked_at": "2026-11-10T14:40:23.967904+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-76182",
@@ -998802,6 +999088,18 @@
       "checked_at": "2026-11-02T14:16:38.215783+00:00"
     },
     {
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-79113",
+      "cves": [
+        "CVE-2026-79113"
+      ],
+      "vendor": "",
+      "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-79113",
+      "kind": "nvd",
+      "product_identities": [],
+      "identity_schema": 2,
+      "checked_at": "2026-11-10T14:43:39.344208+00:00"
+    },
+    {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-7912",
       "cves": [
         "CVE-2026-7912"
@@ -999625,6 +999923,30 @@
       "checked_at": "2026-11-02T14:16:38.222501+00:00"
     },
     {
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-79602",
+      "cves": [
+        "CVE-2026-79602"
+      ],
+      "vendor": "",
+      "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-79602",
+      "kind": "nvd",
+      "product_identities": [],
+      "identity_schema": 2,
+      "checked_at": "2026-11-10T14:43:39.531911+00:00"
+    },
+    {
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-79603",
+      "cves": [
+        "CVE-2026-79603"
+      ],
+      "vendor": "",
+      "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-79603",
+      "kind": "nvd",
+      "product_identities": [],
+      "identity_schema": 2,
+      "checked_at": "2026-11-10T14:43:39.723948+00:00"
+    },
+    {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-79607",
       "cves": [
         "CVE-2026-79607"
@@ -999658,7 +999980,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-01T13:00:27.621477+00:00"
+      "checked_at": "2026-11-10T14:43:39.909176+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-7961",
@@ -999687,7 +1000009,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-01T13:00:28.255000+00:00"
+      "checked_at": "2026-11-10T14:43:40.339617+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-79611",
@@ -999699,7 +1000021,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-01T13:00:28.419646+00:00"
+      "checked_at": "2026-11-10T14:43:40.538285+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-79613",
@@ -1010587,6 +1010909,18 @@
       "checked_at": "2026-10-20T10:40:40.364549+00:00"
     },
     {
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-82522",
+      "cves": [
+        "CVE-2026-82522"
+      ],
+      "vendor": "",
+      "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-82522",
+      "kind": "nvd",
+      "product_identities": [],
+      "identity_schema": 2,
+      "checked_at": "2026-11-10T14:43:40.734248+00:00"
+    },
+    {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-82557",
       "cves": [
         "CVE-2026-82557"
@@ -1011929,7 +1012263,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-03T13:15:48.570075+00:00"
+      "checked_at": "2026-11-10T14:41:58.270807+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-83375",
@@ -1011953,7 +1012287,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-03T13:15:48.570352+00:00"
+      "checked_at": "2026-11-10T14:41:58.515004+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-83377",
@@ -1012013,7 +1012347,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-03T13:15:48.570759+00:00"
+      "checked_at": "2026-11-10T14:41:58.828638+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-83381",
@@ -1012025,7 +1012359,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-03T13:15:48.570892+00:00"
+      "checked_at": "2026-11-10T14:42:17.056321+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-83382",
@@ -1012097,7 +1012431,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-03T13:15:48.571656+00:00"
+      "checked_at": "2026-11-10T14:42:17.241196+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-83388",
@@ -1012210,7 +1012544,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-10-29T12:08:16.977914+00:00"
+      "checked_at": "2026-11-10T14:42:17.708502+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-83396",
@@ -1012290,7 +1012624,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-10-29T12:08:16.978127+00:00"
+      "checked_at": "2026-11-10T14:42:17.915634+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-83401",
@@ -1025286,7 +1025620,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:02.752243+00:00"
+      "checked_at": "2026-11-10T14:38:22.930997+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-83845",
@@ -1050288,7 +1050622,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:02.760801+00:00"
+      "checked_at": "2026-11-10T14:43:40.935868+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-86562",
@@ -1050312,7 +1050646,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:02.761705+00:00"
+      "checked_at": "2026-11-10T14:43:41.171777+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-86564",
@@ -1050336,7 +1050670,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:02.761806+00:00"
+      "checked_at": "2026-11-10T14:43:41.541454+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-86566",
@@ -1050348,7 +1050682,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:02.762217+00:00"
+      "checked_at": "2026-11-10T14:43:41.768239+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-86567",
@@ -1050873,7 +1051207,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:02.762443+00:00"
+      "checked_at": "2026-11-10T14:43:42.062258+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-86846",
@@ -1050885,7 +1051219,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:02.762548+00:00"
+      "checked_at": "2026-11-10T14:43:42.243018+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-86847",
@@ -1050897,7 +1051231,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:02.762646+00:00"
+      "checked_at": "2026-11-10T14:43:42.424008+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-86848",
@@ -1050909,7 +1051243,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:02.762741+00:00"
+      "checked_at": "2026-11-10T14:43:42.619337+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-86849",
@@ -1050921,7 +1051255,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:02.762835+00:00"
+      "checked_at": "2026-11-10T14:43:42.844841+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-86856",
@@ -1050933,7 +1051267,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:02.762931+00:00"
+      "checked_at": "2026-11-10T14:43:43.063516+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-8686",
@@ -1052927,6 +1053261,66 @@
       "checked_at": "2026-11-09T14:42:06.869081+00:00"
     },
     {
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-87078",
+      "cves": [
+        "CVE-2026-87078"
+      ],
+      "vendor": "",
+      "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-87078",
+      "kind": "nvd",
+      "product_identities": [],
+      "identity_schema": 2,
+      "checked_at": "2026-11-10T14:43:43.291543+00:00"
+    },
+    {
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-87079",
+      "cves": [
+        "CVE-2026-87079"
+      ],
+      "vendor": "",
+      "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-87079",
+      "kind": "nvd",
+      "product_identities": [],
+      "identity_schema": 2,
+      "checked_at": "2026-11-10T14:43:43.594839+00:00"
+    },
+    {
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-87080",
+      "cves": [
+        "CVE-2026-87080"
+      ],
+      "vendor": "",
+      "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-87080",
+      "kind": "nvd",
+      "product_identities": [],
+      "identity_schema": 2,
+      "checked_at": "2026-11-10T14:43:43.806026+00:00"
+    },
+    {
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-87081",
+      "cves": [
+        "CVE-2026-87081"
+      ],
+      "vendor": "",
+      "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-87081",
+      "kind": "nvd",
+      "product_identities": [],
+      "identity_schema": 2,
+      "checked_at": "2026-11-10T14:43:44.048953+00:00"
+    },
+    {
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-87082",
+      "cves": [
+        "CVE-2026-87082"
+      ],
+      "vendor": "",
+      "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-87082",
+      "kind": "nvd",
+      "product_identities": [],
+      "identity_schema": 2,
+      "checked_at": "2026-11-10T14:43:44.277700+00:00"
+    },
+    {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-87085",
       "cves": [
         "CVE-2026-87085"
@@ -1053438,7 +1053832,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-03T13:15:48.574617+00:00"
+      "checked_at": "2026-11-10T14:42:18.300730+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-87291",
@@ -1053462,7 +1053856,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-03T13:15:48.574900+00:00"
+      "checked_at": "2026-11-10T14:42:18.583825+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-87293",
@@ -1053474,7 +1053868,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-03T13:15:48.575028+00:00"
+      "checked_at": "2026-11-10T14:42:18.932950+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-87294",
@@ -1053486,7 +1053880,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-03T13:15:48.575157+00:00"
+      "checked_at": "2026-11-10T14:42:19.295661+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-87295",
@@ -1054548,7 +1054942,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-04T13:29:38.578397+00:00"
+      "checked_at": "2026-11-10T14:42:19.640027+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-87369",
@@ -1065993,7 +1066387,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:21:48.854942+00:00"
+      "checked_at": "2026-11-10T14:38:18.365408+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-88772",
@@ -1066014,7 +1066408,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:21:49.045569+00:00"
+      "checked_at": "2026-11-10T14:38:18.569712+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-88779",
@@ -1081229,7 +1081623,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.871664+00:00"
+      "checked_at": "2026-11-10T14:38:21.744420+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-90437",
@@ -1084996,7 +1085390,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-10-29T12:08:17.003652+00:00"
+      "checked_at": "2026-11-10T14:42:20.229673+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-91333",
@@ -1085020,7 +1085414,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-04T13:29:38.594407+00:00"
+      "checked_at": "2026-11-10T14:42:20.461513+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-91335",
@@ -1085032,7 +1085426,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-04T13:29:38.594491+00:00"
+      "checked_at": "2026-11-10T14:42:20.839696+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-91336",
@@ -1085575,7 +1085969,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-10-29T12:08:17.007146+00:00"
+      "checked_at": "2026-11-10T14:42:21.040792+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-91374",
@@ -1085587,7 +1085981,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-10-28T11:52:08.803294+00:00"
+      "checked_at": "2026-11-10T14:42:21.226106+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-91375",
@@ -1085599,7 +1085993,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-10-28T11:52:08.803429+00:00"
+      "checked_at": "2026-11-10T14:42:21.537893+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-91376",
@@ -1085647,7 +1086041,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-10-28T11:52:08.803960+00:00"
+      "checked_at": "2026-11-10T14:42:21.733309+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-91380",
@@ -1085659,7 +1086053,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-10-28T11:52:08.804096+00:00"
+      "checked_at": "2026-11-10T14:42:21.936676+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-91381",
@@ -1085671,7 +1086065,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-10-28T11:52:08.804223+00:00"
+      "checked_at": "2026-11-10T14:42:24.501505+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-91382",
@@ -1085683,7 +1086077,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-10-28T11:52:08.804350+00:00"
+      "checked_at": "2026-11-10T14:42:24.696166+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-91383",
@@ -1085862,7 +1086256,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-10-29T12:08:17.007246+00:00"
+      "checked_at": "2026-11-10T14:42:25.024130+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-91395",
@@ -1085874,7 +1086268,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-10-29T12:08:17.007347+00:00"
+      "checked_at": "2026-11-10T14:42:25.386578+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-91396",
@@ -1085886,7 +1086280,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-10-29T12:08:17.007446+00:00"
+      "checked_at": "2026-11-10T14:42:25.703186+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-91397",
@@ -1085898,7 +1086292,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-10-29T12:08:17.007549+00:00"
+      "checked_at": "2026-11-10T14:42:25.885722+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-91398",
@@ -1085910,7 +1086304,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-10-29T12:08:17.007652+00:00"
+      "checked_at": "2026-11-10T14:42:26.084017+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-91399",
@@ -1085946,7 +1086340,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-04T13:29:38.596461+00:00"
+      "checked_at": "2026-11-10T14:42:26.323267+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-91402",
@@ -1085970,7 +1086364,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-10-31T11:25:43.061850+00:00"
+      "checked_at": "2026-11-10T14:42:26.509114+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-91404",
@@ -1086079,7 +1086473,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-10-29T12:08:17.008676+00:00"
+      "checked_at": "2026-11-10T14:42:26.738575+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-91411",
@@ -1086091,7 +1086485,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-10-30T11:53:20.158100+00:00"
+      "checked_at": "2026-11-10T14:42:26.926461+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-91412",
@@ -1086154,7 +1086548,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-10-30T11:53:20.158376+00:00"
+      "checked_at": "2026-11-10T14:42:27.161204+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-91417",
@@ -1086166,7 +1086560,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-10-29T12:08:17.009307+00:00"
+      "checked_at": "2026-11-10T14:42:27.464967+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-91418",
@@ -1086178,7 +1086572,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-10-29T12:08:17.009406+00:00"
+      "checked_at": "2026-11-10T14:42:27.702788+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-91419",
@@ -1086712,7 +1087106,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-10-29T12:08:17.012906+00:00"
+      "checked_at": "2026-11-10T14:42:27.943180+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-91452",
@@ -1086724,7 +1087118,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-10-29T12:08:17.013009+00:00"
+      "checked_at": "2026-11-10T14:42:28.156103+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-91453",
@@ -1086736,7 +1087130,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-10-29T12:08:17.013111+00:00"
+      "checked_at": "2026-11-10T14:42:28.342988+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-91455",
@@ -1086840,7 +1087234,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-10-30T11:53:20.161221+00:00"
+      "checked_at": "2026-11-10T14:42:28.572127+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-91462",
@@ -1086852,7 +1087246,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-10-30T11:53:20.161296+00:00"
+      "checked_at": "2026-11-10T14:42:28.793127+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-91463",
@@ -1086864,7 +1087258,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-10-30T11:53:20.161376+00:00"
+      "checked_at": "2026-11-10T14:42:28.985038+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-91464",
@@ -1086876,7 +1087270,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-10-30T11:53:20.161450+00:00"
+      "checked_at": "2026-11-10T14:42:29.176847+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-91465",
@@ -1087143,7 +1087537,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-10-30T11:53:20.162930+00:00"
+      "checked_at": "2026-11-10T14:42:29.412930+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-91488",
@@ -1092422,7 +1092816,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.684741+00:00"
+      "checked_at": "2026-11-10T14:42:29.650061+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-92186",
@@ -1092434,7 +1092828,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.684841+00:00"
+      "checked_at": "2026-11-10T14:40:24.208466+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-92187",
@@ -1092446,7 +1092840,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.684947+00:00"
+      "checked_at": "2026-11-10T14:40:24.451822+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-92188",
@@ -1092458,7 +1092852,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.685057+00:00"
+      "checked_at": "2026-11-10T14:40:24.662790+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-92189",
@@ -1092470,7 +1092864,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.685160+00:00"
+      "checked_at": "2026-11-10T14:40:24.890474+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9219",
@@ -1092494,7 +1092888,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.685268+00:00"
+      "checked_at": "2026-11-10T14:40:25.097995+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-92191",
@@ -1092506,7 +1092900,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.685388+00:00"
+      "checked_at": "2026-11-10T14:40:25.300223+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-92192",
@@ -1092518,7 +1092912,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.685502+00:00"
+      "checked_at": "2026-11-10T14:40:25.525341+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-92193",
@@ -1092530,7 +1092924,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.685603+00:00"
+      "checked_at": "2026-11-10T14:42:29.899800+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-92194",
@@ -1092542,7 +1092936,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.685704+00:00"
+      "checked_at": "2026-11-10T14:40:25.726027+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-92195",
@@ -1092554,7 +1092948,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.685805+00:00"
+      "checked_at": "2026-11-10T14:40:26.046901+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-92196",
@@ -1092566,7 +1092960,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.685906+00:00"
+      "checked_at": "2026-11-10T14:40:26.278944+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-92197",
@@ -1092578,7 +1092972,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.686016+00:00"
+      "checked_at": "2026-11-10T14:40:26.650007+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-92198",
@@ -1092590,7 +1092984,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.686206+00:00"
+      "checked_at": "2026-11-10T14:42:30.085126+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-92199",
@@ -1092602,7 +1092996,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.686310+00:00"
+      "checked_at": "2026-11-10T14:42:30.270889+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9220",
@@ -1092626,7 +1093020,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:06.686439+00:00"
+      "checked_at": "2026-11-10T14:42:30.628479+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-92202",
@@ -1094541,7 +1094935,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.006804+00:00"
+      "checked_at": "2026-11-10T14:43:44.466567+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-92823",
@@ -1094553,7 +1094947,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.006915+00:00"
+      "checked_at": "2026-11-10T14:43:44.642058+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-92824",
@@ -1094565,7 +1094959,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:04.007019+00:00"
+      "checked_at": "2026-11-10T14:43:44.841152+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-92832",
@@ -1098147,6 +1098541,18 @@
       "checked_at": "2026-10-27T11:27:26.392238+00:00"
     },
     {
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-93314",
+      "cves": [
+        "CVE-2026-93314"
+      ],
+      "vendor": "",
+      "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-93314",
+      "kind": "nvd",
+      "product_identities": [],
+      "identity_schema": 2,
+      "checked_at": "2026-11-10T14:43:36.933014+00:00"
+    },
+    {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-93325",
       "cves": [
         "CVE-2026-93325"
@@ -1099573,7 +1099979,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:02.761012+00:00"
+      "checked_at": "2026-11-10T14:43:45.040951+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-93687",
@@ -1101091,7 +1101497,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T14:42:02.699140+00:00"
+      "checked_at": "2026-11-10T14:40:26.851827+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-94192",
@@ -1101516,7 +1101922,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-02T14:17:40.474150+00:00"
+      "checked_at": "2026-11-10T14:43:45.270518+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-94346",
@@ -1112291,7 +1112697,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-02T14:17:40.474312+00:00"
+      "checked_at": "2026-11-10T14:43:45.477797+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-96889",
@@ -1116378,7 +1116784,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-02T14:17:40.474445+00:00"
+      "checked_at": "2026-11-10T14:43:45.692226+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-97314",
@@ -1116760,7 +1117166,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:21:55.159446+00:00"
+      "checked_at": "2026-11-10T14:40:18.023768+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-97409",
@@ -1140997,7 +1141403,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:25.420576+00:00"
+      "checked_at": "2026-11-10T14:44:57.884406+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9952",
@@ -1141014,7 +1141420,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:25.663425+00:00"
+      "checked_at": "2026-11-10T14:44:58.163558+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9953",
@@ -1141031,7 +1141437,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:25.870914+00:00"
+      "checked_at": "2026-11-10T14:44:58.405154+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9954",
@@ -1141048,7 +1141454,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:26.070368+00:00"
+      "checked_at": "2026-11-10T14:45:17.400736+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9955",
@@ -1141065,7 +1141471,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:26.267495+00:00"
+      "checked_at": "2026-11-10T14:45:17.786994+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9956",
@@ -1141082,7 +1141488,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:26.449169+00:00"
+      "checked_at": "2026-11-10T14:45:18.103136+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9957",
@@ -1141099,7 +1141505,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:26.842942+00:00"
+      "checked_at": "2026-11-10T14:45:18.402418+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9958",
@@ -1141116,7 +1141522,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:27.049160+00:00"
+      "checked_at": "2026-11-10T14:45:18.776440+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9959",
@@ -1141133,7 +1141539,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:27.373949+00:00"
+      "checked_at": "2026-11-10T14:45:18.988647+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9960",
@@ -1141150,7 +1141556,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:27.597662+00:00"
+      "checked_at": "2026-11-10T14:45:19.225022+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9961",
@@ -1141167,7 +1141573,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:27.918593+00:00"
+      "checked_at": "2026-11-10T14:45:19.422952+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9962",
@@ -1141184,7 +1141590,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:28.204834+00:00"
+      "checked_at": "2026-11-10T14:45:19.636367+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9963",
@@ -1141201,7 +1141607,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:28.395612+00:00"
+      "checked_at": "2026-11-10T14:45:19.914847+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9964",
@@ -1141218,7 +1141624,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:28.663405+00:00"
+      "checked_at": "2026-11-10T14:45:20.122569+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9965",
@@ -1141235,7 +1141641,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:28.919221+00:00"
+      "checked_at": "2026-11-10T14:45:20.516362+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9966",
@@ -1141252,7 +1141658,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:29.118165+00:00"
+      "checked_at": "2026-11-10T14:45:20.747279+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9967",
@@ -1141269,7 +1141675,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:29.328754+00:00"
+      "checked_at": "2026-11-10T14:45:21.079378+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9968",
@@ -1141286,7 +1141692,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:47.914424+00:00"
+      "checked_at": "2026-11-10T14:45:21.382271+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9969",
@@ -1141303,7 +1141709,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:48.121293+00:00"
+      "checked_at": "2026-11-10T14:45:21.684775+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9970",
@@ -1141320,7 +1141726,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:48.307314+00:00"
+      "checked_at": "2026-11-10T14:45:21.929420+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9971",
@@ -1141337,7 +1141743,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:48.513098+00:00"
+      "checked_at": "2026-11-10T14:45:22.158182+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9972",
@@ -1141354,7 +1141760,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:48.828114+00:00"
+      "checked_at": "2026-11-10T14:45:22.551688+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9973",
@@ -1141371,7 +1141777,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:49.135447+00:00"
+      "checked_at": "2026-11-10T14:45:22.792008+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9974",
@@ -1141388,7 +1141794,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:49.454195+00:00"
+      "checked_at": "2026-11-10T14:45:23.155557+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9975",
@@ -1141405,7 +1141811,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:49.714994+00:00"
+      "checked_at": "2026-11-10T14:45:23.454128+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9976",
@@ -1141422,7 +1141828,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:50.108258+00:00"
+      "checked_at": "2026-11-10T14:45:23.649579+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9977",
@@ -1141439,7 +1141845,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:50.320498+00:00"
+      "checked_at": "2026-11-10T14:45:23.849375+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9978",
@@ -1141456,7 +1141862,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:50.510175+00:00"
+      "checked_at": "2026-11-10T14:45:24.104082+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9979",
@@ -1141473,7 +1141879,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:50.718653+00:00"
+      "checked_at": "2026-11-10T14:45:24.285372+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9980",
@@ -1141490,7 +1141896,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:51.245924+00:00"
+      "checked_at": "2026-11-10T14:45:24.644497+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9981",
@@ -1141507,7 +1141913,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:51.425581+00:00"
+      "checked_at": "2026-11-10T14:45:24.881268+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9982",
@@ -1141524,7 +1141930,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:51.679818+00:00"
+      "checked_at": "2026-11-10T14:45:25.120428+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9983",
@@ -1141541,7 +1141947,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:52.192742+00:00"
+      "checked_at": "2026-11-10T14:45:25.299963+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9984",
@@ -1141558,7 +1141964,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:52.398722+00:00"
+      "checked_at": "2026-11-10T14:45:25.480780+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9985",
@@ -1141575,7 +1141981,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:52.663399+00:00"
+      "checked_at": "2026-11-10T14:45:25.674900+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9986",
@@ -1141592,7 +1141998,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:52.935859+00:00"
+      "checked_at": "2026-11-10T14:45:25.901071+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9987",
@@ -1141609,7 +1142015,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:53.137553+00:00"
+      "checked_at": "2026-11-10T14:45:26.248857+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9988",
@@ -1141626,7 +1142032,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:53.472207+00:00"
+      "checked_at": "2026-11-10T14:45:26.572845+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9989",
@@ -1141643,7 +1142049,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:53.720668+00:00"
+      "checked_at": "2026-11-10T14:45:26.764982+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9990",
@@ -1141660,7 +1142066,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:54.074501+00:00"
+      "checked_at": "2026-11-10T14:45:26.974983+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9991",
@@ -1141677,7 +1142083,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:54.292020+00:00"
+      "checked_at": "2026-11-10T14:45:27.169691+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9992",
@@ -1141694,7 +1142100,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:54.622942+00:00"
+      "checked_at": "2026-11-10T14:45:27.495007+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9993",
@@ -1141711,7 +1142117,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:54.834168+00:00"
+      "checked_at": "2026-11-10T14:45:27.722378+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9994",
@@ -1141728,7 +1142134,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:55.366435+00:00"
+      "checked_at": "2026-11-10T14:45:27.924936+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9995",
@@ -1141745,7 +1142151,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:55.574803+00:00"
+      "checked_at": "2026-11-10T14:45:28.157333+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9996",
@@ -1141762,7 +1142168,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:55.951556+00:00"
+      "checked_at": "2026-11-10T14:45:28.403521+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9997",
@@ -1141779,7 +1142185,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:56.183118+00:00"
+      "checked_at": "2026-11-10T14:45:28.615044+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9998",
@@ -1141796,7 +1142202,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:56.482303+00:00"
+      "checked_at": "2026-11-10T14:45:28.813661+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9999",
@@ -1141813,7 +1142219,7 @@
         }
       ],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:56.721022+00:00"
+      "checked_at": "2026-11-10T14:45:47.625888+00:00"
     },
     {
       "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-99999",
@@ -1141825,7 +1142231,7 @@
       "kind": "nvd",
       "product_identities": [],
       "identity_schema": 2,
-      "checked_at": "2026-11-09T15:23:56.936014+00:00"
+      "checked_at": "2026-11-10T14:45:47.836540+00:00"
     },
     {
       "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-16-089-01",
