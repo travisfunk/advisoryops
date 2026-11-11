@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "generated_at": "2026-11-10T14:46:35.520438+00:00",
-  "total_records": 16435,
-  "vendor_evidence_checked_at": "2026-11-10T14:45:47.836540+00:00",
-  "records_with_vendor_products": 7298,
-  "records_with_products": 7691,
+  "generated_at": "2026-11-11T13:56:41.662870+00:00",
+  "total_records": 16518,
+  "vendor_evidence_checked_at": "2026-11-11T13:55:59.323971+00:00",
+  "records_with_vendor_products": 7328,
+  "records_with_products": 7721,
   "matching_policy": "product_identity_candidates_only",
   "issues": [
     {
@@ -57686,6 +57686,35 @@
       "canonical_link": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-24-319-01"
     },
     {
+      "issue_id": "CVE-2020-8162",
+      "title": "CVE-2020-8162",
+      "priority": "P3",
+      "cves": [
+        "CVE-2020-8162"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Debian Debian Linux",
+        "Rubyonrails Rails"
+      ],
+      "product_vendors": [
+        {
+          "product": "Debian Debian Linux",
+          "vendor": "debian",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2020-8162"
+        },
+        {
+          "product": "Rubyonrails Rails",
+          "vendor": "rubyonrails",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2020-8162"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478952"
+    },
+    {
       "issue_id": "CVE-2020-8169",
       "title": "CVE-2020-8169",
       "priority": "P3",
@@ -105027,8 +105056,190 @@
       "vendor": "",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "debian debian linux",
+        "netapp 500f firmware",
+        "netapp 8300 firmware",
+        "netapp 8700 firmware",
+        "netapp a250 firmware",
+        "netapp a400 firmware",
+        "netapp a700s firmware",
+        "netapp active iq unified manager",
+        "netapp bootstrap os",
+        "netapp brocade fabric operating system",
+        "netapp c250 firmware",
+        "netapp c400 firmware",
+        "netapp h300s firmware",
+        "netapp h410c firmware",
+        "netapp h410s firmware",
+        "netapp h500s firmware",
+        "netapp h610c firmware",
+        "netapp h610s firmware",
+        "netapp h615c firmware",
+        "netapp h700s firmware",
+        "netapp manageability software development kit",
+        "netapp management services for element software and netapp hci",
+        "netapp oncommand insight",
+        "netapp oncommand workflow automation",
+        "netapp ontap tools",
+        "netapp snapcenter",
+        "netapp snapmanager",
+        "netapp solidfire & hci management node",
+        "netapp solidfire & hci storage node",
+        "openssl openssl"
+      ],
+      "product_vendors": [
+        {
+          "product": "debian debian linux",
+          "vendor": "debian",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-13176"
+        },
+        {
+          "product": "netapp 500f firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-13176"
+        },
+        {
+          "product": "netapp 8300 firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-13176"
+        },
+        {
+          "product": "netapp 8700 firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-13176"
+        },
+        {
+          "product": "netapp a250 firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-13176"
+        },
+        {
+          "product": "netapp a400 firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-13176"
+        },
+        {
+          "product": "netapp a700s firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-13176"
+        },
+        {
+          "product": "netapp active iq unified manager",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-13176"
+        },
+        {
+          "product": "netapp bootstrap os",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-13176"
+        },
+        {
+          "product": "netapp brocade fabric operating system",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-13176"
+        },
+        {
+          "product": "netapp c250 firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-13176"
+        },
+        {
+          "product": "netapp c400 firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-13176"
+        },
+        {
+          "product": "netapp h300s firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-13176"
+        },
+        {
+          "product": "netapp h410c firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-13176"
+        },
+        {
+          "product": "netapp h410s firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-13176"
+        },
+        {
+          "product": "netapp h500s firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-13176"
+        },
+        {
+          "product": "netapp h610c firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-13176"
+        },
+        {
+          "product": "netapp h610s firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-13176"
+        },
+        {
+          "product": "netapp h615c firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-13176"
+        },
+        {
+          "product": "netapp h700s firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-13176"
+        },
+        {
+          "product": "netapp manageability software development kit",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-13176"
+        },
+        {
+          "product": "netapp management services for element software and netapp hci",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-13176"
+        },
+        {
+          "product": "netapp oncommand insight",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-13176"
+        },
+        {
+          "product": "netapp oncommand workflow automation",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-13176"
+        },
+        {
+          "product": "netapp ontap tools",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-13176"
+        },
+        {
+          "product": "netapp snapcenter",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-13176"
+        },
+        {
+          "product": "netapp snapmanager",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-13176"
+        },
+        {
+          "product": "netapp solidfire & hci management node",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-13176"
+        },
+        {
+          "product": "netapp solidfire & hci storage node",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-13176"
+        },
+        {
+          "product": "openssl openssl",
+          "vendor": "openssl",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-13176"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/346789"
     },
@@ -115027,8 +115238,142 @@
       "vendor": "",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "netapp 500f firmware",
+        "netapp 8300 firmware",
+        "netapp 8700 firmware",
+        "netapp a250 firmware",
+        "netapp a400 firmware",
+        "netapp a700s firmware",
+        "netapp bootstrap os",
+        "netapp brocade fabric operating system",
+        "netapp c250 firmware",
+        "netapp c400 firmware",
+        "netapp h300s firmware",
+        "netapp h410c firmware",
+        "netapp h410s firmware",
+        "netapp h500s firmware",
+        "netapp h610c firmware",
+        "netapp h610s firmware",
+        "netapp h615c firmware",
+        "netapp h700s firmware",
+        "netapp management services for element software and netapp hci",
+        "netapp ontap select deploy administration utility",
+        "netapp snapmanager",
+        "openssl openssl"
+      ],
+      "product_vendors": [
+        {
+          "product": "netapp 500f firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-4603"
+        },
+        {
+          "product": "netapp 8300 firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-4603"
+        },
+        {
+          "product": "netapp 8700 firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-4603"
+        },
+        {
+          "product": "netapp a250 firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-4603"
+        },
+        {
+          "product": "netapp a400 firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-4603"
+        },
+        {
+          "product": "netapp a700s firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-4603"
+        },
+        {
+          "product": "netapp bootstrap os",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-4603"
+        },
+        {
+          "product": "netapp brocade fabric operating system",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-4603"
+        },
+        {
+          "product": "netapp c250 firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-4603"
+        },
+        {
+          "product": "netapp c400 firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-4603"
+        },
+        {
+          "product": "netapp h300s firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-4603"
+        },
+        {
+          "product": "netapp h410c firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-4603"
+        },
+        {
+          "product": "netapp h410s firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-4603"
+        },
+        {
+          "product": "netapp h500s firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-4603"
+        },
+        {
+          "product": "netapp h610c firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-4603"
+        },
+        {
+          "product": "netapp h610s firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-4603"
+        },
+        {
+          "product": "netapp h615c firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-4603"
+        },
+        {
+          "product": "netapp h700s firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-4603"
+        },
+        {
+          "product": "netapp management services for element software and netapp hci",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-4603"
+        },
+        {
+          "product": "netapp ontap select deploy administration utility",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-4603"
+        },
+        {
+          "product": "netapp snapmanager",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-4603"
+        },
+        {
+          "product": "openssl openssl",
+          "vendor": "openssl",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-4603"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/346789"
     },
@@ -117096,8 +117441,226 @@
       "vendor": "",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "debian debian linux",
+        "netapp 500f firmware",
+        "netapp a250 firmware",
+        "netapp active iq unified manager",
+        "netapp bootstrap os",
+        "netapp c250 firmware",
+        "netapp h300s firmware",
+        "netapp h410c firmware",
+        "netapp h410s firmware",
+        "netapp h500s firmware",
+        "netapp h610c firmware",
+        "netapp h610s firmware",
+        "netapp h615c firmware",
+        "netapp h700s firmware",
+        "netapp management services for element software and netapp hci",
+        "netapp oncommand insight",
+        "netapp oncommand workflow automation",
+        "netapp ontap select deploy administration utility",
+        "netapp ontap tools",
+        "netapp snapcenter",
+        "netapp snapmanager",
+        "openssl openssl",
+        "siemens scalance wab762-1 firmware",
+        "siemens scalance wam763-1 firmware",
+        "siemens scalance wam766-1 firmware",
+        "siemens scalance wub762-1 firmware",
+        "siemens scalance wub762-1 ifeatures firmware",
+        "siemens scalance wum763-1 firmware",
+        "siemens scalance wum766-1 firmware",
+        "siemens sidis prime",
+        "siemens simatic s7-1500 cpu 1518-4 pn/dp mfp firmware",
+        "siemens simatic s7-1500 cpu 1518f-4 pn/dp mfp firmware",
+        "siemens simatic s7-1500 tm mfp firmware",
+        "siemens sinec ins",
+        "siemens sinec os",
+        "siemens siplus s7-1500 cpu 1518-4 pn/dp mfp firmware"
+      ],
+      "product_vendors": [
+        {
+          "product": "debian debian linux",
+          "vendor": "debian",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-5535"
+        },
+        {
+          "product": "netapp 500f firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-5535"
+        },
+        {
+          "product": "netapp a250 firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-5535"
+        },
+        {
+          "product": "netapp active iq unified manager",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-5535"
+        },
+        {
+          "product": "netapp bootstrap os",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-5535"
+        },
+        {
+          "product": "netapp c250 firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-5535"
+        },
+        {
+          "product": "netapp h300s firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-5535"
+        },
+        {
+          "product": "netapp h410c firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-5535"
+        },
+        {
+          "product": "netapp h410s firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-5535"
+        },
+        {
+          "product": "netapp h500s firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-5535"
+        },
+        {
+          "product": "netapp h610c firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-5535"
+        },
+        {
+          "product": "netapp h610s firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-5535"
+        },
+        {
+          "product": "netapp h615c firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-5535"
+        },
+        {
+          "product": "netapp h700s firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-5535"
+        },
+        {
+          "product": "netapp management services for element software and netapp hci",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-5535"
+        },
+        {
+          "product": "netapp oncommand insight",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-5535"
+        },
+        {
+          "product": "netapp oncommand workflow automation",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-5535"
+        },
+        {
+          "product": "netapp ontap select deploy administration utility",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-5535"
+        },
+        {
+          "product": "netapp ontap tools",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-5535"
+        },
+        {
+          "product": "netapp snapcenter",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-5535"
+        },
+        {
+          "product": "netapp snapmanager",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-5535"
+        },
+        {
+          "product": "openssl openssl",
+          "vendor": "openssl",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-5535"
+        },
+        {
+          "product": "siemens scalance wab762-1 firmware",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-5535"
+        },
+        {
+          "product": "siemens scalance wam763-1 firmware",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-5535"
+        },
+        {
+          "product": "siemens scalance wam766-1 firmware",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-5535"
+        },
+        {
+          "product": "siemens scalance wub762-1 firmware",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-5535"
+        },
+        {
+          "product": "siemens scalance wub762-1 ifeatures firmware",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-5535"
+        },
+        {
+          "product": "siemens scalance wum763-1 firmware",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-5535"
+        },
+        {
+          "product": "siemens scalance wum766-1 firmware",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-5535"
+        },
+        {
+          "product": "siemens sidis prime",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-5535"
+        },
+        {
+          "product": "siemens simatic s7-1500 cpu 1518-4 pn/dp mfp firmware",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-5535"
+        },
+        {
+          "product": "siemens simatic s7-1500 cpu 1518f-4 pn/dp mfp firmware",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-5535"
+        },
+        {
+          "product": "siemens simatic s7-1500 tm mfp firmware",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-5535"
+        },
+        {
+          "product": "siemens sinec ins",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-5535"
+        },
+        {
+          "product": "siemens sinec os",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-5535"
+        },
+        {
+          "product": "siemens siplus s7-1500 cpu 1518-4 pn/dp mfp firmware",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-5535"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/477862"
     },
@@ -119133,8 +119696,184 @@
       "vendor": "",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "debian debian linux",
+        "netapp 500f firmware",
+        "netapp a250 firmware",
+        "netapp active iq unified manager",
+        "netapp bootstrap os",
+        "netapp brocade fabric operating system",
+        "netapp c250 firmware",
+        "netapp h300s firmware",
+        "netapp h410c firmware",
+        "netapp h410s firmware",
+        "netapp h500s firmware",
+        "netapp h610c firmware",
+        "netapp h610s firmware",
+        "netapp h615c firmware",
+        "netapp h700s firmware",
+        "netapp ontap select deploy administration utility",
+        "netapp ontap tools",
+        "netapp snapmanager",
+        "openssl openssl",
+        "siemens scalance wab762-1 firmware",
+        "siemens scalance wam763-1 firmware",
+        "siemens scalance wam766-1 firmware",
+        "siemens scalance wub762-1 firmware",
+        "siemens scalance wub762-1 ifeatures firmware",
+        "siemens scalance wum763-1 firmware",
+        "siemens scalance wum766-1 firmware",
+        "siemens sidis prime",
+        "siemens simatic s7-1500 cpu 1518-4 pn/dp mfp firmware",
+        "siemens simatic s7-1500 tm mfp firmware"
+      ],
+      "product_vendors": [
+        {
+          "product": "debian debian linux",
+          "vendor": "debian",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-9143"
+        },
+        {
+          "product": "netapp 500f firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-9143"
+        },
+        {
+          "product": "netapp a250 firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-9143"
+        },
+        {
+          "product": "netapp active iq unified manager",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-9143"
+        },
+        {
+          "product": "netapp bootstrap os",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-9143"
+        },
+        {
+          "product": "netapp brocade fabric operating system",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-9143"
+        },
+        {
+          "product": "netapp c250 firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-9143"
+        },
+        {
+          "product": "netapp h300s firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-9143"
+        },
+        {
+          "product": "netapp h410c firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-9143"
+        },
+        {
+          "product": "netapp h410s firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-9143"
+        },
+        {
+          "product": "netapp h500s firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-9143"
+        },
+        {
+          "product": "netapp h610c firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-9143"
+        },
+        {
+          "product": "netapp h610s firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-9143"
+        },
+        {
+          "product": "netapp h615c firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-9143"
+        },
+        {
+          "product": "netapp h700s firmware",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-9143"
+        },
+        {
+          "product": "netapp ontap select deploy administration utility",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-9143"
+        },
+        {
+          "product": "netapp ontap tools",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-9143"
+        },
+        {
+          "product": "netapp snapmanager",
+          "vendor": "netapp",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-9143"
+        },
+        {
+          "product": "openssl openssl",
+          "vendor": "openssl",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-9143"
+        },
+        {
+          "product": "siemens scalance wab762-1 firmware",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-9143"
+        },
+        {
+          "product": "siemens scalance wam763-1 firmware",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-9143"
+        },
+        {
+          "product": "siemens scalance wam766-1 firmware",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-9143"
+        },
+        {
+          "product": "siemens scalance wub762-1 firmware",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-9143"
+        },
+        {
+          "product": "siemens scalance wub762-1 ifeatures firmware",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-9143"
+        },
+        {
+          "product": "siemens scalance wum763-1 firmware",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-9143"
+        },
+        {
+          "product": "siemens scalance wum766-1 firmware",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-9143"
+        },
+        {
+          "product": "siemens sidis prime",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-9143"
+        },
+        {
+          "product": "siemens simatic s7-1500 cpu 1518-4 pn/dp mfp firmware",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-9143"
+        },
+        {
+          "product": "siemens simatic s7-1500 tm mfp firmware",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2024-9143"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/346789"
     },
@@ -146108,8 +146847,58 @@
       "vendor": "",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "debian debian linux",
+        "openssl openssl",
+        "siemens sidis prime",
+        "siemens sidis secured smartplug firmware",
+        "siemens simatic cn 4100 firmware",
+        "siemens simatic s7-1500 cpu 1518-4 pn/dp mfp firmware",
+        "siemens simatic s7-1500 tm mfp firmware",
+        "siemens sinec os"
+      ],
+      "product_vendors": [
+        {
+          "product": "debian debian linux",
+          "vendor": "debian",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2025-9230"
+        },
+        {
+          "product": "openssl openssl",
+          "vendor": "openssl",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2025-9230"
+        },
+        {
+          "product": "siemens sidis prime",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2025-9230"
+        },
+        {
+          "product": "siemens sidis secured smartplug firmware",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2025-9230"
+        },
+        {
+          "product": "siemens simatic cn 4100 firmware",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2025-9230"
+        },
+        {
+          "product": "siemens simatic s7-1500 cpu 1518-4 pn/dp mfp firmware",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2025-9230"
+        },
+        {
+          "product": "siemens simatic s7-1500 tm mfp firmware",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2025-9230"
+        },
+        {
+          "product": "siemens sinec os",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2025-9230"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/346789"
     },
@@ -146123,8 +146912,40 @@
       "vendor": "",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "openssl openssl",
+        "siemens ruggedcom rst2428p firmware",
+        "siemens sidis secured smartplug firmware",
+        "siemens simatic cn 4100 firmware",
+        "siemens sinec os"
+      ],
+      "product_vendors": [
+        {
+          "product": "openssl openssl",
+          "vendor": "openssl",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2025-9231"
+        },
+        {
+          "product": "siemens ruggedcom rst2428p firmware",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2025-9231"
+        },
+        {
+          "product": "siemens sidis secured smartplug firmware",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2025-9231"
+        },
+        {
+          "product": "siemens simatic cn 4100 firmware",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2025-9231"
+        },
+        {
+          "product": "siemens sinec os",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2025-9231"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/477686"
     },
@@ -146138,8 +146959,64 @@
       "vendor": "",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "openssl openssl",
+        "siemens ruggedcom rst2428p firmware",
+        "siemens sidis prime",
+        "siemens sidis secured smartplug firmware",
+        "siemens simatic cn 4100 firmware",
+        "siemens simatic s7-1500 cpu 1518-4 pn/dp mfp firmware",
+        "siemens simatic s7-1500 cpu 1518f-4 pn/dp mfp firmware",
+        "siemens sinec os",
+        "siemens siplus s7-1500 cpu 1518-4 pn/dp mfp firmware"
+      ],
+      "product_vendors": [
+        {
+          "product": "openssl openssl",
+          "vendor": "openssl",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2025-9232"
+        },
+        {
+          "product": "siemens ruggedcom rst2428p firmware",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2025-9232"
+        },
+        {
+          "product": "siemens sidis prime",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2025-9232"
+        },
+        {
+          "product": "siemens sidis secured smartplug firmware",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2025-9232"
+        },
+        {
+          "product": "siemens simatic cn 4100 firmware",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2025-9232"
+        },
+        {
+          "product": "siemens simatic s7-1500 cpu 1518-4 pn/dp mfp firmware",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2025-9232"
+        },
+        {
+          "product": "siemens simatic s7-1500 cpu 1518f-4 pn/dp mfp firmware",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2025-9232"
+        },
+        {
+          "product": "siemens sinec os",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2025-9232"
+        },
+        {
+          "product": "siemens siplus s7-1500 cpu 1518-4 pn/dp mfp firmware",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2025-9232"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/477683"
     },
@@ -146735,12 +147612,19 @@
       "vendor": "Palo Alto Networks",
       "kev_vendor": "Palo Alto Networks",
       "kev_product": "PAN-OS",
-      "affected_products": [],
+      "affected_products": [
+        "siemens ruggedcom ape1808 firmware"
+      ],
       "product_vendors": [
         {
           "product": "PAN-OS",
           "vendor": "Palo Alto Networks",
           "source": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog"
+        },
+        {
+          "product": "siemens ruggedcom ape1808 firmware",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-0322"
         }
       ],
       "affected_versions": [],
@@ -147716,6 +148600,36 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://kb.cert.org/vuls/id/166125"
+    },
+    {
+      "issue_id": "CVE-2026-100204",
+      "title": "CVE-2026-100204 HEIF Image Extensions Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [
+        "CVE-2026-100204"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-100204"
+    },
+    {
+      "issue_id": "CVE-2026-100223",
+      "title": "CVE-2026-100223 Windows NTFS Elevation of Privilege Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-100223"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-100223"
     },
     {
       "issue_id": "CVE-2026-100236",
@@ -150138,6 +151052,21 @@
       "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-102188"
     },
     {
+      "issue_id": "CVE-2026-102200",
+      "title": "CVE-2026-102200 Windows NTFS Tampering Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-102200"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-102200"
+    },
+    {
       "issue_id": "CVE-2026-102204",
       "title": "CVE-2026-102204 Windows Subsystem for Linux Elevation of Privilege Vulnerability",
       "priority": "P3",
@@ -150237,6 +151166,21 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/445446"
+    },
+    {
+      "issue_id": "CVE-2026-102224",
+      "title": "CVE-2026-102224 Azure CycleCloud Elevation of Privilege Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-102224"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-102224"
     },
     {
       "issue_id": "CVE-2026-102227",
@@ -150423,11 +151367,19 @@
       "cves": [
         "CVE-2026-102234"
       ],
-      "vendor": "",
+      "vendor": "microsoft",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "microsoft visual studio code"
+      ],
+      "product_vendors": [
+        {
+          "product": "microsoft visual studio code",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-102234"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-102234"
     },
@@ -150438,13 +151390,36 @@
       "cves": [
         "CVE-2026-102235"
       ],
+      "vendor": "microsoft",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "microsoft visual studio code"
+      ],
+      "product_vendors": [
+        {
+          "product": "microsoft visual studio code",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-102235"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-102235"
+    },
+    {
+      "issue_id": "CVE-2026-102236",
+      "title": "CVE-2026-102236 Visual Studio Code Security Feature Bypass Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-102236"
+      ],
       "vendor": "",
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-102235"
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-102236"
     },
     {
       "issue_id": "CVE-2026-102238",
@@ -150453,11 +151428,19 @@
       "cves": [
         "CVE-2026-102238"
       ],
-      "vendor": "",
+      "vendor": "microsoft",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "microsoft visual studio code"
+      ],
+      "product_vendors": [
+        {
+          "product": "microsoft visual studio code",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-102238"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-102238"
     },
@@ -151484,6 +152467,21 @@
       "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-102867"
     },
     {
+      "issue_id": "CVE-2026-102868",
+      "title": "CVE-2026-102868 Windows Shell Information Disclosure Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-102868"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-102868"
+    },
+    {
       "issue_id": "CVE-2026-102870",
       "title": "CVE-2026-102870 ASP.NET Core Remote Code Execution Vulnerability",
       "priority": "P2",
@@ -152416,6 +153414,21 @@
       "canonical_link": "https://www.tenable.com/plugins/nessus/366006"
     },
     {
+      "issue_id": "CVE-2026-105544",
+      "title": "CVE-2026-105544 .NET Elevation of Privilege Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-105544"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-105544"
+    },
+    {
       "issue_id": "CVE-2026-10557",
       "title": "CVE-2026-10557",
       "priority": "P3",
@@ -152429,6 +153442,126 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-162-01.json"
+    },
+    {
+      "issue_id": "CVE-2026-105582",
+      "title": "CVE-2026-105582 Windows DWM Core Library Elevation of Privilege Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-105582"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-105582"
+    },
+    {
+      "issue_id": "CVE-2026-105583",
+      "title": "CVE-2026-105583 Windows DWM Core Library Elevation of Privilege Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-105583"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-105583"
+    },
+    {
+      "issue_id": "CVE-2026-105584",
+      "title": "CVE-2026-105584 Windows Inventory Backup Information Disclosure Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-105584"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-105584"
+    },
+    {
+      "issue_id": "CVE-2026-105586",
+      "title": "CVE-2026-105586 Microsoft Windows SCSI Class System File Elevation of Privilege Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-105586"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-105586"
+    },
+    {
+      "issue_id": "CVE-2026-105587",
+      "title": "CVE-2026-105587 Windows OLE DB Elevation of Privilege Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-105587"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-105587"
+    },
+    {
+      "issue_id": "CVE-2026-105588",
+      "title": "CVE-2026-105588 Windows DHCP Server Elevation of Privilege Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-105588"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-105588"
+    },
+    {
+      "issue_id": "CVE-2026-105589",
+      "title": "CVE-2026-105589 Windows Wireless Networking Elevation of Privilege Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-105589"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-105589"
+    },
+    {
+      "issue_id": "CVE-2026-105590",
+      "title": "CVE-2026-105590 Windows Active Directory Certificate Services Security Feature Bypass",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-105590"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-105590"
     },
     {
       "issue_id": "CVE-2026-105591",
@@ -153141,6 +154274,21 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-202-09.json"
+    },
+    {
+      "issue_id": "CVE-2026-105734",
+      "title": "CVE-2026-105734 Azure Local Elevation of Privilege Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-105734"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-105734"
     },
     {
       "issue_id": "CVE-2026-105754",
@@ -156561,6 +157709,156 @@
       "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-108400"
     },
     {
+      "issue_id": "CVE-2026-108402",
+      "title": "CVE-2026-108402 Windows Layer-2 Bridge Network Driver Denial of Service Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-108402"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-108402"
+    },
+    {
+      "issue_id": "CVE-2026-108403",
+      "title": "CVE-2026-108403 Windows Kernel Elevation of Privilege Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-108403"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-108403"
+    },
+    {
+      "issue_id": "CVE-2026-108409",
+      "title": "CVE-2026-108409 Windows Overlay Filter Information Disclosure Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-108409"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-108409"
+    },
+    {
+      "issue_id": "CVE-2026-108411",
+      "title": "CVE-2026-108411 Microsoft ODBC Driver Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [
+        "CVE-2026-108411"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-108411"
+    },
+    {
+      "issue_id": "CVE-2026-108415",
+      "title": "CVE-2026-108415 Windows File Server Resource Management Service Elevation of Privilege Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-108415"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-108415"
+    },
+    {
+      "issue_id": "CVE-2026-108416",
+      "title": "CVE-2026-108416 Windows File Server Resource Management Service Elevation of Privilege Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-108416"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-108416"
+    },
+    {
+      "issue_id": "CVE-2026-108417",
+      "title": "CVE-2026-108417 Windows Remote Desktop Client Information Disclosure Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-108417"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-108417"
+    },
+    {
+      "issue_id": "CVE-2026-108418",
+      "title": "CVE-2026-108418 Windows Remote Desktop Client Information Disclosure Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-108418"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-108418"
+    },
+    {
+      "issue_id": "CVE-2026-108419",
+      "title": "CVE-2026-108419 Windows Remote Desktop Client Information Disclosure Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-108419"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-108419"
+    },
+    {
+      "issue_id": "CVE-2026-108424",
+      "title": "CVE-2026-108424 Windows GDI Information Disclosure Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-108424"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-108424"
+    },
+    {
       "issue_id": "CVE-2026-108426",
       "title": "CVE-2026-108426 Microsoft Office Word Remote Code Execution Vulnerability",
       "priority": "P2",
@@ -158253,6 +159551,51 @@
       "canonical_link": "https://www.tenable.com/plugins/nessus/374759"
     },
     {
+      "issue_id": "CVE-2026-109462",
+      "title": "CVE-2026-109462 Azure Firmware Security Feature Bypass Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-109462"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-109462"
+    },
+    {
+      "issue_id": "CVE-2026-109463",
+      "title": "CVE-2026-109463 Windows DNS Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [
+        "CVE-2026-109463"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-109463"
+    },
+    {
+      "issue_id": "CVE-2026-109467",
+      "title": "CVE-2026-109467 Azure DevOps Server Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [
+        "CVE-2026-109467"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-109467"
+    },
+    {
       "issue_id": "CVE-2026-109468",
       "title": "CVE-2026-109468 ASP.NET Core Denial of Service Vulnerability",
       "priority": "P3",
@@ -158266,6 +159609,51 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-109468"
+    },
+    {
+      "issue_id": "CVE-2026-109475",
+      "title": "CVE-2026-109475 .NET Denial of Service Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-109475"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-109475"
+    },
+    {
+      "issue_id": "CVE-2026-109476",
+      "title": "CVE-2026-109476 ASP.NET Core Information Disclosure Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-109476"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-109476"
+    },
+    {
+      "issue_id": "CVE-2026-109478",
+      "title": "CVE-2026-109478 ASP.NET Core Denial of Service Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-109478"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-109478"
     },
     {
       "issue_id": "CVE-2026-109518",
@@ -160395,7 +161783,43 @@
         "Siemens Industrial Edge Management Cloud",
         "Siemens Ruggedcom Ape1808",
         "Siemens Ruggedcom Ape1808 Firmware",
-        "Tianocore Edk2"
+        "Tianocore Edk2",
+        "siemens comos walkinside",
+        "siemens dataxess configurator",
+        "siemens hyperlynx",
+        "siemens innexis architecture native acceleration",
+        "siemens insights hub",
+        "siemens opcenter connect electronics",
+        "siemens opcenter connect manufacturing operations management",
+        "siemens opcenter execution core",
+        "siemens opcenter execution discrete",
+        "siemens opcenter execution foundation",
+        "siemens opcenter execution pharma",
+        "siemens opcenter execution process",
+        "siemens opcenter intelligence",
+        "siemens opcenter quality",
+        "siemens opcenter rd&l",
+        "siemens opcenter x",
+        "siemens pads professional",
+        "siemens pave360 automotive",
+        "siemens process preparation x",
+        "siemens simatic braumat",
+        "siemens simatic profiling tool",
+        "siemens simatic sistar",
+        "siemens simatic wincc",
+        "siemens simatic wincc companion",
+        "siemens simatic wincc runtime",
+        "siemens simatic wincc unified for industrial edge",
+        "siemens simatic wincc unified pc runtime",
+        "siemens simatic wincc unified siqence",
+        "siemens simcenter executable digital twin",
+        "siemens simcenter studio",
+        "siemens teamcenter",
+        "siemens tia administrator",
+        "siemens tia project-server web administration tool",
+        "siemens user management component",
+        "siemens xpedition designer",
+        "siemens xpedition enterprise"
       ],
       "product_vendors": [
         {
@@ -160527,10 +161951,211 @@
           "product": "Tianocore Edk2",
           "vendor": "tianocore",
           "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
+        },
+        {
+          "product": "siemens comos walkinside",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
+        },
+        {
+          "product": "siemens dataxess configurator",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
+        },
+        {
+          "product": "siemens hyperlynx",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
+        },
+        {
+          "product": "siemens innexis architecture native acceleration",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
+        },
+        {
+          "product": "siemens insights hub",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
+        },
+        {
+          "product": "siemens opcenter connect electronics",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
+        },
+        {
+          "product": "siemens opcenter connect manufacturing operations management",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
+        },
+        {
+          "product": "siemens opcenter execution core",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
+        },
+        {
+          "product": "siemens opcenter execution discrete",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
+        },
+        {
+          "product": "siemens opcenter execution foundation",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
+        },
+        {
+          "product": "siemens opcenter execution pharma",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
+        },
+        {
+          "product": "siemens opcenter execution process",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
+        },
+        {
+          "product": "siemens opcenter intelligence",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
+        },
+        {
+          "product": "siemens opcenter quality",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
+        },
+        {
+          "product": "siemens opcenter rd&l",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
+        },
+        {
+          "product": "siemens opcenter x",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
+        },
+        {
+          "product": "siemens pads professional",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
+        },
+        {
+          "product": "siemens pave360 automotive",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
+        },
+        {
+          "product": "siemens process preparation x",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
+        },
+        {
+          "product": "siemens simatic braumat",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
+        },
+        {
+          "product": "siemens simatic profiling tool",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
+        },
+        {
+          "product": "siemens simatic sistar",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
+        },
+        {
+          "product": "siemens simatic wincc",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
+        },
+        {
+          "product": "siemens simatic wincc companion",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
+        },
+        {
+          "product": "siemens simatic wincc runtime",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
+        },
+        {
+          "product": "siemens simatic wincc unified for industrial edge",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
+        },
+        {
+          "product": "siemens simatic wincc unified pc runtime",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
+        },
+        {
+          "product": "siemens simatic wincc unified siqence",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
+        },
+        {
+          "product": "siemens simcenter executable digital twin",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
+        },
+        {
+          "product": "siemens simcenter studio",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
+        },
+        {
+          "product": "siemens teamcenter",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
+        },
+        {
+          "product": "siemens tia administrator",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
+        },
+        {
+          "product": "siemens tia project-server web administration tool",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
+        },
+        {
+          "product": "siemens user management component",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
+        },
+        {
+          "product": "siemens xpedition designer",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
+        },
+        {
+          "product": "siemens xpedition enterprise",
+          "vendor": "siemens",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
         }
       ],
       "affected_versions": [],
       "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2026-111497"
+    },
+    {
+      "issue_id": "CVE-2026-111560",
+      "title": "CVE-2026-111560",
+      "priority": "P1",
+      "cves": [
+        "CVE-2026-111560"
+      ],
+      "vendor": "Barracuda Networks",
+      "kev_vendor": "Barracuda Networks",
+      "kev_product": "Barracuda Email Security Gateway (ESG)",
+      "affected_products": [],
+      "product_vendors": [
+        {
+          "product": "Barracuda Email Security Gateway (ESG)",
+          "vendor": "Barracuda Networks",
+          "source": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2026-111560"
     },
     {
       "issue_id": "CVE-2026-111594",
@@ -160644,6 +162269,27 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/476403"
+    },
+    {
+      "issue_id": "CVE-2026-111793",
+      "title": "CVE-2026-111793",
+      "priority": "P1",
+      "cves": [
+        "CVE-2026-111793"
+      ],
+      "vendor": "Openwave Messaging Limited",
+      "kev_vendor": "Openwave Messaging Limited",
+      "kev_product": "Webtop Media Transcoder",
+      "affected_products": [],
+      "product_vendors": [
+        {
+          "product": "Webtop Media Transcoder",
+          "vendor": "Openwave Messaging Limited",
+          "source": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2026-111793"
     },
     {
       "issue_id": "CVE-2026-111879",
@@ -162983,6 +164629,111 @@
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/478171"
     },
     {
+      "issue_id": "CVE-2026-114155",
+      "title": "CVE-2026-114155",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-114155"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478950"
+    },
+    {
+      "issue_id": "CVE-2026-114164",
+      "title": "CVE-2026-114164 HEVC Video Extensions Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [
+        "CVE-2026-114164"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-114164"
+    },
+    {
+      "issue_id": "CVE-2026-114165",
+      "title": "CVE-2026-114165 HEVC Video Extensions Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [
+        "CVE-2026-114165"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-114165"
+    },
+    {
+      "issue_id": "CVE-2026-114166",
+      "title": "CVE-2026-114166 Microsoft Raw Image Extension Information Disclosure Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-114166"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-114166"
+    },
+    {
+      "issue_id": "CVE-2026-114167",
+      "title": "CVE-2026-114167 HEVC Video Extensions Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [
+        "CVE-2026-114167"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-114167"
+    },
+    {
+      "issue_id": "CVE-2026-114169",
+      "title": "CVE-2026-114169 Windows Raw Image Extension Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [
+        "CVE-2026-114169"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-114169"
+    },
+    {
+      "issue_id": "CVE-2026-114170",
+      "title": "CVE-2026-114170 Windows Kernel Elevation of Privilege Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-114170"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-114170"
+    },
+    {
       "issue_id": "CVE-2026-1144",
       "title": "CVE-2026-1144",
       "priority": "P3",
@@ -164382,6 +166133,27 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/478586"
+    },
+    {
+      "issue_id": "CVE-2026-116606",
+      "title": "CVE-2026-116606",
+      "priority": "P1",
+      "cves": [
+        "CVE-2026-116606"
+      ],
+      "vendor": "Barracuda Networks",
+      "kev_vendor": "Barracuda Networks",
+      "kev_product": "Barracuda Email Security Gateway (ESG)",
+      "affected_products": [],
+      "product_vendors": [
+        {
+          "product": "Barracuda Email Security Gateway (ESG)",
+          "vendor": "Barracuda Networks",
+          "source": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2026-111560"
     },
     {
       "issue_id": "CVE-2026-116673",
@@ -168927,6 +170699,21 @@
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/477847"
     },
     {
+      "issue_id": "CVE-2026-118750",
+      "title": "CVE-2026-118750",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118750"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478939"
+    },
+    {
       "issue_id": "CVE-2026-118763",
       "title": "CVE-2026-118763",
       "priority": "P3",
@@ -168971,11 +170758,19 @@
       "cves": [
         "CVE-2026-118781"
       ],
-      "vendor": "",
+      "vendor": "digitalbazaar",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "digitalbazaar forge"
+      ],
+      "product_vendors": [
+        {
+          "product": "digitalbazaar forge",
+          "vendor": "digitalbazaar",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-118781"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/478090"
     },
@@ -169054,11 +170849,19 @@
       "cves": [
         "CVE-2026-119188"
       ],
-      "vendor": "",
+      "vendor": "digitalbazaar",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "digitalbazaar forge"
+      ],
+      "product_vendors": [
+        {
+          "product": "digitalbazaar forge",
+          "vendor": "digitalbazaar",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-119188"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/478091"
     },
@@ -171830,6 +173633,46 @@
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/473834"
     },
     {
+      "issue_id": "CVE-2026-124194",
+      "title": "CVE-2026-124194",
+      "priority": "P1",
+      "cves": [
+        "CVE-2026-124194"
+      ],
+      "vendor": "Microsoft",
+      "kev_vendor": "Microsoft",
+      "kev_product": "Office",
+      "affected_products": [
+        "microsoft 365 apps",
+        "microsoft office 2021",
+        "microsoft office 2024"
+      ],
+      "product_vendors": [
+        {
+          "product": "Office",
+          "vendor": "Microsoft",
+          "source": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog"
+        },
+        {
+          "product": "microsoft 365 apps",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-124194"
+        },
+        {
+          "product": "microsoft office 2021",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-124194"
+        },
+        {
+          "product": "microsoft office 2024",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-124194"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2026-124194"
+    },
+    {
       "issue_id": "CVE-2026-124584",
       "title": "Linux Distros Unpatched Vulnerability : CVE-2026-124584",
       "priority": "P3",
@@ -171896,6 +173739,64 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/325312"
+    },
+    {
+      "issue_id": "CVE-2026-125122",
+      "title": "CVE-2026-125122",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-125122"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478956"
+    },
+    {
+      "issue_id": "CVE-2026-125123",
+      "title": "CVE-2026-125123",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-125123"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478955"
+    },
+    {
+      "issue_id": "CVE-2026-125350",
+      "title": "CVE-2026-125350",
+      "priority": "P0",
+      "cves": [
+        "CVE-2026-125350"
+      ],
+      "vendor": "Google",
+      "kev_vendor": "Google",
+      "kev_product": "Chromium",
+      "affected_products": [
+        "google chrome"
+      ],
+      "product_vendors": [
+        {
+          "product": "Chromium",
+          "vendor": "Google",
+          "source": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog"
+        },
+        {
+          "product": "google chrome",
+          "vendor": "google",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-125350"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2026-125350"
     },
     {
       "issue_id": "CVE-2026-12562",
@@ -171977,6 +173878,21 @@
       "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-404/"
     },
     {
+      "issue_id": "CVE-2026-126085",
+      "title": "CVE-2026-126085",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-126085"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478952"
+    },
+    {
       "issue_id": "CVE-2026-12610",
       "title": "CVE-2026-12610",
       "priority": "P2",
@@ -172004,6 +173920,36 @@
       ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/326359"
+    },
+    {
+      "issue_id": "CVE-2026-126186",
+      "title": "CVE-2026-126186",
+      "priority": "P2",
+      "cves": [
+        "CVE-2026-126186"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478941"
+    },
+    {
+      "issue_id": "CVE-2026-126187",
+      "title": "CVE-2026-126187",
+      "priority": "P2",
+      "cves": [
+        "CVE-2026-126187"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478936"
     },
     {
       "issue_id": "CVE-2026-12659",
@@ -191189,12 +193135,19 @@
       "vendor": "SonicWall",
       "kev_vendor": "SonicWall",
       "kev_product": "SonicOS SSLVPN",
-      "affected_products": [],
+      "affected_products": [
+        "sonicwall sonicos"
+      ],
       "product_vendors": [
         {
           "product": "SonicOS SSLVPN",
           "vendor": "SonicWall",
           "source": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog"
+        },
+        {
+          "product": "sonicwall sonicos",
+          "vendor": "sonicwall",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-19868"
         }
       ],
       "affected_versions": [],
@@ -192150,6 +194103,52 @@
       ],
       "affected_versions": [],
       "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2026-20316"
+    },
+    {
+      "issue_id": "CVE-2026-20320",
+      "title": "CVE-2026-20320",
+      "priority": "P1",
+      "cves": [
+        "CVE-2026-20320"
+      ],
+      "vendor": "Cisco",
+      "kev_vendor": "Cisco",
+      "kev_product": "BroadWorks",
+      "affected_products": [
+        "cisco broadworks application delivery platform",
+        "cisco broadworks application server",
+        "cisco broadworks profile server",
+        "cisco broadworks xtended services platform"
+      ],
+      "product_vendors": [
+        {
+          "product": "BroadWorks",
+          "vendor": "Cisco",
+          "source": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog"
+        },
+        {
+          "product": "cisco broadworks application delivery platform",
+          "vendor": "cisco",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-20320"
+        },
+        {
+          "product": "cisco broadworks application server",
+          "vendor": "cisco",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-20320"
+        },
+        {
+          "product": "cisco broadworks profile server",
+          "vendor": "cisco",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-20320"
+        },
+        {
+          "product": "cisco broadworks xtended services platform",
+          "vendor": "cisco",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-20320"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2026-20320"
     },
     {
       "issue_id": "CVE-2026-20322",
@@ -241202,7 +243201,7 @@
         }
       ],
       "affected_versions": [],
-      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-390/"
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-903/"
     },
     {
       "issue_id": "CVE-2026-50257",
@@ -241272,7 +243271,7 @@
         }
       ],
       "affected_versions": [],
-      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-392/"
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-902/"
     },
     {
       "issue_id": "CVE-2026-50259",
@@ -241482,7 +243481,7 @@
         }
       ],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/323112"
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-901/"
     },
     {
       "issue_id": "CVE-2026-5027",
@@ -270035,6 +272034,21 @@
       "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-62902"
     },
     {
+      "issue_id": "CVE-2026-62903",
+      "title": "CVE-2026-62903 Microsoft.Data.SqlClient Information Disclosure Vulnerability",
+      "priority": "P2",
+      "cves": [
+        "CVE-2026-62903"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-62903"
+    },
+    {
       "issue_id": "CVE-2026-62911",
       "title": "CVE-2026-62911",
       "priority": "P2",
@@ -271969,11 +273983,19 @@
       "cves": [
         "CVE-2026-63811"
       ],
-      "vendor": "",
+      "vendor": "linux",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "linux linux kernel"
+      ],
+      "product_vendors": [
+        {
+          "product": "linux linux kernel",
+          "vendor": "linux",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-63811"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/327881"
     },
@@ -271984,11 +274006,19 @@
       "cves": [
         "CVE-2026-63812"
       ],
-      "vendor": "",
+      "vendor": "linux",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "linux linux kernel"
+      ],
+      "product_vendors": [
+        {
+          "product": "linux linux kernel",
+          "vendor": "linux",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-63812"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/365522"
     },
@@ -271999,11 +274029,19 @@
       "cves": [
         "CVE-2026-63814"
       ],
-      "vendor": "",
+      "vendor": "linux",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "linux linux kernel"
+      ],
+      "product_vendors": [
+        {
+          "product": "linux linux kernel",
+          "vendor": "linux",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-63814"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/365522"
     },
@@ -272014,11 +274052,19 @@
       "cves": [
         "CVE-2026-63815"
       ],
-      "vendor": "",
+      "vendor": "linux",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "linux linux kernel"
+      ],
+      "product_vendors": [
+        {
+          "product": "linux linux kernel",
+          "vendor": "linux",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-63815"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/365522"
     },
@@ -272029,11 +274075,19 @@
       "cves": [
         "CVE-2026-63816"
       ],
-      "vendor": "",
+      "vendor": "linux",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "linux linux kernel"
+      ],
+      "product_vendors": [
+        {
+          "product": "linux linux kernel",
+          "vendor": "linux",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-63816"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/365522"
     },
@@ -272044,11 +274098,19 @@
       "cves": [
         "CVE-2026-63817"
       ],
-      "vendor": "",
+      "vendor": "linux",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "linux linux kernel"
+      ],
+      "product_vendors": [
+        {
+          "product": "linux linux kernel",
+          "vendor": "linux",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-63817"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/365522"
     },
@@ -272059,11 +274121,19 @@
       "cves": [
         "CVE-2026-63818"
       ],
-      "vendor": "",
+      "vendor": "linux",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "linux linux kernel"
+      ],
+      "product_vendors": [
+        {
+          "product": "linux linux kernel",
+          "vendor": "linux",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-63818"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/365522"
     },
@@ -278135,11 +280205,19 @@
       "cves": [
         "CVE-2026-64510"
       ],
-      "vendor": "",
+      "vendor": "linux",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "linux linux kernel"
+      ],
+      "product_vendors": [
+        {
+          "product": "linux linux kernel",
+          "vendor": "linux",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-64510"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/365522"
     },
@@ -279811,6 +281889,21 @@
       ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/445190"
+    },
+    {
+      "issue_id": "CVE-2026-65110",
+      "title": "CVE-2026-65110",
+      "priority": "P2",
+      "cves": [
+        "CVE-2026-65110"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-904/"
     },
     {
       "issue_id": "CVE-2026-65182",
@@ -281627,11 +283720,25 @@
       "cves": [
         "CVE-2026-66302"
       ],
-      "vendor": "",
+      "vendor": "microsoft",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "microsoft skype for business server",
+        "microsoft skype for business server subscription edition"
+      ],
+      "product_vendors": [
+        {
+          "product": "microsoft skype for business server",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-66302"
+        },
+        {
+          "product": "microsoft skype for business server subscription edition",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-66302"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-66302"
     },
@@ -282097,6 +284204,21 @@
       ],
       "affected_versions": [],
       "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-66800"
+    },
+    {
+      "issue_id": "CVE-2026-66801",
+      "title": "CVE-2026-66801 Microsoft Xbox Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [
+        "CVE-2026-66801"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-66801"
     },
     {
       "issue_id": "CVE-2026-66802",
@@ -288086,11 +290208,37 @@
       "cves": [
         "CVE-2026-68781"
       ],
-      "vendor": "",
+      "vendor": "microsoft",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "microsoft sql server 2017",
+        "microsoft sql server 2019",
+        "microsoft sql server 2022",
+        "microsoft sql server 2025"
+      ],
+      "product_vendors": [
+        {
+          "product": "microsoft sql server 2017",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-68781"
+        },
+        {
+          "product": "microsoft sql server 2019",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-68781"
+        },
+        {
+          "product": "microsoft sql server 2022",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-68781"
+        },
+        {
+          "product": "microsoft sql server 2025",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-68781"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-68781"
     },
@@ -295681,11 +297829,19 @@
       "cves": [
         "CVE-2026-70098"
       ],
-      "vendor": "",
+      "vendor": "microsoft",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "microsoft visual studio code"
+      ],
+      "product_vendors": [
+        {
+          "product": "microsoft visual studio code",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-70098"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-70098"
     },
@@ -318652,6 +320808,21 @@
       "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-777/"
     },
     {
+      "issue_id": "CVE-2026-83684",
+      "title": "CVE-2026-83684 Windows iSCSI Target Service Information Disclosure Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-83684"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-83684"
+    },
+    {
       "issue_id": "CVE-2026-83709",
       "title": "CVE-2026-83709 Windows NTLM Elevation of Privilege Vulnerability",
       "priority": "P3",
@@ -319074,6 +321245,21 @@
       "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-83862"
     },
     {
+      "issue_id": "CVE-2026-83894",
+      "title": "CVE-2026-83894 RPC Runtime Elevation of Privilege Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-83894"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-83894"
+    },
+    {
       "issue_id": "CVE-2026-83938",
       "title": "CVE-2026-83938 Azure Kubernetes Configuration Service Elevation of Privilege Vulnerability",
       "priority": "P3",
@@ -319206,6 +321392,36 @@
       ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/334416"
+    },
+    {
+      "issue_id": "CVE-2026-84004",
+      "title": "CVE-2026-84004 AMD Zen Information Disclosure Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-84004"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-84004"
+    },
+    {
+      "issue_id": "CVE-2026-84005",
+      "title": "CVE-2026-84005 AMD Zen Information Disclosure Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-84005"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-84005"
     },
     {
       "issue_id": "CVE-2026-84019",
@@ -321797,6 +324013,51 @@
       ],
       "affected_versions": [],
       "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-85790"
+    },
+    {
+      "issue_id": "CVE-2026-85801",
+      "title": "CVE-2026-85801 Windows Local Security Authority Subsystem Service (LSASS) Elevation of Privilege Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-85801"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-85801"
+    },
+    {
+      "issue_id": "CVE-2026-85838",
+      "title": "CVE-2026-85838 Microsoft WDAC OLE DB provider for SQL Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [
+        "CVE-2026-85838"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-85838"
+    },
+    {
+      "issue_id": "CVE-2026-85839",
+      "title": "CVE-2026-85839 Microsoft WDAC OLE DB provider for SQL Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [
+        "CVE-2026-85839"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-85839"
     },
     {
       "issue_id": "CVE-2026-85868",
@@ -325436,6 +327697,21 @@
       "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-88131"
     },
     {
+      "issue_id": "CVE-2026-88176",
+      "title": "CVE-2026-88176 Microsoft Office SharePoint Elevation of Privilege Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-88176"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-88176"
+    },
+    {
       "issue_id": "CVE-2026-88259",
       "title": "CVE-2026-88259",
       "priority": "P2",
@@ -325823,6 +328099,36 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-779/"
+    },
+    {
+      "issue_id": "CVE-2026-88806",
+      "title": "CVE-2026-88806",
+      "priority": "P2",
+      "cves": [
+        "CVE-2026-88806"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-906/"
+    },
+    {
+      "issue_id": "CVE-2026-88807",
+      "title": "CVE-2026-88807",
+      "priority": "P2",
+      "cves": [
+        "CVE-2026-88807"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-905/"
     },
     {
       "issue_id": "CVE-2026-8881",
@@ -346643,6 +348949,36 @@
       "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-94510"
     },
     {
+      "issue_id": "CVE-2026-94511",
+      "title": "CVE-2026-94511 SQL Server Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [
+        "CVE-2026-94511"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-94511"
+    },
+    {
+      "issue_id": "CVE-2026-94513",
+      "title": "CVE-2026-94513 Microsoft SQL Server Elevation of Privilege Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-94513"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-94513"
+    },
+    {
       "issue_id": "CVE-2026-94543",
       "title": "CVE-2026-94543",
       "priority": "P3",
@@ -364175,6 +366511,19 @@
       "canonical_link": "https://api.fda.gov/device/recall.json?search=res_event_number:\"29393\""
     },
     {
+      "issue_id": "UNK-2347033f6678b728",
+      "title": "Multiple Vulnerabilities in Mozilla Products Could Allow for Arbitrary Code Execution",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.cisecurity.org/advisory/multiple-vulnerabilities-in-mozilla-products-could-allow-for-arbitrary-code-execution_2026-131"
+    },
+    {
       "issue_id": "UNK-237831520657c989",
       "title": "Cyber Security Notification - ABB/EL/ELSB/Building Automation File integrity can be bypassed in KNX Update Tool for classic KNX products",
       "priority": "P3",
@@ -365312,6 +367661,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://api.fda.gov/device/recall.json?search=res_event_number:\"31217\""
+    },
+    {
+      "issue_id": "UNK-2a2c256b47cf55f3",
+      "title": "NCSC scheme will help critical organisations test their cyber defences",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.ncsc.gov.uk/news/ncsc-scheme-help-critical-organisations-test-their-cyber-defences"
     },
     {
       "issue_id": "UNK-2a329398b957a7ae",
@@ -372344,6 +374706,19 @@
       "canonical_link": "https://www.securitymagazine.com/articles/99685-using-cloud-based-video-technology-in-enterprise-level-organizations"
     },
     {
+      "issue_id": "UNK-507babf3b2faa141",
+      "title": "Building a defensible market read: what to do when the data and your team disagree",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.fiercehealthcare.com/resource/building-defensible-market-read-what-do-when-data-and-your-team-disagree"
+    },
+    {
       "issue_id": "UNK-508cc2e12cfe9e5c",
       "title": "ZDI-CAN-33183: X.Org",
       "priority": "P3",
@@ -373300,6 +375675,19 @@
       "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
     },
     {
+      "issue_id": "UNK-54ef7679d7bd9c11",
+      "title": "Multiple Vulnerabilities in SAP Products Could Allow for Arbitrary Code Execution",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.cisecurity.org/advisory/multiple-vulnerabilities-in-sap-products-could-allow-for-arbitrary-code-execution_2026-128"
+    },
+    {
       "issue_id": "UNK-54f9095165b092c9",
       "title": "1823260-2020-01112",
       "priority": "P2",
@@ -374144,6 +376532,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
+    },
+    {
+      "issue_id": "UNK-5a16ef7f38a696b7",
+      "title": "Critical Patches Issued for Microsoft Products, November 10, 2026",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.cisecurity.org/advisory/critical-patches-issued-for-microsoft-products-november-10-2026_2026-132"
     },
     {
       "issue_id": "UNK-5a2188b938d3a948",
@@ -376466,6 +378867,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://asimily.com/blog/segmentation-was-built-for-a-network-that-no-longer-exists/"
+    },
+    {
+      "issue_id": "UNK-647c83ece5ad7eba",
+      "title": "Microsoft Patch Tuesday for November 2026 — Snort rules and prominent vulnerabilities",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://blog.talosintelligence.com/microsoft-patch-tuesday-for-november-2026/"
     },
     {
       "issue_id": "UNK-648baa4a851a3b7a",
@@ -382955,6 +385369,19 @@
       "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-797/"
     },
     {
+      "issue_id": "UNK-86957d13a8a235ae",
+      "title": "ZDI-CAN-33928: Microsoft",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
+    },
+    {
       "issue_id": "UNK-86968eada9a6add2",
       "title": "ZDI-CAN-29187: npm",
       "priority": "P3",
@@ -384872,6 +387299,19 @@
       "canonical_link": "https://www.cisecurity.org/advisory/multiple-vulnerabilities-in-google-chrome-could-allow-for-arbitrary-code-execution_2026-125"
     },
     {
+      "issue_id": "UNK-90e028aa02de0c76",
+      "title": "ZDI-26-898: Wireshark LoRaWAN Decryption Numeric Truncation Error Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-898/"
+    },
+    {
       "issue_id": "UNK-91023b7e9a10b0f2",
       "title": "Mitsubishi Electric CNC Series (Update D)",
       "priority": "P3",
@@ -385476,6 +387916,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
+    },
+    {
+      "issue_id": "UNK-942a5d9a0b0b4858",
+      "title": "All your Apple devices need to be patched ASAP – here’s why",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.zdnet.com/tech/apple-27-2-1-security-fix-iphone-ipad-mac-watch-patch/"
     },
     {
       "issue_id": "UNK-943fb8a6d36894bb",
@@ -386344,6 +388797,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-237-07.json"
+    },
+    {
+      "issue_id": "UNK-98c9e4f9584326c0",
+      "title": "Multiple Vulnerabilities in Apple Products Could Allow for Arbitrary Code Execution",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.cisecurity.org/advisory/multiple-vulnerabilities-in-apple-products-could-allow-for-arbitrary-code-execution_2026-129"
     },
     {
       "issue_id": "UNK-98cc350848dc30b3",
@@ -389124,6 +391590,19 @@
       "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-246-06.json"
     },
     {
+      "issue_id": "UNK-a7607ab077f5fcec",
+      "title": "Detecting sleeper agents hiding in AI model neurons",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.microsoft.com/en-us/security/blog/2026/11/10/detecting-sleeper-agents-hiding-in-ai-model-neurons/"
+    },
+    {
       "issue_id": "UNK-a7622f0e2ee187dc",
       "title": "Fedora 44 : mingw-pcre2 (2026-e9c6062c07)",
       "priority": "P3",
@@ -390178,6 +392657,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/339190"
+    },
+    {
+      "issue_id": "UNK-ac18a2efef430ced",
+      "title": "Multiple Vulnerabilities in Adobe Products Could Allow for Arbitrary Code Execution",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.cisecurity.org/advisory/multiple-vulnerabilities-in-adobe-products-could-allow-for-arbitrary-code-execution_2026-130"
     },
     {
       "issue_id": "UNK-ac1bf7f89cbcc89a",
@@ -391846,6 +394338,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://search.abb.com/library/Download.aspx?DocumentID=9AKK108472A9037&LanguageCode=en&DocumentPartId=pdf&Action=Launch"
+    },
+    {
+      "issue_id": "UNK-b4569f164b8d173b",
+      "title": "ZDI-26-899: Wireshark LBMC Fragment Reassembly Integer Overflow Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-899/"
     },
     {
       "issue_id": "UNK-b467918853d962a7",
@@ -394426,6 +396931,19 @@
       "canonical_link": "https://api.fda.gov/device/recall.json?search=res_event_number:\"25009\""
     },
     {
+      "issue_id": "UNK-c2244eed368bce50",
+      "title": "Multiple Vulnerabilities in Fortinet Products Could Allow for Arbitrary Code Execution",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.cisecurity.org/advisory/multiple-vulnerabilities-in-fortinet-products-could-allow-for-arbitrary-code-execution_2026-133"
+    },
+    {
       "issue_id": "UNK-c22bd46ead7d8831",
       "title": "Kaseya VSA Supply-Chain Ransomware Attack",
       "priority": "P3",
@@ -396328,6 +398846,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://api.fda.gov/device/recall.json?search=res_event_number:\"25996\""
+    },
+    {
+      "issue_id": "UNK-cc66ba863f40eb91",
+      "title": "Multiple Vulnerabilities in Google Chrome Could Allow for Arbitrary Code Execution",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.cisecurity.org/advisory/multiple-vulnerabilities-in-google-chrome-could-allow-for-arbitrary-code-execution_2026-127"
     },
     {
       "issue_id": "UNK-cc6909d4b2a63a2c",
@@ -401028,6 +403559,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
+    },
+    {
+      "issue_id": "UNK-e51f6abab0255e0a",
+      "title": "ZDI-26-900: Wireshark SMB Object Export Integer Overflow Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-900/"
     },
     {
       "issue_id": "UNK-e530775658f64389",
