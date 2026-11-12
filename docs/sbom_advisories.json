@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "generated_at": "2026-11-11T13:56:41.662870+00:00",
-  "total_records": 16518,
-  "vendor_evidence_checked_at": "2026-11-11T13:55:59.323971+00:00",
-  "records_with_vendor_products": 7328,
-  "records_with_products": 7721,
+  "generated_at": "2026-11-12T14:58:46.402834+00:00",
+  "total_records": 16624,
+  "vendor_evidence_checked_at": "2026-11-12T14:57:57.603141+00:00",
+  "records_with_vendor_products": 7329,
+  "records_with_products": 7722,
   "matching_policy": "product_identity_candidates_only",
   "issues": [
     {
@@ -109136,6 +109136,21 @@
       "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2024-27834"
     },
     {
+      "issue_id": "CVE-2024-27983",
+      "title": "CVE-2024-27983",
+      "priority": "P3",
+      "cves": [
+        "CVE-2024-27983"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/479024"
+    },
+    {
       "issue_id": "CVE-2024-28757",
       "title": "CVE-2024-28757",
       "priority": "P3",
@@ -152499,19 +152514,26 @@
     {
       "issue_id": "CVE-2026-102895",
       "title": "CVE-2026-102895",
-      "priority": "P0",
+      "priority": "P1",
       "cves": [
         "CVE-2026-102895"
       ],
       "vendor": "GPUStack",
       "kev_vendor": "GPUStack",
       "kev_product": "GPUStack",
-      "affected_products": [],
+      "affected_products": [
+        "Gpustack Gpustack"
+      ],
       "product_vendors": [
         {
           "product": "GPUStack",
           "vendor": "GPUStack",
           "source": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog"
+        },
+        {
+          "product": "Gpustack Gpustack",
+          "vendor": "gpustack",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-102895"
         }
       ],
       "affected_versions": [],
@@ -159656,6 +159678,21 @@
       "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-109478"
     },
     {
+      "issue_id": "CVE-2026-109481",
+      "title": "CVE-2026-109481 ASP.NET Core Elevation of Privilege Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-109481"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-109481"
+    },
+    {
       "issue_id": "CVE-2026-109518",
       "title": "CVE-2026-109518",
       "priority": "P2",
@@ -162146,12 +162183,67 @@
       "vendor": "Barracuda Networks",
       "kev_vendor": "Barracuda Networks",
       "kev_product": "Barracuda Email Security Gateway (ESG)",
-      "affected_products": [],
+      "affected_products": [
+        "barracuda email security gateway 300 firmware",
+        "barracuda email security gateway 400 firmware",
+        "barracuda email security gateway 600 firmware",
+        "barracuda email security gateway 800 firmware",
+        "barracuda email security gateway 900 firmware",
+        "barracuda load balancer adc firmware",
+        "barracuda message archiver firmware",
+        "barracuda web application firewall",
+        "barracuda web security gateway firmware"
+      ],
       "product_vendors": [
         {
           "product": "Barracuda Email Security Gateway (ESG)",
           "vendor": "Barracuda Networks",
           "source": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog"
+        },
+        {
+          "product": "barracuda email security gateway 300 firmware",
+          "vendor": "barracuda",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111560"
+        },
+        {
+          "product": "barracuda email security gateway 400 firmware",
+          "vendor": "barracuda",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111560"
+        },
+        {
+          "product": "barracuda email security gateway 600 firmware",
+          "vendor": "barracuda",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111560"
+        },
+        {
+          "product": "barracuda email security gateway 800 firmware",
+          "vendor": "barracuda",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111560"
+        },
+        {
+          "product": "barracuda email security gateway 900 firmware",
+          "vendor": "barracuda",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111560"
+        },
+        {
+          "product": "barracuda load balancer adc firmware",
+          "vendor": "barracuda",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111560"
+        },
+        {
+          "product": "barracuda message archiver firmware",
+          "vendor": "barracuda",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111560"
+        },
+        {
+          "product": "barracuda web application firewall",
+          "vendor": "barracuda",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111560"
+        },
+        {
+          "product": "barracuda web security gateway firmware",
+          "vendor": "barracuda",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-111560"
         }
       ],
       "affected_versions": [],
@@ -164614,6 +164706,36 @@
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/477468"
     },
     {
+      "issue_id": "CVE-2026-114146",
+      "title": "CVE-2026-114146 ASP.NET Core Elevation of Privilege Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-114146"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-114146"
+    },
+    {
+      "issue_id": "CVE-2026-114147",
+      "title": "CVE-2026-114147 ASP.NET Core Denial of Service Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-114147"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-114147"
+    },
+    {
       "issue_id": "CVE-2026-114148",
       "title": "CVE-2026-114148",
       "priority": "P2",
@@ -164629,8 +164751,83 @@
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/478171"
     },
     {
+      "issue_id": "CVE-2026-114149",
+      "title": "CVE-2026-114149 ASP.NET Core Denial of Service Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-114149"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-114149"
+    },
+    {
+      "issue_id": "CVE-2026-114150",
+      "title": "CVE-2026-114150 ASP.NET Core Information Disclosure Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-114150"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-114150"
+    },
+    {
+      "issue_id": "CVE-2026-114151",
+      "title": "CVE-2026-114151 Visual Studio Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [
+        "CVE-2026-114151"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-114151"
+    },
+    {
+      "issue_id": "CVE-2026-114152",
+      "title": "CVE-2026-114152 Visual Studio Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [
+        "CVE-2026-114152"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-114152"
+    },
+    {
+      "issue_id": "CVE-2026-114154",
+      "title": "CVE-2026-114154 ASP.NET Core Denial of Service Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-114154"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-114154"
+    },
+    {
       "issue_id": "CVE-2026-114155",
-      "title": "CVE-2026-114155",
+      "title": "CVE-2026-114155 .NET Elevation of Privilege Vulnerability",
       "priority": "P3",
       "cves": [
         "CVE-2026-114155"
@@ -164641,7 +164838,67 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478950"
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-114155"
+    },
+    {
+      "issue_id": "CVE-2026-114156",
+      "title": "CVE-2026-114156 ASP.NET Core Security Feature Bypass Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-114156"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-114156"
+    },
+    {
+      "issue_id": "CVE-2026-114157",
+      "title": "CVE-2026-114157 ASP.NET Core Security Feature Bypass Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-114157"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-114157"
+    },
+    {
+      "issue_id": "CVE-2026-114158",
+      "title": "CVE-2026-114158 Visual Studio Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [
+        "CVE-2026-114158"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-114158"
+    },
+    {
+      "issue_id": "CVE-2026-114159",
+      "title": "CVE-2026-114159 Visual Studio Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [
+        "CVE-2026-114159"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-114159"
     },
     {
       "issue_id": "CVE-2026-114164",
@@ -166144,12 +166401,43 @@
       "vendor": "Barracuda Networks",
       "kev_vendor": "Barracuda Networks",
       "kev_product": "Barracuda Email Security Gateway (ESG)",
-      "affected_products": [],
+      "affected_products": [
+        "barracuda email security gateway 300 firmware",
+        "barracuda email security gateway 400 firmware",
+        "barracuda email security gateway 600 firmware",
+        "barracuda email security gateway 800 firmware",
+        "barracuda email security gateway 900 firmware"
+      ],
       "product_vendors": [
         {
           "product": "Barracuda Email Security Gateway (ESG)",
           "vendor": "Barracuda Networks",
           "source": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog"
+        },
+        {
+          "product": "barracuda email security gateway 300 firmware",
+          "vendor": "barracuda",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-116606"
+        },
+        {
+          "product": "barracuda email security gateway 400 firmware",
+          "vendor": "barracuda",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-116606"
+        },
+        {
+          "product": "barracuda email security gateway 600 firmware",
+          "vendor": "barracuda",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-116606"
+        },
+        {
+          "product": "barracuda email security gateway 800 firmware",
+          "vendor": "barracuda",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-116606"
+        },
+        {
+          "product": "barracuda email security gateway 900 firmware",
+          "vendor": "barracuda",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-116606"
         }
       ],
       "affected_versions": [],
@@ -170699,8 +170987,113 @@
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/477847"
     },
     {
+      "issue_id": "CVE-2026-118740",
+      "title": "CVE-2026-118740 Aspire Security Feature Bypass Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118740"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118740"
+    },
+    {
+      "issue_id": "CVE-2026-118741",
+      "title": "CVE-2026-118741 ASP.NET Core Elevation of Privilege Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118741"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118741"
+    },
+    {
+      "issue_id": "CVE-2026-118745",
+      "title": "CVE-2026-118745 Visual Studio Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [
+        "CVE-2026-118745"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118745"
+    },
+    {
+      "issue_id": "CVE-2026-118746",
+      "title": "CVE-2026-118746 .NET Security Feature Bypass Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118746"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118746"
+    },
+    {
+      "issue_id": "CVE-2026-118747",
+      "title": "CVE-2026-118747 .NET Denial of Service Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118747"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118747"
+    },
+    {
+      "issue_id": "CVE-2026-118748",
+      "title": "CVE-2026-118748 ASP.NET Core Denial of Service Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118748"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118748"
+    },
+    {
+      "issue_id": "CVE-2026-118749",
+      "title": "CVE-2026-118749 ASP.NET Core Denial of Service Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-118749"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118749"
+    },
+    {
       "issue_id": "CVE-2026-118750",
-      "title": "CVE-2026-118750",
+      "title": "CVE-2026-118750 ASP.NET Core Denial of Service Vulnerability",
       "priority": "P3",
       "cves": [
         "CVE-2026-118750"
@@ -170711,7 +171104,7 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478939"
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118750"
     },
     {
       "issue_id": "CVE-2026-118763",
@@ -171488,6 +171881,21 @@
       "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2026-119977"
     },
     {
+      "issue_id": "CVE-2026-120006",
+      "title": "CVE-2026-120006 Aspire Elevation of Privilege Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-120006"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-120006"
+    },
+    {
       "issue_id": "CVE-2026-12028",
       "title": "CVE-2026-12028",
       "priority": "P3",
@@ -171995,6 +172403,51 @@
       ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/478405"
+    },
+    {
+      "issue_id": "CVE-2026-120778",
+      "title": "CVE-2026-120778 Aspire Elevation of Privilege Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-120778"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-120778"
+    },
+    {
+      "issue_id": "CVE-2026-120792",
+      "title": "CVE-2026-120792 Aspire Information Disclosure Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-120792"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-120792"
+    },
+    {
+      "issue_id": "CVE-2026-120796",
+      "title": "CVE-2026-120796 .NET Denial of Service Vulnerability",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-120796"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-120796"
     },
     {
       "issue_id": "CVE-2026-121007",
@@ -173540,6 +173993,81 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/378055"
+    },
+    {
+      "issue_id": "CVE-2026-123828",
+      "title": "CVE-2026-123828",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-123828"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/479024"
+    },
+    {
+      "issue_id": "CVE-2026-123863",
+      "title": "CVE-2026-123863",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-123863"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/479024"
+    },
+    {
+      "issue_id": "CVE-2026-123865",
+      "title": "CVE-2026-123865",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-123865"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/479024"
+    },
+    {
+      "issue_id": "CVE-2026-123872",
+      "title": "CVE-2026-123872",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-123872"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/479024"
+    },
+    {
+      "issue_id": "CVE-2026-123875",
+      "title": "CVE-2026-123875",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-123875"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/479024"
     },
     {
       "issue_id": "CVE-2026-12390",
@@ -218036,6 +218564,29 @@
       "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-425/"
     },
     {
+      "issue_id": "CVE-2026-35189",
+      "title": "CVE-2026-35189",
+      "priority": "P2",
+      "cves": [
+        "CVE-2026-35189"
+      ],
+      "vendor": "openssl",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Openssl Openssl"
+      ],
+      "product_vendors": [
+        {
+          "product": "Openssl Openssl",
+          "vendor": "openssl",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-35189"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://search.abb.com/library/Download.aspx?DocumentID=3KXG141033R4801&LanguageCode=en&DocumentPartId=&Action=Launch"
+    },
+    {
       "issue_id": "CVE-2026-35273",
       "title": "CVE-2026-35273",
       "priority": "P0",
@@ -241278,7 +241829,7 @@
         }
       ],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/350783"
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/479024"
     },
     {
       "issue_id": "CVE-2026-48939",
@@ -360234,6 +360785,19 @@
       "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-176-05.json"
     },
     {
+      "issue_id": "UNK-021d344d594c3c44",
+      "title": "ZDI-26-953: (0Day) Meta FAIRChem utils load_inference_model Deserialization of Untrusted Data Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-953/"
+    },
+    {
       "issue_id": "UNK-0232ce43157ff944",
       "title": "3002769706-2020-00007",
       "priority": "P2",
@@ -360939,6 +361503,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://api.fda.gov/device/recall.json?search=res_event_number:\"97879\""
+    },
+    {
+      "issue_id": "UNK-05a136fb6ee15f7a",
+      "title": "ZDI-26-930: (0Day) Meta fairseq LightConvLanguageModel YAML File Parsing Code Injection Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-930/"
     },
     {
       "issue_id": "UNK-05a775cae6cc5250",
@@ -361666,6 +362243,19 @@
       "canonical_link": "https://www.fiercehealthcare.com/sponsored/beyond-recall-notice-why-pharmacies-need-greater-visibility-recalled-and-expired"
     },
     {
+      "issue_id": "UNK-08e0bb9131ad0660",
+      "title": "ZDI-26-938: (0Day) Meta fairseq parse_manifest Code Injection Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-938/"
+    },
+    {
       "issue_id": "UNK-08ebb63d568ea6f3",
       "title": "ZDI-CAN-31096: LibreOffice",
       "priority": "P3",
@@ -361755,6 +362345,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://www.bioworld.com/articles/728066-fda-clears-11-aidoc-ai-triage-indications"
+    },
+    {
+      "issue_id": "UNK-098f58a3e8b04def",
+      "title": "ZDI-CAN-32233: NVIDIA",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
     },
     {
       "issue_id": "UNK-099119c886265b1b",
@@ -361885,6 +362488,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://www.philips.com/a-w/security/security-advisories/product-security-2025.html"
+    },
+    {
+      "issue_id": "UNK-0a2c8ca98a53c67d",
+      "title": "ZDI-26-917: (0Day) Meta fairseq load_speaker Code Injection Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-917/"
     },
     {
       "issue_id": "UNK-0a43097686bc4f33",
@@ -362255,6 +362871,19 @@
       "canonical_link": "https://api.fda.gov/device/enforcement.json?search=recall_number:\"Z-0030-2026\""
     },
     {
+      "issue_id": "UNK-0c5cdf7ce9b9baf8",
+      "title": "ZDI-26-926: (0Day) Meta fairseq RawAudioDataset YAML File Parsing Code Injection Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-926/"
+    },
+    {
       "issue_id": "UNK-0c886bcba60627e2",
       "title": "Fedora 44 : kernel (2026-7b153c4ce6)",
       "priority": "P3",
@@ -362450,6 +363079,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://www.fiercehealthcare.com/resource/future-payment-integrity-how-leading-plans-move-recovering-dollars-preventing-leakage"
+    },
+    {
+      "issue_id": "UNK-0df1bd7f54bd70b1",
+      "title": "ZDI-26-912: (0Day) Meta Detectron2 detection_checkpoint Deserialization of Untrusted Data Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-912/"
     },
     {
       "issue_id": "UNK-0dfa9110af85f885",
@@ -363625,6 +364267,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/378017"
+    },
+    {
+      "issue_id": "UNK-13ecd18d12abbf43",
+      "title": "ZDI-CAN-35591: Cisco",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
     },
     {
       "issue_id": "UNK-13f460ef4640d986",
@@ -364923,6 +365578,19 @@
       "canonical_link": "https://www.bioworld.com/articles/731630-roche-develops-pcr-test-to-detect-the-ebola-bundibugyo-virus"
     },
     {
+      "issue_id": "UNK-1b0aebbacdb93697",
+      "title": "Cyber Security Notification - ABB Ability™ OPTIMAX® Node2Shell",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://search.abb.com/library/Download.aspx?DocumentID=4JXD000118&LanguageCode=en&DocumentPartId=&Action=Launch"
+    },
+    {
       "issue_id": "UNK-1b10969f9166e0ec",
       "title": "Crypto Clipper uses Tor and worm-like propagation for persistence and control",
       "priority": "P3",
@@ -365711,6 +366379,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
+    },
+    {
+      "issue_id": "UNK-1e8cb16c5bc34d1b",
+      "title": "ZDI-26-946: (0Day) Meta FAIRChem make_challenge_submission_file NPZ File Parsing Deserialization of Untrusted Data Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-946/"
     },
     {
       "issue_id": "UNK-1eb01512ebc7d1f4",
@@ -366983,6 +367664,19 @@
       "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
     },
     {
+      "issue_id": "UNK-26b72a7e6348e1c7",
+      "title": "ZDI-26-944: (0Day) Meta fairseq load_ema_from_checkpoint Deserialization of Untrusted Data Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-944/"
+    },
+    {
       "issue_id": "UNK-26c9bfdb49ef5902",
       "title": "Boothole GRUB2 Advisory (29 July 2020)",
       "priority": "P3",
@@ -367912,6 +368606,19 @@
       "canonical_link": "https://www.compliancejunction.com/irs-warns-everyone-to-beware-of-tax-related-phishing-scams/"
     },
     {
+      "issue_id": "UNK-2b79b756e2fc28e2",
+      "title": "ZDI-26-920: (0Day) Meta fairseq Data2VecAudioModel YAML File Parsing Code Injection Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-920/"
+    },
+    {
       "issue_id": "UNK-2b7a73fcd0198a19",
       "title": "Surge in Brute Force RDP Attacks Globally During COVID-19 Pandemic",
       "priority": "P3",
@@ -368241,6 +368948,19 @@
       "canonical_link": "https://www.bioworld.com/articles/730633-detecting-the-invisible-minimal-residual-disease-at-aacr-2026"
     },
     {
+      "issue_id": "UNK-2d4fc128a68326f9",
+      "title": "ZDI-CAN-34407: Foxit",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
+    },
+    {
       "issue_id": "UNK-2d586ea10833cc43",
       "title": "0001831750-2020-00330",
       "priority": "P2",
@@ -368436,6 +369156,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://www.bioworld.com/articles/734888-alzheimers-blood-tests-mean-earlier-diagnosis-new-type-of-patient"
+    },
+    {
+      "issue_id": "UNK-2e8c0a5a6becce03",
+      "title": "ZDI-26-951: (0Day) Meta FAIRChem utils load_tasks Deserialization of Untrusted Data Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-951/"
     },
     {
       "issue_id": "UNK-2e92f905d55f9b09",
@@ -368676,6 +369409,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://api.fda.gov/device/recall.json?search=res_event_number:\"34923\""
+    },
+    {
+      "issue_id": "UNK-2f3a38727515a543",
+      "title": "ZDI-CAN-36576: S44 Energy",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
     },
     {
       "issue_id": "UNK-2f3b2ad9e641a7da",
@@ -369067,6 +369813,19 @@
       "canonical_link": "https://www.tenable.com/plugins/nessus/325078"
     },
     {
+      "issue_id": "UNK-30d857d74b055c57",
+      "title": "Lessons from 59 Linux Kernel Bug Reports",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.microsoft.com/en-us/security/blog/2026/11/11/lessons-from-59-linux-kernel-bug-reports/"
+    },
+    {
       "issue_id": "UNK-30ee9bc772b4203b",
       "title": "Hackers Target Remote Desktop Tools for Access to Healthcare Networks",
       "priority": "P3",
@@ -369290,6 +370049,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://api.fda.gov/device/recall.json?search=res_event_number:\"34225\""
+    },
+    {
+      "issue_id": "UNK-3223e705c75097d4",
+      "title": "ZDI-26-949: (0Day) Meta FAIRChem utils load_model_and_weights_from_checkpoint Deserialization of Untrusted Data Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-949/"
     },
     {
       "issue_id": "UNK-3242f127eb143441",
@@ -370139,6 +370911,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
+    },
+    {
+      "issue_id": "UNK-3787845ee8305cad",
+      "title": "ZDI-26-952: (0Day) Meta FAIRChem _cli  YAML File Parsing Deserialization of Untrusted Data Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-952/"
     },
     {
       "issue_id": "UNK-37888b38e4ef0d4d",
@@ -371139,6 +371924,19 @@
       "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-295-09.json"
     },
     {
+      "issue_id": "UNK-3c3840e060873b30",
+      "title": "ZDI-26-915: (0Day) Meta fairseq FilterNamesDataset Code Injection Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-915/"
+    },
+    {
       "issue_id": "UNK-3c41d5cdc0539fa8",
       "title": "How Adversaries Are Turning the Vulnerability Ecosystem Against Defenders",
       "priority": "P3",
@@ -371663,6 +372461,19 @@
       "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
     },
     {
+      "issue_id": "UNK-3f5470668c27b0a0",
+      "title": "ZDI-26-928: (0Day) Meta fairseq W2lConvGluEncoder YAML File Parsing Code Injection Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-928/"
+    },
+    {
       "issue_id": "UNK-3f61d018bbec2666",
       "title": "HD CAMERA HEAD — Gas/Air Leak",
       "priority": "P2",
@@ -371793,6 +372604,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://api.fda.gov/device/enforcement.json?search=recall_number:\"Z-0038-2018\""
+    },
+    {
+      "issue_id": "UNK-40bbded5d3fce0c7",
+      "title": "ZDI-CAN-36940: SoftMaker",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
     },
     {
       "issue_id": "UNK-40c11e85ec090d30",
@@ -373996,6 +374820,19 @@
       "canonical_link": "https://api.fda.gov/device/recall.json?search=res_event_number:\"26006\""
     },
     {
+      "issue_id": "UNK-4d3c36cfe182c287",
+      "title": "ZDI-26-947: (0Day) Meta FAIRChem make_submission_file NPZ File Parsing Deserialization of Untrusted Data Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-947/"
+    },
+    {
       "issue_id": "UNK-4d4199fea775cf31",
       "title": "ZDI-CAN-29159: aeon",
       "priority": "P3",
@@ -374284,6 +375121,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://api.fda.gov/device/enforcement.json?search=recall_number:\"Z-0133-2022\""
+    },
+    {
+      "issue_id": "UNK-4ee5b15c6a87cf86",
+      "title": "ZDI-26-923: (0Day) Meta fairseq HubertModel YAML File Parsing Code Injection Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-923/"
     },
     {
       "issue_id": "UNK-4f0bf533135cef2c",
@@ -375437,6 +376287,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://api.fda.gov/device/enforcement.json?search=recall_number:\"Z-0014-2016\""
+    },
+    {
+      "issue_id": "UNK-54136d710416a3e2",
+      "title": "ZDI-CAN-34283: Autodesk",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
     },
     {
       "issue_id": "UNK-54310fdd736eb740",
@@ -376733,6 +377596,19 @@
       "canonical_link": "https://api.fda.gov/device/enforcement.json?search=recall_number:\"Z-0111-2019\""
     },
     {
+      "issue_id": "UNK-5b14e700d28a1640",
+      "title": "ZDI-26-931: (0Day) Meta fairseq AudioModalityConfig YAML File Parsing Code Injection Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-931/"
+    },
+    {
       "issue_id": "UNK-5b18157a89132724",
       "title": "System, Monitoring, Perinatal recall (LMS Medical Systems Ltd)",
       "priority": "P1",
@@ -377142,8 +378018,34 @@
       "canonical_link": "https://www.cisecurity.org/advisory/multiple-vulnerabilities-in-mozilla-products-could-allow-for-arbitrary-code-execution_2026-065"
     },
     {
+      "issue_id": "UNK-5c8b002f7adbd38b",
+      "title": "ZDI-26-945: (0Day) Meta FAIRChem convert_fine_tune_checkpoint Deserialization of Untrusted Data Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-945/"
+    },
+    {
       "issue_id": "UNK-5c8c21f169679101",
       "title": "ZDI-CAN-33008: Thanos",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
+    },
+    {
+      "issue_id": "UNK-5c92480d604d5b56",
+      "title": "ZDI-CAN-36575: S44 Energy",
       "priority": "P3",
       "cves": [],
       "vendor": "",
@@ -377525,6 +378427,19 @@
     {
       "issue_id": "UNK-5e2cd70928f1fb28",
       "title": "ZDI-CAN-32124: MoveIt",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
+    },
+    {
+      "issue_id": "UNK-5e5782773915fbb1",
+      "title": "ZDI-CAN-34657: LiteLLM",
       "priority": "P3",
       "cves": [],
       "vendor": "",
@@ -378577,6 +379492,19 @@
       "canonical_link": "https://api.fda.gov/device/recall.json?search=res_event_number:\"30462\""
     },
     {
+      "issue_id": "UNK-6320ae6bd2a7f485",
+      "title": "ZDI-26-910: (0Day) Meta Detectron2 LazyConfig Deserialization of Untrusted Data Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-910/"
+    },
+    {
       "issue_id": "UNK-632ef4cf272ba342",
       "title": "BTR Reforged: Weaponizing Defender’s Remediation Driver as a Kernel Operation Primitive",
       "priority": "P3",
@@ -378681,6 +379609,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://api.fda.gov/device/enforcement.json?search=recall_number:\"Z-0079-2026\""
+    },
+    {
+      "issue_id": "UNK-6385d7893b84f631",
+      "title": "ZDI-26-909: (0Day) Meta Detectron2 CfgNode.merge_from_file Deserialization of Untrusted Data Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-909/"
     },
     {
       "issue_id": "UNK-638873eba0338b62",
@@ -379885,6 +380826,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://api.fda.gov/device/enforcement.json?search=recall_number:\"Z-0109-2022\""
+    },
+    {
+      "issue_id": "UNK-694a6399662610f1",
+      "title": "ZDI-26-927: (0Day) Meta fairseq FairseqAdam YAML File Parsing Code Injection Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-927/"
     },
     {
       "issue_id": "UNK-694cf85bfcc24e72",
@@ -381355,6 +382309,19 @@
       "canonical_link": "https://www.tenable.com/plugins/was/115274"
     },
     {
+      "issue_id": "UNK-70802729b5fb11ae",
+      "title": "ZDI-CAN-36578: S44 Energy",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
+    },
+    {
       "issue_id": "UNK-709da30ba28e1d68",
       "title": "Janssen Pharmaceutica reports TDP-43 PET imaging agents",
       "priority": "P3",
@@ -381950,6 +382917,19 @@
       "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-211-01.json"
     },
     {
+      "issue_id": "UNK-734c4e683eced30b",
+      "title": "ZDI-26-922: (0Day) Meta fairseq Wav2Vec2Model YAML File Parsing Code Injection Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-922/"
+    },
+    {
       "issue_id": "UNK-7372c5348f8fabda",
       "title": "Z-0019-2018: Philips Electronics North  America Corporation",
       "priority": "P1",
@@ -382114,6 +383094,19 @@
       "canonical_link": "https://api.fda.gov/device/recall.json?search=res_event_number:\"34088\""
     },
     {
+      "issue_id": "UNK-740e30d9c72466be",
+      "title": "ZDI-26-948: (0Day) Meta FAIRChem MLIPPredictUnit Deserialization of Untrusted Data Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-948/"
+    },
+    {
       "issue_id": "UNK-741d3225770e7fc0",
       "title": "Reports: Ransomware Attacks Rise as Healthcare Sector is Heaviest Hit",
       "priority": "P3",
@@ -382261,6 +383254,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://www.nist.gov/blogs/cybersecurity-insights/impact-artificial-intelligence-cybersecurity-workforce"
+    },
+    {
+      "issue_id": "UNK-74b8e3d2d73e4269",
+      "title": "ZDI-CAN-34910: LiteLLM",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
     },
     {
       "issue_id": "UNK-74cb0443d8e770f6",
@@ -383051,6 +384057,19 @@
       "canonical_link": "https://search.abb.com/library/Download.aspx?DocumentID=2NGA002743&LanguageCode=en&DocumentPartId=PDF&Action=Launch"
     },
     {
+      "issue_id": "UNK-796df1abc0f306f5",
+      "title": "ZDI-26-929: (0Day) Meta fairseq FairseqAdamax YAML File Parsing Code Injection Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-929/"
+    },
+    {
       "issue_id": "UNK-796faedeb07ae87f",
       "title": "Z-0085-2026: Boston Scientific Corporation",
       "priority": "P3",
@@ -383730,6 +384749,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://www.bioworld.com/articles/729436-agilent-buys-biocare-for-950m"
+    },
+    {
+      "issue_id": "UNK-7d5b496624bcce4d",
+      "title": "ZDI-26-934: (0Day) Meta fairseq FConvLanguageModel YAML File Parsing Code Injection Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-934/"
     },
     {
       "issue_id": "UNK-7d5cb1d1fd0712a7",
@@ -384690,6 +385722,19 @@
       "canonical_link": "https://www.philips.com/a-w/security/security-advisories/product-security-2018.html"
     },
     {
+      "issue_id": "UNK-836b4557d4641a79",
+      "title": "ZDI-26-936: (0Day) Meta fairseq FairseqCPUAdam YAML File Parsing Code Injection Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-936/"
+    },
+    {
       "issue_id": "UNK-83725c0b74e8a3f6",
       "title": "Analyzer, Chemistry (Photometric, Discrete), For Clinical Use recall (Abbott Laboratories, Inc)",
       "priority": "P3",
@@ -384781,6 +385826,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": ""
+    },
+    {
+      "issue_id": "UNK-83b8c90ea80dcb3a",
+      "title": "ZDI-CAN-34039: PDF-XChange",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
     },
     {
       "issue_id": "UNK-83c7d7a52c8414d2",
@@ -384965,6 +386023,19 @@
       "canonical_link": "https://www.philips.com/a-w/security/security-advisories/product-security-2021.html"
     },
     {
+      "issue_id": "UNK-84af5dbe64e4f66a",
+      "title": "ZDI-CAN-36941: SoftMaker",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
+    },
+    {
       "issue_id": "UNK-84bf8d9087b0989e",
       "title": "Counter, Differential Cell recall (Beckman Coulter Inc)",
       "priority": "P1",
@@ -385123,6 +386194,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-181-06.json"
+    },
+    {
+      "issue_id": "UNK-85b1629df1d7dbef",
+      "title": "ZDI-26-950: (0Day) Meta FAIRChem migrate_checkpoint Deserialization of Untrusted Data Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-950/"
     },
     {
       "issue_id": "UNK-85ea7457c9a89c55",
@@ -385973,6 +387057,19 @@
       "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
     },
     {
+      "issue_id": "UNK-8947696c701271c2",
+      "title": "ZDI-26-921: (0Day) Meta fairseq TransformerLanguageModel YAML File Parsing Code Injection Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-921/"
+    },
+    {
       "issue_id": "UNK-895f5f115fa6e3d5",
       "title": "ZDI-CAN-31571: Microsoft",
       "priority": "P3",
@@ -386116,6 +387213,32 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/375068"
+    },
+    {
+      "issue_id": "UNK-8a31f4069169a696",
+      "title": "Apple’s HomeView Tries Face Authentication Without FaceID",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.wired.com/story/apples-homeview-tries-face-authentication-without-faceid/"
+    },
+    {
+      "issue_id": "UNK-8a35df9c8c412ac1",
+      "title": "ZDI-26-940: (0Day) Meta fairseq dump_km_label Deserialization of Untrusted Data Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-940/"
     },
     {
       "issue_id": "UNK-8a4c09f56905a886",
@@ -386918,6 +388041,19 @@
       "canonical_link": "https://www.microsoft.com/en-us/security/blog/2026/03/19/when-tax-season-becomes-cyberattack-season-phishing-and-malware-campaigns-using-tax-related-lures/"
     },
     {
+      "issue_id": "UNK-8e79956e95c17422",
+      "title": "ZDI-26-913: (0Day) Meta fairseq load_audio_path Code Injection Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-913/"
+    },
+    {
       "issue_id": "UNK-8eafe8c79e8079a9",
       "title": "One small step for Cyber Resilience Test Facilities, one giant leap for technology assurance",
       "priority": "P3",
@@ -387206,6 +388342,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://api.fda.gov/device/enforcement.json?search=recall_number:\"Z-0082-2024\""
+    },
+    {
+      "issue_id": "UNK-9048dc047f21406d",
+      "title": "ZDI-26-932: (0Day) Meta fairseq CtcCriterion YAML File Parsing Code Injection Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-932/"
     },
     {
       "issue_id": "UNK-905242c02e3991c5",
@@ -390891,6 +392040,19 @@
       "canonical_link": "https://compliancejunction.com/hc3-elevated-risk-of-blackmatter-ransomware-attacks-on-healthcare-organizations/"
     },
     {
+      "issue_id": "UNK-a43150759319ccc7",
+      "title": "ZDI-26-916: (0Day) Meta fairseq split_by_lang Code Injection Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-916/"
+    },
+    {
       "issue_id": "UNK-a432dc25c3cbce40",
       "title": "System, Test, Carbohydrate Antigen (Ca19-9), For Monitoring And Management Of Pancreatic Cancer recall (Tosoh Bioscience, Inc.)",
       "priority": "P1",
@@ -390956,6 +392118,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://www.securitymagazine.com/articles/101455-2025-isc-west-product-preview"
+    },
+    {
+      "issue_id": "UNK-a4526b5daaea0d79",
+      "title": "VU#385711: PrestaShop debug mode configuration allows PHP code injection",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://kb.cert.org/vuls/id/385711"
     },
     {
       "issue_id": "UNK-a45577e07ca08fcd",
@@ -392341,6 +393516,19 @@
       "canonical_link": "https://www.tenable.com/plugins/nessus/345455"
     },
     {
+      "issue_id": "UNK-aa72340f938135f8",
+      "title": "ZDI-CAN-36574: S44 Energy",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
+    },
+    {
       "issue_id": "UNK-aa8179ca21d12070",
       "title": "ZDI-CAN-31815: LiteLLM",
       "priority": "P3",
@@ -393027,6 +394215,19 @@
       "canonical_link": "https://cyberscoop.com/hhs-burrows-into-identifying-risks-to-health-sector-from-third-party-vendors/"
     },
     {
+      "issue_id": "UNK-ad8f602e1d2bd7b7",
+      "title": "ZDI-26-918: (0Day) Meta fairseq VGGTransformerModel YAML File Parsing Code Injection Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-918/"
+    },
+    {
       "issue_id": "UNK-ad994d7b3ecbffde",
       "title": "2954323-2020-02933",
       "priority": "P2",
@@ -393306,6 +394507,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://www.cisecurity.org/advisory/multiple-vulnerabilities-in-mozilla-products-could-allow-for-arbitrary-code-execution_2026-032"
+    },
+    {
+      "issue_id": "UNK-af60a71ea300fe81",
+      "title": "The global socket: how threat actors are weaponizing GSocket for stealthy C2",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.microsoft.com/en-us/security/blog/2026/11/11/global-socket-how-threat-actors-weaponizing-gsocket-stealthy-c2/"
     },
     {
       "issue_id": "UNK-af709115fd9f0e03",
@@ -394039,6 +395253,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-280-01.json"
+    },
+    {
+      "issue_id": "UNK-b2a73606c0b24578",
+      "title": "ZDI-CAN-34889: LiteLLM",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
     },
     {
       "issue_id": "UNK-b2aceaa890ecc8c9",
@@ -394907,6 +396134,19 @@
       "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-239-03.json"
     },
     {
+      "issue_id": "UNK-b72391f890958862",
+      "title": "ZDI-26-933: (0Day) Meta fairseq MultiresHubertModel YAML File Parsing Code Injection Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-933/"
+    },
+    {
       "issue_id": "UNK-b7265fdee1ce164e",
       "title": "Titanium Implantable Port, ChronoFlex Single-Lumen, Kit, 8F — Adverse Event Without Identified Device or Use Problem",
       "priority": "P1",
@@ -395717,6 +396957,19 @@
       "canonical_link": "https://www.tenable.com/plugins/nessus/365529"
     },
     {
+      "issue_id": "UNK-bb3e41d29385b7a3",
+      "title": "ZDI-26-925: (0Day) Meta fairseq FairseqLAMB YAML File Parsing Code Injection Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-925/"
+    },
+    {
       "issue_id": "UNK-bb42d639c954adb2",
       "title": "Z-0070-2021: Devicor Medical Products Inc",
       "priority": "P0",
@@ -396005,6 +397258,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
+    },
+    {
+      "issue_id": "UNK-bd0bbc36585e7220",
+      "title": "Cyber Security Notification - ABB Ability™ OPTIMAX® Use-after-free - kernel IPv4",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://search.abb.com/library/Download.aspx?DocumentID=4JXD000117&LanguageCode=en&DocumentPartId=&Action=Launch"
     },
     {
       "issue_id": "UNK-bd137184429cd760",
@@ -396414,6 +397680,19 @@
       "canonical_link": "https://api.fda.gov/device/recall.json?search=res_event_number:\"83433\""
     },
     {
+      "issue_id": "UNK-bf745d963c90b8b0",
+      "title": "ZDI-CAN-36599: S44 Energy",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
+    },
+    {
       "issue_id": "UNK-bf83825aab8c3681",
       "title": "ZDI-CAN-31143: GStreamer",
       "priority": "P3",
@@ -396613,6 +397892,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
+    },
+    {
+      "issue_id": "UNK-c090c1fc4ab4c30d",
+      "title": "ZDI-26-942: (0Day) Meta fairseq rerank Code Injection Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-942/"
     },
     {
       "issue_id": "UNK-c0a993f2d80897a5",
@@ -397379,6 +398671,19 @@
       "canonical_link": "https://www.cisecurity.org/advisory/a-vulnerability-in-fortiweb-could-allow-for-remote-code-execution_2025-107"
     },
     {
+      "issue_id": "UNK-c4b20016d6ae4db3",
+      "title": "ZDI-26-941: (0Day) Meta fairseq FConvModel YAML File Parsing Code Injection Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-941/"
+    },
+    {
       "issue_id": "UNK-c4ff1b4bc8adc087",
       "title": "ZDI-CAN-36541: NVIDIA",
       "priority": "P3",
@@ -397742,6 +399047,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-267-02.json"
+    },
+    {
+      "issue_id": "UNK-c689ad0406f4a367",
+      "title": "ZDI-CAN-33652: Delta Electronics",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
     },
     {
       "issue_id": "UNK-c6c119df187d662d",
@@ -398348,6 +399666,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsma-26-288-02.json"
+    },
+    {
+      "issue_id": "UNK-c9daed41292d5f45",
+      "title": "ZDI-26-911: (0Day) Meta Detectron2 DensePose Deserialization of Untrusted Data Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-911/"
     },
     {
       "issue_id": "UNK-c9fc31db36105d48",
@@ -399768,6 +401099,19 @@
       "canonical_link": "https://search.abb.com/library/Download.aspx?DocumentID=4HZK000017&LanguageCode=en&DocumentPartId=&Action=Launch"
     },
     {
+      "issue_id": "UNK-d175df86f94d8d85",
+      "title": "ZDI-26-943: (0Day) Meta fairseq load_checkpoint_to_cpu Deserialization of Untrusted Data Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-943/"
+    },
+    {
       "issue_id": "UNK-d192acd280fccf3c",
       "title": "Unity Linux 20.1050a / 20.1060a / 20.1070a Security Update: corosync (UTSA-2026-126161)",
       "priority": "P3",
@@ -400145,6 +401489,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
+    },
+    {
+      "issue_id": "UNK-d3f52051a46b0892",
+      "title": "ZDI-26-935: (0Day) Meta fairseq FConvModelSelfAtt YAML File Parsing Code Injection Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-935/"
     },
     {
       "issue_id": "UNK-d41c1cb1890b7f3d",
@@ -400913,6 +402270,19 @@
       "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
     },
     {
+      "issue_id": "UNK-d8723d18ff6e4ba6",
+      "title": "ZDI-26-937: (0Day) Meta fairseq quantize_with_kmeans Deserialization of Untrusted Data Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-937/"
+    },
+    {
       "issue_id": "UNK-d879a3c1f23f982a",
       "title": "Bransys ELD",
       "priority": "P3",
@@ -401296,6 +402666,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://api.fda.gov/device/enforcement.json?search=recall_number:\"Z-0032-2018\""
+    },
+    {
+      "issue_id": "UNK-da4e102176f5b58b",
+      "title": "ZDI-CAN-34289: Autodesk",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
     },
     {
       "issue_id": "UNK-da5289652be02b0f",
@@ -401925,6 +403308,19 @@
       "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-295-04.json"
     },
     {
+      "issue_id": "UNK-ddab4198831c5e2c",
+      "title": "ZDI-26-914: (0Day) Meta fairseq Wav2VecModel YAML File Parsing Code Injection Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-914/"
+    },
+    {
       "issue_id": "UNK-ddb082b254a993dc",
       "title": "ZDI-CAN-33055: PyTorch Foundation",
       "priority": "P3",
@@ -402358,6 +403754,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://fortifiedhealthsecurity.com/blog/privacy-is-an-illusion-what-happens-when-the-playbook-isnt-enough/"
+    },
+    {
+      "issue_id": "UNK-df93b1066113ec46",
+      "title": "New obesity classification reveals health risks missed by BMI",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.bioworld.com/articles/735273-new-obesity-classification-reveals-health-risks-missed-by-bmi"
     },
     {
       "issue_id": "UNK-df9e296079db750a",
@@ -402797,6 +404206,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://api.fda.gov/device/recall.json?search=res_event_number:\"30518\""
+    },
+    {
+      "issue_id": "UNK-e1c26df6d1c1c4f6",
+      "title": "ZDI-26-939: (0Day) Meta fairseq2 FileCheckpointManager _load_state_dict Deserialization of Untrusted Data Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-939/"
     },
     {
       "issue_id": "UNK-e1c4d26657e2b640",
@@ -404026,6 +405448,19 @@
       "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
     },
     {
+      "issue_id": "UNK-e7119cbe0cbf5d54",
+      "title": "ZDI-CAN-36596: S44 Energy",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
+    },
+    {
       "issue_id": "UNK-e715009534d32ace",
       "title": "Applied Systems Engineering ASE2000 V2 Communications Test Set",
       "priority": "P3",
@@ -404604,6 +406039,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
+    },
+    {
+      "issue_id": "UNK-e9bc7b820b9a8337",
+      "title": "ZDI-26-919: (0Day) Meta fairseq FairseqAdafactor YAML File Parsing Code Injection Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-919/"
     },
     {
       "issue_id": "UNK-e9c052d3eae525ee",
@@ -405687,6 +407135,32 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": ""
+    },
+    {
+      "issue_id": "UNK-edd2ae5c475372fc",
+      "title": "ZDI-26-924: (0Day) Meta fairseq S2TWavTransformerEncoder YAML File Parsing Code Injection Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-924/"
+    },
+    {
+      "issue_id": "UNK-edddd9b7d1aca2a9",
+      "title": "ZDI-CAN-32234: NVIDIA",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
     },
     {
       "issue_id": "UNK-ee008e163e0a94a1",
@@ -407405,6 +408879,19 @@
       "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
     },
     {
+      "issue_id": "UNK-f5eb30d80125a18a",
+      "title": "ZDI-26-908: (0Day) Meta Detectron2 load_proposals_into_dataset Deserialization of Untrusted Data Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-908/"
+    },
+    {
       "issue_id": "UNK-f6098b47753bca25",
       "title": "How AI Is Compressing the Time Between Vulnerability and Exploit",
       "priority": "P3",
@@ -407481,6 +408968,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": ""
+    },
+    {
+      "issue_id": "UNK-f662eb2cb836c974",
+      "title": "ZDI-26-907: (0Day) Meta Detectron2 vertex_feature_embedder Deserialization of Untrusted Data Remote Code Execution Vulnerability",
+      "priority": "P2",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-907/"
     },
     {
       "issue_id": "UNK-f663953fdd105040",
@@ -407587,6 +409087,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://www.zdnet.com/uncategorized/ring-smart-lock-manual-power-dial/"
+    },
+    {
+      "issue_id": "UNK-f6b039f23b83e818",
+      "title": "ZDI-CAN-34696: LiteLLM",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
     },
     {
       "issue_id": "UNK-f6bf89a4a2751f14",
@@ -407732,6 +409245,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
+    },
+    {
+      "issue_id": "UNK-f75b10e45e700720",
+      "title": "Pinpoint test targets cancer triage in major UK trial",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.bioworld.com/articles/735222-pinpoint-test-targets-cancer-triage-in-major-uk-trial"
     },
     {
       "issue_id": "UNK-f762aa2342bbabec",
@@ -408359,6 +409885,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://api.fda.gov/device/recall.json?search=res_event_number:\"35056\""
+    },
+    {
+      "issue_id": "UNK-f9f20588c093d8fb",
+      "title": "ZDI-CAN-36595: S44 Energy",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
     },
     {
       "issue_id": "UNK-f9f32762916cb356",
