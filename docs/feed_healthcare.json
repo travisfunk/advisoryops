@@ -30595,7 +30595,7 @@
       "2026-10-22T06:00:00.000000Z"
     ],
     "first_seen_at": "2026-10-24T10:33:10.353645+00:00",
-    "last_seen_at": "2026-11-13T14:13:06.670612+00:00",
+    "last_seen_at": "2026-11-14T13:17:59.752145+00:00",
     "score": 82,
     "priority": "P2",
     "actions": [
@@ -30675,7 +30675,7 @@
       "2026-10-15T06:00:00.000000Z"
     ],
     "first_seen_at": "2026-10-17T10:27:41.142183+00:00",
-    "last_seen_at": "2026-11-13T14:13:06.670612+00:00",
+    "last_seen_at": "2026-11-14T13:17:59.752145+00:00",
     "score": 82,
     "priority": "P2",
     "actions": [
@@ -30755,7 +30755,7 @@
       "2026-10-15T06:00:00.000000Z"
     ],
     "first_seen_at": "2026-10-17T10:27:41.142183+00:00",
-    "last_seen_at": "2026-11-13T14:13:06.670612+00:00",
+    "last_seen_at": "2026-11-14T13:17:59.752145+00:00",
     "score": 82,
     "priority": "P2",
     "actions": [
@@ -32977,177 +32977,6 @@
     ]
   },
   {
-    "issue_id": "CVE-2021-43935",
-    "issue_type": "cve",
-    "title": "CVE-2021-43935",
-    "summary": "The impacted products, when configured to use SSO, are affected by an improper authentication vulnerability. This vulnerability allows the application to accept manual entry of any active directory (AD) account provisioned in the application without supplying a password, resulting in access to the application as the supplied AD account, with all associated privileges.",
-    "canonical_link": "https://compliancejunction.com/cisa-warns-of-high-severity-vulnerability-in-hillrom-welch-allyn-cardio-products/",
-    "cves": [
-      "CVE-2021-43935"
-    ],
-    "sources": [
-      "cisa-icsma-historical",
-      "compliance-junction-cyber"
-    ],
-    "published_dates": [
-      "12/9/2021",
-      "Thu, 16 Dec 2021 16:24:31 +0000"
-    ],
-    "first_seen_at": "2026-03-24T02:56:12.404427+00:00",
-    "last_seen_at": "2026-11-11T13:47:01.558589+00:00",
-    "score": 60,
-    "priority": "P2",
-    "actions": [
-      "track"
-    ],
-    "why": [
-      "base: issue_type=cve (+10)",
-      "keyword: auth bypass (+25)",
-      "source-authority: tier-4 weight=0.5 (+15)",
-      "device: healthcare context (+10)",
-      "priority: P2 (score=60)"
-    ],
-    "handling_warnings": [
-      "Ensure that proper access controls are in place for sensitive applications using SSO"
-    ],
-    "evidence_gaps": [],
-    "unknowns": [
-      "Specific versions affected",
-      "Availability of a patch or timeline for remediation"
-    ],
-    "source_consensus": {
-      "agreed": [],
-      "contradicted": [],
-      "unique_contributions": {}
-    },
-    "source_authority_weight": 0.5,
-    "highest_authority_source": "compliance-junction-cyber",
-    "healthcare_category": "medical_device",
-    "classification": {},
-    "severity": "high",
-    "affected_versions": [],
-    "vendor": "baxter",
-    "generated_by": "deterministic",
-    "extracted_facts": {},
-    "inferred_facts": {},
-    "confidence_by_field": {},
-    "evidence_sources": [],
-    "insufficient_evidence": false,
-    "non_applicability": [],
-    "source_mitigations": [
-      {
-        "action": "review and secure your SSO configurations immediately",
-        "citation": "ICSMA-21-343-01",
-        "mitigation_type": "process",
-        "source": "cisa-icsma-historical",
-        "source_tier": 1,
-        "url": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-21-343-01"
-      }
-    ],
-    "iocs": [
-      {
-        "type": "cve",
-        "value": "CVE-2021-43935",
-        "source": "compliance-junction-cyber"
-      },
-      {
-        "type": "url",
-        "value": "https://separate-steam.flywheelsites.com/?p=7647",
-        "source": "compliance-junction-cyber"
-      },
-      {
-        "type": "domain",
-        "value": "separate-steam.flywheelsites.com",
-        "source": "compliance-junction-cyber"
-      }
-    ],
-    "cvss_score": 8.1,
-    "cvss_severity": "HIGH",
-    "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
-    "cvss_attack_vector": "network",
-    "remotely_exploitable_no_auth": true,
-    "cwe_ids": [
-      "CWE-287",
-      "CWE-288"
-    ],
-    "affected_products": [
-      "Baxter Welch Allyn Connex Cardio",
-      "Baxter Welch Allyn Diagnostic Cardiology Suite",
-      "Baxter Welch Allyn Rscribe Resting Ecg System",
-      "Baxter Welch Allyn Vision Express Holter Analysis System",
-      "Baxter Welch Allyn Hscribe Holter Analysis System Firmware",
-      "Baxter Welch Allyn Hscribe Holter Analysis System",
-      "Baxter Welch Allyn Q-Stress Cardiac Stress Testing System Firmware",
-      "Baxter Welch Allyn Q-Stress Cardiac Stress Testing System",
-      "Baxter Welch Allyn Xscribe Cardiac Stress Testing System Firmware",
-      "Baxter Welch Allyn Xscribe Cardiac Stress Testing System"
-    ],
-    "source_product_identities": [
-      {
-        "vendor": "baxter",
-        "product": "welch allyn connex cardio",
-        "source": "https://nvd.nist.gov/vuln/detail/CVE-2021-43935",
-        "kind": "nvd"
-      },
-      {
-        "vendor": "baxter",
-        "product": "welch allyn diagnostic cardiology suite",
-        "source": "https://nvd.nist.gov/vuln/detail/CVE-2021-43935",
-        "kind": "nvd"
-      },
-      {
-        "vendor": "baxter",
-        "product": "welch allyn hscribe holter analysis system firmware",
-        "source": "https://nvd.nist.gov/vuln/detail/CVE-2021-43935",
-        "kind": "nvd"
-      },
-      {
-        "vendor": "baxter",
-        "product": "welch allyn q-stress cardiac stress testing system firmware",
-        "source": "https://nvd.nist.gov/vuln/detail/CVE-2021-43935",
-        "kind": "nvd"
-      },
-      {
-        "vendor": "baxter",
-        "product": "welch allyn rscribe resting ecg system",
-        "source": "https://nvd.nist.gov/vuln/detail/CVE-2021-43935",
-        "kind": "nvd"
-      },
-      {
-        "vendor": "baxter",
-        "product": "welch allyn vision express holter analysis system",
-        "source": "https://nvd.nist.gov/vuln/detail/CVE-2021-43935",
-        "kind": "nvd"
-      },
-      {
-        "vendor": "baxter",
-        "product": "welch allyn xscribe cardiac stress testing system firmware",
-        "source": "https://nvd.nist.gov/vuln/detail/CVE-2021-43935",
-        "kind": "nvd"
-      }
-    ],
-    "nvd_description": "The impacted products, when configured to use SSO, are affected by an improper authentication vulnerability. This vulnerability allows the application to accept manual entry of any active directory (AD) account provisioned in the application without supplying a password, resulting in access to the application as the supplied AD account, with all associated privileges.",
-    "source_summary": "The DHS’ Cybersecurity and Infrastructure Security Agency (CISA) has issued a security alert warning healthcare providers about a high-severity vulnerability that affects certain Hillrom Welch Allyn cardio products. The vulnerability is an authentication bypass issue, which allows a remote attacker to use an alternative path or channel to avoid authentication. The vulnerability, tracked as CVE-2021-43935, […] The post CISA Warns of High-severity Vulnerability in Hillrom Welch Allyn Cardio Products appeared first on ComplianceJunction .",
-    "kev_required_action": "",
-    "kev_due_date": "",
-    "kev_vendor": "",
-    "kev_product": "",
-    "kev_vulnerability_name": "",
-    "remediation_steps": [
-      "Review vendor advisory for mitigation guidance.",
-      "Monitor for exploitation indicators."
-    ],
-    "healthcare_relevant": true,
-    "fda_risk_class": null,
-    "is_kev_medical_device": false,
-    "epss_score": 0.00197,
-    "epss_percentile": 0.41712,
-    "recommended_patterns": [],
-    "tasks_by_role": {},
-    "reasoning": "",
-    "citations": []
-  },
-  {
     "actions": [
       "log"
     ],
@@ -34793,7 +34622,7 @@
       "Thu, 15 Oct 2026 11:00:00 +0000"
     ],
     "first_seen_at": "2026-10-17T10:33:01.439192+00:00",
-    "last_seen_at": "2026-11-13T14:18:37.538862+00:00",
+    "last_seen_at": "2026-11-14T13:23:16.160848+00:00",
     "score": 48,
     "priority": "P3",
     "actions": [
@@ -41577,7 +41406,7 @@
       "Mon, 09 Nov 2026 11:25:49 +0000"
     ],
     "first_seen_at": "2026-11-09T15:16:36.120366+00:00",
-    "last_seen_at": "2026-11-13T14:13:46.079124+00:00",
+    "last_seen_at": "2026-11-14T13:18:25.077522+00:00",
     "score": 17,
     "priority": "P3",
     "actions": [
