@@ -18,10 +18,10 @@
   "counts": {
     "validated_sources": 54,
     "candidate_sources": 1,
-    "issues_public": 16910,
+    "issues_public": 16978,
     "alerts_public": 100,
-    "latest": 16910,
-    "healthcare": 477,
+    "latest": 16978,
+    "healthcare": 478,
     "packets": 0,
     "sources_enabled": 64,
     "kev_medical_device": 0
@@ -38,10 +38,10 @@
     "dashboard_html": "outputs/community_public/dashboard.html",
     "packets_dir": null
   },
-  "generated_at": "2026-11-14T13:44:44+00:00",
+  "generated_at": "2026-11-15T14:24:55+00:00",
   "methodology_stats": {
-    "total_issues": 16910,
-    "medical_device_issues": 477,
+    "total_issues": 16978,
+    "medical_device_issues": 478,
     "fda_risk_class_populated": 381,
     "fda_derived_medical_device": 378,
     "fda_md_vendor_populated": 376,
@@ -57,24 +57,24 @@
     "kev_medical_device_reconciled": true,
     "kev_medical_device_definition": "healthcare_category == medical_device AND exact structured CVE ID is present in the full CISA Known Exploited Vulnerabilities catalog",
     "kev_medical_device_catalog_unique_cves": 1781,
-    "kev_medical_device_reconciled_at": "2026-11-14T13:44:54.958618+00:00",
+    "kev_medical_device_reconciled_at": "2026-11-15T14:25:09.613649+00:00",
     "kev_catalog_records": 1781,
     "kev_catalog_unique_cves": 1781,
-    "medical_device_unique_cves": 80,
+    "medical_device_unique_cves": 81,
     "kev_md_cve_overlap_ids": [],
     "kev_md_vendor_partial_overlap": 2,
     "kev_comparison_scope": "full_cisa_kev_catalog",
     "kev_comparison_key": "exact_cve_id",
-    "kev_comparison_generated_at": "2026-11-14T13:44:57.563883+00:00"
+    "kev_comparison_generated_at": "2026-11-15T14:25:13.033589+00:00"
   },
   "publication": {
     "strategy": "bounded_latest_plus_stable_hash_jsonl",
-    "total_records": 16910,
+    "total_records": 16978,
     "latest_records": 750,
     "archive_shards": 32,
     "archive_manifest": "feed_archive/manifest.json",
-    "largest_shard_bytes": 10798863,
-    "latest_bytes": 2303182,
-    "generated_at": "2026-11-14T13:45:29.761332+00:00"
+    "largest_shard_bytes": 11301489,
+    "latest_bytes": 2311926,
+    "generated_at": "2026-11-15T14:25:21.914868+00:00"
   }
 }
