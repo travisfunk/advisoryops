@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "generated_at": "2026-11-21T14:36:30.046419+00:00",
+  "generated_at": "2026-11-22T14:30:11.810925+00:00",
   "total_records": 18599,
-  "vendor_evidence_checked_at": "2026-11-21T14:36:15.477137+00:00",
+  "vendor_evidence_checked_at": "2026-11-22T14:29:54.830361+00:00",
   "records_with_vendor_products": 8241,
   "records_with_products": 8634,
   "matching_policy": "product_identity_candidates_only",
@@ -179669,7 +179669,7 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/cloud-security/478586"
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/482395"
     },
     {
       "issue_id": "CVE-2026-116591",
@@ -286158,7 +286158,7 @@
     },
     {
       "issue_id": "CVE-2026-58254",
-      "title": "Linux Distros Unpatched Vulnerability : CVE-2026-58254",
+      "title": "CVE-2026-58254",
       "priority": "P3",
       "cves": [
         "CVE-2026-58254"
@@ -286167,17 +286167,17 @@
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
-        "linuxfoundation nats-server"
+        "Linuxfoundation Nats-Server"
       ],
       "product_vendors": [
         {
-          "product": "linuxfoundation nats-server",
+          "product": "Linuxfoundation Nats-Server",
           "vendor": "linuxfoundation",
           "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-58254"
         }
       ],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/325088"
+      "canonical_link": "https://www.tenable.com/plugins/cloud-security/482391"
     },
     {
       "issue_id": "CVE-2026-58263",
