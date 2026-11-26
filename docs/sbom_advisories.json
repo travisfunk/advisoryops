@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "generated_at": "2026-11-25T17:11:35.406250+00:00",
-  "total_records": 18784,
-  "vendor_evidence_checked_at": "2026-11-25T17:11:17.667704+00:00",
-  "records_with_vendor_products": 8307,
-  "records_with_products": 8700,
+  "generated_at": "2026-11-26T16:45:54.990739+00:00",
+  "total_records": 18822,
+  "vendor_evidence_checked_at": "2026-11-26T16:45:40.392052+00:00",
+  "records_with_vendor_products": 8329,
+  "records_with_products": 8722,
   "matching_policy": "product_identity_candidates_only",
   "issues": [
     {
@@ -90865,6 +90865,64 @@
       "canonical_link": "https://cert-portal.siemens.com/productcert/csaf/ssa-292063.json"
     },
     {
+      "issue_id": "CVE-2023-25914",
+      "title": "CVE-2023-25914",
+      "priority": "P0",
+      "cves": [
+        "CVE-2023-25914"
+      ],
+      "vendor": "Danfoss",
+      "kev_vendor": "Danfoss",
+      "kev_product": "AK-SM 800A Series",
+      "affected_products": [
+        "Danfoss Ak-Sm 800A",
+        "Danfoss Ak-Sm 800A Firmware"
+      ],
+      "product_vendors": [
+        {
+          "product": "AK-SM 800A Series",
+          "vendor": "Danfoss",
+          "source": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog"
+        },
+        {
+          "product": "Danfoss Ak-Sm 800A Firmware",
+          "vendor": "danfoss",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2023-25914"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2023-25914"
+    },
+    {
+      "issue_id": "CVE-2023-25915",
+      "title": "CVE-2023-25915",
+      "priority": "P0",
+      "cves": [
+        "CVE-2023-25915"
+      ],
+      "vendor": "Danfoss",
+      "kev_vendor": "Danfoss",
+      "kev_product": "AK-SM 800A Series",
+      "affected_products": [
+        "Danfoss Ak-Sm 800A",
+        "Danfoss Ak-Sm 800A Firmware"
+      ],
+      "product_vendors": [
+        {
+          "product": "AK-SM 800A Series",
+          "vendor": "Danfoss",
+          "source": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog"
+        },
+        {
+          "product": "Danfoss Ak-Sm 800A Firmware",
+          "vendor": "danfoss",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2023-25915"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2023-25915"
+    },
+    {
       "issue_id": "CVE-2023-25931",
       "title": "CVE-2023-25931",
       "priority": "P3",
@@ -131346,7 +131404,7 @@
     },
     {
       "issue_id": "CVE-2025-15649",
-      "title": "CVE-2025-15649",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP Uncaught Exception (CVE-2025-15649)",
       "priority": "P3",
       "cves": [
         "CVE-2025-15649"
@@ -131357,7 +131415,7 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/322855"
+      "canonical_link": "https://www.tenable.com/plugins/ot/506499"
     },
     {
       "issue_id": "CVE-2025-15660",
@@ -131373,6 +131431,29 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-423/"
+    },
+    {
+      "issue_id": "CVE-2025-15661",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP Out-of-bounds Read (CVE-2025-15661)",
+      "priority": "P3",
+      "cves": [
+        "CVE-2025-15661"
+      ],
+      "vendor": "libssh2",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Libssh2 Libssh2"
+      ],
+      "product_vendors": [
+        {
+          "product": "Libssh2 Libssh2",
+          "vendor": "libssh2",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2025-15661"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/ot/506516"
     },
     {
       "issue_id": "CVE-2025-15666",
@@ -147701,17 +147782,31 @@
     {
       "issue_id": "CVE-2025-41450",
       "title": "CVE-2025-41450",
-      "priority": "P2",
+      "priority": "P0",
       "cves": [
         "CVE-2025-41450"
       ],
-      "vendor": "",
-      "kev_vendor": "",
-      "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "vendor": "Danfoss",
+      "kev_vendor": "Danfoss",
+      "kev_product": "AK-SM 800A Series",
+      "affected_products": [
+        "Danfoss Ak-Sm 800A",
+        "Danfoss Ak-Sm 800A Firmware"
+      ],
+      "product_vendors": [
+        {
+          "product": "AK-SM 800A Series",
+          "vendor": "Danfoss",
+          "source": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog"
+        },
+        {
+          "product": "Danfoss Ak-Sm 800A Firmware",
+          "vendor": "danfoss",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2025-41450"
+        }
+      ],
       "affected_versions": [],
-      "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2025/icsa-25-140-03.json"
+      "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2025-41450"
     },
     {
       "issue_id": "CVE-2025-41451",
@@ -156022,7 +156117,7 @@
     },
     {
       "issue_id": "CVE-2025-69534",
-      "title": "CVE-2025-69534",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP Uncontrolled Resource Consumption (CVE-2025-69534)",
       "priority": "P3",
       "cves": [
         "CVE-2025-69534"
@@ -156041,7 +156136,7 @@
         }
       ],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/325501"
+      "canonical_link": "https://www.tenable.com/plugins/ot/506535"
     },
     {
       "issue_id": "CVE-2025-6965",
@@ -163469,7 +163564,7 @@
     },
     {
       "issue_id": "CVE-2026-102633",
-      "title": "CVE-2026-102633",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP Integer Overflow or Wraparound (CVE-2026-102633)",
       "priority": "P3",
       "cves": [
         "CVE-2026-102633"
@@ -163480,7 +163575,7 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/374770"
+      "canonical_link": "https://www.tenable.com/plugins/ot/506522"
     },
     {
       "issue_id": "CVE-2026-102700",
@@ -164151,15 +164246,22 @@
     {
       "issue_id": "CVE-2026-103406",
       "title": "CVE-2026-103406",
-      "priority": "P1",
+      "priority": "P0",
       "cves": [
         "CVE-2026-103406"
       ],
       "vendor": "Hewlett Packard Enterprise (HPE)",
       "kev_vendor": "Hewlett Packard Enterprise (HPE)",
       "kev_product": "Juniper Session Smart Conductor and Session Smart Router",
-      "affected_products": [],
+      "affected_products": [
+        "Juniper Session Smart Conductor"
+      ],
       "product_vendors": [
+        {
+          "product": "Juniper Session Smart Conductor",
+          "vendor": "juniper",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-103406"
+        },
         {
           "product": "Juniper Session Smart Conductor and Session Smart Router",
           "vendor": "Hewlett Packard Enterprise (HPE)",
@@ -175322,7 +175424,7 @@
     {
       "issue_id": "CVE-2026-111560",
       "title": "CVE-2026-111560",
-      "priority": "P0",
+      "priority": "P1",
       "cves": [
         "CVE-2026-111560"
       ],
@@ -175766,7 +175868,7 @@
     {
       "issue_id": "CVE-2026-111793",
       "title": "CVE-2026-111793",
-      "priority": "P0",
+      "priority": "P1",
       "cves": [
         "CVE-2026-111793"
       ],
@@ -176540,11 +176642,91 @@
       "cves": [
         "CVE-2026-112765"
       ],
-      "vendor": "",
+      "vendor": "microsoft",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "microsoft windows 10 1607",
+        "microsoft windows 10 1809",
+        "microsoft windows 10 21h2",
+        "microsoft windows 10 22h2",
+        "microsoft windows 11 23h2",
+        "microsoft windows 11 24h2",
+        "microsoft windows 11 25h2",
+        "microsoft windows 11 26h1",
+        "microsoft windows 11 26h2",
+        "microsoft windows server 2016",
+        "microsoft windows server 2019",
+        "microsoft windows server 2022",
+        "microsoft windows server 2025"
+      ],
+      "product_vendors": [
+        {
+          "product": "microsoft windows 10 1607",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-112765"
+        },
+        {
+          "product": "microsoft windows 10 1809",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-112765"
+        },
+        {
+          "product": "microsoft windows 10 21h2",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-112765"
+        },
+        {
+          "product": "microsoft windows 10 22h2",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-112765"
+        },
+        {
+          "product": "microsoft windows 11 23h2",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-112765"
+        },
+        {
+          "product": "microsoft windows 11 24h2",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-112765"
+        },
+        {
+          "product": "microsoft windows 11 25h2",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-112765"
+        },
+        {
+          "product": "microsoft windows 11 26h1",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-112765"
+        },
+        {
+          "product": "microsoft windows 11 26h2",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-112765"
+        },
+        {
+          "product": "microsoft windows server 2016",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-112765"
+        },
+        {
+          "product": "microsoft windows server 2019",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-112765"
+        },
+        {
+          "product": "microsoft windows server 2022",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-112765"
+        },
+        {
+          "product": "microsoft windows server 2025",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-112765"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-112765"
     },
@@ -181037,7 +181219,7 @@
     {
       "issue_id": "CVE-2026-116606",
       "title": "CVE-2026-116606",
-      "priority": "P0",
+      "priority": "P1",
       "cves": [
         "CVE-2026-116606"
       ],
@@ -187980,6 +188162,21 @@
       "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-120796"
     },
     {
+      "issue_id": "CVE-2026-12087",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP Out-of-bounds Read (CVE-2026-12087)",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-12087"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/ot/506508"
+    },
+    {
       "issue_id": "CVE-2026-121007",
       "title": "CVE-2026-121007",
       "priority": "P3",
@@ -190327,7 +190524,7 @@
     {
       "issue_id": "CVE-2026-124194",
       "title": "CVE-2026-124194",
-      "priority": "P0",
+      "priority": "P1",
       "cves": [
         "CVE-2026-124194"
       ],
@@ -195421,6 +195618,29 @@
       "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2026-132165"
     },
     {
+      "issue_id": "CVE-2026-13221",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP Integer Overflow or Wraparound (CVE-2026-13221)",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-13221"
+      ],
+      "vendor": "perl",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Perl Perl"
+      ],
+      "product_vendors": [
+        {
+          "product": "Perl Perl",
+          "vendor": "perl",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-13221"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/ot/506536"
+    },
+    {
       "issue_id": "CVE-2026-132224",
       "title": "CVE-2026-132224",
       "priority": "P0",
@@ -195734,6 +195954,34 @@
       "canonical_link": "https://www.tenable.com/plugins/nessus/367203"
     },
     {
+      "issue_id": "CVE-2026-133275",
+      "title": "CVE-2026-133275",
+      "priority": "P0",
+      "cves": [
+        "CVE-2026-133275"
+      ],
+      "vendor": "Mitel",
+      "kev_vendor": "Mitel",
+      "kev_product": "MiCollab",
+      "affected_products": [
+        "Mitel Micollab"
+      ],
+      "product_vendors": [
+        {
+          "product": "MiCollab",
+          "vendor": "Mitel",
+          "source": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog"
+        },
+        {
+          "product": "Mitel Micollab",
+          "vendor": "mitel",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-133275"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2026-133275"
+    },
+    {
       "issue_id": "CVE-2026-1333",
       "title": "CVE-2026-1333",
       "priority": "P2",
@@ -195755,6 +196003,118 @@
       ],
       "affected_versions": [],
       "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-112/"
+    },
+    {
+      "issue_id": "CVE-2026-133303",
+      "title": "CVE-2026-133303",
+      "priority": "P0",
+      "cves": [
+        "CVE-2026-133303"
+      ],
+      "vendor": "Mitel",
+      "kev_vendor": "Mitel",
+      "kev_product": "MiCollab",
+      "affected_products": [
+        "Mitel Micollab"
+      ],
+      "product_vendors": [
+        {
+          "product": "MiCollab",
+          "vendor": "Mitel",
+          "source": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog"
+        },
+        {
+          "product": "Mitel Micollab",
+          "vendor": "mitel",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-133303"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2026-133303"
+    },
+    {
+      "issue_id": "CVE-2026-133311",
+      "title": "CVE-2026-133311",
+      "priority": "P0",
+      "cves": [
+        "CVE-2026-133311"
+      ],
+      "vendor": "Mitel",
+      "kev_vendor": "Mitel",
+      "kev_product": "MiCollab",
+      "affected_products": [
+        "Mitel Micollab"
+      ],
+      "product_vendors": [
+        {
+          "product": "MiCollab",
+          "vendor": "Mitel",
+          "source": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog"
+        },
+        {
+          "product": "Mitel Micollab",
+          "vendor": "mitel",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-133311"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2026-133311"
+    },
+    {
+      "issue_id": "CVE-2026-133323",
+      "title": "CVE-2026-133323",
+      "priority": "P0",
+      "cves": [
+        "CVE-2026-133323"
+      ],
+      "vendor": "Mitel",
+      "kev_vendor": "Mitel",
+      "kev_product": "MiCollab",
+      "affected_products": [
+        "Mitel Micollab"
+      ],
+      "product_vendors": [
+        {
+          "product": "MiCollab",
+          "vendor": "Mitel",
+          "source": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog"
+        },
+        {
+          "product": "Mitel Micollab",
+          "vendor": "mitel",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-133323"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2026-133323"
+    },
+    {
+      "issue_id": "CVE-2026-133324",
+      "title": "CVE-2026-133324",
+      "priority": "P0",
+      "cves": [
+        "CVE-2026-133324"
+      ],
+      "vendor": "Mitel",
+      "kev_vendor": "Mitel",
+      "kev_product": "MiCollab",
+      "affected_products": [
+        "Mitel Micollab"
+      ],
+      "product_vendors": [
+        {
+          "product": "MiCollab",
+          "vendor": "Mitel",
+          "source": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog"
+        },
+        {
+          "product": "Mitel Micollab",
+          "vendor": "mitel",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-133324"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2026-133324"
     },
     {
       "issue_id": "CVE-2026-13336",
@@ -195808,6 +196168,40 @@
       ],
       "affected_versions": [],
       "canonical_link": "http://www.zerodayinitiative.com/advisories/ZDI-26-113/"
+    },
+    {
+      "issue_id": "CVE-2026-133469",
+      "title": "CVE-2026-133469",
+      "priority": "P0",
+      "cves": [
+        "CVE-2026-133469"
+      ],
+      "vendor": "Vates",
+      "kev_vendor": "Vates",
+      "kev_product": "Xen Orchestra",
+      "affected_products": [
+        "Xen-Orchestra Xen Orchestra",
+        "Xen-Orchestra Xen Orchestra Server"
+      ],
+      "product_vendors": [
+        {
+          "product": "Xen Orchestra",
+          "vendor": "Vates",
+          "source": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog"
+        },
+        {
+          "product": "Xen-Orchestra Xen Orchestra",
+          "vendor": "xen-orchestra",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-133469"
+        },
+        {
+          "product": "Xen-Orchestra Xen Orchestra Server",
+          "vendor": "xen-orchestra",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-133469"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2026-133469"
     },
     {
       "issue_id": "CVE-2026-13348",
@@ -208219,6 +208613,21 @@
       "canonical_link": "https://kb.cert.org/vuls/id/360868"
     },
     {
+      "issue_id": "CVE-2026-1502",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP CRLF Injection (CVE-2026-1502)",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-1502"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/ot/506529"
+    },
+    {
       "issue_id": "CVE-2026-15028",
       "title": "CVE-2026-15028",
       "priority": "P3",
@@ -209148,7 +209557,7 @@
     },
     {
       "issue_id": "CVE-2026-15310",
-      "title": "CVE-2026-15310",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP Uncontrolled Resource Consumption (CVE-2026-15310)",
       "priority": "P3",
       "cves": [
         "CVE-2026-15310"
@@ -209159,7 +209568,7 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/374781"
+      "canonical_link": "https://www.tenable.com/plugins/ot/506541"
     },
     {
       "issue_id": "CVE-2026-15337",
@@ -209891,7 +210300,7 @@
     },
     {
       "issue_id": "CVE-2026-15806",
-      "title": "CVE-2026-15806",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP Cleartext Transmission of Sensitive Information (CVE-2026-15806)",
       "priority": "P3",
       "cves": [
         "CVE-2026-15806"
@@ -209902,7 +210311,7 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/374781"
+      "canonical_link": "https://www.tenable.com/plugins/ot/506503"
     },
     {
       "issue_id": "CVE-2026-15815",
@@ -211051,7 +211460,7 @@
     },
     {
       "issue_id": "CVE-2026-17084",
-      "title": "CVE-2026-17084",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP Interpretation Conflict (CVE-2026-17084)",
       "priority": "P3",
       "cves": [
         "CVE-2026-17084"
@@ -211062,7 +211471,7 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/374781"
+      "canonical_link": "https://www.tenable.com/plugins/ot/506518"
     },
     {
       "issue_id": "CVE-2026-17106",
@@ -212679,6 +213088,21 @@
       "canonical_link": "https://kb.cert.org/vuls/id/987105"
     },
     {
+      "issue_id": "CVE-2026-18503",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP Inefficient CPU Computation (CVE-2026-18503)",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-18503"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/ot/506547"
+    },
+    {
       "issue_id": "CVE-2026-18556",
       "title": "CVE-2026-18556",
       "priority": "P0",
@@ -213132,7 +213556,7 @@
     },
     {
       "issue_id": "CVE-2026-19445",
-      "title": "CVE-2026-19445",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP Use After Free (CVE-2026-19445)",
       "priority": "P3",
       "cves": [
         "CVE-2026-19445"
@@ -213143,7 +213567,22 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/374781"
+      "canonical_link": "https://www.tenable.com/plugins/ot/506524"
+    },
+    {
+      "issue_id": "CVE-2026-19487",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP Always-Incorrect Control Flow Implementation (CVE-2026-19487)",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-19487"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/ot/506505"
     },
     {
       "issue_id": "CVE-2026-19490",
@@ -213353,7 +213792,7 @@
     },
     {
       "issue_id": "CVE-2026-19553",
-      "title": "CVE-2026-19553",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP Improper Validation of Certificate with Host Mismatch (CVE-2026-19553)",
       "priority": "P3",
       "cves": [
         "CVE-2026-19553"
@@ -213364,7 +213803,7 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/374781"
+      "canonical_link": "https://www.tenable.com/plugins/ot/506530"
     },
     {
       "issue_id": "CVE-2026-19556",
@@ -214969,7 +215408,7 @@
     {
       "issue_id": "CVE-2026-20320",
       "title": "CVE-2026-20320",
-      "priority": "P0",
+      "priority": "P1",
       "cves": [
         "CVE-2026-20320"
       ],
@@ -236003,6 +236442,21 @@
       "canonical_link": "https://www.tenable.com/plugins/nessus/323098"
     },
     {
+      "issue_id": "CVE-2026-3276",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP Inefficient Algorithmic Complexity (CVE-2026-3276)",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-3276"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/ot/506533"
+    },
+    {
       "issue_id": "CVE-2026-32766",
       "title": "CVE-2026-32766",
       "priority": "P3",
@@ -239875,7 +240329,7 @@
     },
     {
       "issue_id": "CVE-2026-35189",
-      "title": "CVE-2026-35189",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP Allocation of Resources Without Limits or Throttling (CVE-2026-35189)",
       "priority": "P2",
       "cves": [
         "CVE-2026-35189"
@@ -244652,6 +245106,30 @@
       ],
       "affected_versions": [],
       "canonical_link": "https://www.tenable.com/plugins/nessus/325115"
+    },
+    {
+      "issue_id": "CVE-2026-42497",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP Link Following (CVE-2026-42497)",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-42497"
+      ],
+      "vendor": "archive::tar project",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Archive\\ \\",
+        "archive::tar project archive::tar"
+      ],
+      "product_vendors": [
+        {
+          "product": "archive::tar project archive::tar",
+          "vendor": "archive::tar project",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-42497"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/ot/506545"
     },
     {
       "issue_id": "CVE-2026-42498",
@@ -265192,7 +265670,7 @@
     },
     {
       "issue_id": "CVE-2026-48959",
-      "title": "CVE-2026-48959",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP Inefficient Algorithmic Complexity (CVE-2026-48959)",
       "priority": "P3",
       "cves": [
         "CVE-2026-48959"
@@ -265203,7 +265681,7 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/322855"
+      "canonical_link": "https://www.tenable.com/plugins/ot/506537"
     },
     {
       "issue_id": "CVE-2026-48961",
@@ -265222,7 +265700,7 @@
     },
     {
       "issue_id": "CVE-2026-48962",
-      "title": "CVE-2026-48962",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP Eval Injection (CVE-2026-48962)",
       "priority": "P3",
       "cves": [
         "CVE-2026-48962"
@@ -265233,7 +265711,7 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/346787"
+      "canonical_link": "https://www.tenable.com/plugins/ot/506515"
     },
     {
       "issue_id": "CVE-2026-4897",
@@ -266976,7 +267454,7 @@
     },
     {
       "issue_id": "CVE-2026-50219",
-      "title": "CVE-2026-50219",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP Use After Free (CVE-2026-50219)",
       "priority": "P3",
       "cves": [
         "CVE-2026-50219"
@@ -266995,7 +267473,7 @@
         }
       ],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/345784"
+      "canonical_link": "https://www.tenable.com/plugins/ot/506538"
     },
     {
       "issue_id": "CVE-2026-50221",
@@ -281819,6 +282297,29 @@
       "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-197-05.json"
     },
     {
+      "issue_id": "CVE-2026-54872",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP Observable Timing Discrepancy (CVE-2026-54872)",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-54872"
+      ],
+      "vendor": "openssl",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Openssl Openssl"
+      ],
+      "product_vendors": [
+        {
+          "product": "Openssl Openssl",
+          "vendor": "openssl",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-54872"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/ot/506520"
+    },
+    {
       "issue_id": "CVE-2026-54873",
       "title": "CVE-2026-54873",
       "priority": "P3",
@@ -284317,6 +284818,29 @@
       "canonical_link": "https://www.tenable.com/plugins/nessus/345784"
     },
     {
+      "issue_id": "CVE-2026-56132",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP Incorrect Synchronization (CVE-2026-56132)",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-56132"
+      ],
+      "vendor": "libexpat project",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Libexpat Project Libexpat"
+      ],
+      "product_vendors": [
+        {
+          "product": "Libexpat Project Libexpat",
+          "vendor": "libexpat project",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-56132"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/ot/506502"
+    },
+    {
       "issue_id": "CVE-2026-56153",
       "title": "CVE-2026-56153",
       "priority": "P2",
@@ -285092,7 +285616,7 @@
     },
     {
       "issue_id": "CVE-2026-56404",
-      "title": "CVE-2026-56404",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP Integer Overflow or Wraparound (CVE-2026-56404)",
       "priority": "P3",
       "cves": [
         "CVE-2026-56404"
@@ -285111,11 +285635,11 @@
         }
       ],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/345784"
+      "canonical_link": "https://www.tenable.com/plugins/ot/506548"
     },
     {
       "issue_id": "CVE-2026-56405",
-      "title": "CVE-2026-56405",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP Integer Overflow or Wraparound (CVE-2026-56405)",
       "priority": "P3",
       "cves": [
         "CVE-2026-56405"
@@ -285134,11 +285658,34 @@
         }
       ],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/345784"
+      "canonical_link": "https://www.tenable.com/plugins/ot/506526"
+    },
+    {
+      "issue_id": "CVE-2026-56407",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP Integer Overflow or Wraparound (CVE-2026-56407)",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-56407"
+      ],
+      "vendor": "libexpat project",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Libexpat Project Libexpat"
+      ],
+      "product_vendors": [
+        {
+          "product": "Libexpat Project Libexpat",
+          "vendor": "libexpat project",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-56407"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/ot/506507"
     },
     {
       "issue_id": "CVE-2026-56408",
-      "title": "CVE-2026-56408",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP Integer Overflow or Wraparound (CVE-2026-56408)",
       "priority": "P3",
       "cves": [
         "CVE-2026-56408"
@@ -285157,11 +285704,11 @@
         }
       ],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/345784"
+      "canonical_link": "https://www.tenable.com/plugins/ot/506509"
     },
     {
       "issue_id": "CVE-2026-56409",
-      "title": "CVE-2026-56409",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP Integer Overflow or Wraparound (CVE-2026-56409)",
       "priority": "P3",
       "cves": [
         "CVE-2026-56409"
@@ -285180,11 +285727,11 @@
         }
       ],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/345784"
+      "canonical_link": "https://www.tenable.com/plugins/ot/506542"
     },
     {
       "issue_id": "CVE-2026-56410",
-      "title": "CVE-2026-56410",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP Integer Overflow or Wraparound (CVE-2026-56410)",
       "priority": "P3",
       "cves": [
         "CVE-2026-56410"
@@ -285203,11 +285750,11 @@
         }
       ],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/345784"
+      "canonical_link": "https://www.tenable.com/plugins/ot/506513"
     },
     {
       "issue_id": "CVE-2026-56411",
-      "title": "CVE-2026-56411",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP Integer Overflow or Wraparound (CVE-2026-56411)",
       "priority": "P3",
       "cves": [
         "CVE-2026-56411"
@@ -285226,11 +285773,11 @@
         }
       ],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/345784"
+      "canonical_link": "https://www.tenable.com/plugins/ot/506514"
     },
     {
       "issue_id": "CVE-2026-56412",
-      "title": "CVE-2026-56412",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP Use After Free (CVE-2026-56412)",
       "priority": "P3",
       "cves": [
         "CVE-2026-56412"
@@ -285249,7 +285796,7 @@
         }
       ],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/345784"
+      "canonical_link": "https://www.tenable.com/plugins/ot/506512"
     },
     {
       "issue_id": "CVE-2026-56413",
@@ -287550,6 +288097,52 @@
       "canonical_link": "https://www.tenable.com/plugins/cloud-security/444128"
     },
     {
+      "issue_id": "CVE-2026-57432",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP Integer Overflow or Wraparound (CVE-2026-57432)",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-57432"
+      ],
+      "vendor": "perl",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Perl Perl"
+      ],
+      "product_vendors": [
+        {
+          "product": "Perl Perl",
+          "vendor": "perl",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-57432"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/ot/506519"
+    },
+    {
+      "issue_id": "CVE-2026-57433",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP Integer Overflow or Wraparound (CVE-2026-57433)",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-57433"
+      ],
+      "vendor": "nwclark",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Nwclark Storable"
+      ],
+      "product_vendors": [
+        {
+          "product": "Nwclark Storable",
+          "vendor": "nwclark",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-57433"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/ot/506521"
+    },
+    {
       "issue_id": "CVE-2026-57434",
       "title": "CVE-2026-57434",
       "priority": "P3",
@@ -288323,7 +288916,7 @@
     },
     {
       "issue_id": "CVE-2026-58051",
-      "title": "Linux Distros Unpatched Vulnerability : CVE-2026-58051",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP Use of Uninitialized Resource (CVE-2026-58051)",
       "priority": "P3",
       "cves": [
         "CVE-2026-58051"
@@ -288332,17 +288925,17 @@
       "kev_vendor": "",
       "kev_product": "",
       "affected_products": [
-        "libssh2 libssh2"
+        "Libssh2 Libssh2"
       ],
       "product_vendors": [
         {
-          "product": "libssh2 libssh2",
+          "product": "Libssh2 Libssh2",
           "vendor": "libssh2",
           "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-58051"
         }
       ],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/323570"
+      "canonical_link": "https://www.tenable.com/plugins/ot/506534"
     },
     {
       "issue_id": "CVE-2026-58055",
@@ -292750,8 +293343,8 @@
     },
     {
       "issue_id": "CVE-2026-6019",
-      "title": "CVE-2026-6019",
-      "priority": "P2",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP Improper Neutralization of Escape, Meta, or Control Sequences (CVE-2026-6019)",
+      "priority": "P3",
       "cves": [
         "CVE-2026-6019"
       ],
@@ -292769,7 +293362,7 @@
         }
       ],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/323231"
+      "canonical_link": "https://www.tenable.com/plugins/ot/506539"
     },
     {
       "issue_id": "CVE-2026-60191",
@@ -311017,7 +311610,7 @@
     },
     {
       "issue_id": "CVE-2026-66032",
-      "title": "CVE-2026-66032",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP Double Free (CVE-2026-66032)",
       "priority": "P3",
       "cves": [
         "CVE-2026-66032"
@@ -311036,11 +311629,34 @@
         }
       ],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/381875"
+      "canonical_link": "https://www.tenable.com/plugins/ot/506528"
+    },
+    {
+      "issue_id": "CVE-2026-66034",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP Out-of-bounds Read (CVE-2026-66034)",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-66034"
+      ],
+      "vendor": "libssh2",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Libssh2 Libssh2"
+      ],
+      "product_vendors": [
+        {
+          "product": "Libssh2 Libssh2",
+          "vendor": "libssh2",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-66034"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/ot/506504"
     },
     {
       "issue_id": "CVE-2026-66046",
-      "title": "CVE-2026-66046",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP Inefficient Algorithmic Complexity (CVE-2026-66046)",
       "priority": "P3",
       "cves": [
         "CVE-2026-66046"
@@ -311059,7 +311675,7 @@
         }
       ],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/381860"
+      "canonical_link": "https://www.tenable.com/plugins/ot/506506"
     },
     {
       "issue_id": "CVE-2026-66070",
@@ -326117,6 +326733,21 @@
       "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-70098"
     },
     {
+      "issue_id": "CVE-2026-7010",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP HTTP Request/Response Splitting (CVE-2026-7010)",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-7010"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/ot/506501"
+    },
+    {
       "issue_id": "CVE-2026-70105",
       "title": "CVE-2026-70105 Microsoft Word Information Disclosure Vulnerability",
       "priority": "P3",
@@ -326242,6 +326873,21 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-70165"
+    },
+    {
+      "issue_id": "CVE-2026-7017",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP Insufficiently Protected Credentials (CVE-2026-7017)",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-7017"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/ot/506543"
     },
     {
       "issue_id": "CVE-2026-70174",
@@ -333964,6 +334610,21 @@
       "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-272-02.json"
     },
     {
+      "issue_id": "CVE-2026-72522",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP Out-of-bounds Read (CVE-2026-72522)",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-72522"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/ot/506540"
+    },
+    {
       "issue_id": "CVE-2026-72529",
       "title": "CVE-2026-72529",
       "priority": "P1",
@@ -340979,6 +341640,52 @@
       "canonical_link": "https://www.tenable.com/plugins/nessus/345807"
     },
     {
+      "issue_id": "CVE-2026-75805",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP NULL Pointer Dereference (CVE-2026-75805)",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-75805"
+      ],
+      "vendor": "openssl",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Openssl Openssl"
+      ],
+      "product_vendors": [
+        {
+          "product": "Openssl Openssl",
+          "vendor": "openssl",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-75805"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/ot/506544"
+    },
+    {
+      "issue_id": "CVE-2026-75806",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP Improper Validation of Specified Quantity in Input (CVE-2026-75806)",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-75806"
+      ],
+      "vendor": "openssl",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [
+        "Openssl Openssl"
+      ],
+      "product_vendors": [
+        {
+          "product": "Openssl Openssl",
+          "vendor": "openssl",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-75806"
+        }
+      ],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/ot/506511"
+    },
+    {
       "issue_id": "CVE-2026-75813",
       "title": "CVE-2026-75813",
       "priority": "P3",
@@ -341262,7 +341969,7 @@
     },
     {
       "issue_id": "CVE-2026-7598",
-      "title": "CVE-2026-7598",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP Integer Overflow or Wraparound (CVE-2026-7598)",
       "priority": "P3",
       "cves": [
         "CVE-2026-7598"
@@ -341281,7 +341988,7 @@
         }
       ],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/328629"
+      "canonical_link": "https://www.tenable.com/plugins/ot/506531"
     },
     {
       "issue_id": "CVE-2026-76017",
@@ -342660,7 +343367,7 @@
     },
     {
       "issue_id": "CVE-2026-76957",
-      "title": "CVE-2026-76957",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP Use After Free (CVE-2026-76957)",
       "priority": "P3",
       "cves": [
         "CVE-2026-76957"
@@ -342679,7 +343386,7 @@
         }
       ],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/345784"
+      "canonical_link": "https://www.tenable.com/plugins/ot/506532"
     },
     {
       "issue_id": "CVE-2026-77037",
@@ -342751,7 +343458,7 @@
     },
     {
       "issue_id": "CVE-2026-77214",
-      "title": "CVE-2026-77214",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP Out-of-bounds Read (CVE-2026-77214)",
       "priority": "P3",
       "cves": [
         "CVE-2026-77214"
@@ -342762,7 +343469,7 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/374770"
+      "canonical_link": "https://www.tenable.com/plugins/ot/506527"
     },
     {
       "issue_id": "CVE-2026-77219",
@@ -350938,6 +351645,21 @@
       "canonical_link": "https://raw.githubusercontent.com/cisagov/CSAF/develop/csaf_files/OT/white/2026/icsa-26-197-01.json"
     },
     {
+      "issue_id": "CVE-2026-8328",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP SSRF (CVE-2026-8328)",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-8328"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.tenable.com/plugins/ot/506523"
+    },
+    {
       "issue_id": "CVE-2026-83374",
       "title": "CVE-2026-83374",
       "priority": "P3",
@@ -351722,7 +352444,7 @@
     },
     {
       "issue_id": "CVE-2026-8376",
-      "title": "CVE-2026-8376",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP Integer Overflow to Buffer Overflow (CVE-2026-8376)",
       "priority": "P3",
       "cves": [
         "CVE-2026-8376"
@@ -351741,7 +352463,7 @@
         }
       ],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/346775"
+      "canonical_link": "https://www.tenable.com/plugins/ot/506500"
     },
     {
       "issue_id": "CVE-2026-83760",
@@ -354018,7 +354740,7 @@
     },
     {
       "issue_id": "CVE-2026-84782",
-      "title": "CVE-2026-84782",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP Out-of-bounds Read (CVE-2026-84782)",
       "priority": "P3",
       "cves": [
         "CVE-2026-84782"
@@ -354037,7 +354759,7 @@
         }
       ],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/364669"
+      "canonical_link": "https://www.tenable.com/plugins/ot/506525"
     },
     {
       "issue_id": "CVE-2026-84783",
@@ -382454,8 +383176,8 @@
     },
     {
       "issue_id": "CVE-2026-93990",
-      "title": "CVE-2026-93990",
-      "priority": "P2",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP Improper Handling of Unicode Encoding (CVE-2026-93990)",
+      "priority": "P3",
       "cves": [
         "CVE-2026-93990"
       ],
@@ -382465,7 +383187,7 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/381552"
+      "canonical_link": "https://www.tenable.com/plugins/ot/506510"
     },
     {
       "issue_id": "CVE-2026-94054",
@@ -385288,11 +386010,85 @@
       "cves": [
         "CVE-2026-95874"
       ],
-      "vendor": "",
+      "vendor": "microsoft",
       "kev_vendor": "",
       "kev_product": "",
-      "affected_products": [],
-      "product_vendors": [],
+      "affected_products": [
+        "Microsoft Windows 10 1607",
+        "Microsoft Windows 10 1809",
+        "Microsoft Windows 10 21H2",
+        "Microsoft Windows 10 22H2",
+        "Microsoft Windows 11 23H2",
+        "Microsoft Windows 11 24H2",
+        "Microsoft Windows 11 25H2",
+        "Microsoft Windows 11 26H1",
+        "Microsoft Windows 11 26H2",
+        "Microsoft Windows Server 2016",
+        "Microsoft Windows Server 2019",
+        "Microsoft Windows Server 2025"
+      ],
+      "product_vendors": [
+        {
+          "product": "Microsoft Windows 10 1607",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-95874"
+        },
+        {
+          "product": "Microsoft Windows 10 1809",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-95874"
+        },
+        {
+          "product": "Microsoft Windows 10 21H2",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-95874"
+        },
+        {
+          "product": "Microsoft Windows 10 22H2",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-95874"
+        },
+        {
+          "product": "Microsoft Windows 11 23H2",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-95874"
+        },
+        {
+          "product": "Microsoft Windows 11 24H2",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-95874"
+        },
+        {
+          "product": "Microsoft Windows 11 25H2",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-95874"
+        },
+        {
+          "product": "Microsoft Windows 11 26H1",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-95874"
+        },
+        {
+          "product": "Microsoft Windows 11 26H2",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-95874"
+        },
+        {
+          "product": "Microsoft Windows Server 2016",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-95874"
+        },
+        {
+          "product": "Microsoft Windows Server 2019",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-95874"
+        },
+        {
+          "product": "Microsoft Windows Server 2025",
+          "vendor": "microsoft",
+          "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-95874"
+        }
+      ],
       "affected_versions": [],
       "canonical_link": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-95874"
     },
@@ -387102,7 +387898,7 @@
     },
     {
       "issue_id": "CVE-2026-9669",
-      "title": "CVE-2026-9669",
+      "title": "Siemens SIMATIC S7-1500 CPU 1518 MFP Stack-based Buffer Overflow (CVE-2026-9669)",
       "priority": "P3",
       "cves": [
         "CVE-2026-9669"
@@ -387113,7 +387909,7 @@
       "affected_products": [],
       "product_vendors": [],
       "affected_versions": [],
-      "canonical_link": "https://www.tenable.com/plugins/nessus/374781"
+      "canonical_link": "https://www.tenable.com/plugins/ot/506517"
     },
     {
       "issue_id": "CVE-2026-9672",
@@ -400324,6 +401120,81 @@
       "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2026-99804"
     },
     {
+      "issue_id": "CVE-2026-99805",
+      "title": "CVE-2026-99805",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-99805"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2026-99805"
+    },
+    {
+      "issue_id": "CVE-2026-99806",
+      "title": "CVE-2026-99806",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-99806"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2026-99806"
+    },
+    {
+      "issue_id": "CVE-2026-99807",
+      "title": "CVE-2026-99807",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-99807"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2026-99807"
+    },
+    {
+      "issue_id": "CVE-2026-99808",
+      "title": "CVE-2026-99808",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-99808"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2026-99808"
+    },
+    {
+      "issue_id": "CVE-2026-99809",
+      "title": "CVE-2026-99809",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-99809"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2026-99809"
+    },
+    {
       "issue_id": "CVE-2026-9981",
       "title": "CVE-2026-9981",
       "priority": "P3",
@@ -400348,6 +401219,36 @@
       ],
       "affected_versions": [],
       "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2026-9981"
+    },
+    {
+      "issue_id": "CVE-2026-99810",
+      "title": "CVE-2026-99810",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-99810"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2026-99810"
+    },
+    {
+      "issue_id": "CVE-2026-99811",
+      "title": "CVE-2026-99811",
+      "priority": "P3",
+      "cves": [
+        "CVE-2026-99811"
+      ],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://nvd.nist.gov/vuln/detail/CVE-2026-99811"
     },
     {
       "issue_id": "CVE-2026-9982",
@@ -424912,6 +425813,19 @@
       "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
     },
     {
+      "issue_id": "UNK-708a5f5e2689835b",
+      "title": "What defenders need to know about ARTEX, the agentic AI framework threat actors abuse",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.microsoft.com/en-us/security/blog/2026/11/25/what-defenders-need-to-know-artex-agentic-ai-framework-threat-actors-abuse/"
+    },
+    {
       "issue_id": "UNK-709da30ba28e1d68",
       "title": "Janssen Pharmaceutica reports TDP-43 PET imaging agents",
       "priority": "P3",
@@ -425003,6 +425917,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "http://www.zerodayinitiative.com/advisories/upcoming/"
+    },
+    {
+      "issue_id": "UNK-70f855984942645d",
+      "title": "Microsoft named a Leader in the 2026 Gartner® Magic Quadrant™ for Email Security",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://www.microsoft.com/en-us/security/blog/2026/11/25/microsoft-named-a-leader-in-the-2026-gartner-magic-quadrant-for-email-security/"
     },
     {
       "issue_id": "UNK-70f9b6d7951d2c70",
@@ -426909,6 +427836,19 @@
       "product_vendors": [],
       "affected_versions": [],
       "canonical_link": "https://api.fda.gov/device/enforcement.json?search=recall_number:\"Z-0093-2018\""
+    },
+    {
+      "issue_id": "UNK-7a270e4f1b2c1986",
+      "title": "Oh, is it Thanksgiving? I hadn’t noticed!",
+      "priority": "P3",
+      "cves": [],
+      "vendor": "",
+      "kev_vendor": "",
+      "kev_product": "",
+      "affected_products": [],
+      "product_vendors": [],
+      "affected_versions": [],
+      "canonical_link": "https://blog.talosintelligence.com/oh-is-it-thanksgiving-i-hadnt-noticed/"
     },
     {
       "issue_id": "UNK-7a33d3d4e6c2e9a5",
